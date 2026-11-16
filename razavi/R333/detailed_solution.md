@@ -1,19 +1,14 @@
 # Detailed solution - R333
 
-**Approach.** The circuit has three independent thermal noise sources: the channel noise of $M_1$, the noise of $R_S$ and the noise of $R_D$. Find the input voltage that would produce the same output as each source (one source at a time), then add the three input-referred powers, since the sources are uncorrelated. Throughout, $\lambda = 0$ and there is no body effect, so the transistor's drain current depends only on $V_{GS}$.
+**Approach.** Refer each of the three uncorrelated thermal noise sources ($M_1$, $R_S$, $R_D$) to the input separately, by finding the input voltage that produces the same drain current, and add the input-referred powers. With $\lambda = 0$ and no body effect, the drain current depends only on $V_{GS}$.
 
 ### Step 1 — Small-signal model and voltage gain
 
-**Model in words.** The circuit has three nodes besides ground: the input (gate), the source node S and the output (drain). The transistor is a voltage-controlled current source $g_m(v_{in} - v_S)$ flowing from the output to S. $R_S$ connects S to ground. $R_D$ connects the output to $V_{DD}$, which is ac ground. Because $\lambda = 0$, there is no $r_O$. The three noise sources are then added: the channel noise of $M_1$ between drain and source, and a Norton current in parallel with each resistor.
+The transistor is a current $g_m(v_{in} - v_S)$ from the output to the source node S; $R_S$ connects S to ground and $R_D$ connects the output to ac ground. The channel noise sits between drain and source, and each resistor has a Norton noise current in parallel.
 
 <!-- diagram: diagram-01.cir -->
 
-**Signal gain (noise sources off).** Let $i_d$ be the drain current.
-
-- Device equation: $i_d = g_m(v_{in} - v_S)$.
-- KCL at S: $i_d$ flows entirely into $R_S$, so $v_S = i_dR_S$.
-
-Substitute the second into the first and solve:
+With the noise sources off, $i_d = g_m(v_{in} - v_S)$ and all of $i_d$ flows into $R_S$, so $v_S = i_dR_S$:
 
 $$
 \begin{aligned}
@@ -23,34 +18,25 @@ i_d &= \frac{g_m}{1 + g_mR_S}\,v_{in}.
 \end{aligned}
 $$
 
-$i_d$ flows from $V_{DD}$ through $R_D$, so $v_{out} = -i_dR_D$ and
+Since $v_{out} = -i_dR_D$,
 
-$$A_v = \frac{v_{out}}{v_{in}} = -\frac{g_mR_D}{1 + g_mR_S}.$$
+$$A_v = \frac{v_{out}}{v_{in}} = -\frac{g_mR_D}{1 + g_mR_S},$$
 
-The quantity $G_m = g_m/(1 + g_mR_S)$ is the effective transconductance of the degenerated device.
+and $G_m = g_m/(1 + g_mR_S)$ is the effective transconductance of the degenerated device.
 
 ### Step 2 — Noise of $M_1$
 
-The channel noise is a current $I_{n1}$ between drain and source, with $\overline{I_{n1}^2} = 4kT\gamma g_m$, where $k$ is Boltzmann's constant, $T$ the absolute temperature and $\gamma$ the channel-noise coefficient.
-
-The total current flowing through the device from drain to source is
+With the channel noise $I_{n1}$, $\overline{I_{n1}^2} = 4kT\gamma g_m$, the drain-to-source current is
 
 $$i_d = g_m v_{gs} + I_{n1} = g_m\left(v_{gs} + \frac{I_{n1}}{g_m}\right).$$
 
-So the noise current has exactly the same effect as an extra voltage $I_{n1}/g_m$ added to $v_{gs}$, i.e. a voltage source $I_{n1}/g_m$ in series with the gate. This equivalence is exact here because, with $\lambda = 0$ and no body effect, the device current depends on $v_{gs}$ alone. It therefore holds **whatever** is connected to the source.
-
-Check with the degenerated circuit: with $v_{in} = 0$, $i_d = g_m(-i_dR_S) + I_{n1}$, so $i_d = I_{n1}/(1 + g_mR_S)$. An input $v_{in}$ gives $i_d = g_mv_{in}/(1 + g_mR_S)$. They are equal when $v_{in} = I_{n1}/g_m$. ✓ Hence
+Since the current depends on $v_{gs}$ alone, $I_{n1}$ is exactly equivalent to a voltage $I_{n1}/g_m$ in series with the gate, **whatever** is connected to the source. Check with the degenerated circuit: with $v_{in} = 0$, $i_d = g_m(-i_dR_S) + I_{n1}$, so $i_d = I_{n1}/(1 + g_mR_S)$, which equals the response $g_mv_{in}/(1 + g_mR_S)$ for $v_{in} = I_{n1}/g_m$. ✓ Hence
 
 $$\overline{V_{n,in}^2}\Big|_{M_1} = \frac{\overline{I_{n1}^2}}{g_m^2} = \frac{4kT\gamma g_m}{g_m^2} = \frac{4kT\gamma}{g_m}.$$
 
 ### Step 3 — Noise of $R_S$
 
-Model the noise of $R_S$ as a current $I_{nS}$, with $\overline{I_{nS}^2} = 4kT/R_S$, in parallel with $R_S$ and flowing from S to ground. With $v_{in} = 0$:
-
-- device equation: $i_d = g_m(0 - v_S) = -g_mv_S$;
-- KCL at S: the drain current splits between $R_S$ and the noise source, $i_d = v_S/R_S + I_{nS}$, so $v_S = (i_d - I_{nS})R_S$.
-
-Substitute and solve:
+The noise current $I_{nS}$, $\overline{I_{nS}^2} = 4kT/R_S$, flows from S to ground in parallel with $R_S$. With $v_{in} = 0$, $i_d = -g_mv_S$, and KCL at S gives $i_d = v_S/R_S + I_{nS}$, i.e. $v_S = (i_d - I_{nS})R_S$:
 
 $$
 \begin{aligned}
@@ -60,19 +46,19 @@ i_d &= \frac{g_m}{1 + g_mR_S}\,(R_SI_{nS}).
 \end{aligned}
 $$
 
-Compare with the signal relation $i_d = \dfrac{g_m}{1 + g_mR_S}v_{in}$: the noise is equivalent to an input voltage of magnitude $R_SI_{nS}$. (The sign does not matter for a noise power.) Thus
+Compared with $i_d = \dfrac{g_m}{1 + g_mR_S}v_{in}$, the noise is equivalent to an input voltage of magnitude $R_SI_{nS}$ (the sign does not matter for a noise power):
 
 $$\overline{V_{n,in}^2}\Big|_{R_S} = R_S^2\cdot\frac{4kT}{R_S} = 4kTR_S .$$
 
-**Intuition.** In Thevenin form the noise of $R_S$ is a voltage $V_{nS}$ ($\overline{V_{nS}^2} = 4kTR_S$) in series with the source terminal. The transistor responds only to $V_{GS} = V_G - V_S$, so a voltage in series with the source is indistinguishable from the same voltage (with opposite sign) at the gate. It is referred to the input **one-to-one**, without any division by the gain.
+In Thevenin form this is a voltage $4kTR_S$ in series with the source terminal; it changes $V_{GS}$ exactly as a gate voltage would, so it is referred to the input **one-to-one**.
 
 ### Step 4 — Noise of $R_D$
 
-Model the noise of $R_D$ as a current $I_{nD}$, $\overline{I_{nD}^2} = 4kT/R_D$, in parallel with $R_D$. With $\lambda = 0$ the drain of $M_1$ is an ideal current source: its current is fixed by $v_{gs}$ and does not change with $v_{out}$. Hence none of $I_{nD}$ can flow into the transistor and all of it flows through $R_D$:
+With $\lambda = 0$ the drain is an ideal current source, so all of the noise current $I_{nD}$, $\overline{I_{nD}^2} = 4kT/R_D$, flows through $R_D$:
 
 $$\overline{V_{n,out}^2}\Big|_{R_D} = \overline{I_{nD}^2}\,R_D^2 = \frac{4kT}{R_D}R_D^2 = 4kTR_D .$$
 
-Divide by the squared gain from Step 1:
+Dividing by the squared gain of Step 1:
 
 $$
 \begin{aligned}
@@ -81,7 +67,7 @@ $$
 \end{aligned}
 $$
 
-Degeneration lowers the gain by $(1 + g_mR_S)$, so the load noise, which appears at the output, is magnified by $(1 + g_mR_S)^2$ when referred back to the input.
+Degeneration lowers the gain by $(1 + g_mR_S)$, so the load noise, referred back to the input, grows by $(1 + g_mR_S)^2$.
 
 ### Step 5 — Total input-referred noise
 
@@ -95,10 +81,7 @@ $$
 \end{aligned}
 $$
 
-**Checks.**
-
-- For $R_S = 0$ this reduces to the plain common-source result $4kT\left(\gamma/g_m + 1/(g_m^2R_D)\right)$.
-- Degeneration *adds* noise: the term $4kTR_S$ appears directly at the input, and the $R_D$ term grows by $(1 + g_mR_S)^2$. This is the noise price paid for the improved linearity of a degenerated stage.
+For $R_S = 0$ this reduces to the plain common-source result $4kT\left(\gamma/g_m + 1/(g_m^2R_D)\right)$. Degeneration *adds* noise, through the term $4kTR_S$ and the factor $(1 + g_mR_S)^2$ on the $R_D$ term: the noise price of its better linearity.
 
 ### Result
 
@@ -108,8 +91,8 @@ $$\overline{V_{n,in}^2} = 4kT\left[\frac{\gamma}{g_m} + R_S + \frac{(1+g_mR_S)^2
 - $R_S$: its noise voltage $4kTR_S$ acts directly on $V_{GS}$ and is referred one-to-one.
 - $R_D$: output noise $4kTR_D$, divided by $A_v^2 = \left[g_mR_D/(1+g_mR_S)\right]^2$.
 
-**Common mistake.** Dividing the $R_S$ noise by the gain, or multiplying it by $g_m^2$. The noise voltage of $R_S$ sits in series with the source terminal and changes $V_{GS}$ exactly as an input voltage would, so it is referred to the input one-to-one as $4kTR_S$.
+**Common mistake.** Dividing the $R_S$ noise by the gain, or multiplying it by $g_m^2$. Its noise voltage changes $V_{GS}$ exactly as an input voltage would, so it is referred one-to-one as $4kTR_S$.
 
-**Common mistake.** Using the undegenerated gain $g_mR_D$ when referring the $R_D$ noise, which gives $4kT/(g_m^2R_D)$. The actual gain is $g_mR_D/(1 + g_mR_S)$, so the $R_D$ term carries the factor $(1 + g_mR_S)^2$.
+**Common mistake.** Referring the $R_D$ noise with the undegenerated gain $g_mR_D$, which gives $4kT/(g_m^2R_D)$. The gain is $g_mR_D/(1 + g_mR_S)$, so the $R_D$ term carries the factor $(1 + g_mR_S)^2$.
 
-**Common mistake.** Writing the transistor term as $4kT\gamma g_m$ (that is the drain *current* PSD, not an input voltage), or attaching a degeneration factor to it. The channel noise current and the signal current are both reduced by the same factor $1 + g_mR_S$, so the input-referred transistor noise stays $4kT\gamma/g_m$.
+**Common mistake.** Writing the transistor term as $4kT\gamma g_m$ (the drain *current* PSD), or attaching a degeneration factor to it. Channel noise and signal currents are reduced by the same factor $1 + g_mR_S$, so the input-referred transistor noise stays $4kT\gamma/g_m$.
