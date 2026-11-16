@@ -1,20 +1,12 @@
 # Detailed solution - R427
 
-**Approach.** Model each transistor's channel noise as a current $4kT\cdot\tfrac23g_m$ between drain and source. Short the output, find how much of each noise current reaches it, add the powers, and divide by the square of the op amp's short-circuit transconductance $G_m \approx g_{m1}$. The cascode devices turn out to contribute almost nothing, so only the input pair and the PMOS mirror transistors $M_7$, $M_8$ matter.
+**Approach.** Model each transistor's channel noise as a drain–source current $4kT\cdot\tfrac23g_m$. Short the output, find how much of each noise current reaches it, add the powers, and divide by the square of the op amp's short-circuit transconductance $G_m \approx g_{m1}$. The cascode devices contribute almost nothing, so only the input pair and the PMOS mirror transistors $M_7$, $M_8$ matter.
 
-### Step 1 — The op amp and the noise model
+### Step 1 — Noise model and small-signal parameters
 
-Reading the figure: $M_1$–$M_2$ (NMOS input pair, ideal tail $I_{SS}$), $M_3$–$M_4$ (NMOS cascodes, gates at $V_b$), and a PMOS cascode current mirror: $M_7$ and $M_5$ are both diode-connected on the left; $M_8$ (current source) and $M_6$ (cascode) deliver the mirrored current to the output at the drain of $M_4$/$M_6$. The output is tied to the gate of $M_2$, which makes the circuit a unity-gain buffer; its input-referred noise is that of the op amp.
+The output tied to the gate of $M_2$ makes the circuit a unity-gain buffer, whose input-referred noise is that of the op amp. Each MOSFET has $\overline{I_n^2} = 4kT\gamma_n\,g_m$ with $\gamma_n = \tfrac23$ and $T = 300$ K; this thermal-noise coefficient is not the body-effect coefficient $\gamma = 0$ of the problem statement. The sources are uncorrelated.
 
-**Noise model.** Each MOSFET has a drain–source noise current with density
-
-$$\overline{I_n^2} = 4kT\gamma_n\,g_m,\qquad \gamma_n = \tfrac23,\ T = 300\ \mathrm{K}.$$
-
-($\gamma_n = 2/3$ is the thermal-noise coefficient; the "$\gamma = 0$" in the problem statement is the body-effect coefficient, a different quantity.) The sources are uncorrelated, so their powers add.
-
-### Step 2 — Small-signal parameters
-
-Each branch carries 0.5 mA.
+Each branch carries 0.5 mA:
 
 $$
 \begin{aligned}
@@ -25,40 +17,36 @@ $$
 
 By symmetry $g_{m2} = g_{m1}$ and $g_{m8} = g_{m7}$.
 
-### Step 3 — Short-circuit transconductance of the op amp
+### Step 2 — Short-circuit transconductance of the op amp
 
-With the output shorted and a differential input $\pm v_d/2$, $M_1$'s signal current $g_{m1}v_d/2$ goes through $M_3$ into the diode side of the mirror and is copied into the output by $M_8$/$M_6$, while $M_2$ draws $g_{m1}v_d/2$ less from the output through $M_4$. Total:
+With the output shorted and $\pm v_d/2$ at the inputs, $M_1$'s $g_{m1}v_d/2$ is mirrored into the output by $M_8$/$M_6$, and $M_2$ draws $g_{m1}v_d/2$ less from the output through $M_4$, so
 
-$$G_m \approx g_{m1} .$$
+$$G_m \approx g_{m1} ,$$
 
-A noise current $I$ that reaches the shorted output is therefore equivalent to an input voltage $I/g_{m1}$.
+and a noise current $I$ reaching the shorted output is equivalent to an input voltage $I/g_{m1}$.
 
-### Step 4 — Which noise currents reach the output
+### Step 3 — Which noise currents reach the output
 
-**Input pair $M_1$, $M_2$.** Exactly as in a simple differential pair with a mirror load: with an ideal tail, half of $M_1$'s noise current flows in $M_1$'s branch and is mirrored to the output, and the other half flows through $M_2$ directly to the output. The full $I_{n1}$ reaches the output. The same holds for $I_{n2}$. Contribution: $4kT\gamma_n(2g_{m1})$.
+**Input pair $M_1$, $M_2$.** As in a simple pair with a mirror load and an ideal tail, half of $I_{n1}$ is mirrored to the output and the other half flows through $M_2$ directly to it, so $I_{n1}$ arrives in full; likewise $I_{n2}$. Contribution: $4kT\gamma_n(2g_{m1})$.
 
 **Mirror current sources $M_7$, $M_8$.**
 
 - $M_8$'s noise current flows through the cascode $M_6$ straight into the output: in full.
-- $M_7$ is in the diode-connected stack, whose current is fixed by the high-impedance branch below it ($M_3$ on $M_1$). Its noise current therefore has to be cancelled by its own transconductance: the gate voltage of $M_7$ moves by $I_{n7}/g_{m7}$. That same voltage drives the gate of $M_8$, which converts it back into a current $g_{m8}\,(I_{n7}/g_{m7}) = I_{n7}$ delivered to the output.
+- $M_7$ sits in the diode-connected stack, whose current is fixed by the high-impedance branch below it ($M_3$ on $M_1$). Its noise current is therefore cancelled by its own transconductance: its gate moves by $I_{n7}/g_{m7}$, which drives $M_8$ to deliver $g_{m8}\,(I_{n7}/g_{m7}) = I_{n7}$ to the output.
 
 Contribution: $4kT\gamma_n(2g_{m7})$.
 
-**Cascode devices $M_3$–$M_6$.** A cascode transistor's noise current circulates locally: its source sees a large resistance (for $M_4$, the drain of $M_2$, about $r_{O2} = 20\ \mathrm{k\Omega}$), so only a fraction of about $1/(g_mr_O)$ of its noise current reaches the output. Referred to the input, the power weight is of order $(1/(g_{m4}r_{O2}))^2 \approx 10^{-4}$ relative to an input device for $M_3$/$M_4$, and about $10^{-3}$ for $M_5$/$M_6$. (For $M_5$, a diode in a current-fixed branch, its noise moves the gate of $M_6$, which is degenerated by $r_{O8}$, with the same small result.) These are negligible at low frequencies.
+**Cascode devices $M_3$–$M_6$.** A cascode transistor's noise current circulates locally, because its source sees a large resistance (for $M_4$, about $r_{O2} = 20\ \mathrm{k\Omega}$); only about $1/(g_mr_O)$ of it reaches the output. Referred to the input, its power weight relative to an input device is of order $(1/(g_{m4}r_{O2}))^2 \approx 10^{-4}$ for $M_3$/$M_4$ and about $10^{-3}$ for $M_5$/$M_6$ ($M_5$'s noise moves the gate of $M_6$, which is degenerated by $r_{O8}$). Negligible at low frequencies.
 
-**Tail source.** Its noise splits equally between $M_1$ and $M_2$; the mirrored half and the direct half cancel at the output. (It is ideal here anyway.)
+**Tail source.** Its noise splits equally between $M_1$ and $M_2$, and the mirrored and direct halves cancel at the output (it is ideal here anyway).
 
-### Step 5 — Input-referred noise
+### Step 4 — Input-referred noise
 
-Total short-circuit output noise current:
+$$\overline{I_{n,out}^2} = 4kT\gamma_n\,(2g_{m1} + 2g_{m7}) ,$$
 
-$$\overline{I_{n,out}^2} = 4kT\gamma_n\,(2g_{m1} + 2g_{m7}) .$$
-
-Divide by $G_m^2 = g_{m1}^2$:
+and dividing by $G_m^2 = g_{m1}^2$:
 
 $$\overline{V_{n,in}^2} = \frac{8kT\gamma_n\,(g_{m1} + g_{m7})}{g_{m1}^2} = 8kT\cdot\frac23\left(\frac{1}{g_{m1}} + \frac{g_{m7}}{g_{m1}^2}\right).$$
-
-**Numbers.**
 
 $$
 \begin{aligned}
@@ -69,7 +57,7 @@ $$
 \end{aligned}
 $$
 
-The PMOS current sources add about 55 % to the input pair's own noise power. They could be made quieter by giving them a larger overdrive (smaller $g_m$ for the same current), at the cost of output swing.
+The PMOS current sources add about 55 % to the input pair's noise power; a larger PMOS overdrive (smaller $g_m$ at the same current) would reduce this, at the cost of output swing.
 
 ### Result
 
@@ -77,8 +65,8 @@ $$\overline{V_{n,in}^2} \approx 8kT\cdot\frac23\left(\frac{1}{g_{m1}} + \frac{g_
 
 with $g_{m1} = 5.18$ mS and $g_{m7} = 2.85$ mS. Only the input pair ($M_1$, $M_2$) and the PMOS mirror current sources ($M_7$, $M_8$) contribute noticeably; the cascode devices $M_3$–$M_6$ are degenerated by large resistances and contribute negligibly at low frequencies.
 
-**Common mistake.** Counting the cascode transistors like the input pair. A cascode device's noise current mostly circulates through its own large degeneration; its contribution is reduced by roughly $(g_mr_O)^2$ and is negligible at low frequencies.
+**Common mistake.** Counting the cascode transistors like the input pair. Their noise mostly circulates through their own large degeneration and is reduced by roughly $(g_mr_O)^2$.
 
-**Common mistake.** Referring the PMOS contribution as $4kT\gamma/g_{m7}$. The noise current of $M_7$/$M_8$ reaches the output as a current and is divided by the *input* transconductance: the correct weight is $g_{m7}/g_{m1}^2$.
+**Common mistake.** Referring the PMOS contribution as $4kT\gamma/g_{m7}$. $M_7$/$M_8$'s noise reaches the output as a current and is divided by the *input* transconductance: the weight is $g_{m7}/g_{m1}^2$.
 
-**Common mistake.** Using $4kT$ instead of $8kT$ (only one side counted). Both input devices and both mirror current sources contribute independent noise to the single output, so each term appears twice.
+**Common mistake.** Using $4kT$ instead of $8kT$. Both input devices and both mirror current sources contribute independently, so each term appears twice.

@@ -1,38 +1,24 @@
 # Detailed solution - R413
 
-**Approach.** The circuit has two feedback paths: $R_{F1}$ (output to the source of $M_1$) forms a global series–shunt loop, and $R_{F2}$ (output to the gate of $M_2$) forms a local shunt–shunt loop around $M_2$. Because all elements are simple ($\lambda = \gamma = 0$), the most reliable method is exact nodal analysis with three node equations, which we solve in general and then evaluate. A two-port feedback estimate afterwards explains why the gain is so far below $1/\beta$.
+**Approach.** There are two feedback paths: $R_{F1}$ (output to the source of $M_1$) forms a global series–shunt loop, and $R_{F2}$ (output to the gate of $M_2$) a local shunt–shunt loop around $M_2$. With $\lambda = \gamma = 0$, exact nodal analysis with three node equations is the most reliable method; we solve it in general and then evaluate. A two-port feedback estimate afterwards explains why the gain is far below $1/\beta$.
 
-### Step 1 — The circuit
+### Step 1 — Small-signal model
 
-Reading the figure:
-
-- $M_1$: gate $V_{in}$, drain at node A (with $R_{D1}$ to $V_{DD}$), source at node S (with $R_{S1}$ to ground).
-- $M_2$: gate at A, source at ground, drain at the output (with $R_{D2}$ to $V_{DD}$).
-- $R_{F2}$ connects A and the output; $R_{F1}$ connects S and the output.
-
-All resistors equal $R = 2\ \mathrm{k\Omega}$, and $g_{m1} = g_{m2} = g = 1/(200\ \Omega) = 5$ mS. Define the dimensionless product
+Call the drain of $M_1$ node A and its source node S. $V_{DD}$ is ac ground, so $R_{D1}$ and $R_{D2}$ go to ground. $M_1$ is a controlled current $g(v_{in} - v_S)$ from A to S, and $M_2$ a current $g\,v_A$ from the output to ground, with $g = g_{m1} = g_{m2} = 1/(200\ \Omega) = 5$ mS. All resistors equal $R = 2\ \mathrm{k\Omega}$, and
 
 $$k = gR = (5\ \mathrm{mS})(2\ \mathrm{k\Omega}) = 10 .$$
 
-### Step 2 — Small-signal model
-
-$V_{DD}$ is ac ground, so $R_{D1}$ and $R_{D2}$ go to ground in the small-signal model. With $\lambda = \gamma = 0$:
-
-- $M_1$ is a controlled current $g(v_{in} - v_S)$ flowing from A to S;
-- $M_2$ is a controlled current $g\,v_A$ flowing from the output to ground;
-- resistors: $R_{D1}$ (A to ground), $R_{S1}$ (S to ground), $R_{D2}$ (output to ground), $R_{F2}$ (A to output) and $R_{F1}$ (S to output).
-
 <!-- diagram: diagram-01.cir -->
 
-### Step 3 — Node equations
+### Step 2 — Node equations
 
-Write KCL as "sum of currents leaving the node = 0", and multiply every equation by $R$ so that $gR$ becomes $k$.
+KCL as "sum of currents leaving the node = 0", multiplied by $R$:
 
-**Node A** (through $R_{D1}$, through $R_{F2}$, and down through $M_1$):
+**Node A** (through $R_{D1}$, $R_{F2}$, and down through $M_1$):
 
 $$\frac{v_A}{R} + \frac{v_A - v_{out}}{R} + g(v_{in} - v_S) = 0\ \Longrightarrow\ 2v_A - v_{out} + kv_{in} - kv_S = 0 .$$
 
-**Node S** (current arriving from $M_1$ leaves through $R_{S1}$ and $R_{F1}$):
+**Node S** (current from $M_1$ leaves through $R_{S1}$ and $R_{F1}$):
 
 $$g(v_{in} - v_S) = \frac{v_S}{R} + \frac{v_S - v_{out}}{R}\ \Longrightarrow\ kv_{in} + v_{out} = (k + 2)\,v_S .$$
 
@@ -40,13 +26,13 @@ $$g(v_{in} - v_S) = \frac{v_S}{R} + \frac{v_S - v_{out}}{R}\ \Longrightarrow\ kv
 
 $$gv_A + \frac{v_{out}}{R} + \frac{v_{out} - v_A}{R} + \frac{v_{out} - v_S}{R} = 0\ \Longrightarrow\ (k - 1)\,v_A + 3v_{out} - v_S = 0 .$$
 
-### Step 4 — Solve for the gain
+### Step 3 — Solve for the gain
 
-**From node S:**
+From node S:
 
 $$v_S = \frac{kv_{in} + v_{out}}{k + 2} .$$
 
-**From node A**, $v_A = \tfrac12\left(v_{out} - kv_{in} + kv_S\right)$. Substitute $v_S$:
+From node A, $v_A = \tfrac12\left(v_{out} - kv_{in} + kv_S\right)$; substituting $v_S$:
 
 $$
 \begin{aligned}
@@ -56,7 +42,7 @@ v_A &= \frac12\left[v_{out} - kv_{in} + \frac{k(kv_{in} + v_{out})}{k + 2}\right
 \end{aligned}
 $$
 
-**Output node:** substitute $v_A$ and $v_S$ and multiply by $(k + 2)$:
+Output node, after substituting $v_A$, $v_S$ and multiplying by $(k + 2)$:
 
 $$
 \begin{aligned}
@@ -66,26 +52,22 @@ v_{out}\,(k^2 + 3k + 4) &= v_{in}\,k^2 .
 \end{aligned}
 $$
 
-$$A_v = \frac{v_{out}}{v_{in}} = \frac{k^2}{k^2 + 3k + 4} .$$
+$$A_v = \frac{v_{out}}{v_{in}} = \frac{k^2}{k^2 + 3k + 4} = \frac{100}{100 + 30 + 4} = \frac{100}{134} = 0.746 \quad (k = 10).$$
 
-**Numbers** ($k = 10$):
+Per volt of input, $v_S = (10 + 0.746)/12 = 0.896$ and $v_A = (11\times0.746 - 10)/12 = -0.149$.
 
-$$A_v = \frac{100}{100 + 30 + 4} = \frac{100}{134} = 0.746 .$$
+### Step 4 — Output impedance
 
-For reference, the node voltages per volt of input are $v_S = (10 + 0.746)/12 = 0.896$ and $v_A = (11\times0.746 - 10)/12 = -0.149$.
-
-### Step 5 — Output impedance
-
-Set $v_{in} = 0$, inject a test current $I_X$ into the output, and find $v_{out}$. Nodes A and S are unchanged except that $v_{in} = 0$:
+Set $v_{in} = 0$ and inject a test current $I_X$ into the output. Nodes A and S give
 
 $$
 \begin{aligned}
 v_S &= \frac{v_{out}}{k + 2},\\
-v_A &= \frac{(k + 1)\,v_{out}}{k + 2}.
+v_A &= \frac{(k + 1)\,v_{out}}{k + 2},
 \end{aligned}
 $$
 
-At the output, the test current replaces the zero on the right-hand side (times $R$):
+and at the output $I_XR$ replaces the zero:
 
 $$
 \begin{aligned}
@@ -97,22 +79,22 @@ $$
 
 $$R_{out} = \frac{v_{out}}{I_X} = \frac{R\,(k + 2)}{k^2 + 3k + 4} = \frac{(2\ \mathrm{k\Omega})(12)}{134} = \frac{24\ \mathrm{k\Omega}}{134} = 179\ \Omega .$$
 
-### Step 6 — Feedback interpretation: why the gain is only 0.75
+### Step 5 — Feedback interpretation: why the gain is only 0.75
 
-$R_{F1}$ and $R_{S1}$ sense $V_{out}$ and return $\beta = R_{S1}/(R_{S1} + R_{F1}) = 0.5$ of it to the source of $M_1$. The two common-source stages make the forward path non-inverting, so this loop is negative. If its loop gain were large, the gain would be $1/\beta = 2$. Estimate the loop gain with the two-port method:
+$R_{F1}$ and $R_{S1}$ return $\beta = R_{S1}/(R_{S1} + R_{F1}) = 0.5$ of $V_{out}$ to the source of $M_1$; with the non-inverting forward path this loop is negative, and a large loop gain would give $1/\beta = 2$. Two-port estimate of the loop gain:
 
 - **Input-side loading:** $M_1$ is degenerated by $R_{S1}\parallel R_{F1} = 1\ \mathrm{k\Omega}$:
 $$G_{m1} = \frac{g}{1 + g(1\ \mathrm{k\Omega})} = \frac{5\ \mathrm{mS}}{6} = 0.833\ \mathrm{mS}.$$
-- **Node A:** besides $R_{D1}$, it sees the input of the $M_2$ stage with its local feedback resistor $R_{F2}$. That stage's output is loaded by $R_L = R_{D2}\parallel(R_{F1} + R_{S1}) = 2\parallel4 = 1.33\ \mathrm{k\Omega}$, so the resistance seen into $R_{F2}$ is Miller-reduced:
+- **Node A:** besides $R_{D1}$, it sees the $M_2$ stage through $R_{F2}$. That stage's output is loaded by $R_L = R_{D2}\parallel(R_{F1} + R_{S1}) = 2\parallel4 = 1.33\ \mathrm{k\Omega}$, so the resistance into $R_{F2}$ is Miller-reduced:
 $$R_{in,2} = \frac{R_{F2} + R_L}{1 + gR_L} = \frac{3.33\ \mathrm{k\Omega}}{1 + 6.67} = 0.435\ \mathrm{k\Omega},\qquad R_A = 2\parallel0.435 = 0.357\ \mathrm{k\Omega}.$$
-- **Gain from A to the output** (current $gv_A$ minus the feed-forward current $v_A/R_{F2}$, into $R_L\parallel R_{F2} = 0.8\ \mathrm{k\Omega}$):
+- **Gain from A to the output** ($gv_A$ minus the feed-forward current $v_A/R_{F2}$, into $R_L\parallel R_{F2} = 0.8\ \mathrm{k\Omega}$):
 $$\frac{v_{out}}{v_A} = -\left(g - \frac{1}{R_{F2}}\right)(R_L\parallel R_{F2}) = -(4.5\ \mathrm{mS})(0.8\ \mathrm{k\Omega}) = -3.6 .$$
 - **Open-loop gain and loop gain:**
-$$A_{open} = (0.833\ \mathrm{mS})(0.357\ \mathrm{k\Omega})(3.6) = 1.07,\qquad T = \beta A_{open} = 0.54 .$$
-- **Closed loop:** $A_v \approx 1.07/1.54 = 0.70$.
-- **Output resistance.** In the open-loop circuit a test voltage $v$ at the output puts $v/2$ on A through the $R_{F2}$–$R_{D1}$ divider, so $M_2$ draws $g\,v/2 = (2.5\ \mathrm{mS})v$ and the divider draws $v/(4\ \mathrm{k\Omega}) = (0.25\ \mathrm{mS})v$. Together with $R_L$ ($0.75$ mS), the open-loop output resistance is $1/(0.75 + 2.5 + 0.25)\ \mathrm{mS} = 286\ \Omega$, and $R_{out} \approx 286/1.54 = 186\ \Omega$.
+$$A_{open} = (0.833\ \mathrm{mS})(0.357\ \mathrm{k\Omega})(3.6) = 1.07,\qquad T = \beta A_{open} = 0.54 ,$$
+so $A_v \approx 1.07/1.54 = 0.70$.
+- **Output resistance.** In the open-loop circuit a test voltage $v$ at the output puts $v/2$ on A through the $R_{F2}$–$R_{D1}$ divider, so $M_2$ draws $g\,v/2 = (2.5\ \mathrm{mS})v$ and the divider draws $v/(4\ \mathrm{k\Omega}) = (0.25\ \mathrm{mS})v$. With $R_L$ ($0.75$ mS), the open-loop output resistance is $1/(0.75 + 2.5 + 0.25)\ \mathrm{mS} = 286\ \Omega$, and $R_{out} \approx 286/1.54 = 186\ \Omega$.
 
-These estimates (0.70, 186 Ω) are close to the exact 0.746 and 179 Ω. The loop gain is only about 0.5, because $R_{F2}$ makes the $M_2$ stage present a very low resistance at node A (≈ 0.44 kΩ), which crushes the gain of the first stage. With such a small loop gain the closed-loop gain is far from $1/\beta = 2$.
+These estimates (0.70, 186 Ω) are close to the exact 0.746 and 179 Ω. The loop gain is only about 0.5 because $R_{F2}$ makes the $M_2$ stage present a very low resistance at A (≈ 0.44 kΩ), which crushes the first-stage gain.
 
 ### Result
 
@@ -120,8 +102,8 @@ $$A_v = \frac{(g_mR)^2}{(g_mR)^2 + 3g_mR + 4} = \frac{100}{134} \approx +0.746,\
 
 with $g_mR = 10$. The gain is non-inverting and well below $1/\beta = 2$, because the local feedback through $R_{F2}$ heavily loads node A and leaves a global loop gain of only about 0.5.
 
-**Common mistake.** Answering $A_v \approx 2 = 1 + R_{F1}/R_{S1}$. That value assumes a large loop gain; here the loop gain is about 0.5, so the ideal formula does not apply.
+**Common mistake.** Answering $A_v \approx 2 = 1 + R_{F1}/R_{S1}$. That assumes a large loop gain; here it is about 0.5.
 
-**Common mistake.** Ignoring $R_{F2}$, or connecting it to the wrong node. $R_{F2}$ runs from the output to the gate of $M_2$ (node A). It feeds a current back to A and greatly lowers the resistance there, which is the main reason the gain is small.
+**Common mistake.** Ignoring $R_{F2}$, or connecting it to the wrong node. It runs from the output to the gate of $M_2$ (node A) and greatly lowers the resistance there, which is the main reason the gain is small.
 
-**Common mistake.** Getting an inverting gain. Each common-source stage inverts, so the cascade from $V_{in}$ to $V_{out}$ is non-inverting, and the feedback only reduces the magnitude.
+**Common mistake.** Getting an inverting gain. Two common-source stages make the cascade non-inverting; the feedback only reduces the magnitude.

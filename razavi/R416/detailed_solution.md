@@ -1,10 +1,10 @@
 # Detailed solution - R416
 
-**Approach.** Treat a small change $v_{dd}$ of the supply as a small-signal source. Only $M_2$ is connected to $V_{DD}$ (source and bulk), so the disturbance enters as a current that $M_2$ injects into the output node; the output voltage is that current times the resistance seen at the output. We compute this for both circuits at the same bias point and compare.
+**Approach.** Treat a small supply change $v_{dd}$ as a small-signal source. Only $M_2$ (source and bulk) is connected to $V_{DD}$, so the disturbance enters as a current that $M_2$ injects into the output node, and the output voltage is that current times the resistance seen at the output. Compute this for both circuits at the same bias point and compare.
 
 ### Step 1 — Common bias point
 
-In both circuits the dc levels of $V_{in}$ and $V_{out}$ are equal. In [Fig. 2] this means no dc current flows through $R_1$ and $R_2$ (the gates draw none), so the gate node G is at the same dc level as well. Both inverters therefore sit at the switching threshold $V_M$, where the two saturated square-law currents are equal ($\lambda$ neglected in the bias):
+With equal dc levels at input and output, no dc current flows in $R_1$, $R_2$ of [Fig. 2], so its gate node G is at the same level too. Both inverters sit at the switching threshold $V_M$, where the saturated square-law currents are equal ($\lambda$ neglected in the bias):
 
 $$
 \begin{aligned}
@@ -13,8 +13,6 @@ $$
 I_D &= \tfrac12(13.4\ \mathrm{mA/V^2})(0.523\ \mathrm{V})^2 = 1.83\ \mathrm{mA}.
 \end{aligned}
 $$
-
-Small-signal parameters ($g_m = 2I_D/|V_{ov}|$, $r_O = 1/(\lambda I_D)$):
 
 $$
 \begin{aligned}
@@ -26,17 +24,11 @@ $$
 
 ### Step 2 — How a supply change enters the circuit
 
-$V_{in}$ is held at its dc value by an ideal source, so $v_{in} = 0$ in the small-signal sense. Let the supply change by $v_{dd}$. $M_2$ then has
+$V_{in}$ is held by an ideal source, so $v_{in} = 0$. A supply change $v_{dd}$ moves the source and bulk of $M_2$ together ($v_{SB2} = 0$, no body effect), with its gate at $v_G$ and drain at $v_{out}$, so $M_2$ delivers into the output
 
-- its **source and bulk** at $v_{dd}$ (they move together, so $v_{SB2} = 0$ and there is no body effect);
-- its **gate** at $v_G$ (G in both circuits);
-- its **drain** at $v_{out}$.
+$$i_{D2} = g_{m2}\,(v_{dd} - v_G) + \frac{v_{dd} - v_{out}}{r_{O2}} ,$$
 
-The current $M_2$ delivers into the output node is its $g_m$ term plus its $r_O$ term:
-
-$$i_{D2} = g_{m2}\,(v_{dd} - v_G) + \frac{v_{dd} - v_{out}}{r_{O2}} .$$
-
-$M_1$ draws $g_{m1}v_G + v_{out}/r_{O1}$ from the output node.
+while $M_1$ draws $g_{m1}v_G + v_{out}/r_{O1}$ from it.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -54,31 +46,29 @@ v_{dd}\left(g_{m2} + \frac{1}{r_{O2}}\right) &= v_{out}\left(\frac{1}{r_{O1}} + 
 \end{aligned}
 $$
 
-**Numbers:** $1/r_{O2} = 0.367$ mS, so
+With $1/r_{O2} = 0.367$ mS:
 
 $$\frac{v_{out}}{v_{dd}} = (3.75 + 0.37)\ \mathrm{mS}\times1.82\ \mathrm{k\Omega} = (4.12\ \mathrm{mS})(1.82\ \mathrm{k\Omega}) = 7.5 .$$
 
-A 10-mV ripple on $V_{DD}$ produces 75 mV at the output. The reason: with its gate fixed, $M_2$ sees the supply change as a change of its $V_{SG}$, so it acts as a common-gate-like amplifier from $V_{DD}$ to the output, with gain set by $g_{m2}$ and the large output resistance $R_0$.
+A 10-mV ripple on $V_{DD}$ produces 75 mV at the output: with its gate fixed, $M_2$ sees the supply change as a change of $V_{SG}$ and amplifies it like a common-gate stage into the large $R_0$.
 
 ### Step 4 — Inverter with feedback ([Fig. 2])
 
-Now the left end of $R_1$ is at ac ground (the ideal source), and G sits on the divider formed by $R_2$ (from the output) and $R_1$ (to ground):
+The left end of $R_1$ is at ac ground, so G sits on the divider $R_2$ (from the output)–$R_1$ (to ground):
 
 $$v_G = \alpha\,v_{out},\qquad \alpha = \frac{R_1}{R_1 + R_2} = \frac{1}{11} = 0.0909 .$$
 
-KCL at the output: current from $M_2$ = current into $M_1$ + current into $R_2$:
+KCL at the output (current from $M_2$ = current into $M_1$ + current into $R_2$):
 
-$$g_{m2}(v_{dd} - v_G) + \frac{v_{dd} - v_{out}}{r_{O2}} = g_{m1}v_G + \frac{v_{out}}{r_{O1}} + \frac{v_{out} - v_G}{R_2} .$$
-
-Collect the $v_{dd}$ terms on the left and the rest on the right:
+$$g_{m2}(v_{dd} - v_G) + \frac{v_{dd} - v_{out}}{r_{O2}} = g_{m1}v_G + \frac{v_{out}}{r_{O1}} + \frac{v_{out} - v_G}{R_2} ,$$
 
 $$v_{dd}\left(g_{m2} + \frac{1}{r_{O2}}\right) = v_G\left(G_m - \frac{1}{R_2}\right) + v_{out}\left(\frac{1}{R_0} + \frac{1}{R_2}\right).$$
 
-Substitute $v_G = \alpha v_{out}$:
+With $v_G = \alpha v_{out}$:
 
 $$\frac{v_{out}}{v_{dd}} = \frac{g_{m2} + 1/r_{O2}}{1/R_0 + 1/R_2 + \alpha\,(G_m - 1/R_2)} .$$
 
-**Numbers** (mS):
+In mS:
 
 $$
 \begin{aligned}
@@ -94,16 +84,9 @@ $$
 | no feedback | 7.5 | $R_0 = 1.82\ \mathrm{k\Omega}$ |
 | resistive feedback | 2.5 | 0.62 kΩ |
 
-The circuit **with feedback is less sensitive**, by a factor $7.49/2.54 \approx 2.9$.
+The circuit **with feedback is less sensitive**, by a factor $7.49/2.54 \approx 2.9$. In both circuits the disturbance is a Norton current $(g_{m2} + 1/r_{O2})v_{dd}$ injected into the output (with the output shorted, $v_G = 0$ in both), so the output moves by that current times the output resistance: $R_0 = 1/(0.550\ \mathrm{mS}) = 1.82\ \mathrm{k\Omega}$ without feedback, $1/(1.619\ \mathrm{mS}) = 0.62\ \mathrm{k\Omega}$ with it. The shunt feedback through $R_2$ lowers the output resistance by about $1 + T$ (loop gain $T \approx 1.5$) plus the loading of $R_2$, and suppresses supply ripple by the same factor.
 
-**Why.** In both circuits the supply disturbance is a Norton current $(g_{m2} + 1/r_{O2})v_{dd}$ injected into the output node (with the output shorted, $v_G = 0$ in both cases). The output voltage is this current times the resistance seen at the output:
-
-- without feedback, $R_0 = 1/(0.550\ \mathrm{mS}) = 1.82\ \mathrm{k\Omega}$;
-- with feedback, $1/(1.619\ \mathrm{mS}) = 0.62\ \mathrm{k\Omega}$.
-
-Shunt feedback through $R_2$ senses the output and drives the gates so as to oppose any change, lowering the output resistance by about $1 + T$ (loop gain $T \approx 1.5$) plus the extra loading of $R_2$. Any disturbance injected at the output, supply ripple included, is suppressed by the same factor.
-
-**Remark on the bias model.** If $\lambda$ is also kept in the bias equation ($V_M \approx 1.254$ V, $I_D \approx 2.32$ mA) and the model is differentiated consistently, the two numbers become about 9.5 and 2.8 (or 7.7 and 2.7 with $g_o = \lambda I_D$). The conclusion is the same.
+If $\lambda$ is also kept in the bias ($V_M \approx 1.254$ V, $I_D \approx 2.32$ mA) and the model is differentiated consistently, the two numbers become about 9.5 and 2.8 (or 7.7 and 2.7 with $g_o = \lambda I_D$); the conclusion is the same.
 
 ### Result
 
@@ -113,8 +96,8 @@ $$\left.\frac{\partial V_{out}}{\partial V_{DD}}\right|_{\text{feedback}} = \fra
 
 The circuit with resistive feedback is less sensitive to the supply, by roughly $1 + T \approx 3$, because its output resistance is about three times lower.
 
-**Common mistake.** Computing the shift of the switching threshold, $dV_M/dV_{DD} \approx 0.35$, instead of the output change. The input is held fixed by an ideal source, so the question is how much the *output* moves for a fixed input, which is a small-signal gain from $V_{DD}$ to $V_{out}$.
+**Common mistake.** Computing the shift of the switching threshold, $dV_M/dV_{DD} \approx 0.35$, instead of the output change. The input is held fixed, so the question asks for the small-signal gain from $V_{DD}$ to $V_{out}$.
 
-**Common mistake.** Leaving out the $g_{m2}$ term. When $V_{DD}$ moves with the gate fixed, $V_{SG2}$ changes by $v_{dd}$, and $M_2$ responds with $g_{m2}v_{dd}$. This term, not just the current through $r_{O2}$, dominates the sensitivity.
+**Common mistake.** Leaving out the $g_{m2}$ term. With the gate fixed, $V_{SG2}$ changes by $v_{dd}$, and $g_{m2}v_{dd}$, not the current through $r_{O2}$, dominates the sensitivity.
 
-**Common mistake.** Concluding that the two circuits are equally sensitive, or that the plain inverter is better. The feedback lowers the impedance at the output, where the supply disturbance is injected, so it reduces the supply sensitivity.
+**Common mistake.** Concluding that the two circuits are equally sensitive, or that the plain inverter is better. The feedback lowers the impedance at the output, where the disturbance is injected.
