@@ -11,8 +11,7 @@
     {
       "binding": "DB",
       "database_name": "analog-bibles",
-      // Filled in once `wrangler d1 create analog-bibles` has run.
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "bfcf6a80-729b-4f8f-9fa9-fc377e9bd2bb"
     }
   ]
 }

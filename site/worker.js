@@ -12,8 +12,9 @@ export default {
     const url = new URL(request.url);
     const { pathname } = url;
     if (!pathname.startsWith("/api/")) {
-      // Any page path (/, /review, ...) is the one-page app.
-      return env.ASSETS.fetch(new Request(new URL("/index.html", url), request));
+      // Any page path (/, /review, ...) is the one-page app. Asking assets for
+      // "/" (not "/index.html", which they redirect to "/") keeps the address.
+      return env.ASSETS.fetch(new Request(new URL("/", url), request));
     }
     try {
       if (pathname === "/api/summary" && request.method === "GET") {
