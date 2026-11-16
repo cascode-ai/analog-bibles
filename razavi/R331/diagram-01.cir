@@ -1,0 +1,8 @@
+* Small-signal model of the source-degenerated transistor with gate, drain and bulk at ac ground; the current in the 0-V source VD is I_n,out1
+VD 0 D 0
+G1 D S 0 S {gm}
+G2 D S 0 S {gmb}
+RO D S {r_O}
+In D S {I_n}
+RZS S 0 {Z_S}
+.end

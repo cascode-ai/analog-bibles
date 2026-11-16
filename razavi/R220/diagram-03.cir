@@ -1,0 +1,7 @@
+* Left input alone: M2 as a common-gate stage driven by the Thevenin equivalent (V_T behind R_T) of M1 seen at node P
+VT t 0 {V_T}
+RT t P {R_T}
+M2 Y 0 P 0 nmos
+RD2 vdd Y {R_D}
+VDD vdd 0 {V_DD}
+.end

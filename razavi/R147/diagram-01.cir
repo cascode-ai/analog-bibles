@@ -1,0 +1,10 @@
+* Case B: M1 turned around so that both sources meet at X, forming a source-coupled (differential) pair
+VDD vdd 0 {V_DD}
+RD2 vdd T {R_D}
+RD1 vdd Y {R_D}
+M2 T G2 X 0 nmos
+M1 Y G1 X 0 nmos
+ISS X 0 {I_SS}
+VIN1 G1 0 {V_in1}
+VIN2 G2 0 {V_in2}
+.end

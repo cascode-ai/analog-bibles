@@ -1,0 +1,6 @@
+* Small-signal noise model of the common-gate stage with the input (source) left open
+RD out 0 {R_D}
+InD out 0 {I_nD}
+G1 out in 0 in {gm}
+In1 out in {I_n1}
+.end

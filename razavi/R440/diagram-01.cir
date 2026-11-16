@@ -1,0 +1,12 @@
+* Small-signal model of the first-stage half circuit (telescopic cascode M1, M3, M5, M7 with body effect of M3 and M5)
+Vin in 0 AC 1
+G1 A 0 in 0 {gm1}
+RO1 A 0 {r_O1}
+G3 X A 0 A {gm3}
+Gmb3 X A 0 A {gmb3}
+RO3 X A {r_O3}
+G5 B X B 0 {gm5}
+Gmb5 B X B 0 {gmb5}
+RO5 B X {r_O5}
+RO7 B 0 {r_O7}
+.end

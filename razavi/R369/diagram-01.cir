@@ -1,0 +1,7 @@
+* Small-signal noise model with the input open: noise currents of M2 (at the input) and M3 (at the output)
+In3 0 out {I_n3}
+Rout out 0 {R_out}
+G1 out in 0 in {gm1}
+In1 out in {I_n1}
+In2 in 0 {I_n2}
+.end

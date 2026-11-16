@@ -1,0 +1,9 @@
+* Small-signal noise model of the degenerated common-source stage: channel noise of M1 between drain and source, and a Norton noise current across each resistor
+Vin in 0 {v_in}
+G1 out S in S {gm}
+In1 out S {I_n1}
+RD out 0 {R_D}
+InD out 0 {I_nD}
+RS S 0 {R_S}
+InS S 0 {I_nS}
+.end

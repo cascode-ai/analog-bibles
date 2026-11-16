@@ -1,0 +1,4 @@
+* Amplification (hold) phase (S3 closed, S1 and S2 open): C_H flipped around the op amp, from the output to the inverting input X; C_in is the op amp input capacitance
+CH out x {C_H}
+Cin x 0 {C_in}
+E1 out 0 0 x {A}

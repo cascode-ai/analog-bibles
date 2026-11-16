@@ -1,0 +1,5 @@
+* Noise model while M2 is on: C1 and C2 joined by the on-resistance of M2 in series with its thermal-noise voltage source (PSD 4kT Ron2)
+C1 x 0 {C}
+Ron2 x n1 {Ron2}
+Vn2 n1 out {vn2}
+C2 out 0 {C}

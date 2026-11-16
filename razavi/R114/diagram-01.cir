@@ -1,0 +1,8 @@
+* Small-signal model: degenerated M1 (source node S across R_S) and PMOS M2 whose gate is driven by S, source at ac ground
+Vin in 0 AC 1
+G1 out S in S {gm1}
+RO1 out S {rO1}
+RS S 0 {R_S}
+G2 out 0 S 0 {gm2}
+RO2 out 0 {rO2}
+.end

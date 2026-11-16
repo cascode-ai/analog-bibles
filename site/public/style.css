@@ -297,3 +297,8 @@ details.step > :not(summary) { margin-left: 1.25em; }
 
 /* Keeping the reader's place is done by hand (see cardSizes in app.js). */
 .feed #cards { overflow-anchor: none; }
+
+/* A drawn diagram inside a worked solution. */
+figure.diagram { margin: .8em 0; }
+figure.diagram .pic img { max-height: 340px; }
+figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12px; text-align: center; }

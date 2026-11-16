@@ -1,0 +1,9 @@
+* Small-signal model for Z_in: C1 to node A (both gates), C2 from A to the common drain D, both transistors as g_m*V_A from D to ac ground with r_O1, r_O2
+Vx in 0 AC 1
+C1 in A {C_1}
+C2 A D {C_2}
+G1 D 0 A 0 {g_m1}
+RO1 D 0 {r_O1}
+G2 D 0 A 0 {g_m2}
+RO2 D 0 {r_O2}
+.end

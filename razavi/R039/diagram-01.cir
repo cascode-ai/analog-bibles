@@ -1,0 +1,9 @@
+* Small-signal model of the MOSFET in the f_T test: gate driven by Iin, source and bulk at node 0, drain shorted to ac ground through VD
+Iin 0 g {I_in}
+CGS g 0 {C_GS}
+CGD g d {C_GD}
+G1 d 0 g 0 {gm}
+RO d 0 {r_O}
+CDB d 0 {C_DB}
+VD d 0 0
+.end

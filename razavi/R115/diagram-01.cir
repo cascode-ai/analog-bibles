@@ -1,0 +1,6 @@
+* Test circuit for the resistance R_L looking into the drain of the PMOS cascode M2-M3 (gates at ac ground, VDD at ac ground)
+Vx out 0 AC 1
+G2 out P 0 P {gm2}
+RO2 out P {rO2}
+RO3 P 0 {rO3}
+.end

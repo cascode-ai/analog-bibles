@@ -1,0 +1,9 @@
+* Small-signal model of the pair with body effect: each device is a gm*vgs source plus a gmb*vbs source from its drain (ac ground) to P; the ideal tail current source is an open circuit
+VDD vdd 0 {V_DD}
+Vin1 in1 0 {dV_in1}
+Vin2 in2 0 {dV_in2}
+Gm1 vdd P in1 P {g_m}
+Gmb1 vdd P 0 P {g_mb}
+Gm2 vdd P in2 P {g_m}
+Gmb2 vdd P 0 P {g_mb}
+.end

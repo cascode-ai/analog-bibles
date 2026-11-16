@@ -1,0 +1,7 @@
+* Charge model of the merged node x (X joined to out) while M2 is on: C1 and C2 to ground, two overlap capacitances and the channel of M2 to the gate line ckb
+C1 x 0 {C}
+C2 x 0 {C}
+Cov1 x ckb {W*Cov}
+Cov2 x ckb {W*Cov}
+Cch x ckb {W*L*Cox}
+Vckb ckb 0 {VDD}

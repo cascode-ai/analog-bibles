@@ -1,0 +1,7 @@
+* Small-signal model of the CS stage with diode-connected NMOS load (M1 at the edge of triode, lambda = gamma = 0)
+Vin in 0 {v_in}
+* M1: transconductance from out to ground, controlled by v_gs1 = v_in
+G1 out 0 in 0 {gm1}
+* M2: gate and drain at AC ground (VDD), source at out; current gm2*v_gs2 flows from AC ground into out, v_gs2 = 0 - v_out
+G2 0 out 0 out {gm2}
+.end

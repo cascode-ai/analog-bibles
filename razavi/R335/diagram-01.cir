@@ -1,0 +1,9 @@
+* Small-signal noise model: I_1 is open for ac; M1 (with its channel noise) and R_F (with its Norton noise) both connect out to S; R_S carries its series noise voltage V_nS
+Vin in 0 {v_in}
+G1 out S in S {gm}
+In1 out S {I_n1}
+RF out S {R_F}
+InF out S {I_nF}
+VnS S x {V_nS}
+RS x 0 {R_S}
+.end

@@ -1,0 +1,5 @@
+* Equivalent passive network seen at the follower output: R2 = 1/g_m in series with R1 = R_S - 1/g_m in parallel with L
+R2 out mid {1/g_m}
+R1 mid 0 {R_S-1/g_m}
+L1 mid 0 {L}
+.end

@@ -1,0 +1,4 @@
+* Sampling phase (S1, S2 closed, S3 open): C_H between the input and node X; the op amp output is tied to X, so X is a virtual ground
+Vin in 0 {V_in}
+CH in x {C_H}
+E1 x 0 0 x {A}

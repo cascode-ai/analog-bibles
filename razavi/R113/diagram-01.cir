@@ -1,0 +1,8 @@
+* Small-signal model: M1 pulls current from node A, R_D links A to the output, and M2 (gate driven by A, source at ac ground) drives the output
+Vin in 0 AC 1
+G1 A 0 in 0 {gm1}
+RO1 A 0 {rO1}
+RD out A {R_D}
+G2 out 0 A 0 {gm2}
+RO2 out 0 {rO2}
+.end

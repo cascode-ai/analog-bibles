@@ -1,0 +1,8 @@
+* Linearized mismatch model of one degenerated device: threshold error at the gate, current error across the channel, resistor error in series with RS
+V1 g 0 {-dVTH}
+G1 d s g s {gm}
+I1 d s {ID*(dK/K+dS/S)}
+R1 s x {R_S}
+V2 x 0 {ID*dRS}
+Vm d 0 0
+.end

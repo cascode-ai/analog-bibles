@@ -1,0 +1,7 @@
+* Small-signal noise model of the common-source stage: the signal current gm*v_in, the channel noise of M1 and the noise of R_D all flow into the output node
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm}
+In1 out 0 {In_M1}
+RD out 0 {R_D}
+In2 out 0 {In_RD}
+.end

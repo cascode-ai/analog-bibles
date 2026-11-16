@@ -1,0 +1,10 @@
+* Bandgap core with the amplifier modeled as a VCVS of gain A1 in series with Rout
+E1 vint 0 X Y {A1}
+Rout vint out {R_out}
+R1 out X {R_1}
+R2 out Y {R_2}
+R3 Y Z {R_3}
+Q1 X X 0 npn
+Q2 Z Z 0 npn {n}
+.model npn npn
+.end

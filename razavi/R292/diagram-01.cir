@@ -1,0 +1,6 @@
+* Small-signal model for the output impedance of the source follower: input grounded through R_S, test source V_X at the output
+RS g 0 {R_S}
+CGS g out {C_GS}
+G1 0 out g out {g_m}
+VX out 0 AC 1
+.end

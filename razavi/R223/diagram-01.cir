@@ -1,0 +1,10 @@
+* Small-signal model: I1 and ISS are open circuits, VDD and Vb are ac ground; each transistor is gm*vgs plus gmb*vbs plus rO between drain and source
+Vin in 0 {v_in}
+Gm1 out1 P in P {g_m1}
+Gmb1 out1 P 0 P {g_mb1}
+RO1 out1 P {r_O1}
+Gm2 out2 P 0 P {g_m2}
+Gmb2 out2 P 0 P {g_mb2}
+RO2 out2 P {r_O2}
+R1 out2 0 {R_1}
+.end

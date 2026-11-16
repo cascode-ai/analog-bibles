@@ -469,7 +469,7 @@ async function fillCard(el, q) {
   el.querySelector(".q-answer").innerHTML = renderMarkdown(body);
   if (q.sol) {
     const box = el.querySelector(".q-steps");
-    box.innerHTML = renderMarkdown(steps.replace(/^# .*\n/, ""));
+    box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
     foldSteps(box);
   }
   if (grading.trim()) {
@@ -478,6 +478,17 @@ async function fillCard(el, q) {
     box.querySelector(".md").innerHTML = renderMarkdown(grading);
   }
   return true;
+}
+
+// "<!-- diagram: diagram-01.cir -->" marks where a drawing of the solution
+// belongs: it becomes the drawn figure and its caption, once one exists.
+function withDiagrams(q, text) {
+  return text.replace(/^<!--\s*diagram:\s*(diagram-\d+)\.cir\s*-->\s*$/gm, (_, name) => {
+    if (!q.diags || !(name in q.diags)) return "";
+    const src = `/q/${encodeURIComponent(q.id)}/${name}.svg`;
+    const caption = q.diags[name];
+    return `<figure class="diagram"><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(caption || name)}" loading="lazy"></a>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+  });
 }
 
 // Each "### Step" heading and what follows it, up to the next one, becomes

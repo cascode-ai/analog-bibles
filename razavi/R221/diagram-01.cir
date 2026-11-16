@@ -1,0 +1,8 @@
+* Small-signal model with the resistive tail: each device is a gm*V1 (or gm*V2) source from its upper terminal (ac ground) into P, and R_T connects P to ground
+VDD vdd 0 {V_DD}
+Vin1 in1 0 {dV_in1}
+Vin2 in2 0 {dV_in2}
+G1 vdd P in1 P {g_m}
+G2 vdd P in2 P {g_m}
+RT P 0 {R_T}
+.end

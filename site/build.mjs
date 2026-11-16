@@ -12,6 +12,18 @@ const exercises = JSON.parse(fs.readFileSync(path.join(root, "exercises.json"), 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.cpSync(path.join(root, "site/public"), dist, { recursive: true });
 
+const diagrams = (dir, files) => {
+  const out = {};
+  for (const file of files) {
+    const match = file.match(/^(diagram-\d+)\.svg$/);
+    if (!match) continue;
+    const cir = path.join(dir, `${match[1]}.cir`);
+    const first = fs.existsSync(cir) ? fs.readFileSync(cir, "utf8").split("\n")[0] : "";
+    out[match[1]] = first.startsWith("*") ? first.replace(/^\*\s*/, "").trim() : "";
+  }
+  return Object.keys(out).length ? out : undefined;
+};
+
 const index = [];
 for (const book of books) {
   for (const [level, ids] of Object.entries(difficulty[book])) {
@@ -31,6 +43,9 @@ for (const book of books) {
         refs: files.filter((f) => f.startsWith("reference-")),
         // A worked, step-by-step solution, where one has been written.
         sol: files.includes("detailed_solution.md") ? 1 : 0,
+        // Drawn diagrams of the worked solution: name -> caption (the first
+        // comment line of its netlist), only for those with an SVG.
+        diags: diagrams(dir, files),
       });
     }
   }

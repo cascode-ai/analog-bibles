@@ -1,0 +1,14 @@
+* Small-signal model of the two cascaded CS stages with all device capacitances (ideal current sources open)
+V1 in 0 AC 1
+RS in A {R_S}
+CGS1 A 0 {C_GS1}
+CGD1 A X {C_GD1}
+G1 X 0 A 0 {g_m1}
+RO1 X 0 {r_O1}
+CDB1 X 0 {C_DB1}
+CGS2 X 0 {C_GS2}
+CGD2 X out {C_GD2}
+G2 out 0 X 0 {g_m2}
+RO2 out 0 {r_O2}
+CDB2 out 0 {C_DB2}
+.end

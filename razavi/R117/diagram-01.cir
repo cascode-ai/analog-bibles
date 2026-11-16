@@ -1,0 +1,7 @@
+* Small-signal model: source follower M2 with the diode-connected M1 replaced by R_S = (1/gm1)||rO1 at its source and the diode-connected M3 replaced by R_D = (1/gm3)||rO3 at its drain D
+Vin in 0 AC 1
+RD D 0 {R_D}
+G2 D out in out {gm2}
+RO2 D out {rO2}
+RS out 0 {R_S}
+.end

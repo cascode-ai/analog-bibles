@@ -1,0 +1,6 @@
+* Test circuit for the resistance R_S seen looking into the source of M2 (gate at ac ground, drain loaded by R_D, VDD at ac ground)
+Vt P 0 {v_t}
+M2 Y 0 P 0 nmos
+RD2 vdd Y {R_D}
+VDD vdd 0 {V_DD}
+.end

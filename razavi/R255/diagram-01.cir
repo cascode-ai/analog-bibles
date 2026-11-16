@@ -1,0 +1,7 @@
+* Node Y at large I_REF: M1 in deep triode replaced by its on-resistance R_on1, fed from VDD through R1 and from X through R2
+V1 vdd 0 {V_DD}
+VX x 0 {V_X}
+R1 vdd y {R_1}
+R2 x y {R_2}
+Ron1 y 0 {R_on1}
+.end

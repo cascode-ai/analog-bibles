@@ -1,0 +1,8 @@
+* Capacitive network seen by nodes N and P during a fast VDD step (all transistors off)
+V1 vdd 0 {V_DD}
+C1 N vdd {C_NV}
+C2 N 0 {C_NG}
+C3 N P {C_X}
+C4 P vdd {C_PV}
+C5 P 0 {C_PG}
+.end

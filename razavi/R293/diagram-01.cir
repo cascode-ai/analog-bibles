@@ -1,0 +1,6 @@
+* Small-signal model for Z_in: test source V_x, C1 to the gate node A, C2 from A to the drain D, M1 as g_m*V_A (ideal I1 open, lambda = 0)
+Vx in 0 AC 1
+C1 in A {C_1}
+C2 A D {C_2}
+G1 D 0 A 0 {g_m}
+.end

@@ -1,0 +1,13 @@
+* Small-signal model of the path to the left output: M_A sets v_X, M7 and M2 inject current into P, cascode M5 delivers it to the output
+Vin1 in1 0 {vin/2}
+Vin2 in2 0 {-vin/2}
+GA X 0 in1 0 {gmA}
+RA X 0 {r_OA}
+G7 P 0 X 0 {gm7}
+R7 P 0 {r_O7}
+G2 P 0 in2 0 {gm1}
+R2 P 0 {r_O2}
+G5 out P 0 P {gm5}
+R5 out P {r_O5}
+Rdown out 0 {R_down}
+.end

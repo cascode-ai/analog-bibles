@@ -1,0 +1,10 @@
+* Open-loop amplifier including the loading of the feedback network: RS||RF = 1k at node S, RF+RS = 4k at the output
+VDD vdd 0 3
+Vin in 0 {V_in}
+RD1 vdd X 2k
+M1 X in S 0 nmos
+RLS S 0 1k
+M2 out X vdd vdd pmos
+RD2 out 0 2k
+RLO out 0 4k
+.end

@@ -1,0 +1,7 @@
+* Small-signal model for Z_in at the source S: channel current g_m*v_gs + g_mb*v_bs from D to S, C1 from D to the gate G, C2 from G to ground, ideal I1 open
+Vx S 0 AC 1
+G1 D S G S {g_m}
+G2 D S 0 S {g_mb}
+C1 D G {C_1}
+C2 G 0 {C_2}
+.end

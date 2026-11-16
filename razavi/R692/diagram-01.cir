@@ -1,0 +1,7 @@
+* Small-signal model of the degenerated CS stage with diode-connected load; R_sub is the spike path from the source of M1 to the substrate
+G1 out S in S {gm1}
+G2 out S 0 S {gmb1}
+R1 S 0 {R_S}
+R2 out 0 {1/gm2}
+Rsub S 0 {R_sub}
+.end

@@ -1,0 +1,9 @@
+* Small-signal model of the CS stage with the PMOS load lumped into R_out and C_out
+V1 in 0 AC 1
+RS in X {R_S}
+CGS1 X 0 {C_GS1}
+CGD1 X out {C_GD1}
+G1 out 0 X 0 {g_m1}
+Rout out 0 {R_out}
+Cout out 0 {C_out}
+.end

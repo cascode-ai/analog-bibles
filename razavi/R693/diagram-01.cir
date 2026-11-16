@@ -1,0 +1,8 @@
+* Faulty circuit: the spiked drain junction of M2 ties the output node to the n-well, i.e. to VDD through the well resistance R_well
+VDD vdd 0 {V_DD}
+VIN in 0 {V_in}
+M1 out in S 0 nmos
+RS S 0 {R_S}
+M2 out out vdd vdd pmos
+Rwell out vdd {R_well}
+.end

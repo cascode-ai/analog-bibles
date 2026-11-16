@@ -1,0 +1,7 @@
+* Small-signal noise model of the CG stage with the input open; M2 reduces to its noise current I_n2
+RD out 0 {R_D}
+InD out 0 {I_nD}
+G1 out in 0 in {gm1}
+In1 out in {I_n1}
+In2 in 0 {I_n2}
+.end

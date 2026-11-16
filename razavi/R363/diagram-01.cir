@@ -1,0 +1,7 @@
+* Small-signal model of the degenerated PMOS load M2 with its noise sources (output shorted to AC ground)
+VnR vdd 0 {v_nR}
+RS vdd s {R_S}
+G2 s out s 0 {gm2}
+In2 s out {i_n2}
+Vshort out 0 0
+.end
