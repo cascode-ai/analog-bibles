@@ -68,7 +68,7 @@ $$\frac{dI_X}{dV_X} = \beta\,(0.9 - V_{TH})\cdot\left(-\frac{\partial V_{TH}}{\p
 
 ### 第 5 步 — 跨导
 
-**栅跨导**（通常意义下的跨导）：
+**栅跨导**（gate transconductance），即通常意义下的跨导：
 
 $$g_m = \beta\,(V_{GS} - V_{TH}) = \beta\,(0.9 - V_{TH}),$$
 

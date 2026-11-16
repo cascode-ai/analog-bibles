@@ -12,9 +12,9 @@ $$V_{GS} = V_{DS} = 3 - V_X, \qquad V_{SB} = V_X ,$$
 
 栅极与漏极相连，因此 $V_{DS} = V_{GS} > V_{GS} - V_{TH}$：**只要 $M_1$ 导通，它就处于饱和区**，绝不会进入线性区（triode region）。第 3 步将用数值验证它在整个范围 $0 \le V_X \le 1.5$ V 内都保持导通（$V_{GS} > V_{TH}$）。
 
-### 第 2 步 — 计入体效应的阈值电压
+### 第 2 步 — 计入体效应的阈值电压（threshold voltage）
 
-$V_{SB} = V_X$ 使源-衬底结（source–bulk junction）处于反向偏置（reverse-biased），阈值电压（threshold voltage）随之升高（取 $\sqrt{0.9} = 0.9487$）：
+$V_{SB} = V_X$ 使源-衬底结（source–bulk junction）处于反向偏置（reverse-biased），阈值电压随之升高（取 $\sqrt{0.9} = 0.9487$）：
 
 $$V_{TH} = V_{TH0} + \gamma\left(\sqrt{2|\phi_F| + V_{SB}} - \sqrt{2|\phi_F|}\right) = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right)\ \mathrm{V}.$$
 

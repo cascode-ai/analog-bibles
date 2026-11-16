@@ -1,0 +1,4 @@
+$V_{in}$ 较小时，$M_1$（栅极接 3 V）处于线性区（triode region），$V_{out}$ 跟随 $V_{in}$（略小一些）；一旦 $V_{in}$ 超过 $3 - V_{TH}(V_{out,s})$（介于 1.965 V 与 2.3 V 之间），$M_1$ 就进入饱和区（saturation region），$V_{out}$ 保持在恒定值 $V_{out,s}$，它是 $V_{out,s} = \tfrac12\beta R_1[3 - V_{out,s} - V_{TH}(V_{out,s})]^2$ 的解。$V_{out,s} < 1.965$ V，并且只有当 $\beta R_1$ 较大时才接近这一上限（此时在约 1.97 V 的转折点以下 $V_{out} \approx V_{in}$）；例如 $\beta R_1$ = 1、10、100 V⁻¹ 时，$V_{out,s}$ ≈ 0.84、1.49、1.80 V，转折点分别位于 $V_{in}$ ≈ 2.13、2.03、1.99 V。
+- 电流从 $V_{in}$ 经 $M_1$ 流入 $R_1$：$V_{out}$ 节点是源极（$V_{GS} = 3 - V_{out}$，$V_{SB} = V_{out}$），$V_{in}$ 节点是漏极。
+- $V_{in} < 3 - V_{TH}(V_{out})$ 时处于线性区：$V_{out} = V_{in}R_1/(R_1 + R_{on})$，当 $R_1 \gg R_{on}$ 时接近 $V_{in}$；随着 $V_{GS}$ 减小，斜率下降。
+- $V_{in}$ 更大时处于饱和区：$V_{out}$ 由 $\tfrac12\beta(3 - V_{out} - V_{TH}(V_{out}))^2 = V_{out}/R_1$ 决定，其上限是 $3 - V_{out} = V_{TH}(V_{out})$ 的解：计入体效应（body effect）时为 1.97 V（此时 $V_{TH}$ ≈ 1.03 V；不计体效应时为 2.3 V）。直到 $V_{in} = 3$ V 都保持平坦。
