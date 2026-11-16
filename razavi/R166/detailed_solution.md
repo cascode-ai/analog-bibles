@@ -1,12 +1,10 @@
 # Detailed solution - R166
 
-**Approach.** Write the equivalent transconductance of a square-law differential pair in normalized form, $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$. The 10 % and 90 % points occur at fixed values of $x$; converting them to volts with the overdrive at 2 mA and at 1 mA gives both sets of answers.
+**Approach.** Write the pair's equivalent transconductance in normalized form, $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$. The 10 % and 90 % points occur at fixed values of $x$; converting them to volts with the overdrive at 2 mA and at 1 mA gives both sets of answers.
 
 ### Step 1 — Large-signal characteristic
 
-$M_1$, $M_2$: identical saturated NMOS devices ($\lambda = 0$), sources at node $P$, ideal tail current $I_{SS}$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$.
-
-KCL at $P$ gives $I_{D1} + I_{D2} = I_{SS}$. KVL through $P$ and the square law $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$ (equal thresholds) give $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$. Squaring twice:
+Both devices are saturated, with $\lambda = 0$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$. With $I_{D1} + I_{D2} = I_{SS}$ and $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$ (KVL with the square law; equal thresholds), squaring twice gives
 
 $$
 \begin{aligned}
@@ -21,11 +19,11 @@ Differentiating (product rule):
 
 $$G_m = \frac{\partial(I_{D1} - I_{D2})}{\partial\Delta V} = \frac{\beta}{2}\,\frac{4I_{SS}/\beta - 2\Delta V^2}{\sqrt{4I_{SS}/\beta - \Delta V^2}} .$$
 
-Let $V_{ov} = \sqrt{I_{SS}/\beta}$ be the equilibrium overdrive (so $4I_{SS}/\beta = 4V_{ov}^2$) and $x = \Delta V/V_{ov}$:
+With the equilibrium overdrive $V_{ov} = \sqrt{I_{SS}/\beta}$ (so $4I_{SS}/\beta = 4V_{ov}^2$) and $x = \Delta V/V_{ov}$:
 
-$$G_m = \beta V_{ov}\,\frac{2 - x^2}{\sqrt{4 - x^2}}, \qquad G_{m0} = \beta V_{ov} = \sqrt{\beta I_{SS}}, \qquad \frac{G_m}{G_{m0}} = \frac{2 - x^2}{\sqrt{4 - x^2}} .$$
+$$G_m = \beta V_{ov}\,\frac{2 - x^2}{\sqrt{4 - x^2}}, \qquad G_{m0} = \beta V_{ov} = \sqrt{\beta I_{SS}}, \qquad \frac{G_m}{G_{m0}} = \frac{2 - x^2}{\sqrt{4 - x^2}} ,$$
 
-The ratio depends only on $x$. It falls from 1 at $x = 0$ to 0 at $x = \sqrt2$, where all of $I_{SS}$ flows in one device.
+which depends only on $x$ and falls from 1 at $x = 0$ to 0 at $x = \sqrt2$, where all of $I_{SS}$ flows in one device.
 
 ### Step 3 — The 10 % and 90 % points in normalized form
 
@@ -49,7 +47,7 @@ u &= \frac{3.99 - \sqrt{3.99^2 - 4(3.96)}}{2} = \frac{3.99 - 0.283}{2} = 1.8535,
 \end{aligned}
 $$
 
-In both cases the "+" root ($u = 2.93$ and $u = 2.14$) exceeds 2, i.e. lies beyond full steering. It was introduced by squaring and is rejected.
+In both cases the "+" root ($u = 2.93$ and $u = 2.14$) exceeds 2, beyond full steering; it comes from squaring and is rejected.
 
 ### Step 4 — Convert to volts at $I_{SS} = 2$ mA
 
@@ -75,7 +73,7 @@ $$\Delta V_{10\%} = (0.5092)(0.2732\ \mathrm{V}) = 0.139\ \mathrm{V}, \qquad \De
 | 1 mA | 0.273 V | 3.66 mS | 0.139 V | 0.372 V | 0.386 V |
 
 - The linear range scales with $V_{ov} = \sqrt{I_{SS}/\beta}$: doubling the current widens it by $\sqrt2$ ($0.197/0.139 = 1.41$).
-- At the same time $G_{m0} = \sqrt{\beta I_{SS}}$ also rises by $\sqrt2$. This differs from reducing $W/L$, which widens the range by the same factor but *lowers* $G_m$. Increasing the current improves both, and the price is doubled power.
+- $G_{m0} = \sqrt{\beta I_{SS}}$ also rises by $\sqrt2$. Reducing $W/L$ would widen the range by the same factor but *lower* $G_m$; increasing the current improves both, at the price of doubled power.
 
 ### Result
 
@@ -83,4 +81,4 @@ With $I_{SS} = 2$ mA, $G_m$ drops by 10 % at $|V_{in1} - V_{in2}| \approx 0.197$
 
 **Common mistake.** Concluding that the range gets *narrower* at the higher current because the pair has more gain. The range is set by the overdrive, which grows as $\sqrt{I_{SS}}$.
 
-**Common mistake.** Solving a linearized or otherwise incorrect $G_m$ expression, or keeping the extraneous roots of the squared equations. Those roots lie beyond the cut-off voltage, where one transistor is off and the characteristic no longer applies.
+**Common mistake.** Solving a linearized $G_m$ expression, or keeping the extraneous roots of the squared equations, which lie beyond the cut-off voltage.

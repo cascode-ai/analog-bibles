@@ -1,21 +1,16 @@
 # Detailed solution - R150
 
-**Approach.** Each analog line is coupled to the clock line by its own capacitive divider, exactly as in a single-ended circuit. Both glitches have the same polarity, because the same clock edge causes them, so they cancel in the differential output $V_X - V_Y$. Only the part due to the mismatch between the two coupling capacitances survives.
+**Approach.** Each analog line is coupled to the clock line by its own capacitive divider. Both glitches have the same polarity, so they cancel in $V_X - V_Y$ except for the part due to the mismatch between the two coupling capacitances.
 
 ### Step 1 — Equivalent circuit of each analog node during a clock edge
 
-Reading the figure:
+The inverter driving $L_1$ is a low-impedance driver, so $L_1$ swings the full $\Delta V_{CK} = 3$ V on every edge. Call the coupling capacitances $C_{c2} = 9$ fF ($L_1$–$L_2$) and $C_{c3} = 10$ fF ($L_1$–$L_3$); each drain also has $C_g = 100$ fF to ground. $L_2$ and $L_3$ lie on opposite sides of $L_1$, so there is no direct $L_2$–$L_3$ capacitance to consider.
 
-- The clock line $L_1$ is driven by an inverter (a low-impedance driver), so it swings the full $\Delta V_{CK} = 3$ V on every edge.
-- $L_2$ carries $V_X$, the drain of $M_1$; $L_3$ carries $V_Y$, the drain of $M_2$. Each drain has a load resistor to $V_{DD}$, and $C_g = 100$ fF of capacitance to ground.
-- Coupling capacitances to the clock line: $C_{c2} = 9$ fF between $L_1$ and $L_2$, and $C_{c3} = 10$ fF between $L_1$ and $L_3$.
-- $L_2$ and $L_3$ are on opposite sides of $L_1$, so the clock line shields them from each other and there is no direct $L_2$–$L_3$ capacitance to consider.
-
-During a fast clock edge, the resistance at each node ($R_D\parallel r_O$) cannot move charge, because the edge is much shorter than the node time constant $(R_D\parallel r_O)(C_c + C_g)$. So each node keeps its charge, as in the single-line case.
+During a fast clock edge, the resistance at each node ($R_D\parallel r_O$) cannot move charge, because the edge is much shorter than the node time constant $(R_D\parallel r_O)(C_c + C_g)$. So each node keeps its charge.
 
 ### Step 2 — Glitch on each line (charge conservation)
 
-For a node with coupling capacitance $C_c$ to the clock and $C_g$ to ground, conservation of the charge $Q = C_c(V_{node} - V_{CK}) + C_gV_{node}$ gives
+For a node with coupling capacitance $C_c$ to the clock and $C_g$ to ground, conserving the charge $Q = C_c(V_{node} - V_{CK}) + C_gV_{node}$ gives
 
 $$
 \begin{aligned}
@@ -32,11 +27,11 @@ $$\Delta V_X = (3\ \mathrm{V})\frac{9\ \mathrm{fF}}{9\ \mathrm{fF} + 100\ \mathr
 
 $$\Delta V_Y = (3\ \mathrm{V})\frac{10\ \mathrm{fF}}{10\ \mathrm{fF} + 100\ \mathrm{fF}} = (3\ \mathrm{V})(0.09091) = 0.2727\ \mathrm{V}.$$
 
-Each single-ended glitch is therefore about a quarter of a volt.
+Each single-ended glitch is about a quarter of a volt.
 
 ### Step 3 — Differential glitch
 
-Both glitches are caused by the same clock edge, so they have the **same sign**: both nodes jump up on a rising edge and down on a falling edge. In the differential output they subtract:
+Both glitches come from the same clock edge, so they have the **same sign** (both nodes jump up on a rising edge) and subtract in the differential output:
 
 $$
 \begin{aligned}
@@ -46,9 +41,9 @@ $$
 \end{aligned}
 $$
 
-The differential glitch has a magnitude of **about 25 mV**. Its sign is negative on a rising clock edge (the more strongly coupled line $L_3$ jumps more) and positive on a falling edge.
+The differential glitch has a magnitude of **about 25 mV**: negative on a rising clock edge (the more strongly coupled line $L_3$ jumps more) and positive on a falling edge.
 
-**First-order check.** Write the two coupling capacitances as $C_c \pm \Delta C/2$, with $\Delta C = 1$ fF. Since $\Delta C \ll C_c + C_g$, the difference of the two dividers is approximately
+**First-order check.** Write the two coupling capacitances as $C_c \pm \Delta C/2$, with $\Delta C = 1$ fF. Since $\Delta C \ll C_c + C_g$,
 
 $$
 \begin{aligned}
@@ -61,20 +56,20 @@ which confirms the result. (The cruder estimate $3\ \mathrm{V}\times 1\ \mathrm{
 
 ### Step 4 — Interpretation
 
-- The **common-mode** part of the disturbance, $(\Delta V_X + \Delta V_Y)/2 \approx 0.26$ V, is not removed by the differential layout. It is only rejected later by the common-mode rejection of the circuit that follows.
-- The **differential** part is only what the asymmetry leaves: 25 mV instead of 273 mV for a single-ended line. That is about 11 times smaller:
+- The **common-mode** part, $(\Delta V_X + \Delta V_Y)/2 \approx 0.26$ V, is not removed by the differential layout; only the common-mode rejection of the following circuit removes it.
+- The **differential** part is only what the asymmetry leaves: 25 mV instead of 273 mV for a single-ended line, about 11 times smaller:
 $$\frac{0.273\ \mathrm{V}}{0.025\ \mathrm{V}} \approx 11 .$$
-- With perfect symmetry ($C_{c2} = C_{c3}$) the differential glitch would vanish. A 10 % mismatch in the coupling capacitance leaves roughly 10 % of the single-ended glitch, minus a small correction because the larger coupling capacitance also loads its own node.
-- Both glitches then decay with nearly equal time constants, $(R_D\parallel r_O)(109\ \mathrm{fF})$ and $(R_D\parallel r_O)(110\ \mathrm{fF})$, so the differential residue decays in the same way.
+- With perfect symmetry ($C_{c2} = C_{c3}$) the differential glitch would vanish. A 10 % coupling mismatch leaves roughly 10 % of the single-ended glitch, minus a small correction because the larger coupling capacitance also loads its own node.
+- Both glitches decay with nearly equal time constants, $(R_D\parallel r_O)(109\ \mathrm{fF})$ and $(R_D\parallel r_O)(110\ \mathrm{fF})$, so the differential residue decays in the same way.
 
 ### Result
 
 $$|\Delta(V_X - V_Y)| = 3\ \mathrm{V}\left(\frac{10}{110} - \frac{9}{109}\right) = 0.2727\ \mathrm{V} - 0.2477\ \mathrm{V} \approx 25\ \mathrm{mV}$$
 
-per clock edge. Each line individually jumps by about 0.25–0.27 V, but because the jumps have the same polarity, only their 25-mV difference appears in the differential output. That is roughly 11 times less than in the single-ended case.
+per clock edge. Each line individually jumps by about 0.25–0.27 V, but the jumps have the same polarity, so only their 25-mV difference appears in the differential output, roughly 11 times less than in the single-ended case.
 
-**Common mistake.** Adding the two glitches (≈ 0.52 V), as if they had opposite polarities. A rising clock edge pushes *both* analog lines up through their coupling capacitors, so the disturbance is mostly common-mode and cancels in $V_X - V_Y$.
+**Common mistake.** Adding the two glitches (≈ 0.52 V), as if they had opposite polarities. A rising clock edge pushes *both* lines up, so the disturbance is mostly common-mode.
 
-**Common mistake.** Claiming that the differential glitch is zero because the arrangement "is differential". The cancellation is only as good as the symmetry: here the coupling capacitances differ by 1 fF, which leaves 25 mV.
+**Common mistake.** Claiming that the differential glitch is zero because the arrangement "is differential". Here the coupling capacitances differ by 1 fF, which leaves 25 mV.
 
-**Common mistake.** Using $C_g = 100$ fF alone as the divider denominator ($3\ \mathrm{V}\times 1/100 = 30$ mV), or quoting the single-ended 0.27 V as the differential glitch. Each node sees its coupling capacitance *and* its grounded capacitance, so the denominators are 109 fF and 110 fF.
+**Common mistake.** Using $C_g = 100$ fF alone as the divider denominator ($3\ \mathrm{V}\times 1/100 = 30$ mV), or quoting the single-ended 0.27 V as the differential glitch. The denominators are 109 fF and 110 fF.

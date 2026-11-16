@@ -1,12 +1,10 @@
 # Detailed solution - R165
 
-**Approach.** Derive the large-signal characteristic of the square-law pair and differentiate it to get $G_m(\Delta V)$. Evaluate it at 50 mV with $I_{SS} = 2$ mA, then repeat with 1 mA. Because the result lies within about 1 % of the equilibrium value, the finite-$\Delta V$ formula is needed to get the number right.
+**Approach.** Differentiate the large-signal characteristic of the square-law pair to get $G_m(\Delta V)$, evaluate it at 50 mV with $I_{SS} = 2$ mA, and repeat with 1 mA. The result lies within about 1 % of the equilibrium value, so the finite-$\Delta V$ formula is needed.
 
 ### Step 1 — Large-signal characteristic
 
-$M_1$, $M_2$: identical saturated NMOS devices ($\lambda = 0$), sources at node $P$, ideal tail current $I_{SS}$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$.
-
-KCL at $P$ gives $I_{D1} + I_{D2} = I_{SS}$. KVL through $P$ with the square law $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$ (equal thresholds) gives $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$. Then:
+Both devices are saturated, with $\lambda = 0$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$. With $I_{D1} + I_{D2} = I_{SS}$ and $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$ (KVL with the square law; equal thresholds):
 
 $$
 \begin{aligned}
@@ -17,7 +15,7 @@ $$
 
 ### Step 2 — Equivalent transconductance
 
-Using the product rule and $\dfrac{d}{d\Delta V}\sqrt{K - \Delta V^2} = -\Delta V/\sqrt{K - \Delta V^2}$:
+With the product rule and $\dfrac{d}{d\Delta V}\sqrt{K - \Delta V^2} = -\Delta V/\sqrt{K - \Delta V^2}$:
 
 $$
 \begin{aligned}
@@ -40,7 +38,7 @@ G_m &= (6.7\ \mathrm{mA/V^2})\,\frac{0.5920\ \mathrm{V^2}}{0.7711\ \mathrm{V}} =
 \end{aligned}
 $$
 
-Equilibrium value:
+The equilibrium value is
 
 $$G_{m0} = \sqrt{(13.4\ \mathrm{mA/V^2})(2\ \mathrm{mA})} = \sqrt{26.8}\ \mathrm{mS} = 5.18\ \mathrm{mS},$$
 
@@ -75,6 +73,6 @@ $$G_m(2\ \mathrm{mA},\ 50\ \mathrm{mV}) = \frac{\beta}{2}\,\frac{4I_{SS}/\beta -
 
 (equilibrium $\sqrt{\beta I_{SS}} = 5.18$ mS, a 0.6 % drop), versus **3.61 mS** (equilibrium 3.66 mS) with a 1-mA tail. The higher current gives $\sqrt2$ more transconductance and less degradation from the 50-mV imbalance, at twice the power.
 
-**Common mistake.** Doubling $G_m$ along with the current (≈ 7.3 mS). $G_m = \sqrt{\beta I_{SS}}$ grows only as the square root of the current, because the overdrive increases too.
+**Common mistake.** Doubling $G_m$ along with the current (≈ 7.3 mS). $G_m = \sqrt{\beta I_{SS}}$ grows only as the square root of the current.
 
-**Common mistake.** Claiming that $G_m$ decreases at the higher current because the overdrive is larger. For a fixed device size, a larger overdrive comes with a larger current, and $g_m = 2I_D/V_{ov} = \sqrt{2\beta I_D}$ still rises.
+**Common mistake.** Claiming that $G_m$ decreases at the higher current because the overdrive is larger. For a fixed device size the larger overdrive comes with a larger current, and $g_m = 2I_D/V_{ov} = \sqrt{2\beta I_D}$ still rises.

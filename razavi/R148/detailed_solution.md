@@ -1,29 +1,14 @@
 # Detailed solution - R148
 
-**Approach.** Label the seven terminals of the structure. Use the basic rules: an NMOS conducts from drain to source and a PMOS from source to drain; the source of an NMOS is its lower-potential diffusion and the source of a PMOS its higher-potential one; a signal can enter at a gate, a source or a bulk; the output must be a drain or a source. Then list every arrangement that can be biased and gives gain, for each way of orienting the two devices. The total depends on how variants are counted, so the counting convention is stated.
+**Approach.** Label the seven terminals of the structure, then list every arrangement that can be biased and gives gain, for each way of orienting the two devices. The total depends on how variants are counted, so the counting convention is stated.
 
-### Step 1 — Terminals, notation and ground rules
+### Step 1 — Terminals and ground rules
 
-Label the structure as drawn:
+Call the top terminal $T$ (source of the PMOS $M_2$), the middle node $X$ (the joined drains of $M_2$ and of the NMOS $M_1$) and the bottom terminal $Y$ (source of $M_1$); the gates are $G_1$, $G_2$ and the bulks $B_1$, $B_2$. The bulks can be tied to the supplies, to their own sources (no body effect) or driven by a signal. $V_b$ is a fixed bias voltage (an ac ground). Resistors, capacitors and voltage or current sources may be added; a third transistor may not.
 
-- $T$: the top terminal (source of the PMOS $M_2$);
-- $X$: the middle node (the joined drains of $M_2$ and of the NMOS $M_1$);
-- $Y$: the bottom terminal (source of $M_1$);
-- $G_1$, $G_2$: the gates; $B_1$, $B_2$: the bulks. Being separate terminals, the bulks can be tied to the supplies, to their own sources (no body effect) or driven by a signal.
-
-Symbols: $g_m$ is the transconductance, $g_{mb}$ the body transconductance, $r_O$ the output resistance from channel-length modulation, $V_b$ a fixed bias voltage (an AC ground). Added non-transistor elements (resistors, capacitors, voltage and current sources) are allowed; a third transistor is not.
-
-**Rule 1 — DC path.** The NMOS carries current from drain to source and its source is the lower of its two diffusion terminals. The PMOS carries current from source to drain and its source is the *higher* of its two terminals. Every device's bias current needs a complete path from the supply to ground.
-
-**Rule 2 — inputs.** Gate (common source or follower, via $g_m$), source (common gate) or bulk (via $g_{mb}$).
-
-**Rule 3 — outputs.** A drain or a source. A gate or bulk not tied to a drain/source carries no current and cannot be an output.
-
-**Rule 4 — impedance of a device used as a load.** Looking into the **drain** of a device whose source and gate are at fixed potentials, we see $r_O$: a current source. Looking into the **source** of a device whose gate and drain are at fixed potentials, we see a low resistance. For a test voltage $v_x$ at the source, $v_{gs} = v_{bs} = v_{ds} = -v_x$, so the drain-to-source current is $i_d = -(g_m + g_{mb} + 1/r_O)v_x$ and
-
-$$R_{source} = \frac{v_x}{-i_d} = \frac{1}{g_m + g_{mb}}\parallel r_O .$$
-
-All voltages and currents reverse for a PMOS, so the same result holds for it. A diode-connected device (gate tied to drain) presents $\approx 1/g_m$. A device with a very large $|V_{GS}|$ is in triode and acts as a resistor $R_{on} = 1/[\mu C_{ox}(W/L)(|V_{GS}| - |V_{TH}|)]$.
+- **DC path.** The NMOS source is its lower diffusion terminal and the PMOS source its *higher* one; every device's bias current needs a complete path from the supply to ground.
+- **Inputs and outputs.** A signal may enter at a gate (via $g_m$), a source (common gate) or a bulk (via $g_{mb}$). The output must be a drain or a source; an isolated gate or bulk carries no current.
+- **Device as a load.** Looking into the **drain** of a device whose source and gate are at fixed potentials gives $r_O$, a current source. Looking into the **source** of a device whose gate and drain are at fixed potentials gives the low resistance $1/(g_m + g_{mb})\parallel r_O$, for an NMOS or a PMOS. A diode-connected device presents $\approx 1/g_m$, and a device with a very large $|V_{GS}|$ is a triode resistor $R_{on} = 1/[\mu C_{ox}(W/L)(|V_{GS}| - |V_{TH}|)]$.
 
 ### Step 2 — The four orientations
 
@@ -34,8 +19,8 @@ All voltages and currents reverse for a PMOS, so the same result holds for it. A
 | B ($M_1$ swapped) | S = $T$, D = $X$ | S = $X$, D = $Y$ | $T\to X$ and $Y\to X$ | both currents enter $X$ |
 | C ($M_2$ swapped) | S = $X$, D = $T$ | D = $X$, S = $Y$ | $X\to T$ and $X\to Y$ | both currents leave $X$ |
 
-- In **A** and **A′**, one DC current flows through both devices, so each device can serve as the load, bias source or degeneration of the other. Unlike two NMOS devices, A′ is *not* a relabelling of A: it puts the NMOS on top with its source at $X$ and the PMOS below with its source at $X$.
-- In **B**, $X$ needs a pull-down element (a bias current sink or resistor to ground). In **C**, $X$ needs a pull-up element (a bias current source from $V_{DD}$). With only voltage sources these two cases cannot be biased.
+- In **A** and **A′**, one DC current flows through both devices, so each device can serve as the load, bias source or degeneration of the other. Unlike two NMOS devices, A′ is *not* a relabelling of A: it puts the NMOS on top and the PMOS below, both with their sources at $X$.
+- In **B**, $X$ needs a pull-down element (a bias current sink or resistor to ground); in **C**, a pull-up element (a bias current source from $V_{DD}$). With only voltage sources these two cases cannot be biased.
 
 ### Step 3 — Case A: common-source stages
 
@@ -47,7 +32,7 @@ $T$ at $V_{DD}$, $Y$ at ground, output at $X$.
 - *diode-connected* ($G_2$ tied to $X$; bulk at $V_{DD}$ = source, so no body effect): $A_v = -g_{m1}\left(\dfrac{1}{g_{m2}}\parallel r_{O1}\parallel r_{O2}\right) \approx -\dfrac{g_{m1}}{g_{m2}} = -\sqrt{\dfrac{\mu_n(W/L)_1}{\mu_p(W/L)_2}}$ (equal currents);
 - *triode resistor* ($G_2$ at ground): $A_v = -g_{m1}(R_{on2}\parallel r_{O1})$.
 
-Each follows from KCL at $X$. For the current-source load, the small-signal current $g_{m1}v_{in}$ drawn by $M_1$ must come from the two output resistances:
+Each follows from KCL at $X$; for the current-source load,
 
 $$
 \begin{aligned}
@@ -60,7 +45,7 @@ $$
 
 $$A_v = -g_{m2}(r_{O1}\parallel r_{O2}), \qquad A_v \approx -\frac{g_{m2}}{g_{m1}}, \qquad A_v = -g_{m2}(R_{on1}\parallel r_{O2}).$$
 
-**(3) Complementary CS (CMOS inverter used as an amplifier).** Both gates are driven by the input, biased near the trip point (for example by a large resistor from $X$ back to the gates, with capacitive coupling of the signal). Both devices are transconductors. A rise $v_{in}$ makes $M_1$ sink $g_{m1}v_{in}$ more, while $M_2$ ($v_{sg2} = -v_{in}$) supplies $g_{m2}v_{in}$ less. KCL at $X$:
+**(3) Complementary CS (CMOS inverter used as an amplifier).** Both gates are driven by the input, biased near the trip point (for example by a large resistor from $X$ back to the gates, with capacitive coupling of the signal). A rise $v_{in}$ makes $M_1$ sink $g_{m1}v_{in}$ more, while $M_2$ ($v_{sg2} = -v_{in}$) supplies $g_{m2}v_{in}$ less. KCL at $X$:
 
 $$
 \begin{aligned}
@@ -69,23 +54,23 @@ A_v &= -(g_{m1} + g_{m2})(r_{O1}\parallel r_{O2}).
 \end{aligned}
 $$
 
-For the same bias current this gives more gain than (1) because both devices amplify.
+For the same bias current this gives more gain than (1), because both devices amplify.
 
 ### Step 4 — Case A: common-gate stages
 
-**(4) NMOS common gate.** Input at $Y$ (the source of $M_1$; the input source must also carry $M_1$'s DC current to ground); $G_1$ at $V_b$; output $X$; $M_2$ is the load (current source or diode). With $v_g = v_b = 0$ and $v_s = v_{in}$, $M_1$'s drain current changes by $-(g_{m1} + g_{mb1})v_{in}$ (for large $r_{O1}$), and it flows through the load. With a diode load:
+**(4) NMOS common gate.** Input at $Y$ (the source of $M_1$; the input source must also carry $M_1$'s DC current to ground); $G_1$ at $V_b$; output $X$; $M_2$ is the load (current source or diode). With $v_s = v_{in}$ and large $r_{O1}$, $M_1$'s drain current changes by $-(g_{m1} + g_{mb1})v_{in}$, which flows through the load. With a diode load
 
 $$A_v \approx \frac{g_{m1} + g_{mb1}}{g_{m2}},$$
 
-and with a current-source load, $A_v \approx (g_{m1} + g_{mb1})(r_{O1}\parallel r_{O2})$. The gain is non-inverting.
+and with a current-source load $A_v \approx (g_{m1} + g_{mb1})(r_{O1}\parallel r_{O2})$; both are non-inverting.
 
 **(5) PMOS common gate.** Input at $T$ (the source of $M_2$, which must also supply its DC current); $G_2$ at $V_b$; output $X$; $M_1$ is the load (current source or diode). By symmetry, $A_v \approx (g_{m2} + g_{mb2})/g_{m1}$ with a diode load, or $(g_{m2} + g_{mb2})(r_{O1}\parallel r_{O2})$ with a current-source load.
 
 ### Step 5 — Case A′: followers and degenerated stages (sources joined at $X$)
 
-Here $Y$ (drain of $M_1$) connects to $V_{DD}$ and $T$ (drain of $M_2$) to ground; the NMOS sits on top and the PMOS below, with both sources at $X$.
+$Y$ (drain of $M_1$) connects to $V_{DD}$ and $T$ (drain of $M_2$) to ground: the NMOS sits on top and the PMOS below, with both sources at $X$.
 
-**(6) NMOS source follower with a PMOS follower-type load.** Input $G_1$, output $X$, $G_2$ at $V_b$. By Rule 4, $M_2$ presents $1/(g_{m2} + g_{mb2})$ at $X$, not a constant current, because its $V_{SG}$ follows the output. KCL at $X$, with $r_O$ neglected:
+**(6) NMOS source follower with a PMOS follower-type load.** Input $G_1$, output $X$, $G_2$ at $V_b$. $M_2$'s $V_{SG}$ follows the output, so it presents $1/(g_{m2} + g_{mb2})$ at $X$, not a constant current. KCL at $X$, with $r_O$ neglected:
 
 $$
 \begin{aligned}
@@ -96,7 +81,7 @@ $$
 
 **(7) PMOS source follower with an NMOS follower-type load.** Input $G_2$, output $X$, $G_1$ at $V_b$: $A_v = g_{m2}/(g_{m2} + g_{mb2} + g_{m1} + g_{mb1})$.
 
-**(8) Complementary (push-pull) follower.** Both gates are driven by the input through two DC level-shifting voltage sources, $V_{G1} = v_{in} + V_{B1}$ and $V_{G2} = v_{in} - V_{B2}$, which set the quiescent current (class AB). Both devices are followers. KCL at $X$ gives
+**(8) Complementary (push-pull) follower.** Both gates are driven by the input through two DC level-shifting voltage sources, $V_{G1} = v_{in} + V_{B1}$ and $V_{G2} = v_{in} - V_{B2}$, which set the quiescent current (class AB). Both devices are followers, and KCL at $X$ gives
 
 $$A_v = \frac{g_{m1} + g_{m2}}{g_{m1} + g_{m2} + g_{mb1} + g_{mb2}} \approx 1\ \text{(bulks tied to } X\text{)}.$$
 
@@ -122,7 +107,7 @@ which is $-g_mR_D/2$ for equal $g_m$ and no body effect.
 
 <!-- diagram: diagram-01.cir -->
 
-KCL at $X$: $I_{D2} = I_B - I_{D1}$. A rise $v_{in}$ increases $I_{D1}$ by $g_{m1}v_{in}$. $X$ is a low-impedance node (it looks into $M_2$'s source), so $I_{D2}$ falls by the same amount, and
+KCL at $X$ gives $I_{D2} = I_B - I_{D1}$. A rise $v_{in}$ increases $I_{D1}$ by $g_{m1}v_{in}$; $X$ is a low-impedance node (it looks into $M_2$'s source), so $I_{D2}$ falls by the same amount, and
 
 $$v_{out} = R_D\,\Delta I_{D2} = -g_{m1}R_Dv_{in}, \qquad A_v \approx -g_{m1}R_D .$$
 
@@ -130,13 +115,13 @@ $$v_{out} = R_D\,\Delta I_{D2} = -g_{m1}R_Dv_{in}, \qquad A_v \approx -g_{m1}R_D
 
 ### Step 7 — Bulk-driven versions, invalid arrangements, and the count
 
-**(13) Bulk-driven family.** Any of the stages above can be driven at a bulk ($B_1$ or $B_2$) with that device's gate at a fixed bias. The input device's $g_m$ is then replaced by $g_{mb} = \eta g_m$ ($\eta \approx 0.2$–$0.4$). For example, the bulk-driven version of (1) has $A_v = -g_{mb1}(r_{O1}\parallel r_{O2})$. The source–bulk junction must stay off.
+**(13) Bulk-driven family.** Any of the stages above can be driven at a bulk ($B_1$ or $B_2$) with that device's gate at a fixed bias: the input device's $g_m$ is replaced by $g_{mb} = \eta g_m$ ($\eta \approx 0.2$–$0.4$). For example, the bulk-driven version of (1) has $A_v = -g_{mb1}(r_{O1}\parallel r_{O2})$. The source–bulk junction must stay off.
 
 **Arrangements that do not work:**
 
-- A PMOS whose source would have to be the most negative node of the circuit, used as a conducting load. A PMOS conducts only from a higher-potential source to a lower-potential drain.
+- A PMOS whose source would have to be the most negative node of the circuit, used as a conducting load: a PMOS conducts only from a higher-potential source to a lower-potential drain.
 - An output taken at an isolated gate or bulk.
-- An input applied to the joined drains with the output taken at a source. A saturated MOSFET hardly responds to its drain voltage, so the gain is only about $1/(g_mr_O)$.
+- An input applied to the joined drains with the output taken at a source: a saturated MOSFET hardly responds to its drain voltage, so the gain is only about $1/(g_mr_O)$.
 - Cases B and C without the extra bias element at $X$: both device currents then enter (or leave) $X$ and no DC operating point exists.
 
 **Counting convention.** A topology is a distinct combination of input device and type, input terminal, output terminal and device roles. The load variants (current source, diode, triode) of the same stage are grouped, and the bulk-driven versions form one family. This gives:
@@ -146,7 +131,7 @@ $$v_{out} = R_D\,\Delta I_{D2} = -g_{m1}R_Dv_{in}, \qquad A_v \approx -g_{m1}R_D
 - 2 folded cascodes: (11), (12);
 - 1 bulk-driven family: (13).
 
-That is 13 in total. Listing each load variant of (1) and (2) separately raises this to 17. Counting only the single-stage CS/CG stages of the as-drawn structure gives about 9.
+That is 13 in total. Listing each load variant of (1) and (2) separately raises this to 17; counting only the single-stage CS/CG stages of the as-drawn structure gives about 9.
 
 ### Result
 
@@ -170,8 +155,8 @@ There is no unique number. With the convention above there are **about 13 topolo
 
 Key gains: $-g_{m1}(r_{O1}\parallel r_{O2})$ for the CS stage with a current-source load, $-g_{m1}/g_{m2}$ with a diode load, $-(g_{m1} + g_{m2})(r_{O1}\parallel r_{O2})$ for the inverter, $(g_m + g_{mb})(r_{O1}\parallel r_{O2})$ for a common gate with a current-source load, $g_{m1}/(g_{m1} + g_{m2})$ for the follower with a follower-type load, and $-g_mR_D$ for the folded cascodes.
 
-**Common mistake.** Treating the device below a source follower in case A′ (for example the PMOS in (6), with its gate at a bias) as a constant current sink. Its source is the output node, so its $V_{SG}$ follows the output and it presents only about $1/g_{m2}$. The follower gain is then about $g_{m1}/(g_{m1} + g_{m2})$, roughly 1/2, not 1.
+**Common mistake.** Treating the device below a source follower in case A′ (for example the PMOS in (6), gate at a bias) as a constant current sink. Its $V_{SG}$ follows the output, so it presents only about $1/g_{m2}$, and the follower gain is about $g_{m1}/(g_{m1} + g_{m2})$, roughly 1/2, not 1.
 
-**Common mistake.** Drawing a folded cascode with only the two transistors and supply connections. When one device is turned around, both drain currents enter (or leave) $X$. A separate bias current source (or resistor) at $X$, and a load at the output, are indispensable.
+**Common mistake.** Drawing a folded cascode with only the two transistors and supply connections. With one device turned around, both drain currents enter (or leave) $X$, so a separate bias current source (or resistor) at $X$ and a load at the output are indispensable.
 
-**Common mistake.** Using a PMOS "upside down" (source at the lowest potential) as a conducting load, or taking the output at a gate or bulk. A PMOS conducts only from its higher-potential terminal, and an output needs a drain or source node where signal current turns into voltage.
+**Common mistake.** Using a PMOS "upside down" (source at the lowest potential) as a conducting load, or taking the output at a gate or bulk.

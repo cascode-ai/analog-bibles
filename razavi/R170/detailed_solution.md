@@ -1,14 +1,14 @@
 # Detailed solution - R170
 
-**Approach.** A threshold mismatch makes the two input transistors carry slightly different overdrives, and hence slightly different transconductances $g_{m1} \neq g_{m2}$, even with identical sizes and loads. A common-mode input then produces unequal current changes in the two halves, and part of the common-mode noise appears at the differential output with gain $\Delta g_mR_D/(1 + 2g_mR_{SS})$. The differential signal is amplified by $g_mR_D$, and the SNR is the ratio of the two output amplitudes.
+**Approach.** The threshold mismatch gives the two input devices slightly different overdrives, hence $g_{m1} \neq g_{m2}$. A common-mode input then produces unequal currents in the two halves, and part of the common-mode noise reaches the differential output with gain $\Delta g_mR_D/(1 + 2g_mR_{SS})$, while the signal is amplified by $g_mR_D$. The SNR is the ratio of the two output amplitudes.
 
 ### Step 1 — Bias quantities
 
-**Tail impedance.** The tail current source is an NMOS device carrying $I_{SS} = 1$ mA:
+**Tail impedance.** The NMOS tail source carries $I_{SS} = 1$ mA:
 
 $$R_{SS} = r_O = \frac{1}{\lambda I_{SS}} = \frac{1}{(0.1\ \mathrm{V^{-1}})(1\ \mathrm{mA})} = 10\ \mathrm{k}\Omega .$$
 
-**Input devices.** Each carries about $I_{SS}/2 = 0.5$ mA. With $\beta = \mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$:
+**Input devices.** Each carries about $I_{SS}/2 = 0.5$ mA, and $\beta = \mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$:
 
 $$
 \begin{aligned}
@@ -19,11 +19,11 @@ $$
 
 ### Step 2 — Transconductance mismatch caused by the threshold mismatch
 
-Both gates sit at the same common-mode voltage and both sources at $P$, so $V_{GS1} = V_{GS2}$. With $V_{TH2} = V_{TH1} + \Delta V_{TH}$, the overdrives differ by exactly $\Delta V_{TH}$:
+Both gates sit at the same common-mode voltage and both sources at $P$, so $V_{GS1} = V_{GS2}$. With $V_{TH2} = V_{TH1} + \Delta V_{TH}$:
 
 $$V_{ov1} - V_{ov2} = (V_{GS} - V_{TH1}) - (V_{GS} - V_{TH2}) = \Delta V_{TH} = 1\ \mathrm{mV}.$$
 
-In saturation $g_m = \beta V_{ov}$, so
+With $g_m = \beta V_{ov}$:
 
 $$
 \begin{aligned}
@@ -34,17 +34,17 @@ $$
 
 ### Step 3 — Differential gain (signal path)
 
-For a differential input, the tail node is (to first order) an AC ground, and each half is a common-source stage. With equal loads,
+With $P$ (to first order) at ac ground and equal loads,
 
-$$|A_{DM}| \approx g_mR_D = (3.66\ \mathrm{mS})(2\ \mathrm{k}\Omega) = 7.32 .$$
+$$|A_{DM}| \approx g_mR_D = (3.66\ \mathrm{mS})(2\ \mathrm{k}\Omega) = 7.32 ,$$
 
-(The 0.37 % $g_m$ difference has a negligible effect on it, because the differential gain depends on the *average* $(g_{m1} + g_{m2})/2$.) The 10-mV peak-to-peak input gives
+since the differential gain depends on the *average* $(g_{m1} + g_{m2})/2$, the 0.37 % difference is negligible here. The 10-mV peak-to-peak input gives
 
 $$v_{out,signal} = 7.32\times 10\ \mathrm{mV} = 73.2\ \mathrm{mV}\ \text{peak-to-peak}.$$
 
 ### Step 4 — Common-mode to differential conversion (noise path)
 
-Apply a common-mode change $v_{cm}$ to both gates. Small-signal model: transistor $k$ is a current source $g_{mk}v_{gs}$ from its drain to $P$, with the same $v_{gs} = v_{cm} - v_P$ for both. $R_{SS}$ connects $P$ to ground, and the equal loads $R_D$ connect the drains to AC ground.
+For a common-mode change $v_{cm}$ on both gates, transistor $k$ is a current source $g_{mk}v_{gs}$ from its drain to $P$, with the same $v_{gs} = v_{cm} - v_P$ for both; $R_{SS}$ connects $P$ to ground, and the equal loads $R_D$ connect the drains to ac ground.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -57,7 +57,7 @@ v_{cm} - v_P &= \frac{v_{cm}}{1 + (g_{m1} + g_{m2})R_{SS}} .
 \end{aligned}
 $$
 
-The two currents are unequal, $i_1 = g_{m1}(v_{cm} - v_P)$ and $i_2 = g_{m2}(v_{cm} - v_P)$, and flow through equal loads:
+The unequal currents $i_1 = g_{m1}(v_{cm} - v_P)$ and $i_2 = g_{m2}(v_{cm} - v_P)$ flow through equal loads:
 
 $$
 \begin{aligned}
@@ -84,9 +84,9 @@ $$v_{out,noise} = (3.61\times10^{-4})(100\ \mathrm{mV}) = 36.1\ \mu\mathrm{V}\ \
 
 $$\mathrm{SNR} = \frac{73.2\ \mathrm{mV}}{36.1\ \mu\mathrm{V}} \approx 2.03\times10^3, \qquad 20\log_{10}(2030) \approx 66.1\ \mathrm{dB}.$$
 
-**Cross-check.** $\mathrm{CMRR} = A_{DM}/A_{CM-DM} = (g_m/\Delta g_m)(1 + 2g_mR_{SS}) = 273\times 74.2 = 2.03\times10^4$. The input SNR is 0.1, so the output SNR is $2.03\times10^4\times 0.1 = 2.03\times10^3$. ✓
+**Cross-check.** $\mathrm{CMRR} = A_{DM}/A_{CM-DM} = (g_m/\Delta g_m)(1 + 2g_mR_{SS}) = 273\times 74.2 = 2.03\times10^4$; with an input SNR of 0.1, the output SNR is $2.03\times10^4\times 0.1 = 2.03\times10^3$. ✓
 
-(The threshold mismatch also produces a constant differential output offset of about $g_mR_D\times 1\ \mathrm{mV} = 7.3$ mV. That is a fixed DC error, not part of the noise, and it does not enter the SNR.)
+(The mismatch also produces a constant differential output offset of about $g_mR_D\times 1\ \mathrm{mV} = 7.3$ mV, a fixed DC error that does not enter the SNR.)
 
 ### Result
 
@@ -94,8 +94,8 @@ $$\mathrm{SNR} = \frac{g_mR_D\times 10\ \mathrm{mV}}{\dfrac{\Delta g_mR_D}{1 + 2
 
 with $g_m = 3.66$ mS, $\Delta g_m = \beta\Delta V_{TH} = 13.4\ \mu$S and $R_{SS} = 10$ kΩ.
 
-**Common mistake.** Treating the 1-mV mismatch as an extra input signal that leaves the noise unaffected. The mismatch does add a DC offset, but it also makes $g_{m1} \neq g_{m2}$, which is what converts the common-mode noise into a differential output.
+**Common mistake.** Treating the 1-mV mismatch only as an extra input signal (a DC offset) that leaves the noise unaffected. It also makes $g_{m1} \neq g_{m2}$, which is what converts the common-mode noise into a differential output.
 
-**Common mistake.** Getting $\Delta g_m$ from a wrong relation, such as $\Delta g_m/g_m = \Delta V_{TH}/V_{GS}$ or $2\Delta V_{TH}/V_{ov}$. Since $g_m = \beta V_{ov}$ and the overdrives differ by $\Delta V_{TH}$, $\Delta g_m/g_m = \Delta V_{TH}/V_{ov} = 0.37$ %.
+**Common mistake.** Getting $\Delta g_m$ from a wrong relation, such as $\Delta g_m/g_m = \Delta V_{TH}/V_{GS}$ or $2\Delta V_{TH}/V_{ov}$. Since $g_m = \beta V_{ov}$, $\Delta g_m/g_m = \Delta V_{TH}/V_{ov} = 0.37$ %.
 
-**Common mistake.** Omitting the factor $1 + 2g_mR_{SS}$, i.e. using $\Delta g_mR_D$ as the conversion gain. The tail impedance degenerates the common-mode current by a factor of 74, so leaving it out underestimates the SNR by that factor.
+**Common mistake.** Omitting the factor $1 + 2g_mR_{SS}$, i.e. using $\Delta g_mR_D$ as the conversion gain, which underestimates the SNR by a factor of 74.

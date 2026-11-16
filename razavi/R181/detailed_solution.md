@@ -1,19 +1,10 @@
 # Detailed solution - R181
 
-**Approach.** The inputs move in opposite directions around a fixed common-mode level of 1.5 V, so the pair simply steers the tail current from one side to the other. The output depends only on how the current is split. It is zero at balance, changes with a slope set by the diode loads in parallel with half of $R_1$, and saturates once all the current is on one side. The saturation level follows from a current balance between the two diodes and $R_1$.
+**Approach.** The inputs move in opposite directions around a fixed common-mode level of 1.5 V, so the pair simply steers the tail current from one side to the other. The output is zero at balance, changes with a slope set by the diode loads in parallel with half of $R_1$, and saturates once all the current is on one side, at a level fixed by a current balance between the two diodes and $R_1$.
 
-### Step 1 — The circuit and the input drive
+### Step 1 — The input drive
 
-Reading the figure:
-
-- NMOS pair $M_1$, $M_2$ with sources at the tail node $P$;
-- tail transistor $M_5$ (gate at $V_b$) supplying $I_{SS}$;
-- diode-connected PMOS loads $M_3$ (at $X$, the left output) and $M_4$ (at $Y$, the right output);
-- a resistor $R_1$ between $X$ and $Y$.
-
-$V_{out} = V_X - V_Y$.
-
-The inputs are $V_{in1}$ and $V_{in2} = V_{DD} - V_{in1}$, so
+Call the left output node (drains of $M_1$, $M_3$) $X$, the right one $Y$, and the tail node $P$; $V_{out} = V_X - V_Y$. With $V_{in2} = V_{DD} - V_{in1}$,
 
 $$V_{in,CM} = \frac{V_{in1} + V_{in2}}{2} = \frac{V_{DD}}{2} = 1.5\ \mathrm{V}\ \text{(constant)}, \qquad \Delta V \equiv V_{in1} - V_{in2} = 2V_{in1} - 3\ \mathrm{V}.$$
 
@@ -21,27 +12,27 @@ As $V_{in1}$ goes from 0 to 3 V, $\Delta V$ sweeps from $-3$ V to $+3$ V, passin
 
 ### Step 2 — How the tail current is split
 
-With an ideal tail and square-law devices (body effect neglected), the currents depend only on $\Delta V$:
+With an ideal tail and square-law devices, the currents depend only on $\Delta V$:
 
 $$I_{D1} - I_{D2} = \frac{\beta_n}{2}\Delta V\sqrt{\frac{4I_{SS}}{\beta_n} - \Delta V^2}, \qquad I_{D1} + I_{D2} = I_{SS},$$
 
-valid for $|\Delta V| \le \sqrt{2I_{SS}/\beta_n}$. Beyond this, one device is off and the other carries all of $I_{SS}$. In terms of $V_{in1}$, the steering window is
+valid for $|\Delta V| \le \sqrt{2I_{SS}/\beta_n}$; beyond this one device carries all of $I_{SS}$. In terms of $V_{in1}$, the steering window is
 
 $$1.5\ \mathrm{V} - \sqrt{\frac{I_{SS}}{2\beta_n}} \;<\; V_{in1} \;<\; 1.5\ \mathrm{V} + \sqrt{\frac{I_{SS}}{2\beta_n}},$$
 
-a narrow region around the centre. Outside it nothing changes: the conducting device may even enter triode when its gate approaches 3 V, but it still carries exactly $I_{SS}$, because the saturated tail fixes the current. So $V_{out}$ is **flat** outside the window.
+a narrow region around the centre. Outside it the conducting device may even enter triode as its gate approaches 3 V, but it still carries exactly $I_{SS}$, fixed by the saturated tail, so $V_{out}$ is **flat**.
 
 ### Step 3 — Balance point
 
-At $V_{in1} = V_{in2} = 1.5$ V the circuit is symmetric. Then $V_X = V_Y$, $R_1$ carries no current, and each diode carries $I_{SS}/2$:
+At $V_{in1} = V_{in2} = 1.5$ V, $V_X = V_Y$, $R_1$ carries no current, and each diode carries $I_{SS}/2$:
 
 $$V_X = V_Y = V_{DD} - |V_{THP}| - \sqrt{\frac{2(I_{SS}/2)}{\beta_p}} = 2.2\ \mathrm{V} - \sqrt{\frac{I_{SS}}{\beta_p}}, \qquad V_{out} = 0 .$$
 
-$R_1$ does not affect the output common-mode level, since it carries no current at balance.
+So $R_1$ does not affect the output common-mode level.
 
 ### Step 4 — Slope at the centre (small-signal gain)
 
-For a small differential input $\pm v_d/2$ about balance, $v_Y = -v_X$ by symmetry, so the midpoint of $R_1$ stays at AC ground. Each half then sees $R_1/2$ to ground in parallel with the diode resistance $1/g_{m3}$ (channel-length modulation neglected).
+For $\pm v_d/2$ about balance, $v_Y = -v_X$, so the midpoint of $R_1$ stays at ac ground, and each half sees $R_1/2$ in parallel with the diode resistance $1/g_{m3}$ (channel-length modulation neglected).
 
 <!-- diagram: diagram-01.cir -->
 
@@ -63,29 +54,24 @@ with $g_{m1} = \sqrt{\beta_nI_{SS}}$ and $g_{m3} = \sqrt{\beta_pI_{SS}}$. The cu
 
 ### Step 5 — Saturation level
 
-Take $V_{in1}$ low, so that $M_1$ is off and $M_2$ carries $I_{SS}$. KCL:
+Take $V_{in1}$ low, so that $M_1$ is off and $M_2$ carries $I_{SS}$. With $M_1$ off, the whole diode current of $M_3$, call it $I_R$, flows through $R_1$ into $Y$; at $Y$, $M_2$ takes $I_{SS}$, supplied by $R_1$ ($I_R$) and $M_4$ ($I_{SS} - I_R$). The diode equations give
 
-- at $X$: $M_1$ carries nothing, so all of the diode current of $M_3$, call it $I_R$, flows through $R_1$ into $Y$;
-- at $Y$: $M_2$ takes $I_{SS}$, supplied by $R_1$ ($I_R$) and by $M_4$ ($I_{SS} - I_R$).
+$$V_X = 2.2\ \mathrm{V} - \sqrt{\frac{2I_R}{\beta_p}}, \qquad V_Y = 2.2\ \mathrm{V} - \sqrt{\frac{2(I_{SS} - I_R)}{\beta_p}} ,$$
 
-The diode equations give the two output voltages:
-
-$$V_X = 2.2\ \mathrm{V} - \sqrt{\frac{2I_R}{\beta_p}}, \qquad V_Y = 2.2\ \mathrm{V} - \sqrt{\frac{2(I_{SS} - I_R)}{\beta_p}} .$$
-
-Ohm's law for $R_1$ closes the loop:
+and Ohm's law for $R_1$ closes the loop:
 
 $$V_{sat} = V_X - V_Y = I_RR_1 = \sqrt{\frac{2}{\beta_p}}\left(\sqrt{I_{SS} - I_R} - \sqrt{I_R}\right).$$
 
-This single equation fixes $I_R$ (between 0 and $I_{SS}/2$), and then $V_{sat} = I_RR_1$. Limiting cases:
+This equation fixes $I_R$ (between 0 and $I_{SS}/2$), and then $V_{sat} = I_RR_1$. Limiting cases:
 
 - **Small $R_1$:** $I_R \to I_{SS}/2$ (the resistor nearly shorts the outputs), so $V_{sat} \approx I_{SS}R_1/2$, small.
 - **Large $R_1$:** $I_R \to 0$, so $V_{sat} \to \sqrt{2I_{SS}/\beta_p}$, the value for plain diode loads.
 
-In general $0 < V_{sat} < \sqrt{2I_{SS}/\beta_p}$: the resistor reduces the swing. The off-side output sits at $2.2\ \mathrm{V} - \sqrt{2I_R/\beta_p}$, just below 2.2 V for large $R_1$ and near the balanced level for small $R_1$. For $V_{in1}$ high, the same holds with the roles reversed: $V_{out} = -V_{sat}$.
+In general $0 < V_{sat} < \sqrt{2I_{SS}/\beta_p}$: the resistor reduces the swing. The off-side output sits at $2.2\ \mathrm{V} - \sqrt{2I_R/\beta_p}$, just below 2.2 V for large $R_1$ and near the balanced level for small $R_1$. For $V_{in1}$ high the roles reverse: $V_{out} = -V_{sat}$.
 
 ### Step 6 — Illustrative numbers
 
-Sizes are not given. For illustration only, take $\beta_n = 13.4\ \mathrm{mA/V^2}$, $\beta_p = 3.84\ \mathrm{mA/V^2}$, $I_{SS} = 1$ mA and $R_1 = 2$ kΩ. Then:
+For illustration only, take $\beta_n = 13.4\ \mathrm{mA/V^2}$, $\beta_p = 3.84\ \mathrm{mA/V^2}$, $I_{SS} = 1$ mA and $R_1 = 2$ kΩ:
 
 $$
 \begin{aligned}
@@ -96,7 +82,7 @@ g_{m1} &= \sqrt{13.4\times 1}\ \mathrm{mS} = 3.66\ \mathrm{mS}, \qquad g_{m3} = 
 \end{aligned}
 $$
 
-Solving the saturation equation gives $I_R = 0.176$ mA, so $V_{sat} = (0.176\ \mathrm{mA})(2\ \mathrm{k}\Omega) = 0.35$ V. This lies between the bounds $I_{SS}R_1/2 = 1.0$ V and $\sqrt{2I_{SS}/\beta_p} = 0.72$ V and is below both. The full curve:
+Solving the saturation equation gives $I_R = 0.176$ mA, so $V_{sat} = (0.176\ \mathrm{mA})(2\ \mathrm{k}\Omega) = 0.35$ V, below both limiting values $I_{SS}R_1/2 = 1.0$ V and $\sqrt{2I_{SS}/\beta_p} = 0.72$ V. The full curve:
 
 | $V_{in1}$ (V) | $\Delta V$ (V) | $I_{D1}$ (mA) | $V_X$ (V) | $V_Y$ (V) | $V_{out}$ (V) |
 |---|---|---|---|---|---|
@@ -121,8 +107,8 @@ because the midpoint of $R_1$ is a virtual ground.
 
 $R_1$ lowers both the gain and the swing compared with plain diode loads.
 
-**Common mistake.** Taking the saturation level as exactly $\sqrt{2I_{SS}/\beta_p}$ (ignoring the current that the off-side diode sends through $R_1$) or as exactly $I_{SS}R_1/2$. Both are only limiting cases. In general $I_R$ must satisfy the current balance of Step 5.
+**Common mistake.** Taking the saturation level as exactly $\sqrt{2I_{SS}/\beta_p}$ (ignoring the current that the off-side diode sends through $R_1$) or as exactly $I_{SS}R_1/2$. Both are only limiting cases; $I_R$ must satisfy the current balance of Step 5.
 
-**Common mistake.** Using $R_1$ instead of $R_1/2$ in the half circuit. For differential signals the two ends of $R_1$ move in opposite directions, so its midpoint is at AC ground and each output sees only half of it.
+**Common mistake.** Using $R_1$ instead of $R_1/2$ in the half circuit. The midpoint of $R_1$ is at ac ground for differential signals.
 
-**Common mistake.** Drawing a non-inverting curve, a straight line over the whole 0–3 V sweep, or outputs that reach $V_{DD}$ or ground. The pair saturates within a few hundred millivolts of balance, and the diodes keep both outputs between about $2.2\ \mathrm{V} - \sqrt{2I_{SS}/\beta_p}$ and 2.2 V. Also note that $R_1$ does not shift the output common-mode level: at balance it carries no current.
+**Common mistake.** Drawing a non-inverting curve, a straight line over the whole 0–3 V sweep, or outputs that reach $V_{DD}$ or ground. The pair saturates within a few hundred millivolts of balance, and the diodes keep both outputs between about $2.2\ \mathrm{V} - \sqrt{2I_{SS}/\beta_p}$ and 2.2 V.

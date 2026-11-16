@@ -1,16 +1,10 @@
 # Detailed solution - R164
 
-**Approach.** Apply the large-signal characteristic of the square-law differential pair, $I_{D1} - I_{D2} = \tfrac12\beta\Delta V\sqrt{4I_{SS}/\beta - \Delta V^2}$, with $I_{SS} = 2$ mA. Combine it with $I_{D1} + I_{D2} = I_{SS}$ to get each current, then repeat for 1 mA and compare the absolute and relative imbalances.
+**Approach.** Apply the large-signal characteristic of the square-law pair, $I_{D1} - I_{D2} = \tfrac12\beta\Delta V\sqrt{4I_{SS}/\beta - \Delta V^2}$, with $I_{SS} = 2$ mA and $I_{D1} + I_{D2} = I_{SS}$; then repeat for 1 mA and compare the absolute and relative imbalances.
 
 ### Step 1 — Large-signal characteristic
 
-$M_1$, $M_2$: identical saturated NMOS devices ($\lambda = 0$), sources at node $P$, ideal tail current $I_{SS}$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$.
-
-- **KCL at $P$:** $I_{D1} + I_{D2} = I_{SS}$.
-- **KVL through $P$:** $\Delta V = V_{GS1} - V_{GS2}$.
-- **Square law:** $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$, with equal thresholds (same source node), so $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$.
-
-Square, insert the sum, isolate the cross term and square again:
+Both devices are saturated, with $\lambda = 0$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$. With $I_{D1} + I_{D2} = I_{SS}$, $\Delta V = V_{GS1} - V_{GS2}$ and $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$ (equal thresholds), $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$. Square, insert the sum, isolate the cross term and square again:
 
 $$
 \begin{aligned}
@@ -64,10 +58,10 @@ $$
 | 2 mA | 0.386 V | 5.18 mS | 1.129 / 0.871 mA | 0.258 mA | 12.9 % |
 | 1 mA | 0.273 V | 3.66 mS | 0.591 / 0.409 mA | 0.182 mA | 18.2 % |
 
-- **Absolute imbalance** grows by $0.2583/0.1823 = 1.42 \approx \sqrt2$. For small inputs $I_{D1} - I_{D2} \approx G_{m0}\Delta V$ with $G_{m0} = \sqrt{\beta I_{SS}}$, which scales as $\sqrt{I_{SS}}$. Indeed $(5.18\ \mathrm{mS})(50\ \mathrm{mV}) = 0.259$ mA, within 0.3 % of the exact value.
-- **Relative imbalance** falls from 18.2 % to 12.9 % of the tail current. Doubling $I_{SS}$ raises the overdrive by $\sqrt2$, so 50 mV is a smaller fraction of the input range. The pair is more linear.
+- **Absolute imbalance** grows by $0.2583/0.1823 = 1.42 \approx \sqrt2$, since $I_{D1} - I_{D2} \approx G_{m0}\Delta V$ with $G_{m0} = \sqrt{\beta I_{SS}}$. Indeed $(5.18\ \mathrm{mS})(50\ \mathrm{mV}) = 0.259$ mA, within 0.3 % of the exact value.
+- **Relative imbalance** falls from 18.2 % to 12.9 % of the tail current: the overdrive is $\sqrt2$ larger, so 50 mV is a smaller fraction of the input range, and the pair is more linear.
 
-Raising the tail current therefore improves both the transconductance and the linearity, at the cost of twice the power.
+Raising the tail current improves both the transconductance and the linearity, at the cost of twice the power.
 
 ### Result
 
@@ -77,6 +71,6 @@ With $I_{SS} = 1$ mA: $I_{D1} \approx 0.591$ mA and $I_{D2} \approx 0.409$ mA ($
 
 Doubling the tail current increases the absolute current difference by about $\sqrt2$ (higher $G_m$), while the fractional imbalance $\Delta I_D/I_{SS}$ drops from 18 % to 13 % (more linear).
 
-**Common mistake.** Producing currents that do not add up to 2 mA, for example by keeping the 1-mA sharing ratio but adding the same increment to each side. The tail source fixes $I_{D1} + I_{D2} = I_{SS}$; the input only redistributes it.
+**Common mistake.** Producing currents that do not add up to 2 mA, for example by keeping the 1-mA sharing but adding the same increment to each side. The tail source fixes $I_{D1} + I_{D2} = I_{SS}$.
 
-**Common mistake.** Concluding that the larger tail current gives a *smaller* absolute difference because the pair is "more linear". The relative imbalance falls, but the absolute difference rises with $G_m = \sqrt{\beta I_{SS}}$.
+**Common mistake.** Concluding that the larger tail current gives a *smaller* absolute difference because the pair is "more linear". Only the relative imbalance falls; the absolute difference rises with $G_m = \sqrt{\beta I_{SS}}$.

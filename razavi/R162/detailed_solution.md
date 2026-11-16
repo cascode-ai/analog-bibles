@@ -1,12 +1,10 @@
 # Detailed solution - R162
 
-**Approach.** Express the equivalent transconductance of a square-law differential pair in normalized form, $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$. Solve for the values of $x$ that give 0.9 and 0.1; these do not depend on the device size. Then convert $x$ to volts using the overdrive of each design.
+**Approach.** Write the pair's equivalent transconductance in normalized form, $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$, and solve for the $x$ giving 0.9 and 0.1; these do not depend on the device size. Then convert $x$ to volts with the overdrive of each design.
 
 ### Step 1 — Large-signal characteristic
 
-$M_1$, $M_2$: identical saturated NMOS devices ($\lambda = 0$), sources at node $P$, ideal tail current $I_{SS} = 1$ mA. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$.
-
-From KCL at $P$ ($I_{D1} + I_{D2} = I_{SS}$), KVL through $P$ ($\Delta V = V_{GS1} - V_{GS2}$) and the square law ($V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$, same $V_{TH}$ for both):
+Both devices are saturated, with $\lambda = 0$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$. With $I_{D1} + I_{D2} = I_{SS}$, $\Delta V = V_{GS1} - V_{GS2}$ and $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$ (same $V_{TH}$ for both):
 
 $$
 \begin{aligned}
@@ -18,7 +16,7 @@ $$
 
 ### Step 2 — Normalized $G_m$
 
-Differentiating (product rule) gives
+Differentiating (product rule):
 
 $$G_m = \frac{\partial(I_{D1} - I_{D2})}{\partial\Delta V} = \frac{\beta}{2}\,\frac{4I_{SS}/\beta - 2\Delta V^2}{\sqrt{4I_{SS}/\beta - \Delta V^2}} .$$
 
@@ -28,15 +26,15 @@ $$
 \begin{aligned}
 G_m &= \frac{\beta}{2}\,\frac{V_{ov}^2(4 - 2x^2)}{V_{ov}\sqrt{4 - x^2}} = \beta V_{ov}\,\frac{2 - x^2}{\sqrt{4 - x^2}},\\
 G_{m0} &= \beta V_{ov} = \sqrt{\beta I_{SS}},\\
-\frac{G_m}{G_{m0}} &= \frac{2 - x^2}{\sqrt{4 - x^2}} .
+\frac{G_m}{G_{m0}} &= \frac{2 - x^2}{\sqrt{4 - x^2}} ,
 \end{aligned}
 $$
 
-The ratio depends only on $x$. It falls from 1 at $x = 0$ to 0 at $x = \sqrt2$ (full steering).
+which depends only on $x$ and falls from 1 at $x = 0$ to 0 at $x = \sqrt2$ (full steering).
 
 ### Step 3 — Solve for the 10 % and 90 % points (in $x$)
 
-Let $u = x^2$ (with $u < 2$ in the valid range) and square each condition.
+Let $u = x^2$ ($u < 2$ in the valid range) and square each condition.
 
 **$G_m/G_{m0} = 0.9$:**
 
@@ -61,7 +59,7 @@ x &= \sqrt{1.8535} = 1.3614 .
 \end{aligned}
 $$
 
-The rejected roots appear only because the equation was squared; they correspond to $2 - u < 0$, beyond full steering.
+The rejected roots come from squaring; they correspond to $2 - u < 0$, beyond full steering.
 
 ### Step 4 — Convert to volts for $W/L = 25/0.5$
 
@@ -86,7 +84,7 @@ $$\Delta V_{10\%} = (0.5092)(0.2732\ \mathrm{V}) = 0.139\ \mathrm{V}, \qquad \De
 | 25/0.5 | 0.386 V | 2.59 mS | 0.197 V | 0.526 V | 0.546 V |
 | 50/0.5 | 0.273 V | 3.66 mS | 0.139 V | 0.372 V | 0.386 V |
 
-Every voltage in the narrower pair is larger by $V_{ov}(25/0.5)/V_{ov}(50/0.5) = \sqrt{100/50} = \sqrt2$: $0.197/0.139 = 1.41$ and $0.526/0.372 = 1.41$. The input range scales with the overdrive. Halving $W/L$ at constant current makes the pair $\sqrt2$ times more linear, at the cost of a $\sqrt2$ lower $G_{m0}$ (and thus lower gain).
+Every voltage of the narrower pair is larger by $V_{ov}(25/0.5)/V_{ov}(50/0.5) = \sqrt{100/50} = \sqrt2$: $0.197/0.139 = 1.41$ and $0.526/0.372 = 1.41$. Halving $W/L$ at constant current makes the pair $\sqrt2$ times more linear, at the cost of a $\sqrt2$ lower $G_{m0}$ (and thus lower gain).
 
 ### Result
 
@@ -94,4 +92,4 @@ For $W/L = 25/0.5$, $G_m$ falls by 10 % at $|V_{in1} - V_{in2}| \approx 0.197$ V
 
 **Common mistake.** Concluding that the narrower devices give a *narrower* input range. The range scales with the overdrive $\sqrt{I_{SS}/\beta}$, which grows when $W/L$ shrinks.
 
-**Common mistake.** Using a linearized or otherwise wrong $G_m$ expression, or keeping the extraneous roots of the squared equations (which fall beyond the cut-off voltage, where one device is off). The normalized relation $(2 - x^2)/\sqrt{4 - x^2}$ must be solved exactly.
+**Common mistake.** Using a linearized $G_m$ expression, or keeping the extraneous roots of the squared equations, which fall beyond the cut-off voltage.

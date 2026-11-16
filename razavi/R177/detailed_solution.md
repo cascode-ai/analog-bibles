@@ -1,10 +1,10 @@
 # Detailed solution - R177
 
-**Approach.** (1) With PMOS current-source loads, each output node sees only output resistances, so the half-circuit gain is $g_{m1}(r_{O1}\parallel r_{O3})$. (2) The minimum input common-mode level stacks the 0.4-V tail headroom, the overdrive of $M_1$ and its body-affected threshold. (3) Each output may move between the point where $M_1$ leaves saturation (bottom) and the point where the PMOS current source $M_3$ leaves saturation (top).
+**Approach.** (1) With PMOS current-source loads, each output sees only output resistances, so the half-circuit gain is $g_{m1}(r_{O1}\parallel r_{O3})$. (2) The minimum input common-mode level stacks the 0.4-V tail headroom, the overdrive of $M_1$ and its body-affected threshold. (3) Each output may move between the point where $M_1$ leaves saturation (bottom) and the point where $M_3$ leaves saturation (top).
 
 ### Step 1 — Small-signal parameters
 
-At equilibrium each branch carries $I_{SS}/2 = 0.5$ mA, and $V_b$ is set so that each PMOS load also carries 0.5 mA.
+At equilibrium each branch, and each PMOS load, carries $I_{SS}/2 = 0.5$ mA.
 
 **Input devices** ($\mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(50/0.5) = 13.4\ \mathrm{mA/V^2}$):
 
@@ -21,16 +21,7 @@ $$r_{O3} = \frac{1}{\lambda_pI_D} = \frac{1}{(0.2\ \mathrm{V^{-1}})(0.5\ \mathrm
 
 ### Step 2 — Differential voltage gain
 
-For a small differential input the tail node $P$ is an AC ground. Each half is then a common-source stage: $M_1$, a current source $g_{m1}v_{gs1}$ in parallel with $r_{O1}$, drives node $X$. Its load is $M_3$, whose gate ($V_b$) and source ($V_{DD}$) are both AC grounds, so $M_3$ contributes only its output resistance $r_{O3}$. Summing the currents leaving $X$:
-
-$$
-\begin{aligned}
-g_{m1}\frac{v_{in}}{2} + \frac{v_X}{r_{O1}} + \frac{v_X}{r_{O3}} &= 0\\
-v_X &= -g_{m1}(r_{O1}\parallel r_{O3})\frac{v_{in}}{2},
-\end{aligned}
-$$
-
-and $v_Y = -v_X$ by symmetry, so
+With $P$ at ac ground, each half is a common-source stage. The gate ($V_b$) and source ($V_{DD}$) of $M_3$ are ac grounds, so it contributes only $r_{O3}$, in parallel with $r_{O1}$:
 
 $$
 \begin{aligned}
@@ -40,11 +31,11 @@ r_{O1}\parallel r_{O3} &= \frac{(20)(10)}{20 + 10}\ \mathrm{k}\Omega = 6.67\ \ma
 \end{aligned}
 $$
 
-This is about ten times the gain obtained with diode-connected loads of the same size, because the load is now a high output resistance rather than $1/g_{m3}$.
+This is about ten times the gain obtained with diode-connected loads of the same size, whose resistance is only $1/g_{m3}$.
 
 ### Step 3 — Minimum input common-mode level
 
-The tail needs $V_P \ge 0.4$ V. The input devices sit $V_{GS1} = V_{TH1} + V_{ov1}$ above $P$:
+The tail needs $V_P \ge 0.4$ V, and the input devices sit $V_{GS1} = V_{TH1} + V_{ov1}$ above $P$:
 
 $$V_{ov1} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = 0.273\ \mathrm{V}.$$
 
@@ -58,7 +49,7 @@ $$V_{in,CM,min} = 0.4 + 0.273 + 0.786 = 1.46\ \mathrm{V}.$$
 
 ### Step 4 — Lower limit of each output
 
-$M_1$ must stay saturated, $V_{DS1} \ge V_{GS1} - V_{TH1}$, i.e. $V_X \ge V_{in,CM} - V_{TH1}$ (the input swing is small). With $V_{in,CM} = 1.46$ V:
+$M_1$ stays saturated while $V_X \ge V_{in,CM} - V_{TH1}$ (the input swing is small). With $V_{in,CM} = 1.46$ V:
 
 $$V_{out,min} = 1.46 - 0.786 = 0.673\ \mathrm{V},$$
 
@@ -66,7 +57,7 @@ which is simply $V_P + V_{ov1} = 0.4 + 0.273$ V.
 
 ### Step 5 — Upper limit of each output
 
-$M_3$ must stay saturated as a current source: $V_{SD3} \ge |V_{GS3}| - |V_{TH3}|$, its overdrive. With 0.5 mA and $\mu_pC_{ox}(W/L)_3 = (38.4\ \mu\mathrm{A/V^2})(50/1) = 1.92\ \mathrm{mA/V^2}$:
+$M_3$ stays saturated while $V_{SD3} \ge |V_{GS3}| - |V_{TH3}|$. With 0.5 mA and $\mu_pC_{ox}(W/L)_3 = (38.4\ \mu\mathrm{A/V^2})(50/1) = 1.92\ \mathrm{mA/V^2}$:
 
 $$|V_{GS3} - V_{TH3}| = \sqrt{\frac{2(0.5\ \mathrm{mA})}{1.92\ \mathrm{mA/V^2}}} = \sqrt{0.521\ \mathrm{V^2}} = 0.722\ \mathrm{V},$$
 
@@ -81,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-To obtain the full symmetric swing, the output common-mode level must sit at the midpoint, $(2.278 + 0.673)/2 \approx 1.48$ V. With current-source loads this level is not fixed by the circuit itself (the output nodes are high-impedance), so in practice common-mode feedback must hold it there.
+The full symmetric swing needs the output common-mode level at the midpoint, $(2.278 + 0.673)/2 \approx 1.48$ V. With current-source loads the high-impedance outputs do not fix this level themselves, so in practice common-mode feedback must hold it there.
 
 ### Result
 
@@ -89,8 +80,8 @@ To obtain the full symmetric swing, the output common-mode level must sit at the
 - **Minimum input CM level:** $V_{in,CM,min} = 0.4 + 0.273 + 0.786 \approx 1.46$ V (1.37 V without body effect).
 - **Maximum swing:** each output from $V_{in,CM} - V_{TH1} = 0.673$ V to $V_{DD} - |V_{GS3} - V_{TH3}| = 2.28$ V, i.e. about 1.6 V peak-to-peak single-ended, or about 3.2 V peak-to-peak differential (with the output CM level held near 1.48 V).
 
-**Common mistake.** Using the diode-load formula $g_{m1}/g_{m3}$. Here the gates of $M_3$, $M_4$ are at a fixed $V_b$, not tied to the drains, so the loads are current sources with resistance $r_{O3}$, not $1/g_{m3}$.
+**Common mistake.** Using the diode-load formula $g_{m1}/g_{m3}$. The gates of $M_3$, $M_4$ are at a fixed $V_b$, so the loads are current sources with resistance $r_{O3}$, not $1/g_{m3}$.
 
-**Common mistake.** Taking the upper output limit as $V_{DD}$ or $V_{DD} - |V_{THP}|$. A PMOS current source stays saturated only while its source–drain voltage exceeds its *overdrive* (0.72 V), so the output can rise to 2.28 V and no further.
+**Common mistake.** Taking the upper output limit as $V_{DD}$ or $V_{DD} - |V_{THP}|$. The PMOS current source stays saturated only while its source–drain voltage exceeds its *overdrive* (0.72 V), so the output can rise to 2.28 V and no further.
 
-**Common mistake.** Computing the PMOS overdrive with $\mu_nC_{ox}$. The loads are PMOS devices with $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, which gives the 0.72-V overdrive.
+**Common mistake.** Computing the PMOS overdrive with $\mu_nC_{ox}$ instead of $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$.

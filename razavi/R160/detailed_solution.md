@@ -1,27 +1,21 @@
 # Detailed solution - R160
 
-**Approach.** Use the large-signal characteristic of the square-law differential pair, $I_{D1} - I_{D2} = \tfrac12\beta\Delta V\sqrt{4I_{SS}/\beta - \Delta V^2}$, together with $I_{D1} + I_{D2} = I_{SS}$, for $\beta$ corresponding to $W/L = 25/0.5$. Then repeat the calculation for $W/L = 50/0.5$ and compare.
+**Approach.** Use the large-signal characteristic of the square-law pair, $I_{D1} - I_{D2} = \tfrac12\beta\Delta V\sqrt{4I_{SS}/\beta - \Delta V^2}$, with $I_{D1} + I_{D2} = I_{SS}$, for $W/L = 25/0.5$; then repeat for $W/L = 50/0.5$ and compare.
 
 ### Step 1 — Large-signal characteristic
 
-$M_1$, $M_2$: identical saturated NMOS devices ($\lambda = 0$), sources at node $P$, ideal tail current $I_{SS} = 1$ mA. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$.
-
-- **KCL at $P$:** $I_{D1} + I_{D2} = I_{SS}$.
-- **KVL through $P$:** $\Delta V = V_{GS1} - V_{GS2}$.
-- **Square law:** $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$, with the same $V_{TH}$ for both devices (same source voltage).
-
-So $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$. Square, substitute the sum, isolate $\sqrt{I_{D1}I_{D2}}$, and square again:
+Both devices are saturated, with $\lambda = 0$. Let $\beta = \mu_nC_{ox}W/L$ and $\Delta V = V_{in1} - V_{in2}$. With $I_{D1} + I_{D2} = I_{SS}$, $\Delta V = V_{GS1} - V_{GS2}$ and $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$ (same $V_{TH}$ for both devices), $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$. Square, substitute the sum, isolate $\sqrt{I_{D1}I_{D2}}$ and square again:
 
 $$
 \begin{aligned}
 \Delta V^2 &= \frac{2}{\beta}\left(I_{SS} - 2\sqrt{I_{D1}I_{D2}}\right)\\
 4I_{D1}I_{D2} &= \left(I_{SS} - \frac{\beta}{2}\Delta V^2\right)^2\\
 (I_{D1} - I_{D2})^2 &= I_{SS}^2 - 4I_{D1}I_{D2} = \beta I_{SS}\Delta V^2 - \frac{\beta^2}{4}\Delta V^4\\
-I_{D1} - I_{D2} &= \frac{\beta}{2}\,\Delta V\sqrt{\frac{4I_{SS}}{\beta} - \Delta V^2} .
+I_{D1} - I_{D2} &= \frac{\beta}{2}\,\Delta V\sqrt{\frac{4I_{SS}}{\beta} - \Delta V^2} ,
 \end{aligned}
 $$
 
-The formula holds while both devices conduct, $|\Delta V| \le \sqrt{2I_{SS}/\beta}$.
+valid while both devices conduct, $|\Delta V| \le \sqrt{2I_{SS}/\beta}$.
 
 ### Step 2 — Sharing for $W/L = 25/0.5$
 
@@ -58,7 +52,7 @@ I_{D1} &= 0.591\ \mathrm{mA}, \qquad I_{D2} = 0.409\ \mathrm{mA}.
 \end{aligned}
 $$
 
-### Step 4 — Comparison and interpretation
+### Step 4 — Comparison
 
 | $W/L$ | $\beta$ | $V_{ov}$ at equilibrium | $I_{D1}$ / $I_{D2}$ | $I_{D1} - I_{D2}$ | imbalance $\Delta I/I_{SS}$ |
 |---|---|---|---|---|---|
@@ -67,11 +61,11 @@ $$
 
 The ratio of the current differences is
 
-$$\frac{0.1292}{0.1823} = 0.709 \approx \frac{1}{\sqrt2}.$$
+$$\frac{0.1292}{0.1823} = 0.709 \approx \frac{1}{\sqrt2},$$
 
-This follows from the small-signal picture: for a small input, $I_{D1} - I_{D2} \approx G_m\Delta V$ with $G_m = \sqrt{\beta I_{SS}}$, and halving $\beta$ divides $G_m$ by $\sqrt2$. Numerically, $G_m = \sqrt{(6.7\ \mathrm{mA/V^2})(1\ \mathrm{mA})} = 2.59$ mS gives $(2.59\ \mathrm{mS})(50\ \mathrm{mV}) = 0.129$ mA, within 0.3 % of the exact value.
+as expected from $I_{D1} - I_{D2} \approx G_m\Delta V$ with $G_m = \sqrt{\beta I_{SS}}$: halving $\beta$ divides $G_m$ by $\sqrt2$. Numerically, $G_m = \sqrt{(6.7\ \mathrm{mA/V^2})(1\ \mathrm{mA})} = 2.59$ mS gives $(2.59\ \mathrm{mS})(50\ \mathrm{mV}) = 0.129$ mA, within 0.3 % of the exact value.
 
-So the narrower pair is **less sensitive** (smaller current imbalance for the same input, lower $G_m$). It is also **more linear**: its overdrive is $\sqrt2$ larger, so 50 mV is a smaller fraction of its input range (full steering at 0.546 V instead of 0.386 V).
+So the narrower pair is **less sensitive** (lower $G_m$) but **more linear**: its overdrive is $\sqrt2$ larger, so 50 mV is a smaller fraction of its input range (full steering at 0.546 V instead of 0.386 V).
 
 ### Result
 
@@ -83,4 +77,4 @@ The narrower devices steer about $1/\sqrt2$ as much current: lower $G_m$, but a 
 
 **Common mistake.** Concluding that the narrower pair gives the *larger* imbalance because "its devices are weaker". The imbalance is $\approx\sqrt{\beta I_{SS}}\,\Delta V$, which shrinks with $\beta$.
 
-**Common mistake.** Producing currents that do not add up to $I_{SS} = 1$ mA, for example by applying the square law to each device with a fixed $V_P$. The tail source fixes the sum; the input only redistributes it, and $V_P$ adjusts to make that happen.
+**Common mistake.** Producing currents that do not add up to $I_{SS} = 1$ mA, for example by applying the square law to each device with a fixed $V_P$. The tail source fixes the sum, and $V_P$ adjusts.

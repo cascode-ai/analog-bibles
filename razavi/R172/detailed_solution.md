@@ -1,12 +1,12 @@
 # Detailed solution - R172
 
-**Approach.** The input common-mode level must keep every transistor in saturation. The **lower** bound comes from the tail transistor, which needs at least its overdrive across it: $V_{in,CM} \ge V_{GS1} + V_{ov,SS}$. The **upper** bound comes from the input transistors: their drains are pinned by the diode-connected loads at $V_{DD} - |V_{GS3}|$, and a gate may rise at most one threshold above its drain: $V_{in,CM} \le V_{DD} - |V_{GS3}| + V_{TH1}$. In both, $V_{TH1}$ includes the body effect at the corresponding tail-node voltage.
+**Approach.** Every transistor must stay saturated. The **lower** bound comes from the tail, which needs its overdrive across it: $V_{in,CM} \ge V_{GS1} + V_{ov,SS}$. The **upper** bound comes from the input devices, whose drains are pinned by the diode loads at $V_{DD} - |V_{GS3}|$: $V_{in,CM} \le V_{DD} - |V_{GS3}| + V_{TH1}$. In both, $V_{TH1}$ includes the body effect at the corresponding tail-node voltage.
 
 ### Step 1 — Overdrive voltages
 
-At equilibrium (small differential swings) each input device and each load carries $I_{SS}/2 = 0.25$ mA, and the tail carries 0.5 mA. The overdrive from the square law is $V_{ov} = \sqrt{2I_D/(\mu C_{ox}W/L)}$.
+At equilibrium each input device and each load carries $I_{SS}/2 = 0.25$ mA, and the tail carries 0.5 mA.
 
-**Input devices** $M_1$, $M_2$: $\mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$:
+**Input devices** $M_1$, $M_2$, with $\mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$:
 
 $$V_{ov1} = \sqrt{\frac{2(0.25\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = \sqrt{0.0373\ \mathrm{V^2}} = 0.193\ \mathrm{V}.$$
 
@@ -14,7 +14,7 @@ $$V_{ov1} = \sqrt{\frac{2(0.25\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = \sqrt{0.
 
 $$V_{ov,SS} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = \sqrt{0.0746\ \mathrm{V^2}} = 0.273\ \mathrm{V}.$$
 
-**PMOS loads** $M_3$, $M_4$: $\mu_pC_{ox}(W/L) = (38.4\ \mu\mathrm{A/V^2})(10/0.5) = (38.4\ \mu\mathrm{A/V^2})(20) = 0.768\ \mathrm{mA/V^2}$:
+**PMOS loads** $M_3$, $M_4$, with $\mu_pC_{ox}(W/L) = (38.4\ \mu\mathrm{A/V^2})(10/0.5) = (38.4\ \mu\mathrm{A/V^2})(20) = 0.768\ \mathrm{mA/V^2}$:
 
 $$
 \begin{aligned}
@@ -23,15 +23,15 @@ $$
 \end{aligned}
 $$
 
-The small, low-mobility PMOS loads need a large overdrive. The diode drop is therefore large, and this will limit the upper bound.
+The small, low-mobility PMOS loads need a large overdrive, and this large diode drop will limit the upper bound.
 
 ### Step 2 — Minimum input common-mode level
 
-The tail transistor (source at ground) is saturated only if its drain, node $P$, is at least one overdrive above ground:
+The tail transistor is saturated only if
 
 $$V_P \ge V_{ov,SS} = 0.273\ \mathrm{V}.$$
 
-The input devices sit one $V_{GS1}$ above $P$: $V_{in,CM} = V_P + V_{GS1} = V_P + V_{TH1} + V_{ov1}$. At the limit $V_P = 0.273$ V, the source–bulk voltage of $M_1$ is $V_{SB1} = 0.273$ V, so
+With $V_{in,CM} = V_P + V_{TH1} + V_{ov1}$ and, at this limit, $V_{SB1} = 0.273$ V:
 
 $$
 \begin{aligned}
@@ -47,19 +47,19 @@ $$V_{in,CM,min} = V_{ov,SS} + V_{ov1} + V_{TH1} = 0.273 + 0.193 + 0.761 = 1.227\
 
 ### Step 3 — Where the diode loads put the drains
 
-A diode-connected PMOS has its gate tied to its drain, so $|V_{GS3}| = V_{DD} - V_X$. Its current is fixed at $I_{SS}/2$ by the tail (for small differential signals), so
+Each diode-connected PMOS carries $I_{SS}/2$ (set by the tail) with $|V_{GS3}| = V_{DD} - V_X$, so
 
 $$V_X = V_Y = V_{DD} - |V_{GS3}| = 3 - 1.607 = 1.393\ \mathrm{V},$$
 
-independent of the input common-mode level. (The loads themselves are always saturated, since $V_{SD} = V_{SG}$.)
+independent of the input common-mode level. (The loads are always saturated, since $V_{SD} = V_{SG}$.)
 
 ### Step 4 — Maximum input common-mode level
 
-$M_1$ is saturated if $V_{DS1} \ge V_{GS1} - V_{TH1}$. Substituting $V_{DS1} = V_X - V_P$ and $V_{GS1} = V_{in,CM} - V_P$:
+$M_1$ is saturated if $V_{DS1} \ge V_{GS1} - V_{TH1}$; with $V_{DS1} = V_X - V_P$ and $V_{GS1} = V_{in,CM} - V_P$:
 
 $$V_X - V_P \ge V_{in,CM} - V_P - V_{TH1} \quad\Longrightarrow\quad V_{in,CM} \le V_X + V_{TH1} = V_{DD} - |V_{GS3}| + V_{TH1}.$$
 
-The gate may sit at most one threshold above the drain. $V_{TH1}$ must be evaluated at the tail voltage that holds at this limit. There $V_{in,CM} = V_X + V_{TH1}$, so
+$V_{TH1}$ must be evaluated at the tail voltage at this limit, where $V_{in,CM} = V_X + V_{TH1}$:
 
 $$V_P = V_{in,CM} - V_{TH1} - V_{ov1} = V_X - V_{ov1} = 1.393 - 0.193 = 1.200\ \mathrm{V}.$$
 
@@ -76,7 +76,7 @@ Therefore
 
 $$V_{in,CM,max} = V_X + V_{TH1} = 1.393 + 0.925 = 2.318\ \mathrm{V}.$$
 
-The body effect matters much more here, because $P$ has risen to 1.2 V. The higher threshold *helps*: it lets the gate rise further above the drain before $M_1$ leaves saturation.
+The body effect matters much more here, because $P$ has risen to 1.2 V, and the higher threshold *helps*: it lets the gate rise further above the drain before $M_1$ leaves saturation.
 
 ### Step 5 — Summary of the voltage stack
 
@@ -96,8 +96,8 @@ $$V_{in,CM,min} = V_{ov,SS} + V_{ov1} + V_{TH1} \approx 1.23\ \mathrm{V}, \qquad
 
 (1.17 V and 2.09 V without body effect). Here $V_{ov1} = 0.193$ V, $V_{ov,SS} = 0.273$ V, $|V_{GS3}| = 1.607$ V, and $V_{TH1} = 0.761$ V or 0.925 V at the two limits.
 
-**Common mistake.** Ignoring the overdrive of the diode-connected loads, i.e. taking the maximum as $V_{DD}$ or as $V_{DD} - |V_{THP}| + V_{TH1}$. The diode carries 0.25 mA and needs 0.81 V of overdrive on top of its threshold, which lowers the drains to 1.39 V and the upper bound by the same 0.81 V.
+**Common mistake.** Ignoring the overdrive of the diode-connected loads, i.e. taking the maximum as $V_{DD}$ or as $V_{DD} - |V_{THP}| + V_{TH1}$. The 0.81-V overdrive of the diodes lowers the drains to 1.39 V and the upper bound by the same 0.81 V.
 
 **Common mistake.** Omitting the tail headroom in the minimum and quoting $V_{GS1} \approx 0.89$–0.95 V. The tail transistor needs $V_P \ge 0.273$ V to remain a current source.
 
-**Common mistake.** Computing the diode drop with $\mu_nC_{ox}$ instead of $\mu_pC_{ox}$. The loads are PMOS devices with 3.5 times lower $\mu C_{ox}$, which is why their overdrive is so large.
+**Common mistake.** Computing the diode drop with $\mu_nC_{ox}$ instead of $\mu_pC_{ox}$, which is 3.5 times lower; that is why the load overdrive is so large.

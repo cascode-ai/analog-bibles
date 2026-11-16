@@ -1,12 +1,12 @@
 # Detailed solution - R174
 
-**Approach.** A threshold mismatch makes $g_{m1} \neq g_{m2}$. With resistive loads this converts a common-mode input into a differential output. Here, however, each load is a diode-connected transistor whose resistance $1/g_{m3}$ depends on the current of *its own* branch. We therefore analyse the common-mode response exactly under the stated model (square law, no channel-length modulation or body effect in $M_1$–$M_4$), both with large-signal equations and with the small-signal model. We then compare with the standard estimate that treats the two loads as equal fixed resistors.
+**Approach.** A threshold mismatch makes $g_{m1} \neq g_{m2}$, which with resistive loads converts a common-mode input into a differential output. Here, however, each diode load's resistance $1/g_{m3}$ depends on the current of *its own* branch. Analyse the common-mode response exactly under the stated model (square law, no channel-length modulation or body effect in $M_1$–$M_4$), with large-signal equations and with the small-signal model, then compare with the standard estimate that treats the two loads as equal fixed resistors.
 
 ### Step 1 — Bias quantities
 
-Each side carries $I_{SS}/2 = 0.25$ mA. Device constants:
+Each side carries $I_{SS}/2 = 0.25$ mA:
 
-$$\beta_n = \mu_nC_{ox}(W/L)_{1,2} = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}, \qquad \beta_p = \mu_pC_{ox}(W/L)_{3,4} = (38.4\ \mu\mathrm{A/V^2})(20) = 0.768\ \mathrm{mA/V^2}.$$
+$$\beta_n = \mu_nC_{ox}(W/L)_{1,2} = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}, \qquad \beta_p = \mu_pC_{ox}(W/L)_{3,4} = (38.4\ \mu\mathrm{A/V^2})(20) = 0.768\ \mathrm{mA/V^2},$$
 
 $$
 \begin{aligned}
@@ -15,7 +15,7 @@ g_{m3} &= \sqrt{2\beta_pI_D} = \sqrt{2(0.768)(0.25)}\ \mathrm{mS} = 0.620\ \math
 \end{aligned}
 $$
 
-**Tail impedance.** The NMOS tail device carries 0.5 mA with $\lambda = 0.1\ \mathrm{V^{-1}}$:
+**Tail impedance.** The NMOS tail device carries 0.5 mA:
 
 $$R_{SS} = \frac{1}{\lambda I_{SS}} = \frac{1}{(0.1\ \mathrm{V^{-1}})(0.5\ \mathrm{mA})} = 20\ \mathrm{k}\Omega .$$
 
@@ -25,11 +25,11 @@ $$\Delta g_m = \beta_n\Delta V_{TH} = 13.4\ \mu\mathrm{S}, \qquad \frac{\Delta g
 
 ### Step 2 — Large-signal view: the output difference does not depend on the input common mode
 
-Diode-connected $M_3$ carries exactly the current of $M_1$ and is saturated ($V_{SD} = V_{SG}$), so
+Diode-connected $M_3$ carries exactly the current of $M_1$ and is saturated, so
 
 $$I_{D1} = \tfrac12\beta_p\left(V_{DD} - V_X - |V_{THP}|\right)^2 \quad\Longrightarrow\quad V_X = V_{DD} - |V_{THP}| - \sqrt{\frac{2I_{D1}}{\beta_p}} .$$
 
-$M_1$ obeys $I_{D1} = \tfrac12\beta_n(V_{in,CM} - V_P - V_{TH1})^2$, so $\sqrt{2I_{D1}/\beta_p} = \sqrt{\beta_n/\beta_p}\,(V_{in,CM} - V_P - V_{TH1})$. The same holds for the right side with $V_{TH2}$:
+With $I_{D1} = \tfrac12\beta_n(V_{in,CM} - V_P - V_{TH1})^2$, $\sqrt{2I_{D1}/\beta_p} = \sqrt{\beta_n/\beta_p}\,(V_{in,CM} - V_P - V_{TH1})$, and likewise on the right with $V_{TH2}$:
 
 $$
 \begin{aligned}
@@ -39,7 +39,7 @@ V_X - V_Y &= \sqrt{\beta_n/\beta_p}\,(V_{TH1} - V_{TH2}) .
 \end{aligned}
 $$
 
-$V_{in,CM}$ and $V_P$ have cancelled. A common-mode input moves $V_P$ (through $R_{SS}$) and changes both currents, but the differential output stays fixed at
+$V_{in,CM}$ and $V_P$ cancel. A common-mode input moves $V_P$ (through $R_{SS}$) and changes both currents, but the differential output stays fixed at
 
 $$|V_X - V_Y| = \sqrt{\frac{13.4}{0.768}}\times 1\ \mathrm{mV} = 4.18\times 1\ \mathrm{mV} = 4.18\ \mathrm{mV}.$$
 
@@ -47,7 +47,7 @@ The mismatch produces only a constant **offset**, with **no common-mode-to-diffe
 
 ### Step 3 — Small-signal view: why the mismatch cancels
 
-Small-signal model for a common-mode input $v_{cm}$: each input device is a current source $g_{mk}(v_{cm} - v_P)$ from its drain to $P$; $R_{SS}$ goes from $P$ to ground; each diode load is a resistance $1/g_{m3}$ (left) or $1/g_{m4}$ (right) to AC ground.
+For a common-mode input $v_{cm}$, each input device is a current source $g_{mk}(v_{cm} - v_P)$ from its drain to $P$; $R_{SS}$ goes from $P$ to ground; the diode loads are $1/g_{m3}$ (left) and $1/g_{m4}$ (right) to ac ground.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -59,15 +59,13 @@ Each load carries its own branch current, so $g_{m3} = \sqrt{2\beta_pI_{D1}}$ wh
 
 $$\frac{g_{m1}}{g_{m3}} = \sqrt{\frac{\beta_n}{\beta_p}} = \frac{g_{m2}}{g_{m4}} = 4.18 .$$
 
-The mismatch raises $g_{m1}$ *and* $g_{m3}$ by the same fraction ($\Delta g_m/g_m = \Delta g_{m3}/g_{m3} = \Delta V_{TH}/V_{ov} = 0.52$ %, since both scale as $\sqrt{I_D}$), so the two drains move identically: $v_X - v_Y = 0$, i.e. $A_{CM-DM} = 0$.
-
-The differential gain is $|A_{DM}| = g_{m1}/g_{m3} = 4.18$. Therefore
+The mismatch raises $g_{m1}$ *and* $g_{m3}$ by the same fraction ($\Delta g_m/g_m = \Delta g_{m3}/g_{m3} = \Delta V_{TH}/V_{ov} = 0.52$ %, since both scale as $\sqrt{I_D}$), so the two drains move identically: $v_X - v_Y = 0$, i.e. $A_{CM-DM} = 0$. With $|A_{DM}| = g_{m1}/g_{m3} = 4.18$,
 
 $$\mathrm{CMRR} = \frac{|A_{DM}|}{|A_{CM-DM}|} \to \infty\quad\text{(under the stated model)}.$$
 
 ### Step 4 — The standard estimate (equal, fixed load resistances)
 
-The usual textbook estimate treats both loads as the same fixed resistance $1/g_{m3}$ and keeps only the transconductance mismatch. KCL at $P$ gives $v_{cm} - v_P = v_{cm}/[1 + (g_{m1} + g_{m2})R_{SS}]$, so
+The usual textbook estimate gives both loads the same fixed resistance $1/g_{m3}$ and keeps only the transconductance mismatch. KCL at $P$ gives $v_{cm} - v_P = v_{cm}/[1 + (g_{m1} + g_{m2})R_{SS}]$, so
 
 $$
 \begin{aligned}
@@ -76,7 +74,7 @@ $$
 \end{aligned}
 $$
 
-Numbers:
+Numerically:
 
 $$
 \begin{aligned}
@@ -86,9 +84,9 @@ $$
 \end{aligned}
 $$
 
-This estimate ignores the fact that each diode's $1/g_m$ tracks its own current, which is exactly the effect that gives perfect cancellation in Step 3.
+This estimate ignores that each diode's $1/g_m$ tracks its own current, the very effect that gives perfect cancellation in Step 3.
 
-**Which number describes a real circuit?** In a real circuit the cancellation is spoiled by second-order effects. With channel-length modulation in $M_1$–$M_4$ ($\lambda_n = 0.1$, $\lambda_p = 0.2\ \mathrm{V^{-1}}$), the output resistances $r_O \propto 1/I_D$ shunt the diode loads, and they vary with current differently from $1/g_m \propto 1/\sqrt{I_D}$. Solving the full small-signal circuit then gives $A_{DM} \approx 3.73$, $A_{CM-DM} \approx 2.0\times10^{-4}$ and CMRR $\approx 1.8\times10^4$ (≈ 85 dB), close to the standard estimate.
+**Which number describes a real circuit?** Second-order effects spoil the cancellation. With channel-length modulation in $M_1$–$M_4$ ($\lambda_n = 0.1$, $\lambda_p = 0.2\ \mathrm{V^{-1}}$), the output resistances $r_O \propto 1/I_D$ shunt the diode loads and vary with current differently from $1/g_m \propto 1/\sqrt{I_D}$. Solving the full small-signal circuit then gives $A_{DM} \approx 3.73$, $A_{CM-DM} \approx 2.0\times10^{-4}$ and CMRR $\approx 1.8\times10^4$ (≈ 85 dB), close to the standard estimate.
 
 ### Result
 
@@ -100,8 +98,8 @@ $$\mathrm{CMRR} \approx \frac{g_m}{\Delta g_m}\left(1 + 2g_mR_{SS}\right) = 193\
 
 with $g_m = 2.59$ mS, $\Delta g_m = 13.4\ \mu$S and $R_{SS} = 20$ kΩ. It describes a real circuit with $\lambda \neq 0$ well (an exact analysis with $\lambda$ gives about $1.8\times10^4$).
 
-**Common mistake.** Claiming an infinite CMRR for the wrong reason, for example by treating the tail as an ideal current source or by asserting that threshold mismatch never matters. With resistive loads the same mismatch gives a finite CMRR. The cancellation here comes specifically from the diode loads tracking their branch currents.
+**Common mistake.** Claiming an infinite CMRR for the wrong reason, for example by treating the tail as an ideal current source or by asserting that threshold mismatch never matters. With resistive loads the same mismatch gives a finite CMRR; the cancellation here comes from the diode loads tracking their branch currents.
 
-**Common mistake.** Quoting CMRR $= g_m/\Delta g_m = 193$, i.e. forgetting the common-mode degeneration $1 + 2g_mR_{SS} = 104.5$ provided by the tail resistance.
+**Common mistake.** Quoting CMRR $= g_m/\Delta g_m = 193$, i.e. forgetting the tail's common-mode degeneration $1 + 2g_mR_{SS} = 104.5$.
 
 **Common mistake.** Using $R_{SS} = 10$ kΩ (from a 1-mA current). The tail carries $I_{SS} = 0.5$ mA, so $R_{SS} = 1/(0.1\times 0.5\ \mathrm{mA}) = 20$ kΩ.

@@ -1,6 +1,6 @@
 # Detailed solution - R171
 
-**Approach.** A 1-mV threshold mismatch gives the two input devices slightly different overdrives, and therefore different transconductances $g_{m1}$ and $g_{m2}$. We solve the small-signal circuit twice, for a differential input and for a common-mode input, keeping $g_{m1} \neq g_{m2}$ and the finite tail resistance $R_{SS}$. The CMRR is the ratio of the two gains.
+**Approach.** The 1-mV threshold mismatch gives the two input devices slightly different overdrives, hence $g_{m1} \neq g_{m2}$. Solve the small-signal circuit for a differential and for a common-mode input, keeping $g_{m1} \neq g_{m2}$ and the finite tail resistance $R_{SS}$, and take the ratio of the two gains.
 
 ### Step 1 — Bias quantities
 
@@ -8,17 +8,17 @@
 
 $$R_{SS} = r_O = \frac{1}{\lambda I_{SS}} = \frac{1}{(0.1\ \mathrm{V^{-1}})(1\ \mathrm{mA})} = 10\ \mathrm{k}\Omega .$$
 
-**Input pair.** $\beta = \mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$. Each device carries about 0.5 mA:
+**Input pair.** $\beta = \mu_nC_{ox}(W/L) = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$, and each device carries about 0.5 mA:
 
 $$V_{ov} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = 0.273\ \mathrm{V}, \qquad g_m = \beta V_{ov} = 3.66\ \mathrm{mS}.$$
 
-**Mismatch.** Both devices have the same $V_{GS}$ (common gate voltage, common source node), so their overdrives differ by $\Delta V_{TH} = 1$ mV. Since $g_m = \beta V_{ov}$ in saturation,
+**Mismatch.** Both devices have the same $V_{GS}$ (common gate voltage, common source node), so their overdrives differ by $\Delta V_{TH} = 1$ mV, and with $g_m = \beta V_{ov}$:
 
 $$\Delta g_m = g_{m1} - g_{m2} = \beta\Delta V_{TH} = (13.4\ \mathrm{mA/V^2})(1\ \mathrm{mV}) = 13.4\ \mu\mathrm{S}, \qquad \frac{g_m}{\Delta g_m} = \frac{V_{ov}}{\Delta V_{TH}} = 273 .$$
 
 ### Step 2 — Small-signal model
 
-Each transistor is a voltage-controlled current source $g_{mk}v_{gsk}$ from its drain ($X$ or $Y$) to the common source node $P$. Channel-length modulation and body effect in $M_1$, $M_2$ are neglected. $R_{SS}$ connects $P$ to ground, and the equal loads $R_D = 2$ kΩ connect $X$ and $Y$ to AC ground.
+Each transistor is a current source $g_{mk}v_{gsk}$ from its drain ($X$ or $Y$) to $P$ (channel-length modulation and body effect neglected); $R_{SS}$ connects $P$ to ground, and the equal loads $R_D = 2$ kΩ connect $X$ and $Y$ to ac ground.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -56,7 +56,7 @@ $$|A_{DM}| = \frac{R_D\left(g_{m1} + g_{m2} + 4g_{m1}g_{m2}R_{SS}\right)}{2\left
 
 ### Step 5 — CMRR
 
-Divide the two gains; $R_D$ and the common denominator cancel:
+Dividing the two gains, $R_D$ and the common denominator cancel:
 
 $$\mathrm{CMRR} = \frac{|A_{DM}|}{|A_{CM-DM}|} = \frac{g_{m1} + g_{m2} + 4g_{m1}g_{m2}R_{SS}}{2\Delta g_m} .$$
 
@@ -64,7 +64,7 @@ With $g_{m1} \approx g_{m2} \approx g_m$ (they differ by only 0.37 %):
 
 $$\mathrm{CMRR} \approx \frac{2g_m + 4g_m^2R_{SS}}{2\Delta g_m} = \frac{g_m}{\Delta g_m}\left(1 + 2g_mR_{SS}\right).$$
 
-Numbers:
+Numerically:
 
 $$
 \begin{aligned}
@@ -76,7 +76,7 @@ $$
 
 (Equivalently: $A_{CM-DM} = (13.4\ \mu\mathrm{S})(2\ \mathrm{k}\Omega)/74.2 = 3.61\times10^{-4}$ and $7.32/3.61\times10^{-4} = 2.03\times10^4$.)
 
-**Interpretation.** Like the load-mismatch case, the CMRR is a product of two factors: the inverse relative mismatch $g_m/\Delta g_m = V_{ov}/\Delta V_{TH} = 273$, and the common-mode degeneration $1 + 2g_mR_{SS} = 74$ provided by the tail. A larger overdrive makes the pair less sensitive to a given threshold mismatch, and a better tail source raises the second factor.
+As in the load-mismatch case, the CMRR is the product of the inverse relative mismatch $g_m/\Delta g_m = V_{ov}/\Delta V_{TH} = 273$ and the tail's common-mode degeneration $1 + 2g_mR_{SS} = 74$. A larger overdrive makes the pair less sensitive to a given threshold mismatch, and a better tail source raises the second factor.
 
 ### Result
 
@@ -84,8 +84,8 @@ $$\mathrm{CMRR} = \frac{g_{m1} + g_{m2} + 4g_{m1}g_{m2}R_{SS}}{2\Delta g_m} \app
 
 with $g_m = 3.66$ mS, $\Delta g_m = 13.4\ \mu$S and $R_{SS} = 10$ kΩ.
 
-**Common mistake.** Stopping at CMRR $= g_m/\Delta g_m = 273$, i.e. treating the tail as an AC ground. The finite but large tail impedance degenerates the common-mode current by $1 + 2g_mR_{SS} = 74$, and this factor is part of the CMRR.
+**Common mistake.** Stopping at CMRR $= g_m/\Delta g_m = 273$, i.e. treating the tail as an ac ground. The tail degenerates the common-mode current by $1 + 2g_mR_{SS} = 74$, and this factor is part of the CMRR.
 
-**Common mistake.** Using the common-mode gain of the *symmetric* pair, $R_D/(2R_{SS})$, in the ratio. That gain describes the output common-mode level. It is the *mismatch* $\Delta g_m$ that turns a common-mode input into a differential output.
+**Common mistake.** Using the common-mode gain of the *symmetric* pair, $R_D/(2R_{SS})$, in the ratio. That gain describes the output common-mode level; it is the *mismatch* $\Delta g_m$ that turns a common-mode input into a differential output.
 
-**Common mistake.** Getting $\Delta g_m$ wrong, for example from $\Delta g_m/g_m = \Delta V_{TH}/V_{GS}$ or $2\Delta V_{TH}/V_{ov}$. With equal $V_{GS}$ the overdrives differ by exactly $\Delta V_{TH}$, so $\Delta g_m = \beta\Delta V_{TH}$, i.e. $\Delta g_m/g_m = \Delta V_{TH}/V_{ov}$.
+**Common mistake.** Getting $\Delta g_m$ wrong, for example from $\Delta g_m/g_m = \Delta V_{TH}/V_{GS}$ or $2\Delta V_{TH}/V_{ov}$. With equal $V_{GS}$ the overdrives differ by exactly $\Delta V_{TH}$, so $\Delta g_m/g_m = \Delta V_{TH}/V_{ov}$.
