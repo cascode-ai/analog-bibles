@@ -1,54 +1,22 @@
 # Detailed solution - R519
 
-**Approach.** With $W/L$ (and therefore $\beta$) fixed, the device law gives $g_m$ and $I_D$ directly as powers of the overdrive $V_{ov} = V_{GS} - V_{TH}$: $g_m \propto V_{ov}^2$ and $I_D \propto V_{ov}^3$. We find the shape of each curve from its first and second derivatives, tabulate a few points, and compare with the square-law curves of the figure (a line and a parabola).
+**Approach.** With $W/L$ (and therefore $\beta$) fixed, $g_m = \beta V_{ov}^2$ and $I_D = \beta V_{ov}^3/3$ are pure powers of the overdrive $V_{ov} = V_{GS} - V_{TH}$, each one power higher than the square law's straight line and parabola. Find each curve's shape from its derivatives, tabulate a few points, and compare.
 
-### Step 1 — The square-law curves in the figure
+### Step 1 — Shape of the $g_m$ curve
 
-For the long-channel device, with $\mu_n$ the electron mobility and $C_{ox}$ the oxide capacitance per unit area,
+$$\frac{dg_m}{dV_{ov}} = 2\beta V_{ov},\qquad \frac{d^2g_m}{dV_{ov}^2} = 2\beta > 0 .$$
 
-$$g_m = \mu_nC_{ox}\frac WL V_{ov}\quad(\text{straight line}),\qquad I_D = \tfrac12\mu_nC_{ox}\frac WL V_{ov}^2\quad(\text{parabola}).$$
+The slope is **zero at the origin** (the curve leaves it horizontally) and the curve is **convex** everywhere: a parabola. Doubling the overdrive multiplies $g_m$ by $2^2 = 4$; for the square law it only doubles.
 
-That is what the figure shows: $g_m$ rising linearly from the origin, and $I_D$ (plotted downward) starting flat and curving away ever faster.
+### Step 2 — Shape of the $I_D$ curve
 
-### Step 2 — The hypothetical device at constant $W/L$
+$$\frac{dI_D}{dV_{ov}} = \beta V_{ov}^2 = g_m,\qquad \frac{d^2I_D}{dV_{ov}^2} = 2\beta V_{ov} \ge 0 .$$
 
-The given law is $g_m = \beta V_{ov}^2$. Integrating $g_m = dI_D/dV_{GS}$ with $I_D = 0$ at threshold gives $I_D = \beta V_{ov}^3/3$. With $W/L$ fixed, $\beta$ is a constant, so
+Slope *and* curvature are zero at the origin, so the cubic is even flatter there than the square-law parabola, and it is convex for all $V_{ov} > 0$. Doubling the overdrive multiplies $I_D$ by $2^3 = 8$ (square law: 4).
 
-$$g_m = \beta V_{ov}^2\quad(\text{parabola}),\qquad I_D = \frac{\beta}{3}V_{ov}^3\quad(\text{cubic}).$$
+### Step 3 — Example values for the sketch
 
-Each curve is one power higher than its square-law counterpart.
-
-### Step 3 — Shape of the $g_m$ curve
-
-**Slope:**
-
-$$\frac{dg_m}{dV_{ov}} = 2\beta V_{ov},$$
-
-which is **zero at the origin** (the curve leaves the origin horizontally) and grows linearly with $V_{ov}$.
-
-**Curvature:**
-
-$$\frac{d^2g_m}{dV_{ov}^2} = 2\beta > 0,$$
-
-so the curve is **convex** (bends upward) everywhere. Doubling the overdrive multiplies $g_m$ by $2^2 = 4$, whereas for the square law it only doubles.
-
-### Step 4 — Shape of the $I_D$ curve
-
-**Slope** (this is just $g_m$):
-
-$$\frac{dI_D}{dV_{ov}} = \beta V_{ov}^2,$$
-
-which is zero at the origin, so the curve is even flatter there than the square-law parabola (it has zero slope *and* zero curvature at $V_{ov} = 0$).
-
-**Curvature:**
-
-$$\frac{d^2I_D}{dV_{ov}^2} = 2\beta V_{ov} \ge 0,$$
-
-so it is convex for all $V_{ov} > 0$, bending away from the axis ever more steeply. Doubling the overdrive multiplies $I_D$ by $2^3 = 8$ (square law: 4).
-
-### Step 5 — Example values for the sketch
-
-Take $\beta = 30\ \mathrm{mA/V^3}$ for illustration:
+Take $\beta = 30\ \mathrm{mA/V^3}$:
 
 $$g_m = 30\ \mathrm{mA/V^3}\times V_{ov}^2,\qquad I_D = 10\ \mathrm{mA/V^3}\times V_{ov}^3 .$$
 
@@ -61,16 +29,14 @@ $$g_m = 30\ \mathrm{mA/V^3}\times V_{ov}^2,\qquad I_D = 10\ \mathrm{mA/V^3}\time
 For example, at $V_{ov} = 0.3$ V: $g_m = 30\times0.09 = 2.7$ mS and $I_D = 10\times0.027\ \mathrm{mA} = 270\ \mu\mathrm{A}$.
 
 **The sketch.** On the figure's axes:
-- **upper half:** a parabola starting tangent to the horizontal axis at the origin and curving upward (in place of the square law's straight line);
-- **lower half:** a cubic, also tangent to the axis at the origin, staying close to the axis for small $V_{ov}$ and then plunging downward faster and faster (in place of the square law's parabola).
+- **upper half:** a parabola tangent to the horizontal axis at the origin and curving upward (in place of the square law's straight line);
+- **lower half:** a cubic, also tangent to the axis at the origin, staying close to it for small $V_{ov}$ and then plunging downward ever faster (in place of the square law's parabola).
 
-### Step 6 — Relation between the two curves
-
-Their ratio is
+### Step 4 — Relation between the two curves
 
 $$\frac{g_m}{I_D} = \frac{\beta V_{ov}^2}{\beta V_{ov}^3/3} = \frac{3}{V_{ov}},$$
 
-which falls as the overdrive grows (last row of the table). $I_D$ therefore grows faster than $g_m$: raising $V_{ov}$ buys transconductance at an ever higher cost in current. The square law shows the same trend ($g_m/I_D = 2/V_{ov}$), but the hypothetical device has 1.5 times more $g_m$ per unit current at any given overdrive.
+which falls as the overdrive grows (last row of the table): $I_D$ grows faster than $g_m$, so extra overdrive buys transconductance at an ever higher cost in current. The square law shows the same trend ($2/V_{ov}$), but this device has 1.5 times more $g_m$ per unit current at any overdrive.
 
 ### Result
 
@@ -80,6 +46,6 @@ At constant $W/L$:
 
 Both curves bend upward (convex). $I_D$ eventually grows faster than $g_m$, since $g_m/I_D = 3/(V_{GS} - V_{TH})$ decreases with the overdrive.
 
-**Common mistake.** Redrawing the square-law plots: a linear $g_m$ and a parabolic $I_D$. The device law is different: $g_m$ itself is quadratic in the overdrive, so $I_D$, its integral, is cubic.
+**Common mistake.** Redrawing the square-law plots, a linear $g_m$ and a parabolic $I_D$. Here $g_m$ itself is quadratic in the overdrive, so $I_D$, its integral, is cubic.
 
-**Common mistake.** Drawing the $g_m$ parabola with a nonzero initial slope (or starting the curves somewhere other than $V_{GS} - V_{TH} = 0$). The slope $dg_m/dV_{ov} = 2\beta V_{ov}$ vanishes at the origin, and both $g_m$ and $I_D$ are zero at threshold.
+**Common mistake.** Drawing the $g_m$ parabola with a nonzero initial slope, or starting the curves anywhere other than $V_{GS} - V_{TH} = 0$. $dg_m/dV_{ov} = 2\beta V_{ov}$ vanishes at the origin, and both $g_m$ and $I_D$ are zero at threshold.

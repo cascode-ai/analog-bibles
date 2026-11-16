@@ -1,64 +1,36 @@
 # Detailed solution - R516
 
-**Approach.** The transconductance is the derivative of the drain current with respect to the gate–source voltage. If $g_m(V_{GS})$ is known, $I_D$ follows by integration. The integration constant is fixed by the physical condition that no current flows at threshold.
+**Approach.** Since $g_m = \partial I_D/\partial V_{GS}$, integrate the given $g_m$ and fix the integration constant by the condition that no current flows at threshold.
 
-### Step 1 — Definition of $g_m$
+### Step 1 — Integrate $g_m$
 
-The transconductance of a MOSFET is the slope of its drain current versus gate–source voltage, taken at a constant drain–source voltage:
-
-$$g_m = \left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS}\ \text{const}} .$$
-
-In saturation (and neglecting channel-length modulation) the drain current depends on $V_{GS}$ only, through the overdrive voltage
-
-$$V_{ov} = V_{GS} - V_{TH},$$
-
-where $V_{TH}$ is the threshold voltage, a constant here. Since $V_{TH}$ is constant, $dV_{ov} = dV_{GS}$, and the derivative can be taken with respect to the overdrive:
-
-$$g_m = \frac{dI_D}{dV_{ov}} .$$
-
-### Step 2 — Set up the integral
-
-The given device law is
+With $V_{ov} = V_{GS} - V_{TH}$ and $V_{TH}$ constant, $dV_{ov} = dV_{GS}$, so in saturation
 
 $$\frac{dI_D}{dV_{ov}} = \beta V_{ov}^2 ,$$
 
-where $\beta$ is a device constant. Its unit must be A/V³, so that $\beta V_{ov}^2$ is in A/V = S. Separate the variables:
+with $\beta$ in A/V³ (so that $\beta V_{ov}^2$ is in A/V = S). Integrating,
 
-$$dI_D = \beta V_{ov}^2\,dV_{ov} .$$
+$$I_D = \int \beta V_{ov}^2\,dV_{ov} = \frac{\beta}{3}V_{ov}^3 + C .$$
 
-### Step 3 — Integrate
+At threshold ($V_{ov} = 0$) there is no inversion charge, so $I_D = 0$, as in the square law:
 
-Integrate both sides, using $\int x^2\,dx = x^3/3$:
-
-$$I_D = \int \beta V_{ov}^2\,dV_{ov} = \frac{\beta}{3}V_{ov}^3 + C ,$$
-
-where $C$ is a constant of integration.
-
-### Step 4 — Fix the integration constant
-
-At the threshold, $V_{GS} = V_{TH}$ (i.e. $V_{ov} = 0$), there is no inversion charge to carry current, so in this model $I_D = 0$, just as in the square law. Substituting:
-
-$$0 = \frac{\beta}{3}\cdot0^3 + C \quad\Longrightarrow\quad C = 0 .$$
-
-Therefore
+$$0 = \frac{\beta}{3}\cdot0^3 + C \quad\Longrightarrow\quad C = 0 ,$$
 
 $$\boxed{I_D = \frac{\beta}{3}\,(V_{GS} - V_{TH})^3}$$
 
 valid in saturation for $V_{GS} \ge V_{TH}$.
 
-### Step 5 — Check and comparison with the square law
+### Step 2 — Check and comparison with the square law
 
-**Check by differentiation:**
+Differentiating back:
 
 $$\frac{dI_D}{dV_{GS}} = \frac{\beta}{3}\cdot3\,(V_{GS} - V_{TH})^2 = \beta\,(V_{GS} - V_{TH})^2 = g_m. \ \checkmark$$
 
-**Comparison with the square law.** For a long-channel MOSFET, $I_D = \tfrac12\mu_nC_{ox}\tfrac{W}{L}V_{ov}^2$ and $g_m = \mu_nC_{ox}\tfrac{W}{L}V_{ov}$ (here $\mu_n$ is the electron mobility, $C_{ox}$ the oxide capacitance per unit area and $W/L$ the aspect ratio). The same rule links the two laws: if $g_m \propto V_{ov}^{n}$, then $I_D \propto V_{ov}^{n+1}/(n+1)$. The square law has $n = 1$, which gives the factor $\tfrac12$. The hypothetical device has $n = 2$, which gives the factor $\tfrac13$.
-
-**A useful by-product.** Dividing $g_m$ by $I_D$:
+In general, if $g_m \propto V_{ov}^{n}$, then $I_D \propto V_{ov}^{n+1}/(n+1)$: the square law ($g_m = \mu_nC_{ox}\tfrac{W}{L}V_{ov}$) has $n = 1$ and the factor $\tfrac12$; this device has $n = 2$ and the factor $\tfrac13$. Also,
 
 $$\frac{g_m}{I_D} = \frac{\beta V_{ov}^2}{\beta V_{ov}^3/3} = \frac{3}{V_{ov}},$$
 
-compared with $2/V_{ov}$ for the square law. At a given overdrive this device produces 1.5 times more transconductance per unit of current.
+against $2/V_{ov}$ for the square law: 1.5 times more transconductance per unit current at a given overdrive.
 
 **Numerical illustration.** Take $\beta = 30\ \mathrm{mA/V^3}$ and $V_{ov} = 0.2$ V:
 
@@ -76,8 +48,8 @@ $$I_D = \frac{\beta}{3}\,(V_{GS} - V_{TH})^3 \qquad (V_{GS} \ge V_{TH},\ \text{s
 
 obtained by integrating $g_m = dI_D/dV_{GS} = \beta(V_{GS} - V_{TH})^2$ with $I_D = 0$ at $V_{GS} = V_{TH}$.
 
-**Common mistake.** Writing $I_D = \beta(V_{GS} - V_{TH})^3$ without the factor $\tfrac13$. Differentiating it gives $3\beta(V_{GS} - V_{TH})^2$, three times the given $g_m$. Always check the result by differentiating it back.
+**Common mistake.** Writing $I_D = \beta(V_{GS} - V_{TH})^3$ without the factor $\tfrac13$. Differentiating it gives $3\beta(V_{GS} - V_{TH})^2$, three times the given $g_m$.
 
-**Common mistake.** Falling back on the square law, $I_D = \tfrac12\beta(V_{GS} - V_{TH})^2$. That law corresponds to $g_m \propto V_{GS} - V_{TH}$, not to $(V_{GS} - V_{TH})^2$. The device law is defined by the given $g_m$, and the current must be derived from it.
+**Common mistake.** Falling back on the square law, $I_D = \tfrac12\beta(V_{GS} - V_{TH})^2$, which corresponds to $g_m \propto V_{GS} - V_{TH}$, not to $(V_{GS} - V_{TH})^2$.
 
-**Common mistake.** Leaving an arbitrary integration constant in the answer. The condition $I_D = 0$ at threshold sets it to zero; a nonzero constant would mean current flowing with no channel present.
+**Common mistake.** Leaving an arbitrary integration constant in the answer. $I_D = 0$ at threshold sets it to zero; a nonzero constant would mean current with no channel present.

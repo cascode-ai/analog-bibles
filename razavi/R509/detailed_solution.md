@@ -1,26 +1,18 @@
 # Detailed solution - R509
 
-**Approach.** Close the loop with unity feedback ($\beta = 1$), write the closed-loop transfer function as a ratio of polynomials, and find its two poles for a zero that is 10 % below and 10 % above the nondominant pole. A partial-fraction expansion of $V_{out}(s) = H_{closed}(s)\,V_0/s$ then gives the step response. Perfect cancellation ($\omega_z = \omega_{p2}$) serves as the baseline for comparison.
+**Approach.** Close the loop with unity feedback, find the two closed-loop poles for a zero 10 % below and 10 % above the nondominant pole, and expand $V_{out}(s) = H_{closed}(s)\,V_0/s$ in partial fractions. Perfect cancellation ($\omega_z = \omega_{p2}$) serves as the baseline.
 
 ### Step 1 — Closed-loop transfer function
 
-The op amp output is fed back directly to its inverting input, so the feedback factor is $\beta = 1$ and
+With $\beta = 1$, $H_{closed} = H_{open}/(1 + H_{open})$. Clearing the pole factors,
 
-$$H_{closed}(s) = \frac{H_{open}(s)}{1 + H_{open}(s)} .$$
+$$H_{closed}(s) = \frac{A_0\left(1 + \dfrac{s}{\omega_z}\right)}{\left(1 + \dfrac{s}{\omega_{p1}}\right)\left(1 + \dfrac{s}{\omega_{p2}}\right) + A_0\left(1 + \dfrac{s}{\omega_z}\right)} ,$$
 
-Multiply numerator and denominator by $(1 + s/\omega_{p1})(1 + s/\omega_{p2})$:
-
-$$H_{closed}(s) = \frac{A_0\left(1 + \dfrac{s}{\omega_z}\right)}{\left(1 + \dfrac{s}{\omega_{p1}}\right)\left(1 + \dfrac{s}{\omega_{p2}}\right) + A_0\left(1 + \dfrac{s}{\omega_z}\right)} .$$
-
-Expand the product of the two pole factors:
-
-$$\left(1 + \frac{s}{\omega_{p1}}\right)\left(1 + \frac{s}{\omega_{p2}}\right) = 1 + \left(\frac{1}{\omega_{p1}} + \frac{1}{\omega_{p2}}\right)s + \frac{s^2}{\omega_{p1}\omega_{p2}} .$$
-
-Add $A_0 + A_0s/\omega_z$ and group by powers of $s$. The denominator is
+whose denominator, grouped by powers of $s$, is
 
 $$D(s) = \frac{s^2}{\omega_{p1}\omega_{p2}} + \left(\frac{1}{\omega_{p1}} + \frac{1}{\omega_{p2}} + \frac{A_0}{\omega_z}\right)s + (1 + A_0) .$$
 
-Multiplying $D(s) = 0$ by $\omega_{p1}\omega_{p2}$ gives the characteristic equation in monic form:
+Multiplying $D(s) = 0$ by $\omega_{p1}\omega_{p2}$ gives the monic characteristic equation
 
 $$s^2 + b\,s + c = 0,\qquad b = \omega_{p1} + \omega_{p2} + \frac{A_0\,\omega_{p1}\omega_{p2}}{\omega_z},\qquad c = (1 + A_0)\,\omega_{p1}\omega_{p2} .$$
 
@@ -28,29 +20,25 @@ The closed-loop DC gain is
 
 $$A \equiv H_{closed}(0) = \frac{A_0}{1 + A_0} = \frac{494}{495} = 0.998 ,$$
 
-so the output finally settles at $AV_0$, which is 0.2 % below $V_0$ because of the finite loop gain. The closed-loop zero is the open-loop zero $\omega_z$: feedback moves poles, not zeros.
+so the output settles at $AV_0$, 0.2 % below $V_0$. The closed-loop zero is still $\omega_z$: feedback moves poles, not zeros.
 
 ### Step 2 — Baseline: perfect pole–zero cancellation
 
-If $\omega_z = \omega_{p2}$ exactly, the open-loop function collapses to a single pole, $H_{open} = A_0/(1 + s/\omega_{p1})$, and
+If $\omega_z = \omega_{p2}$ exactly, $H_{open} = A_0/(1 + s/\omega_{p1})$ and
 
-$$H_{closed}(s) = \frac{A_0}{1 + A_0 + s/\omega_{p1}} = \frac{A}{1 + s/\omega_0},\qquad \omega_0 = (1 + A_0)\,\omega_{p1} .$$
-
-Numerically,
+$$H_{closed}(s) = \frac{A_0}{1 + A_0 + s/\omega_{p1}} = \frac{A}{1 + s/\omega_0},\qquad \omega_0 = (1 + A_0)\,\omega_{p1} ,$$
 
 $$\omega_0 = 495 \times 3.66\times10^6\ \mathrm{rad/s} = 1.812\times10^9\ \mathrm{rad/s},\qquad \tau_0 = \frac{1}{\omega_0} = 0.552\ \mathrm{ns}.$$
 
-The ideal step response is $V_{out}(t) = AV_0\left(1 - e^{-t/\tau_0}\right)$, and the time to settle within 0.1 % is
+The ideal step response is $V_{out}(t) = AV_0\left(1 - e^{-t/\tau_0}\right)$, which settles to within 0.1 % in
 
 $$t_{0.1\%} = \tau_0\ln 1000 = 0.552\ \mathrm{ns}\times 6.91 = 3.81\ \mathrm{ns}.$$
 
-Compare $\omega_{p2}$ with this closed-loop bandwidth:
+Compared with this closed-loop bandwidth,
 
-$$\frac{\omega_{p2}}{\omega_0} = \frac{3.33\times10^9}{1.812\times10^9} = 1.84 .$$
+$$\frac{\omega_{p2}}{\omega_0} = \frac{3.33\times10^9}{1.812\times10^9} = 1.84 ,$$
 
-The nondominant pole (and therefore the zero meant to cancel it) lies **above** the closed-loop bandwidth, not far below it. This fact decides the character of the answer (Step 7).
-
-The common numbers for both mismatch cases are
+so the nondominant pole (and the zero meant to cancel it) lies **above** the closed-loop bandwidth, not far below it. This decides the character of the answer (Step 7). The numbers common to both mismatch cases are
 
 $$
 \begin{aligned}
@@ -62,13 +50,7 @@ $$
 
 ### Step 3 — Closed-loop poles, zero 10 % below the pole ($\omega_z = 0.9\,\omega_{p2}$)
 
-$$\omega_z = 0.9\times3.33\times10^9 = 2.997\times10^9\ \mathrm{rad/s}.$$
-
-The middle term of $b$:
-
-$$\frac{A_0\,\omega_{p1}\omega_{p2}}{\omega_z} = \frac{A_0\,\omega_{p1}}{0.9} = \frac{494\times3.66\times10^6}{0.9} = 2.009\times10^9\ \mathrm{rad/s}.$$
-
-Then
+$$\omega_z = 0.9\times3.33\times10^9 = 2.997\times10^9\ \mathrm{rad/s},\qquad \frac{A_0\,\omega_{p1}\omega_{p2}}{\omega_z} = \frac{A_0\,\omega_{p1}}{0.9} = \frac{494\times3.66\times10^6}{0.9} = 2.009\times10^9\ \mathrm{rad/s}.$$
 
 $$
 \begin{aligned}
@@ -114,31 +96,30 @@ Check: $2.088\times2.889\times10^{18} = 6.03\times10^{18} = c$. ✓
 
 ### Step 5 — Step response by partial fractions (general form)
 
-Because $\omega_a\omega_b = c = (1 + A_0)\omega_{p1}\omega_{p2}$, the closed-loop function can be written with normalized factors:
+Since $\omega_a\omega_b = c = (1 + A_0)\omega_{p1}\omega_{p2}$,
 
-$$H_{closed}(s) = \frac{A\left(1 + s/\omega_z\right)}{\left(1 + s/\omega_a\right)\left(1 + s/\omega_b\right)} .$$
+$$H_{closed}(s) = \frac{A\left(1 + s/\omega_z\right)}{\left(1 + s/\omega_a\right)\left(1 + s/\omega_b\right)} ,$$
 
-The input is a step of height $V_0$, whose Laplace transform is $V_0/s$, so
+and for the step input $V_0/s$,
 
 $$V_{out}(s) = AV_0\,\frac{1 + s/\omega_z}{s\,(1 + s/\omega_a)(1 + s/\omega_b)} = AV_0\,\frac{\omega_a\omega_b\,(1 + s/\omega_z)}{s\,(s + \omega_a)(s + \omega_b)} .$$
 
-Expand in partial fractions:
+In partial fractions,
 
 $$\frac{\omega_a\omega_b\,(1 + s/\omega_z)}{s\,(s + \omega_a)(s + \omega_b)} = \frac{1}{s} - \frac{K_a}{s + \omega_a} - \frac{K_b}{s + \omega_b} .$$
 
-- **Residue at $s = 0$:** multiply by $s$ and set $s = 0$: $\omega_a\omega_b/(\omega_a\omega_b) = 1$.
-- **Residue at $s = -\omega_a$:** multiply by $(s + \omega_a)$ and set $s = -\omega_a$:
-$$-K_a = \frac{\omega_a\omega_b\,(1 - \omega_a/\omega_z)}{(-\omega_a)(\omega_b - \omega_a)} = -\frac{1 - \omega_a/\omega_z}{1 - \omega_a/\omega_b}
-\quad\Longrightarrow\quad K_a = \frac{1 - \omega_a/\omega_z}{1 - \omega_a/\omega_b}.$$
-- **Residue at $s = -\omega_b$:** by the same steps, $K_b = \dfrac{1 - \omega_b/\omega_z}{1 - \omega_b/\omega_a}$.
+The residue at $s = 0$ is $\omega_a\omega_b/(\omega_a\omega_b) = 1$. At $s = -\omega_a$,
 
-Inverting term by term ($1/s \to u(t)$, $1/(s + \omega) \to e^{-\omega t}u(t)$):
+$$
+-K_a = \frac{\omega_a\omega_b\,(1 - \omega_a/\omega_z)}{(-\omega_a)(\omega_b - \omega_a)} = -\frac{1 - \omega_a/\omega_z}{1 - \omega_a/\omega_b}
+\quad\Longrightarrow\quad K_a = \frac{1 - \omega_a/\omega_z}{1 - \omega_a/\omega_b},
+$$
+
+and in the same way $K_b = \dfrac{1 - \omega_b/\omega_z}{1 - \omega_b/\omega_a}$. Inverting term by term,
 
 $$V_{out}(t) = AV_0\left[1 - K_a\,e^{-t/\tau_a} - K_b\,e^{-t/\tau_b}\right]u(t).$$
 
-**Initial value.** The transfer function has one more pole than zeros, so $V_{out}(0^+) = \lim_{s\to\infty}sV_{out}(s) = 0$: the output cannot jump. This requires $K_a + K_b = 1$, which is a convenient check.
-
-**Initial slope.** $\dot V_{out}(0^+) = \lim_{s\to\infty}s^2V_{out}(s) = AV_0\,\omega_a\omega_b/\omega_z$.
+**Initial value and slope.** With one more pole than zeros, $V_{out}(0^+) = \lim_{s\to\infty}sV_{out}(s) = 0$, which requires $K_a + K_b = 1$ (a convenient check), and $\dot V_{out}(0^+) = \lim_{s\to\infty}s^2V_{out}(s) = AV_0\,\omega_a\omega_b/\omega_z$.
 
 ### Step 6 — Numerical step responses
 
@@ -164,11 +145,11 @@ $$
 
 $$V_{out}(t) = AV_0\left[1 - 1.550\,e^{-t/0.479\,\mathrm{ns}} + 0.550\,e^{-t/0.346\,\mathrm{ns}}\right].$$
 
-**Shape.** Both responses start at 0 and rise **monotonically** to $AV_0$, with no overshoot and no ringing, because both closed-loop poles are real.
+**Shape.** Both responses start at 0 and rise **monotonically** to $AV_0$, with no overshoot or ringing:
 - In case (a) both exponentials are subtracted, so $V_{out} < AV_0$ and $dV_{out}/dt > 0$ at all times.
-- In case (b) the positive term $0.550\,e^{-t/0.346\,\mathrm{ns}}$ decays faster than the main term $1.550\,e^{-t/0.479\,\mathrm{ns}}$ and is always smaller than it. The error therefore stays positive, and the slope, $AV_0\left[\tfrac{1.550}{0.479} e^{-t/0.479} - \tfrac{0.550}{0.346} e^{-t/0.346}\right]$ (t in ns), equals $AV_0(3.24 - 1.59)/\mathrm{ns} > 0$ at $t = 0$ and stays positive.
+- In case (b) the positive term $0.550\,e^{-t/0.346\,\mathrm{ns}}$ decays faster than the main term $1.550\,e^{-t/0.479\,\mathrm{ns}}$ and is always smaller, so the error stays positive; the slope, $AV_0\left[\tfrac{1.550}{0.479} e^{-t/0.479} - \tfrac{0.550}{0.346} e^{-t/0.346}\right]$ (t in ns), is $AV_0(3.24 - 1.59)/\mathrm{ns} > 0$ at $t = 0$ and stays positive.
 
-Normalized output $V_{out}/(AV_0)$ at a few instants:
+Normalized output $V_{out}/(AV_0)$:
 
 | $t$ (ns) | $\omega_z = 0.9\,\omega_{p2}$ | perfect cancellation | $\omega_z = 1.1\,\omega_{p2}$ |
 |---|---|---|---|
@@ -180,7 +161,7 @@ Normalized output $V_{out}/(AV_0)$ at a few instants:
 | 3 | 0.9937 | 0.9956 | 0.9971 |
 | 4 | 0.9988 | 0.9993 | 0.9996 |
 
-The initial slopes are $AV_0\,\omega_a\omega_b/\omega_z = AV_0\,\omega_0\,(\omega_{p2}/\omega_z)$: $2.01\times10^9\,AV_0$/s in case (a) and $1.65\times10^9\,AV_0$/s in case (b), against $1.81\times10^9\,AV_0$/s for perfect cancellation. A zero placed below the pole adds high-frequency loop gain (faster start), but its dominant closed-loop pole is slower.
+The initial slopes are $AV_0\,\omega_a\omega_b/\omega_z = AV_0\,\omega_0\,(\omega_{p2}/\omega_z)$: $2.01\times10^9\,AV_0$/s in case (a) and $1.65\times10^9\,AV_0$/s in case (b), against $1.81\times10^9\,AV_0$/s for perfect cancellation. A zero below the pole gives a faster start but a slower dominant closed-loop pole.
 
 **Settling.** At long times only the slow exponential matters:
 - case (a): $0.814\,e^{-t/0.617\,\mathrm{ns}} = 10^{-3}$ gives $t = 0.617\ \mathrm{ns}\times\ln 814 = 0.617\times6.70 = 4.1$ ns;
@@ -189,13 +170,11 @@ The initial slopes are $AV_0\,\omega_a\omega_b/\omega_z = AV_0\,\omega_0\,(\omeg
 
 ### Step 7 — Why there is no slow-settling tail here
 
-A pole–zero mismatch is usually feared because of the **doublet** effect. If the doublet sits far below the closed-loop bandwidth ($\omega_{p2},\omega_z \ll \omega_0$), one closed-loop pole lands almost on top of $\omega_z$. Its residue is small, about $(\omega_z - \omega_{p2})/\omega_0$, but it decays with the slow time constant $1/\omega_z \gg 1/\omega_0$. The output then quickly gets close to its final value and creeps the last few percent slowly.
-
-That assumption requires $\omega_{p2} \ll (1 + A_0)\omega_{p1}$, and here it fails: $\omega_{p2} = 1.84\,\omega_0$ (Step 2). Consequences:
+The feared **doublet** effect (a small residue, about $(\omega_z - \omega_{p2})/\omega_0$, decaying with the slow time constant $1/\omega_z$) requires the doublet to lie far below the closed-loop bandwidth, $\omega_{p2} \ll (1 + A_0)\omega_{p1}$. Here it fails: $\omega_{p2} = 1.84\,\omega_0$ (Step 2). Consequently:
 - The "mismatch" exponential (the $\tau_b$ term) has a time constant of 0.27 ns or 0.35 ns, **shorter** than the main one, so it dies out first. Even the rough doublet estimate gives an amplitude $|\omega_z - \omega_{p2}|/\omega_0 = 0.333/1.812 \approx 0.18$ decaying with $1/\omega_z \approx 0.3$ ns, again a fast term.
-- The visible effect is instead a shift of the **dominant** closed-loop time constant: 0.617 ns (+12 %) or 0.479 ns (−13 %) instead of 0.552 ns. The 0.1 % settling time becomes about 4.1 ns or 3.5 ns instead of 3.8 ns.
+- The visible effect is a shift of the **dominant** closed-loop time constant: 0.617 ns (+12 %) or 0.479 ns (−13 %) instead of 0.552 ns, so the 0.1 % settling time becomes about 4.1 ns or 3.5 ns instead of 3.8 ns.
 
-So for this op amp a 10 % pole–zero mismatch is benign.
+For this op amp a 10 % pole–zero mismatch is benign.
 
 ### Result
 
@@ -215,4 +194,4 @@ $$V_{out}(t) = AV_0\left[1 - 1.55\,e^{-t/0.479\,\mathrm{ns}} + 0.55\,e^{-t/0.346
 
 **Common mistake.** Expecting overshoot or ringing because the system is second order. The discriminant $b^2 - 4c$ is positive in both cases, so both poles are real and the response is monotonic.
 
-**Common mistake.** Thinking that the mismatch leaves a 10 % steady-state error. The final value is fixed by the DC gain, $A_0/(1 + A_0) = 0.998$, which does not depend on $\omega_z$ or $\omega_{p2}$ at all.
+**Common mistake.** Thinking that the mismatch leaves a 10 % steady-state error. The final value is set by the DC gain, $A_0/(1 + A_0) = 0.998$, independent of $\omega_z$ and $\omega_{p2}$.
