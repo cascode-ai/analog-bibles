@@ -1,0 +1,1 @@
+[图 1] 所示电路由 NMOS 共源级（common-source stage）$M_1$ 和负载电阻 $R_D$ 构成；漏极经串联电阻 $R_P$ 驱动输出端，输出端与地之间接有电容 $C_L$。只考虑热噪声（thermal noise），求输出噪声谱和输出端的总积分噪声。假设 $\lambda > 0$，即 $M_1$ 具有输出电阻（output resistance）$r_O$；忽略其他电容。沟道热噪声（channel thermal noise）取为 $4kT\gamma g_m$，电阻噪声取为 $4kT/R$（电流形式）或 $4kTR$（电压形式）。

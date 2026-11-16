@@ -1,0 +1,1 @@
+[图 1] 所示的放大器由 NMOS 管 $M_1$、理想无噪声电流源（current source）负载 $I_1$ 以及从输出端接到栅极的反馈电阻 $R_F$ 构成，由信号源驱动，信号源具有与栅极节点串联的有限内阻 $R_S$。假设 $\lambda = 0$，忽略体效应（body effect）和各电容，并忽略 $R_S$ 的噪声。求电路输出噪声电压的功率谱密度（PSD）。沟道热噪声（channel thermal noise）取为 $4kT\gamma g_m$，$R_F$ 的噪声取为 $4kTR_F$（电压形式）。

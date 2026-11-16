@@ -1,0 +1,1 @@
+如果让 $I_{out}$ 流过接在 $V_{DD}$ 与 $M_2$ 漏极之间的电阻 $R_{D2}$，在 $M_2$ 的漏极产生输出电压，那么 [图 1] 所示的电路就可以用作跨阻放大器（transimpedance amplifier）。把 $R_S$ 换成理想电流源（current source），并假设 $\lambda = \gamma = 0$，计算所得电路的跨阻。此外，计算单位带宽内的输入参考噪声电流（input-referred noise current）。

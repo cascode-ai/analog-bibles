@@ -1,0 +1,1 @@
+若把 [图 1] 所示电路中的 $R_D$ 换成理想电流源（current source），计算该电路在较低频率下的输出阻抗。$M_2$ 的偏置未画出。忽略沟道长度调制（channel-length modulation）；每个 NMOS 的衬底都接地，因此要通过 $g_{mb1}$ 计入 $M_1$ 的体效应（body effect）。用 $g_{m1}$、$g_{mb1}$、$g_{m2}$、$R_S$、$C_1$ 和 $C_2$ 表示结果。
