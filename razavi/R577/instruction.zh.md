@@ -1,0 +1,1 @@
+[图 1] 所示为一个互补采样开关（complementary sampling switch）：$M_1$（NMOS，栅极由 CK 驱动）与 $M_2$（PMOS，栅极由 $\overline{CK}$ 驱动）并联，后接采样电容 $C_H$。描述一种高效的 SPICE 仿真方法，用来得到开关的等效导通电阻（on-resistance）$R_{on,eq}$ 随输入电平 $V_{in}$（从 0 到 $V_{DD}$）变化的曲线。

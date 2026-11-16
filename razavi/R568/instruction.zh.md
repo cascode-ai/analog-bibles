@@ -1,0 +1,1 @@
+[图 1] 所示电路是处于采样模式（sampling mode）的开关电容（switched-capacitor）放大器：$C_1$ 的左极板（节点 A）由 $V_{in}$ 驱动，运算放大器（op amp）接成单位增益反馈（其输出端与反相输入端即节点 X 相连，同相输入端接地）。运放用跨导（transconductance）$G_m$ 和从输出端到地的输出电阻（output resistance）$R_{out}$ 来描述，它向输出节点送出电流 $G_m(V_+ - V_-)$；电路中没有其他电容。求该模式下的传递函数 $V_{out}/V_{in}$。

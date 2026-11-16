@@ -1,0 +1,1 @@
+[图 1] 所示为一个“单结”带隙基准（bandgap reference）电路。$I_1$ 和 $I_2$ 是从 $V_{DD}$ 流出的理想电流源（current source）；$Q_1$ 是 pnp 晶体管，发射极接 $X$，基极和集电极接地；运算放大器（op amp）是理想的；开关 $S_1$ 和 $S_2$ 由互补时钟（complementary clocks）驱动。忽略基极电流和开关的电荷注入（charge injection）；$V_T = kT/q$。电路先在 $S_1$ 导通、$S_2$ 断开的状态下稳定下来。随后 $S_1$ 断开、$S_2$ 导通，$V_{out}$ 的变化量是多少？

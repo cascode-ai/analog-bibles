@@ -1,0 +1,6 @@
+$I_{D1} = I_{D2} \approx 167\ \mu$A，$(W/L)_1 \approx 90$，$(W/L)_2 \approx 358$。考虑 $M_2$ 的体效应（body effect）时，$R_S \approx 406$ Ω，$C_S \approx 49$ pF；若采用理想的恒定 $g_m$ 关系（忽略体效应），则 $R_S = 500$ Ω，$C_S = 40$ pF。PMOS 的 $(W/L)_{3,4}$ 并不关键，例如取 ≈ 100，对应的过驱动电压（overdrive voltage）≈ 0.3 V。
+- 电流：1 mW / 3 V = 333 μA，在两条支路之间平均分配（$M_3 = M_4$）：每条 167 μA。
+- $(W/L)_1 = g_{m1}^2/(2\mu_nC_{ox}I_{D1}) = (2\ \mathrm{mS})^2/(2 \times 134\ \mu\mathrm{A/V^2} \times 167\ \mu\mathrm{A}) = 89.6$；$(W/L)_2 = 4 \times 89.6 = 358$。过驱动电压：$V_{ov1} = 2I/g_{m1} = 0.167$ V，$V_{ov2} = V_{ov1}/2 = 0.083$ V。
+- 不考虑体效应：$g_{m1} = (2/R_S)(1 - 1/\sqrt K) = 1/R_S$，所以 $R_S = 500$ Ω，$C_S = 1/(R_Sf_{CK}) = 40$ pF。
+- 考虑体效应（$M_2$ 的源极位于 $V_S = IR_S$，衬底接地）：$V_{ov1} - V_{ov2} = IR_S + 0.45(\sqrt{0.9 + IR_S} - \sqrt{0.9})$，即 $83.3\ \mathrm{mV} = IR_S + \Delta V_{TH2}$。由此得 $IR_S = 67.6$ mV，所以 $R_S \approx 406$ Ω，$C_S \approx 49$ pF。
+- PMOS：例如 $(W/L)_{3,4} = 2(167\ \mu\mathrm{A})/(38.4\ \mu\mathrm{A/V^2} \times (0.3\ \mathrm{V})^2) \approx 96$。检验：$M_4$ 为二极管连接（diode-connected），因此 $M_2$ 的漏极位于 $V_{DD} - |V_{GS4}| \approx 1.9$ V ≫ $V_{G2} - V_{TH2}$；$M_3$ 的漏极位于 $V_{GS1} \approx 0.87$ V，因此 $|V_{DS3}| \approx 2.1$ V > $|V_{ov3}|$。任何使 $|V_{GS4}| \lesssim 2.8$ V 的尺寸都可行。

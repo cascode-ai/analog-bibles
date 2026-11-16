@@ -1,0 +1,1 @@
+[图 1] 所示电路在 CK 为高电平时（$M_1$ 导通）把输入采样到 $C_1$ 上，在 CK 为低电平时（由 $\overline{CK}$ 驱动的 $M_2$ 导通）把 $C_1$ 和 $C_2$ 连接起来。$M_1$ 和 $M_2$ 是 NMOS 开关，$(W/L)_1 = (W/L)_2$，$C_1 = C_2$。CK 与 $\overline{CK}$ 是不交叠时钟（non-overlapping clocks），在 0 与 $V_{DD} = 3$ V 之间摆动，并且每个相位都足够长，使电压能够建立。若 $C_1$ 和 $C_2$ 上的初始电压为零，$V_{in} = 2$ V，画出 $V_{out}$ 在许多个时钟周期内随时间变化的曲线。忽略电荷注入（charge injection）和时钟馈通（clock feedthrough）。

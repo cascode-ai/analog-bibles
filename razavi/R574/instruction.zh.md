@@ -1,0 +1,1 @@
+在 [图 1] 所示的电路中，$V_{in} = V_{DD} = 3$ V，$C_H$ 初始未充电，CK 在 $t = 0$ 时从 0 阶跃到 $V_{DD}$；$(W/L)_1 = 20/0.5$，$C_H = 1$ pF。给 $C_H$ 充电的电阻（γ = 0 时等于 $1/g_{m1}$）随输出电平变化。忽略体效应（body effect），即 γ = 0，并忽略沟道长度调制（channel-length modulation），画出 $M_1$ 的跨导（transconductance）随时间变化的曲线草图。NMOS 数据：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。

@@ -1,0 +1,1 @@
+求 [图 1] 所示电路的输出噪声电压（$V_{BG}$ 处的谱密度）。需考虑：运算放大器（op amp）的输入参考噪声（input-referred noise）电压 $\overline{V_{n,op}^2}$；$M_3$、$M_4$ 和 $M_5$ 的热噪声（thermal noise）和闪烁噪声（flicker noise），这三个器件相同，跨导（transconductance）为 $g_{mP}$，漏极噪声电流为 $\overline{i_n^2} = 4kT\gamma g_{mP} + K_Pg_{mP}^2/(C_{ox}WLf)$；以及 $R_1$–$R_4$ 的热噪声。忽略 $Q_1$ 和 $Q_2$ 的噪声，但用它们的小信号电阻 $1/g_{m1}$ 和 $1/g_{m2}$ 为其建模。假设运放的增益非常大。

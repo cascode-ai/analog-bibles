@@ -1,0 +1,1 @@
+在 [图 1] 所示的采样电路中，$(W/L)_1 = 20/0.5$，$C_H = 1$ pF。CK 保持在高电平 $V_{DD} = 3$ V，因此开关导通，$V_{out}$ 跟踪 $V_{in}$。假设 λ = γ = 0，$V_{in} = V_0\sin\omega_{in}t + V_m$，其中 $\omega_{in} = 2\pi \times (100\ \mathrm{MHz})$。若 $V_0 = V_m = 10$ mV，计算 $M_1$ 的导通电阻（on-resistance）$R_{on1}$ 以及从输入到输出的相移。NMOS 数据：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。
