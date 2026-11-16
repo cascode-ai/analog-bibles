@@ -1,16 +1,14 @@
 # Detailed solution - R292
 
-**Approach.** Find the output impedance $Z_{out}(s)$ of the source follower with its input grounded through the source resistance $R_S$, using a small-signal model that contains only $g_m$ and $C_{GS}$. Then rewrite $Z_{out}(s)$ as an equivalent passive network made of two resistors and one inductor, and evaluate that inductance with the device values.
+**Approach.** Find the output impedance $Z_{out}(s)$ of the follower with its gate tied to ground through $R_S$, using a model with only $g_m$ and $C_{GS}$. Then rewrite $Z_{out}(s)$ as an equivalent network of two resistors and one inductor, and evaluate the inductance.
 
 ### Step 1 — Small-signal parameters
 
-**Transconductance** from the square-law saturation current, $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$, with $W/L = 50/0.5 = 100$ and $I_D = 1$ mA:
+With $W/L = 50/0.5 = 100$ and $I_D = 1$ mA:
 
-$$g_m = \sqrt{2\,(134\ \mu\mathrm{A/V^2})(100)(1\ \mathrm{mA})} = \sqrt{26.8\times10^{-6}}\ \mathrm{A/V} = 5.18\ \mathrm{mS},$$
+$$g_m = \sqrt{2\,(134\ \mu\mathrm{A/V^2})(100)(1\ \mathrm{mA})} = \sqrt{26.8\times10^{-6}}\ \mathrm{A/V} = 5.18\ \mathrm{mS}, \qquad \frac{1}{g_m} = \frac{1}{5.18\ \mathrm{mS}} = 193\ \Omega .$$
 
-$$\frac{1}{g_m} = \frac{1}{5.18\ \mathrm{mS}} = 193\ \Omega .$$
-
-**Gate–source capacitance.** The follower's transistor is in saturation, so the channel is pinched off at the drain end and the channel charge is controlled from the source side. The intrinsic part is $\tfrac23WLC_{ox}$, and the gate–source overlap adds $WC_{ov}$ ($C_{ov}$ = overlap capacitance per unit width):
+In saturation, $C_{GS}$ is the intrinsic $\tfrac23WLC_{ox}$ plus the overlap $WC_{ov}$ ($C_{ov} = 0.4$ fF/μm):
 
 $$
 \begin{aligned}
@@ -20,64 +18,34 @@ C_{GS} &= 64 + 20 = 84\ \mathrm{fF}.
 \end{aligned}
 $$
 
-### Step 2 — The small-signal model for the output impedance
+### Step 2 — Deriving $Z_{out}(s)$
 
-To find the impedance seen at the output, set the input source to zero ($V_{in} = 0$), so the gate is connected to ground through $R_S$, and apply a test voltage $V_X$ at the output (the source of the transistor), drawing a test current $I_X$ into it.
+Set $V_{in} = 0$, so the gate G is tied to ground through $R_S$, and drive the output (the source) with a test voltage $V_X$ that delivers $I_X$. The drain is at ac ground; $C_{GD}$, the junction capacitances, $r_O$ and the body effect are neglected.
 
 <!-- diagram: diagram-01.cir -->
 
-The model has:
+$R_S$ and $C_{GS}$ are in series between the output and ground, so they carry the same current $I_1$, flowing from the output toward G:
 
-- the resistance $R_S$ from the gate node G to ground;
-- the capacitance $C_{GS}$ from G to the output (source) node;
-- a voltage-controlled current source $g_mV_{GS}$ flowing from the drain into the output node. The drain is at $V_{DD}$, an ac ground.
+$$I_1 = \frac{V_X}{R_S + \dfrac{1}{C_{GS}s}}, \qquad V_{GS} = V_G - V_X = -\frac{I_1}{C_{GS}s}.$$
 
-$C_{GD}$, the junction capacitances, $r_O$ and the body effect are all neglected, as the problem states.
-
-### Step 3 — Deriving $Z_{out}(s)$
-
-$R_S$ and $C_{GS}$ are in series between the output and ground, so they carry the same current, $I_1$:
-
-$$I_1 = \frac{V_X}{R_S + \dfrac{1}{C_{GS}s}} .$$
-
-**Gate–source voltage.** The voltage across $C_{GS}$, measured from gate to source, is the drop from G to the output, which is the negative of the drop $I_1/(C_{GS}s)$ that $I_1$ produces flowing from the output to G:
-
-$$V_{GS} = V_G - V_X = -\frac{I_1}{C_{GS}s}.$$
-
-**KCL at the output node.** Current enters through the test source ($I_X$) and through the transistor ($g_mV_{GS}$); it leaves through the $C_{GS}$–$R_S$ branch ($I_1$):
-
-$$I_X + g_mV_{GS} = I_1 .$$
-
-Substitute $V_{GS}$:
+KCL at the output, with $g_mV_{GS}$ flowing from the drain into the output node:
 
 $$
 \begin{aligned}
-I_X &= I_1 - g_mV_{GS}\\
-&= I_1 + \frac{g_m}{C_{GS}s}I_1\\
-&= I_1\left(1 + \frac{g_m}{C_{GS}s}\right).
+I_X + g_mV_{GS} &= I_1\\
+I_X &= I_1 - g_mV_{GS} = I_1 + \frac{g_m}{C_{GS}s}I_1 = I_1\left(1 + \frac{g_m}{C_{GS}s}\right).
 \end{aligned}
 $$
 
-**The impedance.** Divide $V_X = I_1\left(R_S + \dfrac{1}{C_{GS}s}\right)$ by $I_X$:
+Dividing $V_X = I_1\left(R_S + \dfrac{1}{C_{GS}s}\right)$ by $I_X$, then multiplying numerator and denominator by $C_{GS}s$:
 
-$$Z_{out} = \frac{V_X}{I_X} = \frac{R_S + \dfrac{1}{C_{GS}s}}{1 + \dfrac{g_m}{C_{GS}s}} .$$
+$$Z_{out} = \frac{V_X}{I_X} = \frac{R_S + \dfrac{1}{C_{GS}s}}{1 + \dfrac{g_m}{C_{GS}s}} = \frac{R_SC_{GS}s + 1}{C_{GS}s + g_m}.$$
 
-Multiply numerator and denominator by $C_{GS}s$:
+At low frequency ($s\to0$, $C_{GS}$ open) $Z_{out}\to 1/g_m = 193\ \Omega$; at high frequency ($s\to\infty$, $C_{GS}$ a short) $Z_{out}\to R_S = 10\ \mathrm{k\Omega}$. Since $R_S > 1/g_m$, $|Z_{out}|$ **rises** with frequency: the output is **inductive**. Physically, $V_{GS}$ can change only as $C_{GS}$ charges through $R_S$, so the transistor's corrective current lags the output voltage.
 
-$$Z_{out}(s) = \frac{R_SC_{GS}s + 1}{C_{GS}s + g_m}.$$
+### Step 3 — Equivalent R–L network
 
-**Limits.**
-
-- At low frequency ($s\to0$): $Z_{out}\to 1/g_m = 193\ \Omega$. $C_{GS}$ is open, the gate does not move, and the follower behaves like a diode-connected device.
-- At high frequency ($s\to\infty$): $Z_{out}\to R_S = 10\ \mathrm{k\Omega}$. $C_{GS}$ is a short, so the output is connected straight to $R_S$.
-
-Since $R_S > 1/g_m$, $|Z_{out}|$ **rises** with frequency. An impedance that grows with frequency is **inductive**.
-
-**Why it is inductive.** When the output is pulled down quickly, $C_{GS}$ initially holds $V_{GS}$ almost constant. The extra gate–source voltage that would let the transistor respond can only build up as $C_{GS}$ charges through $R_S$. The transistor's corrective current therefore lags the output voltage, which is the behaviour of an inductor.
-
-### Step 4 — Equivalent R–L network
-
-Subtract the low-frequency value $1/g_m$ and simplify, to see what is "added" at higher frequencies:
+Subtract the low-frequency value $1/g_m$ (the last line divides numerator and denominator by $g_m^2$):
 
 $$
 \begin{aligned}
@@ -88,21 +56,19 @@ Z_{out} - \frac{1}{g_m} &= \frac{R_SC_{GS}s + 1}{C_{GS}s + g_m} - \frac{1}{g_m}\
 \end{aligned}
 $$
 
-(The last line divides numerator and denominator by $g_m^2$.)
+A resistor $R_1$ in parallel with an inductor $L$ gives
 
-Compare this with a resistor $R_1$ in parallel with an inductor $L$:
+$$R_1\parallel Ls = \frac{R_1Ls}{R_1 + Ls} = \frac{R_1\,\dfrac{L}{R_1}s}{1 + \dfrac{L}{R_1}s},$$
 
-$$R_1\parallel Ls = \frac{R_1Ls}{R_1 + Ls} = \frac{R_1\,\dfrac{L}{R_1}s}{1 + \dfrac{L}{R_1}s}.$$
-
-The two expressions are identical if
+which is identical if
 
 $$R_1 = R_S - \frac{1}{g_m}, \qquad \frac{L}{R_1} = \frac{C_{GS}}{g_m}\ \Longrightarrow\ L = \frac{C_{GS}}{g_m}\left(R_S - \frac{1}{g_m}\right).$$
 
-So, **exactly**, the output looks like a resistor $R_2 = 1/g_m$ in series with the parallel combination of $R_1 = R_S - 1/g_m$ and the inductor $L$.
+So, **exactly**, the output is a resistor $R_2 = 1/g_m$ in series with $R_1 = R_S - 1/g_m$ in parallel with the inductor $L$.
 
 <!-- diagram: diagram-02.cir -->
 
-### Step 5 — Numerical values
+### Step 4 — Numerical values
 
 $$
 \begin{aligned}
@@ -113,7 +79,7 @@ L &= \frac{C_{GS}}{g_m}R_1 = (1.62\times10^{-11}\ \mathrm{s})(9807\ \Omega) = 1.
 \end{aligned}
 $$
 
-**Where the output is inductive.** $|Z_{out}|$ starts to rise when $\omega L$ becomes comparable with $R_2$, around $\omega \approx 1/(R_SC_{GS}) = 1.19\times10^9$ rad/s (190 MHz). It saturates at $R_S$ when $\omega L$ exceeds $R_1$, around $\omega \approx g_m/C_{GS} = 6.2\times10^{10}$ rad/s (9.8 GHz). Values of $Z_{out}(j\omega)$:
+**Where the output is inductive.** $|Z_{out}|$ starts to rise when $\omega L$ becomes comparable with $R_2$, around $\omega \approx 1/(R_SC_{GS}) = 1.19\times10^9$ rad/s (190 MHz), and saturates at $R_S$ once $\omega L$ exceeds $R_1$, around $\omega \approx g_m/C_{GS} = 6.2\times10^{10}$ rad/s (9.8 GHz). Values of $Z_{out}(j\omega)$:
 
 | $f$ | $\lvert Z_{out}\rvert$ | phase |
 |---|---|---|
@@ -139,8 +105,8 @@ $$L \approx 1.59\times10^{-7}\ \mathrm{H} \approx 159\ \mathrm{nH}$$
 
 (about 121 nH if the overlap capacitance is excluded from $C_{GS}$). The inductor sits in parallel with $R_1 = 9.81\ \mathrm{k\Omega}$, and the combination is in series with $1/g_m = 193\ \Omega$.
 
-**Common mistake.** Writing $L = R_SC_{GS}$ or $L = C_{GS}/g_m^2$. The first has units of seconds, not henries, and the second has no dependence on $R_S$. Without $R_S$ the gate is tied to an ac ground and there is no inductive behaviour at all: $Z_{out} = 1/(g_m + C_{GS}s)$ is capacitive. The inductance is the product of the time constant $C_{GS}/g_m$ and the resistance $R_S - 1/g_m$.
+**Common mistake.** Writing $L = R_SC_{GS}$ (units of seconds, not henries) or $L = C_{GS}/g_m^2$ (no $R_S$). Without $R_S$ the gate is at ac ground and $Z_{out} = 1/(g_m + C_{GS}s)$ is capacitive; the inductance is the time constant $C_{GS}/g_m$ times the resistance $R_S - 1/g_m$.
 
-**Common mistake.** Using the full $WLC_{ox}$ (plus overlap) for $C_{GS}$. That is the triode-region value. In saturation only $\tfrac23WLC_{ox}$ appears between gate and source, so $C_{GS} = 84$ fF, not 116 fF. The larger value would overestimate $L$ by almost 40 %.
+**Common mistake.** Using the full $WLC_{ox}$ (plus overlap), the triode-region value, for $C_{GS}$. In saturation $C_{GS} = 84$ fF, not 116 fF; the larger value would overestimate $L$ by almost 40 %.
 
-**Common mistake.** Concluding that the output is capacitive because a capacitor is the only reactive element. Whether the follower's output is inductive or capacitive depends on whether $R_S$ is larger or smaller than $1/g_m$. Here $R_S = 10\ \mathrm{k\Omega}\gg 193\ \Omega$, so $|Z_{out}|$ rises with frequency.
+**Common mistake.** Calling the output capacitive because the only reactive element is a capacitor. The follower's output is inductive when $R_S > 1/g_m$, as here ($10\ \mathrm{k\Omega}\gg 193\ \Omega$), and capacitive when $R_S < 1/g_m$.
