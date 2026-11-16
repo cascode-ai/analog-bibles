@@ -1,38 +1,22 @@
 # Detailed solution - R628
 
-**Approach.** Model each common-source stage as an inverting gain with one pole. Break the ring to get the loop gain, then apply the Barkhausen criteria: the loop must provide 180° of frequency-dependent phase shift (on top of the DC inversion) with a loop-gain magnitude of at least 1 at that frequency. For three identical stages this requires a low-frequency gain of 2 per stage, which fixes $R_D$.
+**Approach.** Model each common-source stage as an inverting gain with one pole, break the ring to get the loop gain, and apply the Barkhausen criteria: 180° of frequency-dependent phase shift (on top of the dc inversion) with a loop-gain magnitude of at least 1 at that frequency. For three identical stages this requires a low-frequency gain of 2 per stage, which fixes $R_D$.
 
-### Step 1 — The circuit
+### Step 1 — Stage and loop transfer functions
 
-Reading the figure: three identical common-source (CS) stages $M_1$, $M_2$, $M_3$, each with a resistor $R_D$ to $V_{DD}$ and a capacitor $C_L$ from its drain to ground. The drain of $M_1$ (node E) drives the gate of $M_2$, the drain of $M_2$ (node F) drives the gate of $M_3$, and the drain of $M_3$ (node G, the output) is fed back to the gate of $M_1$.
+The ring has three inversions, an odd number, so at dc it is negative feedback with a stable operating point; oscillation must come from the extra phase shift of the three poles. With $\lambda = 0$, each drain sees $Z = R_D \parallel (1/sC_L) = R_D/(1 + sR_DC_L)$, so each stage is
 
-Each stage inverts, so the loop contains three inversions, an odd number. At DC the loop is therefore negative feedback, and the circuit has a stable DC operating point with all three nodes at the same voltage. Oscillation, if it occurs, must come from the extra phase shift of the three poles.
+$$\frac{v_{out}}{v_{in}} = -\frac{g_mR_D}{1 + sR_DC_L} = -\frac{A_0}{1 + s/\omega_0}, \qquad A_0 = g_mR_D, \qquad \omega_0 = \frac{1}{R_DC_L}.$$
 
-### Step 2 — Transfer function of one stage
-
-Small-signal model of one stage ($\lambda = 0$): a controlled current source $g_mv_{gs}$ from the drain node to ground, in parallel with $R_D$ (to AC ground) and $C_L$. The drain impedance is
-
-$$Z = R_D \parallel \frac{1}{sC_L} = \frac{R_D}{1 + sR_DC_L}.$$
-
-**KCL at the drain:** the transistor current $g_mv_{in}$ must be supplied through $Z$, so $v_{out} = -g_mZ\,v_{in}$:
-
-$$\frac{v_{out}}{v_{in}} = -\frac{g_mR_D}{1 + sR_DC_L} = -\frac{A_0}{1 + s/\omega_0},$$
-
-where
-
-$$A_0 = g_mR_D \quad\text{(low-frequency gain magnitude)}, \qquad \omega_0 = \frac{1}{R_DC_L}\quad\text{(pole frequency)}.$$
-
-### Step 3 — Loop gain
-
-Break the loop at the gate of $M_1$ (it draws no current, so the loading is unchanged). Three identical stages in cascade give
+Breaking the loop at the gate of $M_1$ (which draws no current), the three stages give
 
 $$H(s) = \left(-\frac{A_0}{1 + s/\omega_0}\right)^3 = -\frac{A_0^3}{(1 + s/\omega_0)^3}.$$
 
-The minus sign is the DC inversion (180°). For the loop to sustain oscillation, the signal must return **in phase** with itself, so the three poles must add another 180°.
+The minus sign is the dc inversion (180°); for the signal to return **in phase**, the three poles must add another 180°.
 
-### Step 4 — Barkhausen phase condition: the oscillation frequency
+### Step 2 — Barkhausen phase condition: the oscillation frequency
 
-Each pole contributes $-\tan^{-1}(\omega/\omega_0)$. With three identical poles, a total of 180° means 60° per stage:
+Each pole contributes $-\tan^{-1}(\omega/\omega_0)$, so 180° in total means 60° per stage:
 
 $$
 \begin{aligned}
@@ -42,13 +26,13 @@ $$
 \end{aligned}
 $$
 
-### Step 5 — Barkhausen gain condition: minimum gain per stage
+### Step 3 — Barkhausen gain condition: minimum gain per stage
 
 At $\omega_{osc}$ each stage's magnitude is
 
-$$\left|\frac{A_0}{1 + j\sqrt3}\right| = \frac{A_0}{\sqrt{1 + 3}} = \frac{A_0}{2}.$$
+$$\left|\frac{A_0}{1 + j\sqrt3}\right| = \frac{A_0}{\sqrt{1 + 3}} = \frac{A_0}{2},$$
 
-The loop-gain magnitude is the cube:
+so the loop-gain magnitude is
 
 $$|H(j\omega_{osc})| = \left(\frac{A_0}{2}\right)^3 = \frac{A_0^3}{8}.$$
 
@@ -56,17 +40,17 @@ Oscillation requires $|H(j\omega_{osc})| \ge 1$:
 
 $$\frac{A_0^3}{8} \ge 1 \quad\Longrightarrow\quad A_0 \ge 2 .$$
 
-**Intuition.** At $\sqrt3\,\omega_0$ the capacitor has already halved each stage's gain, so each stage must have a low-frequency gain of at least 2 for the loop to break even.
+At $\sqrt3\,\omega_0$ each capacitor has already halved its stage's gain, so each stage needs a low-frequency gain of at least 2.
 
-### Step 6 — Minimum $R_D$
+### Step 4 — Minimum $R_D$
 
 $$g_mR_D \ge 2 \quad\Longrightarrow\quad R_D \ge \frac{2}{g_m} = 2\times200\ \Omega = 400\ \Omega .$$
 
-$C_L$ does not appear: it sets the frequency ($\omega_{osc} = \sqrt3/(R_DC_L)$), not the start-up condition.
+$C_L$ sets the frequency, $\omega_{osc} = \sqrt3/(R_DC_L)$, not the start-up condition.
 
-### Step 7 — Check with the closed-loop poles
+### Step 5 — Check with the closed-loop poles
 
-The closed-loop poles are the roots of $1 - H(s) = 0$ (the loop has no external input):
+With no external input, the closed-loop poles are the roots of $1 - H(s) = 0$:
 
 $$
 \begin{aligned}
@@ -79,7 +63,7 @@ The cube roots of $-1$ are $-1$ and $e^{\pm j60^\circ} = \tfrac12 \pm j\tfrac{\s
 
 $$s_1 = -\omega_0(1 + A_0), \qquad s_{2,3} = \omega_0\left[\frac{A_0}{2} - 1 \pm j\frac{\sqrt3}{2}A_0\right].$$
 
-The complex pair crosses into the right half-plane when $A_0/2 - 1 > 0$, i.e. $A_0 > 2$. At exactly $A_0 = 2$ it sits on the $j\omega$ axis at $s = \pm j\sqrt3\,\omega_0$, which confirms both the gain condition and the frequency.
+The complex pair enters the right half-plane when $A_0/2 - 1 > 0$, i.e. $A_0 > 2$; at exactly $A_0 = 2$ it sits on the $j\omega$ axis at $s = \pm j\sqrt3\,\omega_0$, confirming both the gain condition and the frequency.
 
 | $R_D$ | $A_0 = g_mR_D$ | Loop gain at $\sqrt3\,\omega_0$, $A_0^3/8$ | Behaviour |
 |---|---|---|---|
@@ -95,8 +79,8 @@ $$R_{D,min} = \frac{2}{g_m} = 400\ \Omega,$$
 
 independent of $C_L$. In practice $R_D$ is chosen somewhat larger to guarantee start-up despite variations.
 
-**Common mistake.** Requiring a per-stage gain of 1 (giving $R_D = 200$ Ω). Unity gain would suffice only if the stages had no attenuation at the oscillation frequency; at $\sqrt3\,\omega_0$ each pole reduces the gain by a factor of 2.
+**Common mistake.** Requiring a per-stage gain of 1 ($R_D = 200$ Ω). At $\sqrt3\,\omega_0$ each pole reduces the stage gain by a factor of 2.
 
-**Common mistake.** Using 45° per stage, or 90°, which leads to a per-stage requirement of $\sqrt2$ (283 Ω) or to the claim that the ring cannot oscillate. Three inverting stages already provide 180° at DC; the poles must supply the remaining 180°, i.e. 60° each.
+**Common mistake.** Using 45° or 90° per stage, which leads to a per-stage requirement of $\sqrt2$ (283 Ω) or to the claim that the ring cannot oscillate. Three inversions already provide 180° at dc; the poles supply the remaining 180°, i.e. 60° each.
 
-**Common mistake.** Mixing up the total and the per-stage requirement: setting the per-stage gain to 8 (which gives 1.6 kΩ), or setting the total loop gain to 2 (per-stage gain $2^{1/3} = 1.26$, about 252 Ω). The condition is $A_0^3/8 \ge 1$, i.e. a total low-frequency loop gain $A_0^3 \ge 8$, which means $A_0 \ge 2$ per stage.
+**Common mistake.** Mixing up the total and per-stage requirements: a per-stage gain of 8 (1.6 kΩ), or a total loop gain of 2 (per-stage $2^{1/3} = 1.26$, about 252 Ω). The condition $A_0^3/8 \ge 1$ means a total low-frequency loop gain $A_0^3 \ge 8$, i.e. $A_0 \ge 2$ per stage.

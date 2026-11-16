@@ -1,10 +1,10 @@
 # Detailed solution - R617
 
-**Approach.** First find the device width from the offset specification, then the equilibrium overdrive voltage at a 1-mA tail current. Next derive the large-signal square-law characteristic of the differential pair, expand it in a power series, and compute the harmonics produced by a sinusoidal input. Because the pair is symmetric, the third harmonic dominates the THD, which leads to a simple condition on the input amplitude.
+**Approach.** Find the width from the offset specification and the equilibrium overdrive at the 1-mA tail current. Then expand the pair's large-signal square-law characteristic in a power series and find the harmonics of a sinusoidal input; the pair is symmetric, so the third harmonic sets the THD.
 
 ### Step 1 — Device width from the offset specification
 
-With threshold mismatch as the only mismatch, the input offset voltage of the pair equals the threshold mismatch. To carry equal currents with equal $W/L$, the two devices need equal overdrives, so their gate voltages must differ by $V_{TH1} - V_{TH2}$. Hence
+With threshold mismatch as the only mismatch, the offset equals the threshold mismatch:
 
 $$V_{OS} = \Delta V_{TH} = \frac{9\ \mathrm{mV\cdot\mu m}}{\sqrt{WL}} \le 5\ \mathrm{mV}.$$
 
@@ -24,73 +24,41 @@ $$\frac{W}{L} = \frac{6.48\ \mu\mathrm{m}}{0.5\ \mu\mathrm{m}} = 12.96 .$$
 
 ### Step 2 — Bias point: overdrive voltage and transconductance
 
-Define the device constant $\beta = \mu_nC_{ox}W/L$:
+With $\beta = \mu_nC_{ox}W/L$:
 
 $$\beta = (134\ \mu\mathrm{A/V^2})(12.96) = 1736.6\ \mu\mathrm{A/V^2} = 1.7366\ \mathrm{mA/V^2}.$$
 
-At equilibrium (zero differential input) the tail current $I_{SS} = 1$ mA splits equally, so each device carries
+At equilibrium each device carries $I_D = I_{SS}/2 = 0.5$ mA, so from $I_D = \tfrac12\beta V_{ov}^2$:
 
-$$I_D = \frac{I_{SS}}{2} = 0.5\ \mathrm{mA}.$$
-
-The **square-law saturation current** is $I_D = \tfrac12\beta V_{ov}^2$, where $V_{ov} = V_{GS} - V_{TH}$ is the overdrive voltage. Solve for $V_{ov}$:
-
-$$V_{ov} = \sqrt{\frac{2I_D}{\beta}} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{1.7366\ \mathrm{mA/V^2}}} = \sqrt{0.5758\ \mathrm{V^2}} = 0.759\ \mathrm{V}.$$
-
-Each device's transconductance at equilibrium is
+$$V_{ov} = \sqrt{\frac{2I_D}{\beta}} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{1.7366\ \mathrm{mA/V^2}}} = \sqrt{0.5758\ \mathrm{V^2}} = 0.759\ \mathrm{V},$$
 
 $$g_m = \beta V_{ov} = (1.7366\ \mathrm{mA/V^2})(0.759\ \mathrm{V}) = 1.318\ \mathrm{mS}$$
 
-(equivalently $g_m = 2I_D/V_{ov} = 1\ \mathrm{mA}/0.759\ \mathrm{V}$). A useful identity for later: since $I_{SS} = 2I_D = \beta V_{ov}^2$, we have $I_{SS}/\beta = V_{ov}^2$.
+(equivalently $g_m = 2I_D/V_{ov} = 1\ \mathrm{mA}/0.759\ \mathrm{V}$). Since $I_{SS} = 2I_D = \beta V_{ov}^2$, $I_{SS}/\beta = V_{ov}^2$.
 
 ### Step 3 — Large-signal characteristic of the differential pair
 
-Let $\Delta V = V_{in1} - V_{in2}$ be the differential input and $\Delta I = I_{D1} - I_{D2}$ the differential output current. Both devices are saturated and $\lambda$ is neglected. Each gate–source voltage follows from the square law, $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$, and the sources are common, so
+Let $\Delta V = V_{in1} - V_{in2}$ and $\Delta I = I_{D1} - I_{D2}$, with both devices saturated and $\lambda = 0$. The shared source gives $\Delta V = \sqrt{2I_{D1}/\beta} - \sqrt{2I_{D2}/\beta}$; squaring twice, with $I_{D1} + I_{D2} = I_{SS}$ and $4I_{D1}I_{D2} = I_{SS}^2 - \Delta I^2$, gives the standard characteristic
 
-$$\Delta V = V_{GS1} - V_{GS2} = \sqrt{\frac{2I_{D1}}{\beta}} - \sqrt{\frac{2I_{D2}}{\beta}} .$$
+$$\Delta I = \frac{\beta}{2}\,\Delta V\sqrt{\frac{4I_{SS}}{\beta} - \Delta V^2}.$$
 
-Square both sides:
-
-$$\Delta V^2 = \frac{2}{\beta}\left(I_{D1} + I_{D2} - 2\sqrt{I_{D1}I_{D2}}\right).$$
-
-Use KCL at the common source node, $I_{D1} + I_{D2} = I_{SS}$, and rearrange:
-
-$$\frac{\beta}{2}\Delta V^2 - I_{SS} = -2\sqrt{I_{D1}I_{D2}} .$$
-
-Square again and use $4I_{D1}I_{D2} = (I_{D1} + I_{D2})^2 - (I_{D1} - I_{D2})^2 = I_{SS}^2 - \Delta I^2$:
-
-$$\left(\frac{\beta}{2}\Delta V^2 - I_{SS}\right)^2 = I_{SS}^2 - \Delta I^2 .$$
-
-Solve for $\Delta I^2$:
-
-$$
-\begin{aligned}
-\Delta I^2 &= I_{SS}^2 - \frac{\beta^2}{4}\Delta V^4 + \beta I_{SS}\Delta V^2 - I_{SS}^2\\
-&= \frac{\beta^2}{4}\Delta V^2\left(\frac{4I_{SS}}{\beta} - \Delta V^2\right),\\
-\Delta I &= \frac{\beta}{2}\,\Delta V\sqrt{\frac{4I_{SS}}{\beta} - \Delta V^2}.
-\end{aligned}
-$$
-
-Now substitute $I_{SS}/\beta = V_{ov}^2$ from Step 2:
+Substituting $I_{SS}/\beta = V_{ov}^2$ from Step 2:
 
 $$\Delta I = \frac{\beta}{2}\,\Delta V\sqrt{4V_{ov}^2 - \Delta V^2} = \beta V_{ov}\,\Delta V\sqrt{1 - \frac{\Delta V^2}{4V_{ov}^2}} = g_m\,\Delta V\sqrt{1 - \frac{\Delta V^2}{4V_{ov}^2}} .$$
 
 This holds until one transistor turns off, at $|\Delta V| = \sqrt2\,V_{ov} = 1.073$ V; beyond that, $|\Delta I| = I_{SS}$.
 
-### Step 4 — Power series: why only odd harmonics appear
+### Step 4 — Power series: only odd harmonics
 
-Expand the square root for small $u = \Delta V^2/(4V_{ov}^2)$ using $\sqrt{1 - u} = 1 - \tfrac{u}{2} - \tfrac{u^2}{8} - \dots$:
+Expand with $\sqrt{1 - u} = 1 - \tfrac{u}{2} - \tfrac{u^2}{8} - \dots$, where $u = \Delta V^2/(4V_{ov}^2)$:
 
 $$\Delta I = g_m\left[\Delta V - \frac{\Delta V^3}{8V_{ov}^2} - \frac{\Delta V^5}{128\,V_{ov}^4} - \dots\right].$$
 
-The characteristic is an **odd function**: swapping the two inputs ($\Delta V \to -\Delta V$) simply swaps the two drain currents ($\Delta I \to -\Delta I$). An odd function contains only odd powers of $\Delta V$, so a symmetric pair produces **no even harmonics**. The dominant distortion is the third harmonic, from the $\Delta V^3$ term. The leading coefficient is $1/(8V_{ov}^2)$: the larger the overdrive, the more linear the pair.
+The characteristic is odd ($\Delta V \to -\Delta V$ swaps the drain currents), so a symmetric pair produces **no even harmonics**. The $\Delta V^3$ term dominates; its coefficient $1/(8V_{ov}^2)$ shows that a larger overdrive makes the pair more linear.
 
 ### Step 5 — Harmonics produced by a sinusoidal input
 
-Apply $\Delta V = V_m\cos\omega t$ and keep terms up to the cube. Use the trigonometric identity
-
-$$\cos^3\omega t = \frac34\cos\omega t + \frac14\cos3\omega t .$$
-
-Then
+Apply $\Delta V = V_m\cos\omega t$, keep terms up to the cube, and use $\cos^3\omega t = \tfrac34\cos\omega t + \tfrac14\cos3\omega t$:
 
 $$
 \begin{aligned}
@@ -99,15 +67,15 @@ $$
 \end{aligned}
 $$
 
-The ratio of the third-harmonic amplitude to the fundamental amplitude is the **third-harmonic distortion**:
+The third-harmonic distortion is
 
 $$\mathrm{HD_3} = \frac{g_mV_m^3/(32V_{ov}^2)}{g_mV_m\left(1 - \dfrac{3V_m^2}{32V_{ov}^2}\right)} \approx \frac{V_m^2}{32V_{ov}^2},$$
 
-where the small compression term $3V_m^2/(32V_{ov}^2)$ in the denominator has been neglected for now. The fifth and higher harmonics are smaller by further factors of order $(V_m/V_{ov})^2$, so
+neglecting for now the compression term $3V_m^2/(32V_{ov}^2)$. The fifth and higher harmonics are smaller by further factors of order $(V_m/V_{ov})^2$, so
 
 $$\mathrm{THD} = \frac{\sqrt{A_3^2 + A_5^2 + \dots}}{A_1} \approx \mathrm{HD_3}.$$
 
-With resistive (linear) loads the differential output voltage is $R_D\,\Delta I$, so it has the same THD as $\Delta I$.
+With resistive loads the differential output voltage $R_D\,\Delta I$ has the same THD as $\Delta I$.
 
 ### Step 6 — Amplitude for 1 % THD
 
@@ -127,7 +95,7 @@ $$V_m = 0.566\times0.759\ \mathrm{V} = 0.429\ \mathrm{V}.$$
 
 ### Step 7 — Refinement with the exact characteristic, and checks
 
-The estimate above neglected the compression of the fundamental and the $\Delta V^5$ term. Both *increase* the distortion slightly:
+The two neglected effects both slightly *increase* the distortion:
 
 - the fundamental shrinks by the factor $1 - 3V_m^2/(32V_{ov}^2) \approx 0.97$;
 - the $\Delta V^5$ term adds a further $\cos3\omega t$ component of the same sign, $5V_m^5/(2048\,V_{ov}^4)$ (relative to $g_m$).
@@ -143,14 +111,11 @@ A numerical Fourier analysis of the exact characteristic $\Delta I = g_m\Delta V
 
 So the exact 1 % point is at $V_m/V_{ov} = 0.551$:
 
-$$V_m = 0.551\times0.759\ \mathrm{V} = 0.418\ \mathrm{V}.$$
+$$V_m = 0.551\times0.759\ \mathrm{V} = 0.418\ \mathrm{V},$$
 
-The simple formula is accurate to about 3 %, which is good enough for design.
+and the simple formula is accurate to about 3 %.
 
-**Checks.**
-
-- No device turns off: $V_m = 0.42$ V is well below $\sqrt2\,V_{ov} = 1.07$ V, so the expression of Step 3 applies over the whole cycle.
-- The 5-mV offset would add a tiny even-order component, but the problem tells us to treat the pair as otherwise symmetric, so it is ignored.
+**Checks.** $V_m = 0.42$ V is well below $\sqrt2\,V_{ov} = 1.07$ V, so no device turns off and the Step 3 expression holds over the whole cycle. The 5-mV offset would add a tiny even-order component, ignored since the pair is otherwise symmetric.
 
 ### Result
 
@@ -164,8 +129,8 @@ $$V_m \approx \sqrt{0.32}\times0.759\ \mathrm{V} \approx 0.43\ \mathrm{V}\ \text
 
 (about 0.85 V peak-to-peak). The exact square-law characteristic gives 0.418 V, so the answer is **about 0.42–0.43 V peak**.
 
-**Common mistake.** Forgetting the factor $\tfrac14$ from $\cos^3\omega t = \tfrac34\cos\omega t + \tfrac14\cos3\omega t$ and writing $\mathrm{HD_3} = V_m^2/(8V_{ov}^2)$. The coefficient of $\Delta V^3$ is not the harmonic amplitude; only a quarter of the cubic term appears at $3\omega$. The wrong formula gives $V_m = \sqrt{0.08}\times0.759 = 0.21$ V, half the correct swing.
+**Common mistake.** Dropping the factor $\tfrac14$ of $\cos^3\omega t$ and writing $\mathrm{HD_3} = V_m^2/(8V_{ov}^2)$: only a quarter of the cubic term appears at $3\omega$. The wrong formula gives $V_m = \sqrt{0.08}\times0.759 = 0.21$ V, half the correct swing.
 
-**Common mistake.** Using a second-harmonic formula. A symmetric differential pair has an odd transfer characteristic, so its even harmonics cancel; the distortion is set by the third harmonic.
+**Common mistake.** Using a second-harmonic formula. The symmetric pair's characteristic is odd, so its even harmonics cancel and the third harmonic sets the distortion.
 
-**Common mistake.** Treating THD as a power ratio, $(A_3/A_1)^2 = 0.01$, which gives $A_3/A_1 = 10\%$ and $V_m \approx 1.36$ V. The problem defines THD as the rms sum of the harmonic *amplitudes* relative to the fundamental. Besides, 1.36 V exceeds $\sqrt2\,V_{ov} = 1.07$ V, at which the pair is already fully switched.
+**Common mistake.** Treating THD as a power ratio, $(A_3/A_1)^2 = 0.01$, which gives $A_3/A_1 = 10\%$ and $V_m \approx 1.36$ V. The problem defines THD by *amplitudes*, and 1.36 V exceeds $\sqrt2\,V_{ov} = 1.07$ V, where the pair is already fully switched.
