@@ -1,56 +1,45 @@
 # Detailed solution - R090
 
-**Approach.** This is a common-source (CS) stage with source degeneration $R_S$. Follow $M_1$ from cutoff through saturation into triode. In saturation, describe the curve parametrically through the drain current, using the threshold raised by the body effect ($V_{SB} = I_DR_S$), and find the slope from the small-signal model of a degenerated stage. In triode, find the floor that $V_{out}$ approaches. A numerical example at the end shows the shape.
+**Approach.** This is a common-source (CS) stage with source degeneration $R_S$. Follow $M_1$ from cutoff through saturation into triode. In saturation, describe the curve parametrically through $I_D$, with the threshold raised by the body effect ($V_{SB} = I_DR_S$), and find the slope from the small-signal model of a degenerated stage. In triode, find the floor that $V_{out}$ approaches. A numerical example shows the shape.
 
-### Step 1 — The circuit and its basic relations
+### Step 1 — Basic relations and cutoff
 
-From the figure: $R_D$ connects $V_{DD} = 3$ V to the drain of $M_1$ (the output); $V_{in}$ drives the gate; $R_S$ connects the source to ground; the bulk is at ground. With drain current $I_D$ (gate current is zero):
+With drain current $I_D$:
 
 $$
 \begin{aligned}
 V_S &= I_DR_S &&\text{(source voltage)},\\
 V_{out} &= V_{DD} - I_DR_D &&\text{(drain voltage)},\\
 V_{GS} &= V_{in} - I_DR_S,\\
-V_{SB} &= V_S - 0 = I_DR_S .
+V_{SB} &= V_S - 0 = I_DR_S ,
 \end{aligned}
 $$
 
-The source sits above the grounded bulk, so the **body effect** raises the threshold as the current grows:
+so the body effect raises the threshold as the current grows:
 
 $$V_{TH}(V_S) = 0.7 + 0.45\left(\sqrt{0.9 + V_S} - \sqrt{0.9}\right)\ \mathrm{V}.$$
 
-### Step 2 — $M_1$ off: $V_{in} \le 0.7$ V
+With no current, $V_S = 0$ and $V_{TH} = V_{TH0} = 0.7$ V exactly. So $M_1$ is off for $V_{in} \le 0.7$ V, where
 
-With no current, $V_S = 0$, so $V_{SB} = 0$ and $V_{TH} = V_{TH0} = 0.7$ V exactly. $M_1$ is off as long as $V_{in} \le 0.7$ V, and then no current flows in $R_D$:
+$$V_{out} = V_{DD} = 3\ \mathrm{V},$$
 
-$$V_{out} = V_{DD} = 3\ \mathrm{V}.$$
+and turn-on is exactly at $V_{in} = V_{TH0} = 0.7$ V.
 
-The turn-on point is exactly $V_{in} = V_{TH0} = 0.7$ V, because at the moment of turn-on the source is still at 0 V.
+### Step 2 — Saturation: the large-signal equations
 
-### Step 3 — Saturation: the large-signal equations
-
-Just after turn-on the drain is near $V_{DD}$, far above the gate, so $M_1$ is **saturated**. The square law gives $I_D = \frac12\beta(V_{GS} - V_{TH})^2$, so $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$. Adding the source voltage, $V_{in} = V_{GS} + V_S$:
+Just after turn-on the drain is near $V_{DD}$, far above the gate, so $M_1$ is **saturated** and $V_{GS} = V_{TH} + \sqrt{2I_D/\beta}$. Adding $V_S$:
 
 $$V_{in} = V_{TH}(I_DR_S) + \sqrt{\frac{2I_D}{\beta}} + I_DR_S, \qquad V_{out} = V_{DD} - R_DI_D .$$
 
-This is a **parametric description**: choosing a current $I_D$ gives one point $(V_{in}, V_{out})$ directly, with no equation to solve. It shows how the input voltage is shared:
+Choosing $I_D$ gives one point $(V_{in}, V_{out})$ directly. The input is shared between $V_{TH}$ (a bit above 0.7 V, rising with the current), the overdrive (growing only as $\sqrt{I_D}$) and the drop across $R_S$ (growing linearly). At larger currents the $I_DR_S$ term dominates, so most of each input increment appears across $R_S$.
 
-- $V_{TH}$, a bit above 0.7 V and rising with the current;
-- the overdrive $\sqrt{2I_D/\beta}$, which grows only as $\sqrt{I_D}$;
-- the drop across $R_S$, which grows linearly with $I_D$.
+### Step 3 — Slope in saturation (small-signal model)
 
-At larger currents the $I_DR_S$ term dominates, so most of each input increment appears across $R_S$ rather than across the gate–source junction.
-
-### Step 4 — Slope in saturation (small-signal model)
-
-The small-signal model has three nodes: $in$ (driven by $v_{in}$), the source $s$, and the drain $out$.
-
-- $R_D$ from $out$ to AC ground; $R_S$ from $s$ to ground.
-- $M_1$: a current source $g_mv_{gs}$ with $v_{gs} = v_{in} - v_s$, plus a body-effect source $g_{mb}v_{bs}$ with $v_{bs} = 0 - v_s$, both flowing from $out$ to $s$. Here $g_m = \sqrt{2\beta I_D}$, and $g_{mb} = \eta g_m$ with $\eta = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$.
+In the small-signal model, $R_D$ runs from $out$ to ac ground and $R_S$ from the source $s$ to ground. $M_1$ contributes $g_mv_{gs}$ with $v_{gs} = v_{in} - v_s$ and $g_{mb}v_{bs}$ with $v_{bs} = -v_s$, both from $out$ to $s$, where $g_m = \sqrt{2\beta I_D}$ and $g_{mb} = \eta g_m$ with $\eta = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$.
 
 <!-- diagram: diagram-01.cir -->
 
-Let $i$ be the small-signal drain current. It flows through $R_S$, so $v_s = iR_S$:
+The small-signal drain current $i$ flows through $R_S$, so $v_s = iR_S$:
 
 $$
 \begin{aligned}
@@ -60,32 +49,32 @@ i &= \frac{g_m}{1 + (g_m + g_{mb})R_S}\,v_{in} .
 \end{aligned}
 $$
 
-The output is $v_{out} = -iR_D$, so
+With $v_{out} = -iR_D$,
 
 $$\frac{dV_{out}}{dV_{in}} = -\frac{g_mR_D}{1 + (g_m + g_{mb})R_S} .$$
 
-- **At turn-on**, $I_D = 0$, so $g_m = 0$: the slope is **zero**, and the curve leaves the $V_{DD}$ level tangentially.
-- **As the current grows**, $g_m$ rises and the slope steepens. Once $g_mR_S \gg 1$, the 1 in the denominator is negligible:
+- **At turn-on**, $g_m = 0$: the slope is **zero**, and the curve leaves the $V_{DD}$ level tangentially.
+- **As the current grows**, the slope steepens; once $g_mR_S \gg 1$,
 $$\frac{dV_{out}}{dV_{in}} \approx -\frac{g_mR_D}{(1 + \eta)g_mR_S} = -\frac{R_D}{(1 + \eta)R_S} .$$
-The curve becomes **nearly a straight line of slope $\approx -R_D/R_S$** (reduced by the factor $1 + \eta \approx 1.2$). Degeneration makes the gain depend on a *resistor ratio* instead of on $g_m$, which linearizes the characteristic.
+The curve becomes **nearly a straight line of slope $\approx -R_D/R_S$** (reduced by $1 + \eta \approx 1.2$): degeneration makes the gain a resistor ratio, which linearizes the characteristic.
 
-### Step 5 — Entry into the triode region
+### Step 4 — Entry into the triode region
 
-$M_1$ leaves saturation when its drain drops a threshold below its gate:
+$M_1$ leaves saturation when
 
-$$V_{out} = V_{in} - V_{TH}(V_S), \qquad\text{equivalently}\qquad V_{DS} = V_{ov}:\quad V_{DD} - (R_D + R_S)I_D = \sqrt{\frac{2I_D}{\beta}} .$$
+$$V_{out} = V_{in} - V_{TH}(V_S), \qquad\text{equivalently}\qquad V_{DS} = V_{ov}:\quad V_{DD} - (R_D + R_S)I_D = \sqrt{\frac{2I_D}{\beta}} ,$$
 
-The second form follows from $V_{DS} = V_{out} - V_S = V_{DD} - (R_D + R_S)I_D$ and $V_{ov} = \sqrt{2I_D/\beta}$, and it can be solved directly for the boundary current.
+using $V_{DS} = V_{out} - V_S = V_{DD} - (R_D + R_S)I_D$; the second form can be solved directly for the boundary current.
 
-This happens inside the 0–3 V sweep only if $R_D$ is large enough to pull the drain down that far. At $V_{in} = V_{DD}$ the device is still saturated if the drop across $R_D$ is smaller than a threshold, $R_DI_D < V_{TH}$; then there is no triode segment.
+This happens within the sweep only if $R_D$ is large enough. If at $V_{in} = V_{DD}$ the drop across $R_D$ is still below a threshold, $R_DI_D < V_{TH}$, the device stays saturated and there is no triode segment.
 
-### Step 6 — Triode: the floor of the curve
+### Step 5 — Triode: the floor of the curve
 
-Beyond the boundary the channel behaves increasingly like a small resistor. The slope magnitude now **decreases**: in triode the device has a channel conductance $g_{ds} = \beta(V_{GS} - V_{TH} - V_{DS})$, which enters the small-signal analysis as an extra term $g_{ds}(v_{out} - v_s)$ in the device current, giving
+In triode the channel conductance $g_{ds} = \beta(V_{GS} - V_{TH} - V_{DS})$ adds a term $g_{ds}(v_{out} - v_s)$ to the device current, and with $g_m = \beta V_{DS}$,
 
-$$\frac{dV_{out}}{dV_{in}} = -\frac{g_mR_D}{1 + (g_m + g_{mb})R_S + g_{ds}(R_D + R_S)} ,$$
+$$\frac{dV_{out}}{dV_{in}} = -\frac{g_mR_D}{1 + (g_m + g_{mb})R_S + g_{ds}(R_D + R_S)} .$$
 
-with $g_m = \beta V_{DS}$. As $g_{ds}$ grows, the slope tends to zero.
+As $g_{ds}$ grows, the slope magnitude **decreases** toward zero.
 
 **The floor.** The drain cannot go below the source, $V_{DS} \ge 0$, so
 
@@ -97,9 +86,9 @@ V_{out} = V_{DD} - I_DR_D &\ge V_{DD} - \frac{V_{DD}R_D}{R_D + R_S} = \frac{V_{D
 \end{aligned}
 $$
 
-The limit is reached only if $M_1$ becomes a perfect short, which needs an infinite gate voltage. So **$V_{out}$ approaches $V_{DD}R_S/(R_D + R_S)$ from above and stays somewhat above it at $V_{in} = V_{DD}$**. It never reaches 0 V.
+The limit needs $M_1$ to be a perfect short (an infinite gate voltage), so **$V_{out}$ approaches $V_{DD}R_S/(R_D + R_S)$ from above and stays somewhat above it at $V_{in} = V_{DD}$**; it never reaches 0 V.
 
-### Step 7 — A numerical example
+### Step 6 — A numerical example
 
 For illustration take $\beta = 10\ \mathrm{mA/V^2}$, $R_D = 2\ \mathrm{k}\Omega$ and $R_S = 1\ \mathrm{k}\Omega$. Then the floor is $3\times1/(1 + 2) = 1$ V and the limiting slope is about $-2/1.18 \approx -1.7$.
 
@@ -115,7 +104,7 @@ V_{out} &= 3 - (2\ \mathrm{k}\Omega)(0.5\ \mathrm{mA}) = 2.0\ \mathrm{V}.
 \end{aligned}
 $$
 
-Saturation check: $V_{in} - V_{TH} = 0.816$ V is below $V_{out} = 2.0$ V. ✓ Slope: $g_m = \sqrt{2(10\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})} = 3.16$ mS, $\eta = 0.45/(2\times1.1832) = 0.190$, so $dV_{out}/dV_{in} = -(3.16)(2)/[1 + (1.190)(3.16)] = -6.32/4.76 = -1.33$.
+$V_{in} - V_{TH} = 0.816$ V $< V_{out} = 2.0$ V, so $M_1$ is saturated. Slope: $g_m = \sqrt{2(10\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})} = 3.16$ mS, $\eta = 0.45/(2\times1.1832) = 0.190$, so $dV_{out}/dV_{in} = -(3.16)(2)/[1 + (1.190)(3.16)] = -6.32/4.76 = -1.33$.
 
 **Triode boundary.** With $I_D$ in mA, $3 - 3I_D = \sqrt{0.2I_D}$; squaring gives $9I_D^2 - 18.2I_D + 9 = 0$, so $I_D = (18.2 - \sqrt{7.24})/18 = 0.862$ mA. Then $V_{out} = 3 - 1.723 = 1.277$ V and $V_{in} = V_{TH}(0.862) + \sqrt{0.172} + 0.862 = 0.870 + 0.415 + 0.862 = 2.147$ V.
 
@@ -141,8 +130,8 @@ An **inverting** characteristic:
 - **Triode** once $V_{out} < V_{in} - V_{TH}(V_S)$ (drain below gate minus threshold), if $R_D$ is large enough for this to happen within the sweep. The slope magnitude then decreases, and $V_{out}$ approaches the floor $V_{DD}R_S/(R_S + R_D)$ (the value with $M_1$ a short), staying somewhat above it at $V_{in} = V_{DD}$.
 - **Transition points:** $V_{in} = 0.7$ V; $V_{out} = V_{in} - V_{TH}$; lower bound $V_{DD}R_S/(R_D + R_S)$.
 
-**Common mistake.** Drawing the curve like an undegenerated CS stage, falling toward 0 V. The current can never exceed $V_{DD}/(R_D + R_S)$, so $V_{out}$ cannot go below $V_{DD}R_S/(R_D + R_S)$.
+**Common mistake.** Drawing the curve falling toward 0 V, as for an undegenerated CS stage. The current can never exceed $V_{DD}/(R_D + R_S)$, so $V_{out}$ cannot go below $V_{DD}R_S/(R_D + R_S)$.
 
-**Common mistake.** Claiming a large gain $g_mR_D$ that does not depend on $R_S$. With degeneration the current change is set mostly by $R_S$: the slope is $-g_mR_D/[1 + (g_m + g_{mb})R_S] \approx -R_D/[(1 + \eta)R_S]$ for $g_mR_S \gg 1$.
+**Common mistake.** Claiming a large gain $g_mR_D$ independent of $R_S$. With degeneration the slope is $-g_mR_D/[1 + (g_m + g_{mb})R_S] \approx -R_D/[(1 + \eta)R_S]$ for $g_mR_S \gg 1$.
 
-**Common mistake.** Shifting the turn-on point above 0.7 V because of the body effect. At turn-on no current flows, so $V_S = 0$ and $V_{TH} = V_{TH0}$. The body effect matters only once current flows, through $V_{SB} = I_DR_S$.
+**Common mistake.** Shifting the turn-on point above 0.7 V because of the body effect. At turn-on no current flows, so $V_S = 0$ and $V_{TH} = V_{TH0}$.

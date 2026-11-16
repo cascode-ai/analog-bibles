@@ -1,52 +1,26 @@
 # Detailed solution - R075
 
-**Approach.** With $W$ and $L$ fixed, the device constant $\beta = \mu_nC_{ox}W/L$ is fixed, so both $g_m$ and $I_D$ change with $V_{GS}$. Write $g_m$ and $r_O = 1/(\lambda I_D)$ in terms of the overdrive, multiply, and describe the resulting curve versus $V_{GS}$.
+**Approach.** With $W$ and $L$ fixed, $\beta = \mu_nC_{ox}W/L$ and $\lambda$ are fixed, so both $g_m$ and $I_D$ change with $V_{GS}$. Write $g_m$ and $r_O = 1/(\lambda I_D)$ in terms of the overdrive $V_{ov} = V_{GS} - V_{TH}$, multiply, and describe the resulting curve versus $V_{GS}$.
 
-### Step 1 — What is held constant
+### Step 1 — The two factors in terms of the overdrive
 
-- $L$ is constant, so $\lambda$ (which scales as $1/L$) is constant.
-- $W$ is constant, so the device constant
-$$\beta = \mu_nC_{ox}\frac{W}{L}$$
-is constant. Here $\mu_nC_{ox}$ is the process transconductance parameter.
-- The drain current is *not* fixed: it follows the square law as $V_{GS}$ changes.
+$\lambda$ (which scales as $1/L$) and $\beta = \mu_nC_{ox}W/L$ are constant, while the drain current follows the square law as $V_{GS}$ changes:
 
-Let $V_{ov} = V_{GS} - V_{TH}$ be the overdrive voltage ($V_{TH}$ is the threshold voltage).
+$$I_D = \frac12\,\beta\,V_{ov}^2, \qquad g_m = \frac{\partial I_D}{\partial V_{GS}} = \beta V_{ov}, \qquad r_O = \frac{1}{\lambda I_D} = \frac{1}{\lambda\cdot\tfrac12\beta V_{ov}^2} = \frac{2}{\lambda\beta V_{ov}^2} .$$
 
-### Step 2 — The two factors in terms of the overdrive
+So $g_m$ grows **linearly** with the overdrive, $I_D$ grows **quadratically**, and $r_O$ **falls as $1/V_{ov}^2$**.
 
-**Drain current** (square law, saturation):
+### Step 2 — The intrinsic gain
 
-$$I_D = \frac12\,\beta\,V_{ov}^2 .$$
+Cancelling $\beta$ and one factor of $V_{ov}$:
 
-It grows **quadratically** with the overdrive.
+$$g_mr_O = \beta V_{ov}\cdot\frac{2}{\lambda\beta V_{ov}^2} = \frac{2}{\lambda V_{ov}} = \frac{2}{\lambda\,(V_{GS} - V_{TH})} .$$
 
-**Transconductance** (derivative of $I_D$ with respect to $V_{GS}$):
+Raising $V_{GS}$ increases $g_m$ in proportion to the overdrive, but the output conductance $1/r_O = \lambda I_D$ in proportion to its *square*, so the product falls as $1/V_{ov}$.
 
-$$g_m = \frac{\partial I_D}{\partial V_{GS}} = \beta V_{ov} .$$
+This is exactly the expression found when $I_D$ is held constant and $W$ is adjusted: for any square-law device $g_mr_O = (2I_D/V_{ov})\cdot1/(\lambda I_D) = 2/(\lambda V_{ov})$, which depends only on the overdrive (and $\lambda$), whatever combination of $W$ and $I_D$ produces it.
 
-It grows **linearly** with the overdrive.
-
-**Output resistance:**
-
-$$r_O = \frac{1}{\lambda I_D} = \frac{1}{\lambda\cdot\tfrac12\beta V_{ov}^2} = \frac{2}{\lambda\beta V_{ov}^2} .$$
-
-It **falls as $1/V_{ov}^2$**, because the current rises.
-
-### Step 3 — The intrinsic gain
-
-Multiply the two:
-
-$$g_mr_O = \beta V_{ov}\cdot\frac{2}{\lambda\beta V_{ov}^2} .$$
-
-Cancel $\beta$ and one factor of $V_{ov}$:
-
-$$g_mr_O = \frac{2}{\lambda V_{ov}} = \frac{2}{\lambda\,(V_{GS} - V_{TH})} .$$
-
-**Intuition.** Raising $V_{GS}$ increases $g_m$ in proportion to the overdrive, but it increases the current, and with it the output conductance $1/r_O = \lambda I_D$, in proportion to the overdrive *squared*. The loss in $r_O$ outweighs the gain in $g_m$, so the product falls as $1/V_{ov}$.
-
-**Same curve as at constant current.** This is exactly the expression found when $I_D$ is held constant and $W$ is adjusted. The reason is that for any square-law device $g_mr_O = (2I_D/V_{ov})\cdot1/(\lambda I_D) = 2/(\lambda V_{ov})$: the intrinsic gain depends only on the overdrive (and $\lambda$), whatever combination of $W$ and $I_D$ produces that overdrive.
-
-### Step 4 — Shape of the curve versus $V_{GS}$
+### Step 3 — Shape of the curve versus $V_{GS}$
 
 - **Decreasing hyperbola**, with $g_mr_O\cdot(V_{GS} - V_{TH}) = 2/\lambda$ constant.
 - **Vertical asymptote** at $V_{GS} = V_{TH}$ (in the square-law model); **horizontal asymptote** $g_mr_O \to 0$ for large $V_{GS}$.
@@ -72,13 +46,13 @@ $$
 
 $g_m$ increases tenfold over this range while $r_O$ drops a hundredfold, so the gain falls tenfold.
 
-### Step 5 — Behaviour near threshold
+### Step 4 — Behaviour near threshold
 
 Close to $V_{TH}$ the device leaves strong inversion. In weak inversion $g_m = I_D/(\zeta V_T)$ (subthreshold slope factor $\zeta \approx 1.5$, thermal voltage $V_T \approx 26$ mV), so with $r_O = 1/(\lambda I_D)$:
 
 $$g_mr_O \approx \frac{1}{\lambda\zeta V_T} \approx \frac{1}{(0.1)(1.5)(0.026)} \approx 256 .$$
 
-The real curve therefore levels off at this value instead of diverging; the square-law hyperbola reaches it at $V_{ov} \approx 2\zeta V_T \approx 78$ mV. In this region the current, and hence the speed, is very low.
+The real curve levels off at this value instead of diverging; the square-law hyperbola reaches it at $V_{ov} \approx 2\zeta V_T \approx 78$ mV. The current, and hence the speed, is very low there.
 
 ### Result
 
@@ -90,4 +64,4 @@ a decreasing hyperbola versus $V_{GS}$ with a vertical asymptote at $V_{GS} = V_
 
 **Common mistake.** Concluding that the intrinsic gain rises with $V_{GS}$ because $g_m$ rises. The current rises faster (as $V_{ov}^2$), and $r_O = 1/(\lambda I_D)$ falls accordingly, so the product decreases.
 
-**Common mistake.** Treating $r_O$ as constant at fixed $W$. $r_O$ depends on the drain current, which changes with $V_{GS}$ when the width is fixed; only at constant current is $r_O$ constant.
+**Common mistake.** Treating $r_O$ as constant at fixed $W$. With the width fixed, the drain current, and hence $r_O$, changes with $V_{GS}$; only at constant current is $r_O$ constant.

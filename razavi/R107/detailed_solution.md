@@ -1,23 +1,16 @@
 # Detailed solution - R107
 
-**Approach.** $R_1$ connects the common drain node to the common gate node, and gates draw no current, so $R_1$ carries no DC current and both gates sit at $V_X$. Both transistors are therefore diode-connected (gate tied to drain), so each is saturated whenever it conducts. Write KCL at the drain node, $I_X = I_{D1} - I_{D2}$, and evaluate it in the three ranges of $V_X$ set by the two turn-on/turn-off points, 0.7 V and $V_{DD} - 0.8 = 2.2$ V.
+**Approach.** $R_1$ connects the common drain node to the common gate node, and gates draw no current, so $R_1$ carries no DC current and both gates sit at $V_X$. Both transistors are then diode-connected and saturated whenever they conduct. KCL at the drain node gives $I_X = I_{D1} - I_{D2}$, evaluated in the three ranges of $V_X$ set by 0.7 V and $V_{DD} - 0.8 = 2.2$ V.
 
-### Step 1 — The circuit: $R_1$ carries no current
+### Step 1 — $R_1$ carries no current
 
-From the figure: $M_2$ (PMOS) has source at $V_{DD} = 3$ V and drain at node $X$; $M_1$ (NMOS) has source at ground and drain at node $X$. The two gates are tied together at node $G$, which is connected to $X$ through $R_1$. The test source $V_X$ drives $X$, and $I_X$ flows into $X$.
-
-The only path into or out of node $G$ is through $R_1$; the gates themselves draw no DC current. KCL at $G$ therefore forces the current in $R_1$ to be zero, so there is no voltage across it:
+The common gate node is connected only to $R_1$ and to the gates, which draw no DC current, so the current in $R_1$ is zero and
 
 $$V_G = V_X .$$
 
-Both devices behave as **diode-connected** transistors:
+Both devices are therefore **diode-connected**, $V_{GS1} = V_{DS1} = V_X$ and $V_{SG2} = V_{SD2} = 3 - V_X$, so each is **saturated whenever it is on**.
 
-- **$M_1$:** $V_{GS1} = V_{DS1} = V_X$.
-- **$M_2$:** $V_{SG2} = V_{SD2} = 3 - V_X$.
-
-**Saturation.** For each device the drain–source voltage equals the gate–source voltage, which is larger than the overdrive, so each is **saturated whenever it is on**.
-
-### Step 2 — Device currents
+### Step 2 — Device currents and KCL
 
 $$
 \begin{aligned}
@@ -26,7 +19,7 @@ I_{D2} &= \tfrac12\beta_p(3 - V_X - 0.8)^2 = \tfrac12\beta_p(2.2 - V_X)^2 &&\tex
 \end{aligned}
 $$
 
-**KCL at $X$.** Into $X$: $I_X$ and $M_2$'s drain current (flowing from $V_{DD}$). Out of $X$: $M_1$'s drain current. Hence
+$I_X$ and $M_2$'s drain current flow into the drain node, and $M_1$'s drain current flows out:
 
 $$I_X = I_{D1} - I_{D2} .$$
 
@@ -34,9 +27,9 @@ $$I_X = I_{D1} - I_{D2} .$$
 
 **(a) $0 \le V_X \le 0.7$ V: only $M_2$ conducts.**
 
-$$I_X = -\tfrac12\beta_p(2.2 - V_X)^2 .$$
+$$I_X = -\tfrac12\beta_p(2.2 - V_X)^2 ,$$
 
-$M_2$ pushes current into the test source, so $I_X$ is negative. End values:
+negative ($M_2$ pushes current into the test source), with
 
 $$
 \begin{aligned}
@@ -49,17 +42,17 @@ $$
 
 $$I_X = \tfrac12\beta_n(V_X - 0.7)^2 - \tfrac12\beta_p(2.2 - V_X)^2 .$$
 
-**Zero crossing:** $I_X = 0$ when the two currents are equal. Taking square roots of both (positive) overdrives:
+**Zero crossing**, from equal currents and positive overdrives:
 
 $$
 \begin{aligned}
 \sqrt{\beta_n}(V_X - 0.7) &= \sqrt{\beta_p}(2.2 - V_X)\\
 V_X(\sqrt{\beta_n} + \sqrt{\beta_p}) &= 0.7\sqrt{\beta_n} + 2.2\sqrt{\beta_p}\\
-V_{X0} &= \frac{0.7\sqrt{\beta_n} + 2.2\sqrt{\beta_p}}{\sqrt{\beta_n} + \sqrt{\beta_p}} .
+V_{X0} &= \frac{0.7\sqrt{\beta_n} + 2.2\sqrt{\beta_p}}{\sqrt{\beta_n} + \sqrt{\beta_p}} ,
 \end{aligned}
 $$
 
-This is the voltage the node settles at with the source removed (the inverter's switching threshold with its input tied to its output). For $\beta_n = \beta_p = \beta$, $V_{X0} = (0.7 + 2.2)/2 = 1.45$ V, and the segment is a straight line:
+the voltage the node settles at with the source removed (the switching threshold of an inverter with its input tied to its output). For $\beta_n = \beta_p = \beta$, $V_{X0} = (0.7 + 2.2)/2 = 1.45$ V, and the segment is a straight line:
 
 $$
 \begin{aligned}
@@ -77,11 +70,11 @@ from $\tfrac12\beta_n(1.5)^2 = 1.125\,\beta_n$ at 2.2 V to $\tfrac12\beta_n(2.3)
 
 ### Step 4 — Slope and smoothness
 
-The slope (the small-signal conductance seen by the source) is the sum of the conductances of the two diode-connected devices, each of which looks like a resistance $1/g_m$:
+The slope is the sum of the conductances $1/g_m$ of the two diode-connected devices:
 
 $$\frac{dI_X}{dV_X} = \beta_n(V_X - 0.7)\big|_{V_X > 0.7} + \beta_p(2.2 - V_X)\big|_{V_X < 2.2} = g_{m1} + g_{m2} > 0 .$$
 
-At 0.7 V the newly conducting $M_1$ has $g_{m1} = 0$, and at 2.2 V the turning-off $M_2$ has $g_{m2} = 0$, so the slope is **continuous** at both transition points: the curve has no sharp corners, only changes of curvature. It is concave in segment (a), as $M_2$'s $g_m$ shrinks; linear for equal $\beta$ in (b); and convex in (c), as $M_1$'s $g_m$ grows. $I_X$ **increases monotonically** over the whole range.
+At 0.7 V the newly conducting $M_1$ has $g_{m1} = 0$, and at 2.2 V the turning-off $M_2$ has $g_{m2} = 0$, so the slope is **continuous** at both transition points: no sharp corners, only changes of curvature (concave in (a), linear for equal $\beta$ in (b), convex in (c)). $I_X$ **increases monotonically** over the whole range.
 
 ### Step 5 — Numbers for $\beta_n = \beta_p = 1\ \mathrm{mA/V^2}$
 
@@ -110,8 +103,8 @@ over the range where each conducts.
 - **$2.2 \le V_X \le 3$ V:** $M_2$ off; $I_X = \tfrac12\beta_n(V_X - 0.7)^2$, from $1.125\beta_n$ to $2.645\beta_n$ at 3 V.
 - **Transition points:** 0.7 V ($M_1$ turns on), 2.2 V ($M_2$ turns off), and the zero crossing.
 
-**Common mistake.** Assuming a DC current through $R_1$, or a voltage drop across it. The gate node has no other connection, and gates draw no DC current, so the current in $R_1$ is zero and $V_G = V_X$ exactly. ($R_1$ matters only for signals, when gate capacitance draws current.)
+**Common mistake.** Assuming a DC current through, or a voltage drop across, $R_1$. Gates draw no DC current, so $V_G = V_X$ exactly ($R_1$ matters only for signals, when gate capacitance draws current).
 
-**Common mistake.** Treating the devices as being in triode. With the gate at the same voltage as the drain, $V_{DS} = V_{GS} > V_{GS} - V_{TH}$ for the NMOS (and likewise for the PMOS), so each device is saturated whenever it conducts.
+**Common mistake.** Putting the devices in triode. With gate and drain at the same voltage, $V_{DS} = V_{GS} > V_{GS} - V_{TH}$, so each is saturated whenever it conducts.
 
-**Common mistake.** Drawing $I_X$ decreasing with $V_X$, or with the wrong sign at the ends. At low $V_X$ the PMOS pushes current *into* the test source (negative $I_X$); at high $V_X$ the NMOS draws current *from* it (positive $I_X$). In between $I_X$ rises monotonically.
+**Common mistake.** Drawing $I_X$ decreasing with $V_X$, or with the wrong sign at the ends. At low $V_X$ the PMOS pushes current *into* the test source (negative $I_X$); at high $V_X$ the NMOS draws current *from* it.

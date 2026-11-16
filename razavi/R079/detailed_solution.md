@@ -1,18 +1,14 @@
 # Detailed solution - R079
 
-**Approach.** The negative bulk voltage reverse-biases the source–bulk junction, and through the body effect it raises the threshold voltage. Compute the new $V_{TH}$ and the reduced overdrive, then evaluate the intrinsic gain $g_m r_{ds}$ in the triode region and in saturation exactly as for a device without body effect, using the square-law equations with the new threshold.
+**Approach.** The negative bulk voltage raises the threshold through the body effect. Compute the new $V_{TH}$ and the reduced overdrive, then evaluate the intrinsic gain $g_m r_{ds}$ in triode and in saturation with the square-law equations and the new threshold.
 
 ### Step 1 — Threshold voltage with the body effect
 
-The source is at 0 V and the bulk at $-1$ V, so the **source–bulk voltage** is
+$$V_{SB} = V_S - V_B = 0 - (-1\ \mathrm{V}) = +1\ \mathrm{V},$$
 
-$$V_{SB} = V_S - V_B = 0 - (-1\ \mathrm{V}) = +1\ \mathrm{V} .$$
-
-A positive $V_{SB}$ means the source–bulk pn junction is reverse-biased. The depletion charge under the channel grows, so more gate voltage is needed to form the channel. This is the **body effect**:
+which reverse-biases the source–bulk junction and raises the threshold:
 
 $$V_{TH} = V_{TH0} + \gamma\left(\sqrt{2|\phi_F| + V_{SB}} - \sqrt{2|\phi_F|}\right),$$
-
-where $V_{TH0} = 0.7$ V is the threshold at $V_{SB} = 0$, $\gamma = 0.45\ \mathrm{V^{1/2}}$ is the body-effect coefficient, and $2|\phi_F| = 0.9$ V is twice the Fermi potential. Substitute the numbers one at a time:
 
 $$
 \begin{aligned}
@@ -27,47 +23,31 @@ The threshold rises by about 0.19 V.
 
 ### Step 2 — Overdrive, current factor and the region boundary
 
-**Overdrive voltage**, $V_{ov} = V_{GS} - V_{TH}$:
+$$V_{ov} = V_{GS} - V_{TH} = 1.2\ \mathrm{V} - 0.893\ \mathrm{V} = 0.307\ \mathrm{V}$$
 
-$$V_{ov} = 1.2\ \mathrm{V} - 0.893\ \mathrm{V} = 0.307\ \mathrm{V} .$$
-
-Without the body effect it would be 0.5 V.
-
-**Current factor** $\beta = \mu_nC_{ox}(W/L)$:
+(0.5 V without the body effect), and
 
 $$
 \begin{aligned}
 \frac{W}{L} &= \frac{50}{0.5} = 100,\\
-\beta &= (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}.
+\beta &= \mu_nC_{ox}\frac{W}{L} = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}.
 \end{aligned}
 $$
 
-**Region boundary.** The channel pinches off when $V_{DS} = V_{ov}$, so
+The device is in **triode** for $0 \le V_{DS} < 0.307$ V and **saturated** for $0.307\ \mathrm{V} \le V_{DS} \le 3$ V: the break point has moved from 0.5 V (no body effect) down to 0.31 V.
 
-- **triode** for $0 \le V_{DS} < 0.307$ V,
-- **saturation** for $0.307\ \mathrm{V} \le V_{DS} \le 3$ V.
-
-The break point has moved from 0.5 V (no body effect) down to 0.31 V.
-
-**Why $g_{mb}$ does not appear.** The problem asks for the *gate* transconductance $g_m$. In any case the bulk ($-1$ V) and the source (0 V) are both held at fixed potentials, so the small-signal bulk–source voltage is $v_{bs} = 0$ and the body-transconductance source $g_{mb}v_{bs}$ carries no current. The body effect enters only through the DC operating point: a higher $V_{TH}$ and hence a smaller $V_{ov}$.
+$g_{mb}$ does not appear: the problem asks for the gate transconductance, and in any case bulk and source are both at fixed potentials, so $v_{bs} = 0$. The body effect enters only through the higher $V_{TH}$ and smaller $V_{ov}$.
 
 ### Step 3 — Triode region ($V_{DS} < 0.307$ V)
 
-The **triode (square-law) current** is
+With $I_D = \beta\left[V_{ov}V_{DS} - \frac12V_{DS}^2\right]$:
 
-$$I_D = \beta\left[V_{ov}V_{DS} - \frac12V_{DS}^2\right], \qquad V_{ov} = V_{GS} - V_{TH}.$$
-
-**Gate transconductance**, by differentiating with respect to $V_{GS}$ ($V_{ov}$ contains $V_{GS}$ with unit coefficient):
-
-$$g_m = \frac{\partial I_D}{\partial V_{GS}} = \beta V_{DS} .$$
-
-**Drain–source conductance**, by differentiating with respect to $V_{DS}$:
-
-$$\frac{1}{r_{ds}} = \frac{\partial I_D}{\partial V_{DS}} = \beta\,(V_{ov} - V_{DS}) .$$
-
-**Intrinsic gain:**
-
-$$g_mr_{ds} = \frac{\beta V_{DS}}{\beta\,(V_{ov} - V_{DS})} = \frac{V_{DS}}{0.307\ \mathrm{V} - V_{DS}} .$$
+$$
+\begin{aligned}
+g_m &= \frac{\partial I_D}{\partial V_{GS}} = \beta V_{DS}, \qquad \frac{1}{r_{ds}} = \frac{\partial I_D}{\partial V_{DS}} = \beta\,(V_{ov} - V_{DS}),\\
+g_mr_{ds} &= \frac{\beta V_{DS}}{\beta\,(V_{ov} - V_{DS})} = \frac{V_{DS}}{0.307\ \mathrm{V} - V_{DS}} .
+\end{aligned}
+$$
 
 **Worked point, $V_{DS} = 0.1$ V:**
 
@@ -85,11 +65,11 @@ $$
 |---|---|---|---|---|---|---|---|---|
 | $g_mr_{ds}$ | 0 | 0.19 | 0.48 | 0.96 | 1.9 | 4.4 | 10.5 | 45 |
 
-The gain is zero at $V_{DS} = 0$, equals 1 at $V_{DS} = V_{ov}/2 \approx 0.15$ V, and rises ever more steeply toward the edge. In this simple model ($\lambda$ left out of the triode equation) it diverges at the edge. If the factor $(1+\lambda V_{DS})$ is kept in the triode equation, $1/r_{ds}$ approaches $\frac12\lambda\beta V_{ov}^2$ at the edge instead of zero, and the curve joins the saturation value continuously (it is 0.48 at 0.1 V, 4.1 at 0.25 V, 27 at 0.3 V and 67 at the edge).
+The gain is zero at $V_{DS} = 0$, equals 1 at $V_{DS} = V_{ov}/2 \approx 0.15$ V, and rises ever more steeply toward the edge, where this simple model ($\lambda$ left out of the triode equation) diverges. If $(1+\lambda V_{DS})$ is kept in the triode equation, $1/r_{ds}$ approaches $\frac12\lambda\beta V_{ov}^2$ at the edge instead of zero, and the curve joins the saturation value continuously (0.48 at 0.1 V, 4.1 at 0.25 V, 27 at 0.3 V and 67 at the edge).
 
 ### Step 4 — Saturation ($V_{DS} \ge 0.307$ V)
 
-Use $I_D = \frac12\beta V_{ov}^2$ (simple model), $g_m = \beta V_{ov}$ and $r_O = 1/(\lambda I_D)$:
+With $I_D = \frac12\beta V_{ov}^2$ (simple model), $g_m = \beta V_{ov}$ and $r_O = 1/(\lambda I_D)$:
 
 $$
 \begin{aligned}
@@ -101,7 +81,7 @@ g_mr_O &= (4.11\ \mathrm{mS})(15.9\ \mathrm{k}\Omega) = 65 .
 \end{aligned}
 $$
 
-In symbols: $g_mr_O = \beta V_{ov}/(\lambda\cdot\frac12\beta V_{ov}^2) = 2/(\lambda V_{ov}) = 2/[(0.1\ \mathrm{V^{-1}})(0.3066\ \mathrm{V})] = 65.2$, the same number. In the simple model this does not depend on $V_{DS}$, so the curve is **flat at about 65**.
+In symbols: $g_mr_O = \beta V_{ov}/(\lambda\cdot\frac12\beta V_{ov}^2) = 2/(\lambda V_{ov}) = 2/[(0.1\ \mathrm{V^{-1}})(0.3066\ \mathrm{V})] = 65.2$, the same number, independent of $V_{DS}$: the curve is **flat at about 65**.
 
 **With the $(1+\lambda V_{DS})$ factor kept** in $I_D = \frac12\beta V_{ov}^2(1+\lambda V_{DS})$:
 
@@ -135,7 +115,7 @@ The shape is the same as with the bulk at 0 V, but:
 | $g_m$ in saturation | 6.7 mS | 4.1 mS |
 | $g_mr_O$ plateau | 40 | 65 |
 
-**Physical intuition.** The smaller overdrive lowers both $g_m$ and $I_D$, but not equally: $I_D \propto V_{ov}^2$ falls faster than $g_m \propto V_{ov}$. So $g_m/I_D = 2/V_{ov}$ rises, and since $r_O = 1/(\lambda I_D)$, the intrinsic gain $g_mr_O = (g_m/I_D)/\lambda$ rises too. The price is a lower current, hence a lower $g_m$ and a slower device.
+The smaller overdrive lowers $I_D \propto V_{ov}^2$ faster than $g_m \propto V_{ov}$, so $g_m/I_D = 2/V_{ov}$, and with it $g_mr_O = (g_m/I_D)/\lambda$, rises, at the price of a lower current and a slower device.
 
 ### Result
 
@@ -145,8 +125,8 @@ With $V_B = -1$ V, the body effect raises the threshold to $V_{TH} = 0.7 + 0.45(
 - **Break point** at $V_{DS} \approx 0.31$ V (instead of 0.5 V with zero bulk voltage).
 - **Saturation:** a plateau $g_mr_O = 2/(\lambda V_{ov}) \approx 65$ (about 67 at the edge rising to about 85 at 3 V if the $(1+\lambda V_{DS})$ factor is kept in $g_m$), higher than the plateau of 40 obtained with zero bulk voltage, while the current falls to about 0.63 mA.
 
-**Common mistake.** Getting the sign of $V_{SB}$ wrong and concluding that the negative bulk voltage *lowers* the threshold. $V_{SB} = V_S - V_B = +1$ V reverse-biases the source–bulk junction and *raises* $V_{TH}$. With $V_{SB} = -1$ V the formula would even require $\sqrt{0.9 - 1}$, the square root of a negative number, a sign that something is wrong.
+**Common mistake.** Getting the sign of $V_{SB}$ wrong and concluding that the negative bulk voltage *lowers* the threshold. $V_{SB} = V_S - V_B = +1$ V *raises* $V_{TH}$; with $V_{SB} = -1$ V the formula would even need $\sqrt{0.9 - 1}$.
 
-**Common mistake.** Ignoring the body effect and redrawing the zero-bulk curve (break point at 0.5 V, plateau 40). The bulk bias changes the operating point, and with it both the break point and the plateau.
+**Common mistake.** Ignoring the body effect and redrawing the zero-bulk curve (break point at 0.5 V, plateau 40). The bulk bias moves both the break point and the plateau.
 
-**Common mistake.** Adding $g_{mb}$ to $g_m$ in the intrinsic gain. The bulk and the source are both at fixed potentials, so $v_{bs} = 0$ and the $g_{mb}$ source does nothing here. The body effect matters only through the higher $V_{TH}$.
+**Common mistake.** Adding $g_{mb}$ to $g_m$ in the intrinsic gain. Bulk and source are both at fixed potentials, so $v_{bs} = 0$ and the $g_{mb}$ source does nothing here.

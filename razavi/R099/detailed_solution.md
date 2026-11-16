@@ -1,18 +1,14 @@
 # Detailed solution - R099
 
-**Approach.** Here the *PMOS* $M_3$ is the input device (gate at $V_{in}$, source at $V_{DD}$), and the load is the cascoded NMOS current source $M_2$ (gate $V_{b1}$) over $M_1$ (gate $V_{b2}$). All three carry the same current, set by whichever side can carry less: the load (its saturation current $I_1$, fixed) or $M_3$ (whose current capability *falls* as $V_{in}$ rises). The two cross at $V_{in}^*$, where all three are saturated and the gain is very high. Then follow each device's region and the cutoff of $M_3$ at $V_{in} = V_{DD} - |V_{THP}|$.
+**Approach.** Here the *PMOS* $M_3$ is the input device (gate at $V_{in}$, source at $V_{DD}$), and the load is the cascoded NMOS current source $M_2$ (gate $V_{b1}$) over $M_1$ (gate $V_{b2}$). All three carry the same current, set by whichever side can carry less: the load (its fixed saturation current $I_1$) or $M_3$ (whose capability *falls* as $V_{in}$ rises). The two cross at $V_{in}^*$, where all three are saturated and the gain is very high. Then follow each device's region and the cutoff of $M_3$ at $V_{in} = V_{DD} - |V_{THP}|$.
 
-### Step 1 — The circuit, its currents and the region boundaries
+### Step 1 — Load current, input device and region boundaries
 
-From the figure: $M_3$ (PMOS) has source at $V_{DD} = 3$ V, gate at $V_{in}$, drain at $V_{out}$. $M_2$ (NMOS) has drain at $V_{out}$, gate at $V_{b1}$, source at node $X$. $M_1$ (NMOS) has drain at $X$, gate at $V_{b2}$, source at ground. NMOS bulks are at ground, so $M_2$ has $V_{SB2} = V_X$.
-
-**Load current.** $M_1$ has a fixed $V_{GS1} = V_{b2} > 0.7$ V; with $M_1$ saturated the load carries (ignoring the small $1 + \lambda V_{DS}$ factor)
+Call the drain of $M_1$ (source of $M_2$) node $X$; $M_2$ has $V_{SB2} = V_X$. $M_1$ has the fixed $V_{GS1} = V_{b2} > 0.7$ V, so while saturated the load carries (ignoring the small $1 + \lambda V_{DS}$ factor)
 
 $$I_1 = \frac12\beta_1(V_{b2} - 0.7)^2 .$$
 
-**Input device.** $V_{SG3} = 3 - V_{in}$. $M_3$ is on only for $V_{in} < V_{DD} - |V_{THP}| = 2.2$ V, with overdrive $|V_{ov3}| = 2.2 - V_{in}$ and saturation current $\frac12\beta_3(2.2 - V_{in})^2$, which falls as $V_{in}$ rises.
-
-**Saturation boundaries:**
+$M_3$ has $V_{SG3} = 3 - V_{in}$: it is on only for $V_{in} < V_{DD} - |V_{THP}| = 2.2$ V, with overdrive $|V_{ov3}| = 2.2 - V_{in}$ and saturation current $\frac12\beta_3(2.2 - V_{in})^2$, which falls as $V_{in}$ rises.
 
 | Device | Saturated when | In triode when |
 |---|---|---|
@@ -22,7 +18,7 @@ $$I_1 = \frac12\beta_1(V_{b2} - 0.7)^2 .$$
 
 ### Step 2 — Small $V_{in}$: $M_3$ in triode, $V_{out}$ just below $V_{DD}$
 
-At small $V_{in}$, $M_3$ has a large gate drive and could supply far more than $I_1$. The current is limited by the load, $I = I_1$, with $M_2$ and $M_1$ saturated. $M_3$ must therefore be in **triode**, carrying $I_1$ with a small $V_{SD3}$; it acts like a small resistor to $V_{DD}$. So
+At small $V_{in}$, $M_3$ could supply far more than $I_1$, so the load sets $I = I_1$ (with $M_2$ and $M_1$ saturated) and $M_3$ sits in **triode** with a small $V_{SD3}$, like a small resistor to $V_{DD}$:
 
 $$V_{out} \approx V_{DD} - I_1R_{on3}, \qquad R_{on3} \approx \frac{1}{\beta_3(2.2 - V_{in})},$$
 
@@ -30,23 +26,15 @@ $$V_{out} \approx V_{DD} - I_1R_{on3}, \qquad R_{on3} \approx \frac{1}{\beta_3(2
 
 ### Step 3 — $V_{in} \approx V_{in}^*$: all saturated, a steep high-gain drop
 
-**Transition into $M_3$ saturation.** $M_3$ enters saturation when $V_{out}$ falls to $V_{in} + 0.8$ V.
-
-**Balance point.** $M_3$'s saturation current equals the load current when
+$M_3$ enters saturation when $V_{out}$ falls to $V_{in} + 0.8$ V, and its saturation current equals the load current when
 
 $$\frac12\beta_3(2.2 - V_{in}^*)^2 = I_1 \quad\Longrightarrow\quad V_{in}^* = 2.2 - \sqrt{\frac{2I_1}{\beta_3}} = V_{DD} - |V_{THP}| - \sqrt{\frac{2I_1}{\beta_3}} .$$
 
-Around $V_{in}^*$ all three transistors are saturated.
-
-**Small-signal model.** Nodes $in$, $out$ and $X$:
-
-- $M_3$: source at AC ground, gate at $in$, so $v_{sg3} = -v_{in}$. It injects $g_{m3}v_{sg3} = -g_{m3}v_{in}$ into $out$, with $r_{O3}$ from $out$ to AC ground.
-- $M_2$: gate at AC ground, source at $X$, bulk at ground. Current $-(g_{m2} + g_{mb2})v_X$ from $out$ to $X$, with $r_{O2}$ from $out$ to $X$.
-- $M_1$: gate at AC ground, so only $r_{O1}$ from $X$ to ground remains.
+Around $V_{in}^*$ all three transistors are saturated. In the small-signal model, $M_3$ (source at ac ground, $v_{sg3} = -v_{in}$) injects $-g_{m3}v_{in}$ into $out$ with $r_{O3}$ to ground; $M_2$ (gate at ac ground, source at $X$) carries $-(g_{m2} + g_{mb2})v_X$ from $out$ to $X$ with $r_{O2}$ in parallel; $M_1$ reduces to $r_{O1}$ from $X$ to ground.
 
 <!-- diagram: diagram-01.cir -->
 
-The resistance looking down into the cascode is $R_{down} = r_{O1} + r_{O2} + (g_{m2} + g_{mb2})r_{O1}r_{O2} \approx g_{m2}r_{O2}r_{O1}$ (the same derivation as for any cascode: with $v_X = ir_{O1}$, KCL through $M_2$ gives $v_{out} = i[r_{O1} + r_{O2} + (g_{m2} + g_{mb2})r_{O1}r_{O2}]$). KCL at $out$:
+Looking down into the cascode, $R_{down} = r_{O1} + r_{O2} + (g_{m2} + g_{mb2})r_{O1}r_{O2} \approx g_{m2}r_{O2}r_{O1}$ (the standard cascode result). KCL at $out$:
 
 $$
 \begin{aligned}
@@ -55,19 +43,19 @@ A_v &= -g_{m3}\left[r_{O3}\|(g_{m2}r_{O2}r_{O1})\right] .
 \end{aligned}
 $$
 
-This is very large; it is limited mainly by $r_{O3}$, since the input device itself is not cascoded. So $V_{out}$ **drops steeply** from about $V_{in}^* + 0.8$ V (the $M_3$ edge) down to about $V_{b1} - V_{TH2}$, where $M_2$ enters triode.
+This is very large, limited mainly by $r_{O3}$ since the input device is not cascoded. So $V_{out}$ **drops steeply** from about $V_{in}^* + 0.8$ V (the $M_3$ edge) to about $V_{b1} - V_{TH2}$, where $M_2$ enters triode.
 
 ### Step 4 — Below the drop: $M_2$, then $M_1$, leave saturation
 
-Once $V_{out} < V_{b1} - V_{TH2}$, $M_2$ is in triode and no longer holds $X$ up. As $V_{out}$ falls further, node $X$ falls with it, and **$M_1$ enters triode when $V_X < V_{b2} - 0.7$ V**. The load can then no longer force $I_1$, so the current is set by the saturated $M_3$:
+Once $V_{out} < V_{b1} - V_{TH2}$, $M_2$ is in triode and no longer holds $X$ up. $X$ falls with $V_{out}$, and **$M_1$ enters triode when $V_X < V_{b2} - 0.7$ V**. The load can then no longer force $I_1$, so the saturated $M_3$ sets the current,
 
 $$I = \frac12\beta_3(2.2 - V_{in})^2 < I_1 ,$$
 
-and $V_{out}$ is the small voltage drop that this current produces across $M_2$ and $M_1$ in triode (two small resistors in series). As $V_{in} \to 2.2$ V the current goes to zero, so **$V_{out}$ falls toward 0**.
+and $V_{out}$ is the small drop this current produces across $M_2$ and $M_1$ in triode. As $V_{in} \to 2.2$ V the current goes to zero, so **$V_{out}$ falls toward 0**.
 
 ### Step 5 — $V_{in} \ge 2.2$ V: $M_3$ off
 
-For $V_{in} \ge V_{DD} - |V_{THP}| = 2.2$ V, $M_3$ is off. Nothing supplies current to the output, while $M_2$ and $M_1$ (both with gates biased on) pull it down with zero current, which requires zero voltage across them:
+$M_3$ is off, and $M_2$ and $M_1$ (gates biased on) pull the output down with zero current, hence zero voltage:
 
 $$V_{out} = 0\qquad (V_{in} \ge 2.2\ \mathrm{V}).$$
 
@@ -113,8 +101,8 @@ An **inverting** characteristic, with the PMOS $M_3$ as the input device and the
 - **$V_{in} \ge 2.2$ V:** $M_3$ off, $V_{out} = 0$ (pulled down by $M_2$ and $M_1$ with zero current).
 - **Transition points:** $V_{out} = V_{in} + 0.8$ V ($M_3$ triode/saturation); $V_{in}^*$; $V_{out} = V_{b1} - V_{TH2}$; $V_X = V_{b2} - 0.7$ V; $V_{in} = 2.2$ V.
 
-**Common mistake.** Treating $M_1$ as the input device (it is the one at the bottom, as in most CS stages), or drawing a non-inverting curve. Here the input drives the PMOS at the top; raising $V_{in}$ reduces $V_{SG3}$, so $M_3$ supplies less current and $V_{out}$ falls.
+**Common mistake.** Treating $M_1$ (at the bottom, as in most CS stages) as the input device, or drawing a non-inverting curve. The input drives the PMOS at the top; raising $V_{in}$ reduces $V_{SG3}$, so $V_{out}$ falls.
 
-**Common mistake.** Leaving a nonzero output above $V_{in} = 2.2$ V. Once $M_3$ is off, nothing feeds the output while the NMOS stack, whose gates are biased on, pulls it down; it settles at 0 V.
+**Common mistake.** Leaving a nonzero output above $V_{in} = 2.2$ V. Once $M_3$ is off, the NMOS stack pulls the output to 0 V.
 
-**Common mistake.** Drawing a gradual decline over the whole range. As long as $M_3$ can supply more than $I_1$, the output is pinned near $V_{DD}$; the fall happens in a narrow window around $V_{in}^*$, where the output node sees the very large resistance $r_{O3}\|(g_{m2}r_{O2}r_{O1})$.
+**Common mistake.** Drawing a gradual decline over the whole range. While $M_3$ can supply more than $I_1$ the output is pinned near $V_{DD}$; the fall happens in a narrow window around $V_{in}^*$, where the output sees the very large resistance $r_{O3}\|(g_{m2}r_{O2}r_{O1})$.
