@@ -1,52 +1,45 @@
 # Detailed solution - R129
 
-**Approach.** Node $X$ is the source of the cascode device $M_2$, whose gate is fixed at $V_b$. So $V_X = V_b - V_{GS2}$, and $V_{GS2}$ depends on the drain current. The maximum output swing with both devices saturated spans a known range of currents, from zero (output at $V_{DD}$) up to the current at which $M_1$ reaches the edge of triode. We evaluate $V_X$ at the two ends of that range, including the body effect of $M_2$, and take the difference.
+**Approach.** Node $X$ is the source of the cascode device $M_2$, whose gate is fixed, so $V_X = V_b - V_{GS2}$ depends on the drain current. The maximum output swing with both devices saturated spans the currents from zero (output at $V_{DD}$) up to the current at which $M_1$ reaches the edge of triode. Evaluate $V_X$ at both ends, with the body effect of $M_2$, and take the difference.
 
 ### Step 1 — The relation between $V_X$ and the current
 
-Circuit (from the figure): $M_1$ (gate $V_{in}$, source at ground, drain at $X$), cascode $M_2$ (gate at $V_b = 1.705$ V, source at $X$, drain at $V_{out}$), $R_D = 1$ kΩ to $V_{DD} = 3$ V. Both bulks at ground; $\lambda$ neglected.
-
-The gate of $M_2$ is fixed, so
+With $\lambda = 0$ and $\beta_2 = \mu_nC_{ox}(W/L)_2 = (134\ \mu\mathrm{A/V^2})(20) = 2.68\ \mathrm{mA/V^2}$,
 
 $$V_X = V_b - V_{GS2} = V_b - V_{TH2}(V_X) - \sqrt{\frac{2I_D}{\beta_2}},$$
 
-where:
+where the threshold includes the body effect ($M_2$'s source at $V_X$, bulk at ground):
 
-- $\beta_2 = \mu_nC_{ox}(W/L)_2 = (134\ \mu\mathrm{A/V^2})(20) = 2.68\ \mathrm{mA/V^2}$;
-- $\sqrt{2I_D/\beta_2}$ is $M_2$'s overdrive voltage (square law, $I_D = \tfrac12\beta_2V_{ov2}^2$);
-- the threshold includes the body effect, because $M_2$'s source is at $V_X$ and its bulk at ground:
 $$V_{TH2}(V_X) = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - \sqrt{0.9}\right)\ \mathrm{V}.$$
 
-**Key point:** $V_X$ is *not* constant. When the current rises, $M_2$ needs a larger $V_{GS2}$, and since its gate cannot move, its source ($X$) must go down. When the current falls, $X$ goes up.
+So $V_X$ is *not* constant: a larger current needs a larger $V_{GS2}$, and since the gate cannot move, $X$ goes down.
 
 ### Step 2 — The current range of the maximum output swing
 
-The output is $V_{out} = V_{DD} - I_DR_D$, so each output voltage corresponds to a current. The range over which both transistors stay saturated is:
+With $V_{out} = V_{DD} - I_DR_D$, each output voltage corresponds to a current:
 
-- **Upper end:** $V_{out} \to V_{DD} = 3$ V, i.e. $I_D \to 0$. Both devices remain (marginally) saturated as their overdrives go to zero.
-- **Lower end:** $M_1$ is the first device to leave saturation as $V_{out}$ falls. Its condition $V_{DS1} = V_X \ge V_{ov1}$ fails when $V_X = V_{ov1}$. Solving that condition together with the $V_X$ equation of Step 1 gives (details below) $I_D = 0.566$ mA, i.e. $V_{out} = 3 - 0.566 = 2.434$ V. $M_2$ is still far from triode there, since it needs only $V_{out} \ge V_b - V_{TH2} \approx 0.94$ V.
+- **Upper end:** $V_{out} \to V_{DD} = 3$ V, i.e. $I_D \to 0$; both devices remain (marginally) saturated as their overdrives go to zero.
+- **Lower end:** $M_1$ leaves saturation first, when $V_{DS1} = V_X$ falls to $V_{ov1}$. This happens at $I_D = 0.566$ mA, i.e. $V_{out} = 3 - 0.566 = 2.434$ V, while $M_2$ needs only $V_{out} \ge V_b - V_{TH2} \approx 0.94$ V.
 
-**Derivation of the lower end.** At the edge, $V_X = V_{ov1}$. Because $\beta_1 = 13.4\ \mathrm{mA/V^2} = 5\beta_2$, $V_{ov2} = \sqrt{\beta_1/\beta_2}\,V_{ov1} = \sqrt5\,V_X$. Substituting into Step 1:
+**Derivation of the lower end.** At the edge $V_X = V_{ov1}$, and since $\beta_1 = 13.4\ \mathrm{mA/V^2} = 5\beta_2$, $V_{ov2} = \sqrt{\beta_1/\beta_2}\,V_{ov1} = \sqrt5\,V_X$. Step 1 becomes
 
 $$(1 + \sqrt5)\,V_X + 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right) = 1.705\ \mathrm{V}.$$
 
-Trial: at $V_X = 0.2907$ V the left side is $0.9408 + 0.7 + 0.45(1.0912 - 0.9487) = 0.9408 + 0.7 + 0.0641 = 1.705$ V ✓. Then $I_D = \tfrac12\beta_1V_X^2 = \tfrac12(13.4\ \mathrm{mA/V^2})(0.2907)^2 = 0.566$ mA.
+At $V_X = 0.2907$ V the left side is $0.9408 + 0.7 + 0.45(1.0912 - 0.9487) = 0.9408 + 0.7 + 0.0641 = 1.705$ V ✓, so $I_D = \tfrac12\beta_1V_X^2 = \tfrac12(13.4\ \mathrm{mA/V^2})(0.2907)^2 = 0.566$ mA.
 
 ### Step 3 — $V_X$ at the lower end of the swing ($V_{out} \approx 2.43$ V)
 
-From Step 2 directly:
+$$V_{X,min} = V_{ov1} = 0.291\ \mathrm{V}\qquad (I_D = 0.566\ \mathrm{mA},\ V_{GS2} = 0.764 + 0.650 = 1.414\ \mathrm{V}),$$
 
-$$V_{X,min} = V_{ov1} = 0.291\ \mathrm{V}\qquad (I_D = 0.566\ \mathrm{mA},\ V_{GS2} = 0.764 + 0.650 = 1.414\ \mathrm{V}).$$
-
-Check: $V_b - V_{GS2} = 1.705 - 1.414 = 0.291$ V ✓.
+and indeed $V_b - V_{GS2} = 1.705 - 1.414 = 0.291$ V ✓.
 
 ### Step 4 — $V_X$ at the upper end of the swing ($V_{out} \to 3$ V)
 
-At $I_D \to 0$, $V_{ov2} \to 0$ and $V_{GS2} \to V_{TH2}$, so
+At $I_D \to 0$, $V_{GS2} \to V_{TH2}$:
 
 $$V_X + V_{TH2}(V_X) = V_b\quad\Longrightarrow\quad V_X + 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right) = 1.705 .$$
 
-**Solve with $u = \sqrt{0.9 + V_X}$** ($V_X = u^2 - 0.9$):
+With $u = \sqrt{0.9 + V_X}$ ($V_X = u^2 - 0.9$):
 
 $$
 \begin{aligned}
@@ -57,7 +50,7 @@ V_X &= u^2 - 0.9 = 1.7385 - 0.9 = 0.8385\ \mathrm{V}.
 \end{aligned}
 $$
 
-Check: $V_{TH2} = 0.7 + 0.45(1.3185 - 0.9487) = 0.7 + 0.1664 = 0.8664$ V, and $0.8385 + 0.8664 = 1.705$ V ✓. The body effect raises the threshold to 0.87 V here, because $X$ is now 0.84 V above the bulk.
+Check: $V_{TH2} = 0.7 + 0.45(1.3185 - 0.9487) = 0.7 + 0.1664 = 0.8664$ V, and $0.8385 + 0.8664 = 1.705$ V ✓. The body effect raises the threshold to 0.87 V here, since $X$ is 0.84 V above the bulk.
 
 ### Step 5 — The swing at node $X$
 
@@ -75,7 +68,7 @@ Points along the way (same equations):
 
 Relative to the bias point ($V_X = 0.323$ V), $X$ can fall by only 32 mV but rise by 0.52 V, mirroring the asymmetric output range (66 mV down, 0.5 V up).
 
-**Why the swing at $X$ is so large.** The output range of 0.57 V corresponds to the current going all the way from 0.566 mA to zero. Near zero current, $V_{GS2}$ changes rapidly (the overdrive goes as $\sqrt{I_D}$), so $X$ moves almost as much as the output: about 0.55 V against 0.57 V. In small-signal terms, $X$ moves by about $g_{m1}/(g_{m2} + g_{mb2}) \approx 1.9$ times $v_{in}$, compared with 3.6 times at the output. Over the full large-signal range, however, the narrow cascode device's $V_{GS}$ change makes the two swings comparable. The cascode does *not* hold $X$ fixed.
+**Why the swing at $X$ is so large.** The 0.57-V output range takes the current from 0.566 mA all the way to zero, and near zero current $V_{GS2}$ changes rapidly (the overdrive goes as $\sqrt{I_D}$), so $X$ moves almost as much as the output: about 0.55 V against 0.57 V. In small-signal terms $X$ moves by about $g_{m1}/(g_{m2} + g_{mb2}) \approx 1.9$ times $v_{in}$, against 3.6 times at the output, but over the full large-signal range the narrow cascode device's $V_{GS}$ change makes the two swings comparable: the cascode does *not* hold $X$ fixed.
 
 ### Result
 
@@ -89,8 +82,8 @@ $$V_{X,max} \approx 0.84\ \mathrm{V}\ (\text{at } V_{out} \to 3\ \mathrm{V},\ I_
 
 a swing of **≈ 0.55 V**, about as large as the output swing itself.
 
-**Common mistake.** Assuming $V_X$ stays at its bias value because "the cascode shields $X$". $V_X = V_b - V_{GS2}$, and $V_{GS2}$ changes with the current, so $X$ moves whenever the output moves.
+**Common mistake.** Assuming $V_X$ stays at its bias value because "the cascode shields $X$". $V_X = V_b - V_{GS2}$, and $V_{GS2}$ changes with the current.
 
-**Common mistake.** Ignoring the body effect of $M_2$. With $V_{TH2}$ fixed at 0.7 V and $V_b = 1.705$ V, the upper end would come out as $V_X = 1.705 - 0.7 = 1.005$ V instead of 0.84 V. (Even with $V_b$ re-designed without body effect, 1.634 V, one would get 0.29–0.93 V, still off at the top.) At $V_X \approx 0.84$ V the source–bulk voltage raises $V_{TH2}$ by about 0.17 V.
+**Common mistake.** Ignoring the body effect of $M_2$: with $V_{TH2}$ fixed at 0.7 V and $V_b = 1.705$ V, the upper end would come out as $V_X = 1.705 - 0.7 = 1.005$ V instead of 0.84 V (and with $V_b$ re-designed without body effect, 1.634 V, one would get 0.29–0.93 V, still off at the top). At $V_X \approx 0.84$ V the body effect raises $V_{TH2}$ by about 0.17 V.
 
-**Common mistake.** Using the output limit that comes from $M_2$ entering triode ($V_{out} \approx 0.94$ V) to define the swing. With the resistive load, $M_1$ leaves saturation first, at $V_{out} \approx 2.43$ V, and that is where the lower end of the $X$ swing must be evaluated.
+**Common mistake.** Defining the swing by $M_2$ entering triode ($V_{out} \approx 0.94$ V). With the resistive load, $M_1$ leaves saturation first, at $V_{out} \approx 2.43$ V, which sets the lower end of the $X$ swing.
