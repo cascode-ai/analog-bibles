@@ -1,0 +1,1 @@
+考虑一个带电阻源极负反馈（source degeneration）的共源级（common-source stage）：NMOS 管 $M_1$ 的源极经电阻 $R_S$ 接地，漏极经负载电阻 $R_D$ 接到 $V_{DD}$，输入加在栅极。与源极跟随器（source follower）类似，该级对 $C_{GS}$ 具有自举（bootstrapping）作用。考虑 $M_1$ 的栅源电容 $C_{GS}$ 和栅漏电容 $C_{GD}$，估算该级的输入电容。忽略沟道长度调制（channel-length modulation）和体效应（body effect）。

@@ -1,0 +1,1 @@
+用零值时间常数法（zero-value time-constant method）估算带电阻源极负反馈（source degeneration）的共源级（common-source stage）的 −3 dB 带宽，其小信号模型（small-signal model）如 [图 1] 所示：栅极经 $R_G$ 驱动，源极负反馈电阻为 $R_S$，负载为 $R_D$，负载电容为 $C_L$；只考虑电容 $C_{GS}$、$C_{GD}$ 和 $C_L$。现在要计入沟道长度调制（channel-length modulation），即漏源之间接有 $r_O$；还要计入体效应（body effect），衬底接地，体跨导为 $g_{mb}$；也就是说 $\lambda > 0$ 且 $\gamma > 0$。

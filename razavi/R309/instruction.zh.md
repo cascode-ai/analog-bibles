@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路在极低频和极高频下的差模增益（differential gain）$V_{out}/V_{in}$（$V_{in}$ 加在 $M_1$ 与 $M_2$ 的栅极之间，$V_{out}$ 取自 $M_6$ 与 $M_5$ 的漏极之间）。$M_1$、$M_2$、$M_5$、$M_6$ 为 NMOS 晶体管，$M_3$、$M_4$ 为 PMOS 晶体管，每对中的两个晶体管相同，均工作在饱和区（saturation region）；$V_b$ 为固定偏置电压，$I_{SS}$ 为理想电流源（current source）。除 $C_1$ 和 $C_2$ 外忽略所有电容，并假设 $\lambda = \gamma = 0$。

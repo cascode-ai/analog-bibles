@@ -1,0 +1,3 @@
+[图 1] 所示电路的设计参数为 $(W/L)_{1,2} = 50/0.5$，$(W/L)_{3,4} = 10/0.5$（有效尺寸，单位为微米），$M_5$、$M_6$ 的宽度是 $M_3$、$M_4$ 的 $K = 2$ 倍（W/L = 20/0.5）。$I_{SS} = 100\ \mu$A，$C_L = 0$，每个 $R_D$ 都由一个 $W/L = 50/0.5$ 的二极管连接（diode-connected）NFET 实现。估算该电路对差分信号的极点和零点。假设放大器由理想电压源驱动，并忽略沟道长度调制（channel-length modulation）。
+
+器件参数：NMOS 的 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，交叠电容（overlap capacitance）为 $0.4\ \mathrm{fF/\mu m}$（栅源和栅漏各一份），$C_j = 0.56\ \mathrm{fF/\mu m^2}$，$C_{jsw} = 0.35\times10^{-11}$ F/m；PMOS 的 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，交叠电容为 $0.3\ \mathrm{fF/\mu m}$，$C_j = 0.94\ \mathrm{fF/\mu m^2}$，$C_{jsw} = 0.32\times10^{-11}$ F/m；两者均有 $C_{ox} = 3.84\ \mathrm{fF/\mu m^2}$。每个漏区均取为 $W \times E$，其中 $E = 1.5\ \mu$m（四条边都计为侧壁），并采用零偏置时的结电容（junction capacitance）。

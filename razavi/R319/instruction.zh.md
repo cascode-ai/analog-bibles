@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入电阻 $R_{in}$，但把电流源（current source）$I_1$ 换成从 $V_{DD}$ 接到节点 Y 的电阻 $R_1$。$M_1$ 为 NMOS 晶体管，其栅极接偏置电压 $V_b$，衬底（bulk）接地，跨导（transconductance）为 $g_m$，体跨导（body-effect transconductance）为 $g_{mb}$，输出电阻（output resistance）为 $r_O$（在图中明确画在 Y 与 X 之间）。一种可行的方法是对 $r_O$ 应用密勒定理（Miller's theorem）。
