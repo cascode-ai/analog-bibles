@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 任意 $I_S$ 下的支路电流与增益
 
-$I_S$ 与二极管连接（diode-connected）的 PMOS $M_2$ 并联地向输出端供电，因此由输出节点的 KCL 得
+$I_S$ 与二极管连接（diode-connected）的 PMOS $M_2$ 并联地向输出端供电，因此由输出节点的基尔霍夫电流定律（KCL）得
 
 $$
 \begin{aligned}

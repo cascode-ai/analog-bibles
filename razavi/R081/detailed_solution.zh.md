@@ -78,7 +78,7 @@ $$
 
 <!-- diagram: diagram-01.cir -->
 
-对输出节点应用 KCL：
+对输出节点应用基尔霍夫电流定律（KCL）：
 
 $$
 \begin{aligned}

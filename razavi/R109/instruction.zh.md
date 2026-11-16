@@ -1,0 +1,1 @@
+对 [图 1] 所示电路，当 $V_X$ 从 0 变化到 $V_{DD} = 3$ V 时，画出 $I_X$ 随 $V_X$ 变化的曲线草图（$I_X$ 从电压源流入公共漏极节点），并标出重要的转折点（transition point）。NMOS $M_1$：$V_{TH} = 0.7$ V，源极和衬底（bulk）均接地；PMOS $M_2$：$V_{TH} = -0.8$ V，源极和衬底均接 $V_{DD}$。$V_b$（> 0.7 V）以及器件尺寸（$\beta_n$、$\beta_p$）均未给定；请用它们表示结果。忽略沟道长度调制（channel-length modulation）。

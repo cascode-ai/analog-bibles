@@ -58,7 +58,7 @@ $W/L$ 每增大到**四倍**（5 → 20 → 80），本征增益就**翻一番**
 
 ### 第 5 步 — 曲线及其局限
 
-- 以 $W/L$ 为横轴，曲线是一条**平方根曲线**：$g_mr_O = k\sqrt{W/L}$，其中 $k = \lambda^{-1}\sqrt{2\mu C_{ox}/I_D}$。它单调上升且向下凹：其斜率 $k/(2\sqrt{W/L})$ 随 $W/L$ 增大而减小。外推时它经过原点；在双对数坐标中，它是一条斜率为 $1/2$ 的直线。
+- 以 $W/L$ 为横轴，曲线是一条**平方根曲线**：$g_mr_O = k\sqrt{W/L}$，其中 $k = \lambda^{-1}\sqrt{2\mu C_{ox}/I_D}$。它单调上升且向下凹（concave down）：其斜率 $k/(2\sqrt{W/L})$ 随 $W/L$ 增大而减小。外推时它经过原点；在双对数坐标中，它是一条斜率为 $1/2$ 的直线。
 - **$W/L$ 较小时。** 过驱动电压变大（示例中 $W/L = 5$ 时为 0.63 V），因此器件需要较大的 $V_{DS}$ 才能保持饱和（$V_{DS} \ge V_{ov}$）；而且在实际中，速度饱和（velocity saturation）与迁移率退化（mobility degradation）也会降低 $g_m$。
 - **$W/L$ 较大时。** 过驱动电压缩小到接近零，器件进入**弱反型**区，平方律不再成立。$g_m$ 趋近于 $I_D/(\zeta V_T)$，不能再增大，其中 $V_T = kT/q \approx 26$ mV 为热电压（thermal voltage），$\zeta \approx 1.5$ 为亚阈值斜率因子（subthreshold slope factor）。因此实际曲线**趋于平坦**，逼近 $g_mr_O \approx 1/(\lambda\zeta V_T)$，在本例中约为 256（按平方律，要到 $W/L \approx 320$ 附近才达到这一数值，此时 $V_{ov}$ 只有约 80 mV）。
 

@@ -1,0 +1,1 @@
+对 [图 1] 所示电路，当 $V_{in}$ 从 0 变化到 $V_{DD} = 3$ V 时，画出 $V_{out}$ 随 $V_{in}$ 变化的曲线草图，并标出重要的转折点（transition point）。$V_{in}$ 为理想电压源。$M_1$ 为 NMOS 器件，$V_{TH} = 0.7$ V，源极和衬底（bulk）均接地。$R_D$、$R_F$ 以及 $M_1$ 的尺寸（$\beta = \mu_nC_{ox}W/L$）均未给定；请用它们表示各转折点。忽略沟道长度调制（channel-length modulation）。

@@ -104,7 +104,7 @@ $V_{DD}$ 为交流地，模型中只有一个节点 $out$：
 
 <!-- diagram: diagram-01.cir -->
 
-对 $out$ 节点应用 KCL：
+对 $out$ 节点应用基尔霍夫电流定律（KCL）：
 
 $$
 \begin{aligned}

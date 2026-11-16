@@ -1,0 +1,1 @@
+对 [图 1] 所示电路，当 $V_X$ 从 0 变化到 $V_{DD} = 3$ V 时，画出 $I_X$ 随 $V_X$ 变化的曲线草图（$I_X$ 从电压源流入 $M_1$ 的源极节点），并标出重要的转折点（transition point）。$M_1$ 为 NMOS 器件，$V_{TH0} = 0.7$ V，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V，其衬底（bulk）接地。$V_b$（> 0.7 V）、$R_D$、$R_S$ 以及 $\beta = \mu_nC_{ox}W/L$ 均未给定；请用它们表示结果。忽略沟道长度调制（channel-length modulation）。

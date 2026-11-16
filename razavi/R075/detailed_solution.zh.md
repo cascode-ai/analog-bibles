@@ -46,7 +46,7 @@ $$
 
 在此范围内，$g_m$ 增大到原来的十倍，而 $r_O$ 降为原来的百分之一，因此增益降为原来的十分之一。
 
-### 第 4 步 — 阈值附近的特性
+### 第 4 步 — 阈值电压（threshold voltage）附近的特性
 
 在 $V_{TH}$ 附近，器件脱离强反型（strong inversion）。在弱反型区，$g_m = I_D/(\zeta V_T)$，其中 $\zeta \approx 1.5$ 为亚阈值斜率因子（subthreshold slope factor），$V_T \approx 26$ mV 为热电压（thermal voltage）。因此，结合 $r_O = 1/(\lambda I_D)$ 可得：
 

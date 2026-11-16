@@ -26,7 +26,7 @@ $M_2$ 的栅极和源极都接交流地，因此它简化为从 $out$ 接地的 
 
 <!-- diagram: diagram-01.cir -->
 
-对 $out$ 节点应用 KCL：
+对 $out$ 节点应用基尔霍夫电流定律（KCL）：
 
 $$
 \begin{aligned}

@@ -1,0 +1,1 @@
+对 [图 1] 所示电路，当 $V_{in}$ 从 0 变化到 $V_{DD} = 3$ V 时，画出 $V_{out}$ 随 $V_{in}$ 变化的曲线草图，并标出重要的转折点（transition point）。NMOS $M_1$：$V_{TH} = 0.7$ V，源极和衬底（bulk）均接地。PMOS $M_2$：$V_{TH} = -0.8$ V，源极和衬底均接 $V_{DD}$。$V_b$（> 0.7 V）、$R_D$ 以及器件尺寸（$\beta_1$、$\beta_2$，其中 $\beta = \mu C_{ox}W/L$）均未给定；请用它们表示各转折点。忽略沟道长度调制（channel-length modulation）。
