@@ -1,0 +1,1 @@
+[图 1] 所示的压控振荡器（VCO）工作在 1 GHz。该电路由带尾电流源（tail current source）的交叉耦合（cross-coupled）NMOS 对、从 $V_{DD}$ 接到节点 X 和 Y 的电感 $L_P = 5$ nH，以及从 X 和 Y 接到控制电压 $V_{cont}$ 的变容二极管（varactor）$D_1$、$D_2$ 构成。若尾电流为 1 mA，每个电感在 1 GHz 处的 $Q$ 值为 4，估算输出电压摆幅（output swing）。除电感的损耗外，忽略其他损耗。

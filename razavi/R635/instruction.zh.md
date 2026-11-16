@@ -1,0 +1,1 @@
+对于 [图 1] 所示的交叉耦合（cross-coupled）LC 振荡器，求保证电路振荡的 $I_{SS}$ 最小值，并估算保证 $M_1$ 和 $M_2$ 不进入线性区（triode region）的 $I_{SS}$ 最大值。$R_P$ 为每个谐振回路（tank）在谐振时的等效并联电阻；题目没有给出 $R_P$ 和 $(W/L)_{1,2}$ 的数值，因此用它们表示结果。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V；衬底（bulk）接地；$V_{DD} = 3$ V。忽略沟道长度调制（channel-length modulation）。

@@ -76,7 +76,7 @@ $$|V_{OS}| = \Delta V_{TH}\,\frac{|A_3|}{|A_{in}|} = \Delta V_{TH}\,\frac{g_{m3}
 
 与第 4 步一致；因子 $R_D/(R_D + R_{out})$ 为两个增益所共有，相互抵消。
 
-**数值验证。** 所有器件取 $\mu_nC_{ox}W/L = 5$ mA/V²，$V_{TH} = 0.5$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$I_{SS} = 1$ mA，$V_{DD} = 3$ V，$V_b = 2$ V，输入共模电平为 1.2 V，$\Delta V_{TH} = 10$ mV。求解大信号平方律方程（含 $1 + \lambda V_{DS}$ 因子），得到 $V_X - V_Y = -9.8$ mV，$V_{OS} = 0.196$ mV，$R_D = 1$ kΩ 和 $R_D = 2$ kΩ 时结果相同。用公式计算，取 $g_{m1}r_{O1} \approx 50$，$g_{m3}r_{O3} \approx 51$–55，得到 0.195 mV。
+**数值验证。** 所有器件取 $\mu_nC_{ox}W/L = 5$ mA/V²，$V_{TH} = 0.5$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$I_{SS} = 1$ mA，$V_{DD} = 3$ V，$V_b = 2$ V，输入共模电平为 1.2 V，$\Delta V_{TH} = 10$ mV。求解含 $1 + \lambda V_{DS}$ 因子的大信号平方律（square law）方程，得到 $V_X - V_Y = -9.8$ mV，$V_{OS} = 0.196$ mV，$R_D = 1$ kΩ 和 $R_D = 2$ kΩ 时结果相同。用公式计算，取 $g_{m1}r_{O1} \approx 50$，$g_{m3}r_{O3} \approx 51$–55，得到 0.195 mV。
 
 ### 第 6 步 — $R_D \to \infty$ 时的情况
 

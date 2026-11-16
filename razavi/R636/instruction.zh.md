@@ -1,0 +1,1 @@
+在 [图 1] 所示电路中，$M_1$ 的栅极保持在恒定偏置上（信号源 $V_{in}$ 置零，因此栅极为交流地），改为在 $M_1$ 的漏极（即 $V_{out}$ 节点）注入小信号电流 $I_{in}$ 来激励电路。计算闭环传递函数 $V_{out}/I_{in}$，并判断电路能否振荡。把 $M_1$ 建模为压控电流源（voltage-controlled current source）$g_mV_{GS}$，忽略其电容、沟道长度调制（channel-length modulation）和体效应（body effect），并把 $I_b$ 视为理想电流源。

@@ -1,0 +1,1 @@
+对于 [图 1] 所示的考毕兹振荡器（Colpitts oscillator），在 $M_1$ 的栅极施加一个小信号电压激励 $V_{in}$（与 $V_b$ 串联），推导振荡条件：求闭环传递函数 $V_{out}/V_{in}$，并由此求出振荡频率以及振荡所需的 $g_mR_P$ 最小值（包括使其最小的比值 $C_1/C_2$）。把 $M_1$ 建模为压控电流源（voltage-controlled current source）$g_mV_{GS}$，忽略其电容、沟道长度调制（channel-length modulation）和体效应（body effect），并把偏置电流源视为理想的。

@@ -1,0 +1,1 @@
+[图 1] 所示的压控振荡器（VCO）按 1 GHz 的工作频率设计。该电路由带尾电流源（tail current source）的交叉耦合（cross-coupled）NMOS 对、从 $V_{DD}$ 接到节点 X 和 Y 的电感 $L_P$，以及从 X 和 Y 接到控制电压 $V_{cont}$ 的变容二极管（varactor）$D_1$、$D_2$ 构成。若 $L_P = 5$ nH，且在 X（以及 Y）处看到的对地总（固定）寄生电容为 500 fF，求 $D_1$ 和 $D_2$ 最多能向电路增加多大的电容。

@@ -6,7 +6,7 @@
 
 符号：$V_{ov,N}$ 和 $|V_{ov,P}|$ 分别为 $M_{1,2}$ 和 $M_{3,4}$ 的过驱动电压；$\Delta V_{TH,N} = V_{TH1} - V_{TH2}$，$\Delta V_{TH,P} = |V_{TH3}| - |V_{TH4}|$；$[\Delta(W/L)/(W/L)]_N$ 和 $[\Delta(W/L)/(W/L)]_P$ 为相对尺寸失配。每个器件的标称电流均为 $I_D = I_{SS}/2$。失调是使 $V_{out} = 0$ 的输入；此时两个漏极电压相等，因此在差模分析中沟道长度调制（channel-length modulation）的影响消失。
 
-$M_3$ 和 $M_4$ 的栅极电压（$V_b$）和源极电压（$V_{DD}$）都相同，因此把平方律线性化得到
+$M_3$ 和 $M_4$ 的栅极电压（$V_b$）和源极电压（$V_{DD}$）都相同，因此把平方律（square law）线性化得到
 
 $$\Delta I_P = I_{D3} - I_{D4} = I_D\left[\frac{\Delta(W/L)}{W/L}\right]_P - g_{mP}\,\Delta V_{TH,P}.$$
 
@@ -42,7 +42,7 @@ $$V_{OS}^2 = \Delta V_{TH,N}^2 + \left(\frac{V_{ov,N}}{2}\right)^2\left[\frac{\D
 
 $$\frac{g_{mP}}{g_{mN}} = \frac{2I_D/|V_{ov,P}|}{2I_D/V_{ov,N}} = \frac{V_{ov,N}}{|V_{ov,P}|}, \qquad \frac{g_{mP}}{g_{mN}}\,\Delta V_{TH,P} = \Delta V_{TH,P}\,\frac{V_{ov,N}}{|V_{ov,P}|}.$$
 
-这一项只有在 $g_{mP}$ 变小，即**PMOS 过驱动电压 $|V_{ov,P}|$ 变大**时才会减小。做法是减小 $(W/L)_P$，同时降低 $V_b$，使负载仍流过 $I_{SS}/2$。为了不让 $\Delta V_{TH,P} \propto 1/\sqrt{W_PL_P}$ 同时增大，较小的宽长比应通过加长沟道而不是减小宽度来实现。（PMOS 尺寸失配项化为 $(V_{ov,N}/2)[\Delta(W/L)/(W/L)]_P$，与 $|V_{ov,P}|$ 无关。）过驱动电压大的负载是一个“弱”电流源：阈值误差只使其电流改变 $\Delta I/I = 2\Delta V_{TH,P}/|V_{ov,P}|$。
+这一项只有在 $g_{mP}$ 变小，即**PMOS 过驱动电压 $|V_{ov,P}|$ 变大**时才会减小。做法是减小 $(W/L)_P$，同时降低 $V_b$，使负载仍流过 $I_{SS}/2$。为了不让 $\Delta V_{TH,P} \propto 1/\sqrt{W_PL_P}$ 同时增大，较小的宽长比（aspect ratio）应通过加长沟道而不是减小宽度来实现。（PMOS 尺寸失配项化为 $(V_{ov,N}/2)[\Delta(W/L)/(W/L)]_P$，与 $|V_{ov,P}|$ 无关。）过驱动电压大的负载是一个“弱”电流源：阈值误差只使其电流改变 $\Delta I/I = 2\Delta V_{TH,P}/|V_{ov,P}|$。
 
 ### 第 5 步 — 代价：输出摆幅
 
@@ -50,7 +50,7 @@ $$\frac{g_{mP}}{g_{mN}} = \frac{2I_D/|V_{ov,P}|}{2I_D/V_{ov,N}} = \frac{V_{ov,N}
 
 $$V_{SD3} \ge |V_{ov,P}| \quad\Longrightarrow\quad V_{D} \le V_{DD} - |V_{ov,P}| ,$$
 
-输入器件保持饱和的条件是 $V_D \ge V_{in,CM} - V_{TH,N}$，其中 $V_{in,CM}$ 为输入共模电平。因此每个输出只能在以下范围内变化：
+输入器件保持饱和的条件是 $V_D \ge V_{in,CM} - V_{TH,N}$，其中 $V_{in,CM}$ 为输入共模电平（common-mode level）。因此每个输出只能在以下范围内变化：
 
 $$V_{in,CM} - V_{TH,N} \;\le\; V_D \;\le\; V_{DD} - |V_{ov,P}| .$$
 

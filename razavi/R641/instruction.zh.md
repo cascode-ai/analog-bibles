@@ -1,0 +1,1 @@
+[图 1] 所示的级用于一个由相同的级构成的三级环形振荡器（ring oscillator）。其设计参数为 $I_T = 1$ mA，$(W/L)_{1,2} = 50/0.5$；$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$。忽略 $I_H$、沟道长度调制（channel-length modulation）和体效应（body effect）。当全部 $I_T$ 都被导向 $M_1$–$M_2$、交叉耦合（cross-coupled）对 $M_3$–$M_4$ 不流过电流时，求保证该三级环形振荡器振荡的 $R_1 = R_2 = R$ 的最小值。

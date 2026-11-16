@@ -1,0 +1,1 @@
+[图 1] 所示为输入失调存储（input offset storage）电路，其失调消除（offset cancellation）过程如 [图 2] 所示：消除期间，$C_1$、$C_2$ 的输入侧接到 $V_{CM}$，增益为 $A_v$ 的放大器通过 $S_3$、$S_4$ 接成单位增益反馈。该电路按失调消除后整体输入失调电压（input offset voltage）为 1 mV 设计。若把放大器输入差分对（differential pair）中晶体管的宽度加倍，整体输入失调电压变为多少？忽略放大器的输入电容，假设开关是理想的，不存在电荷注入（charge injection），保持放大器的偏置电流、沟道长度和负载不变，并假设器件服从平方律（square law）。

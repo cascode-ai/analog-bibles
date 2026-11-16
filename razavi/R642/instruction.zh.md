@@ -1,0 +1,1 @@
+[图 1] 所示的级是一个三级环形振荡器（ring oscillator）中的一级，其设计参数为 $I_T = 1$ mA，$(W/L)_{1,2} = 50/0.5$，$R_1 = R_2 = R = 546\ \Omega$；$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$。确定 $(W/L)_{3,4}$，使 $M_3$ 和 $M_4$ 各流过 $I_T/2$ 时 $g_{m3,4}R = 0.5$。忽略沟道长度调制（channel-length modulation）。
