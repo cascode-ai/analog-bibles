@@ -1,16 +1,14 @@
 # Detailed solution - R477
 
-**Approach.** In unity-gain feedback ($\beta = 1$) the loop gain is the amplifier's two-pole transfer function. Set the loop-gain magnitude to 1 to find the gain-crossover frequency, evaluate the phase there, and take the phase margin as the distance of that phase from $-180°$.
+**Approach.** With $\beta = 1$ the loop gain is the amplifier's two-pole transfer function. Set its magnitude to 1 to find the gain crossover, evaluate the phase there, and take the phase margin as the distance of that phase from $-180°$.
 
 ### Step 1 — Loop gain in normalized form
 
-The amplifier has $A_0 = 1000$ and poles at $\omega_{p1}$ and $\omega_{p2} = 4\omega_{p1}$:
+With $\beta = 1$, $A_0 = 1000$ and $\omega_{p2} = 4\omega_{p1}$, the loop gain is
 
 $$H(j\omega) = \frac{A_0}{\left(1 + j\dfrac{\omega}{\omega_{p1}}\right)\left(1 + j\dfrac{\omega}{\omega_{p2}}\right)}.$$
 
-With unity feedback the feedback factor is $\beta = 1$, so the loop gain is $\beta H = H$.
-
-Normalize the frequency to the first pole, $x = \omega/\omega_{p1}$. Then $\omega/\omega_{p2} = x/4$, and
+With $x = \omega/\omega_{p1}$, so that $\omega/\omega_{p2} = x/4$:
 
 $$
 \begin{aligned}
@@ -23,11 +21,11 @@ Only the ratio $\omega_{p2}/\omega_{p1} = 4$ matters; the value $\omega_{p1} = 1
 
 ### Step 2 — Gain-crossover frequency
 
-At the *gain-crossover frequency* $\omega_u$, $|H| = 1$. Squaring:
+Square the condition $|H| = 1$:
 
 $$(1 + x^2)\left(1 + \frac{x^2}{16}\right) = 10^6 .$$
 
-Let $u = x^2$ and expand:
+With $u = x^2$:
 
 $$
 \begin{aligned}
@@ -37,11 +35,11 @@ u^2 + 17u + 16 - 16\times10^6 &= 0 .
 \end{aligned}
 $$
 
-Quadratic formula, positive root:
+The positive root is
 
-$$u = \frac{-17 + \sqrt{17^2 - 4(16 - 16\times10^6)}}{2} = \frac{-17 + \sqrt{64\,000\,225}}{2} = \frac{-17 + 8000.014}{2} = 3991.5 .$$
+$$u = \frac{-17 + \sqrt{17^2 - 4(16 - 16\times10^6)}}{2} = \frac{-17 + \sqrt{64\,000\,225}}{2} = \frac{-17 + 8000.014}{2} = 3991.5 ,$$
 
-Therefore
+so
 
 $$x_u = \sqrt{3991.5} = 63.18, \qquad \omega_u \approx 63.2\,\omega_{p1}.$$
 
@@ -59,11 +57,9 @@ $$
 
 ### Step 4 — Phase margin
 
-The *phase margin* is the distance of the loop phase at $\omega_u$ from $-180°$:
-
 $$\mathrm{PM} = 180° + \angle H(j\omega_u) = 180° - 175.47° = 4.53° .$$
 
-**Check with a small-angle approximation.** For large $z$, $\tan^{-1}z \approx 90° - 1/z$ (radians), so the two "missing" phases are $1/x_u$ and $4/x_u$:
+**Check.** For large $z$, $\tan^{-1}z \approx 90° - 1/z$ (radians), so the two "missing" phases are $1/x_u$ and $4/x_u$:
 
 $$\mathrm{PM} \approx \frac{1 + 4}{x_u} = \frac{5}{63.18}\ \mathrm{rad} = 0.0791\ \mathrm{rad} = 4.53° .\ \checkmark$$
 
@@ -78,7 +74,7 @@ $$x_u \approx \sqrt{kA_0}, \qquad \mathrm{PM} \approx \frac{1 + k}{\sqrt{kA_0}}\
 | 2 | 44.7 | 3.8° |
 | 4 | 63.2 | 4.5° |
 
-Doubling the pole spacing pushes the crossover up by only $\sqrt2$ while the second pole moves up by 2, so the phase margin improves only slightly. As long as $A_0 = 1000$ puts the crossover far above *both* poles, the loop phase is close to $-180°$. To get a healthy margin (for example 60°), the second pole must lie *above* the crossover, which requires either a much larger pole separation or a much smaller loop gain; this is what frequency compensation achieves.
+Doubling the pole spacing raises the crossover by only $\sqrt2$, and with $A_0 = 1000$ the crossover stays far above *both* poles, so the loop phase stays close to $-180°$. A healthy margin (for example 60°) needs the second pole *above* the crossover, i.e. a much larger pole separation or a much smaller loop gain; this is what frequency compensation achieves.
 
 ### Result
 
@@ -86,7 +82,7 @@ $$\omega_u \approx 63.2\,\omega_{p1}\ (\approx 63.2\ \mathrm{MHz}), \qquad \angl
 
 The loop is stable but very poorly damped.
 
-**Common mistake.** Taking the crossover at $A_0\,\omega_{p1} = 1000\,\omega_{p1}$, as for a one-pole amplifier. That ignores the extra roll-off of the second pole: at $1000\,\omega_{p1}$ the loop gain is only about 0.004. The phase there gives a meaningless PM of about 0.3°.
+**Common mistake.** Taking the crossover at $A_0\,\omega_{p1} = 1000\,\omega_{p1}$, as for a one-pole amplifier, which ignores the second pole's roll-off: at $1000\,\omega_{p1}$ the loop gain is only about 0.004, and the phase there gives a meaningless PM of about 0.3°.
 
 **Common mistake.** Placing the crossover at or below the second pole and reporting a margin of tens of degrees. At $\omega_{p2} = 4\omega_{p1}$ the loop gain is still $1000/(\sqrt{17}\,\sqrt2) \approx 171$, far above 1.
 
