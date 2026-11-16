@@ -6,7 +6,7 @@ $M_1$ enters the triode region first, at $V_{out} \approx 2.43$ V ($I_D \approx 
 
 - As $V_{out}$ falls the current rises: $V_{out} = 3 - I_DR_D$. With $V_b$ fixed, $V_X = V_b - V_{TH2}(V_X) - \sqrt{2I_D/\beta_2}$ falls, while $M_1$ needs $V_X \ge \sqrt{2I_D/\beta_1}$ ($\beta_1 = 13.4$, $\beta_2 = 2.68\ \mathrm{mA/V^2}$).
 - $M_1$'s margin (50 mV at 0.5 mA) closes at $I_D = 0.566$ mA: $V_X = V_{ov1} = 0.291$ V, $V_{out} = 2.434$ V.
-- $M_2$ is far from triode there: it needs $V_{out} \ge V_b - V_{TH2} \approx 0.93$ V, a margin of ≈ 1.5 V.
+- $M_2$ is far from triode there: it needs $V_{out} \ge V_b - V_{TH2} \approx 0.94$ V, a margin of ≈ 1.5 V.
 - Upper limit: $V_{out} \to V_{DD}$ as $I_D \to 0$ ($R_D$ load), both devices still (marginally) saturated.
 
 ## Grading notes

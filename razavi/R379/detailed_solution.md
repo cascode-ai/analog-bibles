@@ -16,7 +16,7 @@ With $V_{Thev}$ and $Z_{Thev}$ for the network seen by $Z_L$, the output is $V_{
 
 ### Step 2 — Thévenin impedance (the same for both)
 
-With $I_n = 0$ and $V_n = 0$ both circuits reduce to the same passive network (gate to ground through $Z_1$), so $Z_{Thev1} = Z_{Thev2}$. To compute it, inject a test current $I_x$ into the drain; it flows through the channel to S. KCL at G:
+With $I_n = 0$ and $V_n = 0$ both circuits reduce to the same noise-free network (gate to ground through $Z_1$), so $Z_{Thev1} = Z_{Thev2}$. To compute it, inject a test current $I_x$ into the drain; it flows through the channel to S. KCL at G:
 
 $$\frac{V_G}{Z_1} + sC\,(V_G - V_S) = 0 \;\Rightarrow\; V_G = \frac{sCZ_1}{1 + sCZ_1}V_S, \qquad v_{gs} = -\frac{V_S}{1 + sCZ_1}.$$
 
@@ -110,6 +110,6 @@ which depends on $Z_1$, $Z_S$ and frequency. **The lemma does not hold in genera
 
 **Common mistake.** Asserting that $C_{GS}$ cancels because it is in both circuits. That is why the Thévenin *impedances* are equal, but only the voltage-source representation drives current through it, so the Thévenin *voltages* differ.
 
-**Common mistake.** Concluding that the Thévenin impedances differ. Opening $I_n$ or shorting $V_n$ leaves exactly the same passive network in both figures.
+**Common mistake.** Concluding that the Thévenin impedances differ. Opening $I_n$ or shorting $V_n$ leaves exactly the same noise-free network in both figures.
 
 **Common mistake.** Mishandling the body effect: $g_{mb}v_{bs}$ flows from drain to source like $g_mv_{gs}$, with $v_{bs} = -V_S$. A wrong direction or sign changes the $(1 + g_{mb}r_O)$ factor in $V_{Thev2}$.

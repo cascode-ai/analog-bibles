@@ -11,7 +11,7 @@ Inductive when $R > 1/g_{m3}$: the zero lies below the pole and $|Z_L|$ rises wi
 135° question: not in this model. The stage has one pole and one zero, so its phase relative to the 180° inversion is $\arctan(\omega RC) - \arctan(\omega C/g_{m3})$, always between −90° and +90°.
 - The gain falls with frequency (and can drop through unity) only when the load is capacitive ($R < 1/g_{m3}$). The extra phase is then a lag below 90°: total 180°–270° with the inversion, 0–90° without it, never 135°.
 - In the inductive case the zero gives phase lead, so a total of −135° (180° minus a 45° lead, possible when $g_{m3}R \ge 3 + 2\sqrt2 \approx 5.8$) can occur. But there the gain rises from $g_{m1}/g_{m3}$ toward $g_{m1}R$ instead of dropping to unity.
-- A response that both drops through unity and has 135° of phase shift needs a second pole, i.e. the output-node capacitance (neglected here). With it, the inductive load and the output capacitance form a second-order response whose phase can reach 135° at unity gain.
+- A response that both drops through unity and has 135° of phase shift needs a second pole in the signal path itself, e.g. a second gain stage. The output-node capacitance (neglected here) does not help: in parallel with $Z_L$ it still gives a passive RLC impedance, whose phase stays within ±90°.
 
 ## Grading notes
 

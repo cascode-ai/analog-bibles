@@ -16,7 +16,7 @@ $I_0$ 被约去，因此答案既与器件尺寸无关，也与起始电流无�
 
 $$\frac{\Delta V_{GS}}{\zeta V_T} = \ln 10 = 2.303 \quad\Longrightarrow\quad \Delta V_{GS} = \zeta V_T\ln 10 = (1.5)(26\ \mathrm{mV})(2.303) = 39\ \mathrm{mV}\times2.303 = 89.8\ \mathrm{mV} \approx 90\ \mathrm{mV}.$$
 
-这就是**亚阈值斜率**（subthreshold slope），大约每十倍电流 90 mV。$\zeta = 1$ 的理想器件每十倍电流只需 $V_T\ln10 \approx 60$ mV；$\zeta = 1.5$ 使器件的陡峭程度降低了 50 %。（若 $V_T = 25$ mV，结果为 86 mV。）
+这就是**亚阈值斜率**（subthreshold slope），大约每十倍电流 90 mV。$\zeta = 1$ 的理想器件每十倍电流只需 $V_T\ln10 \approx 60$ mV；$\zeta = 1.5$ 意味着每十倍电流需要多 50 % 的栅极电压，因此器件的陡峭程度只有理想器件的 2/3。（若 $V_T = 25$ mV，结果为 86 mV。）
 
 ### 第 2 步 — $I_D = 10\ \mu$A 时的跨导（transconductance）
 

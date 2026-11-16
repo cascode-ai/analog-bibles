@@ -5,7 +5,7 @@
 $M_1$ (gate and drain at $V_{DD}$, source at $V_X$) is saturated throughout; $I_X$ falls monotonically, roughly quadratically, and $g_m$ falls almost linearly.
 - $I_X = \tfrac12\beta(3 - V_X - V_{TH})^2$ with $V_{SB} = V_X$, $V_{TH} = 0.7 + 0.45(\sqrt{0.9+V_X} - \sqrt{0.9})$.
 - Values (β in A/V², $I_X$ in A): $V_X$ = 0: $V_{TH}$ = 0.70 V, $I_X$ = 2.65β (overdrive 2.3 V); 0.5 V: 0.81 V, 1.44β; 1.0 V: 0.89 V, 0.61β; 1.5 V: 0.97 V, 0.14β (overdrive 0.53 V).
-- $g_m = \beta(3 - V_X - V_{TH})$: from 2.3β at $V_X = 0$ to 0.53β at 1.5 V, slope magnitude $1 + dV_{TH}/dV_X$ ≈ 1.24 → 1.15, i.e. it falls faster than without body effect.
+- $g_m = \beta(3 - V_X - V_{TH})$: from 2.3β at $V_X = 0$ to 0.53β at 1.5 V, slope magnitude $\beta(1 + dV_{TH}/dV_X)$ ≈ 1.24β → 1.15β, i.e. it falls faster than without body effect.
 - $M_1$ would turn off only at $V_X$ ≈ 1.97 V (2.3 V without body effect), outside the range.
 
 ## Grading notes

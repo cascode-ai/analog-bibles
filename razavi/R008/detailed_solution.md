@@ -76,7 +76,7 @@ $$I_X = -\tfrac12\beta\,(0.177\ \mathrm{V})^2 = -0.0156\beta\ \mathrm{V^2}.$$
 $$I_X = -\tfrac12\beta\,(0.055\ \mathrm{V})^2 = -0.0015\beta\ \mathrm{V^2}.$$
 - $V_X = 0.245$ V: $V_{ov} = 0$, so $I_X = 0$.
 
-**Shape.** $dI_X/dV_X = \beta V_{ov}(1 + \eta)$ with $\eta = \gamma/(2\sqrt{0.9 + V_X}) \approx 0.21$–$0.24$: $0.37\beta$ (V) at $V_X = 0$, going to zero at 0.245 V. So $I_X$ is a small upward-opening parabola that starts at $-0.045\beta$ and **touches zero tangentially** at 0.245 V, then stays at zero up to 3 V (in a real device a small subthreshold current decays exponentially just beyond 0.245 V). With $\beta = 1\ \mathrm{mA/V^2}$ the largest current is $45\ \mu$A, flowing out of the $V_X$ source.
+**Shape.** $dI_X/dV_X = \beta V_{ov}(1 + \eta)$ with $\eta = \gamma/(2\sqrt{0.9 + V_X}) \approx 0.21$–$0.24$: $0.37\beta$ (V) at $V_X = 0$, going to zero at 0.245 V. So $I_X$ is a small upward-opening parabola that starts at $-0.045\beta$ and **touches zero tangentially** at 0.245 V, then stays at zero up to 3 V (in a real device a small subthreshold current decays exponentially just beyond 0.245 V). With $\beta = 1\ \mathrm{mA/V^2}$ the largest current is $45\ \mu$A, flowing into the $V_X$ source.
 
 ### Step 5 — Transconductance
 

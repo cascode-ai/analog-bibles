@@ -48,7 +48,7 @@ The rest of the circuit is memoryless, so every voltage and current is a fixed m
 - An independent current source enters only through $\mathbf{J}$; an independent voltage source fixes a node voltage, which is eliminated from the matrix and moves into $\mathbf{J}$. Either way, $\mathbf{Y}(s)$ is **the matrix of the source-free network**, the one used in Steps 1–2.
 - By Cramer's rule, any node voltage is $\Delta_k(s)/\det\mathbf{Y}(s)$, and only the numerator $\Delta_k$ depends on where the excitation is applied and which node is the output.
 
-So **every** transfer function of the circuit has the denominator $\det\mathbf{Y}(s)$. $V_X/I_X$ is one of them, and by Step 2 it vanishes at $s = -1/(R_1C_1)$; therefore $\det\mathbf{Y}(s)\propto 1 + R_1C_1s$, and the main transfer function $V_{out}/V_{in}$ has the pole
+So **every** transfer function of the circuit has the denominator $\det\mathbf{Y}(s)$. $V_X/I_X$ is one of them, and by Step 2 its denominator vanishes at $s = -1/(R_1C_1)$; therefore $\det\mathbf{Y}(s)\propto 1 + R_1C_1s$, and the main transfer function $V_{out}/V_{in}$ has the pole
 
 $$\omega_p = \frac{1}{R_1C_1}$$
 

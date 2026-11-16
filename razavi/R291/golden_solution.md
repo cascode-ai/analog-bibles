@@ -7,7 +7,7 @@ With channel-length modulation: poles at ≈ $6.6\times10^8$ rad/s ($f \approx 1
 
 Derivation:
 - $g_{m1} = 5.18$ mS; $r_{O1} = 1/(0.1 \times 1\ \mathrm{mA}) = 10\ \mathrm{k\Omega}$, $r_{O2} = 1/(0.2 \times 1\ \mathrm{mA}) = 5\ \mathrm{k\Omega}$, $R_{out} = 3.33\ \mathrm{k\Omega}$.
-- $M_1$: $C_{GS1} = 84$ fF, $C_{GD1} = 20$ fF, $C_{DB1} = 42.4$ fF. $M_2$ ($W = 162.8\ \mu$m): $C_{DB2} = 162.8(1.5)(0.94) + 2(164.3)(0.0032) = 230.5$ fF; $C_{GD2} = 162.8(0.3) = 48.8$ fF, from the output to the ac-grounded gate; $C_{GS2}$ sits between two ac grounds and does not matter.
+- $M_1$: $C_{GS1} = 84$ fF, $C_{GD1} = 20$ fF, $C_{DB1} = 42.4$ fF. $M_2$ ($W = 162.8\ \mu$m): $C_{DB2} = 162.8(1.5)(0.94) + 2(164.3)(0.0032) = 230.6$ fF; $C_{GD2} = 162.8(0.3) = 48.8$ fF, from the output to the ac-grounded gate; $C_{GS2}$ sits between two ac grounds and does not matter.
 - Total output capacitance to ground: $C_{out} = C_{DB1} + C_{DB2} + C_{GD2} \approx 322$ fF.
 - The CS transfer function with $R_D \to R_{out}$ and $C_{DB} \to C_{out}$: denominator $R_SR_{out}\xi s^2 + [R_S(1 + g_{m1}R_{out})C_{GD1} + R_SC_{GS1} + R_{out}(C_{GD1} + C_{out})]s + 1$ with $\xi = C_{GS1}C_{GD1} + C_{GS1}C_{out} + C_{GD1}C_{out} = 3.51\times10^{-26}\ \mathrm{F^2}$: $1.17\times10^{-19}s^2 + 1.59\times10^{-9}s + 1$, roots $6.6\times10^8$ and $1.29\times10^{10}$ rad/s.
 - Zero from the feedforward through $C_{GD1}$: $s_z = +g_{m1}/C_{GD1}$.

@@ -119,9 +119,13 @@ $$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m
 
 ### Result
 
-$$\text{[Fig. 1]:}\quad \overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + \frac{2K_N}{C_{ox}(WL)_1f}$$
+**[Fig. 1]:**
 
-$$\text{[Fig. 2]:}\quad \overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + 8kT\gamma g_{m3}R_S^2 + \frac{2K_N}{C_{ox}f}\left[\frac{1}{(WL)_1} + \frac{g_{m3}^2R_S^2}{(WL)_3}\right]$$
+$$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + \frac{2K_N}{C_{ox}(WL)_1f}$$
+
+**[Fig. 2]:**
+
+$$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + 8kT\gamma g_{m3}R_S^2 + \frac{2K_N}{C_{ox}f}\left[\frac{1}{(WL)_1} + \frac{g_{m3}^2R_S^2}{(WL)_3}\right]$$
 
 Both share the differential transconductance $g_{m1}/(1 + g_{m1}R_S)$ and the same contributions from the pair, the degeneration and the loads. The tail noise of [Fig. 1] is common mode and cancels, whereas the two current sources of [Fig. 2] add $(I_{n3} - I_{n4})R_S$ at the input. **[Fig. 1] is quieter**; [Fig. 2] trades extra noise for the absence of a dc drop across the degeneration resistor.
 

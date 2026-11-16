@@ -15,7 +15,7 @@ Comparison with the CS stage (same device, $R_S$, $R_D$, λ = 0):
 - CS gain $-g_mR_D = -10.4$, about 6.2 times ($1 + g_mR_S$) larger: in the CG stage the low input resistance $1/g_m$ forms a divider with $R_S$.
 - CS poles (exact, from its second-order denominator) ≈ $2.5\times10^9$ rad/s (≈ 0.39 GHz) and ≈ $3.3\times10^{10}$ rad/s (≈ 5.3 GHz), with a right-half-plane zero at $g_m/C_{GD}$ ≈ 41 GHz. The CS dominant pole is set by the Miller-multiplied $C_{GD}$ ($1 + g_mR_D = 11.4$) and is about 3 times lower than the CG's lowest pole.
 - So the CG stage trades gain for bandwidth (no Miller multiplication); its gain–bandwidth here is lower, ≈ 1.7 × 1.2 GHz vs ≈ 10.4 × 0.39 GHz.
-(If the body effect were included with $V_{SB} = 0$, $g_{mb} \approx 1.23$ mS: gain ≈ 1.40, input pole ≈ 9.3 GHz.)
+(If the body effect were included with $V_{SB} = 0$, $g_{mb} \approx 1.23$ mS: gain ≈ 1.73, input pole ≈ 9.3 GHz.)
 
 ## Grading notes
 

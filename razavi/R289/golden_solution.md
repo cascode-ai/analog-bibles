@@ -10,7 +10,7 @@ Derivation:
 - $WLC_{ox} = 96$ fF; $C_{GS} = \tfrac23(96) + 50(0.4) = 84.0$ fF; $C_{GD} = 50(0.4) = 20.0$ fF; $C_{DB} = 50(1.5)(0.56) + 2(51.5)(0.0035) = 42.4$ fF.
 - Exact transfer function (λ = 0): $\dfrac{V_{out}}{V_{in}} = \dfrac{(C_{GD}s - g_m)R_D}{R_SR_D\xi s^2 + [R_S(1 + g_mR_D)C_{GD} + R_SC_{GS} + R_D(C_{GD} + C_{DB})]s + 1}$, $\xi = C_{GS}C_{GD} + C_{GS}C_{DB} + C_{GD}C_{DB} = 6.08\times10^{-27}\ \mathrm{F^2}$.
 - Coefficients: $s^2$: $R_SR_D\xi = 1.22\times10^{-20}\ \mathrm{s^2}$; $s$: $2.27\times10^{-10} + 0.84\times10^{-10} + 1.25\times10^{-10} = 4.36\times10^{-10}$ s. Roots: $2.46\times10^9$ and $3.33\times10^{10}$ rad/s.
-- Dominant-pole approximations give $\omega_{p1} \approx 1/(4.36\times10^{-10}) = 2.29\times10^9$ rad/s and $\omega_{p2} \approx 3.6\times10^{10}$ rad/s, close to the exact roots. (A pure Miller nodal estimate gives 0.51 GHz for the input pole and 1.28 GHz for the output pole; the latter is far from the true second pole.)
+- Dominant-pole approximations give $\omega_{p1} \approx 1/(4.36\times10^{-10}) = 2.29\times10^9$ rad/s and $\omega_{p2} \approx 3.6\times10^{10}$ rad/s, close to the exact roots. (A pure Miller nodal estimate gives 0.51 GHz for the input pole and 1.24 GHz for the output pole; the latter is far from the true second pole.)
 
 ## Grading notes
 

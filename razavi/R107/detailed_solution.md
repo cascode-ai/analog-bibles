@@ -70,7 +70,7 @@ from $\tfrac12\beta_n(1.5)^2 = 1.125\,\beta_n$ at 2.2 V to $\tfrac12\beta_n(2.3)
 
 ### Step 4 — Slope and smoothness
 
-The slope is the sum of the conductances $1/g_m$ of the two diode-connected devices:
+The slope is the sum of the conductances $g_m$ of the two diode-connected devices:
 
 $$\frac{dI_X}{dV_X} = \beta_n(V_X - 0.7)\big|_{V_X > 0.7} + \beta_p(2.2 - V_X)\big|_{V_X < 2.2} = g_{m1} + g_{m2} > 0 .$$
 

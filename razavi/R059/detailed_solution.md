@@ -16,7 +16,7 @@ $I_0$ cancels, so the answer depends on neither the device size nor the starting
 
 $$\frac{\Delta V_{GS}}{\zeta V_T} = \ln 10 = 2.303 \quad\Longrightarrow\quad \Delta V_{GS} = \zeta V_T\ln 10 = (1.5)(26\ \mathrm{mV})(2.303) = 39\ \mathrm{mV}\times2.303 = 89.8\ \mathrm{mV} \approx 90\ \mathrm{mV}.$$
 
-This is the **subthreshold slope**, about 90 mV per decade of current. An ideal device with $\zeta = 1$ would need only $V_T\ln10 \approx 60$ mV per decade; $\zeta = 1.5$ makes the device 50 % less steep. (With $V_T = 25$ mV the result would be 86 mV.)
+This is the **subthreshold slope**, about 90 mV per decade of current. An ideal device with $\zeta = 1$ would need only $V_T\ln10 \approx 60$ mV per decade; $\zeta = 1.5$ means 50 % more gate voltage per decade, so the device is only 2/3 as steep. (With $V_T = 25$ mV the result would be 86 mV.)
 
 ### Step 2 — Transconductance at $I_D = 10\ \mu$A
 

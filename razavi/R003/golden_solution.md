@@ -6,7 +6,7 @@ $g_m r_O = \dfrac{\sqrt{2\mu_nC_{ox}(W/L)I_D}}{\lambda I_D} = \dfrac{1}{\lambda}
 
 Plot: for each L, a curve falling as $1/\sqrt{I_D}$ (very large at small current, flattening at large current). Longer L gives a higher curve: $g_m r_O \propto \sqrt{L}$ at fixed W (doubling L raises it by √2) and $\propto L$ at fixed W/L (doubling L doubles it).
 
-Example (W = 50 µm, λ = 0.1 V⁻¹ × 0.5 µm / L): L = 0.5 µm: 164, 73, 52 at $I_D$ = 0.1, 0.5, 1 mA; L = 1 µm: 232, 104, 73; L = 2 µm: 328, 147, 104.
+Example (W = 50 µm, λ = 0.1 V⁻¹ × 0.5 µm / L): L = 0.5 µm: 164, 73, 52 at $I_D$ = 0.1, 0.5, 1 mA; L = 1 µm: 232, 104, 73; L = 2 µm: 327, 146, 104.
 
 (Optional remark: the $1/\sqrt{I_D}$ rise stops at very low current, where the device enters subthreshold and $g_m r_O \to 1/(\lambda\zeta V_T)$ becomes constant.)
 

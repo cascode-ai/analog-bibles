@@ -2,7 +2,7 @@
 
 ## Reference answer
 
-There is no unique number; a reasonable enumeration gives roughly 8–10 distinct single-stage topologies. Representative list (signal applied to a gate, a source or a bulk; the other device used as load, bias source, cascode or degeneration):
+There is no unique number; a reasonable enumeration gives about 12 distinct topologies. Representative list (signal applied to a gate, a source or a bulk; the other device used as load, bias source, cascode or degeneration):
 1. CS ($M_1$ input) with $M_2$ diode-connected as load (gate of $M_2$ to its drain at $V_{DD}$).
 2. CS ($M_1$) with $M_2$'s gate at a fixed bias: a follower-type load (≈ $1/(g_{m2}+g_{mb2})$) or, with a high gate bias, a triode resistor load.
 3. Cascode: $M_1$ CS, $M_2$ common gate (gate at bias), output at the top drain.
@@ -14,7 +14,7 @@ There is no unique number; a reasonable enumeration gives roughly 8–10 distinc
 9. Bulk-driven versions of the above (signal into a bulk terminal, using $g_{mb}$).
 10. With the source/drain of one device swapped so that both sources sit at the middle node: a source-coupled pair (differential pair with a tail current source at the middle node, inputs at both gates, outputs at the top and bottom terminals with external loads), or a CD→CG amplifier with one gate held at a bias.
 11. Cascoded source follower: $M_1$ follower (input $G_1$, output at the bottom terminal with a resistor or bias path to ground), $M_2$ with its gate at a bias and top terminal at $V_{DD}$ as a common-gate drain shield; $M_2$ presents a low impedance at the middle node, so the follower still works, $A_v \approx g_{m1}R_S/[1+(g_{m1}+g_{mb1})R_S]$.
-The 8–10 families above are representative, not an upper limit: larger counts (separating load variants, bulk-driven versions, swapped orientations, cross-wired multi-stage connections) are equally valid when the counting convention is stated. External passive elements, voltage sources and bias currents may be added; a third transistor may not. Every arrangement must have a DC path for each device's current (e.g., two NMOS devices that both sink current from the output node with no pull-up element cannot be biased).
+The 11 families above are representative, not an upper limit: larger counts (separating load variants, bulk-driven versions, swapped orientations, cross-wired multi-stage connections) are equally valid when the counting convention is stated. External passive elements, voltage sources and bias currents may be added; a third transistor may not. Every arrangement must have a DC path for each device's current (e.g., two NMOS devices that both sink current from the output node with no pull-up element cannot be biased).
 
 ## Grading notes
 

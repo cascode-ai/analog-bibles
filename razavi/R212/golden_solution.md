@@ -12,7 +12,7 @@ Sketch (the sweep keeps the input CM at 1.5 V, far below 2.81 V; $V_{out1}(V_{in
 - $V_{in1} \lesssim 0.15$ V: $M_2$ (gate near 3 V) carries all 20 µA and lifts $V_P$ to ≈ 2.10 V, so the load gates get only $V_{SG} \approx 0.90$ V; $M_4$ saturates and limits the current, pushing $M_2$ into triode: $V_{out2} \approx 2.1$ V (2.105 V at $V_{in1} = 0$). $V_{out1} = V_{DD}$ ($M_1$ off, $M_3$ carries no current).
 - At $V_{in1} \approx 0.15$ V ($V_{in2} \approx 2.85$ V) $M_2$ returns to saturation and $M_4$ enters triode: $V_{out2}$ jumps to ≈ 2.9 V (a vertical step for λ = 0), then creeps toward $V_{DD}$ as $V_P = V_{in2} - V_{GS2}$ falls and the loads turn on harder (2.96 V at 0.2 V, 2.99 V at 0.5 V).
 - Around $V_{in1} = 1.5$ V (between about 1.473 V and 1.527 V, i.e. $|V_{in1} - V_{in2}| \le \sqrt{2I_{SS}/k_n} \approx 55$ mV) the current switches from $M_2$ to $M_1$. Here $V_P \approx 0.76$ V, $V_{SG} \approx 2.24$ V and $R_{on} \approx 180$ Ω, so both outputs stay within ≈ 2–4 mV of $V_{DD}$ (differential gain ≈ $g_{m1}R_{on} \approx 0.1$).
-- $V_{in1} > 1.53$ V: $V_{out2} = V_{DD}$ ($M_2$ off); $V_{out1}$ decreases slowly (2.994 V at 2.0 V, 2.988 V at 2.5 V, 2.96 V at 2.8 V), drops abruptly at $V_{in1} \approx 2.85$ V to ≈ 2.13 V and reaches ≈ 2.105 V at $V_{in1} = 3$ V.
+- $V_{in1} > 1.53$ V: $V_{out2} = V_{DD}$ ($M_2$ off); $V_{out1}$ decreases slowly (2.994 V at 2.0 V, 2.988 V at 2.5 V, 2.96 V at 2.8 V), drops abruptly at $V_{in1} \approx 2.85$ V to ≈ 2.15 V and reaches ≈ 2.105 V at $V_{in1} = 3$ V.
 
 ## Grading notes
 

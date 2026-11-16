@@ -6,7 +6,9 @@
 
 漏极接交流地，衬底接地，因此从 D 流向 S 的沟道电流（即漏极短路线中的电流）为
 
-$$I_{ch} = g_mv_{gs} - g_{mb}V_S - \frac{V_S}{r_O}\ (+\,I_n \text{ in [Fig. 1] only}), \qquad v_{gs} = V_G - V_S .$$
+$$I_{ch} = g_mv_{gs} - g_{mb}V_S - \frac{V_S}{r_O}\ (+\,I_n), \qquad v_{gs} = V_G - V_S .$$
+
+其中 $I_n$ 项只出现在 [图 1] 中。
 
 为简化代数运算，定义
 

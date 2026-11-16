@@ -130,7 +130,7 @@ All three curves change only in the window where the pair steers its current ($|
   - Central slope: $-(g_{m1}/g_{m5})\cdot\dfrac{g_{m3}R_1/2}{1 + g_{m3}R_1/2}$.
   - End levels: $\pm\sqrt{2/\beta_5}\,(\sqrt{I_{SS} - I_3} - \sqrt{I_3})$, positive for low $V_{in1}$, where $I_3$ satisfies $V_{GS4}(I_{SS} - I_3) - V_{GS3}(I_3) = I_3R_1$.
 - **$V_X$ falls and $V_Y$ rises**, as mirror images. They are equal at balance, at $V_{b1} - V_{GS3}(I_{SS}/2)$, and differ by $\pm I_3R_1$ at the ends.
-- **The swings are limited** because $R_1$ lets part of the current of the "off" side flow through the other cascode. They approach the plain diode-load values as $R_1 \to \infty$ and shrink to zero as $R_1 \to 0$.
+- **The swings are limited** because $R_1$ lets part of the conducting side's current flow through the "off" side's cascode. They approach the plain diode-load values as $R_1 \to \infty$ and shrink to zero as $R_1 \to 0$.
 
 **Common mistake.** Letting $V_X$ and $V_Y$ swing widely, or in the same direction. They are cascode sources with a fixed gate voltage, so they shift only by the change in $V_{GS}$, a few hundred millivolts, in opposite directions.
 

@@ -6,7 +6,9 @@
 
 The drain is at ac ground and the bulk is grounded, so the channel current from D to S (the current in the drain short) is
 
-$$I_{ch} = g_mv_{gs} - g_{mb}V_S - \frac{V_S}{r_O}\ (+\,I_n \text{ in [Fig. 1] only}), \qquad v_{gs} = V_G - V_S .$$
+$$I_{ch} = g_mv_{gs} - g_{mb}V_S - \frac{V_S}{r_O}\ (+\,I_n), \qquad v_{gs} = V_G - V_S .$$
+
+The term $I_n$ is present in [Fig. 1] only.
 
 To shorten the algebra define
 

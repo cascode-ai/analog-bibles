@@ -119,9 +119,13 @@ $$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m
 
 ### 结果
 
-$$\text{[Fig. 1]:}\quad \overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + \frac{2K_N}{C_{ox}(WL)_1f}$$
+**[图 1]：**
 
-$$\text{[Fig. 2]:}\quad \overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + 8kT\gamma g_{m3}R_S^2 + \frac{2K_N}{C_{ox}f}\left[\frac{1}{(WL)_1} + \frac{g_{m3}^2R_S^2}{(WL)_3}\right]$$
+$$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + \frac{2K_N}{C_{ox}(WL)_1f}$$
+
+**[图 2]：**
+
+$$\overline{V_{n,in}^2} = 8kT\left[\frac{\gamma}{g_{m1}} + R_S + \frac{(1 + g_{m1}R_S)^2}{g_{m1}^2R_1}\right] + 8kT\gamma g_{m3}R_S^2 + \frac{2K_N}{C_{ox}f}\left[\frac{1}{(WL)_1} + \frac{g_{m3}^2R_S^2}{(WL)_3}\right]$$
 
 两个电路的差分跨导同为 $g_{m1}/(1 + g_{m1}R_S)$，对管、负反馈电阻和负载的噪声贡献也相同。[图 1] 的尾电流噪声是共模量，会相互抵消；而 [图 2] 的两个电流源在输入端引入 $(I_{n3} - I_{n4})R_S$。**[图 1] 的噪声更低**；[图 2] 以额外的噪声换取负反馈电阻上没有直流压降。
 

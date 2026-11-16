@@ -76,7 +76,7 @@ $$\mathrm{CMRR} = \frac{R_D}{\Delta R_D}\left(1 + 2g_mR_{SS}\right) = 200\times 
 
 with $g_m = 3.66$ mS, $R_{SS} = 10$ kΩ, $A_{DM} = 7.32$ and $A_{CM-DM} = 4.93\times10^{-4}$.
 
-**Common mistake.** Dividing by the *symmetric* common-mode gain $R_D/(2R_{SS})$ (≈ 0.1, giving a "CMRR" of about 37–74). That is the gain to the output *common* mode; the CMRR here uses the conversion to the *differential* output, which exists only because of $\Delta R_D$.
+**Common mistake.** Dividing by the *symmetric* common-mode gain $R_D/(2R_{SS})$ (≈ 0.1, giving a "CMRR" of about 73, or 37 with a single-ended output). That is the gain to the output *common* mode; the CMRR here uses the conversion to the *differential* output, which exists only because of $\Delta R_D$.
 
 **Common mistake.** Leaving out the factor $1 + 2g_mR_{SS}$ (giving CMRR = $R_D/\Delta R_D$ = 200), as if the tail were a short to ground. Most of the rejection comes from the tail degeneration.
 

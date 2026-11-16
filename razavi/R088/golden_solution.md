@@ -8,7 +8,7 @@ A non-inverting (common-gate) characteristic: $V_{out}$ rises monotonically from
 - Off: $V_{out} = V_{in} + (V_{DD} - V_{in})\dfrac{R_F}{R_D+R_F} = \dfrac{R_FV_{DD} + R_DV_{in}}{R_D+R_F}$, a straight line of slope $R_D/(R_D+R_F)$ ending at $(V_{DD}, V_{DD})$.
 - On: $M_1$ sinks current from the output node into the input source, so $V_{out}$ lies below that line: $(V_{DD} - V_{out})/R_D = (V_{out} - V_{in})/R_F + I_{D1}$, with $V_{in} \le V_{out}$.
 - Saturation for $V_{out} \ge V_b - V_{TH}(V_{in})$: $I_{D1} = \tfrac12\beta(V_b - V_{in} - V_{TH})^2$; slope $dV_{out}/dV_{in} = (g_m + g_{mb} + 1/R_F)(R_D\|R_F)$, larger than $R_D/(R_D+R_F)$ and falling to it at cutoff (the curve joins the line tangentially).
-- Triode for $V_{out} < V_b - V_{TH}(V_{in})$ — typically near $V_{in} = 0$ if β is large: $V_{out}(0)$ from $(V_{DD} - V_{out})/R_D = V_{out}/R_F + \beta[(V_b - 0.7)V_{out} - V_{out}^2/2]$; the slope is small there and grows toward the triode/saturation boundary, where the curve is steepest.
+- Triode for $V_{out} < V_b - V_{TH}(V_{in})$ — typically near $V_{in} = 0$ if β is large: $V_{out}(0)$ from $(V_{DD} - V_{out})/R_D = V_{out}/R_F + \beta[(V_b - 0.7)V_{out} - V_{out}^2/2]$; the slope there is moderate (about 1) and grows toward the triode/saturation boundary, where the curve is steepest.
 - Transition points: $V_{out} = V_b - V_{TH}$ (triode → saturation), $V_{in} = V_{in,off}$ (cutoff, $V_{out} = (R_FV_{DD} + R_DV_{in,off})/(R_D+R_F)$), end point $(V_{DD}, V_{DD})$.
 
 ## Grading notes

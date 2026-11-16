@@ -2,12 +2,12 @@
 
 ## Reference answer
 
-Both curves are zero below threshold and square-law parabolas above it; both devices stay saturated over the whole sweep. At $|V_{GS}| = 3$ V: NFET ≈ 35.5 mA (≈ 46.2 mA if the factor $1+\lambda|V_{DS}| = 1.3$ is included), PFET ≈ 9.3 mA (≈ 14.9 mA with $1+\lambda|V_{DS}| = 1.6$). At full gate drive the NFET carries about 3.8 times (3.1 times with CLM) the PFET current.
+Both curves are zero below threshold and square-law parabolas above it; both devices stay saturated over the whole sweep. At $|V_{GS}| = 3$ V: NFET ≈ 35.4 mA (≈ 46.1 mA if the factor $1+\lambda|V_{DS}| = 1.3$ is included), PFET ≈ 9.3 mA (≈ 14.9 mA with $1+\lambda|V_{DS}| = 1.6$). At full gate drive the NFET carries about 3.8 times (3.1 times with CLM) the PFET current.
 
 Derivation (square law, $L$ = effective length, $V_{SB} = 0$ so no body effect):
 - Saturation: $|V_{DS}| = 3\ \mathrm{V} > |V_{GS}| - |V_{TH}|$ for every $|V_{GS}| \le 3$ V.
-- NFET: $I_D = \tfrac12(134\ \mu\mathrm{A/V^2})(100)(V_{GS}-0.7)^2 = 6.71\ \mathrm{mA/V^2}\,(V_{GS}-0.7)^2$ for $V_{GS} > 0.7$ V, zero below. At $V_{GS}$ = 1, 1.5, 2, 2.5, 3 V: 0.60, 4.30, 11.3, 21.8, 35.5 mA (with CLM ×1.3: 0.79, 5.59, 14.8, 28.3, 46.2 mA).
-- PFET: $|I_D| = \tfrac12(38.4\ \mu\mathrm{A/V^2})(100)(|V_{GS}|-0.8)^2 = 1.92\ \mathrm{mA/V^2}\,(|V_{GS}|-0.8)^2$ for $|V_{GS}| > 0.8$ V. At $|V_{GS}|$ = 1, 1.5, 2, 2.5, 3 V: 0.077, 0.94, 2.76, 5.54, 9.28 mA (with CLM ×1.6: 0.12, 1.50, 4.42, 8.87, 14.9 mA).
+- NFET: $I_D = \tfrac12(134\ \mu\mathrm{A/V^2})(100)(V_{GS}-0.7)^2 = 6.70\ \mathrm{mA/V^2}\,(V_{GS}-0.7)^2$ for $V_{GS} > 0.7$ V, zero below. At $V_{GS}$ = 1, 1.5, 2, 2.5, 3 V: 0.60, 4.29, 11.3, 21.7, 35.4 mA (with CLM ×1.3: 0.78, 5.57, 14.7, 28.2, 46.1 mA).
+- PFET: $|I_D| = \tfrac12(38.4\ \mu\mathrm{A/V^2})(100)(|V_{GS}|-0.8)^2 = 1.92\ \mathrm{mA/V^2}\,(|V_{GS}|-0.8)^2$ for $|V_{GS}| > 0.8$ V. At $|V_{GS}|$ = 1, 1.5, 2, 2.5, 3 V: 0.077, 0.94, 2.76, 5.55, 9.29 mA (with CLM ×1.6: 0.12, 1.51, 4.42, 8.88, 14.9 mA).
 - (A small subthreshold current flows just below threshold in reality; the square law sets it to zero.)
 
 ## Grading notes
