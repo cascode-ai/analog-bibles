@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "analog-bibles",
+  "main": "./site/worker.js",
+  "compatibility_date": "2025-06-01",
+  "workers_dev": true,
+  "routes": [{ "pattern": "analog-bibles.tokenzhang.com", "custom_domain": true }],
+  // dist/ is written by `node site/build.mjs`: the page plus every question's files.
+  "assets": { "directory": "./dist", "binding": "ASSETS" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "analog-bibles",
+      // Filled in once `wrangler d1 create analog-bibles` has run.
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
