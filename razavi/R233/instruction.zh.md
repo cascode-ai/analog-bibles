@@ -1,0 +1,1 @@
+在 [图 1] 所示电路中，$V_{in}$ 是高于 NMOS 阈值电压（threshold voltage）的恒定直流电压。画出 $V_{DD}$ 从 0 变化到 3 V 时 $V_{out}$ 随 $V_{DD}$ 变化的曲线草图。题目没有给定器件尺寸、$R_L$ 和 $V_{in}$，请用它们来表示结果。采用平方律（square law）模型，取 $\lambda = 0$；NMOS 的 $V_{TH} = 0.7$ V，PMOS 的 $V_{TH} = -0.8$ V；NMOS 的衬底（bulk）接地，PMOS 的源极和衬底接 $V_{DD}$。
