@@ -1,10 +1,10 @@
 # Detailed solution - R100
 
-**Approach.** The output is the *source* of $M_2$, whose gate is fixed at $V_{b1}$, and the drain of the current source $M_1$ (gate at $V_{b2}$). So $M_2$ is a source follower of a constant voltage, biased by $M_1$, and the input PMOS $M_3$ only supplies the current from above. As long as $M_3$ can deliver $M_1$'s current and leaves $M_2$ enough drain voltage, the output does not depend on $V_{in}$ at all. Find that plateau, find where it ends (the earlier of two conditions), and follow the output down to zero at $V_{in} = V_{DD} - |V_{THP}|$.
+**Approach.** The output is the *source* of $M_2$, a follower of the fixed $V_{b1}$ biased by the current source $M_1$; the input PMOS $M_3$ only supplies the current from above. Find the plateau where the output does not depend on $V_{in}$, find where it ends (the earlier of two conditions), and follow the output down to zero at $V_{in} = V_{DD} - |V_{THP}|$.
 
-### Step 1 — The circuit and the key quantities
+### Step 1 — The key quantities
 
-From the figure: $M_3$ (PMOS) has source at $V_{DD} = 3$ V, gate at $V_{in}$, drain at node $D$. $M_2$ (NMOS) has drain at $D$, gate at $V_{b1}$, source at $V_{out}$. $M_1$ (NMOS) has drain at $V_{out}$, gate at $V_{b2}$, source at ground. NMOS bulks are at ground, so $M_2$ has $V_{SB2} = V_{out}$. All three carry the same current $I$, and $\lambda = 0$.
+Call the drain node of $M_3$ and $M_2$ node $D$. All three transistors carry the same current $I$ ($\lambda = 0$), and $M_2$ has $V_{SB2} = V_{out}$.
 
 **Current of $M_1$ when saturated** ($V_{out} \ge V_{b2} - 0.7$ V):
 
@@ -16,13 +16,13 @@ $$I_1 = \frac12\beta_1(V_{b2} - 0.7)^2 .$$
 
 ### Step 2 — Small $V_{in}$: a flat plateau
 
-For small $V_{in}$, $M_3$ has a large gate drive and could supply far more than $I_1$. So the current is set by $M_1$, $I = I_1$, and $M_3$ is in **triode** with a small $V_{SD3}$: node $D$ sits just below $V_{DD}$.
+For small $V_{in}$, $M_3$ could supply far more than $I_1$, so the current is set by $M_1$, $I = I_1$, and $M_3$ is in **triode** with a small $V_{SD3}$: node $D$ sits just below $V_{DD}$.
 
-$M_2$ then carries the fixed current $I_1$ with its gate at the fixed voltage $V_{b1}$. In saturation, $V_{GS2} = V_{TH2} + \sqrt{2I_1/\beta_2}$, so
+$M_2$ then carries the fixed current $I_1$ with its gate at the fixed $V_{b1}$. In saturation, $V_{GS2} = V_{TH2} + \sqrt{2I_1/\beta_2}$, so
 
 $$V_{out} = V_0 = V_{b1} - V_{TH2}(V_0) - \sqrt{\frac{2I_1}{\beta_2}} ,$$
 
-**independent of $V_{in}$**: a horizontal line. (This assumes $V_0 > V_{b2} - 0.7$ V, so that $M_1$ is indeed saturated.) The input only changes how much voltage $M_3$ drops, i.e. where node $D$ sits; it does not reach the output.
+**independent of $V_{in}$**: a horizontal line. (This assumes $V_0 > V_{b2} - 0.7$ V, so that $M_1$ is indeed saturated.) The input only changes the drop across $M_3$, i.e. where node $D$ sits.
 
 ### Step 3 — How node $D$ moves, and the two ways the plateau can end
 
@@ -40,7 +40,7 @@ At $V_{in}^*$, $M_3$ is exactly at its triode/saturation edge, so $V_D(V_{in}^*)
 
 ### Step 4 — Case (a): the plateau ends at $V_{in}^*$ (vertical drop)
 
-If $V_D$ is still above $V_{b1} - V_{TH2}$ when $V_{in}$ reaches $V_{in}^*$, the plateau ends because $M_3$ becomes current-limited. At $V_{in}^*$, $M_3$ and $M_1$ are two saturated current sources carrying the same current, and with $\lambda = 0$ nothing in between sets the voltage: the gain is unbounded and $V_{out}$ **drops vertically** at $V_{in}^*$. It falls to $V_{b2} - 0.7$ V, where $M_1$ leaves saturation; on the way $M_2$, whose $V_{GS}$ grows as $V_{out}$ falls, enters triode and $V_D$ collapses toward $V_{out}$.
+If $V_D$ is still above $V_{b1} - V_{TH2}$ when $V_{in}$ reaches $V_{in}^*$, the plateau ends because $M_3$ becomes current-limited. At $V_{in}^*$, $M_3$ and $M_1$ are two saturated current sources carrying the same current, and with $\lambda = 0$ nothing in between sets the voltage: the gain is unbounded and $V_{out}$ **drops vertically** at $V_{in}^*$, down to $V_{b2} - 0.7$ V, where $M_1$ leaves saturation. On the way, $M_2$ (whose $V_{GS}$ grows as $V_{out}$ falls) enters triode and $V_D$ collapses toward $V_{out}$.
 
 **Beyond $V_{in}^*$**, $M_3$ is saturated and sets the current, $I = \frac12\beta_3(2.2 - V_{in})^2 < I_1$. $M_1$ (and $M_2$) are in triode, and the output follows from $M_1$'s triode equation:
 
@@ -50,7 +50,7 @@ which falls smoothly from $V_{b2} - 0.7$ V at $V_{in}^*$ to 0 at $V_{in} = 2.2$ 
 
 ### Step 5 — Case (b): the plateau ends by loss of headroom (gradual decline)
 
-If instead $V_D$ reaches $V_{b1} - V_{TH2}$ before $V_{in}^*$ (a weak $M_3$, or a high $V_{b1}$), $M_2$ enters triode while the current is still $I_1$. From then on $M_2$ behaves like a small resistor, so $V_{out}$ follows $V_D$ down, a gradual decline with finite slope. When $V_{out}$ reaches $V_{b2} - 0.7$ V, $M_1$ also enters triode, and the current then falls below $I_1$. In this case there is no vertical jump, because $M_2$'s loss of headroom has already brought $V_{out}$ down to $V_{b2} - 0.7$ V before $V_{in}^*$.
+If instead $V_D$ reaches $V_{b1} - V_{TH2}$ before $V_{in}^*$ (a weak $M_3$, or a high $V_{b1}$), $M_2$ enters triode while the current is still $I_1$. It then acts like a small resistor, so $V_{out}$ follows $V_D$ down with a finite slope. When $V_{out}$ reaches $V_{b2} - 0.7$ V, $M_1$ also enters triode and the current falls below $I_1$. There is no vertical jump in this case, because $M_2$'s loss of headroom has already brought $V_{out}$ down to $V_{b2} - 0.7$ V before $V_{in}^*$.
 
 ### Step 6 — $V_{in} \ge 2.2$ V: $M_3$ off
 
@@ -71,7 +71,7 @@ V_D(V_{in}^*) &= 3 - 0.424 = 2.576\ \mathrm{V} > V_{b1} - V_{TH2} = 1.134\ \math
 \end{aligned}
 $$
 
-$M_2$ still has headroom at $V_{in}^*$, so this is **case (a)**. Check: $V_0 = 0.834$ V is above $V_{b2} - 0.7 = 0.3$ V, so $M_1$ is saturated on the plateau.
+$M_2$ still has headroom at $V_{in}^*$, so this is **case (a)**. $V_0 = 0.834$ V $> V_{b2} - 0.7 = 0.3$ V, so $M_1$ is saturated on the plateau.
 
 **After the drop**, e.g. at $V_{in} = 2.0$ V: $\frac12(1\ \mathrm{mA/V^2})(0.2)^2 = 20\ \mu\mathrm{A} = (2\ \mathrm{mA/V^2})[0.3V_{out} - 0.5V_{out}^2]$, i.e. $V_{out}^2 - 0.6V_{out} + 0.02 = 0$, so $V_{out} = (0.6 - \sqrt{0.28})/2 = 0.035$ V.
 
@@ -95,8 +95,8 @@ $V_{out}$ is **flat** (independent of $V_{in}$) at the level set by the follower
 - **$V_{in} \ge 2.2$ V:** $M_3$ off, no current, $V_{out} = 0$.
 - **Transition points:** end of the plateau ($V_D = V_{b1} - V_{TH2}$ or $V_{in} = 2.2 - \sqrt{2I_1/\beta_3}$, whichever comes first), $V_{out} = V_{b2} - 0.7$ V, $V_{in} = 2.2$ V.
 
-**Common mistake.** Treating $M_2$ as a cascode with the output at its drain, which gives a high-gain inverting curve from the start. The output here is $M_2$'s *source*, and its gate is fixed: it is a follower of $V_{b1}$, so the output is flat while $M_2$ and $M_1$ stay saturated.
+**Common mistake.** Treating $M_2$ as a cascode with the output at its drain, which gives a high-gain inverting curve from the start. The output is $M_2$'s *source* and its gate is fixed, so the output stays flat while $M_2$ and $M_1$ are saturated.
 
-**Common mistake.** Drawing the output rising (or falling) with $V_{in}$ throughout. On the plateau, a change of $V_{in}$ only changes the drop across $M_3$ (and hence $V_D$); the current is set by $M_1$ and the output by $V_{b1} - V_{GS2}(I_1)$.
+**Common mistake.** Drawing the output rising (or falling) with $V_{in}$ throughout. On the plateau $V_{in}$ only changes the drop across $M_3$; the current is set by $M_1$ and the output by $V_{b1} - V_{GS2}(I_1)$.
 
-**Common mistake.** Leaving a nonzero output above $V_{in} = 2.2$ V. Once $M_3$ turns off nothing feeds the stack, and $M_1$ (biased on) pulls $V_{out}$ to 0 V.
+**Common mistake.** Leaving a nonzero output above $V_{in} = 2.2$ V. Once $M_3$ is off nothing feeds the stack, and $M_1$ (biased on) pulls $V_{out}$ to 0 V.

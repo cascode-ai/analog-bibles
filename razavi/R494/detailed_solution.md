@@ -1,36 +1,22 @@
 # Detailed solution - R494
 
-**Approach.** Model every transistor's channel thermal noise as a current source $\overline{I_n^2} = 4kT\gamma g_m$ between its drain and source. Find how much differential output noise each source produces, add the powers (the sources are uncorrelated), and divide by the square of the differential gain. Because the circuit is symmetric, it is enough to analyse one half circuit and double its contribution.
+**Approach.** Model each transistor's channel thermal noise as a drain–source current $4kT\gamma g_m$, refer each one to the input through the gain from the input to the node it flows into, and add the uncorrelated powers. By symmetry, one half circuit suffices, with its noise power doubled.
 
-### Step 1 — The circuit and the meaning of "input-referred noise"
+### Step 1 — The half circuit and the noise factor
 
-Reading the figure:
+Call the common source node of $M_1$ and $M_2$ P. The output is $V_{out1} - V_{out2}$, and $\overline{V_{n,in}^2} = \overline{V_{n,out}^2}/A_v^2$.
 
-- **Stage 1.** NMOS differential pair $M_1$–$M_2$, with sources tied at node P and a tail current $I_{SS}$. Its loads are the PMOS current sources $M_3$ (at node X) and $M_4$ (at node Y), whose gates sit at the bias voltage $V_{b1}$.
-- **Stage 2.** Two PMOS common-source (CS) amplifiers: $M_5$ (gate at X, output $V_{out1}$) and $M_6$ (gate at Y, output $V_{out2}$). Their loads are the NMOS current sources $M_7$ and $M_8$.
-- The input is the voltage between the gates of $M_1$ and $M_2$. The output is $V_{out1} - V_{out2}$.
+By symmetry, P is a virtual ground for differential signals and noise, and the common-mode part of any noise current cancels in $V_{out1} - V_{out2}$. So analyse **one half circuit**, the CS stage $M_1$ (source grounded, current-source load $M_3$, output X) followed by the CS stage $M_5$ (gate at X, current-source load $M_7$, output $V_{out1}$), and **double its input-referred noise power** for the identical, uncorrelated other half.
 
-The **input-referred noise voltage** $\overline{V_{n,in}^2}$ is the single noise source which, placed in series with the input of a *noiseless* copy of the amplifier, produces the same output noise as all the real noise sources together:
-
-$$\overline{V_{n,in}^2} = \frac{\overline{V_{n,out}^2}}{A_v^2} .$$
-
-Here $\overline{V_{n,out}^2}$ is the total output noise power spectral density (in V²/Hz) and $A_v$ is the differential voltage gain. Each transistor's noise is independent of the others, so their **powers add**.
-
-Noise model: each transistor has a channel thermal-noise current $\overline{I_n^2} = 4kT\gamma g_m$ (A²/Hz) between its drain and source. Here $k = 1.38\times10^{-23}$ J/K is Boltzmann's constant, $T = 300$ K, $\gamma = 2/3$ is the channel-noise coefficient, and $g_m$ is the device transconductance. The common factor is
+Every channel-noise current carries the factor
 
 $$4kT\gamma = 4\times(1.38\times10^{-23}\ \mathrm{J/K})\times(300\ \mathrm{K})\times\tfrac23 = 1.104\times10^{-20}\ \mathrm{J}.$$
 
 ### Step 2 — Bias currents and small-signal parameters
 
-**Bias currents.** The tail current splits equally between the two input devices, and each load carries the same current:
-
 $$I_{D1} = I_{D2} = I_{D3} = I_{D4} = \frac{I_{SS}}{2} = 0.125\ \mathrm{mA}, \qquad I_{D5} = I_{D6} = I_{D7} = I_{D8} = 1\ \mathrm{mA}.$$
 
-**Aspect ratios.** $W/L = 50/0.5 = 100$ for all devices except $M_{5,6}$, which have $W/L = 60/0.5 = 120$.
-
-All transistors are assumed to be in saturation (the bias voltages are chosen for this), so the square-law expressions apply.
-
-**Transconductances** from the square law, $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$. Here $\mu C_{ox}$ is the process transconductance parameter: $\mu_nC_{ox}$ for the NMOS devices ($M_1$, $M_2$, $M_7$, $M_8$) and $\mu_pC_{ox}$ for the PMOS devices ($M_3$–$M_6$).
+$W/L = 50/0.5 = 100$ for all devices except $M_{5,6}$, which have $W/L = 60/0.5 = 120$. All transistors are saturated, so $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$, with $\mu_nC_{ox}$ for $M_1$, $M_2$, $M_7$, $M_8$ and $\mu_pC_{ox}$ for $M_3$–$M_6$:
 
 $$
 \begin{aligned}
@@ -41,9 +27,7 @@ g_{m7} &= \sqrt{2\,(134\ \mu\mathrm{A/V^2})(100)(1\ \mathrm{mA})} = \sqrt{26.8\t
 \end{aligned}
 $$
 
-By symmetry, $g_{m2} = g_{m1}$, $g_{m4} = g_{m3}$, $g_{m6} = g_{m5}$ and $g_{m8} = g_{m7}$.
-
-**Output resistances** from channel-length modulation, $r_O = 1/(\lambda I_D)$, where $\lambda$ is the channel-length modulation coefficient (0.1 V⁻¹ for NMOS, 0.2 V⁻¹ for PMOS):
+By symmetry, $g_{m2} = g_{m1}$, $g_{m4} = g_{m3}$, $g_{m6} = g_{m5}$ and $g_{m8} = g_{m7}$. With $r_O = 1/(\lambda I_D)$:
 
 $$
 \begin{aligned}
@@ -54,53 +38,25 @@ r_{O7} &= \frac{1}{(0.1\ \mathrm{V^{-1}})(1\ \mathrm{mA})} = 10\ \mathrm{k}\Omeg
 \end{aligned}
 $$
 
-**Resistance at each high-impedance node**, i.e. the parallel combination of the two drains connected there:
+Node resistances and stage gains:
 
 $$
 \begin{aligned}
 R_X &= r_{O1}\parallel r_{O3} = \frac{80\times40}{80+40}\ \mathrm{k}\Omega = 26.67\ \mathrm{k}\Omega,\\
-R_{out} &= r_{O5}\parallel r_{O7} = \frac{5\times10}{5+10}\ \mathrm{k}\Omega = 3.33\ \mathrm{k}\Omega.
-\end{aligned}
-$$
-
-**Gains** of each stage, magnitude of $g_m \times$ (node resistance):
-
-$$
-\begin{aligned}
+R_{out} &= r_{O5}\parallel r_{O7} = \frac{5\times10}{5+10}\ \mathrm{k}\Omega = 3.33\ \mathrm{k}\Omega,\\
 A_1 &= g_{m1}R_X = (1.830\ \mathrm{mS})(26.67\ \mathrm{k}\Omega) = 48.8,\\
 A_2 &= g_{m5}R_{out} = (3.036\ \mathrm{mS})(3.33\ \mathrm{k}\Omega) = 10.1,\\
 A_v &= A_1A_2 \approx 494 .
 \end{aligned}
 $$
 
-### Step 3 — Why a half circuit is enough (noise of one side of a differential pair)
+### Step 3 — First-stage contribution ($M_1$ and $M_3$)
 
-Take the noise current $I_{n1}$ of $M_1$ alone, flowing from X to P inside $M_1$, with the inputs grounded. Split it into two parts:
+In the half circuit P is at ac ground, and the noise currents of $M_1$ and $M_3$ both flow at node X. They are uncorrelated, so their powers add, and they flow through $R_X$:
 
-- a **common-mode** part: $+I_{n1}/2$ in $M_1$ *and* $+I_{n1}/2$ in $M_2$;
-- a **differential** part: $+I_{n1}/2$ in $M_1$ and $-I_{n1}/2$ in $M_2$.
+$$\overline{I_{n,X}^2} = 4kT\gamma\,(g_{m1} + g_{m3}), \qquad \overline{V_{n,X}^2} = 4kT\gamma\,(g_{m1} + g_{m3})\,R_X^2 .$$
 
-The two parts add up to $I_{n1}$ in $M_1$ and to zero in $M_2$, as required.
-
-- The common-mode part moves X and Y identically, so it produces **no** differential output.
-- For the differential part, node P does not move: it is a **virtual ground**, because the two halves push equal and opposite currents into it. Each side therefore behaves like a common-source stage with a grounded source:
-$$v_X = -\frac{I_{n1}}{2}R_X, \qquad v_Y = +\frac{I_{n1}}{2}R_X \quad\Longrightarrow\quad v_X - v_Y = -I_{n1}R_X .$$
-
-A differential input $v_{in}$ produces $v_X - v_Y = -g_{m1}R_Xv_{in}$. Setting the two outputs equal shows that $I_{n1}$ is equivalent to an input voltage $I_{n1}/g_{m1}$, exactly as if $M_1$ were a common-source stage with its source grounded.
-
-The same decomposition applies to every noise source on one side (for example $M_3$'s current injected into X). So we analyse **one half circuit**, a two-stage amplifier made of CS stage $M_1$ (load $M_3$) followed by CS stage $M_5$ (load $M_7$), and then **multiply its input-referred noise power by 2** to account for the uncorrelated, identical noise of the other half.
-
-### Step 4 — First-stage contribution ($M_1$ and $M_3$)
-
-In the half circuit, node P is at AC ground (Step 3). The noise current of $M_1$ (from X to ground through $M_1$) and that of $M_3$ (from $V_{DD}$ into X) both flow at node X, each in parallel with its own device. The two are uncorrelated, so their *powers* (not their amplitudes) add. The total noise current power at X is
-
-$$\overline{I_{n,X}^2} = 4kT\gamma\,(g_{m1} + g_{m3}).$$
-
-This current flows through the resistance $R_X$ at node X, producing a noise voltage
-
-$$\overline{V_{n,X}^2} = 4kT\gamma\,(g_{m1} + g_{m3})\,R_X^2 .$$
-
-The gain from the input (gate of $M_1$) to X is $g_{m1}R_X$. Dividing by its square refers the noise to the input:
+Dividing by the squared gain from the gate of $M_1$ to X, $(g_{m1}R_X)^2$:
 
 $$\overline{V_{n,in}^2}\Big|_{M_1,M_3} = \frac{4kT\gamma\,(g_{m1} + g_{m3})R_X^2}{(g_{m1}R_X)^2} = 4kT\gamma\left(\frac{1}{g_{m1}} + \frac{g_{m3}}{g_{m1}^2}\right).$$
 
@@ -114,15 +70,15 @@ $$
 \end{aligned}
 $$
 
-The PMOS load adds about 54 % to the input pair's own noise. Its noise current enters node X directly, and the referral divides it by $g_{m1}^2$ rather than by $g_{m3}^2$.
+The PMOS load adds about 54 % to the input pair's own noise, because its noise current enters X directly and is referred through $g_{m1}^2$, not $g_{m3}^2$.
 
-### Step 5 — Second-stage contribution ($M_5$ and $M_7$)
+### Step 4 — Second-stage contribution ($M_5$ and $M_7$)
 
-The noise currents of $M_5$ and $M_7$ both flow into the output node $V_{out1}$, whose resistance is $R_{out}$:
+The noise currents of $M_5$ and $M_7$ both flow into $V_{out1}$, whose resistance is $R_{out}$:
 
 $$\overline{V_{n,out1}^2} = 4kT\gamma\,(g_{m5} + g_{m7})\,R_{out}^2 .$$
 
-The gain from the input to $V_{out1}$ is $(g_{m1}R_X)(g_{m5}R_{out})$. Divide by its square:
+Dividing by the squared gain from the input to $V_{out1}$, $(g_{m1}R_X\,g_{m5}R_{out})^2$:
 
 $$\overline{V_{n,in}^2}\Big|_{M_5,M_7} = \frac{4kT\gamma\,(g_{m5} + g_{m7})R_{out}^2}{(g_{m1}R_X\,g_{m5}R_{out})^2} = 4kT\gamma\,\frac{g_{m5} + g_{m7}}{(g_{m1}R_X\,g_{m5})^2}.$$
 
@@ -137,43 +93,39 @@ g_{m5} + g_{m7} &= 3.036 + 5.177 = 8.213\ \mathrm{mS},\\
 \end{aligned}
 $$
 
-That is 0.37 Ω against 838.8 Ω, a **0.04 %** contribution, so it is negligible. The reason: the second stage's noise reaches the input only after division by the first-stage gain squared, $48.8^2 \approx 2400$. This is the general rule that the first stage of a high-gain amplifier sets its noise.
+That is 0.37 Ω against 838.8 Ω, a **0.04 %** contribution: negligible, because the second stage's noise is divided by the first-stage gain squared, $48.8^2 \approx 2400$.
 
-### Step 6 — Add both halves
+### Step 5 — Add both halves
 
 One half circuit gives
 
 $$\overline{V_{n,in,half}^2} = 4kT\gamma\,(838.8 + 0.37)\ \Omega = (1.104\times10^{-20})(839.2)\ \mathrm{V^2/Hz} = 9.26\times10^{-18}\ \mathrm{V^2/Hz}.$$
 
-The differential input sees the uncorrelated noise of both halves ($M_1$/$M_3$/$M_5$/$M_7$ and $M_2$/$M_4$/$M_6$/$M_8$), so the powers add:
+The differential input sees the uncorrelated noise of both halves ($M_1$/$M_3$/$M_5$/$M_7$ and $M_2$/$M_4$/$M_6$/$M_8$), so
 
-$$\overline{V_{n,in}^2} = 2\times9.26\times10^{-18} = 1.85\times10^{-17}\ \mathrm{V^2/Hz}.$$
-
-The rms noise density is the square root:
-
-$$\sqrt{\overline{V_{n,in}^2}} = \sqrt{1.85\times10^{-17}}\ \mathrm{V/\sqrt{Hz}} = 4.3\ \mathrm{nV/\sqrt{Hz}}.$$
+$$\overline{V_{n,in}^2} = 2\times9.26\times10^{-18} = 1.85\times10^{-17}\ \mathrm{V^2/Hz}, \qquad \sqrt{\overline{V_{n,in}^2}} = \sqrt{1.85\times10^{-17}}\ \mathrm{V/\sqrt{Hz}} = 4.3\ \mathrm{nV/\sqrt{Hz}}.$$
 
 Written compactly:
 
 $$\overline{V_{n,in}^2} = 2\cdot4kT\gamma\left[\frac{1}{g_{m1}}\left(1 + \frac{g_{m3}}{g_{m1}}\right) + \frac{g_{m5} + g_{m7}}{(g_{m1}R_X\,g_{m5})^2}\right].$$
 
-### Step 7 — Sources that do not contribute
+### Step 6 — Sources that do not contribute
 
-- **Tail current source $I_{SS}$.** Its noise current splits equally between $M_1$ and $M_2$ (by symmetry), moving X and Y together. That is common-mode noise, which cancels in $V_{out1} - V_{out2}$ for a perfectly matched circuit.
-- **Bias line $V_{b1}$.** It drives $M_3$ and $M_4$ (and $M_7$, $M_8$) identically, so any noise on it is also common-mode. It is treated as noiseless.
+- **Tail current source $I_{SS}$.** By symmetry its noise current splits equally between $M_1$ and $M_2$ and moves X and Y together: common-mode noise, which cancels in $V_{out1} - V_{out2}$ for a perfectly matched circuit.
+- **Bias line $V_{b1}$.** It drives $M_3$ and $M_4$ (and $M_7$, $M_8$) identically, so any noise on it is also common-mode; it is treated as noiseless.
 
 ### Result
 
 $$\overline{V_{n,in}^2} = 2\cdot4kT\gamma\left[\frac{1}{g_{m1}}\left(1 + \frac{g_{m3}}{g_{m1}}\right) + \frac{g_{m5} + g_{m7}}{(g_{m1}R_X\,g_{m5})^2}\right] \approx 1.85\times10^{-17}\ \mathrm{V^2/Hz},$$
 
-i.e. **about 4.3 nV/√Hz** referred to the differential input. The parameter values are $g_{m1} = 1.83$ mS, $g_{m3} = 0.98$ mS, $g_{m5} = 3.04$ mS, $g_{m7} = 5.18$ mS and $R_X = 26.7\ \mathrm{k}\Omega$.
+i.e. **about 4.3 nV/√Hz** referred to the differential input, with $g_{m1} = 1.83$ mS, $g_{m3} = 0.98$ mS, $g_{m5} = 3.04$ mS, $g_{m7} = 5.18$ mS and $R_X = 26.7\ \mathrm{k}\Omega$.
 
 - The first stage ($M_1$–$M_4$) sets essentially all of the noise: an effective 839 Ω per half.
 - The second stage adds only 0.37 Ω per half.
 - The tail source contributes only common-mode noise.
 
-**Common mistake.** Counting only one half circuit, which gives $\sqrt{9.26\times10^{-18}} \approx 3.0$ nV/√Hz. The differential input "sees" the noise of $M_1$ *and* $M_2$, and of both loads. These are independent sources, so the half-circuit power must be doubled.
+**Common mistake.** Counting only one half circuit, which gives $\sqrt{9.26\times10^{-18}} \approx 3.0$ nV/√Hz. The noise of $M_1$ *and* $M_2$, and of both loads, reaches the differential input as independent sources, so the half-circuit power must be doubled.
 
 **Common mistake.** Leaving out the PMOS loads $M_3$, $M_4$, which gives about 3.5 nV/√Hz. Their noise currents flow straight into X and Y and are amplified exactly like the input pair's noise.
 
-**Common mistake.** Assuming the second stage dominates because its devices carry 8 times more current and have large $g_m$. Its noise is divided by the first-stage gain squared (≈ 2400), which makes it negligible. Likewise, counting the tail-current noise as differential noise is wrong, because by symmetry it is purely common-mode.
+**Common mistake.** Assuming the second stage dominates because its devices carry 8 times more current: its noise is divided by the first-stage gain squared (≈ 2400). Likewise, tail-current noise is purely common-mode and must not be counted as differential noise.
