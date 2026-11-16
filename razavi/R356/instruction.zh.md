@@ -1,0 +1,1 @@
+考虑 [图 1] 所示带源极负反馈（source degeneration）的共源级（common-source stage）：NMOS 管 $M_1$ 带有漏极电阻 $R_D$ 和源极电阻 $R_S$。计算其输入参考热噪声电压（input-referred thermal noise voltage），忽略沟道长度调制（channel-length modulation）和体效应（body effect）。把 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把每个电阻 $R$ 的热噪声建模为 $4kT/R$（电流）或 $4kTR$（电压）。

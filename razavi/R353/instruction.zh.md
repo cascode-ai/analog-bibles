@@ -1,0 +1,1 @@
+计算 [图 1] 所示源极跟随器（source follower）的输入参考（input-referred）$1/f$ 噪声电压。电路中 NMOS 管 $M_1$ 的栅极为输入端、源极为输出端，由栅极接固定偏置 $V_b$ 的 NMOS 电流源（current source）$M_2$ 偏置。两个晶体管都工作在饱和区（saturation region）。把每个晶体管的闪烁噪声（flicker noise）建模为功率谱密度（PSD）为 $K_N/(C_{ox}WL\,f)$ 的栅极电压。可以忽略沟道长度调制（channel-length modulation）；请考虑 $M_1$ 的体效应（body effect）是否会改变结果。

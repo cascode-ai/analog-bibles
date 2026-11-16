@@ -54,7 +54,7 @@ $$\overline{V_{n,in}^2}\Big|_{R_S} = R_S^2\cdot\frac{4kT}{R_S} = 4kTR_S .$$
 
 ### 第 4 步 — $R_D$ 的噪声
 
-由于 $\lambda = 0$，漏极是理想电流源，因此噪声电流 $I_{nD}$（$\overline{I_{nD}^2} = 4kT/R_D$）全部流过 $R_D$：
+由于 $\lambda = 0$，漏极是理想电流源（current source），因此噪声电流 $I_{nD}$（$\overline{I_{nD}^2} = 4kT/R_D$）全部流过 $R_D$：
 
 $$\overline{V_{n,out}^2}\Big|_{R_D} = \overline{I_{nD}^2}\,R_D^2 = \frac{4kT}{R_D}R_D^2 = 4kTR_D .$$
 

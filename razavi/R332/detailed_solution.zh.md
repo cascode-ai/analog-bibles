@@ -1,6 +1,6 @@
 # 详细步骤 - R332
 
-**思路。** 在这个 CMOS 反相器放大器中，输入同时驱动**两个**栅极，因此两个晶体管都是输入器件。把每个晶体管的闪烁噪声放在与其栅极串联的位置，用输入电压和两个噪声电压写出输出电压，再把输出噪声除以增益的平方 $(g_{m1}+g_{m2})^2(r_{O1}\parallel r_{O2})^2$。
+**思路。** 在这个 CMOS 反相器放大器（CMOS inverter amplifier）中，输入同时驱动**两个**栅极，因此两个晶体管都是输入器件。把每个晶体管的闪烁噪声放在与其栅极串联的位置，用输入电压和两个噪声电压写出输出电压，再把输出噪声除以增益的平方 $(g_{m1}+g_{m2})^2(r_{O1}\parallel r_{O2})^2$。
 
 ### 第 1 步 — 闪烁噪声源
 
@@ -62,7 +62,7 @@ $$\overline{V_{n,in}^2} = \left(\frac{g_{m1}}{g_{m1} + g_{m2}}\right)^2\overline
 
 $$\overline{V_{n,in}^2} = \frac14\left[\frac{K_N}{C_{ox}(WL)_1} + \frac{K_P}{C_{ox}(WL)_2}\right]\frac1f .$$
 
-作为比较，以 $M_2$ 作为电流源负载（栅极接固定偏置）的共源级（common-source stage），增益为 $g_{m1}R_{out}$，且
+作为比较，若 $M_2$ 的栅极接固定偏置、作为电流源（current source）负载，则该共源级（common-source stage）的增益为 $g_{m1}R_{out}$，且
 
 $$\overline{V_{n,in}^2}\Big|_{CS} = \overline{V_{n1}^2} + \left(\frac{g_{m2}}{g_{m1}}\right)^2\overline{V_{n2}^2},$$
 

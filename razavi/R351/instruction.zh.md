@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考热噪声电压和电流（input-referred thermal noise voltage and current）：NMOS 管 $M_1$ 构成源极跟随器（source follower），其漏极接 $V_{DD}$，栅极为输入端，源极为输出端，由理想无噪声电流源（current source）$I_1$ 偏置；NMOS 管 $M_2$ 的源极接地，栅极接输出端，漏极接输入节点。忽略沟道长度调制（channel-length modulation）、体效应（body effect）和电容；两个晶体管都工作在饱和区（saturation region）。把每个 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流。

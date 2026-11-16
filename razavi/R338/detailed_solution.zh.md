@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 小信号模型（small-signal model）
 
-- **$M_1$：** 从 X 流向地的电流源 $g_{m1}v_{in}$（$\lambda = 0$），其沟道噪声 $I_{n1}$（$\overline{I_{n1}^2} = 4kT\gamma g_{m1}$）与之并联，方向相同。
+- **$M_1$：** 从 X 流向地的电流源（current source）$g_{m1}v_{in}$（$\lambda = 0$），其沟道噪声 $I_{n1}$（$\overline{I_{n1}^2} = 4kT\gamma g_{m1}$）与之并联，方向相同。
 - **$R_S$：** 接在 X 与交流地之间，其诺顿噪声 $I_{nS}$（$\overline{I_{nS}^2} = 4kT/R_S$）从 $V_{DD}$ 流入 X。
 - **$M_2$**（栅极接交流地）：从 X 流入输出端的电流 $g_{m2}v_{sg2} = g_{m2}v_X$，其噪声 $I_{n2}$（$\overline{I_{n2}^2} = 4kT\gamma g_{m2}$）与之并联，同样从 X 流向输出端。
 - **$R_D$：** 接在输出端与地之间，其诺顿噪声 $I_{nD}$（$\overline{I_{nD}^2} = 4kT/R_D$）从地流入输出端。

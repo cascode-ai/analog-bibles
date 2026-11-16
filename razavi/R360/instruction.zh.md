@@ -1,0 +1,1 @@
+[图 1] 所示电路是一个共源级（common-source stage）：NMOS 管 $M_1$ 的负载为电阻 $R_D$，输出端接有负载电容 $C_L$。计算在带宽 $[f_L, f_H]$ 内输出端的总热噪声（thermal noise）和 $1/f$ 噪声。假设 $\lambda \neq 0$，即 $M_1$ 具有输出电阻（output resistance）$r_O$，但忽略其他电容。把沟道热噪声（channel thermal noise）建模为漏极电流 $4kT\gamma g_m$，把闪烁噪声（flicker noise）建模为栅极电压 $K/(C_{ox}WL\,f)$，把 $R_D$ 的热噪声建模为 $4kT/R_D$。

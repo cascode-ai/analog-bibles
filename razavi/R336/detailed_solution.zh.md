@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 小信号模型（small-signal model）
 
-由于 $\lambda = 0$，二极管连接的 $M_2$ 相当于接在输出端与交流地之间的电阻 $1/g_{m2}$：它从 $V_{DD}$ 流入输出端的电流为 $g_{m2}v_{sg2} = -g_{m2}v_{out}$。其沟道噪声 $I_{n2}$（$\overline{I_{n2}^2} = 4kT\gamma g_{m2}$）与之并联，流入输出端。$M_1$ 是从输出端流向其源极节点 S 的电流源 $g_{m1}(v_{in} - v_S)$，与其沟道噪声 $I_{n1}$（$\overline{I_{n1}^2} = 4kT\gamma g_{m1}$）并联。S 经 $R_S$ 及与之串联的噪声电压 $V_{nS}$（$\overline{V_{nS}^2} = 4kTR_S$）接地。
+由于 $\lambda = 0$，二极管连接的 $M_2$ 相当于接在输出端与交流地之间的电阻 $1/g_{m2}$：它从 $V_{DD}$ 流入输出端的电流为 $g_{m2}v_{sg2} = -g_{m2}v_{out}$。其沟道噪声 $I_{n2}$（$\overline{I_{n2}^2} = 4kT\gamma g_{m2}$）与之并联，流入输出端。$M_1$ 是从输出端流向其源极节点 S 的电流源（current source）$g_{m1}(v_{in} - v_S)$，与其沟道噪声 $I_{n1}$（$\overline{I_{n1}^2} = 4kT\gamma g_{m1}$）并联。S 经 $R_S$ 及与之串联的噪声电压 $V_{nS}$（$\overline{V_{nS}^2} = 4kTR_S$）接地。
 
 <!-- diagram: diagram-01.cir -->
 

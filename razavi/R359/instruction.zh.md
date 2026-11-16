@@ -1,0 +1,1 @@
+[图 1] 所示电路中，NMOS 管 $M_1$ 的栅极接交流地、源极接地，负载为理想无噪声电流源（current source）$I_1$；$\overline{I_n^2} = 4kT\gamma g_m$ 为 $M_1$ 的沟道噪声（channel noise）。电路按 $(W/L)_1 = 50/0.5$、$I_{D1} = 0.05$ mA 设计。计算在 50 MHz 带宽内输出端总热噪声（thermal noise）电压的均方根（rms）值。取 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$\lambda = 0.1\ \mathrm{V^{-1}}$，$\gamma = 2/3$，$T = 300$ K，并忽略所有电容。

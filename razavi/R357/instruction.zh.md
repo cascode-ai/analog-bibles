@@ -1,0 +1,1 @@
+[图 1] 所示为带源极负反馈（source degeneration）的共源级（common-source stage），NMOS 管 $M_1$ 带有漏极电阻 $R_D$ 和源极电阻 $R_S$。假设线性度要求使 $R_S$ 上的直流压降必须等于 $M_1$ 的过驱动电压（overdrive voltage）。$R_S$ 贡献的热噪声（thermal noise）与 $M_1$ 贡献的热噪声相比如何？采用平方律（square law）模型，忽略沟道长度调制（channel-length modulation）和体效应（body effect），并把沟道热噪声（channel thermal noise）建模为 $4kT\gamma g_m$（长沟道器件 $\gamma = 2/3$）。
