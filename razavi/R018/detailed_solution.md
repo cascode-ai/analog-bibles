@@ -1,17 +1,10 @@
 # Detailed solution - R018
 
-**Approach.** The current in $R_1$ can only come from $V_{in}$ through $M_1$, so $V_{out} \le V_{in}$ and the $V_{out}$ node is the source. With the gate at 3 V, $M_1$ is a closed switch (triode) for low $V_{in}$, and it saturates once the drain rises to within one threshold of the gate; after that $V_{out}$ is constant. Find the boundary, the two regions and the plateau level, including the body effect, and show how the plateau depends on $\beta R_1$.
+**Approach.** $V_{out}$ is the source of $M_1$. With the gate at 3 V, $M_1$ is a closed switch (triode) for low $V_{in}$ and saturates once the drain rises to within one threshold of the gate, after which $V_{out}$ is constant. Find the boundary, the two regions and the plateau level, including the body effect, and show how the plateau depends on $\beta R_1$.
 
-### Step 1 — Which terminal is the source?
+### Step 1 — Terminal voltages
 
-From the figure:
-
-- the gate of $M_1$ is held at $+3$ V;
-- the upper diffusion terminal is driven by $V_{in}$ (0 to 3 V);
-- the lower diffusion terminal is the output, loaded by $R_1$ to ground;
-- the bulk is grounded.
-
-$R_1$ draws $V_{out}/R_1 \ge 0$, and the only supply is $V_{in}$ through the channel. Channel current flows from the higher terminal to the lower one, so $V_{out} \le V_{in}$: the **$V_{out}$ node is the source and the $V_{in}$ node the drain**.
+The current in $R_1$ can only come from $V_{in}$ through $M_1$, so $V_{out} \le V_{in}$: the lower-potential terminal, $V_{out}$, is the source and the $V_{in}$ terminal is the drain.
 
 $$
 \begin{aligned}
@@ -21,11 +14,9 @@ V_{SB} &= V_{out}.
 \end{aligned}
 $$
 
-Threshold with body effect ($V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V):
+With the body effect,
 
 $$V_{TH}(V_{out}) = 0.7 + 0.45\left(\sqrt{0.9 + V_{out}} - 0.9487\right)\ \mathrm{V}.$$
-
-Symbols: $\beta = \mu_nC_{ox}W/L$, $V_{ov} = V_{GS} - V_{TH}$.
 
 ### Step 2 — Region boundary
 
@@ -42,7 +33,7 @@ With $V_{TH}$ around 0.9–1.0 V in the relevant range, **$M_1$ is in triode for
 
 ### Step 3 — Triode region: $V_{out}$ follows $V_{in}$
 
-KCL at the output (channel current = resistor current):
+KCL at the output:
 
 $$\frac{V_{out}}{R_1} = \beta\left[(3 - V_{out} - V_{TH})(V_{in} - V_{out}) - \tfrac12(V_{in} - V_{out})^2\right].$$
 
@@ -60,7 +51,7 @@ $$\frac{V_{out}}{R_1} = \tfrac12\beta\left(3 - V_{out} - V_{TH}(V_{out})\right)^
 
 $V_{in}$ does not appear, so **$V_{out}$ stays at the solution $V_{out,s}$** for all $V_{in}$ above the break point $V_{in} = 3 - V_{TH}(V_{out,s})$.
 
-**Upper bound.** Writing the equation as $V_{out} = 3 - V_{TH} - \sqrt{2V_{out}/(\beta R_1)}$ shows that $V_{out,s}$ is largest for $\beta R_1 \to \infty$, where $3 - V_{out} = V_{TH}(V_{out})$. With $u = \sqrt{0.9 + V_{out}}$:
+**Upper bound.** Written as $V_{out} = 3 - V_{TH} - \sqrt{2V_{out}/(\beta R_1)}$, $V_{out,s}$ is largest for $\beta R_1 \to \infty$, where $3 - V_{out} = V_{TH}(V_{out})$. With $u = \sqrt{0.9 + V_{out}}$:
 
 $$
 \begin{aligned}
@@ -75,7 +66,7 @@ There $V_{TH} = 3 - 1.965 = 1.035$ V. **The plateau is always below 1.965 V** (i
 
 ### Step 5 — Dependence on $\beta R_1$, with numbers
 
-**$\beta R_1 = 10\ \mathrm{V^{-1}}$.** Solve $V_{out} = 5\,(3 - V_{out} - V_{TH})^2$. Try $V_{out} = 1.4865$ V:
+**$\beta R_1 = 10\ \mathrm{V^{-1}}$.** Solving $V_{out} = 5\,(3 - V_{out} - V_{TH})^2$, try $V_{out} = 1.4865$ V:
 
 $$
 \begin{aligned}
@@ -85,9 +76,7 @@ V_{ov} &= 3 - 1.4865 - 0.968 = 0.545\ \mathrm{V},\\
 \end{aligned}
 $$
 
-The break is at $V_{in} = 3 - 0.968 = 2.03$ V.
-
-The same procedure for other loads gives:
+The break is at $V_{in} = 3 - 0.968 = 2.03$ V. The same procedure for other loads gives:
 
 | $\beta R_1$ (V⁻¹) | $V_{out,s}$ (V) | $V_{TH}(V_{out,s})$ (V) | Break at $V_{in}$ (V) |
 |---|---|---|---|
@@ -107,7 +96,7 @@ Full transfer curves (triode values from Step 3's exact equation):
 | 2.0 | 0.835 | 1.486 | 1.80 (sat.) |
 | 2.5 – 3 | 0.84 (flat) | 1.49 (flat) | 1.80 (flat) |
 
-**Shape.** With a large $\beta R_1$, $V_{out}$ tracks $V_{in}$ almost exactly up to a sharp corner near 1.97 V, then stays flat just below 1.97 V. With a small $\beta R_1$ the rising part is well below $V_{in}$ (the divider $R_{on}$–$R_1$ is significant), the corner is softer, and the plateau is lower.
+**Shape.** With a large $\beta R_1$, $V_{out}$ tracks $V_{in}$ almost exactly up to a sharp corner near 1.97 V, then stays flat just below 1.97 V. With a small $\beta R_1$ the rising part is well below $V_{in}$ (the $R_{on}$–$R_1$ divider is significant), the corner is softer, and the plateau is lower.
 
 ### Result
 
@@ -120,4 +109,4 @@ Full transfer curves (triode values from Step 3's exact equation):
 
 **Common mistake.** Ignoring the body effect and quoting a clamp at $3 - 0.7 = 2.3$ V. The source is about 2 V above the grounded bulk, raising $V_{TH}$ to about 1.03 V and lowering the bound to 1.965 V.
 
-**Common mistake.** Treating the $V_{in}$ node as the source, which would give an inverting characteristic. Here the lower-potential terminal is always the output node, so $M_1$ acts as a pass device that follows and then clamps.
+**Common mistake.** Treating the $V_{in}$ node as the source, which would give an inverting characteristic. The lower-potential terminal is always the output node, so $M_1$ is a pass device that follows and then clamps.

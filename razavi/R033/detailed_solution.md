@@ -1,16 +1,10 @@
 # Detailed solution - R033
 
-**Approach.** $C_1$ connects the input node to node X, and X has no other path to a fixed voltage except the drain of $M_1$. So when $V_{in}$ steps, the capacitor (whose voltage cannot change instantly) carries X up by the full step. The same step turns $M_1$ on, and $M_1$ then discharges node X: first with a constant saturation current (linear ramp), then in triode (exponential-like tail) down to 0 V.
+**Approach.** $C_1$ connects the input node to node X, and X has no other path to a fixed voltage except the drain of $M_1$. So when $V_{in}$ steps, the capacitor carries X up by the full step. The same step turns $M_1$ on, and $M_1$ then discharges X: first with a constant saturation current (linear ramp), then in triode (exponential-like tail) down to 0 V.
 
 ### Step 1 — Before the step ($t < 0$)
 
-From the figure:
-
-- the gate of $M_1$ is driven by $V_{in}$; source and bulk are grounded ($V_{TH} = 0.7$ V, no body effect);
-- the drain is node X;
-- $C_1$ connects the $V_{in}$ node (its "−" plate) to node X (its "+" plate), and holds 2 V with X positive.
-
-So $V_X = V_{in} + V_{C1}$. For $t < 0$, $V_{in} = 0$ and
+$C_1$ holds 2 V with X positive, so $V_X = V_{in} + V_{C1}$. For $t < 0$, $V_{in} = 0$ and
 
 $$V_X = 0 + 2 = 2\ \mathrm{V}.$$
 
@@ -18,23 +12,23 @@ $M_1$ is off ($V_{GS} = 0 < V_{TH}$), so nothing discharges $C_1$ and $V_X$ stay
 
 ### Step 2 — The jump at $t = 0$
 
-At $t = 0$, $V_{in}$ jumps to 3 V. The voltage across a capacitor can change only if a current flows for some time; any finite current (and $M_1$ can only supply a finite one) changes it by zero in zero time. So right after the step $V_{C1}$ is still 2 V and
+$M_1$ can only supply a finite current, which moves no charge in zero time, so right after the step $V_{C1}$ is still 2 V and
 
 $$V_X(0^+) = V_{in}(0^+) + V_{C1}(0^+) = 3 + 2 = 5\ \mathrm{V}.$$
 
-The jump is the full 3 V, because node X sees only $C_1$ (whose other plate is held by $V_{in}$) and the drain of $M_1$, which conducts only a finite current. There is no capacitive divider to attenuate the step.
+The jump is the full 3 V: node X sees only $C_1$ (whose other plate is held by $V_{in}$) and the drain of $M_1$, so there is no capacitive divider to attenuate the step.
 
 ### Step 3 — Phase 1: $M_1$ saturated, linear ramp down
 
-For $t > 0$: $V_{GS} = 3$ V, so the overdrive is $V_{ov} = 3 - 0.7 = 2.3$ V, and $V_{DS} = V_X = 5$ V $> 2.3$ V. **$M_1$ is saturated**, with $\beta = \mu_nC_{ox}W/L$:
+For $t > 0$: $V_{GS} = 3$ V and (no body effect) $V_{TH} = 0.7$ V, so $V_{ov} = 3 - 0.7 = 2.3$ V, and $V_{DS} = V_X = 5$ V $> 2.3$ V: **$M_1$ is saturated**, with
 
 $$I_D = \tfrac12\beta\,(2.3\ \mathrm{V})^2 = 2.645\,\beta\ \mathrm{V^2} \approx 2.65\beta \quad(\text{constant}).$$
 
-This current leaves node X through the drain, and it is supplied through $C_1$ from the input source. With $V_{in}$ now constant, $dV_{C1}/dt = dV_X/dt$, and KCL at X gives
+This current leaves X through the drain and is supplied through $C_1$ from the input source. With $V_{in}$ now constant, $dV_{C1}/dt = dV_X/dt$, and KCL at X gives
 
 $$C_1\frac{dV_X}{dt} = -I_D \quad\Longrightarrow\quad V_X(t) = 5\ \mathrm{V} - \frac{2.65\,\beta}{C_1}\,t .$$
 
-**$V_X$ ramps down linearly.** Phase 1 ends when the drain reaches the saturation edge, $V_X = V_{GS} - V_{TH} = 2.3$ V:
+**$V_X$ ramps down linearly** until it reaches the saturation edge, $V_X = V_{GS} - V_{TH} = 2.3$ V, at
 
 $$t_1 = \frac{C_1\,(5 - 2.3)\ \mathrm{V}}{2.645\,\beta\ \mathrm{V^2}} = \frac{1.02\,C_1}{\beta\ \mathrm{V}} .$$
 
@@ -44,11 +38,11 @@ For $V_X < 2.3$ V, $M_1$ is in triode:
 
 $$C_1\frac{dV_X}{dt} = -\beta\left[2.3V_X - \tfrac12V_X^2\right].$$
 
-Separating variables (partial fractions, as for any triode discharge) and starting from $V_X = 2.3$ V at $t_1$:
+Separating variables (partial fractions) and starting from $V_X = 2.3$ V at $t_1$:
 
 $$V_X(t) = \frac{4.6\ \mathrm{V}\cdot E}{1 + E}, \qquad E = e^{-(t - t_1)/\tau}, \qquad \tau = R_{on}C_1 = \frac{C_1}{2.3\,\beta},$$
 
-where $R_{on} = 1/[\beta(3 - 0.7)]$ is the deep-triode on-resistance. At $t_1$, $E = 1$ and $V_X = 2.3$ V; for $t - t_1 \gg \tau$, $V_X \approx 4.6\,e^{-(t - t_1)/\tau}$. **$V_X$ decays roughly exponentially to 0 V**, and the slope is continuous at $t_1$ (the triode current at $V_X = 2.3$ V equals the saturation current).
+with $R_{on} = 1/[\beta(3 - 0.7)]$ the deep-triode on-resistance. At $t_1$, $E = 1$ and $V_X = 2.3$ V; for $t - t_1 \gg \tau$, $V_X \approx 4.6\,e^{-(t - t_1)/\tau}$. **$V_X$ decays roughly exponentially to 0 V**, with a continuous slope at $t_1$ (the triode current at $V_X = 2.3$ V equals the saturation current).
 
 **Final state.** $V_X = 0$ and $V_{in} = 3$ V, so $C_1$ ends up holding $0 - 3 = -3$ V: X is now 3 V *below* the other plate. In total $M_1$ removed a charge $C_1\times5$ V from node X.
 
@@ -77,8 +71,8 @@ With $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF: $I_D = 2.65$ mA, the ramp sl
 - **Phase 2:** $M_1$ is in triode and $V_X$ **decays roughly exponentially to 0** (time constant ≈ $C_1/(2.3\beta)$).
 - **Final** $C_1$ voltage: −3 V (X at 0, the other plate at 3 V).
 
-**Common mistake.** Leaving $V_X$ at 2 V at the step, or letting it rise only gradually. A capacitor holds its voltage at the instant of a step, so the far plate follows the input exactly: X jumps by the full 3 V.
+**Common mistake.** Leaving $V_X$ at 2 V at the step, or letting it rise only gradually. The capacitor holds its voltage at the instant of the step, so X jumps by the full 3 V.
 
-**Common mistake.** Letting $V_X$ settle at 5 V or at 2.3 V. Once the gate is at 3 V, $M_1$ is on and keeps conducting until its drain reaches ground; 2.3 V is only the boundary between the constant-current and triode phases.
+**Common mistake.** Letting $V_X$ settle at 5 V or at 2.3 V. With the gate at 3 V, $M_1$ conducts until its drain reaches ground; 2.3 V is only the boundary between the constant-current and triode phases.
 
-**Common mistake.** Making the jump go the wrong way, for example thinking that the gate "pulls the drain down" at the step. At $t = 0^+$ the transistor has had no time to move any charge; the only instantaneous effect is the capacitive coupling, which raises X.
+**Common mistake.** Making the jump go the wrong way, thinking that the gate "pulls the drain down" at the step. At $t = 0^+$ the transistor has had no time to move any charge; the only instantaneous effect is the capacitive coupling, which raises X.

@@ -1,35 +1,26 @@
 # Detailed solution - R021
 
-**Approach.** The gate (2 V) and the source (1 V) of $M_1$ are fixed, so $V_{GS} = 1$ V never changes; $V_{in}$ drives only the bulk. The bulk acts as a "back gate": it changes the threshold through the body effect, which changes the drain current and hence the voltage drop across $R_1$. Compute $V_{TH}(V_{in})$, the saturation current and $V_{out} = V_{DD} - R_1I_D$, check the region, and then discuss where the source–bulk junction becomes forward-biased.
+**Approach.** The gate (2 V) and the source (1 V) of $M_1$ are fixed, so $V_{GS} = 1$ V never changes; $V_{in}$ drives only the bulk, a "back gate" that changes the threshold, hence the drain current and the drop across $R_1$. Compute $V_{TH}(V_{in})$, the saturation current and $V_{out} = V_{DD} - R_1I_D$, check the region, and then discuss where the source–bulk junction becomes forward-biased.
 
-### Step 1 — Reading the circuit
+### Step 1 — Terminal voltages
 
-From the figure:
-
-- $R_1$ connects $V_{DD} = 3$ V to the drain of $M_1$, which is the output node;
-- the gate is at $+2$ V;
-- the source is held at $+1$ V by a battery;
-- the bulk (dashed line) is driven by $V_{in}$ (0 to 3 V).
-
-The drain is fed from $V_{DD}$ through $R_1$, so it sits above 1 V and the 1-V terminal is indeed the source. Therefore
+The drain is fed from $V_{DD}$ through $R_1$ and sits above 1 V, so the lower-potential terminal, at 1 V, is the source:
 
 $$
 \begin{aligned}
 V_{GS} &= 2 - 1 = 1\ \mathrm{V} \quad(\text{fixed}),\\
 V_{DS} &= V_{out} - 1,\\
-V_{SB} &= 1 - V_{in}.
+V_{SB} &= 1 - V_{in},
 \end{aligned}
 $$
 
-**KCL at the output node.** The current through $R_1$ equals the drain current:
+and the drain current flows through $R_1$:
 
 $$V_{out} = V_{DD} - R_1I_D = 3 - R_1I_D .$$
 
 ### Step 2 — Threshold versus $V_{in}$
 
-Body effect with $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F| = 0.9$ V:
-
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{0.9 + 1 - V_{in}} - 0.9487\right) = 0.7 + 0.45\left(\sqrt{1.9 - V_{in}} - 0.9487\right)\ \mathrm{V}.$$
+$$V_{TH} = 0.7 + 0.45\left(\sqrt{0.9 + 1 - V_{in}} - 0.9487\right) = 0.7 + 0.45\left(\sqrt{1.9 - V_{in}} - 0.9487\right)\ \mathrm{V},$$
 
 $$
 \begin{aligned}
@@ -44,9 +35,9 @@ Raising the bulk toward (and above) the source lowers the threshold.
 
 ### Step 3 — Drain current and output voltage (saturation)
 
-With $\beta = \mu_nC_{ox}W/L$ and assuming saturation (checked below):
+Assuming saturation (checked in Step 4):
 
-$$I_D = \tfrac12\beta\,(V_{GS} - V_{TH})^2 = \tfrac12\beta\,(1 - V_{TH})^2 .$$
+$$I_D = \tfrac12\beta\,(V_{GS} - V_{TH})^2 = \tfrac12\beta\,(1 - V_{TH})^2 ,$$
 
 $$
 \begin{aligned}
@@ -57,13 +48,13 @@ V_{in} = 1.5\ \mathrm{V}:&\quad I_D = \tfrac12\beta\,(0.442\ \mathrm{V})^2 = 0.0
 \end{aligned}
 $$
 
-At $V_{in} = 0$ the device is barely on (overdrive 0.11 V), so **$V_{out}$ starts just below 3 V**. Then $V_{out} = 3 - R_1I_D$ falls as $I_D$ grows.
+At $V_{in} = 0$ the device is barely on (overdrive 0.11 V), so **$V_{out}$ starts just below 3 V**, and then falls as $I_D$ grows.
 
-**Slope.** $V_{in}$ acts on the current through the body transconductance $g_{mb} = \partial I_D/\partial V_{in} = g_m\eta$, where $g_m = \beta(1 - V_{TH})$ and $\eta = \gamma/(2\sqrt{1.9 - V_{in}})$. Hence
+**Slope.** $V_{in}$ acts through the body transconductance $g_{mb} = \partial I_D/\partial V_{in} = g_m\eta$, with $g_m = \beta(1 - V_{TH})$ and $\eta = \gamma/(2\sqrt{1.9 - V_{in}})$:
 
 $$\frac{dV_{out}}{dV_{in}} = -R_1\,g_{mb} = -R_1\,\beta\,(1 - V_{TH})\,\frac{\gamma}{2\sqrt{1.9 - V_{in}}} .$$
 
-Both $g_m$ (overdrive rising) and $\eta$ (shrinking $V_{SB}$) grow with $V_{in}$, so **the curve falls with an ever-increasing slope** (concave down). This is a common-source amplifier driven from its bulk.
+Both $g_m$ (rising overdrive) and $\eta$ (shrinking $V_{SB}$) grow with $V_{in}$, so **the curve falls with an ever-increasing slope** (concave down): a common-source amplifier driven from its bulk.
 
 **Example, $\beta R_1 = 10\ \mathrm{V^{-1}}$:** $V_{out} = 3 - 10\,(I_D/\beta)$:
 
@@ -79,21 +70,21 @@ Sample line, $V_{in} = 1$ V: $V_{out} = 3 - (10\ \mathrm{V^{-1}})(0.045\ \mathrm
 
 ### Step 4 — Region check and the triode case
 
-Saturation requires $V_{DS} \ge V_{GS} - V_{TH}$:
+Saturation requires
 
-$$V_{out} - 1 \ge 1 - V_{TH} \quad\Longleftrightarrow\quad V_{out} \ge 2 - V_{TH}.$$
+$$V_{out} - 1 \ge 1 - V_{TH} \quad\Longleftrightarrow\quad V_{out} \ge 2 - V_{TH},$$
 
-$2 - V_{TH}$ ranges from 1.11 V ($V_{in} = 0$) to 1.44 V ($V_{in} = 1.5$ V). In the example above $V_{out} \ge 2.02$ V, so $M_1$ stays saturated.
+where $2 - V_{TH}$ ranges from 1.11 V ($V_{in} = 0$) to 1.44 V ($V_{in} = 1.5$ V). In the example $V_{out} \ge 2.02$ V, so $M_1$ stays saturated.
 
-If $R_1$ is large, the drop $R_1I_D$ can pull $V_{out}$ below $2 - V_{TH}$. $M_1$ then enters **triode**, the drain current becomes limited by $R_1$, and the curve **flattens**, approaching (but staying above) the 1-V source potential. For example, with $\beta R_1 = 30\ \mathrm{V^{-1}}$ the saturation formula would give $3 - 30\times0.098 = 0.07$ V at $V_{in} = 1.5$ V, which is impossible. Solving the triode equation $V_{out} = 3 - \beta R_1[(1 - V_{TH})(V_{out} - 1) - \tfrac12(V_{out} - 1)^2]$ instead gives $V_{out} \approx 1.17$ V.
+If $R_1$ is large, $R_1I_D$ can pull $V_{out}$ below $2 - V_{TH}$: $M_1$ enters **triode**, the current becomes limited by $R_1$, and the curve **flattens**, approaching (but staying above) the 1-V source potential. For example, with $\beta R_1 = 30\ \mathrm{V^{-1}}$ the saturation formula would give an impossible $3 - 30\times0.098 = 0.07$ V at $V_{in} = 1.5$ V; the triode equation $V_{out} = 3 - \beta R_1[(1 - V_{TH})(V_{out} - 1) - \tfrac12(V_{out} - 1)^2]$ gives $V_{out} \approx 1.17$ V instead.
 
 ### Step 5 — $V_{in} > 1$ V: forward-biased source–bulk junction
 
-For $V_{in} > 1$ V the bulk is above the source ($V_{SB} < 0$), so the p-bulk/n+-source junction is **forward biased**.
+For $V_{in} > 1$ V the bulk is above the source ($V_{SB} < 0$), so the source–bulk junction is **forward biased**.
 
 - Up to a few hundred millivolts (roughly $V_{in} \lesssim 1.4$ V) its current is small and the forward-body-bias calculation above is a reasonable estimate.
-- From about 1.5–1.7 V (forward bias 0.5–0.7 V) a large junction current flows from $V_{in}$ into the 1-V source. In addition, the electrons injected from the source into the bulk turn on the **parasitic lateral npn transistor**: source = emitter, bulk = base, drain = collector. Its collector current is drawn through $R_1$ and pulls $V_{out}$ down further.
-- The square-law/body-effect description is invalid in this range, and the exact curve depends on junction and bipolar parameters that are not given. A real circuit must never drive the bulk this far.
+- From about 1.5–1.7 V (forward bias 0.5–0.7 V) a large junction current flows from $V_{in}$ into the 1-V source, and the electrons injected into the bulk turn on the **parasitic lateral npn** (source = emitter, bulk = base, drain = collector), whose collector current is drawn through $R_1$ and pulls $V_{out}$ down further.
+- The square-law/body-effect description is invalid there, and the exact curve depends on junction and bipolar parameters that are not given; a real circuit must never drive the bulk this far.
 
 ### Result
 
@@ -102,8 +93,8 @@ For $V_{in} > 1$ V the bulk is above the source ($V_{SB} < 0$), so the p-bulk/n+
 - If $R_1$ is large, $V_{out}$ drops below $2 - V_{TH}$, $M_1$ enters triode and the curve flattens above 1 V.
 - For $V_{in} > 1$ V the source–bulk junction is forward biased. Above roughly 1.5–1.7 V it conducts heavily and the parasitic lateral npn pulls extra current through $R_1$, so $V_{out}$ drops further and the circuit no longer behaves as a MOSFET.
 
-**Common mistake.** Treating $V_{in}$ as the gate input. The gate is fixed at 2 V; $V_{in}$ is on the bulk, whose effect is weaker (through $g_{mb} = \eta g_m$) and acts only via $V_{TH}$.
+**Common mistake.** Treating $V_{in}$ as the gate input. The gate is fixed at 2 V; $V_{in}$ is on the bulk, whose effect is weaker ($g_{mb} = \eta g_m$) and acts only via $V_{TH}$.
 
-**Common mistake.** Saying that $V_{out}$ rises with $V_{in}$. Raising the bulk lowers $V_{TH}$, which *increases* the drain current and therefore the drop across $R_1$, so $V_{out}$ falls.
+**Common mistake.** Saying that $V_{out}$ rises with $V_{in}$. Raising the bulk lowers $V_{TH}$, which *increases* the drain current and the drop across $R_1$, so $V_{out}$ falls.
 
-**Common mistake.** Extrapolating the body-effect formula to $V_{in} = 3$ V. Once the bulk is more than about 0.5–0.6 V above the source, the pn junction conducts (and the lateral bipolar transistor turns on), so the square-law model is meaningless there.
+**Common mistake.** Extrapolating the body-effect formula to $V_{in} = 3$ V. Once the bulk is more than about 0.5–0.6 V above the source, the junction (and the lateral bipolar transistor) conducts, and the square-law model is meaningless.

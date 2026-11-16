@@ -1,18 +1,10 @@
 # Detailed solution - R036
 
-**Approach.** $C_1$ connects the input node (which is also the gate of $M_1$) to node X (the source of $M_1$). At the step, X is carried up by the full 3 V. After the step, $M_1$ (drain at $V_{DD}$, gate at 3 V) is a source follower that charges node X, with the other plate of $C_1$ held by the input source. Find the jump, the initial current, the final value including the body effect, and the shape of the approach.
+**Approach.** $C_1$ connects the input node (the gate of $M_1$) to node X (the source of $M_1$). At the step, X is carried up by the full 3 V. After the step, $M_1$ (drain at $V_{DD}$, gate at 3 V) is a source follower that charges X, with the other plate of $C_1$ held by the input source. Find the jump, the initial current, the final value including the body effect, and the shape of the approach.
 
-### Step 1 — Reading the circuit and the state before the step
+### Step 1 — The state before the step
 
-From the figure:
-
-- the drain of $M_1$ is at $V_{DD} = 3$ V;
-- the gate of $M_1$ is the $V_{in}$ node;
-- the source of $M_1$ is node X;
-- $C_1$ connects the $V_{in}$ node ("+") to node X ("−") and holds 3 V at the instant of the step;
-- the bulk is grounded.
-
-So $V_X = V_{in} - V_{C1}$, and just before the step
+With the gate side positive, $V_X = V_{in} - V_{C1}$, so just before the step
 
 $$V_X(0^-) = 0 - 3 = -3\ \mathrm{V}.$$
 
@@ -20,7 +12,7 @@ $$V_X(0^-) = 0 - 3 = -3\ \mathrm{V}.$$
 
 ### Step 2 — The jump at $t = 0$
 
-$V_{in}$ rises from 0 to 3 V. The capacitor voltage cannot change instantly, because $M_1$ can supply only a finite current. So
+$M_1$ can supply only a finite current, so the capacitor voltage cannot change instantly:
 
 $$V_X(0^+) = V_{in}(0^+) - V_{C1}(0^+) = 3 - 3 = 0\ \mathrm{V}.$$
 
@@ -28,23 +20,21 @@ $$V_X(0^+) = V_{in}(0^+) - V_{C1}(0^+) = 3 - 3 = 0\ \mathrm{V}.$$
 
 ### Step 3 — After the step: region and initial current
 
-For $t > 0$ the gate is at 3 V, the drain at 3 V and the source at $V_X$:
+For $t > 0$:
 
 $$
 \begin{aligned}
 V_{GS} &= 3 - V_X,\\
 V_{DS} &= 3 - V_X = V_{GS},\\
-V_{SB} &= V_X .
+V_{SB} &= V_X ,
 \end{aligned}
 $$
 
-Since $V_{DS} = V_{GS}$, the saturation condition $V_{DS} \ge V_{GS} - V_{TH}$ always holds: **$M_1$ is saturated whenever it conducts**.
-
-Threshold with body effect ($V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V):
+so **$M_1$ is saturated whenever it conducts**. With the body effect,
 
 $$V_{TH}(V_X) = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right)\ \mathrm{V}.$$
 
-The drain current flows from $V_{DD}$ into node X. X's only other connection is the lower plate of $C_1$, whose upper plate is now held at 3 V by $V_{in}$. So the current changes $V_{C1}$ and raises $V_X$. With $\beta = \mu_nC_{ox}W/L$:
+The drain current flows from $V_{DD}$ into X, whose only other connection is the lower plate of $C_1$; the upper plate is now held at 3 V by $V_{in}$, so the current raises $V_X$:
 
 $$C_1\frac{dV_X}{dt} = \tfrac12\beta\left[3 - V_X - V_{TH}(V_X)\right]^2 .$$
 
@@ -69,15 +59,15 @@ V_{X,\infty} &= 1.6927^2 - 0.9 = 1.965\ \mathrm{V}.
 \end{aligned}
 $$
 
-At that point $V_{TH} = 3 - 1.965 = 1.035$ V. So **$V_X \to$ ≈ 1.97 V**. Without body effect it would be $3 - 0.7 = 2.3$ V. At the end $C_1$ holds $3 - 1.965 = 1.035$ V.
+There $V_{TH} = 3 - 1.965 = 1.035$ V. So **$V_X \to$ ≈ 1.97 V** (without body effect, $3 - 0.7 = 2.3$ V), and at the end $C_1$ holds $3 - 1.965 = 1.035$ V.
 
 ### Step 5 — Shape: hyperbolic approach
 
-Let $u_{ov} = 3 - V_X - V_{TH}(V_X)$ be the overdrive and $\eta = dV_{TH}/dV_X = \gamma/(2\sqrt{0.9 + V_X})$ (between 0.13 and 0.24 here). Then
+With the overdrive $u_{ov} = 3 - V_X - V_{TH}(V_X)$ and $\eta = dV_{TH}/dV_X = \gamma/(2\sqrt{0.9 + V_X})$ (between 0.13 and 0.24 here),
 
 $$\frac{du_{ov}}{dt} = -(1 + \eta)\frac{\beta}{2C_1}\,u_{ov}^2 ,$$
 
-whose solution falls as $1/t$ for large $t$. So $V_X$ rises **fast at first and then ever more slowly**, approaching 1.965 V **asymptotically** (a hyperbolic, not exponential, tail). The follower's current is proportional to the square of the remaining overdrive and collapses as the output nears its final value. $M_1$ never leaves saturation.
+whose solution falls as $1/t$ for large $t$. So $V_X$ rises **fast at first and then ever more slowly**, approaching 1.965 V **asymptotically** (a hyperbolic, not exponential, tail), because the current is proportional to the square of the remaining overdrive; $M_1$ never leaves saturation.
 
 ### Step 6 — Numerical example
 
@@ -105,8 +95,8 @@ With $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF (initial current 2.65 mA, ini
   - Initial current $\tfrac12\beta(3 - 0.7)^2 = 2.65\beta$, initial slope $2.65\beta/C_1$.
   - $V_X$ rises with decreasing slope toward **≈ 1.97 V**, where $3 - V_X = V_{TH}(V_X)$ (2.3 V without body effect), approaching it asymptotically (hyperbolic tail).
 
-**Common mistake.** Letting $V_X$ rise all the way to 3 V. A source follower can raise its output only until $V_{GS}$ drops to $V_{TH}$; with the gate at 3 V and the body effect raising $V_{TH}$ to about 1.03 V, that is about 1.97 V.
+**Common mistake.** Letting $V_X$ rise all the way to 3 V. A source follower raises its output only until $V_{GS}$ drops to $V_{TH}$; with the body effect raising $V_{TH}$ to about 1.03 V, that is about 1.97 V.
 
 **Common mistake.** Missing the jump, or making it go the wrong way. At the instant of the step $C_1$ keeps its 3 V, so X moves exactly with the input: from −3 V up to 0 V.
 
-**Common mistake.** Letting $V_X$ stay at 0 V after the jump, or fall. Right after the step $M_1$ has $V_{GS} = 3$ V and $V_{DS} = 3$ V, so it conducts strongly *into* node X and charges it upward.
+**Common mistake.** Letting $V_X$ stay at 0 V after the jump, or fall. Right after the step $V_{GS} = V_{DS} = 3$ V, so $M_1$ conducts strongly *into* X and charges it upward.

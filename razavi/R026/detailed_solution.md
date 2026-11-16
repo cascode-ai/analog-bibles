@@ -1,74 +1,56 @@
 # Detailed solution - R026
 
-**Approach.** $M_1$ is in series with the current source $I_1$, so whatever region $M_1$ is in, it must carry $I_1$ as long as the current source can operate. The capacitor therefore discharges at a constant rate $I_1/C_1$. We follow the operating point of $M_1$ through saturation and triode, showing that its source voltage adjusts to keep the current at $I_1$, and finally discuss how the ramp ends when the current source runs out of headroom.
+**Approach.** $M_1$ is in series with the current source $I_1$, so whatever its region it must carry $I_1$ as long as the current source can operate, and the capacitor discharges at the constant rate $I_1/C_1$. Follow $M_1$ through saturation and triode, showing that its source voltage adjusts to keep the current at $I_1$, and then discuss how the ramp ends when the current source runs out of headroom.
 
-### Step 1 — Set-up
+### Step 1 — Constant current, linear ramp
 
-From the figure:
+Call the source node of $M_1$ S (voltage $V_S$). It is fed only by $M_1$ and drained only by $I_1$, so
 
-- node X is the top plate of $C_1$ and the drain of $M_1$; $I_X$ flows from node X into the drain;
-- the gate of $M_1$ is at a constant $V_b$;
-- the source of $M_1$ (node S, voltage $V_S$) is connected to the current source $I_1$, which sinks current to ground;
-- the bulk is grounded;
-- $V_X(0) = 3$ V.
+$$I_X = I_1 ,$$
 
-**KCL at node S.** The only element feeding node S is $M_1$, and the only element draining it is $I_1$:
-
-$$I_X = I_1 .$$
-
-**Capacitor.** $I_X$ comes out of $C_1$:
+and since $I_X$ comes out of $C_1$,
 
 $$C_1\frac{dV_X}{dt} = -I_X = -I_1 \quad\Longrightarrow\quad V_X(t) = 3\ \mathrm{V} - \frac{I_1}{C_1}\,t .$$
 
-So **$V_X$ ramps down linearly** and $I_X$ is constant, for as long as the current source keeps sinking $I_1$. The transistor does not set the current; it only sets the voltage at node S. The remaining steps check that $M_1$ can always carry $I_1$ during the ramp.
-
-Symbols: $\beta = \mu_nC_{ox}W/L$, $V_{TH} \approx 0.7$ V (no body-effect data are given; while $V_S$ stays near a fixed value the threshold is constant anyway).
+So **$V_X$ ramps down linearly** and $I_X$ is constant, for as long as the current source keeps sinking $I_1$. The transistor does not set the current, only the voltage of node S; the next steps check that $M_1$ can always carry $I_1$ during the ramp. Take $V_{TH} \approx 0.7$ V (no body-effect data are given; while $V_S$ stays near a fixed value the threshold is constant anyway).
 
 ### Step 2 — Phase 1: $M_1$ saturated, $V_S$ constant
 
-At first $V_X = 3$ V is high. In saturation, the square law with $I_D = I_1$ gives
+With $V_X = 3$ V at first, and $I_D = I_1$ in saturation,
 
-$$I_1 = \tfrac12\beta\,(V_b - V_S - V_{TH})^2 \quad\Longrightarrow\quad V_S = V_b - V_{TH} - \sqrt{\frac{2I_1}{\beta}} .$$
+$$I_1 = \tfrac12\beta\,(V_b - V_S - V_{TH})^2 \quad\Longrightarrow\quad V_S = V_b - V_{TH} - \sqrt{\frac{2I_1}{\beta}} ,$$
 
-This is **constant**: $M_1$ acts as a source follower whose source sits one $V_{GS}$ below the fixed gate. We assume $V_b$ is large enough that $V_S \ge 0$ (more precisely, at least the minimum voltage the current source needs).
-
-**Saturation condition.** $V_{DS} \ge V_{GS} - V_{TH}$:
+which is **constant**: $M_1$ is a source follower whose source sits one $V_{GS}$ below the fixed gate. Assume $V_b$ is large enough that $V_S \ge 0$ (more precisely, at least the minimum voltage the current source needs). Saturation requires
 
 $$
 \begin{aligned}
 V_X - V_S &\ge V_b - V_S - V_{TH}\\
-V_X &\ge V_b - V_{TH}.
+V_X &\ge V_b - V_{TH},
 \end{aligned}
 $$
 
-So phase 1 lasts while the drain is above $V_b - V_{TH}$. (If $V_b - V_{TH} \ge 3$ V, $M_1$ starts directly in triode and phase 1 is skipped.) It ends at
+so phase 1 lasts while the drain is above $V_b - V_{TH}$ (if $V_b - V_{TH} \ge 3$ V, $M_1$ starts directly in triode and phase 1 is skipped), ending at
 
 $$t_1 = \frac{C_1\,[3\ \mathrm{V} - (V_b - V_{TH})]}{I_1} .$$
 
 ### Step 3 — Phase 2: $M_1$ in triode, current still $I_1$
 
-For $V_X < V_b - V_{TH}$, $M_1$ is in triode:
+For $V_X < V_b - V_{TH}$,
 
 $$I_1 = \beta\left[(V_b - V_S - V_{TH})(V_X - V_S) - \tfrac12(V_X - V_S)^2\right].$$
 
-A triode MOSFET can still carry any given current, provided its $V_{DS}$ and $V_{GS}$ adjust. Here the current source forces $I_1$, so $V_S$ moves:
+The current source forces $I_1$, so $V_S$ moves: as $V_X$ falls, $V_S$ falls with it, which **raises** $V_{GS} = V_b - V_S$ (smaller on-resistance) and **shrinks** $V_{DS} = V_X - V_S$. The product still gives exactly $I_1$, so **$I_X = I_1$ and the linear ramp continues unchanged through the transition**; only the internal node S changes behaviour (constant in phase 1, falling in phase 2).
 
-- as $V_X$ falls, $V_S$ falls along with it;
-- this **raises** $V_{GS} = V_b - V_S$ (stronger channel, smaller on-resistance);
-- and it **shrinks** $V_{DS} = V_X - V_S$.
-
-The product still gives exactly $I_1$, so **$I_X = I_1$ and the linear ramp continues unchanged through the transition**. Nothing special is seen in $V_X(t)$ at $t_1$; only the internal node S changes behaviour (constant in phase 1, falling in phase 2).
-
-**How $V_S$ tracks $V_X$.** For small $V_{DS}$ the triode device is roughly a resistor $R_{on} = 1/[\beta(V_b - V_S - V_{TH})]$, and $V_X - V_S \approx I_1R_{on}$. So $V_S$ follows $V_X$ downward, staying about $I_1R_{on}$ below it. The gap shrinks as $V_{GS}$ grows, and $V_S$ falls more slowly than $V_X$.
+For small $V_{DS}$ the triode device is roughly a resistor $R_{on} = 1/[\beta(V_b - V_S - V_{TH})]$, so $V_S$ follows $V_X$ downward about $I_1R_{on}$ below it; the gap shrinks as $V_{GS}$ grows, so $V_S$ falls more slowly than $V_X$.
 
 ### Step 4 — How the ramp ends
 
-An **ideal** current source would keep sinking $I_1$ at any voltage, so $V_X$ (and $V_S$ below it) would keep falling without limit, which is unphysical. In practice the ramp ends when node S reaches the bottom of the current source's range, $V_{S,\min}$:
+An **ideal** current source would keep sinking $I_1$ at any voltage, so $V_X$ (and $V_S$ below it) would fall without limit, which is unphysical. In practice the ramp ends when node S reaches the bottom of the current source's range, $V_{S,\min}$:
 
-- **Real (transistor) current source.** It needs a minimum voltage (its own saturation voltage, a few hundred millivolts, roughly 0 V on the scale of this sketch). When $V_S$ reaches that level, $V_X$ is still about $I_1R_{on}$ above it. From then on the source's transistor enters triode and its current falls. $M_1$ (in triode) and the current-source device act as two resistors in series discharging $C_1$, so the current decays smoothly, **$I_X \to 0$**, and **$V_X$ slides down (roughly exponentially) to the same level as $V_S$, near 0 V**.
-- **Ideal current source with the real $M_1$.** The bulk of $M_1$ is grounded, so when $V_S$ falls to about $-0.6$ to $-0.7$ V, the source–bulk junction becomes forward biased and supplies $I_1$ from the substrate instead of from the capacitor. The channel current then decays to zero, and $V_X$ settles near $V_S \approx -0.6$ to $-0.7$ V, where the drain–bulk junction would also clamp it.
+- **Real (transistor) current source.** It needs a minimum voltage (its own saturation voltage, a few hundred millivolts, roughly 0 V on the scale of this sketch). When $V_S$ reaches that level, $V_X$ is still about $I_1R_{on}$ above it. The source's transistor then enters triode and its current falls; $M_1$ and that device act as two resistors in series discharging $C_1$, so **$I_X \to 0$** smoothly and **$V_X$ slides down (roughly exponentially) to the level of $V_S$, near 0 V**.
+- **Ideal current source with the real $M_1$.** With the bulk of $M_1$ grounded, when $V_S$ falls to about $-0.6$ to $-0.7$ V the source–bulk junction becomes forward biased and supplies $I_1$ from the substrate instead of from the capacitor. The channel current then decays to zero, and $V_X$ settles near $V_S \approx -0.6$ to $-0.7$ V, where the drain–bulk junction would also clamp it.
 
-Either way, the linear ramp lasts until $V_X \approx V_{S,\min} + I_1R_{on}$, i.e. a little less than $3C_1/I_1$, and is followed by a short rounded tail in which $I_X$ drops to zero.
+Either way, the linear ramp lasts until $V_X \approx V_{S,\min} + I_1R_{on}$, i.e. a little less than $3C_1/I_1$, followed by a short rounded tail in which $I_X$ drops to zero.
 
 ### Step 5 — Numerical example
 
@@ -111,6 +93,6 @@ Below that, a real current source runs out of headroom: $I_X$ decays and $V_X$ t
 
 **Common mistake.** Drawing an exponential $RC$-like discharge from the start, or computing $I_X$ from $V_b$ with the square law. The current is fixed by $I_1$; $M_1$ only determines the voltage of node S.
 
-**Common mistake.** Letting $I_X$ start to decay as soon as $M_1$ leaves saturation. Triode does not limit the current here: the source node simply moves down so that $M_1$ keeps carrying $I_1$. The current falls only when the current source itself runs out of voltage headroom.
+**Common mistake.** Letting $I_X$ start to decay as soon as $M_1$ leaves saturation. The source node simply moves down so that $M_1$ keeps carrying $I_1$; the current falls only when the current source runs out of headroom.
 
 **Common mistake.** Letting $V_X$ settle at $V_b - V_{TH}$. That is only where $M_1$ changes from saturation to triode; nothing stops the discharge there.

@@ -1,39 +1,20 @@
 # Detailed solution - R024
 
-**Approach.** $M_1$ is diode-connected (gate tied to drain) with its source grounded, so it is always in saturation and its current depends only on $V_X$. The capacitor supplies that current, which gives a first-order nonlinear differential equation. Solve it exactly, then describe $V_X(t)$ and $I_X(t)$ and compare the decay with an ordinary exponential.
+**Approach.** $M_1$ is diode-connected with its source grounded, so it is always saturated and its current depends only on $V_X$. The capacitor supplies that current, which gives a first-order nonlinear differential equation. Solve it exactly, then describe $V_X(t)$ and $I_X(t)$ and compare the decay with an exponential.
 
-### Step 1 — Set-up
+### Step 1 — The differential equation
 
-From the figure:
+$V_{GS} = V_{DS} = V_X$, with no body effect ($V_{TH} = 0.7$ V). Since $V_{DS} = V_{GS}$, $M_1$ is saturated whenever it conducts, i.e. while $V_X > 0.7$ V. Neglecting channel-length modulation, and since $I_X$ can only come from the capacitor,
 
-- node X is the top plate of $C_1$, and it is also the drain *and* the gate of $M_1$;
-- the source and bulk of $M_1$ are grounded, so $V_{TH} = V_{TH0} = 0.7$ V (no body effect);
-- $I_X$ flows from node X into $M_1$;
-- $V_X(0) = 3$ V.
+$$I_X = \tfrac12\beta\,(V_X - 0.7\ \mathrm{V})^2 = -C_1\frac{dV_X}{dt} \quad\Longrightarrow\quad C_1\frac{dV_X}{dt} = -\tfrac12\beta\,(V_X - 0.7)^2 .$$
 
-So $V_{GS} = V_{DS} = V_X$.
+### Step 2 — Solving it
 
-**Region.** Since $V_{DS} = V_{GS}$, the saturation condition $V_{DS} \ge V_{GS} - V_{TH}$ is always met: **a diode-connected MOSFET is saturated whenever it conducts**. It conducts while $V_X > 0.7$ V.
+With the overdrive $u = V_X - 0.7$ V ($du/dt = dV_X/dt$):
 
-**Current.** With $\beta = \mu_nC_{ox}W/L$ and channel-length modulation neglected:
+$$\frac{du}{dt} = -\frac{\beta}{2C_1}\,u^2 \quad\Longrightarrow\quad -\frac{du}{u^2} = \frac{\beta}{2C_1}\,dt .$$
 
-$$I_X = \tfrac12\beta\,(V_X - 0.7\ \mathrm{V})^2 .$$
-
-**Capacitor equation.** The only source of $I_X$ is the capacitor, so
-
-$$I_X = -C_1\frac{dV_X}{dt} \quad\Longrightarrow\quad C_1\frac{dV_X}{dt} = -\tfrac12\beta\,(V_X - 0.7)^2 .$$
-
-### Step 2 — Solving the differential equation
-
-Let $u = V_X - 0.7$ V be the overdrive; $du/dt = dV_X/dt$. Then
-
-$$\frac{du}{dt} = -\frac{\beta}{2C_1}\,u^2 .$$
-
-Separate the variables:
-
-$$-\frac{du}{u^2} = \frac{\beta}{2C_1}\,dt .$$
-
-Integrate from $t = 0$ (where $u = u_0$) to $t$:
+Integrating from $t = 0$ (where $u = u_0$):
 
 $$
 \begin{aligned}
@@ -43,11 +24,9 @@ u(t) &= \frac{u_0}{1 + \dfrac{\beta u_0}{2C_1}\,t} .
 \end{aligned}
 $$
 
-The initial overdrive is $u_0 = 3 - 0.7 = 2.3$ V. Define the characteristic time
+The initial overdrive is $u_0 = 3 - 0.7 = 2.3$ V. With the characteristic time
 
-$$T = \frac{2C_1}{\beta u_0} = \frac{2C_1}{\beta\,(2.3\ \mathrm{V})} .$$
-
-Then
+$$T = \frac{2C_1}{\beta u_0} = \frac{2C_1}{\beta\,(2.3\ \mathrm{V})} ,$$
 
 $$V_X(t) = 0.7\ \mathrm{V} + \frac{2.3\ \mathrm{V}}{1 + t/T} .$$
 
@@ -55,9 +34,9 @@ $$V_X(t) = 0.7\ \mathrm{V} + \frac{2.3\ \mathrm{V}}{1 + t/T} .$$
 
 $$I_X(t) = \tfrac12\beta\,u(t)^2 = \frac{\tfrac12\beta\,(2.3\ \mathrm{V})^2}{(1 + t/T)^2} = \frac{2.645\,\beta\ \mathrm{V^2}}{(1 + t/T)^2} .$$
 
-The initial current is $I_X(0) = \tfrac12\beta(2.3\ \mathrm{V})^2 = 2.645\beta$ (V²); for example 2.65 mA for $\beta = 1\ \mathrm{mA/V^2}$.
+The initial current is $I_X(0) = \tfrac12\beta(2.3\ \mathrm{V})^2 = 2.645\beta$ (V²), for example 2.65 mA for $\beta = 1\ \mathrm{mA/V^2}$.
 
-Check by differentiating $V_X$: $dV_X/dt = -2.3/[T(1 + t/T)^2]$, so $-C_1\,dV_X/dt = 2.3C_1/[T(1 + t/T)^2] = 2.3C_1\beta(2.3)/[2C_1(1 + t/T)^2] = \tfrac12\beta(2.3)^2/(1 + t/T)^2$. ✓
+Check: $dV_X/dt = -2.3/[T(1 + t/T)^2]$, so $-C_1\,dV_X/dt = 2.3C_1/[T(1 + t/T)^2] = 2.3C_1\beta(2.3)/[2C_1(1 + t/T)^2] = \tfrac12\beta(2.3)^2/(1 + t/T)^2$. ✓
 
 ### Step 4 — Shape of the curves
 
@@ -75,9 +54,7 @@ Check by differentiating $V_X$: $dV_X/dt = -2.3/[T(1 + t/T)^2]$, so $-C_1\,dV_X/
 - **$V_X$** falls quickly at first and then ever more slowly toward **0.7 V** ($V_{TH}$), never reaching it in finite time. It does **not** go to zero.
 - **$I_X$** starts at $2.65\beta$ and decays toward zero as $1/(1 + t/T)^2$.
 
-**Hyperbolic, not exponential.** For $t \gg T$, $V_X - 0.7 \approx 2.3\,T/t$: the remaining overdrive falls only as $1/t$. An exponential would shrink by the same factor in each equal time interval; here the overdrive halves between $t = 0$ and $T$, but halving again takes until $3T$, and again until $7T$. The discharge keeps slowing because the device's conductance $I_X/u = \tfrac12\beta u$ shrinks along with the overdrive. A resistor would keep a constant conductance and give an exponential.
-
-**Physical intuition.** A diode-connected transistor carries current only while $V_{GS} > V_{TH}$, and the current falls as the *square* of the remaining overdrive. As $V_X$ approaches $V_{TH}$, the discharge current collapses faster than the voltage, so $V_X$ creeps toward 0.7 V. In a real device, subthreshold conduction would continue to lower $V_X$ very slowly below 0.7 V (roughly logarithmically in time), but in the square-law model the final value is $V_{TH}$.
+**Hyperbolic, not exponential.** For $t \gg T$, $V_X - 0.7 \approx 2.3\,T/t$: the remaining overdrive falls only as $1/t$. It halves between $t = 0$ and $T$, but halving again takes until $3T$, and again until $7T$, because the device's conductance $I_X/u = \tfrac12\beta u$ shrinks with the overdrive (a resistor would keep it constant and give an exponential). In a real device, subthreshold conduction would continue to lower $V_X$ very slowly below 0.7 V (roughly logarithmically in time), but in the square-law model the final value is $V_{TH}$.
 
 ### Result
 
@@ -93,8 +70,8 @@ $$V_X(t) = 0.7 + \frac{2.3}{1 + 2.3\beta t/(2C_1)}\ \mathrm{V}, \qquad I_X(t) = 
 - $I_X$ decays from $\tfrac12\beta(2.3\ \mathrm{V})^2 = 2.65\beta$ toward zero.
 - In reality subthreshold conduction keeps lowering $V_X$ slowly below 0.7 V.
 
-**Common mistake.** Letting $V_X$ discharge to 0 V. Once $V_X = V_{GS}$ falls to $V_{TH}$, the diode-connected device turns off; in the square-law model nothing can pull the capacitor below 0.7 V.
+**Common mistake.** Letting $V_X$ discharge to 0 V. Once $V_X = V_{GS}$ falls to $V_{TH}$, the diode-connected device turns off, so in the square-law model nothing pulls the capacitor below 0.7 V.
 
-**Common mistake.** Treating $M_1$ as being in triode near the end, or as a fixed resistor, and drawing an exponential decay. Its drain is tied to its gate, so it is saturated throughout; its current is quadratic in $V_X - V_{TH}$, which gives the slower hyperbolic tail.
+**Common mistake.** Treating $M_1$ as a triode device or a fixed resistor near the end and drawing an exponential decay. It is saturated throughout, and its current is quadratic in $V_X - V_{TH}$, which gives the slower hyperbolic tail.
 
-**Common mistake.** Writing the characteristic time as $2C_1u_0/\beta$ instead of $2C_1/(\beta u_0)$. A larger initial overdrive means a larger initial current and therefore a *shorter* characteristic time; a quick dimension check ($\beta$ in A/V², $u_0$ in V, so $\beta u_0$ in A/V = S, and $C_1/S$ = seconds) confirms the correct form.
+**Common mistake.** Writing the characteristic time as $2C_1u_0/\beta$ instead of $2C_1/(\beta u_0)$. A dimension check ($\beta u_0$ in A/V = S, and $C_1/S$ = seconds) confirms the correct form: a larger initial overdrive gives a *shorter* time.
