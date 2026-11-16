@@ -79,6 +79,12 @@ const STRINGS = {
     keyGo: "Enter review",
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
+    prevCh: "Previous chapter (Shift+←)",
+    nextCh: "Next chapter (Shift+→)",
+    gotoTitle: "Type a question number and press Enter",
+    chapter: (n) => `Ch. ${n}`,
+    exercise: (e) => `Problem ${e}`,
+    chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
     detailed: "Detailed solution",
     aiNote: "AI-written, checked against the reference answer; may still contain errors",
     reviewThisTitle: "Review this question: pass it, report an issue or comment (maintainers)",
@@ -159,6 +165,12 @@ const STRINGS = {
     keyGo: "进入审阅",
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
+    prevCh: "上一章 (Shift+←)",
+    nextCh: "下一章 (Shift+→)",
+    gotoTitle: "输入题号后按回车",
+    chapter: (n) => `第 ${n} 章`,
+    exercise: (e) => `习题 ${e}`,
+    chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
     detailed: "详细步骤",
     aiNote: "AI 撰写，已对照参考答案，仍可能有误",
     reviewThisTitle: "进入这道题的审阅：通过、报错、评论（维护者）",
@@ -362,7 +374,7 @@ function renderProgress() {
   $("progress").innerHTML =
     `<div class="bar" aria-hidden="true"><span class="p" style="width:${w(passed)}"></span><span class="i" style="width:${w(flagged)}"></span></div>` +
     `<span>${t("progress", num(passed), num(flagged), num(total - passed - flagged))}</span>`;
-  $("position").textContent = total ? `${num(state.index + 1)} / ${num(total)}` : "0 / 0";
+  updatePosition();
 }
 
 function syncUrl() {
@@ -416,7 +428,7 @@ function cardHead(q, extra = "") {
   return `
     <div class="head">
       <span class="id">${esc(q.id)}</span>
-      <span class="tag">${bookName(q.book)}</span>
+      <span class="tag">${bookName(q.book)} · ${t("exercise", q.ex)}</span>
       <span class="tag lv-${q.level}">${t(q.level)}</span>
       ${extra}
     </div>`;
@@ -576,7 +588,7 @@ function scrollToCard(at) {
 
 function renderPosition() {
   const total = state.cards.length;
-  $("position").textContent = total ? `${num(state.index + 1)} / ${num(total)}` : "0 / 0";
+  updatePosition();
 }
 
 // The list in browse mode, the single question in review mode.
@@ -753,6 +765,58 @@ function toggleFlag(key) {
   renderFlags();
 }
 
+// ---------- position and chapters ----------
+
+// The toolbar's "n / total": a box to type a number into, the total, and the
+// current question's chapter. Chapters step only within one book, in order.
+function updatePosition() {
+  const total = state.cards.length;
+  const box = $("goto");
+  if (document.activeElement !== box) box.value = total ? String(state.index + 1) : "0";
+  box.style.width = `${Math.max(2, String(total).length) + 1.5}ch`;
+  $("total").textContent = `/ ${num(total)}`;
+  const q = state.cards[state.index];
+  const byChapter = state.scope !== "random";
+  $("chapter").textContent = q && byChapter ? t("chapter", q.ch) : "";
+  for (const id of ["prev-ch", "next-ch"]) {
+    $(id).disabled = !byChapter || !total;
+    $(id).title = byChapter ? t(id === "prev-ch" ? "prevCh" : "nextCh") : t("chapterNeedsBook");
+  }
+}
+
+// To the first question of the next chapter (dir 1), or of this chapter's
+// start and then the previous chapter's (dir -1), as a book's « » do.
+function jumpChapter(dir) {
+  if (state.scope === "random" || !state.cards.length) return;
+  const cards = state.cards;
+  const here = cards[state.index].ch;
+  let at = state.index;
+  if (dir > 0) {
+    while (at < cards.length && cards[at].ch === here) at++;
+    if (at >= cards.length) return;
+  } else {
+    while (at > 0 && cards[at - 1].ch === here) at--;
+    if (at === state.index) {
+      if (at === 0) return;
+      const prev = cards[at - 1].ch;
+      at--;
+      while (at > 0 && cards[at - 1].ch === prev) at--;
+    }
+  }
+  go(at);
+}
+
+$("goto").addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  event.preventDefault();
+  const n = parseInt(event.target.value.replace(/[^0-9]/g, ""), 10);
+  event.target.blur();
+  if (n >= 1 && state.ready) go(n - 1);
+  else updatePosition();
+});
+$("goto").addEventListener("focus", (event) => event.target.select());
+$("goto").addEventListener("blur", () => updatePosition());
+
 // ---------- wiring ----------
 
 document.addEventListener("click", async (event) => {
@@ -772,6 +836,10 @@ document.addEventListener("click", async (event) => {
     submit("pass");
   } else if (target.id === "issue") {
     submit("issue");
+  } else if (target.id === "prev-ch") {
+    jumpChapter(-1);
+  } else if (target.id === "next-ch") {
+    jumpChapter(1);
   } else if (target.id === "prev") {
     go(state.index - 1);
   } else if (target.id === "next") {
@@ -813,6 +881,8 @@ document.addEventListener("keydown", (event) => {
   const reviewing = mode === "review" && $("pass");
   const flag = reviewing ? FLAGS.find((f) => f.hotkey === event.key) : null;
   if (flag) toggleFlag(flag.key);
+  else if (event.key === "ArrowLeft" && event.shiftKey) jumpChapter(-1);
+  else if (event.key === "ArrowRight" && event.shiftKey) jumpChapter(1);
   else if (event.key === "ArrowLeft") go(state.index - 1);
   else if (event.key === "ArrowRight") go(state.index + 1);
   else if (event.key === "r" || event.key === "R") jumpRandom();

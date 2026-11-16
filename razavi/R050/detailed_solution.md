@@ -1,0 +1,151 @@
+# Detailed solution - R050
+
+**Approach.** Treat the ring transistor as four ordinary transistors in parallel that share one drain, which gives its equivalent $W/L$. Then compute the drain-junction capacitance of each layout from its drain *area* and *perimeter*, $C = (\text{area})\,C_j + (\text{perimeter})\,C_{jsw}$. For a fair comparison, all three layouts must have the same channel length $L$ and the same total (equivalent) width.
+
+### Step 1 — How the ring transistor works
+
+The layout in [Fig. 1], for an NMOS, consists of:
+
+- a square $n^+$ **drain** of side $W$ in the centre;
+- a closed polysilicon **gate** ring of width $L$ that surrounds it;
+- an $n^+$ **source** region that fills everything outside the ring.
+
+Under the ring there is p-type substrate, exactly as under the gate of an ordinary transistor. The narrow poly strip that leaves the ring is only the gate connection.
+
+When $V_{GS} > V_{TH}$ (gate–source voltage above the threshold voltage), an inversion layer (the channel) forms under the *entire* ring. This channel connects the drain to the source on **all four sides** of the drain square. Electrons flow inward from the surrounding source, under the gate, into the central drain; the conventional current therefore flows outward from the drain to the source.
+
+Each side of the ring is an ordinary channel of width $\approx W$ (the length of the drain edge) and length $L$ (the gate width in the current-flow direction). The four sides share the same gate, drain and source. So the ring device behaves like **four identical transistors connected in parallel**.
+
+(The poly strip that crosses the source to reach the gate contact forms a channel only between two parts of the source, which are at the same potential. It carries no drain current and only adds a little gate capacitance.)
+
+### Step 2 — Equivalent aspect ratio
+
+Transistors in parallel have the same $V_{GS}$ and $V_{DS}$, so their currents add. In saturation, using the square law with $\mu_nC_{ox}$ the mobility–oxide capacitance product:
+
+$$I_D = 4\times\frac12\mu_nC_{ox}\frac{W}{L}(V_{GS} - V_{TH})^2 = \frac12\mu_nC_{ox}\,\frac{4W}{L}\,(V_{GS} - V_{TH})^2 .$$
+
+Therefore
+
+$$\left(\frac{W}{L}\right)_{eq} \approx \frac{4W}{L} .$$
+
+In words: the effective width is the inner perimeter of the ring, $4W$.
+
+### Step 3 — Refinement: the four corners
+
+The four $L\times L$ corner squares of the ring also carry some current, but less effectively than the straight sides, because the paths from the drain's corner points to the outer corners are longer. Two simple estimates bracket the true value.
+
+- **Lower bound: ignore the corners.** If current flowed only in the four $W\times L$ rectangles, then $(W/L)_{eq} = 4W/L$. The real current also spreads into the corners, so the real device conducts slightly better.
+- **Upper bound: square equipotentials.** Assume the potential is constant on concentric squares. At distance $x$ from the drain edge ($0 \le x \le L$), a thin square shell has perimeter $4(W + 2x)$ and thickness $dx$. With $R_\square$ the channel sheet resistance, the shell is a resistor of value
+$$dR = R_\square\,\frac{dx}{4(W + 2x)} .$$
+The shells are in series, so integrate:
+$$R = \frac{R_\square}{4}\int_0^L\frac{dx}{W + 2x} = \frac{R_\square}{8}\ln\!\left(\frac{W + 2L}{W}\right).$$
+The equivalent number of squares in parallel is then
+$$\left(\frac{W}{L}\right)_{eq} = \frac{R_\square}{R} = \frac{8}{\ln(1 + 2L/W)} .$$
+Assuming a wrong (non-physical) potential pattern can only raise the computed conductance (Dirichlet's minimum-energy principle), so this is an upper bound.
+
+For $L \ll W$, use $\ln(1 + \epsilon) \approx \epsilon - \epsilon^2/2$ with $\epsilon = 2L/W$:
+
+$$\frac{8}{\ln(1 + 2L/W)} \approx \frac{8}{(2L/W)(1 - L/W)} \approx \frac{4W}{L}\left(1 + \frac{L}{W}\right) = \frac{4W}{L} + 4 = \frac{4(W + L)}{L}.$$
+
+So
+
+$$\frac{4W}{L} \;\le\; \left(\frac{W}{L}\right)_{eq} \;\le\; \frac{8}{\ln(1 + 2L/W)} \approx \frac{4W}{L} + 4 .$$
+
+The upper form, $4(W + L)/L$, is the same as using the *mean* perimeter of the ring. For example, with $W = 10L$ the bounds are 40 and 43.9, so the corners change the result by less than 10 %. **For $W \gg L$, $(W/L)_{eq} \approx 4W/L$.**
+
+(The same geometric factor applies in saturation as in the linear region: in the gradual-channel picture the channel current obeys the same two-dimensional continuity equation at any bias.)
+
+### Step 4 — Capacitance model and fair normalization
+
+The drain–bulk junction capacitance is modelled, as in the textbook, by a bottom-plate term and a sidewall term:
+
+$$C_{DB} = (\text{drain area})\times C_j + (\text{drain perimeter})\times C_{jsw},$$
+
+where $C_j$ is the bottom-plate capacitance per unit area and $C_{jsw}$ is the sidewall capacitance per unit length.
+
+To compare the layouts fairly, all three must give the **same current**, i.e. the same $(W/L)_{eq}$. With the same channel length $L$, they must have the same total width:
+
+$$W_{eq} = 4W .$$
+
+Throughout, $E$ is the lateral dimension of a source/drain region (the distance from the gate edge to the end of the diffusion). It is **not** a channel length.
+
+### Step 5 — Ring device
+
+The drain is the $W\times W$ square:
+
+$$\text{area} = W^2, \qquad \text{perimeter} = 4W,$$
+
+$$C_{DB,ring} = W^2C_j + 4W\,C_{jsw}.$$
+
+### Step 6 — Straight device ([Fig. 2])
+
+A single gate finger of width $W_{eq} = 4W$. Its drain is a rectangle $W_{eq}$ long (along the gate) and $E$ wide:
+
+$$\text{area} = W_{eq}E = 4WE, \qquad \text{perimeter} = 2(W_{eq} + E) = 8W + 2E,$$
+
+$$C_{DB,straight} = 4WE\,C_j + 2(4W + E)\,C_{jsw}.$$
+
+### Step 7 — Folded device ([Fig. 3])
+
+Two gate fingers, each of width $W_{eq}/2 = 2W$, connected in parallel and sharing one central drain. The drain is a rectangle $2W$ long and $E$ wide:
+
+$$\text{area} = \frac{W_{eq}}{2}E = 2WE, \qquad \text{perimeter} = 2\left(\frac{W_{eq}}{2} + E\right) = 4W + 2E,$$
+
+$$C_{DB,folded} = 2WE\,C_j + 2(2W + E)\,C_{jsw}.$$
+
+Folding halves the drain area because one drain region serves two channels.
+
+### Step 8 — Compare the three layouts
+
+**Summary table:**
+
+| Layout (same $W_{eq} = 4W$) | Drain area | Drain perimeter | $C_{DB}$ | $C_{DB}$ at $W = E$ |
+|---|---|---|---|---|
+| Ring | $W^2$ | $4W$ | $W^2C_j + 4WC_{jsw}$ | $E^2C_j + 4EC_{jsw}$ |
+| Straight | $4WE$ | $8W + 2E$ | $4WEC_j + (8W + 2E)C_{jsw}$ | $4E^2C_j + 10EC_{jsw}$ |
+| Folded | $2WE$ | $4W + 2E$ | $2WEC_j + (4W + 2E)C_{jsw}$ | $2E^2C_j + 6EC_{jsw}$ |
+
+**At $W \approx E$** (a drain square just large enough to hold a contact):
+
+- Bottom plate: the ring has $E^2$, against $4E^2$ (straight) and $2E^2$ (folded). That is **1/4** of the straight device and **1/2** of the folded device.
+- Perimeter: the ring has $4E$, against $10E$ and $6E$.
+- Total: the ratio ring/straight lies between $1/4$ (bottom plate dominant) and $4/10 = 2/5$ (sidewall dominant). The ratio ring/folded lies between $1/2$ and $4/6 = 2/3$. The exact value depends on $C_{jsw}/(EC_j)$.
+
+**General $W$.** Subtract the ring's capacitance from the others:
+
+$$
+\begin{aligned}
+C_{DB,folded} - C_{DB,ring} &= (2WE - W^2)C_j + (4W + 2E - 4W)C_{jsw} = W(2E - W)\,C_j + 2E\,C_{jsw},\\
+C_{DB,straight} - C_{DB,ring} &= (4WE - W^2)C_j + (8W + 2E - 4W)C_{jsw} = W(4E - W)\,C_j + (4W + 2E)\,C_{jsw}.
+\end{aligned}
+$$
+
+Both differences are positive whenever $W \le 2E$, so the ring wins in that range. The exact crossover with the folded device comes from setting the first difference to zero:
+
+$$W^2 - 2EW - \frac{2EC_{jsw}}{C_j} = 0 \;\Rightarrow\; W_c = E + \sqrt{E^2 + \frac{2EC_{jsw}}{C_j}} \;(\ge 2E).$$
+
+Against the straight device the crossover is near $W \approx 4E$, or somewhat above it once sidewalls are counted.
+
+**Per unit of effective width.** Divide by $W_{eq} = 4W$. The ring's drain capacitance is then $(W/4)C_j + C_{jsw}$, which *grows* with $W$, because the drain area grows as $W^2$ while the width grows only as $4W$. A wide transistor should therefore be built from **several small rings in parallel**, each with $W \approx E$, not from one large ring.
+
+### Step 9 — Remarks and costs
+
+- **Sidewall convention.** The simple model above counts the whole drain perimeter with $C_{jsw}$. If the edge facing the gate (the channel side) is excluded, or given its own value, subtract $4WC_{jsw}$ from every layout. All three have a gate-side drain edge of total length $W_{eq} = 4W$, so the differences and the conclusion are unchanged: the reduced forms are $W^2C_j$, $4WEC_j + (4W + 2E)C_{jsw}$ and $2WEC_j + 2EC_{jsw}$.
+- **Costs of the ring.** The source surrounds the device, so the total area and the source junction capacitance are large. This is harmless when the source is grounded. The corners make the exact $W/L$ less predictable, and the device is asymmetric: the small inner terminal must be used as the drain, the sensitive node.
+
+### Result
+
+- **Operation.** The ring gate induces a channel all around the central drain. Current flows between the drain and the surrounding source on all four sides, like four transistors of width $\approx W$ and length $L$ in parallel sharing one drain.
+- **Equivalent aspect ratio.**
+$$\left(\frac{W}{L}\right)_{eq} \approx \frac{4W}{L}.$$
+Including the corners, $4W/L \le (W/L)_{eq} \le 8/\ln(1 + 2L/W) \approx 4(W + L)/L$.
+- **Drain junction capacitance** at equal equivalent width $W_{eq} = 4W$:
+$$C_{ring} = W^2C_j + 4WC_{jsw},\quad C_{straight} = 4WEC_j + 2(4W + E)C_{jsw},\quad C_{folded} = 2WEC_j + 2(2W + E)C_{jsw}.$$
+- **Comparison.** For $W \approx E$ the ring has about 1/4 of the straight device's and 1/2 of the folded device's bottom-plate capacitance, and the smallest perimeter. Its total drain capacitance is 1/4–2/5 of the straight device's and 1/2–2/3 of the folded device's. It beats the folded layout for any $W \le 2E$ (exact crossover $E + \sqrt{E^2 + 2EC_{jsw}/C_j}$) and the straight layout up to $W \approx 4E$.
+- **Scaling.** Because the ring's drain area grows as $W^2$, large widths should use several small rings in parallel.
+
+**Common mistake.** Taking the equivalent aspect ratio as $W/L$ (only one side counted) or $W/(4L)$ (the four sides treated as if in series). The four channel segments connect the *same* drain to the *same* source, so they are in parallel and their widths add: $4W/L$.
+
+**Common mistake.** Comparing the layouts at the same drawn $W$, or using $E$ as the channel length of the straight or folded device. The comparison is only meaningful at equal current-driving capability (same $L$, same $W_{eq} = 4W$). $E$ is a source/drain diffusion dimension, not a channel length.
+
+**Common mistake.** Concluding that the ring has *larger* drain capacitance "because it is a big square". At the small $W$ where it is used ($W \lesssim 2E$) it has the smallest drain area and perimeter of the three. Its disadvantage appears only if one tries to make a single very large ring.

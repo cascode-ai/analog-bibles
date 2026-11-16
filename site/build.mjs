@@ -6,6 +6,8 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const dist = path.join(root, "dist");
 const books = ["razavi", "gray", "allen"];
 const difficulty = JSON.parse(fs.readFileSync(path.join(root, "difficulty.json"), "utf8"));
+// Each question's exercise number in its book and its chapter.
+const exercises = JSON.parse(fs.readFileSync(path.join(root, "exercises.json"), "utf8"));
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.cpSync(path.join(root, "site/public"), dist, { recursive: true });
@@ -21,6 +23,8 @@ for (const book of books) {
         id,
         book,
         level,
+        ex: exercises[id].ex,
+        ch: exercises[id].ch,
         // The question text, for the search box.
         t: fs.readFileSync(path.join(dir, "instruction.md"), "utf8"),
         figs: files.filter((f) => f.startsWith("figure-")),
@@ -31,5 +35,17 @@ for (const book of books) {
     }
   }
 }
+// Textbook order: book, chapter, then the problems in the order the book has
+// them (numbered ids), each chapter's simulation problems after its others.
+const bookOrder = Object.fromEntries(books.map((b, i) => [b, i]));
+const seq = (q) => (/^[RGA]\d+$/.test(q.id) ? [0, Number(q.id.slice(1))] : [1, q.id]);
+index.sort((a, b) => {
+  if (a.book !== b.book) return bookOrder[a.book] - bookOrder[b.book];
+  if (a.ch !== b.ch) return a.ch - b.ch;
+  const [ka, va] = seq(a);
+  const [kb, vb] = seq(b);
+  if (ka !== kb) return ka - kb;
+  return va < vb ? -1 : va > vb ? 1 : 0;
+});
 fs.writeFileSync(path.join(dist, "index.json"), JSON.stringify(index));
 console.log(`dist/: ${index.length} questions`);

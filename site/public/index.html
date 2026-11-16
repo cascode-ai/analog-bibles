@@ -45,9 +45,15 @@
     <div class="toolbar">
       <div class="progress review-only" id="progress"></div>
       <span class="steps">
-        <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">←</button>
-        <span class="position" id="position">– / –</span>
-        <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next (→)" aria-label="Next">→</button>
+        <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
+        <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
+        <span class="position">
+          <input id="goto" type="text" inputmode="numeric" autocomplete="off" data-i18n-title="gotoTitle" data-i18n-aria="gotoTitle" title="Type a number and press Enter" aria-label="Question number">
+          <span id="total">/ –</span>
+        </span>
+        <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next (→)" aria-label="Next">›</button>
+        <button type="button" id="next-ch" data-i18n-title="nextCh" data-i18n-aria="nextCh" title="Next chapter (Shift+→)" aria-label="Next chapter">»</button>
+        <span class="chapter" id="chapter"></span>
         <button type="button" id="random" data-i18n-title="randomTitle" title="A random question (R)"><span data-i18n="random">Random</span> <kbd>R</kbd></button>
       </span>
     </div>

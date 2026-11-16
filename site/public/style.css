@@ -259,3 +259,21 @@ details.grading summary { cursor: pointer; color: var(--muted); font-size: 13px;
 @media (max-width: 900px) {
   .side { position: static; max-height: none; }
 }
+
+/* "n / total": the number is a box to type into; « » step by chapter. */
+.steps .position { display: inline-flex; align-items: center; gap: 4px; min-width: 0; padding: 0 4px; }
+.steps #goto {
+  height: 30px; padding: 0 4px; text-align: center;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text);
+  font: inherit; font-size: 13px; font-variant-numeric: tabular-nums;
+}
+.steps #goto:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.steps #total { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.steps button:disabled { opacity: .4; cursor: default; }
+.steps button:disabled:hover { border-color: var(--border-strong); }
+.steps .chapter { min-width: 4.5em; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.steps .chapter:empty { display: none; }
+@media (max-width: 600px) {
+  .steps { flex-wrap: wrap; justify-content: flex-end; }
+  .steps button { padding: 0 8px; min-width: 34px; }
+}
