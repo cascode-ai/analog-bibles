@@ -44,7 +44,9 @@ for (const book of books) {
         // A worked, step-by-step solution, where one has been written.
         sol: files.includes("detailed_solution.md") ? 1 : 0,
         // A Chinese translation of the question, answer and worked solution.
-        zh: files.includes("instruction.zh.md") ? 1 : 0,
+        // Only when all three are translated: a half-translated question
+        // (a translation still in progress) stays in English.
+        zh: ["instruction.zh.md", "golden_solution.zh.md", "detailed_solution.zh.md"].every((f) => files.includes(f)) ? 1 : 0,
         // Drawn diagrams of the worked solution: name -> caption (the first
         // comment line of its netlist), only for those with an SVG.
         diags: diagrams(dir, files),

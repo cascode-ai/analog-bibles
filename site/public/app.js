@@ -467,11 +467,13 @@ function cardBody(q) {
 async function fillCard(el, q) {
   const zh = lang === "zh" && q.zh && el.dataset.orig !== "en";
   const get = (name) => fetch(`/q/${q.id}/${name}`).then((r) => (r.ok ? r.text() : Promise.reject(r.status)));
+  // A Chinese file that fails falls back to its English original, alone.
+  const pick = (base) => (zh ? get(`${base}.zh.md`).catch(() => get(`${base}.md`)) : get(`${base}.md`));
   const [question, solution, answerZh, steps] = await Promise.all([
-    get(zh ? "instruction.zh.md" : "instruction.md"),
+    pick("instruction"),
     get("golden_solution.md"),
-    zh ? get("golden_solution.zh.md") : "",
-    q.sol ? get(zh ? "detailed_solution.zh.md" : "detailed_solution.md") : "",
+    zh ? get("golden_solution.zh.md").catch(() => "") : "",
+    q.sol ? pick("detailed_solution") : "",
   ]).catch(() => [t("loadFailed"), t("loadFailed"), "", q.sol ? t("loadFailed") : ""]);
   if (!el.isConnected || el.dataset.qid !== q.id) return false;
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
