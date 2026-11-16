@@ -68,4 +68,4 @@ The noise of $M_1$, $M_2$, $R_D$ and $R_F$ cannot change $M_2$'s drain current a
 
 **Common mistake.** Referring the noise of $M_1$, $R_D$ or $R_F$ to the input as if the loop were open (e.g. adding $4kT/R_F$). These sources only move node voltages.
 
-**Common mistake.** Keeping $R_S$. Part of the input current would then flow through $R_S$, the current gain would no longer be exactly 1, and $R_S$'s noise would appear at the output.
+**Common mistake.** Keeping $R_S$. Part of the input current would then flow through $R_S$, the current gain would no longer be exactly −1, and $R_S$'s noise would appear at the output.

@@ -8,7 +8,7 @@ and for $G_mR_2 \gg 1$: $\overline{V_{n,in}^2} \approx 4kTR_1 + \dfrac{4kT}{R_2}
 
 - $R_1$'s noise voltage is in series with $V_{in}$: $4kTR_1$ directly.
 - $R_2$'s noise current (between the gate node and the output) is referred to the input through the ratio of its transfer to the output to the signal gain: $R_2(1 + G_mR_1)/(G_mR_2 - 1)$ (≈ $R_1 + 1/G_m$).
-- The transistors' noise current at the output, $4kT\gamma G_m$, is referred through $(R_1+R_2)/(G_mR_2 - 1)$, i.e. the inverter's own input noise $4kT\gamma/G_m$ amplified by the noise gain $(1 + R_1/R_2)^2$.
+- The transistors' noise current at the output, $4kT\gamma G_m$, is referred through $(R_1+R_2)/(G_mR_2 - 1)$, i.e. the inverter's own input noise $4kT\gamma/G_m$ multiplied by $(1 + R_1/R_2)^2$, the square of the noise gain $1 + R_2/R_1$ over the signal gain $R_2/R_1$.
 - Example: $R_1$ = 1 kΩ, $R_2$ = 10 kΩ, $G_m$ ≈ 10.8 mS, 300 K: $1.66\times10^{-17} + 2.0\times10^{-18} + 1.3\times10^{-18} \approx 2.0\times 10^{-17}\ \mathrm{V^2/Hz}$ (4.5 nV/√Hz), dominated by $R_1$.
 
 ## Grading notes

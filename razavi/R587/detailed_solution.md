@@ -124,6 +124,6 @@ With no load capacitance, $\tau \approx (C_1 + C_{in})/G_m$, independent of $C_2
 - Accuracy: $C_2 \ge (C_1 + C_{in})/9 \approx 2.2$ pF.
 - **Maximum nominal gain $C_1/C_2 \approx 8.9$**, with $C_1 \approx 19.8$ pF and $C_2 \approx 2.22$ pF (exact expressions: $C_1 \approx 20.0$ pF, $C_2 \approx 2.22$ pF, gain $\approx 9.0$).
 
-**Common mistake.** Using the wrong time constant: $C_2/G_m$, $(C_1 + C_2 + C_{in})/G_m$ or $R_0C_2$. $R_0C_2$ is an open-loop quantity that ignores the feedback (222 ns here, a hundred times too slow); the closed-loop pole is $(C_1 + C_{in})/G_m$ when there is no load capacitance.
+**Common mistake.** Using the wrong time constant: $C_2/G_m$, $(C_1 + C_2 + C_{in})/G_m$ or $R_0C_2$. $R_0C_2$ is an open-loop quantity that ignores the feedback (222 ns here, a hundred times too slow); the time constant of the closed-loop pole is $(C_1 + C_{in})/G_m$ when there is no load capacitance.
 
 **Common mistake.** Keeping $C_1 = 2$ pF and claiming the gain is limited by the time constant. The speed specification limits $C_1$ from *above*; the gain is limited by accuracy, and choosing $C_1$ as large as the speed budget allows maximizes it.

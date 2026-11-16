@@ -60,7 +60,7 @@ $$
 \overline{V_{n,Y}^2} = \frac{4kT\cdot\tfrac23\,(g_{m5} + g_{m6})}{g_{m5}^2} = (1.104\times10^{-20})\,\frac{16\times10^{-3}}{(8\times10^{-3})^2}\ \mathrm{V^2/Hz} = (1.104\times10^{-20})(250)\ \mathrm{V^2/Hz} = 2.76\times10^{-18}\ \mathrm{V^2/Hz}.
 $$
 
-With the design's $\lambda_p = 0.2$ and $\lambda_n = 0.1\ \mathrm{V^{-1}}$, $A_1 = g_{m1}(r_{O2}\parallel r_{O4}) = 2.81\ \mathrm{mS}\times(10\ \mathrm{k}\Omega\parallel20\ \mathrm{k}\Omega) = 18.75$, so
+Assuming $\lambda_p = 0.2$ and $\lambda_n = 0.1\ \mathrm{V^{-1}}$ (not given in the problem), $A_1 = g_{m1}(r_{O2}\parallel r_{O4}) = 2.81\ \mathrm{mS}\times(10\ \mathrm{k}\Omega\parallel20\ \mathrm{k}\Omega) = 18.75$, so
 
 $$\overline{V_{n,in}^2}\Big|_{stage\,2} = \frac{2.76\times10^{-18}}{18.75^2}\ \mathrm{V^2/Hz} = \frac{2.76\times10^{-18}}{352}\ \mathrm{V^2/Hz} = 7.9\times10^{-21}\ \mathrm{V^2/Hz},$$
 

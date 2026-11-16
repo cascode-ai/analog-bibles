@@ -2,7 +2,7 @@
 
 ## Reference answer
 
-$\dfrac{f_{max}}{f_{min}} = \sqrt{\dfrac{C_0 + C_1}{0.62\,C_0 + C_1}}$, so the tuning range is $\sqrt{\dfrac{1 + C_1/C_0}{0.62 + C_1/C_0}} - 1$: 27% for $C_1 = 0$, 19.6% for $C_1/C_0 = 0.25$, 15.6% for 0.5, 11.0% for 1, 6.9% for 2 (≈ $0.19\,C_0/C_1$ for $C_1 \gg C_0$). The fixed capacitance always shrinks the range.
+$\dfrac{f_{max}}{f_{min}} = \sqrt{\dfrac{C_0 + C_1}{0.62\,C_0 + C_1}}$, so the tuning range is $\sqrt{\dfrac{1 + C_1/C_0}{0.62 + C_1/C_0}} - 1$: 27% for $C_1 = 0$, 19.6% for $C_1/C_0 = 0.25$, 15.5% for 0.5, 11.0% for 1, 6.9% for 2 (≈ $0.19\,C_0/C_1$ for $C_1 \gg C_0$). The fixed capacitance always shrinks the range.
 
 Derivation:
 - $C_{var}(2\ \mathrm{V}) = C_0/(1 + 2/0.7)^{0.35} = C_0/3.857^{0.35} = 0.62\,C_0$ (0.624).

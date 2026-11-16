@@ -11,7 +11,7 @@ Comparison with the simple model:
 - The new result can be written $\mu C_{ox}(W/L)\int_{V_{SB}}^{V_{SB}+V_{DS}} \dfrac{\gamma\,du}{2\sqrt{2\phi_F+u}}$. It averages the local body-effect coefficient along the channel, from the source end to the drain end. The simple model uses the source-end value $\gamma/(2\sqrt{2\phi_F+V_{SB}})$ for the whole channel.
 - Small $V_{DS}$ ($V_{DS} \ll 2\phi_F + V_{SB}$): a first-order expansion of the square roots reproduces the simple-model result exactly.
 - Larger $V_{DS}$: the square root is concave, so the new $g_{mb}$ is smaller. The channel-to-bulk voltage rises toward the drain, where the threshold is less sensitive to $V_{BS}$. The ratio $g_{mb}/g_m$ (here $g_m = \mu C_{ox}(W/L)V_{DS}$) equals $\gamma[\sqrt{2\phi_F+V_{SB}+V_{DS}} - \sqrt{2\phi_F+V_{SB}}]/V_{DS}$, which is at most η.
-- Example, $2\phi_F$ = 0.9 V: with $V_{SB} = 0$, $V_{DS}$ = 0.2, 0.5, 1 V give 0.95, 0.89, 0.82 of the simple-model value; with $V_{SB}$ = 1 V, 0.975, 0.94, 0.90.
+- Example, $2\phi_F$ = 0.9 V: with $V_{SB} = 0$, $V_{DS}$ = 0.2, 0.5, 1 V give 0.95, 0.89, 0.82 of the simple-model value; with $V_{SB}$ = 1 V, 0.975, 0.94, 0.89.
 - In saturation, evaluate the result at $V_{DS} = V_{D,sat}$; because $\partial I_D/\partial V_{DS} = 0$ there, the dependence of $V_{D,sat}$ on $V_{BS}$ does not contribute. The result is again somewhat below $\eta g_m$, approaching it when $V_{D,sat} \ll 2\phi_F + V_{SB}$.
 
 ## Grading notes

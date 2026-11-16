@@ -4,7 +4,7 @@
 
 $V_{out} = V_T\ln\dfrac{I_1(1 + r + \epsilon)}{I_S} + \dfrac{C_2}{C_1}V_T\ln(1 + r + \epsilon) \approx V_{out,nom} + \left(1 + \dfrac{C_2}{C_1}\right)\dfrac{V_T\,\epsilon}{1 + r}$,
 with $V_{out,nom} = V_{EB}[I_1(1+r)] + (C_2/C_1)V_T\ln(1 + r)$.
-- The error is dominated by the term amplified by $C_2/C_1$. Example: $r = 7$, $C_2/C_1 \approx 8.3$, $\epsilon = 0.01$ gives ≈ 0.3 mV.
+- The error is dominated by the term amplified by $C_2/C_1$. Example: $r = 7$, $C_2/C_1 \approx 8.4$, $\epsilon = 0.01$ gives ≈ 0.3 mV.
 - The error is PTAT, so it also adds a TC of $(1 + C_2/C_1)(k/q)\epsilon/(1 + r)$ and shifts the zero-TC temperature.
 - Derivation: phase 1 stores $V_{EB}(I_1)$ on $C_2$. In phase 2, $V_X = V_{EB}(I_1 + I_2)$, and charge conservation gives $V_{out} = V_X + (C_2/C_1)[V_X - V_{EB}(I_1)]$ with $V_X - V_{EB}(I_1) = V_T\ln(1 + I_2/I_1)$.
 

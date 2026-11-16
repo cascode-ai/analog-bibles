@@ -9,7 +9,7 @@ $r_{max} \approx 6.1$ mΩ including the body effect, or ≈ 7.5 mΩ if the body 
 - A source-voltage rise $V$ lowers the current by $(g_m + g_{mb})V$, since $V_{GS}$ falls and $V_{TH}$ rises. Here $g_{mb} = \eta g_m$ with $\eta = \gamma/(2\sqrt{2|\phi_F|}) = 0.237$, so $g_m + g_{mb} = 3.32$ mS.
 - The largest mismatch is between $I_1$ and $I_N$: $\dfrac{I_1 - I_N}{I} = (g_m + g_{mb})\,r\left[\dfrac{N(N+1)}{2} - N\right] = (g_m+g_{mb})\,r\,\dfrac{N(N-1)}{2} = 496\,(g_m+g_{mb})\,r$.
 - Setting this to 0.01: $r \le 0.01/(496 \times 3.32\ \mathrm{mS}) = 6.1$ mΩ. Without the body effect, $r \le 0.01/(496 \times 2.68\ \mathrm{mS}) = 7.5$ mΩ.
-- Check: $V_N \approx 2.1$ mV, so the small-signal (equal-current) approximation holds. A full nonlinear solution of the ladder gives a 0.99% mismatch at this $r$.
+- Check: $V_N \approx 2.2$ mV, so the small-signal (equal-current) approximation holds. A full nonlinear solution of the ladder gives a 0.99% mismatch at this $r$.
 
 ## Grading notes
 

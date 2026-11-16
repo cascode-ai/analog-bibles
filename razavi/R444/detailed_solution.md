@@ -66,7 +66,7 @@ so
 
 $$
 \begin{aligned}
-R_{reg} &= \left[g_{m2}(1 + A_3) + g_{mb2}\right]r_{O2}r_{O1} + r_{O1} + r_{O2}\\
+R_{up} &= \left[g_{m2}(1 + A_3) + g_{mb2}\right]r_{O2}r_{O1} + r_{O1} + r_{O2}\\
 &= \left[(5.18\ \mathrm{mS})(78.2) + 0.90\ \mathrm{mS}\right](20\ \mathrm{k}\Omega)(20\ \mathrm{k}\Omega) + 40\ \mathrm{k}\Omega\\
 &= (0.406\ \mathrm{S})(4\times10^8\ \Omega^2) + 40\ \mathrm{k}\Omega\\
 &\approx 162\ \mathrm{M}\Omega ,
@@ -77,7 +77,7 @@ the ordinary cascode resistance multiplied by about $1 + A_3 \approx 78$.
 
 ### Step 4 — Output resistance and voltage gain
 
-$$R_{out} = R_{reg}\parallel r_{OP2} = \frac{(162\ \mathrm{M}\Omega)(10\ \mathrm{k}\Omega)}{162\ \mathrm{M}\Omega + 10\ \mathrm{k}\Omega} \approx 10\ \mathrm{k}\Omega .$$
+$$R_{out} = R_{up}\parallel r_{OP2} = \frac{(162\ \mathrm{M}\Omega)(10\ \mathrm{k}\Omega)}{162\ \mathrm{M}\Omega + 10\ \mathrm{k}\Omega} \approx 10\ \mathrm{k}\Omega .$$
 
 <!-- diagram: diagram-01.cir -->
 
@@ -85,7 +85,7 @@ The short-circuit transconductance is $G_m = g_{m1}Kr_{O1}/(1 + Kr_{O1})$ with $
 
 $$
 \begin{aligned}
-A_v &= -G_mR_{out} \approx -g_{m1}(R_{reg}\parallel r_{OP2}) \approx -g_{m1}r_{OP2}\\
+A_v &= -G_mR_{out} \approx -g_{m1}(R_{up}\parallel r_{OP2}) \approx -g_{m1}r_{OP2}\\
 &= -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega)\\
 &\approx -52 ,
 \end{aligned}
@@ -130,10 +130,10 @@ $$\sqrt{\overline{V_{n,in}^2}} = \sqrt{2.94\times10^{-18}}\ \mathrm{V/\sqrt{Hz}}
 
 ### Result
 
-- **Gain:** $A_v \approx -g_{m1}(r_{OP2}\parallel R_{reg}) \approx -g_{m1}r_{OP2} = -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega) \approx -52$. The regulated-cascode resistance ($\approx 162$ MΩ) is irrelevant because the PMOS load (10 kΩ) dominates.
+- **Gain:** $A_v \approx -g_{m1}(r_{OP2}\parallel R_{up}) \approx -g_{m1}r_{OP2} = -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega) \approx -52$. The regulated-cascode resistance ($\approx 162$ MΩ) is irrelevant because the PMOS load (10 kΩ) dominates.
 - **Noise:** $\overline{V_{n,in}^2} \approx 4kT\cdot\tfrac23\left(\dfrac{1}{g_{m1}} + \dfrac{g_{mP2}}{g_{m1}^2}\right) = 1.104\times10^{-20}\times(193 + 73)\ \approx 2.9\times10^{-18}\ \mathrm{V^2/Hz}$, i.e. about **1.7 nV/√Hz**. $M_2$, $M_3$ and $I_1$ contribute negligibly.
 
-**Common mistake.** Quoting the gain as $g_{m1}R_{reg}$ (hundreds of thousands). The output resistance is $R_{reg}\parallel r_{OP2}$, set by the 10-kΩ PMOS load.
+**Common mistake.** Quoting the gain as $g_{m1}R_{up}$ (hundreds of thousands). The output resistance is $R_{up}\parallel r_{OP2}$, set by the 10-kΩ PMOS load.
 
 **Common mistake.** Computing the gain with $r_{O1}$ alone ($g_{m1}r_{O1} \approx 104$). The cascode shields the output from $r_{O1}$; the load sets the output resistance.
 

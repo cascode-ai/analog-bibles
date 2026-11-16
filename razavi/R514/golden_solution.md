@@ -2,14 +2,14 @@
 
 ## Reference answer
 
-λ falls as the overdrive rises: about 5.2, 3.7, 2.8 and 2.2 V⁻¹ for $V_{GS} - V_{TH}$ = 200, 250, 300 and 350 mV. All of these are 20 to 50 times the values typical of long-channel devices (≈ 0.1 V⁻¹).
+λ falls as the overdrive rises: about 5.1, 3.7, 2.6 and 2.1 V⁻¹ for $V_{GS} - V_{TH}$ = 200, 250, 300 and 350 mV. All of these are 20 to 50 times the values typical of long-channel devices (≈ 0.1 V⁻¹).
 
 Method: with $I_D \propto 1 + \lambda V_{DS}$, the ratio $r = I_D(1\ \mathrm{V})/I_D(0.2\ \mathrm{V}) = (1+\lambda)/(1+0.2\lambda)$, so $\lambda = (r-1)/(1-0.2r)$.
 Readings from the plot:
-- 350 mV: 0.51 mA → 1.12 mA, $r \approx 2.21$, λ ≈ 2.2 V⁻¹.
-- 300 mV: 0.34 mA → 0.81 mA, $r \approx 2.42$, λ ≈ 2.8 V⁻¹.
+- 350 mV: 0.51 mA → 1.12 mA, $r \approx 2.20$, λ ≈ 2.1 V⁻¹.
+- 300 mV: 0.34 mA → 0.81 mA, $r \approx 2.38$, λ ≈ 2.6 V⁻¹.
 - 250 mV: 0.205 mA → 0.555 mA, $r \approx 2.71$, λ ≈ 3.7 V⁻¹.
-- 200 mV: 0.116 mA → 0.35 mA, $r \approx 3.0$, λ ≈ 5.2 V⁻¹.
+- 200 mV: 0.116 mA → 0.35 mA, $r \approx 3.02$, λ ≈ 5.1 V⁻¹.
 Trend: the relative slope of the characteristic, and so λ, grows as the overdrive (current density) falls. λ roughly halves from 200 mV to 350 mV, i.e., $r_O I_D$ increases with overdrive. The numbers are sensitive to the readings because λ diverges as $r$ approaches $1/0.2 = 5$; only the magnitude and the trend are meaningful.
 
 ## Grading notes

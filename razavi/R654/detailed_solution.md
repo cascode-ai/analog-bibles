@@ -84,7 +84,7 @@ $$\frac{\omega_{LPF}}{9K_{PD}} \le K_{VCO} \le \frac{\omega_{LPF}}{4K_{PD}}, \qq
 
 $K_{VCO}$ can vary by a factor of 2.25 across the tuning range, i.e. about $\pm38\ \%$ around the centre value (a 56 % drop from the $\zeta = 1$ value, or a 125 % rise from the $\zeta = 1.5$ value).
 
-**Common mistake.** Taking $\zeta$ proportional to $K_{VCO}$ (or to $\sqrt{K_{VCO}}$). Both give a tolerable ratio of only 1.5, and the first also gets the direction wrong: from $2\zeta\omega_n = \omega_{LPF}$ and $\omega_n \propto \sqrt{K_{VCO}}$, $\zeta \propto 1/\sqrt{K_{VCO}}$.
+**Common mistake.** Taking $\zeta$ proportional to $K_{VCO}$ (or to $\sqrt{K_{VCO}}$). The first gives a tolerable ratio of only 1.5, and both get the direction wrong: from $2\zeta\omega_n = \omega_{LPF}$ and $\omega_n \propto \sqrt{K_{VCO}}$, $\zeta \propto 1/\sqrt{K_{VCO}}$.
 
 **Common mistake.** Assuming $\zeta$ does not depend on $K_{VCO}$ because it "only sets the bandwidth". In this type I PLL $\zeta\omega_n$ is fixed at $\omega_{LPF}/2$, so damping and bandwidth cannot be set independently.
 

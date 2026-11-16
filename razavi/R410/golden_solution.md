@@ -2,7 +2,7 @@
 
 ## Reference answer
 
-Modified circuit: $A_v \approx 1.92$–1.95 and $R_{out} \approx 55$–67 Ω (exact nodal with all $r_O$: 1.92, 67 Ω; with only the load resistances $r_{O2}$, $r_{O3}$: 1.95, 54 Ω). The original circuit gives ≈ 1.55 and ≈ 0.17 kΩ (≈ 1.77 if its body effect is ignored). The gain is now much closer to the ideal $1 + R_F/R_{S1} = 2$ and $R_{out}$ is about 2.5 times lower (≈ 3 times if only $r_{O2}$, $r_{O3}$ are kept), because the loop gain rises from ≈ 8 to ≈ 24 (≈ 30 with only $r_{O2}$, $r_{O3}$).
+Modified circuit: $A_v \approx 1.92$–1.94 and $R_{out} \approx 54$–67 Ω (exact nodal with all $r_O$: 1.92, 67 Ω; with only the load resistances $r_{O2}$, $r_{O3}$: 1.94, 54 Ω). The original circuit gives ≈ 1.55 and ≈ 0.17 kΩ (≈ 1.77 if its body effect is ignored). The gain is now much closer to the ideal $1 + R_F/R_{S1} = 2$ and $R_{out}$ is about 2.5 times lower (≈ 3 times if only $r_{O2}$, $r_{O3}$ are kept), because the loop gain rises from ≈ 8 to ≈ 24 (≈ 30 with only $r_{O2}$, $r_{O3}$).
 
 - Bias: $M_4$'s gate draws no current, so $V_F = (V_{out} + 1.5)/2$; KCL at the output, $0.5\ \mathrm{mA} = V_{out}/3\mathrm{k} + (V_{out} - V_F)/3\mathrm{k}$, gives $V_{out} = V_F = 1.5$ V; the input dc level is 1.5 V (instead of ≈ 2.74 V). (In the original circuit $V_X = 3 - 1.31 = 1.69$ V and $V_S = 1.5$ V, so $M_1$ has $V_{DS}$ ≈ 0.19 V < $V_{ov}$ ≈ 0.27 V and is actually just inside the triode region; the question asks to assume saturation.)
 - Feedback network: $R_F$ and $R_{S1}$ to the ac ground $V_{b2}$, $\beta = 0.5$, not loaded at its output (gate of $M_4$); it loads the output with $R_F + R_{S1} = 6\ \mathrm{k\Omega}$.

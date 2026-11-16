@@ -16,7 +16,7 @@ $$\beta = \mu_nC_{ox}\frac WL = (134\ \mu\mathrm{A/V^2})(40) = 5.36\ \mathrm{mA/
 
 $$R_{on} = \frac{1}{\beta(V_{DD} - V_{TH})} = \frac{1}{(5.36\times10^{-3}\ \mathrm{A/V^2})(2.3\ \mathrm{V})} = \frac{1}{12.33\ \mathrm{mS}} = 81.1\ \Omega ,$$
 
-它对应于线性区 $I_D$–$V_{DS}$ 曲线在 $V_{DS} = 0$ 处的斜率。于是
+它是线性区 $I_D$–$V_{DS}$ 曲线在 $V_{DS} = 0$ 处斜率的倒数。于是
 
 $$\tau = R_{on}C_H = (81.1\ \Omega)(1\ \mathrm{pF}) = 81.1\ \mathrm{ps},$$
 

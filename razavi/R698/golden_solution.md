@@ -8,7 +8,7 @@ $R_S \approx R_{tot}/12 \approx 1.35\ \Omega$. Here $R_{tot} = 1/[\mu_nC_{ox}(W/
 - $R_{tot} = 1/[(134\ \mu\mathrm{A/V^2})(200)(2.3\ \mathrm{V})] = 16.2\ \Omega$.
 - The channel is a uniformly distributed RC line contacted at both ends (source and drain grounded). Each half ($R_{tot}/2$, $C/2$) is a line open at the center, whose low-frequency series resistance is one third of its resistance, $(R_{tot}/2)/3$; the two halves act in parallel, so $R_S = R_{tot}/12 = 1.35\ \Omega$.
 - The lumped estimate $(R_{tot}/2)\|(R_{tot}/2) = R_{tot}/4 = 4.06\ \Omega$ treats all the channel charge as entering at the center of the channel.
-- For reference only (not required: $C_{ox}$ is not given in this part; 3.84 fF/µm² is the value stated in part (b)), $C \approx WLC_{ox} = (50\ \mu\mathrm{m^2})(3.84\ \mathrm{fF/\mu m^2}) = 192$ fF, and the intrinsic time constant is $R_SC \approx L^2/[12\mu_n(V_{GS}-V_{TH})] \approx 0.26$ ps (0.78 ps with $R_{tot}/4$).
+- For reference only (not required: $C_{ox}$ is not given in this problem; 3.84 fF/µm² is the value given in the follow-up problem R699), $C \approx WLC_{ox} = (50\ \mu\mathrm{m^2})(3.84\ \mathrm{fF/\mu m^2}) = 192$ fF, and the intrinsic time constant is $R_SC \approx L^2/[12\mu_n(V_{GS}-V_{TH})] \approx 0.26$ ps (0.78 ps with $R_{tot}/4$).
 
 ## Grading notes
 

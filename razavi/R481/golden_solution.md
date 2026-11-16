@@ -5,7 +5,7 @@
 $C_{Y,max} \approx 0.37$ pF (PM = 55° at $C_Y$ = 100 fF).
 - Loop gain (loop broken at X): $T(s) = \dfrac{10}{(1 + sR_DC_X)\left[(1 + sC_Y/g_{m2})(1 + sR_FC_A) + sC_A/g_{m2}\right]}$, with poles near $1/R_FC_A$ ≈ 10⁹, $1/R_DC_X$ = 10¹⁰ and $g_{m2}/C_Y$ rad/s.
 - Increasing $C_Y$ brings the output pole $g_{m2}/C_Y$ down toward the crossover (≈ 7.5×10⁹ rad/s). PM = 45° is reached at $C_Y \approx 369$ fF ($g_{m2}/C_Y \approx 2.7\times10^{10}$ rad/s, $\omega_u \approx 7.55\times10^9$ rad/s). The independent-pole approximation gives ≈ 357 fF.
-- (The PM keeps falling, to a minimum of about 19° near 5 pF, and would recover to 45° only for an impractically large $C_Y$ ≈ 60 pF, where the output pole becomes dominant. That range is irrelevant here.)
+- (The PM keeps falling, to a minimum of about 19° near 5 pF, and would recover to 45° only for an impractically large $C_Y$ ≈ 61 pF, where the output pole becomes dominant. That range is irrelevant here.)
 
 ## Grading notes
 

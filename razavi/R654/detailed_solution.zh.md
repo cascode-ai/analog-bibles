@@ -84,7 +84,7 @@ $$\frac{\omega_{LPF}}{9K_{PD}} \le K_{VCO} \le \frac{\omega_{LPF}}{4K_{PD}}, \qq
 
 $K_{VCO}$ 在整个调谐范围内可以变化 2.25 倍，即相对于中心值约 $\pm38\ \%$（相对于 $\zeta = 1$ 时的值下降 56 %，或相对于 $\zeta = 1.5$ 时的值上升 125 %）。
 
-**常见错误。** 认为 $\zeta$ 正比于 $K_{VCO}$（或正比于 $\sqrt{K_{VCO}}$）。两者给出的可容许比值都只有 1.5，而且前者连方向也弄反了：由 $2\zeta\omega_n = \omega_{LPF}$ 和 $\omega_n \propto \sqrt{K_{VCO}}$ 可得 $\zeta \propto 1/\sqrt{K_{VCO}}$。
+**常见错误。** 认为 $\zeta$ 正比于 $K_{VCO}$（或正比于 $\sqrt{K_{VCO}}$）。前者给出的可容许比值只有 1.5，而且两者都把方向弄反了：由 $2\zeta\omega_n = \omega_{LPF}$ 和 $\omega_n \propto \sqrt{K_{VCO}}$ 可得 $\zeta \propto 1/\sqrt{K_{VCO}}$。
 
 **常见错误。** 认为 $\zeta$ 与 $K_{VCO}$ 无关，理由是后者“只决定带宽”。在这个 I 型 PLL 中，$\zeta\omega_n$ 固定为 $\omega_{LPF}/2$，因此阻尼与带宽无法独立设定。
 

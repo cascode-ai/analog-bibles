@@ -7,7 +7,7 @@ $\Delta\omega_{out}(t) = \Delta\omega\left[1 - \dfrac{1}{\sqrt{1 - \zeta^2}}e^{-
 i.e., $\Delta\omega_{out}(t) \approx \Delta\omega\left[1 - 1.001\,e^{-t/318\ \mathrm{ns}}\cos(2\pi\cdot 9.99\ \mathrm{MHz}\cdot t - 2.9^\circ)\right]$.
 - Decay time constant $1/(\zeta\omega_n) = 2/\omega_{LPF} = 318$ ns.
 - Ringing at $\omega_n\sqrt{1 - \zeta^2} \approx 2\pi \times 9.99$ MHz (period ≈ 100 ns). The first peak is at ≈ 50 ns, with ≈ 85% overshoot.
-- About 15 ringing cycles before settling: within 5% after ≈ 0.95 µs, within 1% after ≈ 1.46 µs.
+- About 15 ringing cycles before settling: within 5% after ≈ 0.95 µs, within 1% after ≈ 1.47 µs.
 
 Derivation:
 - $K_{VCO} = 2\pi\times10^8$ rad/s/V, so $K_{PD}K_{VCO} = 2\pi\times10^8\ \mathrm{s^{-1}}$.

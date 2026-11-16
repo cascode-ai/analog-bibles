@@ -137,4 +137,4 @@ at which the output pole sits at $\approx 2.74\times10^{10}$ rad/s and the gain 
 
 **Common mistake.** Arguing that a larger $C_Y$ "adds compensation" and therefore improves the margin. In the practical range the dominant pole is set by $R_F$ and $C_A$; $C_Y$ only controls a non-dominant pole, and moving it toward the crossover reduces the phase margin.
 
-**Common mistake.** Quoting the high-capacitance 45° point (about 60 pF) as the maximum. Between 0.37 pF and about 61 pF the margin is below 45° (as low as 19° near 5 pF), so that point starts a second, impractical range.
+**Common mistake.** Quoting the high-capacitance 45° point (about 61 pF) as the maximum. Between 0.37 pF and about 61 pF the margin is below 45° (as low as 19° near 5 pF), so that point starts a second, impractical range.

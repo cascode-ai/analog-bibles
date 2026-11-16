@@ -66,7 +66,7 @@ $$
 
 $$
 \begin{aligned}
-R_{reg} &= \left[g_{m2}(1 + A_3) + g_{mb2}\right]r_{O2}r_{O1} + r_{O1} + r_{O2}\\
+R_{up} &= \left[g_{m2}(1 + A_3) + g_{mb2}\right]r_{O2}r_{O1} + r_{O1} + r_{O2}\\
 &= \left[(5.18\ \mathrm{mS})(78.2) + 0.90\ \mathrm{mS}\right](20\ \mathrm{k}\Omega)(20\ \mathrm{k}\Omega) + 40\ \mathrm{k}\Omega\\
 &= (0.406\ \mathrm{S})(4\times10^8\ \Omega^2) + 40\ \mathrm{k}\Omega\\
 &\approx 162\ \mathrm{M}\Omega ,
@@ -77,7 +77,7 @@ $$
 
 ### 第 4 步 — 输出电阻（output resistance）与电压增益
 
-$$R_{out} = R_{reg}\parallel r_{OP2} = \frac{(162\ \mathrm{M}\Omega)(10\ \mathrm{k}\Omega)}{162\ \mathrm{M}\Omega + 10\ \mathrm{k}\Omega} \approx 10\ \mathrm{k}\Omega .$$
+$$R_{out} = R_{up}\parallel r_{OP2} = \frac{(162\ \mathrm{M}\Omega)(10\ \mathrm{k}\Omega)}{162\ \mathrm{M}\Omega + 10\ \mathrm{k}\Omega} \approx 10\ \mathrm{k}\Omega .$$
 
 <!-- diagram: diagram-01.cir -->
 
@@ -85,7 +85,7 @@ $$R_{out} = R_{reg}\parallel r_{OP2} = \frac{(162\ \mathrm{M}\Omega)(10\ \mathrm
 
 $$
 \begin{aligned}
-A_v &= -G_mR_{out} \approx -g_{m1}(R_{reg}\parallel r_{OP2}) \approx -g_{m1}r_{OP2}\\
+A_v &= -G_mR_{out} \approx -g_{m1}(R_{up}\parallel r_{OP2}) \approx -g_{m1}r_{OP2}\\
 &= -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega)\\
 &\approx -52 ,
 \end{aligned}
@@ -130,10 +130,10 @@ $$\sqrt{\overline{V_{n,in}^2}} = \sqrt{2.94\times10^{-18}}\ \mathrm{V/\sqrt{Hz}}
 
 ### 结果
 
-- **增益：** $A_v \approx -g_{m1}(r_{OP2}\parallel R_{reg}) \approx -g_{m1}r_{OP2} = -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega) \approx -52$。调节型共源共栅电阻（$\approx 162$ MΩ）无关紧要，因为 PMOS 负载（10 kΩ）起主导作用。
+- **增益：** $A_v \approx -g_{m1}(r_{OP2}\parallel R_{up}) \approx -g_{m1}r_{OP2} = -(5.18\ \mathrm{mS})(10\ \mathrm{k}\Omega) \approx -52$。调节型共源共栅电阻（$\approx 162$ MΩ）无关紧要，因为 PMOS 负载（10 kΩ）起主导作用。
 - **噪声：** $\overline{V_{n,in}^2} \approx 4kT\cdot\tfrac23\left(\dfrac{1}{g_{m1}} + \dfrac{g_{mP2}}{g_{m1}^2}\right) = 1.104\times10^{-20}\times(193 + 73)\ \approx 2.9\times10^{-18}\ \mathrm{V^2/Hz}$，即约 **1.7 nV/√Hz**。$M_2$、$M_3$ 和 $I_1$ 的贡献可以忽略。
 
-**常见错误。** 把增益写成 $g_{m1}R_{reg}$（数十万）。输出电阻是 $R_{reg}\parallel r_{OP2}$，由 10 kΩ 的 PMOS 负载决定。
+**常见错误。** 把增益写成 $g_{m1}R_{up}$（数十万）。输出电阻是 $R_{up}\parallel r_{OP2}$，由 10 kΩ 的 PMOS 负载决定。
 
 **常见错误。** 只用 $r_{O1}$ 计算增益（$g_{m1}r_{O1} \approx 104$）。共源共栅管使输出端与 $r_{O1}$ 隔离；输出电阻由负载决定。
 

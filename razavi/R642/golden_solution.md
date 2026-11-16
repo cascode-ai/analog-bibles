@@ -5,8 +5,8 @@
 $(W/L)_{3,4} \approx 6.25$ (e.g., W ≈ 3.1 µm for L = 0.5 µm).
 
 Derivation:
-- $g_{m3,4} = 0.5/R = 0.5/546\ \Omega = 0.915$ mS at $I_D = 0.5$ mA.
-- $W/L = g_m^2/(2\mu_nC_{ox}I_D) = (0.915\times10^{-3})^2/(2 \times 134\times10^{-6} \times 0.5\times10^{-3}) = 6.25$.
+- $g_{m3,4} = 0.5/R = 0.5/546\ \Omega = 0.916$ mS at $I_D = 0.5$ mA.
+- $W/L = g_m^2/(2\mu_nC_{ox}I_D) = (0.916\times10^{-3})^2/(2 \times 134\times10^{-6} \times 0.5\times10^{-3}) = 6.26 \approx 6.25$.
 - Check: at the same current, a quarter of $g_{m1,2}$ (which gives $g_{m1,2}R = 2$) needs 1/16 of the aspect ratio: 100/16 = 6.25.
 
 ## Grading notes

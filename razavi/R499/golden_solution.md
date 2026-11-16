@@ -4,7 +4,7 @@
 
 Two valid readings, depending on the RHP zero $g_{m1}/C_C$:
 - With $C_C$ as a plain capacitor (as posed), the ratio of the single-pole GBW to the zero is fixed, $\mathrm{GBW}/z \approx g_{m3}g_{m2}r_{O2}/g_{m1}$ ≈ 0.44 for any $C_C$, so the zero always sits only ≈ 2–2.3× above the crossover (at the solution the true $\omega_u/z$ ≈ 0.47, $\omega_u \approx 3.0\times10^7$ rad/s) and adds ≈ 24–26° of lag; PM = 60° then needs $C_C$ ≈ 80 pF (80.5 pF with an ideal gate drive, 82 pF with the replica load at Y; 60 pF gives ≈ 58°). Loop-gain poles at $C_C$ ≈ 80 pF: ≈ 2.4×10² rad/s (≈ 38 Hz, input node), ≈ 3.75×10⁸ rad/s (≈ 60 MHz, output node), ≈ 3×10¹⁰ rad/s (≈ 4.7 GHz, drain of $M_1$); RHP zero ≈ 6.5×10⁷ rad/s.
-- With the zero neglected or cancelled (e.g. a series $R_z$ ≈ $1/g_{m1}$), the two-pole estimate gives $C_C$ ≈ 9 pF (full model with the zero removed: 9.2 pF), with poles ≈ 2.1×10³ rad/s (≈ 340 Hz, input node), ≈ 3.75×10⁸ rad/s (output node), ≈ 3×10¹⁰ rad/s (drain of $M_1$); a plain 9-pF capacitor gives only ≈ 37° of actual PM, and its zero sits at ≈ 5.7×10⁸ rad/s.
+- With the zero neglected or cancelled (e.g. a series $R_z$ ≈ $1/g_{m1}$), the two-pole estimate gives $C_C$ ≈ 9 pF (full model with the zero removed: 9.2 pF), with poles ≈ 2.1×10³ rad/s (≈ 330 Hz, input node), ≈ 3.75×10⁸ rad/s (output node), ≈ 3×10¹⁰ rad/s (drain of $M_1$); a plain 9-pF capacitor gives only ≈ 37° of actual PM, and its zero sits at ≈ 5.7×10⁸ rad/s.
 
 Derivation:
 - GBW ≈ $g_{m3}g_{m2}r_{O2}/(C_C + C_{GD1})$ = 2.27 mS/$(C_C + C_{GD1})$ ($g_{m3}$ = 0.164 mS, $g_{m2}r_{O2}$ = 13.9).

@@ -1,6 +1,6 @@
 * Norton equivalent at the output: transconductance Gm (about gm1) driving the regulated-cascode resistance in parallel with the PMOS load
 Vin in 0 AC 1
 Gm out 0 in 0 {G_m}
-Rreg out 0 {R_reg}
+Rreg out 0 {R_up}
 ROP2 out 0 {r_OP2}
 .end
