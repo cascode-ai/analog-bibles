@@ -4,15 +4,15 @@
 
 ### Step 1 — The model to fit
 
-In saturation, the square law with channel-length modulation is
+In saturation,
 
 $$I_D = \frac12\,\beta\,(V_{GS} - V_{TH})^2(1 + \lambda V_{DS}), \qquad \beta = \mu_nC_{ox}\frac{W}{L},$$
 
-where $\mu_n$ is the electron mobility, $C_{ox}$ the oxide capacitance per unit area, $V_{TH}$ the threshold voltage and $\lambda$ the channel-length modulation coefficient. Each saturated segment is a **straight line** in $V_{DS}$ with
+so each saturated segment is a **straight line** in $V_{DS}$, with
 
 $$\text{intercept at } V_{DS} = 0:\ I_{D0} = \tfrac12\beta V_{ov}^2, \qquad \text{slope} = \lambda I_{D0},$$
 
-where $V_{ov} = V_{GS} - V_{TH}$ is the overdrive. The **knee** (edge of saturation) of each curve lies at $V_{DS,sat} = V_{ov}$.
+and the **knee** (edge of saturation) of each curve lies at $V_{DS,sat} = V_{ov} = V_{GS} - V_{TH}$.
 
 ### Step 2 — Readings from the plot
 
@@ -35,11 +35,9 @@ For curve 1, the slope between the knee and $V_{DS} = 1$ V is
 
 $$\text{slope} = \frac{3.25 - 2.95\ \mathrm{mA}}{1.0 - 0.6\ \mathrm{V}} = \frac{0.30\ \mathrm{mA}}{0.4\ \mathrm{V}} = 0.75\ \mathrm{mA/V}.$$
 
-Extrapolate the straight line back to $V_{DS} = 0$:
+Extrapolating the straight line back to $V_{DS} = 0$:
 
-$$I_{D0} = 2.95\ \mathrm{mA} - (0.75\ \mathrm{mA/V})(0.6\ \mathrm{V}) = 2.95 - 0.45 = 2.50\ \mathrm{mA}.$$
-
-Since slope $= \lambda I_{D0}$:
+$$I_{D0} = 2.95\ \mathrm{mA} - (0.75\ \mathrm{mA/V})(0.6\ \mathrm{V}) = 2.95 - 0.45 = 2.50\ \mathrm{mA},$$
 
 $$\lambda = \frac{\text{slope}}{I_{D0}} = \frac{0.75\ \mathrm{mA/V}}{2.50\ \mathrm{mA}} = 0.30\ \mathrm{V^{-1}}.$$
 
@@ -53,7 +51,7 @@ The same procedure for the other curves:
 | 4 | 0.171 | 0.629 | 0.27 |
 | 5 | 0.088 | 0.273 | 0.32 |
 
-So $\lambda \approx 0.3\ \mathrm{V^{-1}}$. This large value is typical of a 40-nm channel: a small change in the pinch-off position is a large fraction of so short a channel.
+So $\lambda \approx 0.3\ \mathrm{V^{-1}}$, a large value typical of a 40-nm channel: a small change in the pinch-off position is a large fraction of so short a channel.
 
 ### Step 4 — The $V_{GS}$ step
 
@@ -64,7 +62,7 @@ So $\lambda \approx 0.3\ \mathrm{V^{-1}}$. This large value is typical of a 40-n
 | $\sqrt{I_{D0}}$ ($\sqrt{\mathrm{mA}}$) | 0.260 | 0.522 | 0.793 | 1.057 | 1.323 | 1.581 |
 | ratio to curve 6 | 1 | 2.0 | 3.0 | 4.1 | 5.1 | 6.1 |
 
-The values grow in equal steps of about $0.264\ \sqrt{\mathrm{mA}}$ and are in the ratio 1 : 2 : 3 : 4 : 5 : 6. So the overdrives are $\Delta V, 2\Delta V, \dots, 6\Delta V$: the $V_{GS}$ steps are equal (as stated), and the **lowest curve's overdrive equals one step**.
+The values grow in equal steps of about $0.264\ \sqrt{\mathrm{mA}}$, in the ratio 1 : 2 : 3 : 4 : 5 : 6. So the overdrives are $\Delta V, 2\Delta V, \dots, 6\Delta V$: the $V_{GS}$ steps are equal (as stated), and the **lowest curve's overdrive equals one step**.
 
 **Absolute size from the knees.** The knees sit at $V_{DS,sat} = V_{ov} \approx 0.1, 0.2, 0.3, 0.4, 0.5, 0.6$ V. Hence
 
@@ -78,7 +76,7 @@ in agreement with the knees.
 
 ### Step 5 — $\beta = \mu_nC_{ox}W/L$
 
-Use curve 1, with $V_{ov} = 0.6$ V and $I_{D0} = 2.50$ mA:
+From curve 1, with $V_{ov} = 0.6$ V and $I_{D0} = 2.50$ mA:
 
 $$\beta = \frac{2I_{D0}}{V_{ov}^2} = \frac{2(2.50\ \mathrm{mA})}{(0.6\ \mathrm{V})^2} = \frac{5.0}{0.36}\ \mathrm{mA/V^2} = 13.9\ \mathrm{mA/V^2}.$$
 
@@ -88,27 +86,21 @@ Curve 3 gives $2(1.117)/0.16 = 14.0\ \mathrm{mA/V^2}$ and curve 4 gives $2(0.629
 
 ### Step 6 — Oxide capacitance, aspect ratio and mobility
 
-**Oxide capacitance per unit area** ($t_{ox} = 18\ \text{Å} = 1.8\times10^{-9}$ m):
+With $t_{ox} = 18\ \text{Å} = 1.8\times10^{-9}$ m and the drawn dimensions (the only ones given):
 
-$$C_{ox} = \frac{\epsilon_{ox}}{t_{ox}} = \frac{3.9\times8.854\times10^{-12}\ \mathrm{F/m}}{1.8\times10^{-9}\ \mathrm{m}} = 1.92\times10^{-2}\ \mathrm{F/m^2}\quad(= 19.2\ \mathrm{fF/\mu m^2}).$$
+$$C_{ox} = \frac{\epsilon_{ox}}{t_{ox}} = \frac{3.9\times8.854\times10^{-12}\ \mathrm{F/m}}{1.8\times10^{-9}\ \mathrm{m}} = 1.92\times10^{-2}\ \mathrm{F/m^2}\quad(= 19.2\ \mathrm{fF/\mu m^2}),$$
 
-**Aspect ratio** (using the drawn dimensions, the only ones given):
+$$\frac{W}{L} = \frac{5\ \mu\mathrm{m}}{0.04\ \mu\mathrm{m}} = 125 ,$$
 
-$$\frac{W}{L} = \frac{5\ \mu\mathrm{m}}{0.04\ \mu\mathrm{m}} = 125 .$$
-
-**Process transconductance:**
-
-$$\mu_nC_{ox} = \frac{\beta}{W/L} = \frac{13.9\times10^{-3}\ \mathrm{A/V^2}}{125} = 1.11\times10^{-4}\ \mathrm{A/V^2} = 111\ \mu\mathrm{A/V^2}.$$
-
-**Mobility:**
+$$\mu_nC_{ox} = \frac{\beta}{W/L} = \frac{13.9\times10^{-3}\ \mathrm{A/V^2}}{125} = 1.11\times10^{-4}\ \mathrm{A/V^2} = 111\ \mu\mathrm{A/V^2},$$
 
 $$\mu_n = \frac{\mu_nC_{ox}}{C_{ox}} = \frac{1.11\times10^{-4}\ \mathrm{A/V^2}}{1.92\times10^{-2}\ \mathrm{F/m^2}} = 5.8\times10^{-3}\ \mathrm{m^2/(V\,s)} = 58\ \mathrm{cm^2/(V\,s)}.$$
 
-(Units: $\mathrm{A/V^2}$ divided by $\mathrm{F/m^2} = \mathrm{A\,s/(V\,m^2)}$ gives $\mathrm{m^2/(V\,s)}$; and $1\ \mathrm{m^2} = 10^4\ \mathrm{cm^2}$.) This is far below the long-channel electron mobility of a few hundred cm²/(V·s): fitting a square law to a 40-nm device lumps velocity saturation and vertical-field mobility degradation into an "effective" mobility. Ignoring channel-length modulation and using the knee current of curve 1 (2.95 mA) instead of the intercept would give about 68 cm²/(V·s); the estimate lies in the range 55–70 cm²/(V·s) depending on how $\lambda$ is handled.
+(Units: $\mathrm{A/V^2}$ divided by $\mathrm{F/m^2} = \mathrm{A\,s/(V\,m^2)}$ gives $\mathrm{m^2/(V\,s)}$, and $1\ \mathrm{m^2} = 10^4\ \mathrm{cm^2}$.) This is far below the long-channel electron mobility of a few hundred cm²/(V·s): fitting a square law to a 40-nm device lumps velocity saturation and vertical-field mobility degradation into an "effective" mobility. Ignoring channel-length modulation and using the knee current of curve 1 (2.95 mA) instead of the intercept would give about 68 cm²/(V·s); the estimate lies in the range 55–70 cm²/(V·s) depending on how $\lambda$ is handled.
 
 ### Step 7 — The threshold voltage
 
-The plot shows only $I_D$ versus $V_{DS}$; nothing on it gives the absolute $V_{GS}$ of any curve. What the data fix is the set of overdrives, 0.1 V for the lowest curve up to 0.6 V for the top one, so
+The plot gives no absolute $V_{GS}$ for any curve; the data fix only the overdrives, 0.1 V for the lowest curve up to 0.6 V for the top one, so
 
 $$V_{TH} = V_{GS,\text{lowest curve}} - 0.1\ \mathrm{V} = V_{GS,\text{top curve}} - 0.6\ \mathrm{V}.$$
 
@@ -125,6 +117,6 @@ $$V_{TH} \approx 1.0 - 0.6 = 0.4\ \mathrm{V}.$$
 
 **Common mistake.** Taking the step as a spacing of currents, or reading $V_{TH}$ off the $V_{DS}$ axis. The $V_{GS}$ step is a step in *overdrive*, revealed by the knee positions and by $\sqrt{I_D}$; the $V_{DS}$ at which a curve starts or bends says nothing about $V_{TH}$ by itself.
 
-**Common mistake.** Unit errors in $\mu_n$: e.g. using $C_{ox}$ in fF/µm² together with $\beta$ in A/V², or $L$ in µm against $W$ in nm. Work in SI units ($C_{ox} = 0.0192\ \mathrm{F/m^2}$, $W/L = 125$) and convert only at the end ($1\ \mathrm{m^2/(V\,s)} = 10^4\ \mathrm{cm^2/(V\,s)}$).
+**Common mistake.** Unit errors in $\mu_n$, e.g. $C_{ox}$ in fF/µm² together with $\beta$ in A/V², or $L$ in µm against $W$ in nm. Work in SI units ($C_{ox} = 0.0192\ \mathrm{F/m^2}$, $W/L = 125$) and convert only at the end ($1\ \mathrm{m^2/(V\,s)} = 10^4\ \mathrm{cm^2/(V\,s)}$).
 
-**Common mistake.** Estimating $\lambda$ as the slope alone or dividing by the wrong current, giving a result off by a large factor. $\lambda$ is the slope divided by the current extrapolated to $V_{DS} = 0$ (unit V⁻¹), about 0.3 V⁻¹ here.
+**Common mistake.** Estimating $\lambda$ as the slope alone, or dividing by the wrong current. $\lambda$ is the slope divided by the current extrapolated to $V_{DS} = 0$ (unit V⁻¹), about 0.3 V⁻¹ here.

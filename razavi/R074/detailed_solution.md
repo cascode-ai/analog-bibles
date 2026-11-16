@@ -4,38 +4,31 @@
 
 ### Step 1 — What is held constant
 
-- The channel length $L$ is fixed, so the channel-length modulation coefficient $\lambda$ (which scales as $1/L$) is fixed.
-- The drain current $I_D$ is fixed. To keep it fixed while $V_{GS}$ changes, the width must be adjusted: from the square law $I_D = \tfrac12\mu_nC_{ox}(W/L)(V_{GS} - V_{TH})^2$,
-$$W = \frac{2I_DL}{\mu_nC_{ox}(V_{GS} - V_{TH})^2},$$
-so a larger $V_{GS}$ means a narrower device.
+With $L$ fixed, $\lambda$ (which scales as $1/L$) is fixed. Keeping $I_D$ fixed while $V_{GS}$ changes requires adjusting the width: with $V_{ov} = V_{GS} - V_{TH}$, the square law $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$ gives
 
-Here $\mu_nC_{ox}$ is the process transconductance parameter, $V_{TH}$ the threshold voltage, and $V_{ov} = V_{GS} - V_{TH}$ the overdrive voltage.
+$$W = \frac{2I_DL}{\mu_nC_{ox}(V_{GS} - V_{TH})^2},$$
+
+so a larger $V_{GS}$ means a narrower device.
 
 ### Step 2 — The two factors
 
-**Transconductance.** The square-law $g_m$ can be written as $g_m = \mu_nC_{ox}(W/L)V_{ov}$. Using the square law to replace $\mu_nC_{ox}(W/L) = 2I_D/V_{ov}^2$:
+**Transconductance.** In $g_m = \mu_nC_{ox}(W/L)V_{ov}$, the square law gives $\mu_nC_{ox}(W/L) = 2I_D/V_{ov}^2$, so
 
-$$g_m = \frac{2I_D}{V_{ov}^2}\cdot V_{ov} = \frac{2I_D}{V_{GS} - V_{TH}} .$$
+$$g_m = \frac{2I_D}{V_{ov}^2}\cdot V_{ov} = \frac{2I_D}{V_{GS} - V_{TH}} :$$
 
-At constant $I_D$, $g_m$ is inversely proportional to the overdrive.
+at constant $I_D$, $g_m$ is inversely proportional to the overdrive.
 
 **Output resistance.**
 
-$$r_O = \frac{1}{\lambda I_D},$$
+$$r_O = \frac{1}{\lambda I_D}$$
 
-which is **constant**, since both $\lambda$ and $I_D$ are fixed.
+is **constant**, since both $\lambda$ and $I_D$ are fixed.
 
 ### Step 3 — The intrinsic gain
 
-Multiply:
+$$g_mr_O = \frac{2I_D}{V_{GS} - V_{TH}}\cdot\frac{1}{\lambda I_D} = \frac{2}{\lambda\,(V_{GS} - V_{TH})} ,$$
 
-$$g_mr_O = \frac{2I_D}{V_{GS} - V_{TH}}\cdot\frac{1}{\lambda I_D} .$$
-
-$I_D$ cancels:
-
-$$g_mr_O = \frac{2}{\lambda\,(V_{GS} - V_{TH})} .$$
-
-**Intuition.** At a fixed current, a small overdrive is obtained with a wide device whose $g_m$ is large ($g_m/I_D = 2/V_{ov}$), while $r_O$ is the same for any width. So the gain rises as the overdrive falls.
+since $I_D$ cancels. At a fixed current a small overdrive is obtained with a wide device whose $g_m$ is large ($g_m/I_D = 2/V_{ov}$), while $r_O$ is the same for any width, so the gain rises as the overdrive falls.
 
 ### Step 4 — Shape of the curve versus $V_{GS}$
 
@@ -56,7 +49,7 @@ With, say, $V_{TH} = 0.7$ V, the horizontal axis reads $V_{GS} = 0.8, 0.9, \dots
 
 ### Step 5 — Behaviour near threshold (beyond the square law)
 
-The divergence at $V_{GS} = V_{TH}$ is an artefact of the square law. At small overdrive the device enters weak inversion, where $g_m = I_D/(\zeta V_T)$ ($\zeta \approx 1.5$ is the subthreshold slope factor and $V_T = kT/q \approx 26$ mV). Then $g_m$ stops growing, and the intrinsic gain levels off at about
+The divergence at $V_{GS} = V_{TH}$ is an artefact of the square law. At small overdrive the device enters weak inversion, where $g_m = I_D/(\zeta V_T)$ (with $\zeta \approx 1.5$ and $V_T \approx 26$ mV). Then $g_m$ stops growing, and the intrinsic gain levels off at about
 
 $$g_mr_O \approx \frac{I_D}{\zeta V_T}\cdot\frac{1}{\lambda I_D} = \frac{1}{\lambda\zeta V_T} = \frac{1}{(0.1)(1.5)(0.026)} \approx 256$$
 

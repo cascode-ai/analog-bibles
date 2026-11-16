@@ -2,43 +2,28 @@
 
 **Approach.** The PMOS and NMOS are in series between X and ground with their gates tied to $V_G$, so the same current flows through both and *both* must be on. Introduce the middle node Y, find which device is saturated in each range of $V_X$, and show that $I_X$ equals the smaller of the two saturation currents. Then differentiate with respect to $V_G$ to obtain the equivalent transconductance.
 
-### Step 1 — Reading the circuit
+### Step 1 — Terminal voltages and when current flows
 
-From the figure:
-
-- **PMOS (top):** source at node X (the terminal with the arrow, driven by $V_X$), drain at the middle node, which we call Y; gate at $V_G$.
-- **NMOS (bottom):** drain at Y, source at ground, gate at $V_G$.
-- $I_X$ flows from the source $V_X$ into X, through the PMOS, through the NMOS, to ground.
-
-The devices are **in series**: $I_X = I_P = I_N$. Device data: $\beta_n = \mu_nC_{ox}(W/L)_n$, $\beta_p = \mu_pC_{ox}(W/L)_p$, $V_{THN} = 0.7$ V, $|V_{THP}| = 0.8$ V, and $\lambda = \gamma = 0$.
-
-Terminal voltages, with $V_Y$ the voltage of node Y ($0 \le V_Y \le V_X$):
+Call the node between the two devices Y ($0 \le V_Y \le V_X$); the PMOS source is at X. The devices are **in series**, so $I_X = I_P = I_N$, and
 
 $$
 \begin{aligned}
 \text{NMOS:}&\quad V_{GS} = V_G, & V_{DS} &= V_Y,\\
-\text{PMOS:}&\quad V_{SG} = V_X - V_G, & V_{SD} &= V_X - V_Y .
+\text{PMOS:}&\quad V_{SG} = V_X - V_G, & V_{SD} &= V_X - V_Y ,
 \end{aligned}
 $$
 
-Define the two overdrive voltages
+with overdrives
 
 $$V_{ovN} = V_G - 0.7, \qquad V_{ovP} = V_X - V_G - 0.8 .$$
 
-### Step 2 — When does any current flow?
-
-A series path conducts only if both devices are on:
-
-- NMOS on: $V_G > 0.7$ V;
-- PMOS on: $V_{SG} > 0.8$ V, i.e. $V_X > V_G + 0.8$ V.
-
-So
+A series path conducts only if both devices are on: the NMOS needs $V_G > 0.7$ V, and the PMOS needs $V_{SG} > 0.8$ V, i.e. $V_X > V_G + 0.8$ V. So
 
 $$I_X = 0 \quad\text{if}\quad V_G \le 0.7\ \mathrm{V}\quad\text{or}\quad V_X \le V_G + 0.8\ \mathrm{V}.$$
 
 For $V_G \ge 2.2$ V the PMOS never turns on within $0 \le V_X \le 3$ V, so $I_X = 0$ over the whole range.
 
-### Step 3 — Which device is saturated?
+### Step 2 — Which device is saturated?
 
 **NMOS saturated** when $V_{DS} \ge V_{GS} - V_{THN}$:
 
@@ -55,27 +40,27 @@ Consequences:
 
 At least one device is always saturated, and that device sets the current. Both are saturated only at the single transition point (with $\lambda = 0$).
 
-### Step 4 — Region I: PMOS saturated, NMOS in triode (PMOS-limited)
+### Step 3 — Region I: PMOS saturated, NMOS in triode (PMOS-limited)
 
-Just above $V_X = V_G + 0.8$ V the PMOS has a tiny overdrive, so it can pass only a small current. The NMOS, which has the full overdrive $V_G - 0.7$, easily carries that current with a small $V_{DS}$: node Y sits near ground and the NMOS is in triode. The current is set by the saturated PMOS:
+Just above $V_X = V_G + 0.8$ V the PMOS has a tiny overdrive and passes only a small current, which the NMOS, with its full overdrive $V_G - 0.7$, carries with a small $V_{DS}$: node Y sits near ground and the NMOS is in triode. The saturated PMOS sets the current:
 
-$$I_X = \frac12\,\beta_p\,(V_X - V_G - 0.8)^2 .$$
+$$I_X = \frac12\,\beta_p\,(V_X - V_G - 0.8)^2 ,$$
 
-It rises parabolically from zero as $V_X$ increases. (The NMOS triode equation $I_X = \beta_n[V_{ovN}V_Y - V_Y^2/2]$ then fixes $V_Y = V_{ovN} - \sqrt{V_{ovN}^2 - 2I_X/\beta_n}$, which grows from 0 as $I_X$ grows.)
+rising parabolically from zero as $V_X$ increases. (The NMOS triode equation $I_X = \beta_n[V_{ovN}V_Y - V_Y^2/2]$ then fixes $V_Y = V_{ovN} - \sqrt{V_{ovN}^2 - 2I_X/\beta_n}$, which grows from 0 as $I_X$ grows.)
 
-**Validity.** The NMOS can stay in triode only while the current is below its own saturation current:
+**Validity.** The NMOS stays in triode only while the current is below its own saturation current:
 
 $$\frac12\beta_p(V_X - V_G - 0.8)^2 < \frac12\beta_n(V_G - 0.7)^2 .$$
 
-### Step 5 — Region II: NMOS saturated, PMOS in triode (NMOS-limited)
+### Step 4 — Region II: NMOS saturated, PMOS in triode (NMOS-limited)
 
-When the PMOS's saturation current reaches the NMOS's saturation current, the NMOS can no longer keep up: node Y rises, the NMOS saturates, and the PMOS drops into triode (its $V_{SD}$ shrinks). The current is now set by the saturated NMOS:
+When the PMOS's saturation current reaches the NMOS's, node Y rises, the NMOS saturates and the PMOS drops into triode (its $V_{SD}$ shrinks). The saturated NMOS now sets the current:
 
 $$I_X = \frac12\,\beta_n\,(V_G - 0.7)^2 ,$$
 
 **independent of $V_X$** (because $\lambda = 0$): a flat ceiling.
 
-**Transition point.** Equate the two saturation currents:
+**Transition point.** Equating the two saturation currents:
 
 $$
 \begin{aligned}
@@ -85,21 +70,19 @@ V_X &= V_G + 0.8 + \sqrt{\frac{\beta_n}{\beta_p}}\,(V_G - 0.7) .
 \end{aligned}
 $$
 
-**Compact form.** Combining Steps 4 and 5, wherever both devices are on:
+**Compact form.** Wherever both devices are on,
 
-$$I_X = \min\left\{\tfrac12\beta_p(V_X - V_G - 0.8)^2,\ \tfrac12\beta_n(V_G - 0.7)^2\right\}.$$
+$$I_X = \min\left\{\tfrac12\beta_p(V_X - V_G - 0.8)^2,\ \tfrac12\beta_n(V_G - 0.7)^2\right\}:$$
 
-The weaker device sets the current, like the narrower of two pipes in series.
+the weaker device sets the current, like the narrower of two pipes in series.
 
-### Step 6 — The family of curves
+### Step 5 — The family of curves
 
-For each $V_G$ between 0.7 V and 2.2 V the curve is: zero up to $V_X = V_G + 0.8$, a parabolic rise, then a flat ceiling at $\tfrac12\beta_n(V_G - 0.7)^2$ (if the transition lies below 3 V).
+For each $V_G$ between 0.7 V and 2.2 V the curve is zero up to $V_X = V_G + 0.8$, then a parabolic rise, then a flat ceiling at $\tfrac12\beta_n(V_G - 0.7)^2$ (if the transition lies below 3 V). Increasing $V_G$:
 
-Effect of increasing $V_G$:
-
-- the turn-on point $V_G + 0.8$ moves **right**;
-- the ceiling $\tfrac12\beta_n(V_G - 0.7)^2$ moves **up**;
-- the transition point moves right even faster, so for larger $V_G$ the ceiling may lie beyond 3 V and only the parabola is seen.
+- moves the turn-on point $V_G + 0.8$ **right**;
+- moves the ceiling $\tfrac12\beta_n(V_G - 0.7)^2$ **up**;
+- moves the transition point right even faster, so for larger $V_G$ the ceiling may lie beyond 3 V and only the parabola is seen.
 
 **Illustration** with $\beta_n = \beta_p = 1\ \mathrm{mA/V^2}$ (sizes are not given; this is only an example). Then the transition is at $V_X = 2V_G + 0.1$. For $V_G = 1.2$ V: turn-on at 2.0 V, ceiling $\tfrac12(0.5)^2 = 0.125$ mA reached at $V_X = 2.5$ V. Values of $I_X$ in mA:
 
@@ -112,17 +95,17 @@ Effect of increasing $V_G$:
 
 For $V_G = 1.5$ V the ceiling (0.32 mA) would be reached only at $V_X = 3.1$ V, outside the range. For $V_G \le 0.7$ V the current is zero everywhere.
 
-### Step 7 — Equivalent transconductance $\partial I_X/\partial V_G$
+### Step 6 — Equivalent transconductance $\partial I_X/\partial V_G$
 
 Differentiate the expression valid in each region, at fixed $V_X$.
 
-**Region I (PMOS-limited).** By the chain rule:
+**Region I (PMOS-limited):**
 
 $$\frac{\partial I_X}{\partial V_G} = \frac{\partial}{\partial V_G}\left[\tfrac12\beta_p(V_X - V_G - 0.8)^2\right] = \beta_p(V_X - V_G - 0.8)\cdot(-1) = -\beta_p(V_X - V_G - 0.8) .$$
 
-It is **negative**: raising the gate reduces the PMOS's $V_{SG}$, and the PMOS controls the current. Its magnitude grows linearly with $V_X$ (slope $-\beta_p$), reaching $-\sqrt{\beta_n\beta_p}\,(V_G - 0.7)$ at the transition.
+It is **negative**, since raising the gate reduces the $V_{SG}$ of the PMOS, which controls the current. Its magnitude grows linearly with $V_X$ (slope $-\beta_p$), reaching $-\sqrt{\beta_n\beta_p}\,(V_G - 0.7)$ at the transition.
 
-**Region II (NMOS-limited).**
+**Region II (NMOS-limited):**
 
 $$\frac{\partial I_X}{\partial V_G} = \frac{\partial}{\partial V_G}\left[\tfrac12\beta_n(V_G - 0.7)^2\right] = +\beta_n(V_G - 0.7),$$
 
@@ -150,6 +133,6 @@ a parabolic rise while the PMOS is saturated and the NMOS is in triode, followed
 
 **Common mistake.** Reading the devices as being in parallel and adding their currents. There is a single path X → PMOS → Y → NMOS → ground, so the same current flows in both, and the weaker device sets it.
 
-**Common mistake.** Letting current flow for $V_G < 0.7$ V or for small $V_X$. The NMOS needs $V_G > 0.7$ V, and the PMOS, whose source is at X, needs $V_X > V_G + 0.8$ V; if either is off, $I_X = 0$. Taking the PMOS source at the middle node instead of at X would wrongly let it conduct at small $V_X$.
+**Common mistake.** Letting current flow for $V_G < 0.7$ V or for small $V_X$. The NMOS needs $V_G > 0.7$ V and the PMOS, whose source is at X (not at the middle node), needs $V_X > V_G + 0.8$ V; if either is off, $I_X = 0$.
 
 **Common mistake.** Giving $\partial I_X/\partial V_G$ the same sign everywhere. In the PMOS-limited region a higher gate voltage *reduces* the current, so the equivalent transconductance is negative there and positive only where the NMOS limits the current.

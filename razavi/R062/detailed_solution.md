@@ -4,7 +4,7 @@
 
 ### Step 1 — The three $g_m$ relations in the figure
 
-For a saturated square-law MOSFET with $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$, where $\mu_nC_{ox}$ is the process transconductance parameter, $W/L$ the aspect ratio and $V_{ov} = V_{GS} - V_{TH}$ the overdrive voltage, the transconductance can be written in three equivalent ways, one for each panel:
+With $V_{ov} = V_{GS} - V_{TH}$ and $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$, the three panels are:
 
 $$
 \begin{aligned}
@@ -14,11 +14,11 @@ $$
 \end{aligned}
 $$
 
-These are exactly the three shapes drawn in the figure. For the numerical examples below we take $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $W/L = 10$ (plots 1 and 2) and $I_D = 0.5$ mA (plot 3).
+For the numerical examples take $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $W/L = 10$ (plots 1 and 2) and $I_D = 0.5$ mA (plot 3).
 
 ### Step 2 — Plot 1: $I_D$ versus $V_{GS} - V_{TH}$ with $W/L$ constant
 
-By definition $g_m = \partial I_D/\partial V_{GS}$, and with $V_{TH}$ fixed $dV_{GS} = dV_{ov}$. So $I_D$ is the integral of the straight line (a), starting from $I_D = 0$ at $V_{ov} = 0$:
+Since $g_m = \partial I_D/\partial V_{GS}$ and $dV_{GS} = dV_{ov}$ with $V_{TH}$ fixed, $I_D$ is the integral of the straight line (a), starting from $I_D = 0$ at $V_{ov} = 0$:
 
 $$I_D = \int_0^{V_{ov}} \mu_nC_{ox}\frac{W}{L}\,v\,dv = \mu_nC_{ox}\frac{W}{L}\cdot\frac{V_{ov}^2}{2} = \frac12\,\mu_nC_{ox}\frac{W}{L}\,(V_{GS} - V_{TH})^2 .$$
 
@@ -32,15 +32,11 @@ $$I_D = \int_0^{V_{ov}} \mu_nC_{ox}\frac{W}{L}\,v\,dv = \mu_nC_{ox}\frac{W}{L}\c
 
 ### Step 3 — Plot 2: $V_{GS} - V_{TH}$ versus $I_D$ with $W/L$ constant
 
-Use relation (c), which holds at any bias, solved for the overdrive: $V_{ov} = 2I_D/g_m$. Substitute $g_m$ from relation (b), the one plotted against $I_D$ for fixed $W/L$:
+Solve relation (c), which holds at any bias, for the overdrive, $V_{ov} = 2I_D/g_m$, and substitute $g_m$ from relation (b), the one plotted against $I_D$ for fixed $W/L$. With $2I_D/\sqrt{2I_D} = \sqrt{2I_D}$:
 
-$$V_{ov} = \frac{2I_D}{\sqrt{2\mu_nC_{ox}(W/L)I_D}} .$$
+$$V_{ov} = \frac{2I_D}{\sqrt{2\mu_nC_{ox}(W/L)I_D}} = \frac{\sqrt{2I_D}}{\sqrt{\mu_nC_{ox}(W/L)}} = \sqrt{\frac{2I_D}{\mu_nC_{ox}(W/L)}} ,$$
 
-Simplify, using $2I_D/\sqrt{2I_D} = \sqrt{2I_D}$:
-
-$$V_{GS} - V_{TH} = \frac{\sqrt{2I_D}}{\sqrt{\mu_nC_{ox}(W/L)}} = \sqrt{\frac{2I_D}{\mu_nC_{ox}(W/L)}} .$$
-
-This is simply plot 1 with the axes exchanged (the inverse function).
+which is plot 1 with the axes exchanged (the inverse function).
 
 **Shape.** A square-root curve: it starts at the origin with infinite slope and flattens as $I_D$ grows. Quadrupling the current only doubles the overdrive.
 
@@ -52,11 +48,11 @@ This is simply plot 1 with the axes exchanged (the inverse function).
 
 ### Step 4 — Plot 3: $W/L$ versus $V_{GS} - V_{TH}$ with $I_D$ constant
 
-Relation (a) gives $W/L$ for given $g_m$ and overdrive: $W/L = g_m/(\mu_nC_{ox}V_{ov})$. At constant $I_D$, the transconductance is the hyperbola (c), $g_m = 2I_D/V_{ov}$. Substitute:
+Relation (a) gives $W/L = g_m/(\mu_nC_{ox}V_{ov})$, and at constant $I_D$ the transconductance is the hyperbola (c), $g_m = 2I_D/V_{ov}$:
 
 $$\frac{W}{L} = \frac{1}{\mu_nC_{ox}V_{ov}}\cdot\frac{2I_D}{V_{ov}} = \frac{2I_D}{\mu_nC_{ox}\,(V_{GS} - V_{TH})^2} .$$
 
-**Shape.** A decreasing curve proportional to $1/V_{ov}^2$: it tends to infinity as the overdrive goes to zero and to zero for large overdrive. It falls **faster** than the $g_m$ hyperbola of panel (c) ($\propto 1/V_{ov}$): halving the overdrive doubles $g_m$ but quadruples $W/L$.
+**Shape.** A decreasing curve proportional to $1/V_{ov}^2$, tending to infinity as the overdrive goes to zero and to zero for large overdrive. It falls **faster** than the $g_m$ hyperbola of panel (c) ($\propto 1/V_{ov}$): halving the overdrive doubles $g_m$ but quadruples $W/L$.
 
 **Example.** $2I_D/(\mu_nC_{ox}) = 2(0.5\ \mathrm{mA})/(134\ \mu\mathrm{A/V^2}) = 7.46\ \mathrm{V^2}$, so $W/L = 7.46\ \mathrm{V^2}/V_{ov}^2$. At $V_{ov} = 0.4$ V: $W/L = 7.46/0.16 = 46.6$.
 
@@ -66,8 +62,7 @@ $$\frac{W}{L} = \frac{1}{\mu_nC_{ox}V_{ov}}\cdot\frac{2I_D}{V_{ov}} = \frac{2I_D
 
 ### Step 5 — How the three plots fit together
 
-- Plot 1 and plot 2 are the same curve with the axes swapped: a parabola $I_D \propto V_{ov}^2$ read in both directions.
-- In plot 1 the slope is $g_m$, which grows linearly (panel a); in plot 2 the slope $dV_{ov}/dI_D = 1/g_m$ shrinks as $1/\sqrt{I_D}$, consistent with panel (b).
+- Plots 1 and 2 are the same parabola $I_D \propto V_{ov}^2$ read in both directions. In plot 1 the slope is $g_m$, growing linearly (panel a); in plot 2 the slope $dV_{ov}/dI_D = 1/g_m$ shrinks as $1/\sqrt{I_D}$, consistent with panel (b).
 - Plot 3 shows the cost of a small overdrive at fixed current: the device must be made much wider, as $1/V_{ov}^2$.
 
 ### Result

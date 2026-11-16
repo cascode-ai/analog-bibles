@@ -1,62 +1,48 @@
 # Detailed solution - R054
 
-**Approach.** The two transistors are connected in parallel between node X and ground, with their gates tied to $V_G$, so $I_X$ is the sum of the NMOS and PMOS currents. Analyse each device separately with the square law (region boundaries, currents), add the currents to get the $I_X$–$V_X$ curves, and differentiate with respect to $V_G$ to get the equivalent transconductance.
+**Approach.** The two transistors are connected in parallel between node X and ground, with their gates tied to $V_G$, so $I_X$ is the sum of the NMOS and PMOS currents. Analyse each device with the square law (region boundaries, currents), add the currents to get the $I_X$–$V_X$ curves, and differentiate with respect to $V_G$ to get the equivalent transconductance.
 
-### Step 1 — Reading the circuit
+### Step 1 — Parallel connection and the NMOS current
 
-From the figure:
-
-- **NMOS (left):** gate at $V_G$, drain at node X, source at ground.
-- **PMOS (right):** gate also at $V_G$, one diffusion terminal at node X, the other at ground.
-- The source $V_X$ drives node X, and $I_X$ is the current it delivers into X.
-
-Both devices connect X to ground, so they are **in parallel**, and by KCL at node X
+Call the node driven by $V_X$ node X. Both devices run from X to ground, so by KCL at X
 
 $$I_X = I_N + I_P ,$$
 
-where $I_N$ and $I_P$ are the currents flowing from X to ground through the NMOS and the PMOS. Device parameters: $\beta_n = \mu_nC_{ox}(W/L)_n$, $\beta_p = \mu_pC_{ox}(W/L)_p$, $V_{THN} = 0.7$ V, $|V_{THP}| = 0.8$ V, and $\lambda = \gamma = 0$.
+where $I_N$ and $I_P$ are the currents flowing from X to ground through the NMOS and the PMOS.
 
-### Step 2 — The NMOS current
-
-The NMOS has $V_{GS} = V_G$ and $V_{DS} = V_X$. Define its overdrive $V_{ovN} = V_G - 0.7$ V.
+The NMOS has $V_{GS} = V_G$, $V_{DS} = V_X$ and overdrive $V_{ovN} = V_G - 0.7$ V:
 
 - **Cut-off** for $V_G \le 0.7$ V: $I_N = 0$.
 - **Triode** for $V_X < V_G - 0.7$ V:
 $$I_N = \beta_n\left[(V_G - 0.7)V_X - \frac{V_X^2}{2}\right].$$
-- **Saturation** for $V_X \ge V_G - 0.7$ V (with $\lambda = 0$ the current is flat):
+- **Saturation** for $V_X \ge V_G - 0.7$ V (flat, since $\lambda = 0$):
 $$I_N = \frac12\,\beta_n\,(V_G - 0.7)^2 .$$
 
-### Step 3 — The PMOS current
+### Step 2 — The PMOS current
 
-**Which terminal is the source?** For a PMOS the source is the terminal at the *higher* potential. With $V_X \ge 0$, that is node X; the grounded terminal is the drain. So
+With $V_X \ge 0$, the higher-potential terminal, node X, is the PMOS source and the grounded terminal its drain:
 
 $$V_{SG} = V_X - V_G, \qquad V_{SD} = V_X - 0 = V_X .$$
 
-**Turn-on.** The PMOS conducts when $V_{SG} > |V_{THP}|$:
+The PMOS conducts when $V_{SG} > |V_{THP}|$:
 
-$$V_X - V_G > 0.8\ \mathrm{V} \quad\Longleftrightarrow\quad V_X > V_G + 0.8\ \mathrm{V}.$$
+$$V_X - V_G > 0.8\ \mathrm{V} \quad\Longleftrightarrow\quad V_X > V_G + 0.8\ \mathrm{V},$$
 
-So the PMOS is off for small $V_X$ and turns on only when $V_X$ rises 0.8 V above the gate.
-
-**Region.** Saturation requires $V_{SD} \ge V_{SG} - |V_{THP}|$:
-
-$$V_X \ge V_X - V_G - 0.8 \quad\Longleftrightarrow\quad V_G \ge -0.8\ \mathrm{V},$$
-
-which always holds for $V_G \ge 0$. So whenever the PMOS conducts it is **saturated**: its drain (at ground) is far below its gate. The current is
+so it is off for small $V_X$ and turns on only when $V_X$ rises 0.8 V above the gate. Saturation, $V_{SD} \ge V_{SG} - |V_{THP}|$, reads $V_X \ge V_X - V_G - 0.8$, i.e. $V_G \ge -0.8$ V, which always holds for $V_G \ge 0$: whenever the PMOS conducts it is **saturated**. Hence
 
 $$I_P = \frac12\,\beta_p\,(V_X - V_G - 0.8)^2 \qquad (V_X > V_G + 0.8\ \mathrm{V}),$$
 
 and $I_P = 0$ otherwise.
 
-### Step 4 — $I_X$ versus $V_X$ with $V_G$ as a parameter
+### Step 3 — $I_X$ versus $V_X$ with $V_G$ as a parameter
 
 **Case $V_G > 0.7$ V** (NMOS on). Three segments as $V_X$ increases from 0:
 
 1. $0 \le V_X \le V_G - 0.7$: NMOS in triode, PMOS off. $I_X = \beta_n[(V_G - 0.7)V_X - V_X^2/2]$, starting at the origin with slope $\beta_n(V_G - 0.7)$ and bending over (an inverted parabola).
-2. $V_G - 0.7 \le V_X \le V_G + 0.8$: NMOS saturated, PMOS still off. **Flat plateau** at $I_X = \tfrac12\beta_n(V_G - 0.7)^2$, a 1.5-V-wide plateau.
+2. $V_G - 0.7 \le V_X \le V_G + 0.8$: NMOS saturated, PMOS still off. **Flat plateau** at $I_X = \tfrac12\beta_n(V_G - 0.7)^2$, 1.5 V wide.
 3. $V_X > V_G + 0.8$: PMOS on and saturated. $I_X = \tfrac12\beta_n(V_G - 0.7)^2 + \tfrac12\beta_p(V_X - V_G - 0.8)^2$, a second, upward-curving parabolic rise.
 
-For $V_G \ge 2.2$ V, the PMOS turn-on point $V_G + 0.8$ is beyond 3 V, so only segments 1 and 2 appear in the range.
+For $V_G \ge 2.2$ V the PMOS turn-on point $V_G + 0.8$ is beyond 3 V, so only segments 1 and 2 appear in the range.
 
 **Case $V_G \le 0.7$ V** (NMOS off). $I_X = 0$ until $V_X = V_G + 0.8$, then $I_X = \tfrac12\beta_p(V_X - V_G - 0.8)^2$.
 
@@ -74,9 +60,9 @@ For $V_G \ge 2.2$ V, the PMOS turn-on point $V_G + 0.8$ is beyond 3 V, so only s
 
 At $V_X = 3$ V the $V_G = 0.5$ V curve (1.445 mA) lies above the $V_G = 1.0$ V and 1.5 V curves: the crossing mentioned above.
 
-### Step 5 — Equivalent transconductance $\partial I_X/\partial V_G$
+### Step 4 — Equivalent transconductance $\partial I_X/\partial V_G$
 
-Differentiate $I_X = I_N + I_P$ with respect to $V_G$ at fixed $V_X$:
+At fixed $V_X$:
 
 $$g_{m,eq} = \frac{\partial I_X}{\partial V_G} = \frac{\partial I_N}{\partial V_G} + \frac{\partial I_P}{\partial V_G} .$$
 
@@ -85,17 +71,17 @@ $$g_{m,eq} = \frac{\partial I_X}{\partial V_G} = \frac{\partial I_N}{\partial V_
 - Triode: $\dfrac{\partial}{\partial V_G}\beta_n\left[(V_G - 0.7)V_X - \dfrac{V_X^2}{2}\right] = \beta_nV_X$.
 - Saturation: $\dfrac{\partial}{\partial V_G}\tfrac12\beta_n(V_G - 0.7)^2 = \beta_n(V_G - 0.7)$.
 
-**PMOS term** (when on): by the chain rule,
+**PMOS term** (when on):
 
 $$\frac{\partial}{\partial V_G}\tfrac12\beta_p(V_X - V_G - 0.8)^2 = \beta_p(V_X - V_G - 0.8)\cdot(-1) = -\beta_p(V_X - V_G - 0.8).$$
 
-It is **negative**: raising the common gate voltage *reduces* the PMOS's $V_{SG}$ and turns it down. So $g_{m,eq} = g_{mN} - g_{mP}$, where $g_{mP} = \beta_p(V_X - V_G - 0.8)$ is the PMOS's own transconductance.
+It is **negative**: raising the common gate voltage *reduces* the PMOS's $V_{SG}$ and turns it down. So $g_{m,eq} = g_{mN} - g_{mP}$, with $g_{mP} = \beta_p(V_X - V_G - 0.8)$ the PMOS's own transconductance.
 
 **Shape versus $V_X$ for $V_G > 0.7$ V:**
 
 1. $0 \le V_X \le V_G - 0.7$: $g_{m,eq} = \beta_nV_X$, a straight line from 0 with slope $\beta_n$.
 2. $V_G - 0.7 \le V_X \le V_G + 0.8$: constant $g_{m,eq} = \beta_n(V_G - 0.7)$.
-3. $V_X > V_G + 0.8$: $g_{m,eq} = \beta_n(V_G - 0.7) - \beta_p(V_X - V_G - 0.8)$, falling linearly with slope $-\beta_p$. It crosses zero where the two terms are equal:
+3. $V_X > V_G + 0.8$: $g_{m,eq} = \beta_n(V_G - 0.7) - \beta_p(V_X - V_G - 0.8)$, falling linearly with slope $-\beta_p$. It crosses zero where the two terms are equal,
 $$V_X = V_G + 0.8 + \frac{\beta_n}{\beta_p}(V_G - 0.7),$$
 and is negative beyond that point.
 
@@ -122,8 +108,8 @@ $$g_{m,eq} = \frac{\partial I_X}{\partial V_G} = g_{mN} - g_{mP}:\quad \beta_nV_
 
 which falls with slope $-\beta_p$ once the PMOS conducts and becomes negative beyond $V_X = V_G + 0.8 + (\beta_n/\beta_p)(V_G - 0.7)$.
 
-**Common mistake.** Taking the PMOS source at ground. That gives $V_{SG} = -V_G < 0$, a PMOS that never conducts, and a curve with no second rise; a related error lets the PMOS conduct already at small $V_X$. A PMOS's source is its higher-potential terminal, here node X, so it turns on only for $V_X > V_G + 0.8$ V, and then it is always saturated.
+**Common mistake.** Taking the PMOS source at ground, which gives $V_{SG} = -V_G < 0$ and a curve with no second rise (or, conversely, letting the PMOS conduct already at small $V_X$). The PMOS source is node X, so it turns on only for $V_X > V_G + 0.8$ V, and then it is always saturated.
 
-**Common mistake.** Adding the two transconductances as $g_{mN} + g_{mP}$. The gates are tied together, so a rise in $V_G$ turns the NMOS *up* but the PMOS *down*; the PMOS contribution is negative, and $g_{m,eq}$ can change sign.
+**Common mistake.** Adding the two transconductances as $g_{mN} + g_{mP}$. With the gates tied, a rise in $V_G$ turns the NMOS *up* but the PMOS *down*, so the PMOS contribution is negative and $g_{m,eq}$ can change sign.
 
-**Common mistake.** Reading the devices as being in series. Both transistors run directly from X to ground, so their currents add; there is no intermediate node.
+**Common mistake.** Reading the devices as being in series. Both transistors run directly from X to ground, so their currents add.
