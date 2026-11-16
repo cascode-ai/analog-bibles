@@ -1,24 +1,12 @@
 # Detailed solution - R715
 
-**Approach.** For each metal layer, drawn at its minimum width, compute the total resistance and capacitance of a 1000-µm wire, then the distributed-line delay $T_D = \tfrac12R_{wire}C_{wire}$. The layer with the smallest $T_D$ is the answer. A general expression for $T_D$ then shows why the result does not depend on the exact width.
+**Approach.** For each layer at its minimum width, compute the resistance and capacitance of a 1000-µm wire and the distributed-line (Elmore) delay $T_D = \tfrac12R_{wire}C_{wire}$; the smallest $T_D$ wins. A general expression for $T_D$ then shows that the result does not depend on the exact width.
 
-### Step 1 — Formulas
+### Step 1 — Delay in terms of the layer data
 
-**Resistance.** A wire of length $L$ and width $W$ has $L/W$ squares:
+With $R_{wire} = R_\square L/W$ and $C_{wire} = (C_{pp}W + C_f)L$ (the fringe value is already per unit length, both edges together):
 
-$$R_{wire} = R_\square\frac{L}{W}.$$
-
-**Capacitance.** Per unit length, the parallel-plate part is (capacitance per area) × $W$ and the fringe part (both edges together) is given directly:
-
-$$C_{wire} = (C_{pp}W + C_f)\,L .$$
-
-**Delay of a distributed RC line** (Elmore delay: each element of capacitance $c\,dx$ at distance $x$ is charged through the upstream resistance $rx$):
-
-$$T_D = \int_0^L (rx)(c\,dx) = \frac{rcL^2}{2} = \frac12R_{wire}C_{wire}.$$
-
-Combining:
-
-$$T_D = \frac12R_\square\frac{L}{W}(C_{pp}W + C_f)L = \frac12R_\square L^2\left(C_{pp} + \frac{C_f}{W}\right).$$
+$$T_D = \frac12R_{wire}C_{wire} = \frac12R_\square\frac{L}{W}(C_{pp}W + C_f)L = \frac12R_\square L^2\left(C_{pp} + \frac{C_f}{W}\right).$$
 
 ### Step 2 — Metal 1 ($W = 0.35\ \mu$m, $R_\square = 80$ mΩ/□)
 
@@ -73,21 +61,18 @@ $$
 | metal 3 | 0.50 | 160.0 | 44.5 | 3.6 |
 | metal 4 | 0.60 | 66.7 | 34.2 | **1.14** |
 
-**Metal 4 gives the minimum delay**, about 9 times shorter than metal 1. It wins on both factors:
+**Metal 4 gives the minimum delay**, about 9 times shorter than metal 1. It has the **lowest resistance** (the thickest layer, with half the others' sheet resistance, and the widest minimum width) and the **lowest capacitance** (farthest from the substrate, so both its parallel-plate and fringe capacitances are the smallest).
 
-- **lowest resistance**: it is the thickest layer (half the sheet resistance of the others) and has the widest minimum width;
-- **lowest capacitance**: it is the farthest from the substrate, so both its parallel-plate and its fringe capacitance per unit length are the smallest.
+**The choice does not depend on the width.** In $T_D = \tfrac12R_\square L^2(C_{pp} + C_f/W)$, metal 4 has the smallest $R_\square$, $C_{pp}$ and $C_f$, so it wins at any common width $W$, and also with a driver resistance $R_S$ added (total $R_SC + \tfrac12RC$), since it has the lowest capacitance.
 
-**The choice does not depend on the width.** From $T_D = \tfrac12R_\square L^2(C_{pp} + C_f/W)$, at any common width $W$ metal 4 has the smallest $R_\square$ and the smallest $C_{pp}$ and $C_f$, so its delay is the lowest. The same holds if a driver resistance $R_S$ is added (total delay $R_SC + \tfrac12RC$), because metal 4 also has the lowest capacitance.
-
-Note how strongly the fringe term dominates for these narrow wires: for metal 1 it is $80/90.5 = 88\ \%$ of the capacitance. Leaving it out would not change the ranking here, but it would underestimate every delay many times over.
+The fringe term dominates for these narrow wires (for metal 1, $80/90.5 = 88\ \%$ of the capacitance); leaving it out would not change the ranking here but would underestimate every delay many times over.
 
 ### Result
 
 **Metal 4.** At minimum widths, a 1000-µm wire has a distributed delay $T_D = \tfrac12RC$ of about **1.1 ps** in metal 4, versus 3.6 ps (metal 3), 5.0 ps (metal 2) and 10.3 ps (metal 1). Metal 4 has both the lowest resistance and the lowest capacitance per unit length.
 
-**Common mistake.** Multiplying the fringe capacitance by the width (e.g. $80\times0.35$ aF/µm for metal 1). The fringe values are per unit length (both edges together); only the parallel-plate term scales with the width.
+**Common mistake.** Multiplying the fringe capacitance by the width (e.g. $80\times0.35$ aF/µm for metal 1). The fringe values are per unit length; only the parallel-plate term scales with the width.
 
-**Common mistake.** Computing the resistance as $R_\square W/L$. Current flows along the length, so a long, narrow line has $L/W$ squares (thousands here), not a tiny fraction of a square.
+**Common mistake.** Computing the resistance as $R_\square W/L$. A long, narrow line has $L/W$ squares (thousands here).
 
-**Common mistake.** Picking metal 1 because it has the smallest minimum width (and thus the smallest parallel-plate capacitance) or because it is "closest to the devices". Its narrowness makes it highly resistive, and its proximity to the substrate makes its capacitance per unit length the largest.
+**Common mistake.** Picking metal 1 because it has the smallest minimum width or is "closest to the devices". Its narrowness makes it highly resistive, and its proximity to the substrate gives it the largest capacitance per unit length.

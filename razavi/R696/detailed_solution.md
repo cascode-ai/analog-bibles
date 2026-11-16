@@ -1,21 +1,14 @@
 # Detailed solution - R696
 
-**Approach.** Write the small-signal gain of the differential pair with an active current-mirror load in terms of device parameters at the given (target) tail current. Then check which parameters each fabrication error changes. Because the bias current is fixed, anything that enters only through the threshold voltage drops out; what matters is $\mu_nC_{ox}(W/L)$ of the input pair and the channel-length modulation coefficients $\lambda$.
+**Approach.** Write the small-signal gain of the differential pair with an active current-mirror load in terms of device parameters at the given (target) tail current, then check which parameters each fabrication error changes. Because the bias current is fixed, anything that enters only through the threshold voltage drops out; what matters is $\mu_nC_{ox}(W/L)$ of the input pair and the $\lambda$'s.
 
-### Step 1 — The circuit and its gain
+### Step 1 — The gain at a fixed tail current
 
-Name the devices: NMOS input pair $M_1$, $M_2$ with tail current $I_{SS}$; PMOS mirror load in the n-well, $M_3$ (diode-connected, on the $M_1$ side) and $M_4$ (on the $M_2$ side); the output is the common drain of $M_2$ and $M_4$. At balance each device carries $I_D = I_{SS}/2$.
-
-**Gain.** Use the "transconductance × output resistance" view:
-
-- **Short-circuit output current.** With the output held at AC ground and a differential input $v_{in}$, $M_1$ and $M_2$ carry small-signal currents $\pm g_{m1}v_{in}/2$. The mirror $M_3$–$M_4$ copies $M_1$'s current to the output, where it adds to $M_2$'s, so the output current is $g_{m1}v_{in}$: the overall transconductance is $G_m \approx g_{m1}$.
-- **Output resistance.** Looking into the output node, the drain of $M_2$ presents $r_{O2}$ (its source sees a low impedance) and the drain of $M_4$ presents $r_{O4}$, so $R_{out} \approx r_{O2}\parallel r_{O4}$.
-
-Hence
+Call the NMOS input pair $M_1$, $M_2$ (tail current $I_{SS}$), the PMOS mirror $M_3$ (diode-connected, on the $M_1$ side) and $M_4$, with the output at the drains of $M_2$ and $M_4$; at balance each device carries $I_D = I_{SS}/2$. The standard result for this stage is $G_m \approx g_{m1}$ (the mirror copies $M_1$'s current to the output) and $R_{out} \approx r_{O2}\parallel r_{O4}$, so
 
 $$|A_v| = G_mR_{out} = g_{m1}\,(r_{O2}\parallel r_{O4}).$$
 
-**In terms of device parameters at the fixed bias current.** With the square-law transconductance and $r_O = 1/(\lambda I_D)$, where $\lambda$ is the channel-length modulation coefficient:
+With $r_O = 1/(\lambda I_D)$:
 
 $$
 \begin{aligned}
@@ -25,47 +18,43 @@ r_{O2}\parallel r_{O4} &= \frac{1}{\lambda_n\dfrac{I_{SS}}{2} + \lambda_p\dfrac{
 \end{aligned}
 $$
 
-**What this tells us.** With $I_{SS}$ at its target value, the gain can fall only if
+With $I_{SS}$ on target, the gain can fall only if
 
 - $\mu_nC_{ox}$ of the **input** transistors falls (lower $g_{m1}$), or
 - $\lambda_n$ or $\lambda_p$ rises (lower $r_O$), or
 - a device leaves saturation because of lost headroom (a bias-point problem).
 
-Notice what is **absent**: the threshold voltages, the PMOS mobility and $g_{m3}$. The PMOS mirror only copies a current; its transconductance sets the mirror pole (speed), not the low-frequency gain.
+The threshold voltages, the PMOS mobility and $g_{m3}$ are **absent**: the mirror's transconductance sets the mirror pole (speed), not the low-frequency gain.
 
 ### Step 2 — (a) Heavy n-well implantation: not a cause
 
-A heavier n-well implant raises the doping of the region in which the **PMOS** devices $M_3$, $M_4$ are built. The NMOS input pair is in the substrate and is unaffected. For the PMOS devices:
+A heavier n-well implant affects only the **PMOS** devices $M_3$, $M_4$; the NMOS input pair is in the substrate.
 
-- **$|V_{THP}|$ increases** (more depletion charge must be overcome to invert the surface). At fixed current this does not enter the gain.
-- **Hole mobility decreases** (more impurity scattering). This lowers $g_{m3}$, which affects only the mirror pole, not $g_{m1}(r_{O2}\parallel r_{O4})$.
-- **The drain depletion region is narrower** in the more heavily doped well, so the drain voltage modulates the effective channel length less: $\lambda_p$ decreases and $r_{O4}$ **increases**. If anything, the gain goes *up*.
-- The well-to-substrate and drain junction capacitances increase, which affects speed, not the DC gain.
+- **$|V_{THP}|$ increases** (more depletion charge). At fixed current this does not enter the gain.
+- **Hole mobility decreases** (more impurity scattering). This lowers $g_{m3}$, which affects only the mirror pole.
+- **The drain depletion region is narrower** in the more heavily doped well, so $\lambda_p$ decreases and $r_{O4}$ **increases**. If anything, the gain goes *up*.
+- The well and drain junction capacitances increase, which affects speed, not the DC gain.
 
-The only way (a) could hurt is through **headroom**: $|V_{GS3}| = |V_{THP}| + |V_{ov3}|$ grows (higher threshold and, with lower mobility, larger overdrive), so the drains of $M_1$ and $M_2$ sit lower, at $V_{DD} - |V_{GS3}|$. At a high input common-mode level $M_1$, $M_2$ could then enter the triode region and lose gain. That depends on the bias levels and is not an intrinsic gain reduction. **Verdict: not the explanation.**
+The only way (a) could hurt is through **headroom**: $|V_{GS3}| = |V_{THP}| + |V_{ov3}|$ grows (higher threshold and, with lower mobility, larger overdrive), so the drains of $M_1$ and $M_2$ sit lower, at $V_{DD} - |V_{GS3}|$, and at a high input common-mode level $M_1$, $M_2$ could enter triode. That depends on the bias levels and is not an intrinsic gain reduction. **Verdict: not the explanation.**
 
 ### Step 3 — (b) Heavy threshold-adjust implantation: not a cause
 
-The threshold-adjust implant is a shallow implant into the channel regions whose purpose is to set the thresholds. A heavier dose shifts both thresholds; for the usual p-type (boron) adjust implant in an n-well process, $V_{THN}$ rises and $|V_{THP}|$ falls.
+A heavier dose of the usual p-type (boron) adjust implant raises $V_{THN}$ and lowers $|V_{THP}|$.
 
-- **At a fixed current, $V_{TH}$ does not enter the gain.** The square-law $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ and $r_O = 1/(\lambda I_D)$ contain no threshold. The devices simply settle at different gate–source voltages ($V_{GS} = V_{TH} + V_{ov}$ with the same $V_{ov}$) and carry the same current.
-- **Headroom.** A smaller $|V_{THP}|$ makes $|V_{GS3}|$ smaller, so the drains of $M_1$, $M_2$ sit *higher*, giving the input pair more room to stay saturated. A larger $V_{THN}$ shifts the input common-mode range up but does not by itself push anything into triode; the tail current is stated to be on target.
-- **Second-order effects.** Heavier channel doping slightly degrades mobility (small reduction of $g_{m1}$) and slightly reduces $\lambda$ (larger $r_O$); these roughly offset and are minor.
+- **At a fixed current, $V_{TH}$ does not enter the gain.** $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ and $r_O = 1/(\lambda I_D)$ contain no threshold; the devices just settle at different $V_{GS} = V_{TH} + V_{ov}$ with the same $V_{ov}$.
+- **Headroom.** A smaller $|V_{THP}|$ makes $|V_{GS3}|$ smaller, so the drains of $M_1$, $M_2$ sit *higher*, giving the input pair more room. A larger $V_{THN}$ shifts the input common-mode range up but does not by itself push anything into triode; the tail current is on target.
+- **Second-order effects.** Heavier channel doping slightly degrades mobility (slightly lower $g_{m1}$) and slightly reduces $\lambda$ (larger $r_O$); these roughly offset and are minor.
 
 **Verdict: not the explanation.**
 
 ### Step 4 — (c) A long gate oxidation cycle: the cause
 
-A longer oxidation cycle grows a **thicker gate oxide**, so
-
-$$C_{ox} = \frac{\varepsilon_{ox}}{t_{ox}}$$
-
-**decreases** for all transistors. At the target tail current:
+A longer oxidation grows a **thicker gate oxide**, so $C_{ox} = \varepsilon_{ox}/t_{ox}$ **decreases** for all transistors. At the target tail current:
 
 - **$g_{m1}$ falls:**
 $$g_{m1} = \sqrt{\mu_nC_{ox}\Big(\frac{W}{L}\Big)_1I_{SS}} \;\propto\; \sqrt{C_{ox}} .$$
-To push the same current through a device with less oxide capacitance, a larger overdrive is needed, and $g_m = 2I_D/V_{ov}$ is then smaller.
-- **$r_O$ is essentially unchanged**, because $r_O = 1/(\lambda I_D)$ depends on the current and $\lambda$, not on $C_{ox}$. (If anything, the weaker gate control of a thicker oxide makes channel-length modulation slightly worse, lowering $r_O$ further.)
+The same current needs a larger overdrive, and $g_m = 2I_D/V_{ov}$ is then smaller.
+- **$r_O$ is essentially unchanged**, because $r_O = 1/(\lambda I_D)$ does not depend on $C_{ox}$. (If anything, the weaker gate control of a thicker oxide makes channel-length modulation slightly worse.)
 
 Therefore
 
@@ -83,8 +72,8 @@ i.e. about 12 % less gain; doubling the oxide thickness would cut the gain to $1
 - **(b) Heavy threshold-adjust implant — no.** It shifts the thresholds, but at a fixed bias current $g_m$ and $r_O$ do not depend on $V_{TH}$; headroom for the input pair even improves.
 - **(c) Long gate oxidation — yes.** The thicker oxide reduces $C_{ox}$, so at the target current $g_{m1} = \sqrt{\mu_nC_{ox}(W/L)_1I_{SS}}$ falls as $\sqrt{C_{ox}}$ while $r_O$ is unchanged; the gain $|A_v| = g_{m1}(r_{O2}\parallel r_{O4})$ drops accordingly.
 
-**Common mistake.** Choosing (b) with the argument "a higher threshold lowers $g_m$". That is true only at a fixed gate–source voltage. Here the tail current is fixed, so the overdrive is the same and $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ is unchanged; the device just sits at a larger $V_{GS}$.
+**Common mistake.** Choosing (b) because "a higher threshold lowers $g_m$". That holds only at a fixed $V_{GS}$; here the tail current is fixed, so the overdrive and $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ are unchanged.
 
-**Common mistake.** Choosing (a) because the PMOS devices get worse (lower mobility, higher threshold). The PMOS mirror's transconductance does not appear in the low-frequency gain, and the heavier well doping actually *raises* $r_{O4}$.
+**Common mistake.** Choosing (a) because the PMOS devices get worse. The mirror's transconductance does not appear in the low-frequency gain, and the heavier well doping actually *raises* $r_{O4}$.
 
-**Common mistake.** Arguing that a thicker oxide raises the gain because "$r_O$ increases when $g_m$ drops". At fixed bias current, $r_O = 1/(\lambda I_D)$ does not change; only $g_m$ falls, so the intrinsic gain falls.
+**Common mistake.** Arguing that a thicker oxide raises the gain because "$r_O$ increases when $g_m$ drops". At fixed bias current $r_O = 1/(\lambda I_D)$ does not change; only $g_m$ falls.
