@@ -277,3 +277,20 @@ details.grading summary { cursor: pointer; color: var(--muted); font-size: 13px;
   .steps { flex-wrap: wrap; justify-content: flex-end; }
   .steps button { padding: 0 8px; min-width: 34px; }
 }
+
+/* Folds: the worked solution (closed until asked for) and each of its steps. */
+details.steps-sol { margin-top: 14px; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+details.steps-sol > summary, details.step > summary, details.grading > summary {
+  display: flex; align-items: baseline; gap: 6px; list-style: none; cursor: pointer; user-select: none;
+}
+details.steps-sol > summary::-webkit-details-marker, details.step > summary::-webkit-details-marker, details.grading > summary::-webkit-details-marker { display: none; }
+details.steps-sol > summary::before, details.step > summary::before, details.grading > summary::before {
+  content: "▸"; display: inline-block; width: 1em; flex: none; color: var(--muted); transition: transform .15s;
+}
+details[open].steps-sol > summary::before, details[open].step > summary::before, details[open].grading > summary::before { transform: rotate(90deg); }
+details.steps-sol > summary .sol-title { font-weight: 600; font-size: 14px; color: var(--text); }
+details.steps-sol > summary .ai-note { margin-left: 0; }
+details[open].steps-sol > summary { margin-bottom: 8px; }
+details.step { margin: 6px 0; padding-left: 2px; }
+details.step > summary { font-weight: 600; font-size: 14px; margin: .6em 0 .3em; }
+details.step > :not(summary) { margin-left: 1.25em; }

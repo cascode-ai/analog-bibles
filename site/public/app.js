@@ -446,10 +446,10 @@ function cardBody(q) {
         <h4>${t("answer")}</h4>
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q.id, f, t("refFig"))).join("")}</div>
-        ${q.sol ? `<div class="steps-sol">
-          <h4>${t("detailed")} <span class="ai-note">${t("aiNote")}</span></h4>
+        ${q.sol ? `<details class="steps-sol">
+          <summary><span class="sol-title">${t("detailed")}</span> <span class="ai-note">${t("aiNote")}</span></summary>
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
-        </div>` : ""}
+        </details>` : ""}
         <details class="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
       </section>
     </div>`;
@@ -467,13 +467,37 @@ async function fillCard(el, q) {
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
   el.querySelector(".q-answer").innerHTML = renderMarkdown(body);
-  if (q.sol) el.querySelector(".q-steps").innerHTML = renderMarkdown(steps.replace(/^# .*\n/, ""));
+  if (q.sol) {
+    const box = el.querySelector(".q-steps");
+    box.innerHTML = renderMarkdown(steps.replace(/^# .*\n/, ""));
+    foldSteps(box);
+  }
   if (grading.trim()) {
     const box = el.querySelector(".grading");
     box.hidden = false;
     box.querySelector(".md").innerHTML = renderMarkdown(grading);
   }
   return true;
+}
+
+// Each "### Step" heading and what follows it, up to the next one, becomes
+// its own fold (open), so a reader can close the steps they have followed.
+function foldSteps(box) {
+  for (const heading of [...box.querySelectorAll(":scope > h3")]) {
+    const fold = document.createElement("details");
+    fold.className = "step";
+    fold.open = true;
+    const summary = document.createElement("summary");
+    summary.innerHTML = heading.innerHTML;
+    fold.append(summary);
+    let next = heading.nextSibling;
+    while (next && !(next.nodeType === 1 && next.tagName === "H3")) {
+      const move = next;
+      next = next.nextSibling;
+      fold.append(move);
+    }
+    heading.replaceWith(fold);
+  }
 }
 
 // ---------- browse: every question in one scrolling list ----------
