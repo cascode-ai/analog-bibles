@@ -31,8 +31,6 @@ With $I_{D1} = I_{D2}$, replace $I_{D1}$ in (2) by the left-hand side of (1):
 
 $$\frac{V_{DD} - V_Y}{R_1} = I_{REF} + \frac{2(V_Y - V_X)}{R_2}. \tag{3}$$
 
-<!-- diagram: diagram-01.cir -->
-
 ### Step 2 — The operating point at $I_{REF} = 0$
 
 Could everything be off? If $M_2$ were off, no current would flow anywhere, so there would be no drop across $R_1$ or $R_2$ and $V_X = V_Y = V_{DD} = 3$ V. But then $V_{GS2} = 3\ \mathrm{V} > V_{TH}$ and $M_2$ would conduct, a contradiction. So **the circuit conducts even with $I_{REF} = 0$**: current flows from $V_{DD}$ through $R_1$ and $R_2$ into the diode $M_2$, and $M_1$ copies it.
@@ -162,6 +160,8 @@ In the example this happens at $I_{REF} \approx 391\ \mu\mathrm{A}$, with $V_X =
 For large $I_{REF}$, $V_X$ keeps rising and $M_1$ goes deep into triode, where it behaves like a resistor
 
 $$R_{on1} = \frac{1}{\beta(V_X - V_{TH})}.$$
+
+<!-- diagram: diagram-01.cir -->
 
 Node Y is then fed from $V_{DD}$ through $R_1$ and from X through $R_2$, and drained to ground by $R_{on1}$. KCL at Y gives
 
