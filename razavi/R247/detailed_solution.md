@@ -1,29 +1,20 @@
 # Detailed solution - R247
 
-**Approach.** Now the reference device $M_2$ is a plain diode, so $V_X$ follows the simple resistor-plus-diode curve. The copy $M_1$ has $R_2$ in its source (and the body effect that comes with it), so with the same gate voltage it carries *less* current than $M_2$. Its $R_1$ therefore drops less voltage, and $V_Y$ ends up above $V_X$, rising almost linearly with $V_{DD}$.
+**Approach.** The reference device $M_2$ is a plain diode, so $V_X$ follows the simple resistor-plus-diode curve. The copy $M_1$ has $R_2$ in its source (with the body effect that comes with it), so with the same gate voltage it carries *less* current than $M_2$. Its $R_1$ drops less, and $V_Y$ ends up above $V_X$, rising almost linearly with $V_{DD}$.
 
-### Step 1 — The circuit
+### Step 1 — Equations, and $V_{DD} \le 0.7$ V
 
-Reading the figure:
-
-- Left: $R_1$ from $V_{DD}$ to X; $M_2$ from X to ground with its gate tied to X (diode-connected, source grounded).
-- Right: $R_1$ from $V_{DD}$ to Y; $M_1$ with drain at Y, gate at X, and source at node $S_1$; $R_2$ from $S_1$ to ground.
-
-All bulks are grounded, so $M_1$ has $V_{SB1} = R_2I_1$ and
+The source of $M_1$ sits at $R_2I_1$ and the bulks are grounded, so $V_{SB1} = R_2I_1$ and
 
 $$V_{TH1} = 0.7 + 0.45\left(\sqrt{0.9 + R_2I_1} - \sqrt{0.9}\right) \ge 0.7\ \mathrm{V},$$
 
-while $V_{TH2} = 0.7$ V. Square law with $\lambda = 0$, $\beta = \mu_nC_{ox}W/L$.
-
-### Step 2 — $V_{DD} \le 0.7$ V
-
-No device can turn on (gate voltages $\le V_{DD} \le 0.7$ V, sources at or above ground), so no current flows and
+while $V_{TH2} = 0.7$ V. For $V_{DD} \le 0.7$ V no device can turn on, so no current flows and
 
 $$V_X = V_Y = V_{DD} .$$
 
-### Step 3 — $V_X$ above 0.7 V: the plain diode curve
+### Step 2 — $V_X$ above 0.7 V: the plain diode curve
 
-$M_2$ is diode-connected with a grounded source, so this is exactly the resistor-loaded diode. **KCL at X:**
+KCL at X for the grounded-source diode $M_2$:
 
 $$\frac{V_{DD} - V_X}{R_1} = \frac{\beta}{2}(V_X - 0.7)^2 .$$
 
@@ -31,40 +22,31 @@ With $w = V_X - 0.7$ and $D = V_{DD} - 0.7$, multiplying by $2R_1$ gives $\beta 
 
 $$V_X = 0.7 + \frac{\sqrt{1 + 2\beta R_1(V_{DD} - 0.7)} - 1}{\beta R_1} .$$
 
-Its slope, $dV_X/dV_{DD} = 1/\sqrt{1 + 2\beta R_1(V_{DD} - 0.7)} = 1/(1 + g_{m2}R_1)$, is 1 at turn-on and then falls steadily. $V_X$ rises **slowly and sub-linearly**.
+Its slope, $dV_X/dV_{DD} = 1/\sqrt{1 + 2\beta R_1(V_{DD} - 0.7)} = 1/(1 + g_{m2}R_1)$, is 1 at turn-on and then falls steadily: $V_X$ rises **slowly and sub-linearly**.
 
-### Step 4 — $M_1$ carries less current, so $V_Y > V_X$
+### Step 3 — $M_1$ carries less current, so $V_Y > V_X$
 
-$M_1$ has the same gate voltage $V_X$ but only $V_{GS1} = V_X - R_2I_1$, and a higher threshold. Assuming saturation (checked below), its current solves
+$M_1$ has the same gate voltage but only $V_{GS1} = V_X - R_2I_1$ and a higher threshold. Assuming saturation,
 
-$$I_1 = \frac{\beta}{2}\left(V_X - R_2I_1 - V_{TH1}\right)^2 < \frac{\beta}{2}(V_X - 0.7)^2 = I_2 .$$
+$$I_1 = \frac{\beta}{2}\left(V_X - R_2I_1 - V_{TH1}\right)^2 < \frac{\beta}{2}(V_X - 0.7)^2 = I_2 ,$$
 
-**KCL at Y:**
+and KCL at Y gives
 
 $$V_Y = V_{DD} - R_1I_1 > V_{DD} - R_1I_2 = V_X .$$
 
-**$M_1$ is saturated.** $V_{DS1} = V_Y - R_2I_1$ and $V_{GS1} - V_{TH1} = V_X - R_2I_1 - V_{TH1}$. Since $V_Y > V_X > V_X - V_{TH1}$, we get $V_{DS1} > V_{GS1} - V_{TH1}$ ✓. This holds over the whole sweep.
+$M_1$ is indeed saturated: $V_{DS1} = V_Y - R_2I_1$ and $V_{GS1} - V_{TH1} = V_X - R_2I_1 - V_{TH1}$, and $V_Y > V_X > V_X - V_{TH1}$, so $V_{DS1} > V_{GS1} - V_{TH1}$ ✓ over the whole sweep.
 
-### Step 5 — How fast $V_Y$ rises
+### Step 4 — How fast $V_Y$ rises
 
-Differentiate $V_Y = V_{DD} - R_1I_1$:
+Differentiating $V_Y = V_{DD} - R_1I_1$:
 
-$$\frac{dV_Y}{dV_{DD}} = 1 - R_1\frac{dI_1}{dV_X}\cdot\frac{dV_X}{dV_{DD}} = 1 - \frac{R_1G_{m1}}{1 + g_{m2}R_1},$$
+$$\frac{dV_Y}{dV_{DD}} = 1 - R_1\frac{dI_1}{dV_X}\cdot\frac{dV_X}{dV_{DD}} = 1 - \frac{R_1G_{m1}}{1 + g_{m2}R_1}, \qquad G_{m1} = \frac{g_{m1}}{1 + (g_{m1} + g_{mb1})R_2} ,$$
 
-where $G_{m1}$ is the transconductance of the degenerated $M_1$:
+with $G_{m1}$ the transconductance of the degenerated $M_1$. Since $g_{m1} < g_{m2}$ (less current) and $G_{m1} < g_{m1}$ (degeneration), $R_1G_{m1} < g_{m2}R_1 < 1 + g_{m2}R_1$, so the slope is always **positive and below 1**. Near turn-on both transconductances are small and the slope is close to 1; at larger $V_{DD}$, $G_{m1}$ saturates at about $1/[(1 + \eta)R_2]$ while $g_{m2}$ keeps growing, so the slope climbs back toward 1.
 
-$$G_{m1} = \frac{g_{m1}}{1 + (g_{m1} + g_{mb1})R_2} .$$
+So $V_Y$ rises **almost linearly**, with a slope somewhat below 1, pulling away from the slowly rising $V_X$: the current of $M_1$ grows only about as $(V_X - V_{GS1})/R_2$, and $V_X$ itself barely moves.
 
-Because $M_1$ carries less current than $M_2$ ($g_{m1} < g_{m2}$) and is degenerated ($G_{m1} < g_{m1}$), we have $R_1G_{m1} < g_{m2}R_1 < 1 + g_{m2}R_1$. So the slope is always **positive and below 1**.
-
-- Near turn-on, both transconductances are small and the slope is close to 1.
-- At larger $V_{DD}$, $G_{m1}$ saturates at about $1/[(1 + \eta)R_2]$, while $g_{m2}$ keeps growing. The subtracted term shrinks, and the slope climbs back toward 1.
-
-So $V_Y$ rises **almost linearly**, with a slope somewhat below 1, and pulls further and further away from the slowly rising $V_X$.
-
-**Intuition.** $R_2$ makes $M_1$ a poor copy of $M_2$: its current grows only about as $(V_X - V_{GS1})/R_2$, and $V_X$ itself barely moves. The drop $R_1I_1$ therefore grows slowly, and Y tracks $V_{DD}$ minus a slowly growing drop.
-
-### Step 6 — Numerical example
+### Step 5 — Numerical example
 
 With $W/L = 10/0.5$ ($\beta = 2.68\ \mathrm{mA/V^2}$), $R_1 = 5\ \mathrm{k}\Omega$, $R_2 = 1\ \mathrm{k}\Omega$ (body effect included):
 
@@ -75,7 +57,7 @@ With $W/L = 10/0.5$ ($\beta = 2.68\ \mathrm{mA/V^2}$), $R_1 = 5\ \mathrm{k}\Omeg
 | $I_2$ (μA) | 0 | 6 | 30 | 104 | 186 | 270 | 357 |
 | $I_1$ (μA) | 0 | 5 | 21 | 58 | 91 | 121 | 149 |
 
-The slope of $V_Y$ is about 0.61 at 1 V, 0.69 at 2 V and 0.73 at 3 V. The slope of $V_X$ falls from 0.33 to 0.13 over the same range.
+The slope of $V_Y$ is about 0.61 at 1 V, 0.69 at 2 V and 0.73 at 3 V, while that of $V_X$ falls from 0.33 to 0.13 over the same range.
 
 ### Result
 
@@ -85,8 +67,8 @@ $$V_X = 0.7 + \frac{\sqrt{1 + 2\beta R_1(V_{DD} - 0.7)} - 1}{\beta R_1},$$
 rising slowly and sub-linearly.
 - **Above 0.7 V, $V_Y$:** $V_Y > V_X$. $M_1$, degenerated by $R_2$ and with $V_{SB1} = R_2I_1$, carries less current than $M_2$, so $V_Y = V_{DD} - R_1I_1$ keeps rising almost linearly with $V_{DD}$ (slope below 1, increasing toward 1). $M_1$ stays saturated throughout.
 
-**Common mistake.** Putting $V_Y$ below $V_X$, as in the circuit with the degeneration on the diode side. Here the degeneration weakens the *copy* $M_1$, not the reference, so the right branch carries less current and its node sits higher.
+**Common mistake.** Putting $V_Y$ below $V_X$, as when the degeneration is on the diode side. Here it weakens the *copy* $M_1$, so the right branch carries less current and its node sits higher.
 
-**Common mistake.** Taking $V_Y = V_X$ (ignoring $R_2$), or drawing $V_Y$ flat like $V_X$. The drop across the right-hand $R_1$ grows only slowly, so Y follows $V_{DD}$ with a slope well above that of X.
+**Common mistake.** Taking $V_Y = V_X$ (ignoring $R_2$), or drawing $V_Y$ flat like $V_X$. The drop across the right-hand $R_1$ grows only slowly, so Y follows $V_{DD}$ with a much larger slope than X.
 
-**Common mistake.** Claiming that $M_1$ enters triode or that $V_Y$ falls at high $V_{DD}$. Since $V_Y > V_X$, the drain of $M_1$ is always above its gate, which guarantees saturation, and $dV_Y/dV_{DD} > 0$ throughout.
+**Common mistake.** Claiming that $M_1$ enters triode or that $V_Y$ falls at high $V_{DD}$. Since $V_Y > V_X$, the drain of $M_1$ is always above its gate, and $dV_Y/dV_{DD} > 0$ throughout.

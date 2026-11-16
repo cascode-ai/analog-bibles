@@ -1,67 +1,49 @@
 # Detailed solution - R244
 
-**Approach.** The circuit is the resistor-loaded mirror ($R_1$ in each branch, $M_2$ diode-connected, both gates at X) with an extra resistor $R_2$ between X and Y. We show that the solution has $V_X = V_Y$, so $R_2$ carries no current and the curves are exactly those of the circuit without $R_2$. Then we find $V_X(V_{DD})$ from KCL at X with the square law.
+**Approach.** This is the resistor-loaded mirror ($R_1$ in each branch, $M_2$ diode-connected, both gates at X) with an extra resistor $R_2$ between X and Y. Show that the solution has $V_X = V_Y$, so $R_2$ carries no current and the curves are those of the circuit without $R_2$; then find $V_X(V_{DD})$ from KCL at X with the square law.
 
-### Step 1 — The circuit
+### Step 1 — Region $V_{DD} \le 0.7$ V
 
-Reading the figure:
-
-- $R_1$ from $V_{DD}$ to X; $M_2$ from X to ground with its gate tied to X (diode-connected).
-- $R_1$ from $V_{DD}$ to Y; $M_1$ from Y to ground with its gate tied to X.
-- $R_2$ connects X and Y.
-
-Both transistors have $V_{GS} = V_X$. Square law with $\lambda = 0$, $\beta = \mu_nC_{ox}W/L$, $V_{TH} = 0.7$ V. Let $I_{R2} = (V_X - V_Y)/R_2$ be the current in $R_2$ from X to Y.
-
-### Step 2 — Region $V_{DD} \le 0.7$ V
-
-No node can rise above $V_{DD}$, so $V_{GS} = V_X \le 0.7$ V and both transistors are off. With no device current, the only possible path is $R_1$–$R_2$–$R_1$ between two points both at $V_{DD}$, so no current flows anywhere:
+Both transistors have $V_{GS} = V_X$, and no node can rise above $V_{DD}$, so for $V_{DD} \le 0.7$ V both are off. The only remaining path, $R_1$–$R_2$–$R_1$, connects two points at $V_{DD}$, so no current flows:
 
 $$V_X = V_Y = V_{DD} \qquad (0 \le V_{DD} \le 0.7\ \mathrm{V}) .$$
 
-### Step 3 — Showing that $V_X = V_Y$ when the transistors conduct
+### Step 2 — Showing that $V_X = V_Y$ when the transistors conduct
 
-**KCL at X** (current in from the top $R_1$ = diode current + current into $R_2$):
+KCL at X and at Y, with $I_{R2} = (V_X - V_Y)/R_2$ the current in $R_2$ from X to Y:
 
-$$\frac{V_{DD} - V_X}{R_1} = I_{D2} + \frac{V_X - V_Y}{R_2} . \qquad (1)$$
-
-**KCL at Y** (current in from the top $R_1$ and from $R_2$ = current of $M_1$):
+$$\frac{V_{DD} - V_X}{R_1} = I_{D2} + \frac{V_X - V_Y}{R_2} , \qquad (1)$$
 
 $$\frac{V_{DD} - V_Y}{R_1} + \frac{V_X - V_Y}{R_2} = I_{D1} . \qquad (2)$$
 
-**Subtract (2) from (1):**
+Subtracting (2) from (1):
 
-$$\frac{V_Y - V_X}{R_1} - \frac{2(V_X - V_Y)}{R_2} = I_{D2} - I_{D1},$$
+$$\frac{V_Y - V_X}{R_1} - \frac{2(V_X - V_Y)}{R_2} = I_{D2} - I_{D1} \quad\Longrightarrow\quad (V_Y - V_X)\left(\frac{1}{R_1} + \frac{2}{R_2}\right) = I_{D2} - I_{D1} . \qquad (3)$$
 
-i.e.
+Both devices have $V_{GS} = V_X$, and the diode $M_2$ is saturated.
 
-$$(V_Y - V_X)\left(\frac{1}{R_1} + \frac{2}{R_2}\right) = I_{D2} - I_{D1} . \qquad (3)$$
-
-Now compare the two transistor currents. They have the same $V_{GS} = V_X$, and $M_2$ is saturated (diode).
-
-- **If $M_1$ is saturated** ($V_Y \ge V_X - V_{TH}$): with $\lambda = 0$, $I_{D1} = I_{D2}$. Equation (3) then gives $V_Y - V_X = 0$.
-- **If $M_1$ were in triode** ($V_Y < V_X - V_{TH}$, so $V_Y < V_X$): then $I_{D1} < I_{D2}$, and the right side of (3) is positive. That requires $V_Y > V_X$, a contradiction.
+- **If $M_1$ is saturated** ($V_Y \ge V_X - V_{TH}$), $I_{D1} = I_{D2}$ ($\lambda = 0$), and (3) gives $V_Y - V_X = 0$.
+- **If $M_1$ were in triode** ($V_Y < V_X - V_{TH}$, so $V_Y < V_X$), then $I_{D1} < I_{D2}$ and (3) requires $V_Y > V_X$, a contradiction.
 
 So the only solution is
 
-$$V_Y = V_X, \qquad I_{R2} = 0 .$$
+$$V_Y = V_X, \qquad I_{R2} = 0 ,$$
 
-$M_1$ then has $V_{DS1} = V_{GS1}$, so it is saturated, consistent with the first case. **$R_2$ connects two nodes that are always at the same voltage, so it carries no current and has no effect.** This is a symmetry argument made rigorous: both branches are "$R_1$ from $V_{DD}$ plus a transistor with gate at X", and the diode connection of $M_2$ forces $V_{DS} = V_{GS}$ on that side.
+with $V_{DS1} = V_{GS1}$, so $M_1$ is indeed saturated. **$R_2$ connects two nodes that are always at the same voltage, so it carries no current and has no effect.**
 
-### Step 4 — The curve for $V_{DD} > 0.7$ V
+### Step 3 — The curve for $V_{DD} > 0.7$ V
 
-With $I_{R2} = 0$, equation (1) is the same as for the circuit without $R_2$:
+With $I_{R2} = 0$, (1) is the same as without $R_2$:
 
 $$\frac{V_{DD} - V_X}{R_1} = \frac{\beta}{2}(V_X - V_{TH})^2 .$$
 
-With $w = V_X - V_{TH}$ and $D = V_{DD} - V_{TH}$, multiply by $2R_1$:
+With $w = V_X - V_{TH}$ and $D = V_{DD} - V_{TH}$, multiplying by $2R_1$ and taking the positive root:
 
-$$\beta R_1w^2 + 2w - 2D = 0 \quad\Longrightarrow\quad w = \frac{\sqrt{1 + 2\beta R_1D} - 1}{\beta R_1}$$
-
-(positive root). Therefore
+$$\beta R_1w^2 + 2w - 2D = 0 \quad\Longrightarrow\quad w = \frac{\sqrt{1 + 2\beta R_1D} - 1}{\beta R_1} ,$$
 
 $$V_X = V_Y = V_{TH} + \frac{\sqrt{1 + 2\beta R_1(V_{DD} - V_{TH})} - 1}{\beta R_1} .$$
 
-**Shape.** $dV_X/dV_{DD} = 1/\sqrt{1 + 2\beta R_1(V_{DD} - V_{TH})}$. This is 1 at $V_{DD} = 0.7$ V (a smooth departure from the 45° line) and falls steadily, so the curve rises ever more slowly, roughly as $V_{TH} + \sqrt{2(V_{DD} - V_{TH})/(\beta R_1)}$ for large $V_{DD}$.
+The slope $dV_X/dV_{DD} = 1/\sqrt{1 + 2\beta R_1(V_{DD} - V_{TH})}$ is 1 at $V_{DD} = 0.7$ V (a smooth departure from the 45° line) and falls steadily, so the curve rises ever more slowly, roughly as $V_{TH} + \sqrt{2(V_{DD} - V_{TH})/(\beta R_1)}$ for large $V_{DD}$.
 
 **Example.** With $\beta R_1 = 10\ \mathrm{V^{-1}}$ (e.g. $\beta = 1\ \mathrm{mA/V^2}$, $R_1 = 10\ \mathrm{k}\Omega$), whatever $R_2$ is:
 
@@ -80,8 +62,8 @@ leaving the 45° line with slope 1 at 0.7 V and then rising ever more slowly.
 
 The result is independent of $R_2$, because $R_2$ connects two nodes at the same potential.
 
-**Common mistake.** Assuming that $R_2$ must carry some current and shift $V_Y$ above or below $V_X$. A current in $R_2$ would need a voltage across it. Equation (3) shows that, with $M_1$ saturated (which it is when $V_Y = V_X$), any difference $V_Y - V_X$ would have to be zero.
+**Common mistake.** Assuming that $R_2$ must carry some current and shift $V_Y$ away from $V_X$. Equation (3) shows that, with $M_1$ saturated, any difference $V_Y - V_X$ must be zero.
 
-**Common mistake.** Claiming that $M_1$ is in triode or that $V_Y$ drops toward zero. $V_Y = V_X$ gives $V_{DS1} = V_{GS1}$, which is deep in saturation.
+**Common mistake.** Claiming that $M_1$ is in triode or that $V_Y$ drops toward zero. $V_Y = V_X$ gives $V_{DS1} = V_{GS1}$, deep in saturation.
 
-**Common mistake.** Treating $R_2$ as a load between Y and ground, or between X and $V_{DD}$. In the figure it connects X and Y directly, which is why symmetry makes it irrelevant.
+**Common mistake.** Treating $R_2$ as a load to ground or to $V_{DD}$. It connects X and Y directly, which is why symmetry makes it irrelevant.
