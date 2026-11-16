@@ -1,0 +1,1 @@
+工作在亚阈值（subthreshold）区的 MOS 器件呈现指数特性：$I_D = I_0\exp[V_{GS}/(\zeta V_T)]$。假设 [图 1] 所示的差分对（differential pair）工作在亚阈值区，其尾电流（tail current）为 $I_{SS} = 2I$，电路对称。首先证明 $I_{D1} - I_{D2} \propto \tanh[V_{in}/(2\zeta V_T)]$，然后写出双曲正切的泰勒展开式，推导差分输入为 $V_{in} = V_m\cos\omega t$（$V_m \ll \zeta V_T$）时 $I_{D1} - I_{D2}$ 各次谐波幅度的表达式。

@@ -1,0 +1,1 @@
+对于 [图 1] 所示的差分对（differential pair），每个晶体管的宽长比（aspect ratio）为 $W/L$，偏置电流为 $I$，尾电流（tail current）为 $I_{SS} = 2I$，负载电阻为 $R_D$，差分输入为峰值幅度 $V_m$ 固定的正弦信号。在 $I$ 和 $R_D$ 保持不变的条件下，画出总谐波失真（total harmonic distortion）和输入参考热噪声（input-referred thermal noise）电压随 $W/L$ 变化的曲线。指出噪声、线性度与功耗之间的折中关系。采用平方律（square law）模型，并假设电路对称、晶体管始终处于饱和区（saturation region）。

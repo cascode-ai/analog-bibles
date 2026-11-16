@@ -1,0 +1,1 @@
+工作在亚阈值（subthreshold）区的 MOS 器件呈现指数特性：$I_D = I_0\exp[V_{GS}/(\zeta V_T)]$。假设 [图 1] 所示的共源级（common-source stage）工作在亚阈值区，偏置漏极电流为 $I$，其输入是叠加在栅极偏置上的正弦信号 $V_m\cos\omega t$，且 $V_m \ll \zeta V_T$。推导漏极电流和输出电压各次谐波幅度的表达式。

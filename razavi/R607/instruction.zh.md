@@ -1,0 +1,1 @@
+考虑 [图 1] 所示的共源级（common-source stage），其偏置电流为 $I$，以及 [图 2] 所示的差分对（differential pair），其尾电流（tail current）为 $I_{SS} = 2I$。每个晶体管的宽长比（aspect ratio）为 $W/L$，每一级的负载电阻均为 $R_D$，因此两者的小信号电压增益都为 $|A_v| \approx g_mR_D = \mu_nC_{ox}(W/L)(V_{GS}-V_{TH})R_D$。在这些电路中，有两种效应导致非线性（nonlinearity）与电压增益之间的折中。描述这两种效应。

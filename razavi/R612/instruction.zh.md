@@ -1,0 +1,1 @@
+一个负反馈系统由减法器、非线性前馈放大器（feedforward amplifier）和反馈系数（feedback factor）为 $\beta$ 的线性反馈网络构成：放大器的输入为 $y_S(t) = x(t) - \beta y(t)$，输出为 $y(t) = \alpha_1y_S(t) + \alpha_3y_S^3(t)$，这是一个弱非线性特性。对于输入 $x(t) = V_m\cos\omega t$，估算整个系统输出端三次谐波（third harmonic）的幅度。忽略系统中的相移。
