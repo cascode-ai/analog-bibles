@@ -1,0 +1,1 @@
+[图 1] 所示开关电容积分器（switched-capacitor integrator）的设计参数为 $C_1 = C_2 = 1$ pF，时钟频率为 100 MHz。$S_1$ 和 $S_2$ 由不交叠（non-overlapping）的时钟相位驱动；运算放大器（op amp）具有高增益。忽略电荷注入（charge injection）和时钟馈通（clock feedthrough），若输入是峰值幅度为 0.5 V、频率为 10 MHz 的正弦信号，画出输出波形的草图。把 $C_1$、$S_1$ 和 $S_2$ 近似为一个电阻，估算输出幅度。

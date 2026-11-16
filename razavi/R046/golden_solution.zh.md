@@ -1,0 +1,1 @@
+$g_m = \mu_nC_{ox}(W/L)(V_{GS}-V_{TH})$，因此 $W/L = \dfrac{g_m}{\mu_nC_{ox}(V_{GS}-V_{TH})} \propto (V_{GS}-V_{TH})^{-1}$：这是一条双曲线，比 $I_D$ 恒定时的曲线（$\propto 1/V_{ov}^2$）下降得慢。沿这条曲线，$I_D = g_m(V_{GS}-V_{TH})/2$ 随过驱动电压（overdrive voltage）线性增大。

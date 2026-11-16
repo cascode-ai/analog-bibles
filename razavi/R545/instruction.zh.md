@@ -1,0 +1,1 @@
+[图 1] 所示的与电源无关的偏置电路（supply-independent bias circuit）没有专门的启动（start-up）机制，但在接通 $V_{DD}$ 时，它有时会自行开启。找出把 $V_{DD}$ 上的跳变耦合到内部节点、从而提供启动电流的电容通路（一条或多条）。假设采用标准的 n 阱（n-well）CMOS 工艺：PMOS 器件的 n 阱作为其衬底（bulk）接 $V_{DD}$，NMOS 器件的衬底接地。

@@ -1,0 +1,1 @@
+某差分对（differential pair）的输入 NMOS 器件 $W/L = 50/0.5$（μm），尾电流（tail current）为 2 mA。假设尾电流源是理想的，器件服从平方律（square law），λ = 0，$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$。平衡时每个晶体管的过驱动电压（overdrive voltage）是多少？与尾电流为 1 mA 时得到的值进行比较。

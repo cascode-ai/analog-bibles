@@ -1,0 +1,1 @@
+某压控振荡器（VCO）满足 $\omega_{out} = \omega_0 + K_{VCO}V_{cont}$。其控制线上存在一个小的正弦纹波，$V_{cont} = V_m\cos\omega_mt$。若 VCO 后面接一个 ÷M 电路，即分频器（frequency divider），求分频器的输出频谱。考虑两种情况：$\omega_0/M > \omega_m$ 和 $\omega_0/M < \omega_m$。

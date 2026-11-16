@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考闪烁噪声电压（input-referred flicker noise voltage）。电路中 NMOS 管 $M_1$ 与 PMOS 管 $M_2$ 的栅极相连作为输入端，漏极相连作为输出端；两个晶体管都工作在饱和区（saturation region）。把每个晶体管的闪烁噪声建模为与其栅极串联的电压，其功率谱密度（PSD）为 $K/(C_{ox}WL\,f)$，NMOS 用 $K_N$，PMOS 用 $K_P$。用 $g_{m1}$、$g_{m2}$、$(WL)_1$、$(WL)_2$ 表示结果。

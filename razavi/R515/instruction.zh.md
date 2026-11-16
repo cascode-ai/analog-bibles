@@ -1,0 +1,1 @@
+[图 1] 给出了一个 $W/L = 5\ \mu\mathrm{m}/40\ \mathrm{nm}$（40-nm CMOS）的 NMOS 晶体管的跨导（transconductance）仿真曲线，横轴为其过驱动电压（overdrive voltage）$V_{GS} - V_{TH}$，$V_{DS} = 200$ mV。解释为什么当 $V_{GS} - V_{TH}$ 超过 0.5 V 时 $g_m$ 会下降。

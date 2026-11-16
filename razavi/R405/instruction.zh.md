@@ -1,0 +1,1 @@
+采用电流源（current source）负载的差分对（differential pair）可以用 [图 1] 表示，其中 $R_0 = r_{ON}\|r_{OP}$，$r_{ON}$ 和 $r_{OP}$ 分别为 NMOS 和 PMOS 器件的输出电阻（output resistance），$G_m$ 为每个输入晶体管的跨导（transconductance），因此 [图 1] 的差分电压增益幅值为 $G_mR_0$。考虑 [图 2] 所示电路，两个这样的级 $G_{m1}$ 和 $G_{m2}$ 构成一个负反馈环路；$Z_{in}$ 为差分输入阻抗。忽略 $C_1$ 以外的所有电容，推导 $Z_{in}$ 的表达式。画出 $|Z_{in}|$ 随频率变化的曲线草图。

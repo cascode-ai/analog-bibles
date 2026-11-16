@@ -1,0 +1,1 @@
+设 $V_{in} = V_0\sin\omega_0t + V_0$，其中 $V_0 = 0.5$ V，$\omega_0 = 2\pi \times (10\ \mathrm{MHz})$，画出 [图 1] 所示电路的输出波形。该电路由采样开关 $S_1$ 和电容 $C_H$ 构成，后接一个单位增益缓冲器（unity-gain buffer）。假设时钟频率为 50 MHz，占空比（duty cycle）为 50%，时钟为高电平时 $S_1$ 闭合，且开关和运算放大器（op amp）均为理想器件。

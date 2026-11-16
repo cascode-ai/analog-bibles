@@ -1,0 +1,1 @@
+[图 1] 针对一个服从平方律（square law）的长沟道 MOSFET，给出了在 $W/L$ 保持恒定时 $g_m$（向上画）和 $V_{GS} - V_{TH}$（向下画）随 $I_D$ 的变化关系。对于一种假想晶体管，其在饱和区（saturation region）中的跨导（transconductance）为 $g_m = \beta(V_{GS} - V_{TH})^2$，其中 β 与 $W/L$ 成正比（因此 $I_D = \beta(V_{GS} - V_{TH})^3/3$），画出相应曲线的草图。

@@ -1,0 +1,1 @@
+在 [图 1] 所示系统中，两条信号通路的特性分别为 $y_1 = \alpha_1x_1 + \alpha_2x_1^2 + \alpha_3x_1^3$ 和 $y_2 = \beta_1x_2 + \beta_2x_2^2 + \beta_3x_2^3$，输出为二者之差 $y_1(t) - y_2(t)$。假设 $\alpha_j = \beta_j$（$j$ = 1, 2, 3），但 $x_1(t) = A\cos\omega t$，$x_2(t) = A\cos(\omega t + \theta)$，其中 $\theta$ 表示很小的相位失配（phase mismatch）。计算输出端二次谐波（second harmonic）的幅度。

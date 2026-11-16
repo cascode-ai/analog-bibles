@@ -1,0 +1,1 @@
+[图 1] 画出了 MOSFET 的跨导（transconductance）$g_m$ 随其漏极电流 $I_D$ 变化的草图。在弱反型（weak inversion）中，$g_m = I_D/(\xi V_T)$，其中 $\xi \approx 1.5$，室温下 $V_T = kT/q \approx 26$ mV；灰色区域中的 $(I_D, g_m)$ 组合是无法实现的；在更大的电流下，曲线在强反型（strong inversion）中弯折变缓。如果 ξ 从 1.5 降到 1.0，说明无法实现的区域会发生什么变化。假设强反型中的特性不变。

@@ -1,0 +1,1 @@
+[图 1] 给出了 I 型锁相环（type I PLL）的闭环极点随 $K_{PD}K_{VCO}$ 从零开始增大时的根轨迹（root locus）。该环路由增益为 $K_{PD}$ 的鉴相器（phase detector）、一阶低通滤波器（low-pass filter）$1/(1 + s/\omega_{LPF})$ 和传递函数为 $K_{VCO}/s$ 的压控振荡器（VCO）组成，并采用单位反馈。其闭环传递函数可写为 $\omega_n^2/(s^2 + 2\zeta\omega_ns + \omega_n^2)$。证明：对于复数极点，$\cos\varphi = \zeta$，其中 φ 是 [图 1] 中标出的负实轴与原点到极点连线之间的夹角。

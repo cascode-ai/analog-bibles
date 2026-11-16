@@ -1,0 +1,1 @@
+对于一个工作在饱和区（saturation region）的 NMOS 器件，当衬底电压（bulk voltage）从 0 变化到 $-\infty$、而其他各端电压保持不变时（源极接 0 V，$V_{GS}$ 和 $V_{DS}$ 固定），画出 $g_m$、$r_O$ 和 $g_mr_O$ 的变化曲线。采用平方律模型（square-law model），并取 $r_O = 1/(\lambda I_D)$。器件参数：$V_{TH0} = 0.7$ V，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$。

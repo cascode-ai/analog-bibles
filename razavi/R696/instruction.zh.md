@@ -1,0 +1,1 @@
+某差分对（differential pair）的输入管为 NMOS，并以位于 n 阱（n-well）中的 PMOS 有源电流镜（active current mirror）作为负载，其小信号电压增益偏低。偏置电流即尾电流（tail current），等于目标值。对于下列每一种制造错误，说明它是否可能导致这一现象，并解释原因：(a) n 阱注入剂量过大，(b) 阈值调整注入（threshold-adjust implant）剂量过大，(c) 栅氧化时间过长。

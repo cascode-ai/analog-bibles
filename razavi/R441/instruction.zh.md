@@ -1,0 +1,1 @@
+对于 [图 1] 所示的放大器，若电流源（current source）$I_1$ 和 $I_2$ 用 PMOS 器件实现，记为 $M_{P1}$ 和 $M_{P2}$，其跨导（transconductance）分别为 $g_{mP1}$、$g_{mP2}$，计算其（低频）输入参考热噪声电压（input-referred thermal noise voltage）。将每个 MOSFET 的沟道热噪声（channel thermal noise）建模为谱密度为 $4kT\gamma g_m$ 的漏极噪声电流，其中 $\gamma = 2/3$。所有晶体管均工作在饱和区（saturation region）；用小信号参数表示结果。

@@ -1,0 +1,1 @@
+考虑 [图 1] 所示的跨阻放大器（transimpedance amplifier），其中 $R_D = 1$ kΩ，$R_F = 10$ kΩ，$g_{m1} = g_{m2} = 1/(100\ \Omega)$，$C_A = C_X = C_Y = 100$ fF。忽略其他所有电容，并假设 $\lambda = \gamma = 0$，计算该电路的相位裕度（phase margin）。（提示：在节点 X 处断开环路。）

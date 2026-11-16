@@ -1,0 +1,1 @@
+对于 [图 1] 所示电路，当 $V_X$ 从 0 变化到 $V_{DD} = 3$ V 时，画出 $I_X$ 和晶体管跨导（transconductance）随 $V_X$ 变化的曲线草图。$M_1$ 是 PMOS 器件，$V_{TH0} = -0.8$ V，$\gamma = 0.4\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.8$ V，其衬底（bulk）接 $V_{DD}$。题中未给出 $M_1$ 的尺寸；用 $\beta_p = \mu_pC_{ox}W/L$ 表示电流。

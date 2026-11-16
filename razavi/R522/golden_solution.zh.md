@@ -1,0 +1,1 @@
+两者都是过原点的直线，与平方律情形的形状相同。$g_m = 3I_D/(V_{GS}-V_{TH}) \propto I_D$，斜率为 $3/(V_{GS}-V_{TH})$，而不是 $2/(V_{GS}-V_{TH})$。令 $\beta = kW/L$，则 $W/L = 3I_D/[k(V_{GS}-V_{TH})^3] \propto I_D$。在过驱动电压（overdrive voltage）恒定时，电流密度固定，因此宽度和 $g_m$ 都与电流成比例变化。

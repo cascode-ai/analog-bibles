@@ -1,0 +1,1 @@
+[图 1] 所示的源极跟随器（source follower）由 NMOS 管 $M_1$ 构成，栅极为输入端，源极为输出端，并由栅极接固定偏置 $V_b$ 的 NMOS 电流源（current source）$M_2$ 偏置。要求它在 0.1 mA 的偏置电流下提供 100 Ω 的输出电阻（output resistance）。计算 $(W/L)_1$。采用平方律（square law），$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$；忽略体效应（body effect）和沟道长度调制（channel-length modulation）。

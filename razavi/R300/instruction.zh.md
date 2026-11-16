@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入阻抗 $Z_{in}$（如图中所标，从 $R_S$ 右侧的节点看进去）和传递函数 $V_{out}/V_{in}$。$M_1$ 为 NMOS 晶体管，$M_2$ 为 PMOS 晶体管，二者都工作在饱和区（saturation region）；$I_1$ 和 $I_2$ 为理想电流源（current source），$\lambda = \gamma = 0$。电路中不含任何电容：只用图中所示的元件进行分析。

@@ -1,0 +1,1 @@
+某 I 型锁相环（type I PLL）中使用的压控振荡器（VCO）在输入-输出特性上存在非线性（nonlinearity），即 $K_{VCO}$ 在整个调谐范围（tuning range）内是变化的。该 PLL 由增益为 $K_{PD}$ 的鉴相器（phase detector）、一阶低通滤波器（low-pass filter）$1/(1 + s/\omega_{LPF})$ 以及增益为 $K_{VCO}$ 的 VCO 构成单位反馈环路。若阻尼比（damping ratio）必须保持在 1 到 1.5 之间，$K_{VCO}$ 最多能容许多大的变化？

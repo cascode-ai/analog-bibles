@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考热噪声电压（input-referred thermal noise voltage）。电路中 NMOS 管 $M_1$ 带有源极电阻 $R_S$，负载为二极管连接（diode-connected）的 PMOS 管 $M_2$。忽略沟道长度调制（channel-length modulation）和体效应（body effect）。把每个 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把电阻的热噪声建模为 $4kTR_S$（电压）。

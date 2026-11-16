@@ -1,0 +1,3 @@
+在 [图 1] 所示的放大器中，$I_1 = 100\ \mu$A，$I_2 = 0.5$ mA，$(W/L)_{1-3} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$。$I_1$ 和 $I_2$ 用 $(W/L)_P = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ 的 PMOS 器件实现（源极接 $V_{DD}$），$V_{in}$ 的偏置使 $M_1$ 流过 $I_2$。$V_{DD} = 3$ V；所有晶体管都工作在饱和区（saturation region）。计算总的低频电压增益和输入参考热噪声电压（input-referred thermal noise voltage）。将每个 MOSFET 的沟道热噪声（channel thermal noise）建模为谱密度为 $4kT\cdot\tfrac23 g_m$ 的漏极噪声电流，T = 300 K。所有 NMOS 器件的衬底（bulk）都接地。
+
+器件参数：NMOS 管 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V；PMOS 管 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V，$\lambda = 0.2\ \mathrm{V^{-1}}$。

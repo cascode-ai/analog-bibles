@@ -1,0 +1,1 @@
+在 [图 1] 所示的差分级中，每个负载都由一个 PMOS 晶体管（$M_3$ 或 $M_4$）构成，其栅极由它自己的漏极经一个 NMOS 源极跟随器（source follower）$M_5$ 或 $M_6$ 驱动，跟随器由理想电流源（current source）偏置。只考虑 $M_3$ 的栅源电容，说明在什么条件下，这一复合负载的阻抗（从 $M_3$ 的漏极看进去）呈感性（inductive）。假设 $\lambda = \gamma = 0$，且 $M_3$ 工作在饱和区（saturation region）。

@@ -1,0 +1,1 @@
+计算工作在亚阈值区（subthreshold region）的 MOS 器件的 $f_T$，其中 $I_D = I_0\exp[V_{GS}/(\zeta V_T)]$（$\zeta > 1$，$V_T = kT/q$），并将结果与工作在强反型（strong inversion）饱和区的器件相比较，后者的 $f_T = g_m/[2\pi(C_{GS} + C_{GD})] \approx \mu_n(V_{GS} - V_{TH})/(2\pi L^2)$。（$f_T$ 是源极和漏极接交流地时，小信号电流增益下降到 1 的频率。）

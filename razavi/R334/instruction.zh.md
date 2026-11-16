@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考热噪声电压（input-referred thermal noise voltage）。该电路是源极跟随器（source follower），电阻 $R_S$ 接在源极与地之间；$M_1$ 的漏极接 $V_{DD}$。忽略沟道长度调制（channel-length modulation）和体效应（body effect）。把 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把电阻的热噪声建模为功率谱密度为 $4kT/R_S$ 的电流。

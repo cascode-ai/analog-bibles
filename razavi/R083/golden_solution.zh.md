@@ -1,0 +1,5 @@
+$V_{in} \approx 1.37$ V（$V_{out} \approx 0.669$ V，$V_{TH2} \approx 0.837$ V，$I_D \approx 2.99$ mA）；$A_v \approx -1.90$。
+
+- $M_2$ 的源极就是输出端：$V_{TH2} = 0.7 + 0.45(\sqrt{0.9 + V_{out}} - \sqrt{0.9})$。
+- 电流相等：$\sqrt5\,V_{ov1} = 3 - V_{out} - V_{TH2}(V_{out})$，在边缘处 $V_{out} = V_{ov1}$ → $V_{ov1} = 0.669$ V，$V_{in} = 1.369$ V。
+- $\eta = \gamma/(2\sqrt{0.9 + 0.669}) = 0.180$；$A_v = -g_{m1}/(g_{m2} + g_{mb2}) = -\sqrt5/(1+\eta) \approx -1.90$。

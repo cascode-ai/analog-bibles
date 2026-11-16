@@ -1,0 +1,3 @@
+在 [图 1] 所示的两级运算放大器（two-stage op amp）中，$I_{SS} = 1$ mA（其最小电压为 400 mV，即 $M_1$/$M_2$ 源极处的电压），第一级的每条支路和每条输出支路都流过 0.5 mA，$(W/L)_{9-12} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$，$(W/L)_{1-4} = 16.6$，对应的过驱动电压（overdrive voltage）为 0.67 V；$(W/L)_{5-8} = 92.6$，对应的过驱动电压为 0.53 V；所有器件的 L = 0.5 μm。$V_{b1}$–$V_{b3}$ 使 $M_1$ 和 $M_7$（以及 $M_2$、$M_8$）恰好处于饱和区（saturation region）的边缘。$V_{DD} = 3$ V。计算总的差分电压增益。NMOS 器件的衬底（bulk）接地，PMOS 器件的衬底接 $V_{DD}$。
+
+器件参数：NMOS 管 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V；PMOS 管 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V，$\lambda = 0.2\ \mathrm{V^{-1}}$，$\gamma = 0.4\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.8$ V。

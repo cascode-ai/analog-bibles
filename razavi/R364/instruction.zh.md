@@ -1,0 +1,1 @@
+一个共栅级（common-gate stage）采用 $W/L = 50/0.5$ 的 NMOS 器件，偏置电流为 $I_D = 1$ mA，负载电阻为 1 kΩ。计算输入参考热噪声（input-referred thermal noise）电压和电流。取 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$T = 300$ K，沟道热噪声（channel thermal noise）为 $4kT\gamma g_m$，其中 $\gamma = 2/3$；忽略沟道长度调制（channel-length modulation）、体效应（body effect）、偏置电流源的噪声以及各电容。

@@ -1,0 +1,1 @@
+考虑 [图 1] 所示电路，其中 $(W/L)_1 = 50/0.5$，$(W/L)_2 = 10/0.5$；$V_{DD} = 3$ V。假设 $\lambda = 0$，但不能忽略体效应（body effect），两个晶体管的衬底（bulk）都接地。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V。输入电压为多少时，$M_1$ 进入线性区（triode region）50 mV，即 $V_{DS1}$ 比 $V_{GS1} - V_{TH}$ 小 50 mV？此时的小信号增益是多少？

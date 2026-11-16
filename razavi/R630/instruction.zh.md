@@ -1,0 +1,1 @@
+对于 [图 1] 所示的三级差分环形振荡器（ring oscillator），求保证电路振荡的 $I_{SS}$ 最小值。（提示：电路处于振荡边缘时，摆幅很小。）所有晶体管 $M_1$–$M_6$ 都相同，宽长比（aspect ratio）为 $W/L$，$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$；题目没有给出 $R_1$ 和 $W/L$ 的数值，因此用它们表示结果。忽略沟道长度调制（channel-length modulation）。

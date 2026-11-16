@@ -1,0 +1,1 @@
+一个 $W/L = 50/0.5$ 的 NMOS 晶体管偏置在 $V_G = +1.2$ V、$V_S = 0$，衬底电压（bulk voltage）为 −1 V。漏极电压从 0 变化到 3 V。画出本征增益（intrinsic gain）随 $V_{DS}$ 变化的曲线，这里本征增益指栅跨导（gate transconductance）$g_m$ 与小信号漏源电阻的乘积。器件参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V。尺寸均为以 μm 为单位的有效值。

@@ -1,0 +1,1 @@
+在 [图 1] 所示电路中，共源共栅（cascode）晶体管 $M_3$ 和 $M_4$（栅极接 $V_b$）存在大小为 $\Delta V_{TH}$ 的阈值失配（threshold mismatch），电路在其他方面完全对称；尾电流源（tail current source）是理想的，所有晶体管都工作在饱和区（saturation region）。假设 $\lambda \neq 0$ 但 $\gamma = 0$，计算输入参考失调电压（input-referred offset voltage）。当 $R_D \to \infty$ 时会怎样？用晶体管的小信号参数（$g_m$、$r_O$）表示结果。

@@ -1,0 +1,7 @@
+$A_v = g_{m1}(R_{down}\|R_{up})\times g_{m9}(r_{O9}\|r_{O11}) \approx 4.9\times10^3$（≈ 74 dB）。若采用完整的共源共栅（cascode）输出电阻 $R_{down} = (g_{m3}+g_{mb3})r_{O3}r_{O1} + r_{O1} + r_{O3}$ 和 $R_{up} = (g_{m5}+g_{mb5})r_{O5}r_{O7} + r_{O5} + r_{O7}$，结果为 $271 \times 18.5 \approx 5.0\times10^3$；对半边电路（half circuit）做精确的小信号分析得到 $4.87\times10^3$；略去 $r_{O1} + r_{O3}$ 和 $r_{O5} + r_{O7}$ 两项则得到 $250 \times 18.5 \approx 4.6\times10^3$。若忽略共源共栅管的体效应（body effect）：≈ $4.2\times10^3$（精确值；用完整公式 ≈ 4.3×10³，用简化公式 ≈ 3.95×10³）。
+
+- $g_{m1} = g_{m3} = 2(0.5\ \mathrm{mA})/0.67\ \mathrm{V} = 1.49$ mS，$r_{O1} = r_{O3} = 20$ kΩ。$M_3$ 的源极位于 0.4 + 0.67 = 1.07 V → $g_{mb3} = g_{m3}\cdot 0.45/(2\sqrt{0.9 + 1.07}) = 0.16g_{m3}$ → $R_{down} = 1.73\ \mathrm{mS} \times 20\ \mathrm{k} \times 20\ \mathrm{k} + 40\ \mathrm{k} \approx 0.69 + 0.04 = 0.73$ MΩ（不计 $g_{mb}$ 时为 0.64 MΩ）。
+- $g_{m5} = 2(0.5\ \mathrm{mA})/0.53\ \mathrm{V} = 1.89$ mS，$r_{O5} = r_{O7} = 10$ kΩ。$M_5$ 的源极比 $V_{DD}$ 低约 0.53 V → $g_{mb5} \approx 0.17g_{m5}$ → $R_{up} \approx 0.22 + 0.02 = 0.24$ MΩ（不计体效应时为 0.21 MΩ）。
+- 第一级：$A_1 = g_{m1}(R_{down}\|R_{up}) \approx 1.49\ \mathrm{mS} \times 182\ \mathrm{k\Omega} \approx 271$（半边电路精确分析为 264；只用简化电阻 $(g_m + g_{mb})r_Or_O$ 时为 250；不计体效应时 ≈ 235）。
+- 第二级：$g_{m9} = \sqrt{2(38.4\ \mu)(200)(0.5\ \mathrm{m})} = 2.77$ mS，$r_{O9} = 10$ kΩ，$r_{O11} = 20$ kΩ → $A_2 = 2.77\ \mathrm{mS} \times 6.67\ \mathrm{k\Omega} = 18.5$。
+- $A_v \approx 4.9\times10^3$，根据共源共栅近似方式的不同为 4.6–5.0×10³（不计体效应时 ≈ 4.2×10³）。

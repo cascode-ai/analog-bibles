@@ -1,0 +1,1 @@
+假设在 [图 1] 所示的带隙基准（bandgap reference）中（$R_1 = R_2$；$Q_2$ 的发射区面积是 $Q_1$ 的 $n$ 倍；基极电流可忽略），放大器具有输出电阻（output resistance）$R_{out}$。把放大器建模为一个增益 $A_1$ 有限的理想压控电压源（voltage-controlled voltage source）与 $R_{out}$ 串联，该电压源的值等于 $A_1$ 乘以 + 输入端电压与 − 输入端电压之差。计算 $V_{out}$ 的误差，并用 $A_1$、$R_{out}$、各电阻、$n$、$V_T = kT/q$ 和 $V_{out}$ 表示结果。

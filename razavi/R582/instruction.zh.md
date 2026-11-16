@@ -1,0 +1,1 @@
+[图 1] 所示电路在 CK 为高电平时（$M_1$ 导通）将输入采样到 $C_1$ 上，在 CK 为低电平时（由 $\overline{CK}$ 驱动的 $M_2$ 导通）把 $C_1$ 与 $C_2$ 连接起来。$M_1$ 和 $M_2$ 是相同的 NMOS 开关，其导通电阻（on-resistance）在温度 T 下产生热噪声（thermal noise）；$C_1 = C_2 = C$；CK 与 $\overline{CK}$ 为不交叠（non-overlapping）时钟，且每个相位都足够长，能够完全建立。求 $M_2$ 关断后输出端的采样 kT/C 噪声（均方电压）。

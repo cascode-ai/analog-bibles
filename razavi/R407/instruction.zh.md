@@ -1,0 +1,1 @@
+采用电流源（current source）负载的差分对（differential pair）可以用 [图 1] 表示，其中 $R_0 = r_{ON}\|r_{OP}$，$G_m$ 为每个输入晶体管的跨导（transconductance），差分增益为 $G_mR_0$。考虑 [图 2] 所示电路，两个这样的级 $G_{m1}$ 和 $G_{m2}$ 构成一个负反馈环路，差分输入端口为图中标有 $Z_{in}$ 处，差分输出为 $V_{out}$。用 $G_{m1}$ 级和 $G_{m2}$ 级的输入参考噪声（input-referred noise）电压 $V_{n1}$ 和 $V_{n2}$，计算该电路的输入参考热噪声（thermal noise）电压和电流。

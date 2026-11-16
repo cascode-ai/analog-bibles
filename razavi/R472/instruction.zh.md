@@ -1,0 +1,1 @@
+[图 1] 所示的折叠式共源共栅运算放大器（folded-cascode op amp）接成单位增益缓冲器（unity-gain buffer），即 $M_2$ 的栅极接到 $V_{out}$，并驱动负载电容 $C_L$。PMOS 电流源（current source）$M_9$ 和 $M_{10}$ 各提供 $I_P$，输入对的尾电流（tail current）为 $I_{SS}$，$M_5$–$M_8$ 构成共源共栅电流镜（cascode current mirror）。左图表示正向输入阶跃后电路的压摆过程，右图表示负向输入阶跃后的情形；图中标注的支路电流对应于 $I_P > I_{SS}$ 的情况。若 $I_{SS} > I_P$，计算压摆率（slew rate）。

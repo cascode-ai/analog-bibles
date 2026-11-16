@@ -1,0 +1,1 @@
+[图 1] 所示的共源共栅（cascode）级中（$M_1$ 的栅极为输入端，共源共栅器件 $M_2$ 的栅极接 $V_b$，负载为 $R_D$；X 为 $M_1$ 与 $M_2$ 之间的节点），节点 X 到地之间存在电容 $C_X$。忽略其他电容、沟道长度调制（channel-length modulation）和体效应（body effect），求输入参考热噪声电压（input-referred thermal noise voltage）随频率变化的表达式。把每个 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，$R_D$ 的噪声建模为 $4kT/R_D$。

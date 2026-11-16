@@ -1,0 +1,1 @@
+[图 1] 给出了一种“环形”（ring）MOS 结构：漏极是边长为 $W$ 的正方形，四周被长度为 $L$ 的闭合环形栅极包围，源区位于环外。说明该器件的工作原理，并估算其等效宽长比（aspect ratio）。将其漏结电容（junction capacitance）与按 [图 2] 布局的直条形晶体管（straight transistor）以及按 [图 3] 布局的折叠晶体管（folded transistor）相比较；三者的等效宽长比相同，源/漏区（S/D region）的横向尺寸均为 $E$，单位面积的底面电容（bottom-plate capacitance）为 $C_j$，单位长度的侧壁电容（sidewall capacitance）为 $C_{jsw}$。

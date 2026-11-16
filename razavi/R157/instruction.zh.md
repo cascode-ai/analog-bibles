@@ -1,0 +1,1 @@
+某差分对（differential pair）的输入 NMOS 器件 $W/L = 50/0.5$（μm），尾电流（tail current）为 1 mA。假设尾电流源是理想的，器件服从平方律（square law），λ = 0，$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$。当 $V_{in1} - V_{in2} = 50$ mV 时，差分对的等效跨导（transconductance）$G_m = \partial(I_{D1} - I_{D2})/\partial(V_{in1} - V_{in2})$ 是多少？

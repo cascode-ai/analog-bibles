@@ -1,0 +1,1 @@
+对于工作在饱和区（saturation region）的 MOSFET，采用平方律（square law）模型，推导用 $I_D$ 和 $W/L$ 表示的本征增益（intrinsic gain）$g_m r_O$ 的表达式。以沟道长度 $L$ 为参变量，画出 $g_m r_O$ 随 $I_D$ 变化的曲线。注意 $\lambda \propto 1/L$。作数值示例时，可以使用如下 NMOS 器件：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$\lambda = 0.1\ \mathrm{V^{-1}}$（对应 $L = 0.5\ \mu$m）。

@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考热噪声电压（input-referred thermal noise voltage）。该电路是带漏极电阻 $R_D$ 和源极电阻 $R_S$ 的共源级（common-source stage）。忽略沟道长度调制（channel-length modulation）和体效应（body effect）。把 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把每个电阻 $R$ 的热噪声建模为功率谱密度为 $4kT/R$ 的电流。

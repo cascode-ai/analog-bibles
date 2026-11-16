@@ -1,0 +1,1 @@
+在 [图 1] 所示的电荷泵锁相环（charge-pump PLL）中，鉴频鉴相器（PFD）驱动一个电荷泵，其 UP 电流和 DOWN 电流为 $I_1 = I_2 = I_P$。电荷泵驱动一个由 $R_P$ 与 $C_P$ 串联构成的环路滤波器（loop filter），压控振荡器（VCO）的控制电压 $V_{cont}$ 取自电荷泵的输出端。证明：在通常的连续时间近似下，PFD/电荷泵/环路滤波器这一组合从输入相位差 Δφ 到 $V_{cont}$ 的传递函数为 $\dfrac{V_{cont}}{\Delta\phi}(s) = \dfrac{I_P}{2\pi}\left(R_P + \dfrac{1}{C_Ps}\right)$。

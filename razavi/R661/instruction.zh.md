@@ -1,0 +1,1 @@
+一个 II 型电荷泵锁相环（type II charge-pump PLL）由鉴频鉴相器（PFD）与电荷泵（电流为 $I_P$）、由 $R_P$ 与 $C_P$ 串联构成的环路滤波器（loop filter），以及增益为 $K_{VCO}$ 的压控振荡器（VCO）组成单位反馈环路。其开环传递函数为 $\dfrac{I_P}{2\pi}\left(R_P + \dfrac{1}{C_Ps}\right)\dfrac{K_{VCO}}{s}$。证明：当 $I_PK_{VCO}$ 从零开始增大时，闭环极点沿 [图 1] 所示的根轨迹（root locus）移动。

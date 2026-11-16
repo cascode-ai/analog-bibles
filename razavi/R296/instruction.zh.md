@@ -1,0 +1,1 @@
+估算 [图 1] 所示电路的极点。$M_1$ 和 $M_2$ 为工作在饱和区（saturation region）的 NMOS 晶体管，$\lambda \ne 0$，输出电阻（output resistance）分别为 $r_{O1}$ 和 $r_{O2}$；$I_1$ 和 $I_2$ 为理想电流源（current source）。考虑两个晶体管的电容 $C_{GS}$、$C_{GD}$ 和 $C_{DB}$，并用符号表示结果。

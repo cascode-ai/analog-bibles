@@ -1,0 +1,1 @@
+一个 MOS 差分对（differential pair）的尾电流（tail current）为 $I_{SS}$，器件服从平方律（square law），λ = 0。[图 1] 给出了漏极电流 $I_{D1}$、$I_{D2}$（左图）和总跨导（transconductance）$G_m = \partial(I_{D1} - I_{D2})/\partial\Delta V_{in}$（右图）随 $\Delta V_{in} = V_{in1} - V_{in2}$ 变化的曲线；$\pm\Delta V_{in1}$ 标出了其中一个晶体管截止时的输入电压。当输入晶体管的 $W/L$ 增大（$I_{SS}$ 不变）时，这些曲线会发生什么变化？求 $G_m$ 曲线下的面积，并利用这一结果解释为什么 $W/L$ 增大时 $G_m$ 的峰值必然增大。

@@ -1,0 +1,1 @@
+在 [图 1] 所示的锁相环（PLL）中，外部电压 $V_{ex}$ 与低通滤波器（low-pass filter）的输出相加，形成压控振荡器（VCO）的控制电压 $V_{cont}$。鉴相器（phase detector）的增益为 $K_{PD}$，VCO 的输出频率为 $\omega_{out} = \omega_0 + K_{VCO}V_{cont}$，低通滤波器为一阶滤波器，其传递函数为 $1/(1 + s/\omega_{LPF})$。求传递函数 $\Phi_{out}(s)/V_{ex}(s)$，其中 $\Phi_{out}$ 表示 $V_{out}$ 的剩余相位（excess phase）。（输入 $V_{in}$ 是一个纯净的周期信号，即其剩余相位为零。）

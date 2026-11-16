@@ -1,0 +1,4 @@
+$V_X < 1$ V 时 $I_X$ 为负，此时 $V_X$ 端充当源极，器件工作在线性区（triode region）；电流在 $V_X = 1$ V 处过零；$V_X > 1$ V 时则基本为零，因为计入体效应（body effect）后，$M_1$ 只处于导通的边缘。
+- $0 \le V_X < 1$ V：$V_X$ 节点是源极（$V_{GS} = 1.9 - V_X$，$V_{SB} = V_X$，$V_{DS} = 1 - V_X$）。由于 $V_{TH}(V_X) < 0.9$ V，有 $V_{DS} < V_{GS} - V_{TH}$，$M_1$ 始终处于线性区。电流从 1 V 电源流入 $V_X$ 电源：$I_X = -\beta[(1.9 - V_X - V_{TH})(1 - V_X) - (1 - V_X)^2/2]$；$V_X = 0$ 时为 −0.70β，0.25 V 时为 −0.39β，0.5 V 时为 −0.17β，0.75 V 时为 −0.044β，1 V 时为 0。$g_m = \beta V_{DS} = \beta(1 - V_X)$，从 β·(1 V) 线性下降到 0。
+- $V_X > 1$ V：1 V 节点是源极，$V_{GS} = 0.9$ V，$V_{SB} = 1$ V，$V_{TH} = 0.7 + 0.45(\sqrt{1.9} - \sqrt{0.9}) = 0.893$ V，过驱动电压（overdrive voltage）只有 ≈ 7 mV。$M_1$ 在比 1 V 高出几 mV 时即进入饱和区（saturation region），电流为 $I_X \approx \tfrac12\beta(0.0066)^2 \approx 2\times10^{-5}\beta$，即实际上为零，并且直到 3 V 都保持不变；在实际器件中，这是一个很小的亚阈值（subthreshold）电流。$g_m \approx 0$。
+- 作为比较，若没有体效应，$M_1$ 将在 $V_X$ = 1.2 V 时进入饱和区，此时 $I_X = 0.02\beta$，$g_m = 0.2\beta$。

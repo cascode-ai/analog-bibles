@@ -1,0 +1,1 @@
+[图 1] 给出了一个 $W/L = 5\ \mu\mathrm{m}/40\ \mathrm{nm}$ 的 NMOS 晶体管（40-nm CMOS）的小信号输出电阻（output resistance）$r_O$ 的仿真曲线，横轴为其漏极电流，各端电压始终保持相同。我们希望把一个 $L = 40$ nm 的晶体管偏置在 $I_D = 0.25$ mA。判断哪种情况的输出阻抗（output impedance）更高：$W = 5\ \mu$m 还是 $W = 10\ \mu$m。

@@ -1,0 +1,1 @@
+[图 1] 所示电路是一个折叠式共源共栅（folded cascode）结构，计算它的输入参考热噪声电压（input-referred thermal noise voltage）：NMOS 管 $M_1$（栅极为输入端，源极接地）的漏极位于节点 X，X 经电阻 $R_S$ 接到 $V_{DD}$；PMOS 管 $M_2$ 的源极接 X，栅极接固定偏置 $V_b$，漏极接输出端，输出端经 $R_D$ 接地作为负载。忽略沟道长度调制（channel-length modulation）和体效应（body effect）。把每个 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把每个电阻 $R$ 的热噪声建模为 $4kT/R$。

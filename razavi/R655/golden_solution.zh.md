@@ -1,0 +1,4 @@
+- 当 ζ < 1 时，极点为 $s_{1,2} = -\zeta\omega_n \pm j\omega_n\sqrt{1 - \zeta^2}$，其中 $\omega_n^2 = \omega_{LPF}K_{PD}K_{VCO}$，$\zeta\omega_n = \omega_{LPF}/2$。
+- 极点到原点的距离为 $|s_1| = \sqrt{\zeta^2\omega_n^2 + \omega_n^2(1 - \zeta^2)} = \omega_n$。（等价地，两极点之积为 $\omega_n^2$，两极点之和为 $-2\zeta\omega_n$。）
+- φ 从负实轴量起，因此 $\cos\varphi = |\mathrm{Re}\,s_1|/|s_1| = \zeta\omega_n/\omega_n = \zeta$。
+- 推论：在根轨迹上，实部保持为 $-\omega_{LPF}/2$，而 $|s| = \omega_n$ 随 $K_{PD}K_{VCO}$ 增大。因此随着增益增大，φ → 90°，ζ → 0；而在 φ = 0 处 ζ = 1，对应分离点（break-away point）$-\omega_{LPF}/2$，此时 $K_{PD}K_{VCO} = \omega_{LPF}/4$。

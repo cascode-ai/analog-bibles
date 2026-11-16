@@ -1,0 +1,1 @@
+[图 1] 所示的带隙基准（bandgap reference）中，放大器是理想的，基极电流可忽略；$Q_2$ 由 $n$ 个单位晶体管并联而成，$Q_1$ 为一个单位晶体管。该电路设计为 $R_3 = 1$ kΩ，流过它的电流为 50 μA。为使 $V_{out}$ 在 $T = 300$ K 时的温度系数（temperature coefficient）为零，计算 $R_1 = R_2$ 和 $n$。假设 300 K 时 $\partial V_{BE}/\partial T \approx -1.5$ mV/K；$V_T = kT/q$。

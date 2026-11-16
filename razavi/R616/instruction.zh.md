@@ -1,0 +1,1 @@
+某差分对（differential pair）输入管的有效沟道长度（effective channel length）为 0.5 μm。假设其阈值失配（threshold mismatch）为 $\Delta V_{TH} = 0.1\,t_{ox}/\sqrt{WL}$，其中 $\Delta V_{TH}$ 以毫伏为单位，$t_{ox}$ 以埃为单位（$t_{ox}$ = 90 Å），$W$、$L$ 以微米为单位（即 $\Delta V_{TH} = 9\ \mathrm{mV\cdot\mu m}/\sqrt{WL}$），并忽略其他失配，求使 $V_{OS} \le 5$ mV 的晶体管最小宽度。

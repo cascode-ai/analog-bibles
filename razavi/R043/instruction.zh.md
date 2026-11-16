@@ -1,0 +1,3 @@
+一个 NMOS 器件工作在饱和区（saturation region），$W = 50\ \mu$m，$L = 0.5\ \mu$m，其中 $L$ 为有效沟道长度（effective channel length），计算其所有电容。假设源/漏区（S/D region）的最小（横向）尺寸 $E$ 为 $1.5\ \mu$m，并且器件按 [图 1] 所示方式折叠：宽度为 $W/2$ 的两个栅指（gate finger）共用中间的漏区，外侧的两个区域为源区。若漏极电流为 1 mA，$f_T$ 是多少？（$f_T$ 是源极和漏极接交流地时，电流增益下降到 1 的频率。）
+
+器件参数：$C_{ox} = 3.84\ \mathrm{fF/\mu m^2}$（$t_{ox} = 9$ nm），$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$；栅-源和栅-漏交叠电容（overlap capacitance）均为 $0.4\ \mathrm{fF/\mu m}$；源/漏结的底面电容（bottom capacitance）$C_j = 0.56\ \mathrm{fF/\mu m^2}$，侧壁电容（sidewall capacitance）$C_{jsw} = 0.35\times10^{-11}$ F/m，每个源/漏区的四条边都计为侧壁。采用零偏置时的结电容（junction capacitance）。

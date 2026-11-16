@@ -1,0 +1,1 @@
+[图 1] 所示电路是开关电容（switched-capacitor）放大器在放大阶段的等效电路：$C_1$ 由输入阶跃驱动，$C_2$ 为反馈电容，$C_{in} = 0.2$ pF 为运算放大器（op amp）的输入电容。该运放是一个单级跨导放大器（transconductance amplifier），$G_m = 1/(100\ \Omega)$，其输出电阻（output resistance）$R_0$ 使开环增益（open-loop gain）为 $A_{v1} = G_mR_0 = 1000$；输出端没有负载电容。增益误差（gain error）不得超过 1%，且电路在放大模式下的时间常数必须不大于 2 ns。最大标称增益 $C_1/C_2$ 是多少？计算 $C_1$ 和 $C_2$。

@@ -1,0 +1,1 @@
+一个 I 型锁相环（type I PLL）由鉴相器（phase detector）、一阶低通滤波器（low-pass filter）$1/(1 + s/\omega_{LPF})$ 和压控振荡器（VCO）构成单位反馈环路，其中 VCO 的 $K_{VCO} = 100$ MHz/V，鉴相器的 $K_{PD} = 1$ V/rad，低通滤波器的 $\omega_{LPF} = 2\pi(1\ \mathrm{MHz})$。求该 PLL 的阶跃响应。

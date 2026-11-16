@@ -1,0 +1,1 @@
+考虑 [图 1] 所示电路中的共模反馈（common-mode feedback，CMFB）网络：$R_1$ 和 $R_2$ 检测 $V_{out,CM}$，误差放大器（error amplifier）将 $V_{out,CM}$ 与 $V_{REF}$ 比较，并通过 $V_E$ 驱动 NMOS 电流源（current source）$M_3$ 和 $M_4$ 的栅极。该误差放大器拟采用以有源电流镜（current mirror）为负载的差分对（differential pair）来实现。这个放大器的输入对管应该用 PMOS 器件还是 NMOS 器件？$V_{DD} = 3$ V。

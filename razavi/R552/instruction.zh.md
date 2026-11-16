@@ -1,0 +1,1 @@
+一个以电阻 $R_D$ 为负载的差分对（differential pair）被设计成在室温（$T = 300$ K）下其电压增益 $g_mR_D$ 的温度系数（temperature coefficient）为零。若只考虑迁移率（mobility）的温度依赖性，即 $\mu \propto T^{-3/2}$，$R_D$、$C_{ox}$ 和 $W/L$ 均与温度无关，且器件服从平方律（square law），求尾电流（tail current）所需的温度特性。设计一个能粗略近似这一特性的电路。

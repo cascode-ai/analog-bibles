@@ -1,0 +1,1 @@
+考虑 [图 1] 所示的跨阻放大器（transimpedance amplifier），其中 $R_D = 1$ kΩ，$R_F = 10$ kΩ，$g_{m1} = g_{m2} = 1/(100\ \Omega)$，$C_A = C_Y = 100$ fF；忽略其他所有电容，且 $\lambda = \gamma = 0$。若要求放大器的相位裕度（phase margin）为 45°，在另外两个电容保持不变的情况下，$C_X$ 的最大值是多少？
