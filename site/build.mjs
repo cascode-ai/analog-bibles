@@ -25,6 +25,8 @@ for (const book of books) {
         t: fs.readFileSync(path.join(dir, "instruction.md"), "utf8"),
         figs: files.filter((f) => f.startsWith("figure-")),
         refs: files.filter((f) => f.startsWith("reference-")),
+        // A worked, step-by-step solution, where one has been written.
+        sol: files.includes("detailed_solution.md") ? 1 : 0,
       });
     }
   }

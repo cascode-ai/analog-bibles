@@ -245,3 +245,17 @@ details.grading summary { cursor: pointer; color: var(--muted); font-size: 13px;
 .feed .sentinel { height: 1px; }
 .head .review-this { margin-left: auto; min-height: 28px; padding: 0 10px; font-size: 13px; color: var(--muted); text-decoration: none; }
 .head .review-this:hover { color: var(--text); }
+
+/* The worked solution, under the short reference answer. */
+.steps-sol { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+.steps-sol .ai-note { margin-left: 6px; font-weight: 400; font-size: 12px; color: var(--muted); }
+.md h3 { font-size: 14px; margin: 1em 0 .4em; }
+
+/* The top bar stays on screen; the toolbar and the sidebar stick just below it. */
+:root { --top-h: 56px; }
+.top { position: sticky; top: 0; z-index: 10; height: var(--top-h); padding-top: 0; padding-bottom: 0; }
+.toolbar { top: var(--top-h); }
+.side { top: calc(var(--top-h) + 12px); max-height: calc(100vh - var(--top-h) - 24px); }
+@media (max-width: 900px) {
+  .side { position: static; max-height: none; }
+}

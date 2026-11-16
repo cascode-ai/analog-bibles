@@ -79,6 +79,8 @@ const STRINGS = {
     keyGo: "Enter review",
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
+    detailed: "Detailed solution",
+    aiNote: "AI-written, checked against the reference answer; may still contain errors",
     reviewThisTitle: "Review this question: pass it, report an issue or comment (maintainers)",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -157,6 +159,8 @@ const STRINGS = {
     keyGo: "进入审阅",
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
+    detailed: "详细步骤",
+    aiNote: "AI 撰写，已对照参考答案，仍可能有误",
     reviewThisTitle: "进入这道题的审阅：通过、报错、评论（维护者）",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -430,6 +434,10 @@ function cardBody(q) {
         <h4>${t("answer")}</h4>
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q.id, f, t("refFig"))).join("")}</div>
+        ${q.sol ? `<div class="steps-sol">
+          <h4>${t("detailed")} <span class="ai-note">${t("aiNote")}</span></h4>
+          <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
+        </div>` : ""}
         <details class="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
       </section>
     </div>`;
@@ -438,14 +446,16 @@ function cardBody(q) {
 // Fetches a card's question and answer into it; false if the card has since
 // been replaced by another question.
 async function fillCard(el, q) {
-  const [question, solution] = await Promise.all([
+  const [question, solution, steps] = await Promise.all([
     fetch(`/q/${q.id}/instruction.md`).then((r) => r.text()),
     fetch(`/q/${q.id}/golden_solution.md`).then((r) => r.text()),
-  ]).catch(() => [t("loadFailed"), t("loadFailed")]);
+    q.sol ? fetch(`/q/${q.id}/detailed_solution.md`).then((r) => r.text()) : "",
+  ]).catch(() => [t("loadFailed"), t("loadFailed"), q.sol ? t("loadFailed") : ""]);
   if (!el.isConnected || el.dataset.qid !== q.id) return false;
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
   el.querySelector(".q-answer").innerHTML = renderMarkdown(body);
+  if (q.sol) el.querySelector(".q-steps").innerHTML = renderMarkdown(steps.replace(/^# .*\n/, ""));
   if (grading.trim()) {
     const box = el.querySelector(".grading");
     box.hidden = false;
@@ -492,7 +502,7 @@ function onFeedScroll() {
   if (!sentinel.hidden && sentinel.getBoundingClientRect().top < window.innerHeight + 1500) appendCards();
   let current = cards.firstElementChild;
   for (const el of cards.children) {
-    if (el.getBoundingClientRect().top > 120) break;
+    if (el.getBoundingClientRect().top > 180) break;
     current = el;
   }
   const at = current ? Number(current.dataset.at) : state.index;
@@ -561,7 +571,7 @@ function scrollToCard(at) {
   }
   while (at >= feed.end) appendCards();
   const el = $(`card-${state.cards[at].id}`);
-  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: "smooth" });
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 124, behavior: "smooth" });
 }
 
 function renderPosition() {
