@@ -77,6 +77,9 @@ const STRINGS = {
     keyBrowse: 'To just read the questions, use <a href="/browse">Browse</a>.',
     keyPh: "Maintainer key",
     keyGo: "Enter review",
+    earlier: "↑ Show earlier questions",
+    reviewThis: "Review ↗",
+    reviewThisTitle: "Review this question: pass it, report an issue or comment (maintainers)",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
   zh: {
@@ -152,6 +155,9 @@ const STRINGS = {
     keyBrowse: '只想看题，请用 <a href="/browse">浏览模式</a>。',
     keyPh: "维护者口令",
     keyGo: "进入审阅",
+    earlier: "↑ 显示前面的题",
+    reviewThis: "审阅这题 ↗",
+    reviewThisTitle: "进入这道题的审阅：通过、报错、评论（维护者）",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
 };
@@ -243,8 +249,15 @@ $("lang-switch").addEventListener("click", () => {
   store.set("ab.lang", lang);
   applyLanguage();
   if (state.keyPrompt !== null) askForKey(state.keyPrompt);
-  else if (state.ready) renderItem(true);
-  else syncUrl();
+  else if (!state.ready) syncUrl();
+  else if (mode === "review") renderItem(true);
+  else {
+    // The same place in the list, in the other language.
+    const y = window.scrollY;
+    renderFeed(feed.start);
+    while (feed.end <= state.index) appendCards();
+    window.scrollTo({ top: y });
+  }
 });
 
 // ---------- data ----------
@@ -383,45 +396,187 @@ async function renderItem(keepFlags = false) {
   shownId = q.id;
   const s = state.summary[q.id] || [0, 0, 0];
   const mine = state.mine[q.id];
-  const reviewing = mode === "review";
+  item.dataset.qid = q.id;
   item.innerHTML = `
+    ${cardHead(q, `
+      ${mine ? `<span class="mine-${mine}">${mine === "pass" ? t("youPassed") : t("youFlagged")}</span>` : ""}
+      <span class="stats">${t("stats", num(s[0]), num(s[1]), num(s[2]))}</span>`)}
+    ${reviewControls(mine)}
+    ${cardBody(q)}`;
+  if ($("note")) $("note").value = note;
+  renderFlags();
+  if (await fillCard(item, q)) loadOthers(q.id);
+}
+
+function cardHead(q, extra = "") {
+  return `
     <div class="head">
       <span class="id">${esc(q.id)}</span>
       <span class="tag">${bookName(q.book)}</span>
       <span class="tag lv-${q.level}">${t(q.level)}</span>
-      ${reviewing && mine ? `<span class="mine-${mine}">${mine === "pass" ? t("youPassed") : t("youFlagged")}</span>` : ""}
-      ${reviewing ? `<span class="stats">${t("stats", num(s[0]), num(s[1]), num(s[2]))}</span>` : ""}
-    </div>
-    ${reviewing ? reviewControls(mine) : ""}
+      ${extra}
+    </div>`;
+}
+
+function cardBody(q) {
+  return `
     <div class="cols">
       <section class="panel">
         <h4>${t("question")}</h4>
-        <div class="md" id="question"><p class="empty">${t("loading")}</p></div>
+        <div class="md q-question"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.figs.map((f, i) => picture(q.id, f, t("fig", i + 1))).join("")}</div>
       </section>
       <section class="panel">
         <h4>${t("answer")}</h4>
-        <div class="md" id="answer"><p class="empty">${t("loading")}</p></div>
+        <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q.id, f, t("refFig"))).join("")}</div>
-        <details class="grading" id="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
+        <details class="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
       </section>
     </div>`;
-  if ($("note")) $("note").value = note;
-  renderFlags();
-  const id = q.id;
+}
+
+// Fetches a card's question and answer into it; false if the card has since
+// been replaced by another question.
+async function fillCard(el, q) {
   const [question, solution] = await Promise.all([
-    fetch(`/q/${id}/instruction.md`).then((r) => r.text()),
-    fetch(`/q/${id}/golden_solution.md`).then((r) => r.text()),
+    fetch(`/q/${q.id}/instruction.md`).then((r) => r.text()),
+    fetch(`/q/${q.id}/golden_solution.md`).then((r) => r.text()),
   ]).catch(() => [t("loadFailed"), t("loadFailed")]);
-  if (shownId !== id) return;
-  $("question").innerHTML = renderMarkdown(question);
+  if (!el.isConnected || el.dataset.qid !== q.id) return false;
+  el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
-  $("answer").innerHTML = renderMarkdown(body);
+  el.querySelector(".q-answer").innerHTML = renderMarkdown(body);
   if (grading.trim()) {
-    $("grading").hidden = false;
-    $("grading").querySelector(".md").innerHTML = renderMarkdown(grading);
+    const box = el.querySelector(".grading");
+    box.hidden = false;
+    box.querySelector(".md").innerHTML = renderMarkdown(grading);
   }
-  if (reviewing) loadOthers(id);
+  return true;
+}
+
+// ---------- browse: every question in one scrolling list ----------
+
+const BATCH = 6;
+const feed = { start: 0, end: 0 };
+
+// Lays the list out again from the card at `from` (an index into cards).
+function renderFeed(from = 0) {
+  renderSide();
+  feed.start = feed.end = Math.max(0, Math.min(from, state.cards.length));
+  const item = $("item");
+  item.className = "feed";
+  if (!state.cards.length) {
+    item.innerHTML = `<p class="empty">${t("noMatch")}</p>`;
+    state.index = 0;
+    syncUrl();
+    renderPosition();
+    return;
+  }
+  item.innerHTML = `
+    <button type="button" class="btn earlier" id="earlier">${t("earlier")}</button>
+    <div id="cards"></div>
+    <div class="sentinel" id="sentinel"></div>`;
+  appendCards();
+  state.index = feed.start;
+  syncUrl();
+  renderPosition();
+  onFeedScroll();
+}
+
+// On every scroll: the next batch once the end of the list comes near, and the
+// card at the top of the window becomes the current one (position, address).
+function onFeedScroll() {
+  const sentinel = $("sentinel");
+  const cards = $("cards");
+  if (mode !== "browse" || !sentinel || !cards) return;
+  if (!sentinel.hidden && sentinel.getBoundingClientRect().top < window.innerHeight + 1500) appendCards();
+  let current = cards.firstElementChild;
+  for (const el of cards.children) {
+    if (el.getBoundingClientRect().top > 120) break;
+    current = el;
+  }
+  const at = current ? Number(current.dataset.at) : state.index;
+  if (at !== state.index) {
+    state.index = at;
+    syncUrl();
+    renderPosition();
+  }
+}
+
+let scrollTimer = null;
+window.addEventListener("scroll", () => {
+  if (scrollTimer) return;
+  scrollTimer = setTimeout(() => {
+    scrollTimer = null;
+    onFeedScroll();
+  }, 80);
+}, { passive: true });
+
+function feedCard(at) {
+  const q = state.cards[at];
+  const el = document.createElement("article");
+  el.className = "item";
+  el.dataset.qid = q.id;
+  el.dataset.at = String(at);
+  el.id = `card-${q.id}`;
+  const params = [`scope=${state.scope}`, `id=${encodeURIComponent(q.id)}`];
+  if (lang === "zh") params.push("lang=zh");
+  el.innerHTML = cardHead(q, `<a class="btn review-this" href="/review?${params.join("&")}" title="${esc(t("reviewThisTitle"))}">${t("reviewThis")}</a>`) + cardBody(q);
+  // Its text arrives later and makes it taller: look again for the list's end.
+  fillCard(el, q).then(onFeedScroll);
+  return el;
+}
+
+function appendCards() {
+  const until = Math.min(state.cards.length, feed.end + BATCH);
+  const cards = $("cards");
+  for (let at = feed.end; at < until; at++) cards.append(feedCard(at));
+  feed.end = until;
+  $("earlier").hidden = feed.start === 0;
+  $("sentinel").hidden = feed.end >= state.cards.length;
+}
+
+// The cards before the first one shown, keeping the reader's place.
+function prependCards() {
+  const from = Math.max(0, feed.start - BATCH);
+  const cards = $("cards");
+  const anchor = cards.firstElementChild;
+  const before = anchor.getBoundingClientRect().top;
+  const batch = document.createDocumentFragment();
+  for (let at = from; at < feed.start; at++) batch.append(feedCard(at));
+  cards.prepend(batch);
+  feed.start = from;
+  $("earlier").hidden = feed.start === 0;
+  window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+}
+
+// Scrolls to a card, laying the list out again when it is not near.
+function scrollToCard(at) {
+  if (!state.cards.length) return;
+  at = Math.max(0, Math.min(state.cards.length - 1, at));
+  if (at < feed.start || at > feed.end + BATCH) {
+    renderFeed(at);
+    window.scrollTo({ top: 0 });
+    return;
+  }
+  while (at >= feed.end) appendCards();
+  const el = $(`card-${state.cards[at].id}`);
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: "smooth" });
+}
+
+function renderPosition() {
+  const total = state.cards.length;
+  $("position").textContent = total ? `${num(state.index + 1)} / ${num(total)}` : "0 / 0";
+}
+
+// The list in browse mode, the single question in review mode.
+function render(from) {
+  if (mode === "browse") {
+    renderFeed(from ?? 0);
+    window.scrollTo({ top: 0 });
+  } else {
+    renderItem();
+  }
 }
 
 function reviewControls(mine) {
@@ -568,6 +723,7 @@ async function submit(verdict) {
 
 function go(index) {
   if (!state.cards.length) return;
+  if (mode === "browse") return scrollToCard(index);
   state.index = Math.max(0, Math.min(state.cards.length - 1, index));
   renderItem();
   window.scrollTo({ top: 0 });
@@ -576,7 +732,10 @@ function go(index) {
 function jumpRandom() {
   const left = state.cards.map((q, i) => [q, i]).filter(([q, i]) => !state.mine[q.id] && i !== state.index);
   const pool = left.length ? left : state.cards.map((q, i) => [q, i]);
-  if (pool.length) go(pool[Math.floor(Math.random() * pool.length)][1]);
+  if (!pool.length) return;
+  const at = pool[Math.floor(Math.random() * pool.length)][1];
+  if (mode === "browse") render(at);
+  else go(at);
 }
 
 function toggleFlag(key) {
@@ -593,7 +752,10 @@ document.addEventListener("click", async (event) => {
     const keep = state.cards[state.index]?.id;
     state[target.dataset.kind] = target.dataset.key;
     refilter(keep);
-    renderItem();
+    // A new filter starts the list from its top.
+    render(0);
+  } else if (target.id === "earlier") {
+    prependCards();
   } else if (target.dataset.flag) {
     toggleFlag(target.dataset.flag);
   } else if (target.id === "pass") {
@@ -658,7 +820,7 @@ $("search").addEventListener("input", (event) => {
     if (!state.ready) return;
     state.search = event.target.value.trim();
     refilter(state.cards[state.index]?.id);
-    renderItem();
+    render(0);
   }, 150);
 });
 
@@ -697,5 +859,6 @@ $("author").addEventListener("change", (event) => store.set("ab.author", event.t
     refilter(wanted);
   }
   state.ready = true;
-  renderItem();
+  if (mode === "browse") renderFeed(wanted ? state.index : 0);
+  else renderItem();
 })();

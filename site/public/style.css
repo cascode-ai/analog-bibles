@@ -235,3 +235,13 @@ details.grading summary { cursor: pointer; color: var(--muted); font-size: 13px;
   .actions { flex-wrap: wrap; }
   .note { flex-basis: 100%; }
 }
+
+/* Browse: every question in one list; the toolbar stays on top while it scrolls. */
+.toolbar { position: sticky; top: 0; z-index: 5; margin: -12px 0 8px; padding: 12px 0 8px; background: var(--bg); }
+.feed { display: grid; gap: 16px; }
+.feed #cards { display: grid; gap: 16px; }
+.feed .earlier { justify-self: center; }
+.feed .earlier[hidden], .feed .sentinel[hidden] { display: none; }
+.feed .sentinel { height: 1px; }
+.head .review-this { margin-left: auto; min-height: 28px; padding: 0 10px; font-size: 13px; color: var(--muted); text-decoration: none; }
+.head .review-this:hover { color: var(--text); }
