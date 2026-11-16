@@ -1,0 +1,4 @@
+- 初始值：$V_{out}(0) = V_{DD} - |V_{GS3}| = V_{DD} - |V_{THP}| - \sqrt{I_{SS}/[\mu_pC_{ox}(W/L)_3]}$（输入相等时电路平衡，$V_{out} = V_X$；$C_L$ 使 $V_{out}$ 在 $t = 0^+$ 时保持连续）。
+- 终值：$V_{out}(\infty) = V_{out}(0) - g_{m1}(r_{O2}\|r_{O4})\Delta V$（更精确地，还要乘以 $\frac{2g_{m4}r_{O4}+1}{2(g_{m4}r_{O4}+1)}$）；输出下降，因为 $M_1$ 的栅极电压下降了。
+- 时间常数：$\tau = (r_{O2}\|r_{O4})C_L$，即五管运算跨导放大器（OTA）的输出电阻（output resistance）乘以 $C_L$；$V_{out}(t) = V_{out}(0) - g_{m1}(r_{O2}\|r_{O4})\Delta V(1 - e^{-t/\tau})$。
+- 用偏置量表示：$g_{m1} = \sqrt{\mu_nC_{ox}(W/L)_1I_{SS}}$，$r_{O2}\|r_{O4} = \dfrac{2}{(\lambda_n+\lambda_p)I_{SS}}$。

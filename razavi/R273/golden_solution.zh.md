@@ -1,0 +1,6 @@
+增益与无缺陷时的值相比基本不变：$|A_v| \approx g_{m1}(r_{O2}\|r_{O4})\Big(1 - \dfrac{1}{2g_{m3}R_1}\Big)$，因为 $R_1$ 连接的是两个低阻抗节点（$\approx 1/g_{m3}$ 和 $\approx 1/(2g_{m1})$），只分走了一小部分信号电流。
+
+- 输出短路时：$i_1 - i_2 = g_{m1}v_{in}$；由节点 P 的基尔霍夫电流定律（KCL）得 $v_P = i_{R}/(2g_{m1})$（很小）；$R_1$ 中的电流为 $i_R \approx v_F/R_1$，其中 $v_F \approx -(g_{m1}v_{in}/2)/g_{m3}$；输出电流为 $i_1 - i_2 + i_R \approx g_{m1}v_{in}[1 - 1/(2g_{m3}R_1)]$。$R_{out}$ 仍 ≈ $r_{O2}\|r_{O4}$。
+- 精确结果（$M_{1,2}$ 的参数记为 $g_{mN}, r_N$，$M_{3,4}$ 的参数记为 $g_{mP}, r_P$）：$A_v = \dfrac{g_{mN}r_Nr_P(1+2g_{mP}r_P)[2R_1(1+g_{mN}r_N)+r_N]}{2\{2R_1(r_N+r_P)(1+g_{mN}r_N)(1+g_{mP}r_P) + r_N[r_N(1+g_{mN}r_P+g_{mP}r_P) + 2r_P(1+g_{mP}r_P)]\}}$，当 $R_1 \to \infty$ 时，它趋于无缺陷时的值 $g_{mN}(r_N\|r_P)\dfrac{1+2g_{mP}r_P}{2(1+g_{mP}r_P)}$。
+- $R_1$ 破坏了电路的对称性，因此电路存在非零的共模（common-mode）增益，$V_{out}/(V_{in1} - V_{in2})$ 与输入的施加方式有关；上面的结果对应平衡输入（$V_{in1} = -V_{in2}$）。在 $g_mr_O \gg 1$ 时，令 $D = 2g_{mN}g_{mP}R_1(r_N+r_P) + (g_{mN}+g_{mP})r_N + 2g_{mP}r_P$：平衡输入时，$A_v = g_{mN}g_{mP}r_Nr_P(1+2g_{mN}R_1)/D$；只加 $V_{in1}$（$V_{in2} = 0$）时为 $2g_{mN}^2g_{mP}R_1r_Nr_P/D$；只加 $V_{in2}$ 时为 $2g_{mN}g_{mP}r_Nr_P(1+g_{mN}R_1)/D$。若各 $g_m$ 和 $r_O$ 都相等，这三者分别等于 $g_m(r_O/2)$ 乘以 $(1+2g_mR_1)/[2(1+g_mR_1)]$、$g_mR_1/(1+g_mR_1)$ 和 1；当 $R_1$ 很大时，它们都趋于 $g_{m1}(r_{O2}\|r_{O4})$。
+- 另外，在直流情况下，$R_1$ 中还流过一个偏置电流，电流镜（current mirror）会把它复制到输出端，造成系统失调（systematic offset）；上面的小信号增益假设各器件仍保持饱和。

@@ -1,0 +1,1 @@
+由于制造缺陷，[图 1] 所示的电路中出现了一个很大的寄生电阻 $R_1$，它接在 $M_1$ 的漏极与 $M_1$、$M_2$ 的公共源极节点之间，该漏极也就是 $M_3$ 的二极管连接（diode-connected）节点。若 $\lambda > 0$，计算小信号差模增益（differential gain）$V_{out}/(V_{in1} - V_{in2})$。假设 $M_1$ 与 $M_2$ 相同，$M_3$ 与 $M_4$ 相同，尾电流源（tail current source）是理想的，所有晶体管都工作在饱和区（saturation region），并忽略体效应（body effect）。用各器件的 $g_m$、$r_O$ 以及 $R_1$ 表示结果。

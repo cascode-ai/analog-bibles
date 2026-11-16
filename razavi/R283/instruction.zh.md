@@ -1,0 +1,1 @@
+求 [图 1] 所示电路中由 $C_{in}$ 引起的转折频率（corner frequency）。为简单起见，假设 $C_1$ 短路。$I_1$ 是理想电流源（current source），输入由理想电压源驱动，两个晶体管都工作在饱和区（saturation region）。用 $g_{m1}$、$g_{m2}$、$r_{O1}$、$r_{O2}$、$R_F$ 和 $C_{in}$ 表示结果。
