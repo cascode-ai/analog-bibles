@@ -1,0 +1,1 @@
+[图 1] 中的曲线给出了工作在饱和区（saturation region）的平方律（square law）MOSFET 的跨导（transconductance）分别随过驱动电压（overdrive voltage）$V_{GS} - V_{TH}$（W/L 恒定）、随 $I_D$（W/L 恒定）以及随过驱动电压（$I_D$ 恒定）变化的关系。根据这些关系，画出 $W/L$ 恒定时 $I_D$ 随 $V_{GS} - V_{TH}$ 变化的曲线、$W/L$ 恒定时 $V_{GS} - V_{TH}$ 随 $I_D$ 变化的曲线，以及 $I_D$ 恒定时 $W/L$ 随 $V_{GS} - V_{TH}$ 变化的曲线。

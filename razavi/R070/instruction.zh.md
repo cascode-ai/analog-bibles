@@ -1,0 +1,1 @@
+[图 1] 所示的共源级（common-source stage）要提供从 1 V 到 2.5 V 的输出摆幅（output swing）。假设 $(W/L)_1 = 50/0.5$，$R_D = 2$ kΩ，$\lambda = 0$，$V_{DD} = 3$ V；$M_1$ 的源极和衬底（bulk）接地。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。计算使 $V_{out} = 1$ V 和 $V_{out} = 2.5$ V 的输入电压。

@@ -1,0 +1,4 @@
+- $V_G < V_{TH} = 0.7$ V：没有反型层（inversion layer），因此没有夹断点。
+- $0.7\ \mathrm{V} < V_G < 1.9$ V：饱和区（saturation region）。沟道在局部沟道电压达到 $V_G - V_{TH}$ 的地方夹断，夹断点位于漏极之前（因为 $V_{DS} = 1.2\ \mathrm{V} > V_G - V_{TH}$）。随着 $V_G$ 增大，$V_G - V_{TH}$ 趋近 $V_{DS}$，夹断点向漏极移动。夹断点与漏极之间的耗尽间隙 ΔL 缩短，有效沟道长度（effective channel length）$L - \Delta L$ 增大。
+- $V_G = V_{TH} + V_{DS} = 1.9$ V：夹断点到达漏极边缘（饱和区边缘）。
+- $V_G > 1.9$ V：线性区（triode region）；反型层从源极连续延伸到漏极，不再有夹断点。

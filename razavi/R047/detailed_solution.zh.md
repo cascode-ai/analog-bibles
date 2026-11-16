@@ -1,6 +1,6 @@
 # 详细步骤 - R047
 
-**思路。** 用输出端的电压表示 PMOS 的源栅电压，分别利用大信号（large-signal）平方律和小信号阻抗，考察 $I_1$ 如何随该电压变化。电流源需要电流**不**随端电压变化，即需要非常高的阻抗。
+**思路。** 用输出端的电压表示 PMOS 的源栅电压，分别利用大信号（large-signal）平方律（square law）和小信号阻抗，考察 $I_1$ 如何随该电压变化。电流源需要电流**不**随端电压变化，即需要非常高的阻抗。
 
 ### 第 1 步 — 端电压：总是饱和
 
@@ -40,7 +40,7 @@ $$i_x = g_mv_x + \frac{v_x}{r_O} ,$$
 
 $$R_{out} = \frac{v_x}{i_x} = \frac{1}{g_m + 1/r_O} = \frac{1}{g_m}\parallel r_O \approx \frac{1}{g_m}\qquad(g_mr_O \gg 1).$$
 
-由第 2 步也可得到同样的结果，因为 $dI_1/dV_{out} = \mu_pC_{ox}(W/L)(V_{out} - |V_{TH}|) = g_m$。若衬底（n 阱）接 $V_{DD}$ 而不是源极，$v_x$ 还会改变 $V_{BS}$，增加体效应电流 $g_{mb}v_x$，阻抗进一步降低为 $1/(g_m + g_{mb})\parallel r_O$。
+由第 2 步也可得到同样的结果，因为 $dI_1/dV_{out} = \mu_pC_{ox}(W/L)(V_{out} - |V_{TH}|) = g_m$。若衬底即 n 阱（n-well）接 $V_{DD}$ 而不是源极，$v_x$ 还会改变 $V_{BS}$，增加体效应电流 $g_{mb}v_x$，阻抗进一步降低为 $1/(g_m + g_{mb})\parallel r_O$。
 
 **数值。** 在上述示例中，$V_{out} = 1.5$ V 时，$g_m = (1.92\ \mathrm{mA/V^2})(0.7\ \mathrm{V}) = 1.34$ mS，因此 $R_{out} \approx 1/g_m = 744\ \Omega$。在相同电流下，正确连接的 PMOS 电流源的 $R_{out} = r_O = 1/(\lambda I_D)$，例如当 $\lambda = 0.2\ \mathrm{V^{-1}}$ 时为 $1/[(0.2\ \mathrm{V^{-1}})(0.47\ \mathrm{mA})] = 10.6\ \mathrm{k}\Omega$，大约高 14 倍（器件更长时还要高得多）。
 
@@ -65,4 +65,4 @@ $$I_1 = \tfrac12\mu_pC_{ox}\frac{W}{L}(V_{out} - |V_{TH}|)^2 ,$$
 
 **常见错误。** 归咎于线性区（triode region）工作。由于 $V_{SD} = V_{SG}$，器件永远不会进入线性区；问题出在输出端的取法，而不在于工作区。
 
-**常见错误。** 把器件误读为栅极偏置固定的 NMOS，或者把输出阻抗取为 $r_O$。输出位于二极管连接 PMOS 的源极，因此阻抗为 $1/g_m$，比 $r_O$ 小，大约相差本征增益（intrinsic gain）$g_mr_O$ 倍。
+**常见错误。** 把器件误读为栅极偏置固定的 NMOS，或者把输出阻抗（output impedance）取为 $r_O$。输出位于二极管连接 PMOS 的源极，因此阻抗为 $1/g_m$，比 $r_O$ 小，大约相差本征增益（intrinsic gain）$g_mr_O$ 倍。

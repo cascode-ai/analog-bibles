@@ -1,0 +1,1 @@
+[图 1] 所示的共源级（common-source stage）要提供从 1 V 到 2.5 V 的输出摆幅（output swing），其参数为：$(W/L)_1 = 50/0.5$，$R_D = 2$ kΩ，$\lambda = 0$，$V_{DD} = 3$ V；NMOS 的 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V；源极和衬底（bulk）接地。当输出从 1 V 变化到 2.5 V 时，小信号增益 $g_mR_D$ 变化多少？小信号增益的变化可以看作一种非线性（nonlinearity）。

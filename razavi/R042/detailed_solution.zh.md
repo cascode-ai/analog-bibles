@@ -14,14 +14,14 @@ $$\frac{g_m}{I_D} = \frac{1}{1.5\times 25.9\ \mathrm{mV}} = 25.7\ \mathrm{V^{-1}
 
 ### 第 2 步 — 弱反型区的栅极电容
 
-在亚阈值区，可移动的沟道电荷极少，因此没有反型层把衬底与栅极屏蔽开：
+在亚阈值区，可移动的沟道电荷（channel charge）极少，因此没有反型层把衬底与栅极屏蔽开：
 
 - **$C_{GS}$ 和 $C_{GD}$** 退化为交叠电容，$C_{GS} \approx C_{GD} \approx WC_{ov}$，其中 $C_{ov}$ 为单位宽度的交叠电容。
 - **$C_{GB}$** 变得显著：栅极经 $C_{ox}$ 与耗尽层电容 $C_{dep}$ 的串联到达衬底（两者均为单位面积值），
 
 $$C_{GB} = WL\,\frac{C_{ox}C_{dep}}{C_{ox} + C_{dep}} .$$
 
-**与 $\zeta$ 的关系。** 同一个电容分压器也决定了亚阈值斜率（subthreshold slope）。$V_{GS}$ 的变化使表面势（surface potential）$\psi_s$ 改变 $\partial\psi_s/\partial V_{GS} = C_{ox}/(C_{ox} + C_{dep})$，而电流取决于 $\exp(\psi_s/V_T)$，因此
+**与 $\zeta$ 的关系。** 同一个电容分压器（capacitive divider）也决定了亚阈值斜率（subthreshold slope）。$V_{GS}$ 的变化使表面势（surface potential）$\psi_s$ 改变 $\partial\psi_s/\partial V_{GS} = C_{ox}/(C_{ox} + C_{dep})$，而电流取决于 $\exp(\psi_s/V_T)$，因此
 
 $$\zeta = \frac{C_{ox} + C_{dep}}{C_{ox}} = 1 + \frac{C_{dep}}{C_{ox}} \quad\Longrightarrow\quad C_{dep} = (\zeta - 1)\,C_{ox} .$$
 

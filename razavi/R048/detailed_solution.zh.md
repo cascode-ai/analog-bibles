@@ -10,7 +10,7 @@ $$V_{GS} = V_{DD} - V_{out}, \qquad V_{DS} = V_{DD} - V_{out}, \qquad V_{SB} = V
 
 由于 $V_{DS} = V_{GS} \ge V_{GS} - V_{TH}$，晶体管是**二极管连接**的，只要导通就处于饱和区，与题目所述一致。
 
-### 第 2 步 — 大信号电流随 $V_{out}$ 的变化
+### 第 2 步 — 大信号（large-signal）电流随 $V_{out}$ 的变化
 
 忽略沟道长度调制（channel-length modulation），
 

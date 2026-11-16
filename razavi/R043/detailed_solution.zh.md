@@ -10,7 +10,7 @@ $$WLC_{ox} = (50\ \mu\mathrm{m})(0.5\ \mu\mathrm{m})(3.84\ \mathrm{fF/\mu m^2}) 
 
 $$WC_{ov} = (50\ \mu\mathrm{m})(0.4\ \mathrm{fF/\mu m}) = 20\ \mathrm{fF}.$$
 
-在饱和区，沟道在漏端附近夹断，因此沟道电荷由源端控制：
+在饱和区，沟道在漏端附近夹断，因此沟道电荷（channel charge）由源端控制：
 
 $$
 \begin{aligned}
@@ -21,7 +21,7 @@ $$
 
 反型层把衬底与栅极屏蔽开，因此 $C_{GB} \approx 0$；栅指末端很小的边缘电容（fringing capacitance）忽略不计。
 
-### 第 2 步 — 漏-衬底结电容（中间的一个区域）
+### 第 2 步 — 漏-衬底结（drain–bulk junction）电容（中间的一个区域）
 
 由于 $1\ \mathrm{F/m} = 10^{15}\ \mathrm{fF}/10^{6}\ \mu\mathrm{m} = 10^{9}\ \mathrm{fF/\mu m}$，单位周长的侧壁电容为
 
@@ -39,7 +39,7 @@ $$C_{DB} = A_DC_j + P_DC_{jsw} = 21.0 + 0.19 = 21.2\ \mathrm{fF}.$$
 
 若器件不折叠，漏区为 $W\times E$，则 $C_{DB} = 50\times1.5\times0.56 + 2(50 + 1.5)\times0.0035 = 42.0 + 0.36 = 42.4$ fF：折叠使漏极电容减半，这正是折叠的目的。
 
-### 第 3 步 — 源-衬底结电容（外侧的两个区域）
+### 第 3 步 — 源-衬底结（source–bulk junction）电容（外侧的两个区域）
 
 源区有**两个**，每个都是 $W/2$ × $E$：
 

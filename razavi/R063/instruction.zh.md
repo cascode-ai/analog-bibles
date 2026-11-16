@@ -1,0 +1,1 @@
+[图 1] 画出了一个平方律（square law）NMOS 器件的 $I_D$–$V_{DS}$ 特性曲线，其 $W/L_{drawn} = 5\ \mu\mathrm{m}/40$ nm，$t_{ox} = 18$ Å（$\epsilon_{ox} = 3.9\epsilon_0$）。图中相邻两条曲线之间的 $V_{GS}$ 以相等的步长递增。估算 $\mu_n$、$V_{TH}$、$\lambda$ 以及 $V_{GS}$ 的步长。

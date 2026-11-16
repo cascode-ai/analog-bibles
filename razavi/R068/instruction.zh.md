@@ -1,0 +1,1 @@
+在 [图 1] 所示的共源级（common-source stage）中，$(W/L)_1 = 50/0.5$，$R_D = 2$ kΩ，$\lambda = 0$，$V_{DD} = 3$ V；$M_1$ 的源极和衬底（bulk）接地。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。多大的输入电压使 $M_1$ 处于线性区（triode region）的边缘？在此条件下小信号增益是多少？

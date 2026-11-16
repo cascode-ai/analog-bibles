@@ -1,0 +1,3 @@
+一个 NMOS 电流源（current source）的 $I_D = 0.5$ mA，漏源电压低至 0.4 V 时仍须正常工作。若所需的最小输出阻抗（output impedance）为 20 kΩ，确定器件的宽度和长度。若器件按 [图 1] 所示方式折叠，即两个宽度为 $W/2$ 的栅指（gate finger）共用中间的漏区，且源/漏区的横向尺寸为 $E = 3\ \mu$m，计算栅源电容、栅漏电容以及漏极与衬底（substrate）之间的电容。
+
+器件参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$；$L = 0.5\ \mu$m 时 $\lambda = 0.1\ \mathrm{V^{-1}}$，且 $\lambda \propto 1/L$，其中 $L$ 为有效沟道长度（effective channel length）；$C_{ox} = 3.84\ \mathrm{fF/\mu m^2}$；栅-源和栅-漏交叠电容（overlap capacitance）均为 $0.4\ \mathrm{fF/\mu m}$；结的底面电容（bottom capacitance）$C_j = 0.56\ \mathrm{fF/\mu m^2}$，侧壁电容（sidewall capacitance）$C_{jsw} = 0.35\times10^{-11}$ F/m（漏区的四条边都计入）；采用零偏置时的结电容（junction capacitance）。

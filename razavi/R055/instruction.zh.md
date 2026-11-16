@@ -1,0 +1,1 @@
+对 [图 1] 所示的复合结构，以 $V_G$ 为参变量，画出 $I_X$ 随 $V_X$ 变化的曲线草图（$0 \le V_X \le V_{DD} = 3$ V）。再画出等效跨导（equivalent transconductance）$\partial I_X/\partial V_G$ 的草图。假设 $\lambda = \gamma = 0$，$V_{THN} = 0.7$ V，$V_{THP} = -0.8$ V；器件尺寸未给定（$\beta_n = \mu_nC_{ox}(W/L)_n$，$\beta_p = \mu_pC_{ox}(W/L)_p$）。
