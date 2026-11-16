@@ -1,0 +1,1 @@
+考虑 [图 1] 所示的带源极负反馈（source degeneration）的共源级（common-source stage），其中 $(W/L)_1 = 50/0.5$，$R_D = 2$ kΩ，$R_S = 200$ Ω；$V_{DD} = 3$ V。假设 $\lambda = \gamma = 0$，计算使 $M_1$ 处于线性区（triode region）边缘的输入电压。此时的增益是多少？NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。

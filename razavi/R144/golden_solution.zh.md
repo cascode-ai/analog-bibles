@@ -1,0 +1,5 @@
+- $X$ 点的输入电阻（漏极接负载 $R_D$）：在 $X$ 点加测试源可得 $R_{in} = \dfrac{R_D + r_O}{1 + (g_m + g_{mb})r_O}$。
+- 带信号源内阻的共栅级一般增益可由 $X$ 点和漏极处的基尔霍夫电流定律（KCL）求得：$\dfrac{V_{out}}{V_{in}} = \dfrac{[1 + (g_m+g_{mb})r_O]R_D}{r_O + [1 + (g_m+g_{mb})r_O]R_S + R_D}$。
+- 匹配条件 $R_S = R_{in}$ 意味着 $[1 + (g_m+g_{mb})r_O]R_S = R_D + r_O$，因此分母变为 $2(r_O + R_D)$：$\dfrac{V_{out}}{V_{in}} = \dfrac{[1 + (g_m+g_{mb})r_O]R_D}{2(r_O + R_D)} = \dfrac{1 + (g_m+g_{mb})r_O}{2(1 + r_O/R_D)}$。
+- 代入 $1 + (g_m+g_{mb})r_O = (R_D + r_O)/R_S$ 得 $\dfrac{V_{out}}{V_{in}} = \dfrac{R_D}{2R_S}$。
+- 直观理解：匹配时 $v_X = V_{in}/2$，流入 $X$ 的电流为 $V_{in}/(2R_S)$；由于栅极不吸取电流，这一电流全部从漏极流出并进入 $R_D$：$v_{out} = R_DV_{in}/(2R_S)$。

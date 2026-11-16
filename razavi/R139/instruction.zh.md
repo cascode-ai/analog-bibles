@@ -1,0 +1,1 @@
+画出 [图 1] 所示共源共栅（cascode）级的小信号增益 $V_{out}/V_{in}$ 随 $V_b$ 从 0 变化到 $V_{DD} = 3$ V 的曲线草图。假设 $\lambda = \gamma = 0$。$V_{in}$ 的直流电平固定在 $V_{TH} = 0.7$ V 以上，使得 $M_1$ 在饱和区（saturation region）中流过 $I_1 = \tfrac12\beta_1(V_{in} - V_{TH})^2$；假设 $R_D$ 足够小，使 $M_1$ 能够进入饱和区，即 $V_{DD} - I_1R_D > V_{in} - V_{TH}$。器件尺寸未给定；请描述该曲线及其关键点。

@@ -1,0 +1,1 @@
+[图 1] 所示电路（$M_2$ 为 PMOS 负载，其栅极接偏置电压 $V_b$）的设计目标是小信号电压增益为 5。$(W/L)_1 = 20/0.5$，$I_{D1} = 0.5$ mA，$V_b = 0$ V，$V_{DD} = 3$ V；$M_1$ 的衬底（bulk）接地，$M_2$ 的衬底接 $V_{DD}$。计算 $M_2$ 的宽长比（aspect ratio）。忽略沟道长度调制（channel-length modulation）。器件参数：NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V；PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V。尺寸均为有效值，单位为 μm。

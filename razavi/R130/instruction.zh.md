@@ -1,0 +1,1 @@
+考虑 [图 1] 所示的带源极负反馈（source degeneration）的共源级（common-source stage），其中 $(W/L)_1 = 50/0.5$，$R_D = 2$ kΩ，$R_S = 200$ Ω；$V_{DD} = 3$ V；$M_1$ 的衬底（bulk）接地。若 $I_D = 0.5$ mA，计算小信号电压增益。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V。尺寸均为有效值，单位为 μm。

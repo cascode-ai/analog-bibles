@@ -1,0 +1,1 @@
+利用引理 $A_v = -G_mR_{out}$ 计算共栅级（common-gate stage）的电压增益：该级为 NMOS，栅极接交流地，输入 $V_{in}$ 经信号源内阻 $R_S$ 加到源极，漏极电阻 $R_D$ 接到 $V_{DD}$，输出取自漏极，衬底（bulk）接地。其中 $G_m$ 是输出端交流短路到地时测得的跨导（transconductance），$R_{out}$ 是输入置零时的输出电阻（output resistance）。假设 $\lambda, \gamma > 0$。

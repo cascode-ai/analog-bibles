@@ -1,0 +1,1 @@
+源极跟随器（source follower）可以用作电平移位器（level shifter）。假设 [图 1] 所示电路被设计为将电压电平移动 1 V，即 $V_{in} - V_{out} = 1$ V。若 $I_{D1} = I_{D2} = 0.5$ mA，$V_{GS2} - V_{GS1} = 0.5$ V，且 $\lambda = \gamma = 0$，计算 $M_1$ 和 $M_2$ 的尺寸。$V_{DD} = 3$ V。NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V。尺寸均为有效值，单位为 μm。

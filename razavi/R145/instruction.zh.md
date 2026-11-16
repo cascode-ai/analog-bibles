@@ -1,0 +1,1 @@
+利用引理 $A_v = -G_mR_{out}$ 计算源极跟随器（source follower）的电压增益：该跟随器为 NMOS，漏极接 $V_{DD}$，输入加在栅极，输出取自源极，由理想电流源（current source）偏置，衬底（bulk）接地。其中 $G_m$ 是输出端交流短路到地时测得的跨导（transconductance），$R_{out}$ 是输入置零时的输出电阻（output resistance）。假设电路驱动负载电阻 $R_L$（从输出端接到地），且 $\lambda, \gamma > 0$。
