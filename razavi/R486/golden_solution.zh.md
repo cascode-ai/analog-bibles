@@ -1,0 +1,5 @@
+$C_{Y,max} \approx 1.15$–1.2 pF。
+- 由小信号参数：$R_X \approx 16$ kΩ（若用 $r_{O2} \parallel r_{O3}$ 则为 13.3 kΩ），因此 $\omega_X = 1.25\times10^8$ rad/s；$A_0 \approx 20$；$R_Y = (1/g_{m4}) \parallel r_{O4} \approx 270\ \Omega$；GBW ≈ $(g_m/2)A_{v4}/C_X = 2.55\times10^9$ rad/s。
+- PM = 60° 要求 $\tan^{-1}(\omega_u/\omega_X) + \tan^{-1}(\omega_u/\omega_Y) = 120°$，同时 $A_0/\sqrt{(1 + \omega_u^2/\omega_X^2)(1 + \omega_u^2/\omega_Y^2)} = 1$。由此得 $\omega_u \approx 2.13\times10^9$ rad/s，$\omega_Y \approx 3.2\times10^9$ rad/s，因此 $C_Y = 1/(270\ \Omega \times 3.2\times10^9) \approx 1.15$ pF（取 $R_X$ = 13.3 kΩ 时为 1.19 pF）。由于 $A_0$ 只有约 20，主极点（dominant pole）只贡献 ≈ 87°，而不是 90°。
+- 若把主极点的相移取为恰好 90°：$\omega_Y = 1.5\,$GBW = 3.8×10⁹ rad/s，因此 $C_Y$ ≈ 0.97 pF（若在幅值中也忽略 $|1 + j\omega_u/\omega_Y|$，则 ≈ 0.84 pF）。
+- 两极点条件还有一个两极点角色互换的第二个解：当 $C_Y$ 极大时，节点 Y 成为主极点（$\omega_Y \approx 4.8\times10^6$ rad/s，$\omega_u \approx 8.2\times10^7$ rad/s），并在 $C_Y \approx 770$ pF 处再次得到 PM = 60°。因此严格来说，$C_Y \lesssim 1.15$ pF 或 $C_Y \gtrsim 770$ pF 时 PM ≥ 60°；以 X 为主极点（这是预期的设计，也是 $C_Y$ 从零开始增大时首先遇到的极限）时，最大值为 1.15 pF。

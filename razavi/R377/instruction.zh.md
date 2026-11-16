@@ -1,0 +1,3 @@
+[图 1] 所示的放大器由 NMOS 管 $M_1$、理想无噪声电流源（current source）负载和从输出端接到栅极的反馈电阻 $R_F$ 构成；λ = 0，不计体效应（body effect）和电容。该放大器经无噪声的信号源内阻 $R_S$ 驱动。其噪声用栅极节点处的输入参考（input-referred）噪声源表示：一个电压源 $V_{n,in}$ 串联在 $R_S$ 与栅极节点之间（栅极节点电压 = $R_S$ 一侧的电压 + $V_{n,in}$），以及一个从地注入栅极节点的电流源 $I_{n,in}$，其中
+$$V_{n,in} = \frac{g_mR_FV_{n,M1} - V_{n,RF}}{g_mR_F - 1},\qquad I_{n,in} = \frac{g_m(V_{n,M1} - V_{n,RF})}{g_mR_F - 1},$$
+式中 $V_{n,M1}$ 为 $M_1$ 折算到栅极的热噪声（thermal noise），对应漏极电流 $g_m(V_G + V_{n,M1})$；$V_{n,RF}$ 为 $R_F$ 的噪声电压，$R_F$ 中从输出端流向栅极的电流 $= (V_{out} - V_G - V_{n,RF})/R_F$。利用电压和电流（而不是功率）的叠加，用 $V_{n,in}$ 和 $I_{n,in}$ 计算输出噪声电压。然后代入 $\overline{V_{n,RF}^2} = 4kTR_F$ 和 $\overline{I_{n,M1}^2} = g_m^2\overline{V_{n,M1}^2} = 4kT\gamma g_m$。这个结果与直接分析含噪声电路得到的输出噪声相同吗？

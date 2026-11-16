@@ -1,0 +1,6 @@
+$\omega_X \approx 1.25\times10^8$ rad/s（≈ 20 MHz），$\omega_Y \approx 7.4\times10^9$ rad/s（≈ 1.18 GHz），低频增益 ≈ 20，PM ≈ 75°。
+- $M_1$、$M_2$：$I_D$ = 0.25 mA，$g_m = \sqrt{2(134\ \mu)(100)(0.25\ \mathrm{m})} = 2.59$ mS，$r_{O2}$ = 40 kΩ。$M_3$：$r_{O3}$ = 1/(0.2 × 0.25 mA) = 20 kΩ。
+- 节点 X：$M_2$ 的源极由 $M_1$ 构成源极负反馈（source degeneration），其电阻 ≈ $1/g_{m1}$，因此从漏极看进去的电阻 ≈ $2r_{O2}$ = 80 kΩ，再与 $r_{O3}$ 并联：$R_X$ ≈ 16 kΩ，因此 $\omega_X = 1/(16\ \mathrm{k\Omega} \times 0.5\ \mathrm{pF}) = 1.25\times10^8$ rad/s。（若用较粗略的 $r_{O2} \parallel r_{O3}$ = 13.3 kΩ，得到 1.5×10⁸ rad/s，PM 的变化 < 1°。）
+- 节点 Y 为源极跟随器（source follower）的输出端：$g_{m4} = \sqrt{2(134\ \mu)(100)(0.5\ \mathrm{m})} = 3.66$ mS，$r_{O4}$ = 20 kΩ，$R_Y = (1/g_{m4}) \parallel r_{O4} \approx 270\ \Omega$，因此 $\omega_Y = 1/(270\ \Omega \times 0.5\ \mathrm{pF}) = 7.4\times10^9$ rad/s。
+- 增益：差分输入电压在差分对（differential pair）的两管之间分配，因此 $G_m = g_m/2$ = 1.29 mS。$A_0 = (g_m/2)R_X \cdot g_{m4}r_{O4}/(1 + g_{m4}r_{O4}) \approx 1.29\ \mathrm{mS} \times 16\ \mathrm{k\Omega} \times 0.987 \approx 20.4$（用 13.3 kΩ 时为 17）。反馈从 $V_{out}$ 接到 $M_2$ 的栅极（反相输入端）。
+- 单位增益反馈：在 $\omega_u \approx 2.42\times10^9$ rad/s 处 $|H| = 1$（接近 GBW = $(g_m/2)A_{v4}/C_X = 2.55\times10^9$）。相位 = −(87.0° + 18.1°)，因此 PM ≈ 75°。

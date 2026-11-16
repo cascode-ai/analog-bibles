@@ -1,0 +1,5 @@
+NMOS 和 PMOS 并联在 X 与地之间，栅极都接 $V_G$；$I_X = I_N + I_P$。
+- NMOS（源极接地）：若 $V_G < 0.7$ V 则截止。否则，当 $V_X < V_G - 0.7$ 时处于线性区（triode region）：$I_N = \beta_n[(V_G - 0.7)V_X - V_X^2/2]$；当 $V_X > V_G - 0.7$ 时处于饱和区（saturation region）：$I_N = \tfrac12\beta_n(V_G - 0.7)^2$。
+- PMOS（源极在 X，漏极接地）：只有当 $V_X > V_G + 0.8$ 时才导通，并且导通时总是饱和（其 $V_{SD} = V_X$ 大于 $V_{SG} - |V_{THP}|$）：$I_P = \tfrac12\beta_p(V_X - V_G - 0.8)^2$。
+- 给定 $V_G > 0.7$ V 时 $I_X$ 随 $V_X$ 的变化：先是线性区的上升段，然后从 $V_G - 0.7$ 到 $V_G + 0.8$ 是高度为 $\tfrac12\beta_n(V_G - 0.7)^2$ 的平坦平台，之后是 PMOS 造成的第二段抛物线上升。当 $V_G < 0.7$ V 时：在 $V_X = V_G + 0.8$ 之前电流为零，之后是 PMOS 的抛物线。增大 $V_G$ 会抬高平台，并把 PMOS 的导通点推向右边（当 $V_G > 2.2$ V 时，它不再出现在 0–3 V 范围内）；不同 $V_G$ 的曲线在高 $V_X$ 处可能相交。
+- 等效跨导 $g_{m,eq} = \partial I_X/\partial V_G = g_{mN} - g_{mP}$：在 NMOS 线性区为 $\beta_nV_X$，在平台上为 $\beta_n(V_G - 0.7)$，PMOS 导通后为 $\beta_n(V_G - 0.7) - \beta_p(V_X - V_G - 0.8)$，以斜率 $-\beta_p$ 线性下降，在 $V_X = V_G + 0.8 + (\beta_n/\beta_p)(V_G - 0.7)$ 处过零并变为负值（增大 $V_G$ 会使 PMOS 电流减小）。当 $V_G < 0.7$ V 时，它先为 0，然后为 $-\beta_p(V_X - V_G - 0.8)$。

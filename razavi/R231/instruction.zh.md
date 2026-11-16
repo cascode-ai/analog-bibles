@@ -1,0 +1,3 @@
+在 [图 1] 所示电路中，$(W/L)_N = 10/0.5$，$(W/L)_P = 10/0.5$（有效尺寸，单位为 μm），$I_{REF} = 100\ \mu$A。$M_0$ 的尺寸为 $(W/L)_N$，另外两个 NMOS 电流源（current source）如图中所标，分别为 $2(W/L)_N$ 和 $5(W/L)_N$。取 $M_1$ 和 $M_2$ 为 $(W/L)_N$；所有 PMOS 器件均为 $(W/L)_P$，包括 $M_3$–$M_6$ 以及由 $2(W/L)_N$ 晶体管驱动的二极管连接（diode-connected）PMOS。加在 $M_1$ 和 $M_2$ 栅极上的输入共模电平（input common-mode level）为 1.3 V，$V_{DD} = 3$ V。假设所有晶体管都工作在饱和区（saturation region）。在 $\lambda = 0$ 的条件下，计算 $V_P$ 以及各二极管连接 PMOS 晶体管的漏极电压（$M_3$、$M_4$ 以及二极管连接的 PMOS 基准器件）。
+
+器件参数：NMOS 的 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH0} = 0.7$ V，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V；PMOS 的 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V。每个 NMOS 的衬底（bulk）接地，每个 PMOS 的衬底接 $V_{DD}$。

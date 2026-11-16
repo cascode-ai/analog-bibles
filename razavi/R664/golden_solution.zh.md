@@ -1,0 +1,6 @@
+氧化层变得更安全，因为其中的电场减小了 α 倍。作为代价，器件失去了 $C_{ox}$ 增大所带来的好处：驱动电流和跨导（transconductance）比理想按比例缩小时下降得更多，栅极对沟道的控制也会减弱。
+- 氧化层电场：$E_{ox} \approx V_{GS}/t_{ox}$ 减小 α 倍（理想按比例缩小时它保持不变）。因此不必担心击穿；氧化层只是比所需的更厚而已。
+- $C_{ox} = \epsilon_{ox}/t_{ox}$ 保持不变，而不是增大到 α 倍。在 $W/L$ 不变、过驱动电压（overdrive voltage）除以 α 的情况下（假设 $V_{TH}$ 仍能降低 α 倍），$I_D = \tfrac12\mu C_{ox}(W/L)(V_{GS}-V_{TH})^2$ 减小 α² 倍而不是 α 倍。同样，$g_m = \mu C_{ox}(W/L)(V_{GS}-V_{TH})$ 减小 α 倍，而不是保持不变；因此，例如共栅级（common-gate stage）的输入阻抗 $1/g_m$ 增大到 α 倍。
+- 速度：栅电容 $WLC_{ox}$ 减小 α² 倍，但结电容（junction capacitance）和连线电容只减小 α 倍。因此，以这些电容为主的节点，其延迟 $CV_{DD}/I$ 不再改善（≈ 不变，而不是减小 α 倍）；只有以栅电容为负载的节点仍能加快 α 倍。
+- 阈值电压：在 $V_{TH} = \phi_{MS} + 2\phi_F + Q_{dep}/C_{ox}$ 中，随着掺杂浓度提高到 α 倍，$Q_{dep} = \sqrt{2q\epsilon_{si}N_{sub}\cdot 2\phi_F}$ 增大到 ≈ √α 倍，而 $C_{ox}$ 不再增大。因此耗尽项不减反增，$V_{TH}$ 无法通过掺杂按比例降低；它反而趋于升高，需要另外进行阈值调整。体效应系数（body-effect coefficient）$\gamma = \sqrt{2q\epsilon_{si}N_{sub}}/C_{ox}$ 增大到 √α 倍（而不是减小 √α 倍）。
+- 栅控能力与短沟道效应（short-channel effect）：$C_d/C_{ox}$ 增大（掺杂更高，$C_{ox}$ 不变），因此 $\zeta = 1 + C_d/C_{ox}$ 和亚阈值斜率（subthreshold slope）$S = 2.3\zeta kT/q$ 都变差。沟道长度缩短了，而 $t_{ox}$ 没有缩小，因此相对于栅极，漏极对沟道电势的影响增强：$V_{TH}$ 滚降（roll-off）、漏致势垒降低（DIBL）和穿通（punch-through）都会加剧，输出电阻（output resistance）也随之变差。这就是 $t_{ox}$ 必须随 L 一起缩小的原因，也是为什么决定氧化层能做多薄的是氧化层击穿，而不是方便与否。

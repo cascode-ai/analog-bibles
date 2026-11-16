@@ -1,0 +1,1 @@
+解释为什么在给定尾电流（tail current）的条件下，[图 1] 所示电路的输入失调电压（offset voltage）与输出电压摆幅（output voltage swing）之间存在折中。该电路由 NMOS 差分对（differential pair）$M_1$–$M_2$ 和由 $V_b$ 偏置的 PMOS 电流源（current source）负载 $M_3$–$M_4$ 组成，所有晶体管都工作在饱和区（saturation region）。

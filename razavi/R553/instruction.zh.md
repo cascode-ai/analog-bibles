@@ -1,0 +1,1 @@
+一个以电阻 $R_D$ 为负载的差分对（differential pair）的小信号电压增益为 $g_mR_D$。其尾电流（tail current）恒定（与温度无关），但负载电阻具有一定的温度系数（temperature coefficient）。若只考虑迁移率（mobility）的温度依赖性，即 $\mu \propto T^{-3/2}$，且器件服从平方律（square law），电阻的温度系数应为多少才能抵消迁移率的变化，使 $g_mR_D$ 在室温（$T = 300$ K）下的温度系数为零？

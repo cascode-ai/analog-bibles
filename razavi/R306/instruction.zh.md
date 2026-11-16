@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路在极低频和极高频下的增益 $V_{out}/V_{in}$。$M_1$ 和 $M_2$ 为 NMOS 晶体管，$M_3$ 为 PMOS 晶体管，均工作在饱和区（saturation region），$\lambda \ne 0$，输出电阻（output resistance）分别为 $r_{O1}$、$r_{O2}$、$r_{O3}$，且 $\gamma = 0$；$V_b$ 为固定偏置电压。除 $C_1$ 和 $C_2$ 外忽略所有电容。

@@ -1,0 +1,1 @@
+在 [图 1] 所示的差分对（differential pair）中，$M_2$ 的宽度是 $M_1$ 的两倍（$W/L$ 和 $2W/L$），尾电流（tail current）为 $I_{SS}$，两个器件都服从平方律（square law），λ = 0，且阈值电压（threshold voltage）相等。画出 $I_{D1}$ 和 $I_{D2}$ 随 $V_{in1} - V_{in2}$ 变化的曲线草图。$V_{in1} - V_{in2}$ 为何值时两个电流相等？用 $I_{SS}$ 和 $\beta = \mu_nC_{ox}W/L$（$M_1$ 的系数）表示结果。

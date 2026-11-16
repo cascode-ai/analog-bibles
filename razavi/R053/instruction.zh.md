@@ -1,0 +1,1 @@
+对于一个 NMOS 晶体管，已知其阈值电压（threshold voltage），但 $\mu_nC_{ox}$ 和 $W/L$ 未知。假设 $\lambda = \gamma = 0$。如果不能单独测量 $C_{ox}$，能否设计一系列直流测量来确定 $\mu_nC_{ox}$ 和 $W/L$？如果我们有两个晶体管，并且知道其中一个的宽长比（aspect ratio）是另一个的两倍，情况又如何？

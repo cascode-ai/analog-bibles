@@ -1,0 +1,1 @@
+二氧化硅在高电场下会被击穿。解释：若对 MOSFET 按因子 $\alpha > 1$ 进行理想按比例缩小（ideal scaling），但保持栅氧厚度不变，会发生什么？理想按比例缩小又称恒定电场按比例缩小（constant-field scaling），其规则为：所有横向和纵向尺寸都除以 $\alpha$，电源电压和阈值电压（threshold voltage）都除以 $\alpha$，所有掺杂浓度都乘以 $\alpha$；这里 $t_{ox}$ 是唯一不按比例缩小的尺寸。

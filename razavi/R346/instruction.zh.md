@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路的输入参考热噪声电压和电流（input-referred thermal noise voltage and current）。该电路是共栅级（common-gate stage）：输入驱动 $M_1$ 的源极，负载为 $R_D$，栅极由一个分压器的中点驱动，该分压器由两个相等的电阻 $R_1$ 组成，接在输出端与地之间。忽略沟道长度调制（channel-length modulation）、体效应（body effect）和电容。把 MOSFET 的沟道热噪声（channel thermal noise）建模为功率谱密度（PSD）为 $4kT\gamma g_m$ 的漏极电流，把每个电阻 $R$ 的热噪声建模为 $4kT/R$。
