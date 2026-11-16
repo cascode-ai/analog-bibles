@@ -1,0 +1,6 @@
+* Small-signal model of the CS stage with PMOS current-source load (M2 reduces to its output resistance rO2)
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm1}
+RO1 out 0 {r_O1}
+RO2 out 0 {r_O2}
+.end

@@ -1,0 +1,16 @@
+* Common-mode half circuit with the loop broken at the gate of the tail transistor MT
+VE E 0 AC 1
+GT P 0 E 0 {gmT/2}
+ROT P 0 {2*r_OT}
+G1 F P 0 P {gm1}
+Gmb1 F P 0 P {gmb1}
+RO1 F P {r_O1}
+ROP F 0 {r_OP}
+G5 F out F 0 {gm5}
+Gmb5 F out F 0 {gmb5}
+RO5 F out {r_O5}
+GNC out B 0 B {gmNC}
+GmbNC out B 0 B {gmbNC}
+RONC out B {r_ONC}
+RONS B 0 {r_ONS}
+.end

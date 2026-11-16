@@ -1,0 +1,16 @@
+* Small-signal noise model: PMOS as transconductors with drain noise currents, bipolar transistors as 1/gm resistors, ideal op amp driving the common gate node G
+E1 G 0 Y X {A_1}
+G3 X 0 G 0 {g_m3}
+In3 0 X {i_n3}
+RQ1 X 0 {r}
+G4 Y 0 G 0 {g_m4}
+In4 0 Y {i_n4}
+VnR1 Y A {v_nR1}
+R1 A E2 {R_1}
+RQ2 E2 0 {r}
+G5 out 0 G 0 {g_m5}
+In5 0 out {i_n5}
+R2 out B {R_2}
+VnR2 B E3 {v_nR2}
+RQ3 E3 0 {r_3}
+.end

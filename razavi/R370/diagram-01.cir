@@ -1,0 +1,4 @@
+* Small-signal model for the output resistance of the follower (input grounded, test source v_x at the output)
+G1 0 out 0 out {gm1}
+Vx out 0 {v_x}
+.end

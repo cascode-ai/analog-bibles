@@ -1,0 +1,10 @@
+* High-frequency small-signal equivalent: C1, C2 shorted, gate of M1 at ac ground, R1 and R2 from X to ac ground, M3 driven by V_X
+V1 in 0 AC 1
+RO1 X 0 {r_O1}
+R1 X 0 {R_1}
+R2 X 0 {R_2}
+G2 out X in X {g_m2}
+RO2 out X {r_O2}
+G3 out 0 X 0 {g_m3}
+RO3 out 0 {r_O3}
+.end

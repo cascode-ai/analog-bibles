@@ -1,0 +1,10 @@
+* Small-signal model of the right half: M1 (VCCS gm1, rO1) and sink rO3 at folding node F1, cascode M6 (gm6, gmb6, rO6) from the right output R to F1, load RD
+Vin in 0 AC {vd/2}
+G1 F1 0 in 0 {gm1}
+RO1 F1 0 {rO1}
+RO3 F1 0 {rO3}
+G6 R F1 0 F1 {gm6}
+Gb6 R F1 0 F1 {gmb6}
+RO6 R F1 {rO6}
+RD R 0 {R_D}
+.end

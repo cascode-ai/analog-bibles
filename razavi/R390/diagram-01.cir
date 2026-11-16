@@ -1,0 +1,7 @@
+* Non-inverting feedback amplifier with the amplifier modeled as A0 (V+ - V-) behind its output resistance R_0
+Vin in 0 {V_in}
+E1 x 0 in m {A0}
+R0 x out {R_0}
+R1 out m {R_1}
+R2 m 0 {R_2}
+.end

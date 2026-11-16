@@ -1,0 +1,7 @@
+* Small-signal noise model of the shunt-feedback amplifier with r_O included (input node G)
+G1 out 0 g 0 {gm}
+In1 out 0 {I_n1}
+RO out 0 {r_O}
+VnF g a {V_nF}
+RF a out {R_F}
+.end

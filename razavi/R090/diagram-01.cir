@@ -1,0 +1,8 @@
+* Small-signal model of the degenerated common-source stage with body effect (M1 saturated, lambda = 0)
+Vin in 0 {v_in}
+RD out 0 {R_D}
+RS s 0 {R_S}
+* M1: drain at out, source at s, bulk at ground: v_gs = v_in - v_s, v_bs = -v_s
+Gm out s in s {gm}
+Gmb out s 0 s {gmb}
+.end

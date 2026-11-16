@@ -1,0 +1,10 @@
+* Small-signal noise model: at node X the ideal current sources M1 (gm1*v_in + I_n1) and M3 (noise I_n3 only) fix the current that the cascode M2 must carry up to the output and R_D
+Vin in 0 {v_in}
+G1 X 0 in 0 {gm1}
+In1 X 0 {I_n1}
+In3 0 X {I_n3}
+G2 out X 0 X {gm2}
+In2 out X {I_n2}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+.end

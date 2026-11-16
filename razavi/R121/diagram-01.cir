@@ -1,0 +1,9 @@
+* Small-signal model: M1 drives the output node out (= X); M2 (gate at ac ground) and PMOS M3 (gate driven by out) are in series through node D
+Vin in 0 AC 1
+G1 out 0 in 0 {gm1}
+RO1 out 0 {rO1}
+G2 D out 0 out {gm2}
+RO2 D out {rO2}
+G3 D 0 out 0 {gm3}
+RO3 D 0 {rO3}
+.end

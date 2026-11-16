@@ -1,0 +1,5 @@
+* AC equivalent of the tank at node X: LP to VDD (AC ground), fixed parasitic capacitance Cpar to ground, and varactor D1 to Vcont (AC ground), all in parallel
+L1 X 0 {L_P}
+C1 X 0 {C_par}
+C2 X 0 {C_D}
+.end

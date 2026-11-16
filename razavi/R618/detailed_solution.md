@@ -83,4 +83,4 @@ compared with $W_{min}(5\ \mathrm{mV}) \approx 6.5\ \mu$m. The 2-mV design is **
 
 **Common mistake.** Getting the comparison backwards, i.e. concluding that the tighter (2-mV) specification allows *smaller* devices. A smaller offset requires averaging over a *larger* gate area, so the device must grow.
 
-**Common mistake.** Misreading the units of the empirical formula (for example $t_{ox}$ entered in nanometres), which produces sub-micron widths. The coefficient is $0.1\times90\ \text{Å} = 9$ mV·µm, with $W$ and $L$ in micrometres.
+**Common mistake.** Misreading the units of the empirical formula (for example $t_{ox}$ entered in nanometres), which produces sub-micron widths. With $t_{ox} = 90$ Å the coefficient is $0.1\times90 = 9$ mV·µm, with $W$ and $L$ in micrometres.

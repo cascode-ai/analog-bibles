@@ -1,0 +1,8 @@
+* Output noise model of the common-source stage with the input at ac ground: thermal and flicker noise currents of M1 and the noise current of R_D flow into R_D, r_O and C_L in parallel
+In1 out 0 {I_nth}
+If1 out 0 {I_n1f}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+RO out 0 {r_O}
+CL out 0 {C_L}
+.end

@@ -1,0 +1,7 @@
+* Noise model of the inverter with the input at ac ground: channel-noise currents In1 and In2 into the output resistance R0 = rO1 || rO2
+Vin in 0 0
+G1 out 0 in 0 {gm1+gm2}
+R0 out 0 {R0}
+In1 out 0 {I_n1}
+In2 0 out {I_n2}
+.end

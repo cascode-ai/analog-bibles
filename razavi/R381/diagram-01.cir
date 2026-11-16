@@ -1,0 +1,9 @@
+* CG stage with the input open: noise V_n1 at the gate of M1 and test current I_in injected into the input node X
+Vn1 g 0 {V_n1}
+Iin 0 x {I_in}
+G1 out x g x {gm1}
+Gmb1 out x 0 x {gmb1}
+RO1 out x {r_O1}
+RO2 x 0 {r_O2}
+RO3 out 0 {r_O3}
+.end

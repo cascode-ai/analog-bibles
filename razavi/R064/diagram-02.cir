@@ -1,0 +1,7 @@
+* Small-signal model of the CS stage with diode-connected PMOS load: M2 source at ac ground, gate and drain at node out (no body effect)
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm1}
+RO1 out 0 {r_O1}
+G2 0 out 0 out {gm2}
+RO2 0 out {r_O2}
+.end

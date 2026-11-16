@@ -1,0 +1,11 @@
+* Small-signal model with the loop broken at the op-amp output: test voltage on the PMOS gates, bipolar transistors as 1/gm resistors
+Vt g 0 {delta}
+G3 X 0 g 0 {g_mP}
+R3 X 0 {R_3}
+RQ1 X 0 {1/g_m1}
+G4 Y 0 g 0 {g_mP}
+R2 Y 0 {R_2}
+R1 Y E {R_1}
+RQ2 E 0 {1/g_m2}
+E1 out 0 Y X {A_1}
+.end

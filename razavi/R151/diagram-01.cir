@@ -1,0 +1,6 @@
+* Differential half circuit: P is a virtual ground; M1 is modelled by gm1*vgs1 and its channel resistance rds1, loaded by RD
+VIN in 0 {v_in/2}
+G1 X 0 in 0 {g_m1}
+RDS1 X 0 {r_ds1}
+RD X 0 {R_D}
+.end

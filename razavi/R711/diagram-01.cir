@@ -1,0 +1,6 @@
+* Equivalent capacitor network per unit area: terminal A (metal 4 + metal 2), terminal B (metal 3 + metal 1), parasitic of the bottom plate (metal 1) to the substrate
+C43 A B {C_43}
+C32 B A {C_32}
+C21 A B {C_21}
+CP B 0 {C_P}
+.end

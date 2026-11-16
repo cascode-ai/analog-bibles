@@ -1,0 +1,12 @@
+* Common-mode half circuit with the loop broken at V_E (M3, NMOS cascode, PMOS cascode, top PMOS source)
+VE E 0 AC 1
+G3 A 0 E 0 {gm3}
+RO3 A 0 {r_O3}
+GNC out A 0 A {gmNC}
+GmbNC out A 0 A {gmbNC}
+RONC out A {r_ONC}
+GPC F out F 0 {gmPC}
+GmbPC F out F 0 {gmbPC}
+ROPC F out {r_OPC}
+ROP F 0 {r_OP}
+.end

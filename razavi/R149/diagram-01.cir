@@ -1,0 +1,6 @@
+* Equivalent circuit of node X during a clock edge: the clock step couples through Cc onto X, which sees Cg and RX = RD || rO1 to AC ground
+VCK ck 0 {dV_CK}
+CC ck X {C_c}
+CG X 0 {C_g}
+RX X 0 {R_X}
+.end

@@ -1,0 +1,9 @@
+* Five-transistor OTA used as A1: NMOS input pair, PMOS mirror load, output G drives the PMOS gates
+M5 A Y P 0 nmos
+M6 G X P 0 nmos
+M7 A A vdd vdd pmos
+M8 G A vdd vdd pmos
+M9 P vb 0 0 nmos
+Vb vb 0 {V_b}
+VDD vdd 0 3
+.end

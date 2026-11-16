@@ -1,0 +1,9 @@
+* Small-signal half circuit for the cross-check: input at the gate of M1, threshold error of M3 as a source at its gate, node P at virtual ground
+V1 in 0 {vin}
+G1 X 0 in 0 {gm1}
+R1 X 0 {rO1}
+V3 g3 0 {-dVTH}
+G3 out X g3 X {gm3}
+R3 out X {rO3}
+RD out 0 {R_D}
+.end

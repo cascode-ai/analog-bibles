@@ -1,0 +1,9 @@
+* Small-signal model: M1 and PMOS M3 (gate driven by the output) at node A, source follower M2 from A to the output; the ideal current source I1 is an open circuit
+Vin in 0 AC 1
+G1 A 0 in 0 {gm1}
+RO1 A 0 {rO1}
+G3 A 0 out 0 {gm3}
+RO3 A 0 {rO3}
+G2 0 out A out {gm2}
+RO2 0 out {rO2}
+.end

@@ -1,0 +1,8 @@
+* Small-signal half circuit of the bulk-driven stage with the channel-noise currents of M1 and M3
+Vw1 w1 0 AC 1
+Gmb1 0 d1 0 w1 {gmb1}
+RO1 d1 0 {r_O1}
+In1 0 d1 {I_n1}
+RO3 d1 0 {r_O3}
+In3 d1 0 {I_n3}
+.end

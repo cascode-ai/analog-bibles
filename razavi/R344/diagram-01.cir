@@ -1,0 +1,8 @@
+* Small-signal noise model of the common-gate stage with R_1 from drain to source: M1 and R_1 (each with its noise current) form two parallel paths between out and the input node in; R_D loads the output
+G1 out in 0 in {gm}
+In1 out in {I_n1}
+R1 out in {R_1}
+InR1 out in {I_nR1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+.end

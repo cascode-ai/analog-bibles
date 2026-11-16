@@ -1,0 +1,6 @@
+* Small-signal model (lambda = gamma = 0, ideal current sources open): M1 as g_m1*v_X from out to ground, follower M2 as g_m2*(v_out - v_X) into X
+V1 in 0 AC 1
+RS in X {R_S}
+G1 out 0 X 0 {g_m1}
+G2 0 X out X {g_m2}
+.end

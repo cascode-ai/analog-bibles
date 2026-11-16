@@ -1,0 +1,11 @@
+* Differential half circuit of the ring: three common-source stages with load R1 and node capacitance C, the third output returned to the first input
+G1 X 0 D5 0 {gm}
+R1 X 0 {R1}
+C1 X 0 {C}
+G3 D3 0 X 0 {gm}
+R3 D3 0 {R1}
+C3 D3 0 {C}
+G5 D5 0 D3 0 {gm}
+R5 D5 0 {R1}
+C5 D5 0 {C}
+.end

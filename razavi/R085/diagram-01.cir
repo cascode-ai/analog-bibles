@@ -1,0 +1,7 @@
+* Small-signal model of the CS stage with diode-connected PMOS load and bleeding current source (the ideal source IS is an open circuit)
+Vin in 0 {v_in}
+* M1: transconductance from out to ground, v_gs1 = v_in
+G1 out 0 in 0 {gm1}
+* M2 (PMOS): source at AC ground (VDD), gate and drain at out; current gm2*v_sg2 flows from AC ground into out, v_sg2 = -v_out
+G2 0 out 0 out {gm2}
+.end

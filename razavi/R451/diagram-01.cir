@@ -1,0 +1,7 @@
+* Small-signal model for the output resistance of the gain-boosted cascode (test source at the drain D of M2)
+Vt D 0 AC 1
+G2 D X G X {gm2}
+RO2 D X {r_O2}
+RO1 X 0 {r_O1}
+EA1 G 0 0 X {A1}
+.end

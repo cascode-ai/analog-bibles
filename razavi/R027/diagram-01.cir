@@ -1,0 +1,9 @@
+* After the switch opens: nodes X and S form an island tied to ground only by I1, the small parasitic capacitances Cpx and Cps, and the source-bulk junction diode DSB (bulk grounded)
+VB b 0 {V_b}
+M1 X b S 0 nmos
+C1 X S {C_1}
+I1 S 0 {I_1}
+Cpx X 0 {C_px}
+Cps S 0 {C_ps}
+DSB 0 S dsb
+.end

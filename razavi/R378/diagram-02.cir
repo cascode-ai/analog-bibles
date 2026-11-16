@@ -1,0 +1,10 @@
+* Small-signal model of Fig. 2: noise voltage V_n and Z_1 in series with the gate (drain shorted to AC ground through Vd)
+Vn a 0 {V_n}
+R1 a g {Z_1}
+CGS g s {C_GS}
+RS s 0 {Z_S}
+Gm d s g s {gm}
+Gmb d s 0 s {gmb}
+RO d s {r_O}
+Vd 0 d 0
+.end

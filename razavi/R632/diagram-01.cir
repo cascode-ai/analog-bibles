@@ -1,0 +1,6 @@
+* Small-signal model of the composite load with CGS3: test source at X, follower M5 driving gate node G, CGS3 from G to AC ground, M3 as a controlled source into X
+Vx X 0 {vx}
+G5 0 G X G {gm5}
+C1 G 0 {C_GS3}
+G3 0 X 0 G {gm3}
+.end

@@ -1,0 +1,6 @@
+* Amplification mode with switch S3 modeled by its on-resistance Ron; C1 starts charged to Vin0, ideal op amp holds X at virtual ground
+Ron A 0 {R_on}
+C1 A X {C_1} IC={V_in0}
+C2 X out {C_2}
+E1 out 0 0 X {A_v}
+.end

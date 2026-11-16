@@ -1,0 +1,8 @@
+* Small-signal model of the cascode with R_G in series with the gate of M2 and only C_GS2 kept (lambda = gamma = 0, V_A = V_in)
+V1 in 0 AC 1
+Gm1 X 0 in 0 {g_m1}
+RG G 0 {R_G}
+CGS2 G X {C_GS2}
+Gm2 out X G X {g_m2}
+RD out 0 {R_D}
+.end

@@ -1,0 +1,10 @@
+* Small-signal model (lambda = gamma = 0); RD1 and RD2 return to ac ground
+Vin in 0 AC 1
+G1 A S in S {gm1}
+RD1 A 0 2k
+RS1 S 0 2k
+G2 out 0 A 0 {gm2}
+RD2 out 0 2k
+RF2 A out 2k
+RF1 S out 2k
+.end

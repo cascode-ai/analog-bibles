@@ -1,0 +1,10 @@
+* Differential half circuit with the stage noise sources: half of Vn2 at the input of Gm2, half of Vn1 at the input of Gm1
+Iin 0 A AC 1
+R0A A 0 {R0}
+Vn2 A2 A {Vn2/2}
+G2 O1 0 A2 0 {Gm2}
+R0B O1 0 {R0}
+C1 O1 0 {C1}
+Vn1 O1 O1n {Vn1/2}
+G1 0 A O1n 0 {Gm1}
+.end

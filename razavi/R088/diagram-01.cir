@@ -1,0 +1,8 @@
+* Small-signal model of the common-gate stage with feedforward resistor RF (M1 saturated, lambda = 0)
+Vin in 0 {v_in}
+RD out 0 {R_D}
+RF out in {R_F}
+* M1: gate at AC ground, source at in, drain at out, bulk at ground: v_gs = v_bs = -v_in
+Gm out in 0 in {gm}
+Gmb out in 0 in {gmb}
+.end

@@ -1,0 +1,9 @@
+* Small-signal model of the CS stage with the VGS-multiplier load (M1 and M2 saturated, lambda = 0)
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm1}
+* load network: R1 from the gate node g of M2 to AC ground (VDD), R2 from g to out
+R1 g 0 {R_1}
+R2 g out {R_2}
+* M2 (PMOS): source at AC ground, gate at g, drain at out; current gm2*v_sg2 flows into out, v_sg2 = -v_g
+G2 0 out 0 g {gm2}
+.end

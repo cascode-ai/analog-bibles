@@ -1,0 +1,11 @@
+* Differential half circuit: M1 drives the PMOS diode M3 at node X, M5 (K times M3) drives the diode-connected NFET load (R_D = 1/g_mD) at out
+V1 in 0 {V_in/2}
+G1 X 0 in 0 {g_m1}
+CGD1 in X {C_GD1}
+G3 X 0 X 0 {g_m3}
+CXg X 0 {C_Xg}
+CGD5 X out {C_GD5}
+G5 out 0 X 0 {g_m5}
+GD out 0 out 0 {g_mD}
+CYg out 0 {C_Yg}
+.end

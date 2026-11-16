@@ -1,0 +1,8 @@
+* Zero test: output shorted to ac ground through a 0-V source that measures I_short (C_L and r_OP carry no current and are omitted)
+R1 E 0 {1/g_mP}
+CE E 0 {C_E}
+G4 out 0 E 0 {g_mP}
+RX E m {R_X}
+VX out m {V_X}
+Vshort out 0 0
+.end

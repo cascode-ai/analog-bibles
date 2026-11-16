@@ -1,0 +1,9 @@
+* Small-signal model for the supply sensitivity of the feedback inverter (Vin held at ac ground, supply change vdd)
+Vdd vdd 0 AC 1
+R1 0 G 1k
+R2 G out 10k
+G2 vdd out vdd G {gm2}
+RO2 vdd out {r_O2}
+G1 out 0 G 0 {gm1}
+RO1 out 0 {r_O1}
+.end

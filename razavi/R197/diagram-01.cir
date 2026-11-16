@@ -1,0 +1,8 @@
+* Differential half circuit: M1 as a VCCS with rO1, diode-connected M3 as 1/gm3 with rO3, and half of R1 to the virtual ground
+Vin in 0 AC {vd/2}
+G1 X 0 in 0 {gm1}
+RO1 X 0 {rO1}
+R3 X 0 {1/gm3}
+RO3 X 0 {rO3}
+RH X 0 {R_1/2}
+.end

@@ -1,0 +1,8 @@
+* Modified circuit: RS moved from the source of M2 to the source of M1 (M2 source grounded)
+M1 N N S1 0 nmos
+RS S1 0 {R_S}
+M2 P N 0 0 nmos
+M3 P P vdd vdd pmos
+M4 N P vdd vdd pmos
+VDD vdd 0 {V_DD}
+.end

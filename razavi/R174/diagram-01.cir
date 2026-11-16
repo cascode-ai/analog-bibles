@@ -1,0 +1,8 @@
+* Small-signal model for a common-mode input: mismatched input transconductances gm1, gm2, diode-connected loads modelled as 1/gm3 and 1/gm4, tail resistance RSS
+VCM cm 0 {v_cm}
+G1 X P cm P {g_m1}
+G2 Y P cm P {g_m2}
+R3 X 0 {1/g_m3}
+R4 Y 0 {1/g_m4}
+RSS P 0 {R_SS}
+.end

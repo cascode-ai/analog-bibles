@@ -1,0 +1,7 @@
+* Feedback network seen by the loop: Z2 = R2 || C_F from the output to the inverting input X, Z1 = R1 || C_in from X to ground
+Vout out 0 {V_out}
+R2 out X 100k
+CF out X {C_F}
+R1 X 0 50k
+Cin X 0 50f
+.end

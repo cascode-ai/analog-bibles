@@ -1,0 +1,13 @@
+* Small-signal model of the OTA with the defect resistor R1 between the diode node F and the tail node P (tail source open)
+V1 in1 0 AC {v_1}
+V2 in2 0 AC {v_2}
+G1 f p in1 p {g_N}
+RO1 f p {r_N}
+G2 out p in2 p {g_N}
+RO2 out p {r_N}
+R3 f 0 {1/g_P}
+RO3 f 0 {r_P}
+G4 out 0 f 0 {g_P}
+RO4 out 0 {r_P}
+R1 f p {R_1}
+.end

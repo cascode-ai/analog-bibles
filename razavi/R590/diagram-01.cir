@@ -1,0 +1,7 @@
+* Differential half circuit in the amplification mode: M1 modeled as gm1 with ro1 and ro3 at its drain (out), C3 feeding the output back to the gate X; the tail node is an AC ground
+Vstep in 0 {dV_in}
+C1 in x {C_1}
+C3 x out {C_3}
+G1 out 0 x 0 {g_m1}
+Ro1 out 0 {r_O1}
+Ro3 out 0 {r_O3}

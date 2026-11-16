@@ -1,0 +1,7 @@
+* Small-signal model for Z_X: R_D from X to ac ground, M1 as g_m1*v_S from X to ground, follower M2 as g_m2*(v_X - v_S) into S, C1 from S to ground (I1 open)
+VX X 0 AC 1
+RD X 0 {R_D}
+G1 X 0 S 0 {g_m1}
+G2 0 S X S {g_m2}
+C1 S 0 {C_1}
+.end

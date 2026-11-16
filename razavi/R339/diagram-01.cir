@@ -1,0 +1,10 @@
+* Small-signal noise model: the PMOS current source M2 reduces to its noise current I_n2 into the output; M1 and R_F (with their noise) connect out to S; R_S carries its series noise voltage V_nS
+Vin in 0 {v_in}
+In2 0 out {I_n2}
+G1 out S in S {gm1}
+In1 out S {I_n1}
+RF out S {R_F}
+InF out S {I_nF}
+VnS S x {V_nS}
+RS x 0 {R_S}
+.end

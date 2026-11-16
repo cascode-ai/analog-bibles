@@ -1,0 +1,12 @@
+* Differential pair whose CMFB senses the output CM with source followers M7, M8 sharing one current source I_S; the error amplifier E1 compares node s with V_REF and drives the gates of the PMOS loads (node cmfb)
+VDD vdd 0 {V_DD}
+M1 out1 inp p 0 nmos
+M2 out2 inn p 0 nmos
+ISS p 0 {I_SS}
+M3 out1 cmfb vdd vdd pmos
+M4 out2 cmfb vdd vdd pmos
+M7 vdd out1 s 0 nmos
+M8 vdd out2 s 0 nmos
+IS s 0 {I_S}
+VREF ref 0 {V_REF}
+E1 cmfb 0 s ref {A_CMFB}

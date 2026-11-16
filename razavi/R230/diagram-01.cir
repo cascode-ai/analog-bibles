@@ -1,0 +1,7 @@
+* Branch M2-M3 just above VDD = |VTHP|: M2 in deep triode acts as the resistor R_on2 in series with the diode-connected PMOS M3, which M4 mirrors into the grounded output node
+VDD vdd 0 {V_DD}
+M3 A A vdd vdd pmos
+Ron2 A 0 {R_on2}
+M4 out A vdd vdd pmos
+Vout out 0 0
+.end

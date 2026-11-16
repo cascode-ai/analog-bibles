@@ -1,0 +1,5 @@
+* Small-signal model of the common-gate stage (lambda = gamma = 0) with a test source at the input
+Vx in 0 AC 1
+G1 out in 0 in {gm}
+RD out 0 {R_D}
+.end

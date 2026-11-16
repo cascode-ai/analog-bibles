@@ -1,0 +1,5 @@
+* Differential half circuit: the midpoint of R1 is a virtual ground, so node X sees R1/2; the ideal PMOS current source is an open circuit
+Vin in 0 AC {dvin/2}
+M1 X in 0 0 nmos
+RH X 0 {R_1/2}
+.end

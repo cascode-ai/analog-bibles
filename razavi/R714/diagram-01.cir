@@ -1,0 +1,12 @@
+* Driver with source resistance R_S feeding the metal-4 wire, modelled as a distributed RC line (four sections shown)
+V1 in 0 {V_in}
+RS in n0 {R_S}
+R1 n0 n1 {R_wire/4}
+C1 n1 0 {C_wire/4}
+R2 n1 n2 {R_wire/4}
+C2 n2 0 {C_wire/4}
+R3 n2 n3 {R_wire/4}
+C3 n3 0 {C_wire/4}
+R4 n3 out {R_wire/4}
+C4 out 0 {C_wire/4}
+.end

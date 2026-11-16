@@ -1,0 +1,9 @@
+* Small-signal model of the left half (M1, M3) with noise sources; R_S goes to the right-half source node s2
+Vg1 g1 0 {v_g1}
+G1 a1 s1 g1 s1 {gm1}
+In1 a1 s1 {I_n1}
+G3 0 s1 0 a1 {gm3}
+In3 0 s1 {I_n3}
+RS s1 s2 {R_S}
+InR s1 s2 {I_nR}
+.end

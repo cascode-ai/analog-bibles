@@ -1,0 +1,6 @@
+* Back-gate picture: the channel surface node is coupled to the front gate through Cox and to the bulk (back gate) through Cdep
+VG gate 0 {V_G}
+VB bulk 0 {V_B}
+COX gate surface {C_ox}
+CDEP surface bulk {C_dep}
+.end

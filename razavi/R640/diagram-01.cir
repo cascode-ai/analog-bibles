@@ -1,0 +1,8 @@
+* Small-signal model with a current stimulus Iin into the drain node D (source grounded): L1 and RP between G and D, C1 from G to ground, C2 from D to ground
+Iin 0 D {Iin}
+L1 G D {L_1}
+RP G D {R_P}
+C1 G 0 {C_1}
+C2 D 0 {C_2}
+G1 D 0 G 0 {gm}
+.end

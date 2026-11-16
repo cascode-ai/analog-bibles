@@ -1,0 +1,7 @@
+* Small-signal noise model with the source resistance R_S (input source set to zero)
+RS g 0 {R_S}
+RF g a {R_F}
+VnF out a {V_nF}
+G1 out 0 g 0 {gm}
+In1 out 0 {I_n1}
+.end

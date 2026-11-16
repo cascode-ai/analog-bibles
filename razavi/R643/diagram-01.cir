@@ -1,0 +1,7 @@
+* Differential half circuit of one delay stage: input device as gm12, load R, cross-coupled device as a negative conductance (current gm34 times minus vout), node capacitance C
+Vin in 0 {vin}
+G1 out 0 in 0 {gm12}
+R1 out 0 {R}
+G3 out 0 0 out {gm34}
+C1 out 0 {C}
+.end

@@ -1,0 +1,6 @@
+* A 10-um-wide transistor at 0.25 mA viewed as two 5-um transistors in parallel, each carrying 0.125 mA with the same terminal voltages
+VGS g 0 {V_GS}
+VDS d 0 {V_DS}
+MA d g 0 0 nmos W=5u L=40n
+MB d g 0 0 nmos W=5u L=40n
+.end

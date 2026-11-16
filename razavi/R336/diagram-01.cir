@@ -1,0 +1,9 @@
+* Small-signal noise model: the diode-connected M2 becomes a resistance 1/gm2 with its noise current I_n2, M1 is a transconductance with its channel noise I_n1, and R_S carries a series noise voltage V_nS
+Vin in 0 {v_in}
+R2 out 0 {1/gm2}
+In2 0 out {I_n2}
+G1 out S in S {gm1}
+In1 out S {I_n1}
+VnS S x {V_nS}
+RS x 0 {R_S}
+.end

@@ -1,0 +1,5 @@
+* Small-signal model of M1 with grounded source: the gate (in) and the bulk (sub) both control the drain current, through gm and gmb respectively
+G1 out 0 in 0 {gm}
+G2 out 0 sub 0 {gmb}
+RD out 0 {R_D}
+.end

@@ -1,0 +1,5 @@
+* Small-signal model of the half circuit: M1 as gm1*v_in/2, the diode-connected load M3 as gm3 controlled by -v_X
+Vin in 0 AC {v_in/2}
+G1 X 0 in 0 {gm1}
+G3 0 X 0 X {gm3}
+.end

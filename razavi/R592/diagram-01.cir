@@ -1,0 +1,6 @@
+* Differential half circuit in the amplification mode including CGS of M1: C1 and CGS both from the gate X to AC ground (the tail node is an AC ground), C3 from the output back to X, M1 as gm1 with R0 = ro1 || ro3
+C1 x 0 {C_1}
+CGS x 0 {C_GS}
+C3 x out {C_3}
+G1 out 0 x 0 {g_m1}
+R0 out 0 {R_0}

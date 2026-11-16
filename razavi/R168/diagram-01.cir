@@ -1,0 +1,8 @@
+* Small-signal model for a common-mode input: both transistors see vgs = vcm - vP, the tail resistance RSS carries both currents, and the loads are unequal
+VCM cm 0 {v_cm}
+G1 X P cm P {g_m}
+G2 Y P cm P {g_m}
+RD1 X 0 {R_D}
+RD2 Y 0 {R_D+dR_D}
+RSS P 0 {R_SS}
+.end

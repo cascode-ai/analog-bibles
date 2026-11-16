@@ -39,9 +39,9 @@ Substituting both:
 
 $$\frac{d\Delta\phi}{dt} = \omega_{in} - \omega_0 - K_{VCO}F(\Delta\phi).$$
 
-Define $V_1 \equiv (\omega_{in} - \omega_0)/K_{VCO}$, the control voltage at which the VCO would run exactly at $\omega_{in}$. Factoring out $K_{VCO}$:
+Define $V_c^{\ast} \equiv (\omega_{in} - \omega_0)/K_{VCO}$, the control voltage at which the VCO would run exactly at $\omega_{in}$. Factoring out $K_{VCO}$:
 
-$$\frac{d\Delta\phi}{dt} = K_{VCO}\left[V_1 - F(\Delta\phi)\right].$$
+$$\frac{d\Delta\phi}{dt} = K_{VCO}\left[V_c^{\ast} - F(\Delta\phi)\right].$$
 
 This single first-order equation describes the whole loop. The "polarity" of the feedback around an operating point is the sign of the product $K_{VCO}F'(\Delta\phi)$.
 
@@ -49,16 +49,16 @@ This single first-order equation describes the whole loop. The "polarity" of the
 
 The loop is locked when $\omega_{out} = \omega_{in}$, i.e. $d\Delta\phi/dt = 0$. From Step 2 this requires
 
-$$F(\Delta\phi^*) = V_1 .$$
+$$F(\Delta\phi^{\ast}) = V_c^{\ast} .$$
 
-A solution exists only if $0 \le V_1 \le V_0$, i.e. $\omega_0 \le \omega_{in} \le \omega_0 + K_{VCO}V_0$; this is the range of input frequencies the detector output can command. Take $0 < V_1 < V_0$ (the generic case). In the period $[0, 2\pi)$ there are two solutions.
+A solution exists only if $0 \le V_c^{\ast} \le V_0$, i.e. $\omega_0 \le \omega_{in} \le \omega_0 + K_{VCO}V_0$; this is the range of input frequencies the detector output can command. Take $0 < V_c^{\ast} < V_0$ (the generic case). In the period $[0, 2\pi)$ there are two solutions.
 
 **On the rising segment** ($0 \le \Delta\phi \le \pi$, where $F = V_0\Delta\phi/\pi$):
 
 $$
 \begin{aligned}
-V_0\,\frac{\Delta\phi_r}{\pi} &= V_1\\
-\Delta\phi_r &= \pi\,\frac{V_1}{V_0}.
+V_0\,\frac{\Delta\phi_r}{\pi} &= V_c^{\ast}\\
+\Delta\phi_r &= \pi\,\frac{V_c^{\ast}}{V_0}.
 \end{aligned}
 $$
 
@@ -66,29 +66,29 @@ $$
 
 $$
 \begin{aligned}
-V_0\,\frac{2\pi - \Delta\phi_f}{\pi} &= V_1\\
-2\pi - \Delta\phi_f &= \pi\,\frac{V_1}{V_0}\\
-\Delta\phi_f &= 2\pi - \pi\,\frac{V_1}{V_0}.
+V_0\,\frac{2\pi - \Delta\phi_f}{\pi} &= V_c^{\ast}\\
+2\pi - \Delta\phi_f &= \pi\,\frac{V_c^{\ast}}{V_0}\\
+\Delta\phi_f &= 2\pi - \pi\,\frac{V_c^{\ast}}{V_0}.
 \end{aligned}
 $$
 
-Every shift by a multiple of $2\pi$ is also a solution. **Example:** for $V_1 = V_0/2$, $\Delta\phi_r = \pi/2$ and $\Delta\phi_f = 3\pi/2$, exactly the two waveform cases in the figure that give an average of $V_0/2$.
+Every shift by a multiple of $2\pi$ is also a solution. **Example:** for $V_c^{\ast} = V_0/2$, $\Delta\phi_r = \pi/2$ and $\Delta\phi_f = 3\pi/2$, exactly the two waveform cases in the figure that give an average of $V_0/2$.
 
 Both points produce the same average detector output, so both satisfy the static lock condition. That condition is necessary but not sufficient: the lock point must also be *stable*.
 
 ### Step 4 — Stability of each equilibrium
 
-Write $\Delta\phi = \Delta\phi^* + \delta$ with a small deviation $\delta$. A first-order Taylor expansion of the characteristic gives
+Write $\Delta\phi = \Delta\phi^{\ast} + \delta$ with a small deviation $\delta$. A first-order Taylor expansion of the characteristic gives
 
-$$F(\Delta\phi^* + \delta) \approx F(\Delta\phi^*) + F'(\Delta\phi^*)\,\delta = V_1 + F'(\Delta\phi^*)\,\delta .$$
+$$F(\Delta\phi^{\ast} + \delta) \approx F(\Delta\phi^{\ast}) + F'(\Delta\phi^{\ast})\,\delta = V_c^{\ast} + F'(\Delta\phi^{\ast})\,\delta .$$
 
-Substitute into the loop equation (and note $d\Delta\phi^*/dt = 0$):
+Substitute into the loop equation (and note $d\Delta\phi^{\ast}/dt = 0$):
 
 $$
 \begin{aligned}
-\frac{d\delta}{dt} &= K_{VCO}\left[V_1 - V_1 - F'(\Delta\phi^*)\,\delta\right]\\
-\frac{d\delta}{dt} &= -K_{VCO}F'(\Delta\phi^*)\,\delta\\
-\delta(t) &= \delta(0)\,\exp\!\left[-K_{VCO}F'(\Delta\phi^*)\,t\right].
+\frac{d\delta}{dt} &= K_{VCO}\left[V_c^{\ast} - V_c^{\ast} - F'(\Delta\phi^{\ast})\,\delta\right]\\
+\frac{d\delta}{dt} &= -K_{VCO}F'(\Delta\phi^{\ast})\,\delta\\
+\delta(t) &= \delta(0)\,\exp\!\left[-K_{VCO}F'(\Delta\phi^{\ast})\,t\right].
 \end{aligned}
 $$
 
@@ -99,14 +99,14 @@ $$
 
 ### Step 5 — A start on the "wrong" slope still ends in lock
 
-Now follow large phase errors with the full nonlinear equation $d\Delta\phi/dt = K_{VCO}[V_1 - F(\Delta\phi)]$, still with $K_{VCO} > 0$. The direction of motion is set only by whether $F$ is above or below $V_1$. Over one period, from $\Delta\phi_r$ to $\Delta\phi_r + 2\pi$:
+Now follow large phase errors with the full nonlinear equation $d\Delta\phi/dt = K_{VCO}[V_c^{\ast} - F(\Delta\phi)]$, still with $K_{VCO} > 0$. The direction of motion is set only by whether $F$ is above or below $V_c^{\ast}$. Over one period, from $\Delta\phi_r$ to $\Delta\phi_r + 2\pi$:
 
-| Interval of $\Delta\phi$ | Segment | $F$ vs. $V_1$ | Sign of $d\Delta\phi/dt$ | Where $\Delta\phi$ goes |
+| Interval of $\Delta\phi$ | Segment | $F$ vs. $V_c^{\ast}$ | Sign of $d\Delta\phi/dt$ | Where $\Delta\phi$ goes |
 |---|---|---|---|---|
-| $\Delta\phi_r < \Delta\phi < \pi$ | rising | $F > V_1$ | $-$ | down to $\Delta\phi_r$ |
-| $\pi < \Delta\phi < \Delta\phi_f$ | falling | $F > V_1$ | $-$ | down, across the peak at $\pi$, then to $\Delta\phi_r$ |
-| $\Delta\phi_f < \Delta\phi < 2\pi$ | falling | $F < V_1$ | $+$ | up, across the valley at $2\pi$, then to $\Delta\phi_r + 2\pi$ |
-| $2\pi < \Delta\phi < \Delta\phi_r + 2\pi$ | rising | $F < V_1$ | $+$ | up to $\Delta\phi_r + 2\pi$ |
+| $\Delta\phi_r < \Delta\phi < \pi$ | rising | $F > V_c^{\ast}$ | $-$ | down to $\Delta\phi_r$ |
+| $\pi < \Delta\phi < \Delta\phi_f$ | falling | $F > V_c^{\ast}$ | $-$ | down, across the peak at $\pi$, then to $\Delta\phi_r$ |
+| $\Delta\phi_f < \Delta\phi < 2\pi$ | falling | $F < V_c^{\ast}$ | $+$ | up, across the valley at $2\pi$, then to $\Delta\phi_r + 2\pi$ |
+| $2\pi < \Delta\phi < \Delta\phi_r + 2\pi$ | rising | $F < V_c^{\ast}$ | $+$ | up to $\Delta\phi_r + 2\pi$ |
 
 So:
 
@@ -132,17 +132,17 @@ F(\Delta\phi + \pi) &= V_0\,\frac{2\pi - (\Delta\phi + \pi)}{\pi} = V_0\,\frac{\
 \end{aligned}
 $$
 
-The loop equation becomes $d\Delta\phi/dt = K_{VCO}[V_1 - F(\Delta\phi + \pi)]$. This is the equation of Steps 2–5 with $\Delta\phi$ replaced by $\Delta\phi + \pi$, so every conclusion carries over with a shift of $\pi$:
+The loop equation becomes $d\Delta\phi/dt = K_{VCO}[V_c^{\ast} - F(\Delta\phi + \pi)]$. This is the equation of Steps 2–5 with $\Delta\phi$ replaced by $\Delta\phi + \pi$, so every conclusion carries over with a shift of $\pi$:
 
-- stable lock now requires $G' > 0$, i.e. $F'(\Delta\phi) < 0$: the loop locks on a **falling** segment of the original characteristic, at $\Delta\phi = \pi V_1/V_0 - \pi$ (mod $2\pi$);
+- stable lock now requires $G' > 0$, i.e. $F'(\Delta\phi) < 0$: the loop locks on a **falling** segment of the original characteristic, at $\Delta\phi = \pi V_c^{\ast}/V_0 - \pi$ (mod $2\pi$);
 - the rising segments now give positive feedback, and a phase error starting there drifts to an adjacent falling segment.
 
-With $V_1 = V_0/2$, the normal loop locks at $\Delta\phi = +\pi/2$ and the reversed loop at $\Delta\phi = -\pi/2 \equiv 3\pi/2$. **Both lock.** The polarity only decides the static phase offset, not whether lock occurs.
+With $V_c^{\ast} = V_0/2$, the normal loop locks at $\Delta\phi = +\pi/2$ and the reversed loop at $\Delta\phi = -\pi/2 \equiv 3\pi/2$. **Both lock.** The polarity only decides the static phase offset, not whether lock occurs.
 
 Two side remarks:
 
 - Swapping the two XOR inputs changes nothing, because $F$ is even: $F(-\Delta\phi) = F(\Delta\phi)$.
-- Making $K_{VCO}$ negative (with the same $\omega_0$) also moves the stable points to the falling slope, since stability needs $K_{VCO}F' > 0$. But then $V_1 = (\omega_{in} - \omega_0)/K_{VCO}$ must still lie between 0 and $V_0$, which now requires $\omega_{in} \le \omega_0$. Whether an equilibrium exists at all is a tuning-range question, not a polarity question.
+- Making $K_{VCO}$ negative (with the same $\omega_0$) also moves the stable points to the falling slope, since stability needs $K_{VCO}F' > 0$. But then $V_c^{\ast} = (\omega_{in} - \omega_0)/K_{VCO}$ must still lie between 0 and $V_0$, which now requires $\omega_{in} \le \omega_0$. Whether an equilibrium exists at all is a tuning-range question, not a polarity question.
 
 ### Step 7 — Including the low-pass filter
 
@@ -150,7 +150,7 @@ With the first-order LPF, $V_{cont}$ follows $F(\Delta\phi)$ with a lag:
 
 $$\frac{1}{\omega_{LPF}}\frac{dV_{cont}}{dt} + V_{cont} = F(\Delta\phi).$$
 
-Linearize around a lock point: $\delta = \Delta\phi - \Delta\phi^*$ and $v = V_{cont} - V_1$. Then
+Linearize around a lock point: $\delta = \Delta\phi - \Delta\phi^{\ast}$ and $v = V_{cont} - V_c^{\ast}$. Then
 
 $$\frac{d\delta}{dt} = -K_{VCO}\,v, \qquad \frac{1}{\omega_{LPF}}\frac{dv}{dt} + v = F'\,\delta .$$
 
@@ -175,9 +175,9 @@ The argument relies on the phase detector's characteristic being periodic with b
 
 ### Result
 
-The XOR characteristic is periodic and has a rising slope ($0 < \Delta\phi < \pi$) and a falling slope ($\pi < \Delta\phi < 2\pi$) in every period. With $d\Delta\phi/dt = K_{VCO}[V_1 - F(\Delta\phi)]$:
+The XOR characteristic is periodic and has a rising slope ($0 < \Delta\phi < \pi$) and a falling slope ($\pi < \Delta\phi < 2\pi$) in every period. With $d\Delta\phi/dt = K_{VCO}[V_c^{\ast} - F(\Delta\phi)]$:
 
-- equilibria $F(\Delta\phi^*) = V_1$ exist on both slopes: $\Delta\phi_r = \pi V_1/V_0$ and $\Delta\phi_f = 2\pi - \pi V_1/V_0$;
+- equilibria $F(\Delta\phi^{\ast}) = V_c^{\ast}$ exist on both slopes: $\Delta\phi_r = \pi V_c^{\ast}/V_0$ and $\Delta\phi_f = 2\pi - \pi V_c^{\ast}/V_0$;
 - a deviation obeys $\dot\delta = -K_{VCO}F'\delta$, so for $K_{VCO} > 0$ the rising-slope points are stable (negative feedback) and the falling-slope points are unstable (positive feedback);
 - a phase error starting on the negative slope drifts away, crosses the peak or valley into an adjacent positive-slope segment, and locks there (possibly after one cycle slip);
 - reversing the polarity (e.g. XOR → XNOR, $F \to F(\Delta\phi + \pi)$) only swaps which slope is stable, so the loop then locks on the other slope, e.g. at $-\pi/2$ instead of $+\pi/2$;
@@ -185,8 +185,8 @@ The XOR characteristic is periodic and has a rising slope ($0 < \Delta\phi < \pi
 
 The polarity therefore decides only the lock point, never whether lock occurs. With a frequency detector (monotonic characteristic) the polarity does matter.
 
-**Common mistake.** Claiming that the loop can lock stably on *both* slopes because $F(\Delta\phi) = V_1$ has a solution on each. The static condition is necessary but not sufficient: on the slope where $K_{VCO}F' < 0$ any small disturbance grows, so those points are never observed as lock points.
+**Common mistake.** Claiming that the loop can lock stably on *both* slopes because $F(\Delta\phi) = V_c^{\ast}$ has a solution on each. The static condition is necessary but not sufficient: on the slope where $K_{VCO}F' < 0$ any small disturbance grows, so those points are never observed as lock points.
 
 **Common mistake.** Concluding that a loop with the "wrong" polarity never locks. That treats the detector as monotonic, like a frequency detector. Because the XOR characteristic is periodic, the phase error simply moves to the next segment of opposite slope, where the feedback is negative.
 
-**Common mistake.** Analysing only the case $\omega_{in} = \omega_0$, where the lock point sits at the cusp $\Delta\phi = 0$ and the slope is undefined. The general case $0 < V_1 < V_0$ shows the stable/unstable pairing clearly.
+**Common mistake.** Analysing only the case $\omega_{in} = \omega_0$, where the lock point sits at the cusp $\Delta\phi = 0$ and the slope is undefined. The general case $0 < V_c^{\ast} < V_0$ shows the stable/unstable pairing clearly.

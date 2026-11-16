@@ -1,0 +1,10 @@
+* Small-signal model of Fig. 1 with C_GS, Z_1, g_mb and r_O (drain shorted to AC ground through Vd)
+R1 g 0 {Z_1}
+CGS g s {C_GS}
+RS s 0 {Z_S}
+Gm d s g s {gm}
+Gmb d s 0 s {gmb}
+RO d s {r_O}
+In d s {I_n}
+Vd 0 d 0
+.end

@@ -1,0 +1,8 @@
+* Small-signal noise model of the common-gate stage with gate resistor R_G: no gate current flows, so the gate G sits at the noise voltage V_nG; the input is the source node in
+VnG G x {V_nG}
+RG x 0 {R_G}
+G1 out in G in {gm}
+In1 out in {I_n1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+.end

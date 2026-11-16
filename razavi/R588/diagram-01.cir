@@ -1,0 +1,5 @@
+* Continuous-time equivalent: C1, S1 and S2 replaced by the resistor R_eq = 1/(C1 fCK), giving an RC (Miller) integrator
+Vin in 0 {V_in}
+Req in x {R_eq}
+C2 x out {C_2}
+E1 out 0 0 x {A}

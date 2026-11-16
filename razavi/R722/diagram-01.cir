@@ -1,0 +1,19 @@
+* Eight bond wires in one row, alternating supply (L1, L3, L5, L7: vdd to vddc) and ground (L2, L4, L6, L8: 0 to gndc), all drawn from package to chip; adjacent wires are coupled with k = M/L = 0.5
+VDD vdd 0 {V_DD}
+L1 vdd vddc {L}
+L2 0 gndc {L}
+L3 vdd vddc {L}
+L4 0 gndc {L}
+L5 vdd vddc {L}
+L6 0 gndc {L}
+L7 vdd vddc {L}
+L8 0 gndc {L}
+K12 L1 L2 {k}
+K23 L2 L3 {k}
+K34 L3 L4 {k}
+K45 L4 L5 {k}
+K56 L5 L6 {k}
+K67 L6 L7 {k}
+K78 L7 L8 {k}
+I1 vddc gndc {I_DD}
+.end

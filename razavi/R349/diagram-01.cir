@@ -1,0 +1,8 @@
+* Small-signal noise model: the follower M2 (drain at ac ground, gate at out, source at the input node) delivers gm2*(v_out - v_in) + I_n2 into the input node; the ideal bias source I_1 is open; M1 and R_D with their noise set the output
+G1 out 0 in 0 {gm1}
+In1 out 0 {I_n1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+G2 0 in out in {gm2}
+In2 0 in {I_n2}
+.end

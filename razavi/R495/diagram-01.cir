@@ -1,0 +1,15 @@
+* Small-signal model of the transimpedance amplifier with the loop broken at the gate of M3 (test source Vt; replica load CGS3+CGD3 at Y)
+Vt t 0 AC 1
+G3 A 0 t 0 {gm3}
+RO3 A 0 {r_O3}
+CGS1 A 0 {C_GS1}
+CGD3 A t {C_GD3}
+CGD1 A B {C_GD1}
+G1 B 0 A 0 {gm1}
+RO1 B 0 {r_O1}
+CGS2 B 0 {C_GS2}
+CGD2 B Y {C_GD2}
+G2 Y 0 B 0 {gm2}
+RO2 Y 0 {r_O2}
+CREP Y 0 {C_GS3+C_GD3}
+.end

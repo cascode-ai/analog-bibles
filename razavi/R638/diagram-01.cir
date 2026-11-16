@@ -1,0 +1,8 @@
+* Small-signal model of the Colpitts oscillator with a voltage stimulus Vin at the gate (bias source open, VDD at AC ground)
+Vin g 0 {vin}
+L1 out 0 {L_P}
+R1 out 0 {R_P}
+C2 out S {C_2}
+C1 S 0 {C_1}
+G1 out S g S {gm}
+.end

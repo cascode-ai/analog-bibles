@@ -1,0 +1,10 @@
+* Noise model: inverter as Gm = gm1 + gm2 and R0 = rO1 || rO2, with the noise of R1 (VnR1), R2 (InR2) and the transistors (InM)
+Vin in 0 AC 1
+VnR1 in a {V_nR1}
+R1 a G {R1}
+R2 G out {R2}
+InR2 out G {I_nR2}
+G1 out 0 G 0 {Gm}
+R0 out 0 {R0}
+InM out 0 {I_nM}
+.end

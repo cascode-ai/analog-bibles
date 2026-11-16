@@ -1,0 +1,6 @@
+* Load impedance Z_L of one half: test source at the drain of M3, R from drain to gate G, C from G to V_DD (ac ground), M3 as g_m3*V_G
+VX out 0 AC 1
+R1 out G {R}
+C1 G 0 {C}
+G3 out 0 G 0 {g_m3}
+.end

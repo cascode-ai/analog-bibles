@@ -1,0 +1,7 @@
+* Small-signal model for R_in at the source X: gate and bulk at ac ground, g_m and g_mb sources from Y to X, r_O between Y and X, R_1 from Y to ac ground
+VX X 0 AC 1
+G1 Y X 0 X {g_m}
+Gmb Y X 0 X {g_mb}
+RO Y X {r_O}
+R1 Y 0 {R_1}
+.end

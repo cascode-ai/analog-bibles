@@ -1,0 +1,9 @@
+* Loop broken at the gate of M2: test voltage v_t drives M2, V_in = 0, return voltage observed at node X
+Vt t 0 {v_t}
+G2 0 out 0 t {gm2}
+RD2 out 0 {R_D2}
+RF out s {R_F}
+RS s 0 {R_S}
+G1 x s 0 s {gm1}
+RD1 x 0 {R_D1}
+.end

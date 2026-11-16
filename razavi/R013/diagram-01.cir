@@ -1,0 +1,6 @@
+* Low-VX equivalent: M1 in deep triode acts as a resistor Ron in parallel with R1, and the pair carries the current I1
+VX X 0 {V_X}
+Ron X S {R_on}
+R1 X S {R_1}
+I1 S 0 {I_1}
+.end

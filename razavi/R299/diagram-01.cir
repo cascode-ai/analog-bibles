@@ -1,0 +1,8 @@
+* Small-signal model: M1 (CS, X to out) with r_O1, PMOS M2 (CS, out to X, source at ac ground) as g_m2*v_out from X to ground with r_O2; I1, I2 open
+V1 in 0 AC 1
+RS in X {R_S}
+G1 out 0 X 0 {g_m1}
+RO1 out 0 {r_O1}
+G2 X 0 out 0 {g_m2}
+RO2 X 0 {r_O2}
+.end

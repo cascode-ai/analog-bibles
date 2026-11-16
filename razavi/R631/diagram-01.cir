@@ -1,0 +1,5 @@
+* Small-signal model of the composite load at node X: test source vx, follower M5 (drain at AC ground, ideal current source open), PMOS M3 (source at AC ground)
+Vx X 0 {vx}
+G5 0 s5 X s5 {gm5}
+G3 0 X 0 s5 {gm3}
+.end

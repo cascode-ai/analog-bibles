@@ -1,0 +1,8 @@
+* Small-signal noise model of the common-source stage with feedback resistor R_F from out to the gate (in); R_F's noise is drawn as a series voltage V_nF
+G1 out 0 in 0 {gm}
+In1 out 0 {I_n1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+VnF in y {V_nF}
+RF y out {R_F}
+.end

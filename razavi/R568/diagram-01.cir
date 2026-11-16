@@ -1,0 +1,6 @@
+* Sampling mode with the op amp modeled as a transconductance Gm (current Gm*(0 - VX) into X) and an output resistance Rout; X is also the output
+Vin A 0 {V_in}
+C1 A X {C_1}
+G1 0 X 0 X {G_m}
+Rout X 0 {R_out}
+.end

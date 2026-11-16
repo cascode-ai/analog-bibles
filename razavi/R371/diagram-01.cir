@@ -1,0 +1,6 @@
+* Small-signal noise model of the source follower (drain of M1 at AC ground)
+Vin in 0 {v_in}
+G1 0 out in out {gm1}
+In1 0 out {I_n1}
+In2 out 0 {I_n2}
+.end

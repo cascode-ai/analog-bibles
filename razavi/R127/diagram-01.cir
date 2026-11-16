@@ -1,0 +1,9 @@
+* Small-signal model of the cascode: M1 drives node X, M2 (gate at ac ground, bulk at ground) has gm2 and gmb2 sources, R_D loads the output
+Vin in 0 AC 1
+G1 X 0 in 0 {gm1}
+RO1 X 0 {rO1}
+G2 out X 0 X {gm2}
+Gmb2 out X 0 X {gmb2}
+RO2 out X {rO2}
+RD out 0 {R_D}
+.end

@@ -1,0 +1,6 @@
+* Small-signal model of the CS stage with M1 in triode: gm = beta*VDS, channel resistance r_ds = 1/[beta(Vov - VDS)] in parallel with RD
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm}
+RDS out 0 {r_ds}
+RD out 0 {R_D}
+.end

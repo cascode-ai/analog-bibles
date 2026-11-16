@@ -1,0 +1,8 @@
+* High-frequency reduced model after compensation (r_O3 neglected): M1 is almost diode-connected through CC, so node B sees G_B' and C_B'; node Y carries C_L
+RBP B 0 {1/G_Bp}
+CBP B 0 {C_Bp}
+CGD2 B Y {C_GD2}
+G2 Y 0 B 0 {gm2}
+RO2 Y 0 {r_O2}
+CY Y 0 {C_L+C_GS3+C_GD3}
+.end

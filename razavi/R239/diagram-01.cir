@@ -1,0 +1,8 @@
+* Small-signal circuit for R_out with the inputs at ac ground: rO4 from out to ground, M2 between out and P, and M1 (gate and drain at ac ground) between ground and P; the tail source is open
+Vt out 0 {v_t}
+RO4 out 0 {r_O4}
+G2 out P 0 P {g_m2}
+RO2 out P {r_O2}
+G1 0 P 0 P {g_m1}
+RO1 0 P {r_O1}
+.end

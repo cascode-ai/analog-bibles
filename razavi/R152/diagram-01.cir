@@ -1,0 +1,10 @@
+* PMOS differential pair: PMOS tail M3 from VDD to P, PMOS input devices M1 and M2 with sources at P, load resistors RD from the drains to ground
+VDD vdd 0 {V_DD}
+VB VB 0 {V_b}
+VCM CM 0 {V_in,CM}
+M3 P VB vdd vdd pmos
+M1 X CM P vdd pmos
+M2 Y CM P vdd pmos
+RD1 X 0 {R_D}
+RD2 Y 0 {R_D}
+.end

@@ -1,0 +1,7 @@
+* Thevenin equivalent of the noisy CS stage at node X driving R_P (with its noise voltage) and C_L
+VnTh th 0 {V_nTh}
+R0 th x {R_0}
+VnP x p {V_nP}
+RP p out {R_P}
+CL out 0 {C_L}
+.end

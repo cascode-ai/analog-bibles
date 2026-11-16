@@ -1,0 +1,7 @@
+* Small-signal model for Z_in (r_O neglected): M1 draws gm1*v_in from Y, diode M3 is 1/gm3 at Y, M2 sinks gm2*v_Y from the input node X
+Vin x 0 AC {v_in}
+G1 y 0 x 0 {gm1}
+R3 y 0 {1/gm3}
+C1 y 0 {C_1}
+G2 x 0 y 0 {gm2}
+.end

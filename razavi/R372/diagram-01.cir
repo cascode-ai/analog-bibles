@@ -1,0 +1,10 @@
+* Small-signal noise model of the cascode with the capacitance C_X at node X
+Vin in 0 {v_in}
+G1 x 0 in 0 {gm1}
+In1 x 0 {I_n1}
+CX x 0 {C_X}
+G2 out x 0 x {gm2}
+In2 out x {I_n2}
+RD out 0 {R_D}
+InR 0 out {I_nR}
+.end

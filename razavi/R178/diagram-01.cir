@@ -1,0 +1,8 @@
+* Differential half circuit at node X: input transconductance gm1 with rO1, diode-connected M3 as 1/gm3 in parallel with rO3, and current source M5 as rO5
+VIN in 0 {v_in/2}
+G1 X 0 in 0 {g_m1}
+RO1 X 0 {r_O1}
+R3 X 0 {1/g_m3}
+RO3 X 0 {r_O3}
+RO5 X 0 {r_O5}
+.end

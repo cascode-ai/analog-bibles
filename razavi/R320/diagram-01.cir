@@ -1,0 +1,9 @@
+* Resistively degenerated common-source stage with the two capacitances considered (C_GS gate to source, C_GD gate to drain)
+VDD vdd 0 {V_DD}
+Vin in 0 {V_in}
+M1 out in S 0 nmos
+RD vdd out {R_D}
+RS S 0 {R_S}
+CGS in S {C_GS}
+CGD in out {C_GD}
+.end

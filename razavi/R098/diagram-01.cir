@@ -1,0 +1,12 @@
+* Small-signal model of the cascode CS stage with PMOS current-source load (all three devices saturated)
+Vin in 0 {v_in}
+* M1: input device, drain at node X
+G1 X 0 in 0 {gm1}
+RO1 X 0 {r_O1}
+* M2: cascode, gate at AC ground (Vb1), source at X, bulk at ground: v_gs2 = v_bs2 = -v_X
+Gm2 out X 0 X {gm2}
+Gmb2 out X 0 X {gmb2}
+RO2 out X {r_O2}
+* M3: gate at Vb2 and source at VDD (both AC ground), only its output resistance remains
+RO3 out 0 {r_O3}
+.end

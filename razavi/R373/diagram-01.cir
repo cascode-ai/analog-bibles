@@ -1,0 +1,9 @@
+* Small-signal model of the pair of Fig. 2 with the noise currents of M3 and M4 (gates grounded)
+R1a d1 0 {R_1}
+R1b d2 0 {R_1}
+G1 d1 s1 0 s1 {gm1}
+G2 d2 s2 0 s2 {gm1}
+RS s1 s2 {2*R_S}
+In3 s1 0 {I_n3}
+In4 s2 0 {I_n4}
+.end

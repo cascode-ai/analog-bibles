@@ -1,0 +1,16 @@
+* Small-signal noise model of the differential pair: diode loads M5, M6 become resistances 1/gm5, 1/gm6; cross-coupled M3 (gate at B, drain at A) and M4 (gate at A, drain at B); P is the tail node with the ideal tail source open
+Vin1 g1 0 {v_in1}
+Vin2 g2 0 {v_in2}
+R5 A 0 {1/gm5}
+In5 0 A {I_n5}
+G3 0 A 0 B {gm3}
+In3 0 A {I_n3}
+R6 B 0 {1/gm6}
+In6 0 B {I_n6}
+G4 0 B 0 A {gm4}
+In4 0 B {I_n4}
+G1 A P g1 P {gm1}
+In1 A P {I_n1}
+G2 B P g2 P {gm2}
+In2 B P {I_n2}
+.end

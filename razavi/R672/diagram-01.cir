@@ -1,0 +1,7 @@
+* Small-signal model of the common-gate stage with its current-source load (r_O2), including r_O1 and the body-effect source
+Vx in 0 AC 1
+G1 out in 0 in {gm1}
+G2 out in 0 in {gmb1}
+RO1 out in {r_O1}
+RO2 out 0 {r_O2}
+.end

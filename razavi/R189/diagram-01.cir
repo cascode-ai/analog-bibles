@@ -1,0 +1,6 @@
+* Small-signal half circuit: M1 as a VCCS from B to the virtual ground, M3 (gate at B, source at AC ground) as a VCCS at A, R1 between A and B
+Vin in 0 AC {vin}
+G1 B 0 in 0 {gm1}
+R1 A B {R_1}
+G3 A 0 B 0 {gm3}
+.end

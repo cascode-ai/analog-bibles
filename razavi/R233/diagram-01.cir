@@ -1,0 +1,7 @@
+* Just above VDD = |VTHP|: M1 in deep triode acts as the resistor R_on1 in series with the diode-connected PMOS M2; M3 mirrors the branch current into R_L
+VDD vdd 0 {V_DD}
+M2 A A vdd vdd pmos
+Ron1 A 0 {R_on1}
+M3 out A vdd vdd pmos
+RL out 0 {R_L}
+.end

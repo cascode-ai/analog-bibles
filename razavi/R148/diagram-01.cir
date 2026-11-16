@@ -1,0 +1,9 @@
+* Case C: PMOS M2 turned around (source at X) so that it cascodes the NMOS input device M1, forming a folded cascode
+VDD vdd 0 {V_DD}
+IB vdd X {I_B}
+M1 X G1 0 0 nmos
+M2 T VB X vdd pmos
+RD T 0 {R_D}
+VB VB 0 {V_b}
+VIN G1 0 {V_in}
+.end

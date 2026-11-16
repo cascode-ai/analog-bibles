@@ -1,0 +1,7 @@
+* Differential half circuit: M1 (VCCS gm1, rO1); cross-coupled M3 seen from X as rO3 in parallel with a negative conductance -gm3 (current gm3*vX injected into X)
+Vin in 0 AC {vd/2}
+G1 X 0 in 0 {gm1}
+RO1 X 0 {rO1}
+RO3 X 0 {rO3}
+G3 0 X X 0 {gm3}
+.end

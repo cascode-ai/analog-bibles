@@ -1,0 +1,9 @@
+* Low-frequency small-signal equivalent: C1, C2 open, gate of M2 at ac ground (V_b), M3 diode-connected (gate at out)
+V1 in 0 AC 1
+G1 X 0 in 0 {g_m1}
+RO1 X 0 {r_O1}
+G2 out X 0 X {g_m2}
+RO2 out X {r_O2}
+G3 out 0 out 0 {g_m3}
+RO3 out 0 {r_O3}
+.end

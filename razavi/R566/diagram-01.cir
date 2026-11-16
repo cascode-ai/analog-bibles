@@ -1,0 +1,7 @@
+* Capacitive inverting amplifier with the op amp modeled as an ideal source -Av*VX in series with Rout (RF absent)
+Vin in 0 {V_in}
+C1 in X {C_1}
+C2 X out {C_2}
+E1 int 0 X 0 {-A_v}
+Rout int out {R_out}
+.end

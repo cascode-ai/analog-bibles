@@ -1,0 +1,12 @@
+* Small-signal model for the exact nodal analysis (lambda of all devices and body effect of M1 included)
+Vin in 0 AC 1
+G1 A B in B {gm1}
+Gmb1 A B 0 B {gmb1}
+RO1 A B {r_O1}
+RO3 A 0 {r_O3}
+G2 out 0 A 0 {gm2}
+RO2 out 0 {r_O2}
+RO4 out 0 {r_O4}
+R2 out B 3k
+R1 B 0 0.973k
+.end

@@ -1,0 +1,7 @@
+* Differential half circuit at balance: M1 as a VCCS, the cross-coupled M3 seen from X as a negative conductance -gm3 (current gm3*vX injected into X), plus rO1 and rO3
+Vin in 0 AC {dvin/2}
+G1 X 0 in 0 {gm1}
+RO1 X 0 {rO1}
+RO3 X 0 {rO3}
+G3 0 X X 0 {gm3}
+.end

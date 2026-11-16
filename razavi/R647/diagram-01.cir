@@ -1,0 +1,7 @@
+* One side in steady state: the switched drain current iD1(t), a 0-to-ISS square wave, drawn from node X through the tank (LP, its parallel loss RP, and the node capacitance C)
+VDD vdd 0 {VDD}
+L1 vdd X {L_P}
+R1 vdd X {R_P}
+C1 X 0 {C}
+I1 X 0 {iD1(t)}
+.end

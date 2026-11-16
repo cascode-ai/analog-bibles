@@ -1,0 +1,17 @@
+* Small-signal noise model: PMOS as transconductors with noise currents, Q1 and Q2 as 1/gm resistors, op-amp noise in series with the inverting input (Norton noise currents of R2, R3, R4 not drawn)
+E1 G 0 Y XN {A_1}
+Vnop XN X {v_n}
+G3 X 0 G 0 {g_mP}
+In3 0 X {i_n3}
+R3 X 0 {R_3}
+RQ1 X 0 {1/g_m1}
+G4 Y 0 G 0 {g_mP}
+In4 0 Y {i_n4}
+R2 Y 0 {R_2}
+VnR1 Y A {v_nR1}
+R1 A E2 {R_1}
+RQ2 E2 0 {1/g_m2}
+G5 BG 0 G 0 {g_mP}
+In5 0 BG {i_n5}
+R4 BG 0 {R_4}
+.end

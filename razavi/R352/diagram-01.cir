@@ -1,0 +1,6 @@
+* Reduced flicker-noise model without the bypass capacitors: the mirrors become noise currents I_nM3 = gm3*(V_n4 - V_n3) into the output and I_nM2 = gm2*(V_n2 - V_n0) out of the input node; M1 keeps its gate noise V_n1
+Vn1 g1 0 {V_n1}
+G1 out in g1 in {gm1}
+InM3 0 out {I_nM3}
+InM2 in 0 {I_nM2}
+.end

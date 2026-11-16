@@ -1,0 +1,8 @@
+* Small-signal model with a current stimulus Iin into the gate node G: L1 and RP from G to ground, C1 from G to S, C2 from S to ground, drain of M1 at AC ground
+Iin 0 G {Iin}
+L1 G 0 {L_1}
+RP G 0 {R_P}
+C1 G S {C_1}
+C2 S 0 {C_2}
+G1 0 S G S {gm}
+.end

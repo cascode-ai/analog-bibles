@@ -1,0 +1,11 @@
+* Norton model of the whole circuit: main amplifier (input M, output Y), auxiliary amplifier (input X, output Z) and error amplifier (senses X, drives Y); every amplifier is a transconductance Gm, the main and auxiliary outputs have Rout to ground
+Vin in 0 {V_in}
+C1m in m {C_1}
+C2m m y {C_2}
+Gmain y 0 m 0 {G_m}
+Rout1 y 0 {R_out}
+Gerr y 0 x 0 {G_m}
+C1a in x {C_1}
+C2a x z {C_2}
+Gaux z 0 x 0 {G_m}
+Rout2 z 0 {R_out}

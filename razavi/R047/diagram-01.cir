@@ -1,0 +1,5 @@
+* Small-signal model seen at the output terminal (source of the PMOS): gate and drain at ground, test voltage vx at node out
+Vx out 0 {v_x}
+G1 0 out 0 out {gm}
+RO out 0 {r_O}
+.end

@@ -1,0 +1,6 @@
+* Small-signal model (lambda = gamma = 0, ideal current sources open, V_b at ac ground): common-gate M1 from drain out to source X, PMOS M2 as g_m2*v_out from X to ac ground
+V1 in 0 AC 1
+RS in X {R_S}
+G1 out X 0 X {g_m1}
+G2 X 0 out 0 {g_m2}
+.end

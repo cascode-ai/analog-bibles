@@ -1,0 +1,8 @@
+* Small-signal noise model: the follower M1 and the common-gate device M2 (gate at ac ground, drain at the input node, source at out) both feed the output, whose bias source I_1 is open; R_G with its noise ties the input node to ac ground
+G1 0 out in out {gm1}
+In1 0 out {I_n1}
+G2 in out 0 out {gm2}
+In2 in out {I_n2}
+RG in 0 {R_G}
+InG 0 in {I_nG}
+.end

@@ -1,0 +1,8 @@
+* Single-ended half circuit: the op amp is a current source Gm*V_X drawn from the output node in parallel with R_out
+Vin in 0 {V_in}
+C1 in X {C_1}
+C2 X out {C_2}
+Gop out 0 X 0 {G_m}
+Rout out 0 {R_out}
+CL out 0 {C_L}
+.end

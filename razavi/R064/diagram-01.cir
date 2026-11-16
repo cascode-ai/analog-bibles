@@ -1,0 +1,8 @@
+* Small-signal model of the CS stage with diode-connected NMOS load: M2 gate and drain at ac ground, its source is node out (body effect gmb2)
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm1}
+RO1 out 0 {r_O1}
+G2 0 out 0 out {gm2}
+G3 0 out 0 out {gmb2}
+RO2 0 out {r_O2}
+.end

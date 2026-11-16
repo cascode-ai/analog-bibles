@@ -1,0 +1,5 @@
+* Small-signal model of one side: M1 in triode is a transconductance gm (controlled by v_in1) in parallel with its channel conductance gds = 1/Ron; the A1-M3 loop forces node X to the noise voltage Vn1 and supplies the drain current, which is passed to the output through M3
+Vin1 in1 0 {v_in1}
+G1 x 0 in1 0 {g_m}
+Rds x 0 {1/g_ds}
+Vn1 x 0 {V_n1}

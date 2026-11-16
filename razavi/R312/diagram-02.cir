@@ -1,0 +1,5 @@
+* Equivalent passive network of Z_X: R_D in parallel with (1/g_m1 in series with L = C_1/(g_m1*g_m2))
+RD X 0 {R_D}
+R1 X m {1/g_m1}
+L1 m 0 {C_1/(g_m1*g_m2)}
+.end

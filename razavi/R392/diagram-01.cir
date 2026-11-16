@@ -1,0 +1,8 @@
+* Small-signal model of the transimpedance amplifier with R_S replaced by an ideal (open) current source and R_D2 added
+Iin 0 in {I_in}
+RF in y {R_F}
+G1 x 0 in 0 {gm1}
+RD x 0 {R_D}
+G2 out y x y {gm2}
+RD2 out 0 {R_D2}
+.end

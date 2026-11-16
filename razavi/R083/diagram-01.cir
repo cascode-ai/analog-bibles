@@ -1,0 +1,8 @@
+* Small-signal model of the CS stage with diode-connected load including the body effect of M2
+Vin in 0 {v_in}
+* M1: source and bulk grounded, so no body effect
+G1 out 0 in 0 {gm1}
+* M2: gate and drain at AC ground, source at out, bulk at ground: v_gs2 = v_bs2 = -v_out
+G2 0 out 0 out {gm2}
+Gmb2 0 out 0 out {gmb2}
+.end

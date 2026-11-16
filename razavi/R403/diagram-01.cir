@@ -1,0 +1,7 @@
+* Output-impedance test: amplifier modeled as A(s)(V+ - V-) behind R0, input grounded, test source VX at the output
+E1 a 0 0 N {A(s)}
+R0 a out {R0}
+R1 out N {R1}
+R2 N 0 {R2}
+VX out 0 AC 1
+.end

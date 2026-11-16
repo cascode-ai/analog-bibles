@@ -1,0 +1,8 @@
+* Sampling phase (S1 and S2 on): C1 charges between Vin and the virtual ground X; C_in is the parasitic capacitance at the inverting input
+VIN in 0 {V_in}
+RS1 in P {R_on1}
+C1 P X {C_1}
+Cin X 0 {C_in}
+E1 out 0 0 X {A}
+RS2 out X {R_on2}
+.end

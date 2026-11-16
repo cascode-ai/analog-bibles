@@ -1,0 +1,11 @@
+* Distributed RC model of the MOS capacitor M1: the gate X couples through the oxide to the channel, whose resistance R_tot is split into sections; both channel ends (source and drain) are grounded
+R1 0 n1 {R_tot/8}
+R2 n1 n2 {R_tot/4}
+R3 n2 n3 {R_tot/4}
+R4 n3 n4 {R_tot/4}
+R5 n4 0 {R_tot/8}
+C1 X n1 {C/4}
+C2 X n2 {C/4}
+C3 X n3 {C/4}
+C4 X n4 {C/4}
+.end

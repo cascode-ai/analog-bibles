@@ -1,0 +1,8 @@
+* Small-signal model for the input resistance: test voltage V_x at the input node, capacitive divider feeding the gate of M2
+Vx in 0 {V_x}
+G1 out in 0 in {gm1}
+RD out 0 {R_D}
+C1 out p {C_1}
+C2 p 0 {C_2}
+G2 in 0 p 0 {gm2}
+.end

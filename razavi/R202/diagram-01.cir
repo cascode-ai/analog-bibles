@@ -1,0 +1,8 @@
+* Differential half circuit: M1 (VCCS gm1, rO1), diode-connected M3 (1/gm3, rO3) and current source M5 (rO5) all from X to AC ground
+Vin in 0 AC {vd/2}
+G1 X 0 in 0 {gm1}
+RO1 X 0 {rO1}
+R3 X 0 {1/gm3}
+RO3 X 0 {rO3}
+RO5 X 0 {rO5}
+.end

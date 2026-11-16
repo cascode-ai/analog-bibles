@@ -1,0 +1,10 @@
+* Small-signal noise model of the common-gate stage whose gate G is the midpoint of the divider R_A = R_B = R_1 across the output; each resistor and M1 has its noise current
+G1 out in G in {gm}
+In1 out in {I_n1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+RA out G {R_1}
+InA out G {I_nA}
+RB G 0 {R_1}
+InB G 0 {I_nB}
+.end

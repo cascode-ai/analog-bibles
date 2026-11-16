@@ -1,0 +1,7 @@
+* Small-signal model of the capacitive-feedback CS amplifier (I_1 ideal, gate bias network neglected)
+Vin in 0 {v_in}
+C1 in x {C_1}
+C2 x out {C_2}
+G1 out 0 x 0 {gm1}
+RO1 out 0 {r_O1}
+.end

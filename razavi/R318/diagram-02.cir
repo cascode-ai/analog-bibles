@@ -1,0 +1,5 @@
+* Equivalent network of the load for R > 1/g_m3: 1/g_m3 in series with (R - 1/g_m3) in parallel with L = (C/g_m3)(R - 1/g_m3)
+Ra out m {1/g_m3}
+Rb m 0 {R-1/g_m3}
+L1 m 0 {L}
+.end

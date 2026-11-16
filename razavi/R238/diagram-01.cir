@@ -1,0 +1,7 @@
+* Small-signal test circuit for the output resistance: test source at the drain D of M3, gates of M2 and M3 at ac ground, M2 reduced to rO2, M3 as gm3*vgs3 plus gmb3*vbs3 plus rO3
+Vt D 0 {v_t}
+G3 D B 0 B {g_m3}
+Gb3 D B 0 B {g_mb3}
+RO3 D B {r_O3}
+RO2 B 0 {r_O2}
+.end

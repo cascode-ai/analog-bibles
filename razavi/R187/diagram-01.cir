@@ -1,0 +1,6 @@
+* Differential half circuit: node N (gates of M3/M4, midpoint of R1-R2) is a virtual ground, so M3 is a current source and X sees R1 to AC ground
+Vin in 0 AC {dvin/2}
+M1 X in 0 0 nmos
+M3 X 0 0 0 pmos
+R1 X 0 {R_1}
+.end

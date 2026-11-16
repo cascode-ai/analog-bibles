@@ -1,0 +1,14 @@
+* Small-signal model of the CG stage M1 followed by the CS stage M2 (lambda = 0, ideal current sources open, gate of M1 at ac ground)
+V1 in 0 AC 1
+RS in S {R_S}
+CGS1 S 0 {C_GS1}
+CSB1 S 0 {C_SB1}
+G1 X S 0 S {g_m1}
+Gmb1 X S 0 S {g_mb1}
+CGD1 X 0 {C_GD1}
+CDB1 X 0 {C_DB1}
+CGS2 X 0 {C_GS2}
+CGD2 X out {C_GD2}
+G2 out 0 X 0 {g_m2}
+CDB2 out 0 {C_DB2}
+.end

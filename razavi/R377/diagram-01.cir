@@ -1,0 +1,7 @@
+* Noiseless amplifier driven from R_S (signal source zeroed) with the input-referred sources V_n,in and I_n,in
+RS 0 a {R_S}
+Vnin g a {V_n_in}
+Inin 0 g {I_n_in}
+RF g out {R_F}
+G1 out 0 g 0 {gm}
+.end

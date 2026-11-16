@@ -1,0 +1,8 @@
+* Small-signal model for the noise of M8: M8 injects g_m8*Vn8 at node D, M6 acts as a common-gate cascode into node Y
+Vn8 n8 0 {Vn8}
+G8 D 0 n8 0 {gm8}
+RO8 D 0 {r_O8}
+G6 Y D 0 D {gm6}
+RO6 Y D {r_O6}
+RD Y 0 {R_D}
+.end

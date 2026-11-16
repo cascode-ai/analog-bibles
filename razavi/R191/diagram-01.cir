@@ -1,0 +1,5 @@
+* Small-signal half circuit at balance: M1 as a VCCS, diode M3 as 1/gm3 to AC ground, current source M5 open
+Vin in 0 AC {dvin/2}
+G1 X 0 in 0 {gm1}
+R3 X 0 {1/gm3}
+.end

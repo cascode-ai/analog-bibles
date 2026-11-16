@@ -1,0 +1,8 @@
+* Differential half circuit of the two-transconductor loop (vA = vin/2, vO2 = -vO1), driven by the test current It
+It 0 A AC 1
+R0A A 0 {R0}
+G1 0 A O1 0 {Gm1}
+G2 O1 0 A 0 {Gm2}
+R0B O1 0 {R0}
+C1 O1 0 {C1}
+.end

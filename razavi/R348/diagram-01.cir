@@ -1,0 +1,10 @@
+* Small-signal noise model: the PMOS M2 (gate at ac ground) draws gm2*v_out + I_n2 from the output and delivers it to the input node, which is also loaded by R_G with its noise
+G1 out 0 in 0 {gm1}
+In1 out 0 {I_n1}
+RD out 0 {R_D}
+InD 0 out {I_nD}
+G2 out in out 0 {gm2}
+In2 out in {I_n2}
+RG in 0 {R_G}
+InG in 0 {I_nG}
+.end

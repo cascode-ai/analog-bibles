@@ -1,0 +1,9 @@
+* Small-signal model for the output impedance (ideal current-source load, V_in at AC ground, test voltage V_X at the output)
+Vx out 0 {V_X}
+G1 out s 0 s {gm1}
+Gmb1 out s 0 s {gmb1}
+RS s 0 {R_S}
+G2 s 0 p 0 {gm2}
+C1 out p {C_1}
+C2 p 0 {C_2}
+.end

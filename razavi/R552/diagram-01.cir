@@ -1,0 +1,13 @@
+* Constant-gm (beta-multiplier) bias whose current is mirrored by M9 into the tail of the resistively loaded differential pair
+M1 N N 0 0 nmos
+M2 P N S 0 nmos
+RS S 0 {R_S}
+M3 P P vdd vdd pmos
+M4 N P vdd vdd pmos
+M9 T N 0 0 nmos
+M5 out1 in1 T 0 nmos
+M6 out2 in2 T 0 nmos
+RD1 vdd out1 {R_D}
+RD2 vdd out2 {R_D}
+VDD vdd 0 {V_DD}
+.end

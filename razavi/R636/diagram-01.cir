@@ -1,0 +1,8 @@
+* Small-signal model with the current stimulus Iin into the output node: tank to AC ground, C2 from the output to X, M1 with its gate at AC ground, Ib open
+Iin 0 out {Iin}
+L1 out 0 {L_P}
+R1 out 0 {R_P}
+CP out 0 {C_P}
+C2 out X {C_2}
+G1 out X 0 X {gm}
+.end

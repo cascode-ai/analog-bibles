@@ -1,0 +1,9 @@
+* Amplification mode: Vin reaches X and Y through C1 and C2, Cin loads the X-Y port, and the amplifier is an offset source plus an ideal inverting gain
+V1 a 0 {Vin/2}
+V2 b 0 {-Vin/2}
+C1 a X {C}
+C2 b Y {C}
+Cin X Y {Cin}
+VOS X Xi {VOS}
+E1 out 0 Xi Y {-Av}
+.end

@@ -21,7 +21,7 @@ g_m &= \sqrt{2\mu_nC_{ox}\frac{W}{L}I_D}\\
 \end{aligned}
 $$
 
-For reference, the overdrive is $V_{ov} = 2I_D/g_m = (2\times1\ \mathrm{mA})/(5.177\ \mathrm{mS}) = 0.386$ V. The drain sits at $V_{DD} - I_DR_D = V_{DD} - 2$ V, so the transistor is saturated as long as $V_{DD} - 2\ \mathrm{V} > 0.386$ V; we assume the (unspecified) supply satisfies this.
+For completeness, the overdrive is $V_{ov} = 2I_D/g_m = (2\times1\ \mathrm{mA})/(5.177\ \mathrm{mS}) = 0.386$ V. The drain sits at $V_{DD} - I_DR_D = V_{DD} - 2$ V, so the transistor is saturated as long as $V_{DD} - 2\ \mathrm{V} > 0.386$ V; we assume the (unspecified) supply satisfies this.
 
 **Voltage gain.** No $\lambda$ is given, so we neglect channel-length modulation ($r_O \to \infty$; Step 3 shows that $r_O$ would not change the answer anyway):
 

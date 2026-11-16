@@ -1,0 +1,8 @@
+* Small-signal model of the degenerated common-source stage with channel-length modulation (rO) and body effect (gmb, bulk at ground)
+Vin in 0 AC 1
+RD out 0 {R_D}
+G1 out S in S {gm}
+Gmb out S 0 S {gmb}
+RO out S {rO}
+RS S 0 {R_S}
+.end

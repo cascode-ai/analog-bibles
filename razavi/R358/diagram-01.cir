@@ -1,0 +1,6 @@
+* Example: ideal inverting amplifier of gain -A0 with a floating feedback resistor R_F, whose thermal noise is a single current I_nF leaving node X and entering node Y; R_s is the source resistance
+Rs X 0 {R_s}
+RF X Y {R_F}
+InF X Y {I_nF}
+E1 Y 0 X 0 {-A0}
+.end

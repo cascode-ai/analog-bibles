@@ -1,0 +1,6 @@
+* Main amplifier alone (Norton model): C1 from the input to the inverting input M, C2 from M to the output Y, transconductance Gm and output resistance Rout at Y
+Vin in 0 {V_in}
+C1 in m {C_1}
+C2 m y {C_2}
+Gmain y 0 m 0 {G_m}
+Rout y 0 {R_out}

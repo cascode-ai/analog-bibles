@@ -1,0 +1,6 @@
+* Small-signal half circuit of the bulk-driven PMOS stage: only the body transconductance gmb1 is driven by the well voltage w1
+Vw1 w1 0 AC 1
+Gmb1 0 d1 0 w1 {gmb1}
+RO1 d1 0 {r_O1}
+RO3 d1 0 {r_O3}
+.end

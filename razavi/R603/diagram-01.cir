@@ -1,0 +1,6 @@
+* Small-signal noise model of the CS stage: the channel noise current of M0 (PSD 4kT(2/3)gm) and the noise current of R_D (PSD 4kT/R_D) both flow at the output node, which sees R_D to AC ground
+Vin in 0 {v_in}
+G0 out 0 in 0 {g_m}
+RD out 0 {R_D}
+InM out 0 {I_nM}
+InR out 0 {I_nR}

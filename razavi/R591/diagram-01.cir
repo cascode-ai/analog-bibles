@@ -1,0 +1,5 @@
+* Differential half circuit in the amplification mode (input plate of C1 at the constant V_CM, i.e. AC ground): C1 from gate X to ground, C3 from the output back to X, M1 as gm1 with R0 = ro1 || ro3 at the output
+C1 x 0 {C_1}
+C3 x out {C_3}
+G1 out 0 x 0 {g_m1}
+R0 out 0 {R_0}

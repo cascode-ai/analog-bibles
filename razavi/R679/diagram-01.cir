@@ -1,0 +1,6 @@
+* Differential half circuit: M1 (source at the virtual ground P) driving the diode-connected NMOS load M3
+Vdd vdd 0 {V_DD}
+Vin in 0 AC {v_in/2}
+M1 X in 0 0 nmos W={W1} L={L}
+M3 vdd vdd X 0 nmos W={W3} L={L}
+.end

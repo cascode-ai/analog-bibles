@@ -1,0 +1,6 @@
+* Input network: the signal source (resistance R_S) drives the chip through the bond-wire inductance L_b; the pad capacitance C_pad loads the input node
+VS src 0 {V_s}
+RS src a {R_S}
+Lb a pad {L_b}
+Cpad pad 0 {C_pad}
+.end

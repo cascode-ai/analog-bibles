@@ -1,0 +1,9 @@
+* Small-signal model of the Colpitts oscillator with CP, excited by a current Iin into the source node S (gate at AC ground, bias source open)
+Iin 0 S {Iin}
+L1 out 0 {L_P}
+R1 out 0 {R_P}
+CP out 0 {C_P}
+C2 out S {C_2}
+C1 S 0 {C_1}
+G1 out S 0 S {gm}
+.end

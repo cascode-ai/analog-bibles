@@ -1,0 +1,6 @@
+* Amplification phase (S3 on): the left plate of C1 is connected to the output, so C1 alone closes the feedback loop around the op amp
+C1 P X {C_1}
+Cin X 0 {C_in}
+E1 out 0 0 X {A}
+RS3 out P {R_on3}
+.end

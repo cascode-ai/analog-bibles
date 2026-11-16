@@ -1,0 +1,7 @@
+* Differential half circuit with ideal voltage drive: one moving node (out) with R_out and C_out to ground, C_GD1 from the driven gate
+V1 in 0 {V_in/2}
+G1 out 0 in 0 {g_m1}
+CGD1 in out {C_GD1}
+Rout out 0 {R_out}
+Cout out 0 {C_out}
+.end

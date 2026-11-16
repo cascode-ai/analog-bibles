@@ -1,0 +1,12 @@
+* Small-signal model of the PMOS common-source stage with cascoded NMOS current-source load (all devices saturated)
+Vin in 0 {v_in}
+* M3: PMOS input device, source at AC ground (VDD); current gm3*v_sg3 flows into out, v_sg3 = -v_in
+G3 0 out 0 in {gm3}
+RO3 out 0 {r_O3}
+* M2: cascode, gate at AC ground (Vb1), source at X, bulk at ground: v_gs2 = v_bs2 = -v_X
+Gm2 out X 0 X {gm2}
+Gmb2 out X 0 X {gmb2}
+RO2 out X {r_O2}
+* M1: gate at Vb2 (AC ground), only its output resistance remains
+RO1 X 0 {r_O1}
+.end

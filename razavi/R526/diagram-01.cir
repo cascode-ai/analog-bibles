@@ -1,0 +1,7 @@
+* Small-signal model for the noise of M6: noise voltage in series with its gate, degeneration r_O8 at node D, load R_D (looking into M4) at node Y
+Vn6 n6 0 {Vn6}
+G6 Y D n6 D {gm6}
+RO6 Y D {r_O6}
+RO8 D 0 {r_O8}
+RD Y 0 {R_D}
+.end

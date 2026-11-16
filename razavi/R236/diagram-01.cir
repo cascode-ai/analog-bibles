@@ -1,0 +1,6 @@
+* Small-signal model for a change of V_P: M3 (gate at ac ground) as gm3*vgs3 in parallel with rO3, and M2 (gate at ac ground) reduced to rO2 from Y to ground
+VP P 0 {v_P}
+G3 P Y 0 Y {g_m3}
+RO3 P Y {r_O3}
+RO2 Y 0 {r_O2}
+.end

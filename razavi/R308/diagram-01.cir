@@ -1,0 +1,9 @@
+* Small-signal model of the differential pair with mirror load and C1 (lambda = gamma = 0, ideal tail open, so node P has no path to ground)
+V1 in1 0 {V_in/2}
+V2 in2 0 {-V_in/2}
+G1 A P in1 P {g_m1}
+G2 out P in2 P {g_m2}
+G3 A 0 A 0 {g_m3}
+G4 out 0 A 0 {g_m4}
+C1 A out {C_1}
+.end

@@ -1,0 +1,18 @@
+* Small-signal model of the opened loop with the 0.5-pF load C_L at Y and the compensation branch Rz + CC from the gate (A) to the drain (B) of M1
+Vt t 0 AC 1
+G3 A 0 t 0 {gm3}
+RO3 A 0 {r_O3}
+CGS1 A 0 {C_GS1}
+CGD3 A t {C_GD3}
+CGD1 A B {C_GD1}
+RZ A M {R_z}
+CC M B {C_C}
+G1 B 0 A 0 {gm1}
+RO1 B 0 {r_O1}
+CGS2 B 0 {C_GS2}
+CGD2 B Y {C_GD2}
+G2 Y 0 B 0 {gm2}
+RO2 Y 0 {r_O2}
+CREP Y 0 {C_GS3+C_GD3}
+CL Y 0 {C_L}
+.end

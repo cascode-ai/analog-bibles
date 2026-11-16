@@ -1,0 +1,7 @@
+* Closed-loop noise model: op-amp noise lumped into Vn in series with the non-inverting input; C1 and C2 are noiseless
+Vin in 0 AC 1
+Vn in p {V_n}
+E1 out 0 p X {A0}
+C1 out X {C1}
+C2 X 0 {C2}
+.end

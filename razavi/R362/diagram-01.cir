@@ -1,0 +1,10 @@
+* Small-signal noise model with the output shorted (the current in VO is the short-circuit output current): M1 sinks gm1*v_in + I_n1; the degenerated PMOS load M2 (gate at ac ground) passes gm2*v_s2 + I_n2 from node s2 to the output; R_S carries its series noise voltage V_nS
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm1}
+In1 out 0 {I_n1}
+G2 s2 out s2 0 {gm2}
+In2 s2 out {I_n2}
+VnS s2 x {V_nS}
+RS 0 x {R_S}
+VO out 0 0
+.end

@@ -1,0 +1,7 @@
+* Noiseless amplifier with the input-referred sources V_n,in (between R_S and the gate node) and I_n,in (into the gate node)
+RS in a {R_S}
+Vnin g a {V_n_in}
+Inin 0 g {I_n_in}
+RF g out {R_F}
+G1 out 0 g 0 {gm}
+.end

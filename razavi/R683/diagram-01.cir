@@ -1,0 +1,8 @@
+* Small-signal noise model of the CS stage with PMOS current-source load: both channel-noise currents flow into the output node, whose resistance is r_O1 || r_O2
+Vin in 0 AC {v_in}
+G1 out 0 in 0 {gm1}
+In1 out 0 {I_n1}
+RO1 out 0 {r_O1}
+In2 out 0 {I_n2}
+RO2 out 0 {r_O2}
+.end

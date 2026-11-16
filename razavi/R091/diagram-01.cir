@@ -1,0 +1,8 @@
+* Small-signal model of the source follower with drain resistor RD and body effect (M1 saturated, lambda = 0)
+Vin in 0 {v_in}
+RD d 0 {R_D}
+RS out 0 {R_S}
+* M1: drain at d, source at out, bulk at ground: v_gs = v_in - v_out, v_bs = -v_out
+Gm d out in out {gm}
+Gmb d out 0 out {gmb}
+.end

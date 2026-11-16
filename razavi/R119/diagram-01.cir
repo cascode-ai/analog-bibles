@@ -1,0 +1,7 @@
+* Small-signal model: source follower M2 with the current source M1 reduced to rO1 at the output and the current source M3 reduced to rO3 at its drain D
+Vin in 0 AC 1
+RO3 D 0 {rO3}
+G2 D out in out {gm2}
+RO2 D out {rO2}
+RO1 out 0 {rO1}
+.end

@@ -1,0 +1,7 @@
+* Small-signal model: inverter reduced to Gm = gm1 + gm2 and R0 = rO1 || rO2, with the feedback resistors R1 and R2
+Vin in 0 AC 1
+R1 in G 1k
+R2 G out 10k
+G1 out 0 G 0 {Gm}
+R0 out 0 {R0}
+.end

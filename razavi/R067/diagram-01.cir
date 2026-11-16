@@ -1,0 +1,5 @@
+* Small-signal model of the common-source stage with resistive load (lambda = 0): gm*vin from out to ground, RD to ac ground
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm}
+RD out 0 {R_D}
+.end

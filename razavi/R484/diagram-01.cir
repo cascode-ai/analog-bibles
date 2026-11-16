@@ -1,0 +1,10 @@
+* Small-signal model of the output stage: M9 replaced by a transconductance that pulls gm9*V_E out of the output node
+Vin in 0 AC 1
+RS in E {R_S}
+CE E 0 {C_E}
+Rz E M {R_z}
+CC M out {C_C}
+G9 out 0 E 0 {gm9}
+RL out 0 {R_L}
+CL out 0 {C_L}
+.end

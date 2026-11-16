@@ -1,0 +1,8 @@
+* Small-signal model of the source follower with resistor RF from gate to source (M1 on and saturated)
+Vin in 0 {v_in}
+RF in out {R_F}
+RS out 0 {R_S}
+* M1: drain at AC ground (VDD), gate at in, source at out, bulk at ground: v_gs = v_in - v_out, v_bs = -v_out
+Gm 0 out in out {gm}
+Gmb 0 out 0 out {gmb}
+.end

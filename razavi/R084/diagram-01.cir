@@ -1,0 +1,9 @@
+* Small-signal model with M1 50 mV into triode and body effect in the diode-connected load M2
+Vin in 0 {v_in}
+* M1 (triode): gm1 = beta1*VDS1 in parallel with the channel resistance rds1
+G1 out 0 in 0 {gm1}
+Rds1 out 0 {r_ds1}
+* M2 (saturated): gate and drain at AC ground, source at out, bulk at ground: v_gs2 = v_bs2 = -v_out
+G2 0 out 0 out {gm2}
+Gmb2 0 out 0 out {gmb2}
+.end

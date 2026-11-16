@@ -1,0 +1,6 @@
+* Small-signal model for the step: M_out becomes a g_m*v_X source, I_1 is a constant (open for increments), r_O is neglected, C_L is added
+Iin X 0 {I_SS*u(t)}
+CF X out {C_F}
+Gm out 0 X 0 {gm}
+CL out 0 {C_L}
+.end

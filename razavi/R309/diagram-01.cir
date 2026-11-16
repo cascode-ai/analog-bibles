@@ -1,0 +1,8 @@
+* Differential half circuit: M1 (source at virtual ground P) draws g_m1*V_in/2 from X, cascode M6 from D6 to X, R1-C1 branch seen as R_1/2 in series with 2C_1, load R_2 to the virtual ground M
+V1 in 0 {V_in/2}
+G1 X 0 in 0 {g_m1}
+G6 D6 X 0 X {g_m5}
+R2 D6 0 {R_2}
+Rb X mid {R_1/2}
+Cb mid 0 {2*C_1}
+.end

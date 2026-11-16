@@ -58,9 +58,9 @@ so
 
 $$|s_1| = |s_2| = \omega_n .$$
 
-**A second way to see it.** For a monic quadratic, the product of the roots equals the constant term and their sum equals minus the $s$ coefficient (Vieta's formulas). Complex poles are a conjugate pair, $s_2 = s_1^*$, so
+**A second way to see it.** For a monic quadratic, the product of the roots equals the constant term and their sum equals minus the $s$ coefficient (Vieta's formulas). Complex poles are a conjugate pair, $s_2 = s_1^{\ast}$, so
 
-$$s_1s_2 = s_1s_1^* = |s_1|^2 = \omega_n^2, \qquad s_1 + s_2 = 2\,\mathrm{Re}\,s_1 = -2\zeta\omega_n .$$
+$$s_1s_2 = s_1s_1^{\ast} = |s_1|^2 = \omega_n^2, \qquad s_1 + s_2 = 2\,\mathrm{Re}\,s_1 = -2\zeta\omega_n .$$
 
 Both results follow directly: $|s_1| = \omega_n$ and $\mathrm{Re}\,s_1 = -\zeta\omega_n$.
 
