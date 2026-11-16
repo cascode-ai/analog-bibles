@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 漏极电流与过驱动电压
 
-令 $V_{ov} = V_{GS} - V_{TH}$（$V_{TH}$ 为常数），则 $g_m = dI_D/dV_{ov} = \beta V_{ov}^2$。以 $I_D = 0$（当 $V_{ov} = 0$ 时）为条件积分，积分常数为零：
+令 $V_{ov} = V_{GS} - V_{TH}$（$V_{TH}$ 为常数），则 $g_m = dI_D/dV_{ov} = \beta V_{ov}^2$。在 $V_{ov} = 0$ 时 $I_D = 0$ 的条件下积分（因此积分常数为零）：
 
 $$I_D = \frac{\beta}{3}V_{ov}^3
 \quad\Longrightarrow\quad

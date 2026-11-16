@@ -46,7 +46,7 @@ $$
 
 $$I_D = \frac{\beta}{3}\,(V_{GS} - V_{TH})^3 \qquad (V_{GS} \ge V_{TH},\ \text{saturation}),$$
 
-它是对 $g_m = dI_D/dV_{GS} = \beta(V_{GS} - V_{TH})^2$ 积分，并取 $I_D = 0$（当 $V_{GS} = V_{TH}$ 时）得到的。
+它是在 $V_{GS} = V_{TH}$ 时 $I_D = 0$ 的条件下，对 $g_m = dI_D/dV_{GS} = \beta(V_{GS} - V_{TH})^2$ 积分得到的。
 
 **常见错误。** 写成 $I_D = \beta(V_{GS} - V_{TH})^3$，漏掉因子 $\tfrac13$。对它求导得 $3\beta(V_{GS} - V_{TH})^2$，是给定 $g_m$ 的三倍。
 

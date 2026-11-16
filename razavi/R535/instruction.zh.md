@@ -1,0 +1,1 @@
+推导 [图 1] 所示电路中 $I_{out}$ 的表达式。假设所有晶体管都工作在饱和区（saturation region），忽略沟道长度调制（channel-length modulation），并认为 $M_3$ 和 $M_4$ 完全相同。$M_1$ 和 $M_2$ 的源极和衬底（bulk）都接地。晶体管尺寸未给定：用 $R_S$、$\beta_1 = \mu_nC_{ox}(W/L)_1$ 和 $\beta_2 = \mu_nC_{ox}(W/L)_2$ 表示结果，采用平方律（square law）模型。

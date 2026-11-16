@@ -1,0 +1,1 @@
+某两级运算放大器（two-stage op amp）在其输出端有一个次极点（nondominant pole）$\omega_{p2}$，原先在反馈系数（feedback factor）为 β 的反馈环路中被补偿到 45° 的相位裕度（phase margin），使 $|\beta H|$ 恰好在 $\omega_{p2}$ 处降到单位增益（$H$ 为运放的开环传递函数）；主极点（dominant pole）远低于 $\omega_{p2}$。随后，输出端所接的负载电容加倍。应如何修改补偿，才能使相位裕度重新达到 45°？
