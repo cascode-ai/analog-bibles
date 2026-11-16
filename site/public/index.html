@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Analog Bibles · Review</title>
-<meta name="description" content="Razavi、Gray、Allen 三本模拟集成电路教材习题：题目、题图、参考答案，在线报错与评论。">
+<title>Analog Bibles</title>
+<meta name="description" content="End-of-chapter problems from Razavi, Gray and Allen: the question, its figures and a reference answer.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <link rel="stylesheet" href="/style.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
@@ -14,40 +14,44 @@
 <body>
 <header class="top">
   <a class="brand" href="/">Analog Bibles</a>
-  <span class="sub">Razavi · Gray · Allen 教材习题</span>
-  <nav class="modes" aria-label="模式">
-    <a id="mode-browse" href="/browse">浏览</a>
-    <a id="mode-review" href="/review" title="给维护者：通过、报错、评论">审阅</a>
+  <span class="sub" data-i18n="sub">Razavi · Gray · Allen textbook problems</span>
+  <nav class="modes" data-i18n-aria="modes" aria-label="Mode">
+    <a id="mode-browse" href="/browse" data-i18n="browse">Browse</a>
+    <a id="mode-review" href="/review" data-i18n="review" data-i18n-title="reviewTitle" title="For maintainers: pass, report issues, comment">Review</a>
   </nav>
   <a class="gh" href="https://github.com/cascode-ai/analog-bibles" target="_blank" rel="noopener">GitHub ↗</a>
+  <!-- Languages icon (A / 文), as on tokenzhang.com -->
+  <button type="button" class="lang-switch" id="lang-switch" aria-label="切换到中文" title="切换到中文">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+  </button>
 </header>
 <div class="layout">
   <aside class="side" id="side">
-    <input id="search" class="search" type="search" placeholder="搜索题号或题目文字（/）" autocomplete="off">
-    <div class="group-title">教材</div>
+    <input id="search" class="search" type="search" data-i18n-ph="search" placeholder="Search ID or question text (/)" autocomplete="off">
+    <div class="group-title" data-i18n="book">Book</div>
     <div class="list" id="scopes"></div>
-    <div class="group-title">难度</div>
+    <div class="group-title" data-i18n="difficulty">Difficulty</div>
     <div class="list" id="levels"></div>
     <div class="review-only">
-      <div class="group-title">状态</div>
+      <div class="group-title" data-i18n="status">Status</div>
       <div class="list" id="statuses"></div>
-      <div class="group-title">署名</div>
-      <input id="author" class="search" type="text" maxlength="40" placeholder="你的名字（可选）">
+      <div class="group-title" data-i18n="name">Name</div>
+      <input id="author" class="search" type="text" maxlength="40" data-i18n-ph="namePh" placeholder="Your name (optional)">
     </div>
-    <p class="hint review-only">快捷键：← → 翻题 · R 随机 · P 通过 · 1–6 选报错原因 · Enter 提交</p>
-    <p class="hint browse-only">快捷键：← → 翻题 · R 随机 · / 搜索</p>
+    <p class="hint review-only" data-i18n="hintReview">Keys: ← → step · R random · P pass · 1–6 pick a reason · Enter submit</p>
+    <p class="hint browse-only" data-i18n="hintBrowse">Keys: ← → step · R random · / search</p>
   </aside>
   <main class="main">
     <div class="toolbar">
       <div class="progress review-only" id="progress"></div>
       <span class="steps">
-        <button type="button" id="prev" title="上一题 (←)" aria-label="上一题">←</button>
+        <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">←</button>
         <span class="position" id="position">– / –</span>
-        <button type="button" id="next" title="下一题 (→)" aria-label="下一题">→</button>
-        <button type="button" id="random" title="随机一道题 (R)">随机 <kbd>R</kbd></button>
+        <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next (→)" aria-label="Next">→</button>
+        <button type="button" id="random" data-i18n-title="randomTitle" title="A random question (R)"><span data-i18n="random">Random</span> <kbd>R</kbd></button>
       </span>
     </div>
-    <article class="item" id="item"><p class="empty">加载中…</p></article>
+    <article class="item" id="item"><p class="empty" data-i18n="loading">Loading…</p></article>
   </main>
 </div>
 <div class="zoom" id="zoom" hidden><img alt=""></div>
