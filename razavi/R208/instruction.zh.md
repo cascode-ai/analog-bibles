@@ -1,0 +1,1 @@
+对于 [图 1] 所示的电路：输入对管为 $M_1$、$M_2$，尾电流管为 $M_7$；NMOS 共源共栅（cascode）器件 $M_3$、$M_4$ 由 $V_{b1}$ 偏置，电阻 $R_1$ 接在它们的源极 X 与 Y 之间；负载为二极管连接（diode-connected）的 PMOS $M_5$、$M_6$。计算小信号差模电压增益 $V_{out}/(V_{in1} - V_{in2})$，其中 $V_{out}$ 为左输出减右输出。所有晶体管都处于饱和区（saturation region）；NMOS 的衬底（bulk）接地，PMOS 的衬底接 $V_{DD}$。
