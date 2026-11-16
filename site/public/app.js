@@ -79,6 +79,8 @@ const STRINGS = {
     keyGo: "Enter review",
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
+    showOriginal: "English original",
+    showTranslation: "中文",
     prevCh: "Previous chapter (Shift+←)",
     nextCh: "Next chapter (Shift+→)",
     gotoTitle: "Type a question number and press Enter",
@@ -153,7 +155,7 @@ const STRINGS = {
     answer: "参考答案",
     grading: "评分说明",
     refFig: "参考图",
-    fig: (n) => `Fig. ${n}`,
+    fig: (n) => `图 ${n}`,
     pickReason: "先选一个报错原因（1–6）。",
     commented: "评论已发布。",
     failed: (e) => `提交失败：${e}`,
@@ -165,6 +167,8 @@ const STRINGS = {
     keyGo: "进入审阅",
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
+    showOriginal: "查看英文原文",
+    showTranslation: "查看中文译文",
     prevCh: "上一章 (Shift+←)",
     nextCh: "下一章 (Shift+→)",
     gotoTitle: "输入题号后按回车",
@@ -438,7 +442,7 @@ function cardBody(q) {
   return `
     <div class="cols">
       <section class="panel">
-        <h4>${t("question")}</h4>
+        <h4>${t("question")}${lang === "zh" && q.zh ? ` <button type="button" class="orig-toggle">${t("showOriginal")}</button>` : ""}</h4>
         <div class="md q-question"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.figs.map((f, i) => picture(q.id, f, t("fig", i + 1))).join("")}</div>
       </section>
@@ -457,16 +461,24 @@ function cardBody(q) {
 
 // Fetches a card's question and answer into it; false if the card has since
 // been replaced by another question.
+// In Chinese, a translated question shows its .zh.md files, unless the
+// reader asked for the English original on this card. The grading notes are
+// never translated.
 async function fillCard(el, q) {
-  const [question, solution, steps] = await Promise.all([
-    fetch(`/q/${q.id}/instruction.md`).then((r) => r.text()),
-    fetch(`/q/${q.id}/golden_solution.md`).then((r) => r.text()),
-    q.sol ? fetch(`/q/${q.id}/detailed_solution.md`).then((r) => r.text()) : "",
-  ]).catch(() => [t("loadFailed"), t("loadFailed"), q.sol ? t("loadFailed") : ""]);
+  const zh = lang === "zh" && q.zh && el.dataset.orig !== "en";
+  const get = (name) => fetch(`/q/${q.id}/${name}`).then((r) => (r.ok ? r.text() : Promise.reject(r.status)));
+  const [question, solution, answerZh, steps] = await Promise.all([
+    get(zh ? "instruction.zh.md" : "instruction.md"),
+    get("golden_solution.md"),
+    zh ? get("golden_solution.zh.md") : "",
+    q.sol ? get(zh ? "detailed_solution.zh.md" : "detailed_solution.md") : "",
+  ]).catch(() => [t("loadFailed"), t("loadFailed"), "", q.sol ? t("loadFailed") : ""]);
   if (!el.isConnected || el.dataset.qid !== q.id) return false;
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
-  el.querySelector(".q-answer").innerHTML = renderMarkdown(body);
+  el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? answerZh : body);
+  const toggle = el.querySelector(".orig-toggle");
+  if (toggle) toggle.textContent = zh ? t("showOriginal") : t("showTranslation");
   if (q.sol) {
     const box = el.querySelector(".q-steps");
     box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
@@ -906,6 +918,11 @@ document.addEventListener("click", async (event) => {
     refilter(keep);
     // A new filter starts the list from its top.
     render(0);
+  } else if (target.classList.contains("orig-toggle")) {
+    const card = target.closest("[data-qid]");
+    const q = state.cards.find((each) => each.id === card.dataset.qid);
+    card.dataset.orig = card.dataset.orig === "en" ? "" : "en";
+    if (q) fillCard(card, q);
   } else if (target.dataset.flag) {
     toggleFlag(target.dataset.flag);
   } else if (target.id === "pass") {

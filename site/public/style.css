@@ -302,3 +302,7 @@ details.step > :not(summary) { margin-left: 1.25em; }
 figure.diagram { margin: .8em 0; }
 figure.diagram .pic img { max-height: 340px; }
 figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12px; text-align: center; }
+
+/* Chinese / English original switch on a translated question. */
+.orig-toggle { margin-left: 8px; padding: 0 8px; border: 1px solid var(--border); border-radius: 10px; background: none; color: var(--muted); font-size: 12px; font-weight: 400; cursor: pointer; }
+.orig-toggle:hover { color: var(--text); border-color: var(--text); }

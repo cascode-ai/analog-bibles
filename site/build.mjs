@@ -43,6 +43,8 @@ for (const book of books) {
         refs: files.filter((f) => f.startsWith("reference-")),
         // A worked, step-by-step solution, where one has been written.
         sol: files.includes("detailed_solution.md") ? 1 : 0,
+        // A Chinese translation of the question, answer and worked solution.
+        zh: files.includes("instruction.zh.md") ? 1 : 0,
         // Drawn diagrams of the worked solution: name -> caption (the first
         // comment line of its netlist), only for those with an SVG.
         diags: diagrams(dir, files),
