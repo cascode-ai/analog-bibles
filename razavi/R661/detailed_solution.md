@@ -1,20 +1,18 @@
 # Detailed solution - R661
 
-**Approach.** Write the closed-loop characteristic equation $1 + H_{open}(s) = 0$, solve it for the poles as a function of the gain $K = I_PK_{VCO}/2\pi$, and eliminate $K$ between the real and imaginary parts of the complex poles. The result is the equation of a circle. Then follow the real poles that appear once the gain is large enough, and check the break-in point and the end points against the figure.
+**Approach.** Write the closed-loop characteristic equation $1 + H_{open}(s) = 0$, solve it for the poles as a function of the gain $K = I_PK_{VCO}/2\pi$, and eliminate $K$ between the real and imaginary parts of the complex poles to obtain the equation of a circle. Then follow the real poles at large gain and check the break-in point and the end points against the figure.
 
 ### Step 1 — Characteristic equation
 
-Define the gain constant
+With
 
-$$K \equiv \frac{I_PK_{VCO}}{2\pi} \quad(> 0).$$
+$$K \equiv \frac{I_PK_{VCO}}{2\pi} \quad(> 0),$$
 
-The open-loop transfer function becomes
+the open-loop transfer function is
 
-$$H_{open}(s) = K\left(R_P + \frac{1}{C_Ps}\right)\frac{1}{s} = K\,\frac{R_PC_Ps + 1}{C_Ps^2}.$$
+$$H_{open}(s) = K\left(R_P + \frac{1}{C_Ps}\right)\frac{1}{s} = K\,\frac{R_PC_Ps + 1}{C_Ps^2},$$
 
-It has a **double pole at the origin** (one integrator from $C_P$, one from the VCO) and a **zero at $s = -1/(R_PC_P)$** (from $R_P$).
-
-The closed-loop poles are the roots of $1 + H_{open}(s) = 0$:
+with a **double pole at the origin** ($C_P$ and the VCO) and a **zero at $s = -1/(R_PC_P)$** ($R_P$). The closed-loop poles satisfy $1 + H_{open}(s) = 0$:
 
 $$
 \begin{aligned}
@@ -28,15 +26,13 @@ Comparing with $s^2 + 2\zeta\omega_ns + \omega_n^2$:
 
 $$\omega_n^2 = \frac{K}{C_P}, \qquad 2\zeta\omega_n = KR_P \;\Rightarrow\; \zeta = \frac{KR_P}{2\sqrt{K/C_P}} = \frac{R_P}{2}\sqrt{KC_P}.$$
 
-Unlike the type I PLL, here $\zeta$ *increases* with the gain.
+Unlike the type I PLL, $\zeta$ *increases* with the gain.
 
 ### Step 2 — The poles as a function of $K$
 
-By the quadratic formula,
-
 $$s_{1,2} = \frac{-KR_P \pm \sqrt{K^2R_P^2 - 4K/C_P}}{2}.$$
 
-- **$K = 0$:** $s_{1,2} = 0$, a double pole at the origin, where the locus starts (the open-loop poles).
+- **$K = 0$:** $s_{1,2} = 0$, the double open-loop pole at the origin, where the locus starts.
 - **Complex poles** when the discriminant is negative:
 $$K^2R_P^2 < \frac{4K}{C_P} \quad\Longleftrightarrow\quad K < \frac{4}{R_P^2C_P}\quad(\Longleftrightarrow \zeta < 1).$$
 - **Real poles** when $K \ge 4/(R_P^2C_P)$ ($\zeta \ge 1$).
@@ -47,11 +43,7 @@ For $K < 4/(R_P^2C_P)$ write $s = \sigma \pm j\omega$, with
 
 $$\sigma = -\frac{KR_P}{2}, \qquad \omega^2 = \frac{K}{C_P} - \frac{K^2R_P^2}{4}.$$
 
-The first relation gives $K$ in terms of $\sigma$:
-
-$$K = -\frac{2\sigma}{R_P}.$$
-
-Substitute it into the second relation to eliminate $K$:
+Substituting $K = -2\sigma/R_P$ from the first relation into the second:
 
 $$
 \begin{aligned}
@@ -60,7 +52,7 @@ $$
 \end{aligned}
 $$
 
-Move everything to the left side and complete the square in $\sigma$:
+Completing the square in $\sigma$:
 
 $$
 \begin{aligned}
@@ -70,42 +62,37 @@ $$
 \end{aligned}
 $$
 
-This is the equation of a **circle centred at $s = -1/(R_PC_P)$ (the zero) with radius $1/(R_PC_P)$**. It passes through the origin ($\sigma = 0$, $\omega = 0$) and through $s = -2/(R_PC_P)$, its leftmost point.
+This is a **circle centred at $s = -1/(R_PC_P)$ (the zero) with radius $1/(R_PC_P)$**, passing through the origin and through its leftmost point $s = -2/(R_PC_P)$.
 
-**Which part of the circle is used.** As $K$ grows from 0 to $4/(R_P^2C_P)$, $\sigma = -KR_P/2$ moves steadily from 0 to $-2/(R_PC_P)$. So the conjugate pair travels along the upper and lower halves of the whole circle, from the origin to the leftmost point, as in the figure.
-
-**Direction at the start.** For very small $K$, $|\sigma| = KR_P/2$ is proportional to $K$ while $|\omega| \approx \sqrt{K/C_P}$ is proportional to $\sqrt{K}$, which is much larger. The poles therefore leave the origin vertically, along the $j\omega$ axis, consistent with the circle being tangent to the $j\omega$ axis at the origin.
+As $K$ grows from 0 to $4/(R_P^2C_P)$, $\sigma = -KR_P/2$ moves steadily from 0 to $-2/(R_PC_P)$, so the conjugate pair travels along the upper and lower halves of the whole circle, from the origin to the leftmost point, as in the figure. For very small $K$, $|\sigma| = KR_P/2 \propto K$ while $|\omega| \approx \sqrt{K/C_P} \propto \sqrt K$ is much larger, so the poles leave the origin vertically, consistent with the circle being tangent to the $j\omega$ axis there.
 
 ### Step 4 — Break-in point at $\zeta = 1$
 
-At $K = 4/(R_P^2C_P)$ the discriminant vanishes and the two poles meet at
+At $K = 4/(R_P^2C_P)$ the discriminant vanishes and the poles meet at
 
 $$s = -\frac{KR_P}{2} = -\frac{4}{R_P^2C_P}\cdot\frac{R_P}{2} = -\frac{2}{R_PC_P},$$
 
-a double real pole at the leftmost point of the circle. The damping there is
+a double real pole at the leftmost point of the circle, with
 
 $$\zeta = \frac{R_P}{2}\sqrt{\frac{4}{R_P^2C_P}\,C_P} = \frac{R_P}{2}\cdot\frac{2}{R_P} = 1 .$$
 
-(Equivalently, the root-locus break-in condition $dK/ds = 0$, with $K = -C_Ps^2/(R_PC_Ps + 1)$, gives $R_PC_Ps^2 + 2s = 0$, i.e. $s = 0$ or $s = -2/(R_PC_P)$.)
+(Equivalently, the break-in condition $dK/ds = 0$, with $K = -C_Ps^2/(R_PC_Ps + 1)$, gives $R_PC_Ps^2 + 2s = 0$, i.e. $s = 0$ or $s = -2/(R_PC_P)$.)
 
 ### Step 5 — Real poles for larger gain
 
-For $K > 4/(R_P^2C_P)$ both poles are real and negative. From the coefficients of the characteristic equation (Vieta's formulas):
+For $K > 4/(R_P^2C_P)$ both poles are real and negative, with
 
 $$s_1 + s_2 = -KR_P, \qquad s_1s_2 = \frac{K}{C_P}.$$
 
-As $K \to \infty$:
+As $K \to \infty$, one pole runs off to $-\infty$, $s_2 \approx -KR_P$, and the other tends to
 
-- the sum grows without bound, so one pole runs off to $-\infty$: $s_2 \approx -KR_P$;
-- the other pole is the product divided by the large one:
 $$s_1 = \frac{s_1s_2}{s_2} \approx \frac{K/C_P}{-KR_P} = -\frac{1}{R_PC_P},$$
-the open-loop zero.
 
-So from the break-in point one pole moves right toward the zero at $-1/(R_PC_P)$ and the other moves left toward $-\infty$, the two arrows on the real axis in the figure. This agrees with the real-axis rule of root loci: only the segment to the left of the zero, $(-\infty, -1/(R_PC_P)]$, has an odd number of open-loop poles and zeros to its right (two poles and one zero), so only that segment belongs to the locus.
+the open-loop zero. So from the break-in point one pole moves right toward the zero and the other left toward $-\infty$, the two arrows on the real axis in the figure. This agrees with the real-axis rule: only $(-\infty, -1/(R_PC_P)]$ has an odd number of open-loop poles and zeros to its right (two poles and one zero).
 
 ### Step 6 — Numerical check and the angle $\varphi$
 
-Normalize $R_P = 1$, $C_P = 1$ (so $1/(R_PC_P) = 1$); the equation is $s^2 + Ks + K = 0$ and the circle is $(\sigma + 1)^2 + \omega^2 = 1$.
+Normalize $R_P = 1$, $C_P = 1$ (so $1/(R_PC_P) = 1$): the equation is $s^2 + Ks + K = 0$ and the circle is $(\sigma + 1)^2 + \omega^2 = 1$.
 
 | $K$ | Poles | $(\sigma + 1)^2 + \omega^2$ | $\zeta = \frac12\sqrt K$ |
 |---|---|---|---|
@@ -120,7 +107,7 @@ Normalize $R_P = 1$, $C_P = 1$ (so $1/(R_PC_P) = 1$); the equation is $s^2 + Ks 
 
 $$\cos\varphi = \frac{|\sigma|}{|s|} = \frac{KR_P/2}{\omega_n} = \zeta .$$
 
-Geometrically, the segment from the origin to $-2/(R_PC_P)$ is a diameter of the circle, so by Thales' theorem $\cos\varphi = |s|/(2/(R_PC_P))$, which gives the same result. Since $\zeta = \frac{R_P}{2}\sqrt{KC_P}$ grows with $K$, $\varphi$ shrinks: increasing $I_PK_{VCO}$ moves the poles toward the real axis and makes the loop *more* damped.
+Geometrically, the segment from the origin to $-2/(R_PC_P)$ is a diameter, so by Thales' theorem $\cos\varphi = |s|/(2/(R_PC_P))$, the same result. Since $\zeta = \frac{R_P}{2}\sqrt{KC_P}$ grows with $K$, $\varphi$ shrinks: increasing $I_PK_{VCO}$ moves the poles toward the real axis and makes the loop *more* damped.
 
 ### Result
 
@@ -135,8 +122,6 @@ $$s^2 + KR_Ps + \frac{K}{C_P} = 0, \qquad \omega_n^2 = \frac{K}{C_P},\quad \zeta
 
 This is exactly the locus of the figure, and $\cos\varphi = \zeta$ increases with $I_PK_{VCO}$.
 
-**Common mistake.** Dropping the $R_P$ term from the characteristic equation, which leaves $s^2 + K/C_P = 0$ and poles on the $j\omega$ axis for every gain. Without $R_P$ there is no zero and the locus would never bend into the left half plane; $R_P$ is what produces the circle.
+**Common mistake.** Dropping the $R_P$ term from the characteristic equation, which leaves $s^2 + K/C_P = 0$ and poles on the $j\omega$ axis for every gain. $R_P$ provides the zero that bends the locus into a circle.
 
 **Common mistake.** Placing the centre of the circle at the origin or the break-in point at $-1/(R_PC_P)$. The centre is at the zero, $-1/(R_PC_P)$; the break-in point is the far end of the diameter, $-2/(R_PC_P)$.
-
-**Common mistake.** "Proving" the circle by checking a few numerical points. A few points only illustrate it; the proof requires eliminating $K$ between $\sigma$ and $\omega$ to obtain an equation that holds for every gain.
