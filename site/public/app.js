@@ -282,6 +282,39 @@ $("lang-switch").addEventListener("click", () => {
 
 // ---------- data ----------
 
+// The question texts for the search box, fetched the first time someone
+// searches (the light index the page starts with leaves them out).
+let searchText = null;
+let searchLoad = null;
+function loadSearch() {
+  if (searchText || searchLoad || !window.AB?.search) return searchLoad;
+  searchLoad = fetch(window.AB.search)
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((texts) => {
+      searchText = texts;
+      if (state.ready && state.search) {
+        refilter(state.cards[state.index]?.id);
+        render(0);
+      }
+    })
+    .catch(() => { searchLoad = null; });
+  return searchLoad;
+}
+
+// All of a question's Markdown files in one cached request (b/<id>.<v>.json),
+// or file by file from /q/ where there is no bundle.
+const bundles = new Map();
+function bundle(q) {
+  if (!q.v) return Promise.resolve(null);
+  if (!bundles.has(q.id)) {
+    bundles.set(q.id, fetch(`/b/${encodeURIComponent(q.id)}.${q.v}.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return bundles.get(q.id);
+}
+const asset = (q, file) => `/q/${encodeURIComponent(q.id)}/${encodeURIComponent(file)}${q.v ? `?v=${q.v}` : ""}`;
+
 async function getJSON(url) {
   const response = await fetch(url, { credentials: "same-origin", headers: apiHeaders() });
   if (!response.ok) throw Object.assign(new Error(`${url}: ${response.status}`), { status: response.status });
@@ -306,7 +339,8 @@ function matches(q, { scope = state.scope, level = state.level, status = state.s
   if (status === "notes" && !(s && s[2])) return false;
   if (state.search) {
     const needle = state.search.toLowerCase();
-    if (!q.id.toLowerCase().includes(needle) && !q.t.toLowerCase().includes(needle)) return false;
+    const text = q.t !== undefined ? q.t.toLowerCase() : searchText?.[q.id] || "";
+    if (!q.id.toLowerCase().includes(needle) && !text.includes(needle)) return false;
   }
   return true;
 }
@@ -444,12 +478,12 @@ function cardBody(q) {
       <section class="panel">
         <h4>${t("question")}${lang === "zh" && q.zh ? ` <button type="button" class="orig-toggle">${t("showOriginal")}</button>` : ""}</h4>
         <div class="md q-question"><p class="empty">${t("loading")}</p></div>
-        <div class="pics">${q.figs.map((f, i) => picture(q.id, f, t("fig", i + 1))).join("")}</div>
+        <div class="pics">${q.figs.map((f, i) => picture(q, f, t("fig", i + 1))).join("")}</div>
       </section>
       <section class="panel">
         <h4>${t("answer")}</h4>
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
-        <div class="pics">${q.refs.map((f) => picture(q.id, f, t("refFig"))).join("")}</div>
+        <div class="pics">${q.refs.map((f) => picture(q, f, t("refFig"))).join("")}</div>
         ${q.sol ? `<details class="steps-sol">
           <summary><span class="sol-title">${t("detailed")}</span> <span class="ai-note">${t("aiNote")}</span></summary>
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
@@ -466,7 +500,10 @@ function cardBody(q) {
 // never translated.
 async function fillCard(el, q) {
   const zh = lang === "zh" && q.zh && el.dataset.orig !== "en";
-  const get = (name) => fetch(`/q/${q.id}/${name}`).then((r) => (r.ok ? r.text() : Promise.reject(r.status)));
+  const files = await bundle(q);
+  const get = (name) => (files
+    ? (name in files ? Promise.resolve(files[name]) : Promise.reject(404))
+    : fetch(`/q/${q.id}/${name}`).then((r) => (r.ok ? r.text() : Promise.reject(r.status))));
   // A Chinese file that fails falls back to its English original, alone.
   const pick = (base) => (zh ? get(`${base}.zh.md`).catch(() => get(`${base}.md`)) : get(`${base}.md`));
   const [question, solution, answerZh, steps] = await Promise.all([
@@ -499,7 +536,7 @@ async function fillCard(el, q) {
 function withDiagrams(q, text) {
   return text.replace(/^<!--\s*diagram:\s*(diagram-\d+)\.cir\s*-->\s*$/gm, (_, name) => {
     if (!q.diags || !(name in q.diags)) return "";
-    const src = `/q/${encodeURIComponent(q.id)}/${name}.svg`;
+    const src = asset(q, `${name}.svg`);
     const caption = q.diags[name];
     return `<figure class="diagram"><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(caption || name)}" loading="lazy"></a>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
   });
@@ -726,8 +763,8 @@ function askForKey(wrong) {
   });
 }
 
-function picture(id, file, label) {
-  const src = `/q/${encodeURIComponent(id)}/${encodeURIComponent(file)}`;
+function picture(q, file, label) {
+  const src = asset(q, file);
   return `<div><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(label)}" loading="lazy"></a><div class="pic-label">${esc(label)}</div></div>`;
 }
 
@@ -989,7 +1026,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 let searchTimer;
+$("search").addEventListener("focus", loadSearch);
 $("search").addEventListener("input", (event) => {
+  loadSearch();
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => {
     if (!state.ready) return;
@@ -1007,7 +1046,8 @@ $("author").addEventListener("change", (event) => store.set("ab.author", event.t
 (async () => {
   applyLanguage();
   try {
-    state.all = await getJSON("/index.json");
+    // The page's head has already started fetching the light index.
+    state.all = await (window.AB?.indexP || Promise.reject()).catch(() => getJSON("/index.json"));
   } catch {
     $("item").innerHTML = `<p class="empty">${t("indexFailed")}</p>`;
     return;
