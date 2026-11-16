@@ -110,7 +110,7 @@ $$\omega = \frac{g_{m1}}{C_X}\sqrt{\frac{A}{B}} .$$
 
 For $g_{m1} = g_{m2}$ the brackets are equal and this is $\omega = g_{m2}/C_X$, the pole frequency of node X, which is normally far above the signal band.
 
-**Interpretation of the second bracket.** $B$ is exactly the input-referred noise voltage of $M_2$ and $R_D$ viewed as a common-gate stage. $C_X$ turns a noise voltage at X into a current $\omega C_X\times$(voltage), and that current is referred to the input by dividing by $g_{m1}$.
+**Interpretation of the second bracket.** $4kT\,B$ is exactly the input-referred noise voltage PSD of $M_2$ and $R_D$ viewed as a common-gate stage (input at X). $C_X$ turns a noise voltage at X into a current $\omega C_X\times$(voltage), and that current is referred to the input by dividing by $g_{m1}$.
 
 ### Result
 

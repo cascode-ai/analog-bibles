@@ -1,0 +1,6 @@
+* Small-signal model: CS stage M1 (N to out) with the common-gate PMOS M2 feeding g_m2 v_out back into node N; current sources ideal (open)
+Vin in 0 {V_in}
+RS in n {R_S}
+G2 out n out 0 {gm2}
+G1 out 0 n 0 {gm1}
+.end

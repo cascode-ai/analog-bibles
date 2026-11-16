@@ -124,7 +124,7 @@ The dominant pole is dominated by the term $R_S(1 + g_mR_D)C_{GD}$: $C_{GD}$ is 
 - **Bandwidth.** The CG stage has no Miller multiplication; its lowest pole (1.28 GHz) is about 3.3 times higher than the CS stage's dominant pole (0.39 GHz).
 - **Overall.** The CG stage trades gain for bandwidth; in this example its gain–bandwidth product is actually lower than the CS stage's, so the CG is attractive for its wide bandwidth and non-inverting, low-input-impedance behaviour, not for raw gain.
 
-If the body effect were included, $g_m$ would be replaced by $g_m + g_{mb}$ in the CG gain (numerator and denominator) and in the input pole, raising both slightly; the problem asks us to neglect it.
+If the body effect were included, $g_m$ would be replaced by $g_m + g_{mb}$ in the CG gain (numerator and denominator) and in the input pole, raising the gain slightly and the input pole more noticeably; the problem asks us to neglect it.
 
 ### Result
 

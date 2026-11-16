@@ -65,7 +65,7 @@ Two layout techniques address these:
 
 One branch (one finger of each device) reads, along the active strip,
 
-$$S \;|\; G_1 \;|\; x \;|\; G_2 \;|\; D .$$
+$$S \;\mid\; G_1 \;\mid\; x \;\mid\; G_2 \;\mid\; D .$$
 
 Mirroring it about D, and then about S, gives the repeating pattern
 

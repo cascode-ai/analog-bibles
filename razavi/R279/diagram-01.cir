@@ -1,0 +1,6 @@
+* Norton equivalent of the OTA output driving C_L: current Gm*v_in into the output, in parallel with R_out and C_L
+Vin in 0 {v_in}
+G1 0 out in 0 {G_m}
+Rout out 0 {R_out}
+CL out 0 {C_L}
+.end

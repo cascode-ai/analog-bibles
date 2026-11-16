@@ -77,7 +77,7 @@ So $R_F \ge 2.23$ MΩ, i.e. about 2.2 MΩ.
 
 - **Approximation.** For large $x$, $x/\sqrt{1 + x^2} = (1 + 1/x^2)^{-1/2} \approx 1 - 1/(2x^2)$. Setting $1/(2x^2) = 0.01$ gives $x = \sqrt{50} = 7.07$ and $R_F \approx 2.25$ MΩ, close to the exact value.
 - **Corner frequency.** With $R_F = 2.23$ MΩ, $f_p = 1/(2\pi R_FC_2) = 1/(2\pi\times2.23\ \mathrm{M}\Omega\times0.5\ \mathrm{pF}) = 143$ kHz. A 1-MHz input is about 7 times above the corner.
-- **Phase.** Even with only 1 % magnitude error, the phase still deviates from that of the nominal gain by $\arctan(1/x) = \arctan(1/7.02) = 8.1°$. The magnitude converges much faster than the phase.
+- **Phase.** Even with only 1 % magnitude error, the phase still deviates from that of the nominal gain by $\arctan(1/x) = \arctan(1/7.02) = 8.1^\circ$. The magnitude converges much faster than the phase.
 - **A stricter definition.** If "gain error" means the magnitude of the *complex* error, $|1 - H/(-C_1/C_2)| = |1/(1 + jx)| = 1/\sqrt{1 + x^2} \le 0.01$, then $x \ge 100$ and $R_F \ge 100/(3.14\times10^{-6}\ \mathrm{S}) = 31.8$ MΩ. The usual meaning of gain error, the magnitude error, gives 2.23 MΩ.
 
 ### Result

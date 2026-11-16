@@ -99,7 +99,7 @@ $$\overline{I_{n,in}^2}\Big|_{M_1} \approx \left(\frac{g_{m1}}{g_{m1} + g_{mb1}}
 
 $$\overline{I_{n,in}^2}\Big|_{M_2} = 4kT\gamma g_{m2}.$$
 
-**$M_3$.** Its noise current $I_{n3}$ is injected at the output node, where it sees the output resistance $r_{O3}\parallel R_{down}$, with $R_{down} = r_{O1} + r_{O2} + Gr_{O1}r_{O2}$ the resistance looking down into the drain of $M_1$. An input current reaches the output multiplied by the current gain $\alpha = (1 + Gr_{O1})r_{O2}/R_{down}$, which is very close to 1 (one can check $R_T = \alpha\,(r_{O3}\parallel R_{down})$). Hence $I_{n3}$ refers to the input as $I_{n3}/\alpha \approx I_{n3}$:
+**$M_3$.** Its noise current $I_{n3}$ is injected at the output node, where it sees the output resistance $r_{O3}\parallel R_{down}$, with $R_{down} = r_{O1} + r_{O2} + Gr_{O1}r_{O2}$ the resistance looking down into the drain of $M_1$. An input current reaches the output as a Norton current multiplied by the short-circuit current gain $\alpha = (1 + Gr_{O1})r_{O2}/R_{down}$ (the fraction of $I_{in}$ that enters $M_1$ rather than $r_{O2}$ when the output is shorted), which is very close to 1; one can check that $R_T = \alpha\,(r_{O3}\parallel R_{down})$. Hence $I_{n3}$ refers to the input as $I_{n3}/\alpha \approx I_{n3}$:
 
 $$\overline{I_{n,in}^2}\Big|_{M_3} \approx 4kT\gamma g_{m3}.$$
 

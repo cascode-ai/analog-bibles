@@ -1,0 +1,9 @@
+* Small-signal model with C1 shorted: M1 and M2 both drive the output with gm*v_X, rO1 and rO2 at the output, R_F from X to out, C_in from the input to X
+Vin in 0 AC {v_in}
+Cin in x {C_in}
+RF x out {R_F}
+G1 out 0 x 0 {gm1}
+G2 out 0 x 0 {gm2}
+RO1 out 0 {r_O1}
+RO2 out 0 {r_O2}
+.end

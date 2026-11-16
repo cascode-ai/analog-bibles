@@ -88,7 +88,7 @@ $$
 \end{aligned}
 $$
 
-A full numerical solution of the circuit equations, including the unamplified $V_{EB}$ shifts, gives about 27.6 mV. The first-order formula is accurate. An error of about 28 mV is more than 1 % of the 2.35-V output, which is why channel-length modulation in $M_1$/$M_2$ is a serious concern (and why, for example, $M_3$/$M_4$-style long devices or cascodes are used).
+A full numerical solution of the circuit equations, including the unamplified $V_{EB}$ shifts, gives about 27.6 mV. The first-order formula is accurate. An error of about 28 mV is more than 1 % of the 2.35-V output, which is why channel-length modulation in $M_1$/$M_2$ is a serious concern and long-channel or cascoded current sources are preferred there.
 
 ### Result
 

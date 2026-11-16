@@ -82,6 +82,18 @@ compared with $C_{GS} + 11\,C_{GD}$ for the same stage without degeneration. Bot
 
 **With the body effect** (neglected here), the source gain becomes $g_mR_S/[1 + (g_m + g_{mb})R_S]$ and the $C_{GS}$ term becomes $C_{GS}(1 + g_{mb}R_S)/[1 + (g_m + g_{mb})R_S]$, slightly less bootstrapping.
 
+### Step 7 — How accurate is this estimate?
+
+The current drawn from the input is exactly
+
+$$I_{in} = C_{GS}s\,(V_{in} - V_S) + C_{GD}s\,(V_{in} - V_D).$$
+
+Each term already carries a factor $s$. To first order in $s$ (i.e. at low frequencies), $V_S$ and $V_D$ may therefore be replaced by their low-frequency values $A_SV_{in}$ and $A_DV_{in}$; the corrections they receive from the capacitor currents are themselves proportional to $s$ and only contribute terms in $s^2$. Hence
+
+$$\frac{I_{in}}{V_{in}} = \left[(1 - A_S)C_{GS} + (1 - A_D)C_{GD}\right]s + O(s^2),$$
+
+so the expression for $C_{in}$ is the **exact low-frequency input capacitance**. (Solving the full circuit confirms that the coefficient of $s$ in $I_{in}/V_{in}$ equals the result above.) At higher frequencies, approaching the poles of the source and drain nodes, $V_S$ and $V_D$ lag behind the input, the effective gains change, and the input admittance also acquires a real part; there the formula is only an estimate.
+
 ### Result
 
 $$C_{in}\approx\frac{C_{GS}}{1 + g_mR_S} + C_{GD}\left(1 + \frac{g_mR_D}{1 + g_mR_S}\right).$$

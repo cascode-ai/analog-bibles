@@ -25,7 +25,7 @@ The resistance $R_X$ can only move charge onto or off node $X$ with the time con
 
 $$\tau = R_X\,(C_c + C_g).$$
 
-For example, with $R_X = 5\ \mathrm{k}\Omega$, $\tau = (5\ \mathrm{k}\Omega)(110\ \mathrm{fF}) = 0.55$ ns. A clock edge in a modern process lasts a few tens of picoseconds, much shorter than $\tau$. So during the edge essentially no current flows through $R_D$ or $M_1$, and the total charge on node $X$ is conserved. In particular, $M_1$ does not "hold" the node: it is a current source with a high output resistance, not a voltage source.
+For example, with $R_X = 5\ \mathrm{k}\Omega$, $\tau = (5\ \mathrm{k}\Omega)(110\ \mathrm{fF}) = 0.55$ ns. A clock edge typically lasts some tens of picoseconds up to about 100 ps, much shorter than $\tau$. So during the edge essentially no current flows through $R_D$ or $M_1$, and the total charge on node $X$ is conserved. In particular, $M_1$ does not "hold" the node: it is a current source with a high output resistance, not a voltage source.
 
 ### Step 3 — Charge conservation on node $X$
 

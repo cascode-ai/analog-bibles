@@ -1,0 +1,9 @@
+* Measuring Gm of the common-gate stage: drain (output) shorted to ac ground through a zero-volt source Vsc; gate and bulk at ac ground; input applied through R_S to the source X
+Vin in 0 AC 1
+RS in X {R_S}
+G1 D X 0 X {gm}
+Gmb D X 0 X {gmb}
+RO D X {rO}
+RD D 0 {R_D}
+Vsc D 0 0
+.end

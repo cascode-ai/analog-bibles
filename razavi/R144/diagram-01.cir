@@ -1,0 +1,8 @@
+* Small-signal model of the common-gate stage: source X driven through R_S, gate and bulk at ac ground (gm and gmb sources), rO between drain and source, R_D load
+Vin in 0 AC 1
+RS in X {R_S}
+G1 out X 0 X {gm}
+Gmb out X 0 X {gmb}
+RO out X {rO}
+RD out 0 {R_D}
+.end

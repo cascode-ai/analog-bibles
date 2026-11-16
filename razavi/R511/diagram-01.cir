@@ -1,4 +1,4 @@
-* Small-signal half circuit for the left output with the node capacitances C_X, C_P and C_L
+* Small-signal half circuit for the left output with the node capacitances C_X, C_P and C_L (R_P = r_O2||r_O7 = 1/G_P at node P)
 Vin1 in1 0 {vin/2}
 Vin2 in2 0 {-vin/2}
 GA X 0 in1 0 {gmA}
@@ -6,7 +6,7 @@ RA X 0 {r_OA}
 CX X 0 {C_X}
 G7 P 0 X 0 {gm7}
 G2 P 0 in2 0 {gm1}
-RP P 0 {r_O2||r_O7}
+RP P 0 {R_P}
 CP P 0 {C_P}
 G5 out P 0 P {gm5}
 R5 out P {r_O5}

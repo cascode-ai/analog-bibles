@@ -182,4 +182,4 @@ The thick-oxide $V_{out}$–$V_{in}$ characteristic is **identical to the target
 
 **Common mistake.** Treating $M_2$ as a current source and drawing an output that falls all the way to 0 V. $M_2$ is diode-connected, so it is a square-law "resistor" of value about $1/g_{m2}$; it makes the saturation region a straight line of slope $-A$, and $V_{out}$ stays above zero even at $V_{in} = V_{DD}$.
 
-**Common mistake.** Starting the curve at $V_{DD} = 3$ V and letting it jump to 2.2 V when $M_1$ turns on. Once any current flows, the diode-connected $M_2$ needs $V_{SG2} \ge |V_{THP}|$, so the output is continuous at 2.2 V at turn-on; the 2.2 V plateau is the consistent square-law picture.
+**Common mistake.** Drawing a discontinuity: the output at $V_{DD} = 3$ V for $V_{in} < 0.7$ V followed by a vertical jump to 2.2 V at turn-on. Once any appreciable current flows, the diode-connected $M_2$ needs $V_{SG2} \ge |V_{THP}|$, so in the square-law picture the output is at 2.2 V right at turn-on. (In reality, subthreshold conduction makes the output drift gradually toward $V_{DD}$ as $V_{in}$ falls well below threshold, but there is no jump.)

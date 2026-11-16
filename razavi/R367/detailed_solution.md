@@ -149,6 +149,6 @@ The general results: swing $= V_{DD} - V_{ov1} - V_{ov2}$, maximized by small ov
 
 **Common mistake.** Including $M_2$'s noise in the input-referred noise *voltage*. With the input shorted, $M_2$'s noise current flows into the short; it belongs only to the input-referred noise *current*. Including it makes the noise constraint look much tighter than it is and drives the design in the wrong direction.
 
-**Common mistake.** Using $g_m = I_D/V_{ov}$ instead of $g_m = 2I_D/V_{ov}$. This halves $g_{m1}$ (2.5 mS instead of 5 mS) and makes the computed noise wrong by about 40 %.
+**Common mistake.** Using $g_m = I_D/V_{ov}$ instead of $g_m = 2I_D/V_{ov}$. This halves $g_{m1}$ (2.5 mS instead of 5 mS); for the same design the noise would then come out as $\sqrt{1.656\times10^{-20}(266.7 + 61.5)} \approx 2.3$ nV/√Hz instead of 1.57 nV/√Hz, so a design checked this way is checked against the wrong numbers.
 
 **Common mistake.** Taking the lower limit of the output as $V_{ov1}$ (or as $V_b - V_{TH1}$ with an arbitrary $V_b$). The source of $M_1$ cannot go below $V_{ov2}$ without pushing $M_2$ into triode, so the output must stay above $V_{ov1} + V_{ov2}$; an $R_D$ that biases the output below this violates saturation.

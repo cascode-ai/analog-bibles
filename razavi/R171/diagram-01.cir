@@ -1,7 +1,8 @@
-* Small-signal model for a common-mode input with mismatched transconductances gm1 and gm2: both see vgs = vcm - vP, the tail resistance RSS carries both currents, and the loads are equal
-VCM cm 0 {v_cm}
-G1 X P cm P {g_m1}
-G2 Y P cm P {g_m2}
+* Small-signal model of the pair with mismatched transconductances gm1 and gm2: each device is a current source from its drain to P controlled by its own vgs, RSS from P to ground, equal loads RD
+VIN1 g1 0 {v_in1}
+VIN2 g2 0 {v_in2}
+G1 X P g1 P {g_m1}
+G2 Y P g2 P {g_m2}
 RD1 X 0 {R_D}
 RD2 Y 0 {R_D}
 RSS P 0 {R_SS}

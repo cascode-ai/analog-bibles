@@ -66,6 +66,23 @@ So the level shifter works as designed for $1.8\ \mathrm{V} \le V_{in} \le 3$ V.
 
 **Why the two devices are so different in size.** Both carry 0.5 mA, but $M_1$ has only 0.3 V of overdrive while $M_2$ has 0.8 V. Since $I_D \propto (W/L)V_{ov}^2$, $M_1$ must be $(0.8/0.3)^2 = 7.1$ times wider relative to its length: $82.9/11.7 = 7.1$ ✓.
 
+### Step 6 — Verification of the design
+
+**Currents.** Substituting the sizes back into the square law:
+
+$$
+\begin{aligned}
+I_{D1} &= \tfrac12(134\ \mu\mathrm{A/V^2})(82.9)(0.3\ \mathrm{V})^2 = \tfrac12(134)(82.9)(0.09)\ \mu\mathrm{A} = 0.500\ \mathrm{mA},\\
+I_{D2} &= \tfrac12(134\ \mu\mathrm{A/V^2})(11.66)(0.8\ \mathrm{V})^2 = \tfrac12(134)(11.66)(0.64)\ \mu\mathrm{A} = 0.500\ \mathrm{mA}.
+\end{aligned}
+$$
+
+Both match the required 0.5 mA ✓.
+
+**Small-signal behaviour.** With $\lambda = \gamma = 0$, $M_2$ is an ideal current source, so $M_1$'s current, and hence its $V_{GS1}$, cannot change. The follower then has a small-signal gain of exactly 1, which is why the shift is the same at every input level. Its output resistance is $1/g_{m1}$, with
+$$g_{m1} = \frac{2I_D}{V_{ov1}} = \frac{2(0.5\ \mathrm{mA})}{0.3\ \mathrm{V}} = 3.33\ \mathrm{mS},\qquad \frac{1}{g_{m1}} = 300\ \Omega .$$
+The wide $M_1$ (small overdrive) therefore also gives the level shifter a low output resistance.
+
 ### Result
 
 $$\left(\frac{W}{L}\right)_1 = \frac{2I_D}{\mu_nC_{ox}(V_{GS1} - V_{TH})^2} \approx 82.9\ \ (\text{e.g. } 41.5/0.5),\qquad \left(\frac{W}{L}\right)_2 = \frac{2I_D}{\mu_nC_{ox}(V_{GS2} - V_{TH})^2} \approx 11.7\ \ (\text{e.g. } 5.8/0.5),$$

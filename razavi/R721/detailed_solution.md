@@ -9,9 +9,7 @@ All wires are taken in the same physical direction (package → chip). Then:
 - supply wires 1–4 each carry $+I/4$ (into the chip);
 - ground wires 5–8 each carry $-I/4$ (the return current flows out of the chip).
 
-The inductance matrix has $L_{ii} = L = 4$ nH on the diagonal and $L_{i,i\pm1} = M = 2$ nH for neighbours, zero otherwise (nonadjacent coupling neglected). A coupling coefficient $k = M/L = 0.5$ means the wires are strongly coupled.
-
-<!-- diagram: diagram-01.cir -->
+The inductance matrix has $L_{ii} = L = 4$ nH on the diagonal and $L_{i,i\pm1} = M = 2$ nH for neighbours, zero otherwise (nonadjacent coupling neglected). A coupling coefficient $k = M/L = 0.5$ means the wires are strongly coupled. Electrically, wires 1–4 are in parallel between the package supply and the on-chip supply node, and wires 5–8 are in parallel between the on-chip ground node and the package ground.
 
 **Faraday's law for coupled wires.** The voltage across wire $k$ is
 

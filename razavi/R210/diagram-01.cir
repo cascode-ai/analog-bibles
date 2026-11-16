@@ -1,0 +1,9 @@
+* Small-signal model of the whole circuit with the parasitic RP from X to the tail node P (ideal tail: no element from P to ground)
+Vin1 in1 0 AC {vin1}
+Vin2 in2 0 AC {vin2}
+G1 X P in1 P {gm}
+G2 Y P in2 P {gm}
+RP X P {R_P}
+RD1 X 0 {R_D}
+RD2 Y 0 {R_D}
+.end

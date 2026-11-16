@@ -1,0 +1,8 @@
+* Differential half circuit (lambda = 0): M1 draws gm1*vin from X, half of R1 to the virtual ground, cascode M3 (gm3, gmb3; gate and bulk at AC ground) from output A to X, diode load M5 (1/gm5) at A
+Vin in 0 AC {vin}
+G1 X 0 in 0 {gm1}
+RH X 0 {R_1/2}
+G3 A X 0 X {gm3}
+Gb3 A X 0 X {gmb3}
+R5 A 0 {1/gm5}
+.end

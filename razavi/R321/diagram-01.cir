@@ -1,0 +1,9 @@
+* Small-signal model of the common-gate stage with R_G in series with the gate: nodes S (source), G (gate), out (drain)
+V1 in 0 AC 1
+RS in S {R_S}
+RG G 0 {R_G}
+CGS G S {C_GS}
+CGD G out {C_GD}
+Gm1 out S G S {g_m}
+RD out 0 {R_D}
+.end

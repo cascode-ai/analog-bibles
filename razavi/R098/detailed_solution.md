@@ -70,7 +70,7 @@ $$V_{out} \approx V_{b1} - V_{TH2}(V_X) .$$
 
 ### Step 5 — Below the drop: $M_2$, then $M_1$, enter triode
 
-Once $V_{out} < V_{b1} - V_{TH2}$, $M_2$ is in triode: it no longer shields $M_1$, and the gain falls to roughly $g_{m1}(r_{O1}\|r_{O3})$. As $V_{out}$ falls further, $V_X$ (the drain of $M_1$) is pulled down with it, and $M_1$ enters triode when
+Once $V_{out} < V_{b1} - V_{TH2}$, $M_2$ is in triode: it progressively stops shielding $M_1$, and the gain falls toward roughly $g_{m1}(r_{O1}\|r_{O3})$ (the change is gradual: in the example below the slope is still about 20 when, only about 10 mV of input later, $M_1$ also enters triode). As $V_{out}$ falls further, $V_X$ (the drain of $M_1$) is pulled down with it, and $M_1$ enters triode when
 
 $$V_X < V_{in} - 0.7\ \mathrm{V}.$$
 
@@ -120,7 +120,7 @@ An **inverting** characteristic with a very sharp transition (cascode gain). $V_
 - **$V_{in} \le 0.7$ V:** no current, $V_{out} = V_{DD}$.
 - **$0.7\ \mathrm{V} < V_{in} < V_{in}^*$:** $M_1$ (saturated) sinks less than $I_3$, so $M_3$ is in triode and $V_{out}$ stays just below $V_{DD}$, falling slowly.
 - **$V_{in} \approx V_{in}^* = 0.7 + \sqrt{2I_3/\beta_1}$:** all three devices saturated; gain $\approx g_{m1}[(g_{m2}r_{O2}r_{O1})\|r_{O3}]$, very high, so $V_{out}$ drops almost vertically from $\approx V_{DD} - |V_{ov3}| = V_{b2} + 0.8$ V ($M_3$ edge) to $\approx V_{b1} - V_{TH2}$ ($M_2$ edge). With $\lambda = 0$ the drop would be exactly vertical.
-- **Below $V_{out} \approx V_{b1} - V_{TH2}$:** $M_2$ in triode and the gain falls to roughly $g_{m1}(r_{O1}\|r_{O3})$. Node $X$ falls with $V_{out}$, and $M_1$ enters triode when $V_X < V_{in} - 0.7$ V. Thereafter the gain is small and $V_{out}$ declines slowly toward a low value at $V_{in} = 3$ V.
+- **Below $V_{out} \approx V_{b1} - V_{TH2}$:** $M_2$ in triode and the gain falls toward roughly $g_{m1}(r_{O1}\|r_{O3})$. Node $X$ falls with $V_{out}$, and $M_1$ enters triode when $V_X < V_{in} - 0.7$ V. Thereafter the gain is small and $V_{out}$ declines slowly toward a low value at $V_{in} = 3$ V.
 - **Transition points:** $V_{in} = 0.7$ V; $V_{in}^*$; $V_{out} = V_{b2} + 0.8$ V; $V_{out} = V_{b1} - V_{TH2}$ (with $V_{SB2} = V_X$); $V_X = V_{in} - 0.7$ V. This order assumes $V_{b1}$ lets all three devices be saturated at $V_{in}^*$.
 
 **Common mistake.** Drawing a gradual fall with a moderate, constant slope starting at 0.7 V. The load is a current source: as long as $M_1$ cannot sink $I_3$, the output stays pinned near $V_{DD}$; once it can, the output collapses over a few tens of millivolts because the output node sees $R_{down}\|r_{O3}$.

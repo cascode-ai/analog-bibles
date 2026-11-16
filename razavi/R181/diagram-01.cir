@@ -1,0 +1,6 @@
+* Differential half circuit: the midpoint of R1 is a virtual ground, so node X sees the diode resistance 1/gm3 in parallel with R1/2
+VIN in 0 {v_d/2}
+G1 X 0 in 0 {g_m1}
+R3 X 0 {1/g_m3}
+RH X 0 {R_1/2}
+.end

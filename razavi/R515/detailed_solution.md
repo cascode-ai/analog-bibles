@@ -93,8 +93,8 @@ This rises monotonically toward the limit $k/(2\theta)$: it **levels off** but n
 **Velocity saturation** (lateral field). In the extreme limit $I_D \approx WC_{ox}v_{sat}V_{ov}$, so $g_m \to WC_{ox}v_{sat}$, a constant. It explains the flattening between 0.3 and 0.5 V, not the decline.
 
 **Source/drain series resistance** $R_{SD}$. In saturation it only reduces the effective transconductance, to about $g_m/(1 + g_mR_S)$. In triode with a small $V_{DS}$, the channel resistance $1/(kV_{ov})$ is in series with $R_{SD}$, so
-$$I_D pprox rac{V_{DS}}{1/(kV_{ov}) + R_{SD}} = rac{kV_{ov}V_{DS}}{1 + kR_{SD}V_{ov}} ,$$
-which has exactly the form of the mobility-degradation model with an effective $	heta_{eff} = 	heta + kR_{SD}$. Series resistance therefore adds to the decline at high current, through the same mechanism: the fixed $V_{DS}$ is shared with a resistance the gate cannot modulate.
+$$I_D \approx \frac{V_{DS}}{1/(kV_{ov}) + R_{SD}} = \frac{kV_{ov}V_{DS}}{1 + kR_{SD}V_{ov}} ,$$
+which has exactly the form of the mobility-degradation model with an effective $\theta_{eff} = \theta + kR_{SD}$. Series resistance therefore adds to the decline at high current, through the same mechanism: the fixed $V_{DS}$ is shared with a resistance the gate cannot modulate.
 
 ### Result
 

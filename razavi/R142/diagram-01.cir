@@ -1,0 +1,6 @@
+* Small-signal model for the supply gain: the supply variation vdd drives the source of M2 (gate at ac ground), M1 reduces to rO1
+Vdd vdd 0 AC 1
+G2 vdd out vdd 0 {gm2}
+RO2 vdd out {rO2}
+RO1 out 0 {rO1}
+.end

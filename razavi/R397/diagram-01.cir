@@ -1,0 +1,6 @@
+* Small-signal model: common-gate M1 (N to out) and PMOS common-source M2 (out back to N); current sources ideal (open)
+Vin in 0 {V_in}
+RS in n {R_S}
+G2 0 n 0 out {gm2}
+G1 out n 0 n {gm1}
+.end

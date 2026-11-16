@@ -55,7 +55,17 @@ With $L = 0.5\ \mu\mathrm{m}$: $W_3 = W_4 = 119\times0.5\ \mu\mathrm{m} \approx 
 
 ### Step 5 — What the condition achieves
 
-$M_3$ and $M_5$ now form a current mirror with ratio $(W/L)_5/(W/L)_3 = 2$: the 0.5 mA in $M_3$ is mirrored as 1 mA in $M_5$ (through $M_4$, which reproduces the voltage of X at Y). If $M_3$ were sized differently, say equal to $M_5$, then $V_{GS3}$ would be smaller and $M_5$ would carry only 0.5 mA when $V_X = V_Y$. The op amp would then need a nonzero input (a systematic offset) to bring $M_5$ back to the 1 mA that $M_6$ forces through it.
+$M_3$ and $M_5$ now form a current mirror with ratio $(W/L)_5/(W/L)_3 = 2$: the 0.5 mA in $M_3$ is mirrored as 1 mA in $M_5$ (through $M_4$, which reproduces the voltage of X at Y).
+
+**What goes wrong otherwise (numerical illustration).** Suppose $M_3$ were made equal to $M_5$, $(W/L)_3 = 239$. At 0.5 mA its overdrive would be
+
+$$V_{ov3} = \sqrt{\frac{2\,(0.5\ \mathrm{mA})}{(134\ \mu\mathrm{A/V^2})(239)}} = \sqrt{0.0312}\ \mathrm{V} = 0.177\ \mathrm{V},$$
+
+so $V_X = V_Y = 0.7 + 0.177 = 0.877$ V with zero input. At that gate voltage $M_5$ would carry only
+
+$$I_{D5} = 1\ \mathrm{mA}\times\left(\frac{0.177\ \mathrm{V}}{0.25\ \mathrm{V}}\right)^2 = 0.5\ \mathrm{mA},$$
+
+half of what $M_6$ supplies. To restore 1 mA, Y would have to rise by $0.25 - 0.177 = 0.073$ V above X. That requires a differential input of about $0.073\ \mathrm{V}/A_1$, a few millivolts for a first-stage gain of about 20. This **systematic offset** is exactly what the condition $V_{GS3} = V_{GS5}$ avoids.
 
 ### Result
 

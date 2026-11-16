@@ -1,0 +1,5 @@
+* Small-signal model of a common-source transistor whose load is an ideal current source (an open circuit for signals): gm*vin in parallel with rO
+Vin in 0 {v_in}
+G1 out 0 in 0 {gm}
+RO out 0 {r_O}
+.end

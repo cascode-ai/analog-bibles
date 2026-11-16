@@ -1,0 +1,18 @@
+* Fully differential folded-cascode op amp: NMOS input pair M1-M2 (tail I_SS), PMOS sources M3-M4 (I_P) at folding nodes X and Y, PMOS cascodes M5-M6, NMOS cascodes M7-M8, NMOS sources M9-M10 (I_P - I_SS/2), load C_L on each output
+VDD vdd 0 {V_DD}
+VIN1 in1 0 {V_in1}
+VIN2 in2 0 {V_in2}
+ISS P 0 {I_SS}
+M1 X in1 P 0 nmos
+M2 Y in2 P 0 nmos
+M3 X vb1 vdd vdd pmos
+M4 Y vb1 vdd vdd pmos
+M5 out1 vb2 X vdd pmos
+M6 out2 vb2 Y vdd pmos
+M7 out1 vb3 B1 0 nmos
+M8 out2 vb3 B2 0 nmos
+M9 B1 vb4 0 0 nmos
+M10 B2 vb4 0 0 nmos
+CL1 out1 0 {C_L}
+CL2 out2 0 {C_L}
+.end

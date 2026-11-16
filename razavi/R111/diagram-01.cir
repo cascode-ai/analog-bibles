@@ -1,0 +1,8 @@
+* Small-signal model of the common-gate stage with R1 across drain and source (lambda nonzero, gamma = 0)
+Vin in 0 {v_in}
+R2 out 0 {R_2}
+R1 out in {R_1}
+* M1: gate at AC ground (Vb), source at in, drain at out: v_gs = -v_in
+G1 out in 0 in {gm1}
+RO1 out in {r_O1}
+.end

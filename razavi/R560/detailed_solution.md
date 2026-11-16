@@ -84,7 +84,7 @@ $M_5$ has the same overdrive, since its current and $W/L$ scale together.
 
 **Output level:**
 
-$$V_{out} = |V_{BE3}| + 4.5\times0.1\ \mathrm{V} = |V_{BE3}| + 0.45\ \mathrm{V} \approx 1.2\text{–}1.25\ \mathrm{V}$$
+$$V_{out} = |V_{BE3}| + 4.5\times0.1\ \mathrm{V} = |V_{BE3}| + 0.45\ \mathrm{V} \approx 1.2\text{--}1.25\ \mathrm{V}$$
 
 for $|V_{BE3}| \approx 0.75$–0.8 V.
 
@@ -95,7 +95,7 @@ for $|V_{BE3}| \approx 0.75$–0.8 V.
 
 ### Result
 
-$$n = \exp\!\left(\frac{50\ \mathrm{mV}}{25.85\ \mathrm{mV}}\right) \approx 6.9\ (\approx 7), \qquad \left(\frac WL\right)_5 \approx 4.45\text{–}4.5\times\left(\frac WL\right)_4 \approx \frac{222\text{–}225\ \mu\mathrm{m}}{0.5\ \mu\mathrm{m}},$$
+$$n = \exp\!\left(\frac{50\ \mathrm{mV}}{25.85\ \mathrm{mV}}\right) \approx 6.9\ (\approx 7), \qquad \left(\frac WL\right)_5 \approx 4.45\text{--}4.5\times\left(\frac WL\right)_4 \approx \frac{222\text{--}225\ \mu\mathrm{m}}{0.5\ \mu\mathrm{m}},$$
 
 with $|I_{D5}| \approx 222$–225 μA. These follow from $V_X = V_Y$ with equal currents, giving $|I_{D4}|R_1 = V_T\ln n = 50$ mV, and from $V_{out} = |V_{BE3}| + K(R_2/R_1)V_T\ln n = |V_{BE3}| + K(0.1\ \mathrm{V})$ with $K(0.1\ \mathrm{V})/300\ \mathrm{K} = 1.5$ mV/K. Then $V_{out} \approx |V_{BE3}| + 0.45\ \mathrm{V} \approx 1.2$–1.25 V, $|V_{GS}| = 0.96$ V, and $M_5$ is saturated with $|V_{DS}| \approx 1.75$ V.
 

@@ -9,9 +9,7 @@ Take all wires in the same physical direction (package → chip):
 - supply wires 1, 3, 5, 7: current $+I/4$;
 - ground wires 2, 4, 6, 8: current $-I/4$ (return current).
 
-Self-inductance $L = 4$ nH; mutual inductance $M = 2$ nH between adjacent wires only. In the alternating row there are **7 adjacent pairs** (1–2, 2–3, …, 7–8), and **every one of them is a supply–ground pair** with opposite currents. No two supply wires (or two ground wires) are adjacent.
-
-<!-- diagram: diagram-01.cir -->
+Self-inductance $L = 4$ nH; mutual inductance $M = 2$ nH between adjacent wires only. In the alternating row there are **7 adjacent pairs** (1–2, 2–3, …, 7–8), and **every one of them is a supply–ground pair** with opposite currents. No two supply wires (or two ground wires) are adjacent. Electrically, the odd wires are in parallel between the package supply and the on-chip supply node, and the even wires are in parallel between the on-chip ground node and the package ground.
 
 **Faraday's law** for wire $k$:
 

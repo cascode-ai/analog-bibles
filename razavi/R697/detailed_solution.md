@@ -83,7 +83,7 @@ A heavier threshold-adjust implant shifts the thresholds. With the op-amp bias c
 
 - the square-law transconductance $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ and the output resistance $r_O = 1/(\lambda I_D)$ contain no $V_{TH}$, so **$A$ is essentially unchanged**. The transistors simply operate at larger (or smaller) $V_{GS}$ with the same overdrive. (Heavier channel doping reduces mobility somewhat, and $g_m \propto \sqrt{\mu}$, but that is a small effect.)
 - **Indirect effects only.** A larger $V_{GS}$ could eat into headroom and push some op-amp device out of saturation, or reduce the overdrive of the NMOS switches (larger on-resistance, slower settling). These depend on the specific bias levels and timing.
-- **Charge injection** of $S_2$ changes with $V_{TH}$, but $S_2$ switches at the virtual ground X, so its injected charge is independent of $V_{in}$: it produces an **offset**, not a gain error. ($S_1$ opens after $S_2$, when X is already isolated, so its injection does not change $Q_X$.)
+- **Charge injection** of $S_2$ changes with $V_{TH}$, but $S_2$ switches at the virtual ground X, so its injected charge is independent of $V_{in}$: it produces an **offset**, not a gain error. (In the usual bottom-plate-sampling timing, $S_1$ opens slightly after $S_2$, when X is already isolated, so the injection of $S_1$ does not change $Q_X$.)
 
 **Verdict: not the cause.**
 

@@ -1,0 +1,13 @@
+* Closed-loop small-signal noise model: M3 noise current In3 at the input node A, M1 and M2 noise as gate-referred voltages Vn1 and Vn2
+Iin 0 A AC 1
+In3 A 0 AC {I_n3}
+RO3 A 0 {r_O3}
+CA A 0 {C_A}
+G3 A 0 Y 0 {gm3}
+Vn1 G1 A AC {V_n1}
+G1 B 0 G1 0 {gm1}
+RO1 B 0 {r_O1}
+Vn2 G2 B AC {V_n2}
+G2 Y 0 G2 0 {gm2}
+RO2 Y 0 {r_O2}
+.end

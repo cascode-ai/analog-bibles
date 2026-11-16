@@ -115,7 +115,7 @@ $G_m$ stays flat near equilibrium (it is an even function of $\Delta V$, with ze
 
 ### Result
 
-$G_m$ drops by **10 % at $|V_{in1} - V_{in2}| \approx 0.139$ V** and by **90 % at $|V_{in1} - V_{in2}| \approx 0.372$ V**, from $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$, $V_{ov} = 0.273$ V. The roots are $x = 0.509$ and $x = 1.361$. For reference, $G_m$ reaches zero at $\sqrt2\,V_{ov} = 0.386$ V.
+$G_m$ drops by **10 % at $|V_{in1} - V_{in2}| \approx 0.139$ V** and by **90 % at $|V_{in1} - V_{in2}| \approx 0.372$ V**, from $G_m/G_{m0} = (2 - x^2)/\sqrt{4 - x^2}$ with $x = \Delta V/V_{ov}$, $V_{ov} = 0.273$ V. The roots are $x = 0.509$ and $x = 1.361$. For comparison, $G_m$ reaches zero at $\sqrt2\,V_{ov} = 0.386$ V.
 
 **Common mistake.** Linearizing the characteristic (for example, using a constant $G_m$ or a first-order expansion), which gives meaningless drop points such as 27 mV for 10 %. The drop must come from the exact large-signal $G_m$ expression.
 

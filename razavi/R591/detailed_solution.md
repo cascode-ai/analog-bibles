@@ -83,6 +83,6 @@ $$\tau = \frac{C_1C_3/(C_1 + C_3)}{1/(r_{O1}\parallel r_{O3}) + g_{m1}C_3/(C_1 +
 
 (about 0.55 ns, i.e. $C_1/g_{m1}$, if the finite output resistance is neglected, which is a poor approximation here because the loop gain is only about 5).
 
-**Common mistake.** Using an "RC" from the wrong elements: $R_0C_3$ (2.7 ns) or $R_0(C_1 + C_3)$ (17 ns) ignore the feedback, which makes $M_1$ look like a small resistance $1/(g_{m1}\beta)$ at the output; $C_3/g_{m1}$ (0.14 ns) ignores that only the fraction $\beta$ of the output reaches the gate.
+**Common mistake.** Using an "RC" from the wrong elements: $R_0C_3$ (3.3 ns) or $R_0(C_1 + C_3)$ (17 ns) ignore the feedback, which makes $M_1$ look like a small resistance $1/(g_{m1}\beta)$ at the output; $C_3/g_{m1}$ (0.14 ns) ignores that only the fraction $\beta$ of the output reaches the gate.
 
 **Common mistake.** Placing $C_1$ at the output, or treating its left plate as floating. In the amplification mode the left plate of $C_1$ is driven by $V_{CM}$, a low-impedance (AC-ground) node, so $C_1$ hangs from the gate X to ground and the output sees it only through $C_3$, in series.

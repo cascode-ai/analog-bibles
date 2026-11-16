@@ -71,7 +71,7 @@ Two useful conclusions:
 
 $$\frac{\pi\zeta}{\sqrt{1 - \zeta^2}} = -\ln0.38 = 0.96 \quad\Longrightarrow\quad \zeta = \frac{0.96}{\sqrt{\pi^2 + 0.96^2}} = 0.29 .$$
 
-**Check from the decay.** The deviations from the final value at successive peaks of the same sign are about +8.1 mV and +1.2 mV, one ringing period apart. Their ratio gives $2\pi\zeta/\sqrt{1 - \zeta^2} = \ln(8.1/1.2) = 1.9$, i.e. again $\zeta \approx 0.29$.
+**Check from the decay.** The deviations from the final value at successive peaks of the same sign are about +7.8 mV and +1.2 mV, one ringing period apart. Their ratio gives $2\pi\zeta/\sqrt{1 - \zeta^2} = \ln(7.8/1.2) = 1.87$, i.e. $\zeta = 1.87/\sqrt{4\pi^2 + 1.87^2} \approx 0.29$ again.
 
 **Open-loop information:**
 - Phase margin: $\mathrm{PM} = \tan^{-1}(2\zeta/u)$ with $u = \sqrt{\sqrt{1 + 4(0.29)^4} - 2(0.29)^2} = 0.92$, so $\mathrm{PM} = \tan^{-1}(0.58/0.92) \approx 32^\circ$.

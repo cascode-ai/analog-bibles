@@ -1,0 +1,6 @@
+* Small-signal model of the CS stage with capacitive feedback (I_1 ideal, lambda = 0)
+Vin in 0 {V_in}
+C1 in g {C_1}
+C2 g out {C_2}
+G1 out 0 g 0 {gm1}
+.end

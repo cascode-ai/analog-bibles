@@ -1,0 +1,9 @@
+* Small-signal model of the common-gate stage with R_G in series with the gate, keeping only C_GD and C_DB
+V1 in 0 AC 1
+RS in S {R_S}
+RG G 0 {R_G}
+CGD G out {C_GD}
+CDB out 0 {C_DB}
+Gm1 out S G S {g_m}
+RD out 0 {R_D}
+.end

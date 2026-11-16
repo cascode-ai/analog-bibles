@@ -1,0 +1,7 @@
+* Small-signal model: common-gate M1 (N to out) and NMOS source follower M2 (out back to N), with the output capacitance C_out
+Vin in 0 {V_in}
+RS in n {R_S}
+G2 0 n out n {gm2}
+G1 out n 0 n {gm1}
+Cout out 0 {C_out}
+.end

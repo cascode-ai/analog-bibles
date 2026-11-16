@@ -41,7 +41,7 @@ For any nonzero input this cannot be satisfied by finite node voltages. The sign
 
 ### Step 4 — Very low frequencies (λ = 0)
 
-At low frequency $C_1$ is an open circuit, and the circuit is an ordinary cascode with a current-source load. Its gain is
+At low frequency $C_1$ is an open circuit, and the circuit is an ordinary cascode with a current-source load. Its gain is approximately
 
 $$A_v = -g_{m1}\,(R_{out,casc}\parallel r_{O3}),$$
 

@@ -1,0 +1,9 @@
+* Test circuit for R_GS: input zeroed, C_GD and C_L open, test current I_X injected into G and drawn out of S in place of C_GS
+RG G 0 {R_G}
+Gm1 D S G S {g_m}
+Gmb D S 0 S {g_mb}
+RO D S {r_O}
+RS S 0 {R_S}
+RD D 0 {R_D}
+IX S G {I_X}
+.end

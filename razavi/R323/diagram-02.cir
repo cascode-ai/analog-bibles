@@ -1,0 +1,10 @@
+* Differential half circuit: CS stage M1 with source at the virtual ground, R_S at the gate node A, load r_O1 || r_O3 and C_L at the output
+V1 in 0 {V_in/2}
+RS in A {R_S}
+CGS1 A 0 {C_GS1}
+CGD1 A out {C_GD1}
+G1 out 0 A 0 {g_m1}
+RO1 out 0 {r_O1}
+RO3 out 0 {r_O3}
+CL out 0 {C_L}
+.end

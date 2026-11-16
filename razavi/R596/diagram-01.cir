@@ -1,6 +1,6 @@
-* Common-mode equivalent after S1 opens: X couples to the output CM node through C1+C2 and to ground through CGS5; M5 draws a CM current gm5*V_X from the outputs, whose CM resistance is ro3||ro4; the injected charge dq enters X
+* Common-mode equivalent after S1 opens: X couples to the output CM node through C1+C2 and to ground through CGS5; M5 draws a CM current gm5*V_X from the outputs, whose CM resistance is R_L = ro3 || ro4; the injected charge dq enters X
 Cc x outcm {C_1+C_2}
 Cgs5 x 0 {C_GS5}
 G5 outcm 0 x 0 {g_m5}
-RL outcm 0 {r_O3||r_O4}
+RL outcm 0 {R_L}
 Iinj 0 x {dq}

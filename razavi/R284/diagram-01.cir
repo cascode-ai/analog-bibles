@@ -1,0 +1,8 @@
+* Small-signal model for supply gain: inputs at ac ground, tail open, M4 reduced to r_O4 (its v_SG does not change), M1 drain on the supply
+Vdd vdd 0 AC {v_dd}
+G1 vdd p 0 p {gm1}
+RO1 vdd p {r_O1}
+G2 out p 0 p {gm2}
+RO2 out p {r_O2}
+RO4 vdd out {r_O4}
+.end

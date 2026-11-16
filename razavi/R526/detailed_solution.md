@@ -93,7 +93,7 @@ $M_6$ and $M_8$ have the same size (320 µm/80 nm) and the same current (≈ 0.9
 
 $$\frac{S_6}{S_8} \approx \frac{1}{(g_{m8}r_{O8})^2}.$$
 
-**How small is it here?** With long-channel devices ($g_mr_O \sim 50$–$100$) this ratio is below 0.05 %, and the cascode's noise is negligible, the usual textbook conclusion. In this 40-nm design, however, the PMOS devices carry about 0.95 mA at only about 100 mV of $|V_{DS}|$ (the 1-V supply is shared by four stacked devices). Their $r_O$ is then only a few hundred ohms, and the intrinsic gain $g_{m8}r_{O8}$ is only about 5–10. Then
+**How small is it here?** With long-channel devices ($g_mr_O \sim 50$–$100$) this ratio is below 0.05 %, and the cascode's noise is negligible, the usual textbook conclusion. In this 40-nm design, however, the PMOS devices carry about 0.95 mA at only about 100 mV of $|V_{DS}|$ (the 1-V supply is shared by the whole stack: current source, two cascodes, input pair and tail). Their $r_O$ is then only a few hundred ohms, and the intrinsic gain $g_{m8}r_{O8}$ is only about 5–10. Then
 
 $$\frac{S_6}{S_8} \approx \frac{1}{5^2}\ \text{to}\ \frac{1}{10^2} = 4\,\%\ \text{to}\ 1\,\%,$$
 

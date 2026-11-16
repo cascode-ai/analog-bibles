@@ -44,15 +44,27 @@ $$g_{m1}V_{in} + \frac{V_X}{R_X} + sC_C(V_X - V_{out}) = 0 .$$
 
 $$g_{m5}V_X + \frac{V_{out}}{R_L} + sC_LV_{out} + sC_C(V_{out} - V_X) = 0 .$$
 
-From the second equation:
+Write $G_X = 1/R_X$ and $G_L = 1/R_L$. From the second equation:
 
-$$V_X(g_{m5} - sC_C) = -V_{out}\left(\frac{1}{R_L} + sC_L + sC_C\right) .$$
+$$V_X(g_{m5} - sC_C) = -V_{out}\left[G_L + s(C_L + C_C)\right] \quad\Longrightarrow\quad V_X = -V_{out}\,\frac{G_L + s(C_L + C_C)}{g_{m5} - sC_C} .$$
 
-Substituting $V_X$ into the first equation and collecting terms (multiply through by $R_XR_L$):
+Rewrite the first equation as $V_X(G_X + sC_C) - sC_CV_{out} = -g_{m1}V_{in}$ and substitute $V_X$:
+
+$$-V_{out}\,\frac{\left[G_L + s(C_L + C_C)\right](G_X + sC_C)}{g_{m5} - sC_C} - sC_CV_{out} = -g_{m1}V_{in} .$$
+
+Multiply both sides by $-(g_{m5} - sC_C)$:
+
+$$V_{out}\left\{\left[G_L + s(C_L + C_C)\right](G_X + sC_C) + sC_C(g_{m5} - sC_C)\right\} = g_{m1}(g_{m5} - sC_C)\,V_{in} .$$
+
+Expand the braces; the $s^2C_C^2$ terms cancel:
+
+$$G_LG_X + s\left[G_LC_C + G_X(C_L + C_C) + g_{m5}C_C\right] + s^2C_LC_C .$$
+
+Divide numerator and denominator by $G_LG_X$ (i.e. multiply by $R_XR_L$) and use $A_0 = g_{m1}R_X\,g_{m5}R_L$:
 
 $$\frac{V_{out}}{V_{in}} = \frac{A_0\left(1 - \dfrac{sC_C}{g_{m5}}\right)}{1 + a\,s + b\,s^2},$$
 
-$$a = R_X(1 + g_{m5}R_L)C_C + R_L(C_C + C_L), \qquad b = R_XR_LC_CC_L .$$
+$$a = R_XC_C + R_L(C_L + C_C) + g_{m5}R_XR_LC_C = R_X(1 + g_{m5}R_L)C_C + R_L(C_C + C_L), \qquad b = R_XR_LC_CC_L .$$
 
 ### Step 3 — Pole splitting: approximate pole and zero locations
 

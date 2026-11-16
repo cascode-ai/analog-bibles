@@ -1,0 +1,6 @@
+* Example: resistance seen by C_GD in a CS stage (input zeroed, C_GD removed and replaced by a test current I_X from the drain D into the gate G)
+RS G 0 {R_S}
+RD D 0 {R_D}
+G1 D 0 G 0 {g_m}
+IX D G {I_X}
+.end

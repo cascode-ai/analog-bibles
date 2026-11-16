@@ -1,0 +1,6 @@
+* Differential half circuit (lambda = 0): M1 as a VCCS, diode M5 as conductance gm5, cross-coupled M3 as a negative conductance -gm3 (current gm3*vX injected into X)
+Vin in 0 AC {vd/2}
+G1 X 0 in 0 {gm1}
+G5 X 0 X 0 {gm5}
+G3 0 X X 0 {gm3}
+.end

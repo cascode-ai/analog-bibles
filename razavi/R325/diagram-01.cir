@@ -1,0 +1,12 @@
+* Small-signal model of the degenerated CS stage with r_O between drain and source and the body effect (bulk at ground)
+V1 in 0 AC 1
+RG in G {R_G}
+CGS G S {C_GS}
+CGD G D {C_GD}
+Gm1 D S G S {g_m}
+Gmb D S 0 S {g_mb}
+RO D S {r_O}
+RS S 0 {R_S}
+CL D 0 {C_L}
+RD D 0 {R_D}
+.end

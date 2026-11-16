@@ -1,0 +1,10 @@
+* DC test bench: switch held on, input level swept, output forced 1 mV above the input; Ron,eq = dV/I(VD)
+VDD vdd 0 {V_DD}
+VCK ck 0 {V_DD}
+VCKB ckb 0 0
+VIN in 0 {V_in}
+M1 out ck in 0 nmos
+M2 out ckb in vdd pmos
+E1 x 0 in 0 1
+VD out x {dV}
+.end

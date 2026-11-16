@@ -1,6 +1,6 @@
 * Error amplifier with PMOS input pair (MA, MB) and NMOS current-mirror load (MC, MD); its output E drives the gates of M3 and M4
 VDD vdd 0 {V_DD}
-Vcm cm 0 {V_out,CM}
+Vcm cm 0 {V_outCM}
 Vref ref 0 {V_REF}
 MT tail vbp vdd vdd pmos
 MA n1 cm tail vdd pmos

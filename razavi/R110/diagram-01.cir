@@ -1,0 +1,7 @@
+* Small-signal model of the CS stage with resistor RF from input to output (lambda nonzero, gamma = 0)
+Vin in 0 {v_in}
+RF in out {R_F}
+RD out 0 {R_D}
+G1 out 0 in 0 {gm1}
+RO1 out 0 {r_O1}
+.end

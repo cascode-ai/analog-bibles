@@ -119,6 +119,32 @@ $$\frac{(g_mr_O)_n}{(g_mr_O)_p} = \frac{73.2}{19.6} = 3.74 = \underbrace{\sqrt{\
 
 The higher electron mobility gives the NMOS a $\sqrt{3.49} = 1.87$ times larger $g_m$ at the same current, and its smaller $\lambda$ gives it twice the output resistance.
 
+### Step 5 — Why $g_mr_O$ is called the "intrinsic gain"
+
+Consider the transistor as a common-source amplifier: source grounded, input $v_{in}$ applied to the gate, output taken at the drain. The load is an *ideal* current source, the best load possible.
+
+**Small-signal model.** In saturation the MOSFET is modelled, for small signals, as follows:
+
+- the gate draws no current (an open circuit between gate and source);
+- between drain and source there is a voltage-controlled current source $g_mv_{gs}$, flowing from drain to source;
+- in parallel with it there is the output resistance $r_O$.
+
+An ideal current source carries a fixed current, so its small-signal current is zero: it is an open circuit for signals. The output node therefore sees only the transistor:
+
+<!-- diagram: diagram-01.cir -->
+
+**KCL at the output node.** The controlled-source current plus the current in $r_O$ must sum to zero (nothing else is connected), with $v_{gs} = v_{in}$:
+
+$$
+\begin{aligned}
+g_mv_{in} + \frac{v_{out}}{r_O} &= 0\\
+v_{out} &= -g_mr_O\,v_{in}\\
+A_v = \frac{v_{out}}{v_{in}} &= -g_mr_O .
+\end{aligned}
+$$
+
+So $g_mr_O$ is the largest voltage gain a single transistor can deliver: about 73 for the NMOS and about 19.6 for the PMOS sized here. Any real load $R_L$ appears in parallel with $r_O$ and can only reduce it, $|A_v| = g_m(r_O\parallel R_L) < g_mr_O$. The minus sign means the stage inverts.
+
 ### Result
 
 | Device | $g_m$ | $1/g_m$ | $r_O$ | $g_m r_O$ |

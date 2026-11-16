@@ -6,6 +6,8 @@
 
 From the figure: $M_5$ is an NMOS with its source at ground, its gate at Y (the first-stage output) and its drain at $V_{out}$. $M_6$ is a PMOS with its source at $V_{DD}$, its gate at the fixed bias $V_b$, and its drain at $V_{out}$. Both carry $I_D = 1$ mA.
 
+**Region of operation.** The small-signal result below assumes both devices are saturated. $M_5$ is saturated for $V_{out} \ge V_{ov5} = 0.25$ V, and $M_6$ for $V_{DD} - V_{out} \ge |V_{ov6}| = 0.25$ V, i.e. $V_{out} \le 2.75$ V. So the gain computed here holds for any output DC level between 0.25 V and 2.75 V, for example at mid-supply (1.5 V). Outside this range one of the devices enters the triode region and the gain collapses.
+
 **Small-signal model (in words).**
 
 - $M_5$: a controlled current source $g_{m5}v_y$ flowing from the output node to ground ($v_y$ is the small-signal voltage at its gate), in parallel with its output resistance $r_{O5}$.

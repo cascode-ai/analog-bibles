@@ -1,0 +1,7 @@
+* Measuring Rout of the source follower: input (gate) at ac ground, test voltage Vx applied at the output
+G1 0 out 0 out {gm}
+Gmb 0 out 0 out {gmb}
+RO 0 out {rO}
+RL out 0 {R_L}
+Vx out 0 AC 1
+.end

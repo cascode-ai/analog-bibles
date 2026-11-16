@@ -1,0 +1,16 @@
+* Noise model of one side of the feedforward op amp: noise currents of M1, M3 at X and of M5, M7, M2' at out1 (node h carries vin/2)
+Vh h 0 AC 1
+G1 X 0 h 0 {gm1}
+RO1 X 0 {r_O1}
+RO3 X 0 {r_O3}
+In1 X 0 {I_n1}
+In3 X 0 {I_n3}
+G5 out1 0 X 0 {gm5}
+G2p 0 out1 h 0 {gm1p}
+RO5 out1 0 {r_O5}
+RO7 out1 0 {r_O7}
+RO1p out1 0 {r_O1p}
+In5 out1 0 {I_n5}
+In7 0 out1 {I_n7}
+In2p 0 out1 {I_n2p}
+.end

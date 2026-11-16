@@ -1,0 +1,8 @@
+* Measuring Rout of the common-gate stage: input set to zero (R_S from the source X to ground), test voltage Vx at the drain
+RS X 0 {R_S}
+G1 out X 0 X {gm}
+Gmb out X 0 X {gmb}
+RO out X {rO}
+RD out 0 {R_D}
+Vx out 0 AC 1
+.end

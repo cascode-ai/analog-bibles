@@ -1,0 +1,11 @@
+* Small-signal model for a differential input (P at AC ground): M1, M2 as VCCSs at A and B, cascodes M3, M4 (gates at AC ground) from X to A and Y to B, RP from A to Y, loads RD
+Vin1 in1 0 AC {vd/2}
+Vin2 in2 0 AC {-vd/2}
+G1 A 0 in1 0 {gm}
+G2 B 0 in2 0 {gm}
+G3 X A 0 A {gm3}
+G4 Y B 0 B {gm4}
+RP A Y {R_P}
+RD1 X 0 {R_D}
+RD2 Y 0 {R_D}
+.end

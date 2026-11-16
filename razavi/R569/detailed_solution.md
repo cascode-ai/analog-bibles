@@ -50,7 +50,7 @@ $$|H| = \frac{12.57}{\sqrt{201^2 + 12.57^2}} = \frac{12.57}{\sqrt{40401 + 158}} 
 
 **Phase** (phase of numerator minus phase of denominator):
 
-$$\angle H = 90° - \arctan\frac{12.57}{201} = 90° - 3.58° = 86.4° .$$
+$$\angle H = 90^\circ - \arctan\frac{12.57}{201} = 90^\circ - 3.58^\circ = 86.4^\circ .$$
 
 The positive phase means $V_X$ **leads** $V_{in}$.
 
@@ -64,7 +64,7 @@ the same result.
 
 For $V_{in}(t) = (1\ \mathrm{V})\sin\omega t$, the steady-state response of a linear circuit is a sinusoid of the same frequency, scaled by $|H|$ and shifted by $\angle H$:
 
-$$V_X(t) = (62.4\ \mathrm{mV})\,\sin(\omega t + 86.4°).$$
+$$V_X(t) = (62.4\ \mathrm{mV})\,\sin(\omega t + 86.4^\circ).$$
 
 It is centred on the dc level of X, which is 0 V because the noninverting input is grounded and no dc current flows through $C_1$.
 
@@ -94,7 +94,7 @@ The op amp must absorb the capacitor current $C_1\,dV_{in}/dt$, and doing so tak
 
 The voltage across $C_1$ is $V_{in} - V_X = (1 - H)V_{in}$, with
 
-$$1 - H = \frac{201}{201 + j\,12.57}, \qquad |1 - H| = \frac{201}{201.4} = 0.998, \qquad \angle(1 - H) = -3.6° .$$
+$$1 - H = \frac{201}{201 + j\,12.57}, \qquad |1 - H| = \frac{201}{201.4} = 0.998, \qquad \angle(1 - H) = -3.6^\circ .$$
 
 So $C_1$ sees a 0.998-V sinusoid lagging $V_{in}$ by 3.6°. The "virtual ground" is not perfectly quiet: it carries a 62-mV ripple at 100 MHz, about 6 % of the input.
 
@@ -102,9 +102,9 @@ So $C_1$ sees a 0.998-V sinusoid lagging $V_{in}$ by 3.6°. The "virtual ground"
 
 $V_X$ is a 100-MHz sinusoid with a peak amplitude of about **62 mV** (0.0624 V), **leading $V_{in}$ by about 86°** (nearly 90°, i.e. 2.4 ns):
 
-$$V_X(t) = 62.4\ \mathrm{mV}\cdot\sin(\omega t + 86.4°),$$
+$$V_X(t) = 62.4\ \mathrm{mV}\cdot\sin(\omega t + 86.4^\circ),$$
 
-centred on the op amp's dc level (0 V). It follows from $H(j\omega) = j\omega R_{out}C_1/(1 + G_mR_{out} + j\omega R_{out}C_1)$ with $\omega R_{out}C_1 = 12.57$ and $1 + G_mR_{out} = 201$: $|H| = 12.57/\sqrt{201^2 + 12.57^2} = 0.0624$ and $\angle H = 90° - \arctan(12.57/201) = 86.4°$. Node X behaves like the output of a differentiator, $V_X \approx (C_1/G_m)\,dV_{in}/dt$, because 100 MHz is far below the pole at about 1.6 GHz. The voltage across $C_1$ has an amplitude of 0.998 V and lags $V_{in}$ by about 3.6°.
+centred on the op amp's dc level (0 V). It follows from $H(j\omega) = j\omega R_{out}C_1/(1 + G_mR_{out} + j\omega R_{out}C_1)$ with $\omega R_{out}C_1 = 12.57$ and $1 + G_mR_{out} = 201$: $|H| = 12.57/\sqrt{201^2 + 12.57^2} = 0.0624$ and $\angle H = 90^\circ - \arctan(12.57/201) = 86.4^\circ$. Node X behaves like the output of a differentiator, $V_X \approx (C_1/G_m)\,dV_{in}/dt$, because 100 MHz is far below the pole at about 1.6 GHz. The voltage across $C_1$ has an amplitude of 0.998 V and lags $V_{in}$ by about 3.6°.
 
 **Common mistake.** Treating X as an ideal virtual ground and drawing a flat line at 0 V. The op amp can hold X near ground only by developing an error voltage of (capacitor current)/$G_m$, which at 100 MHz is about 62 mV peak.
 

@@ -98,7 +98,7 @@ $$\overline{V_{n,in}^2} = \frac{4kT/R_F + 4kT\gamma g_m}{(g_m - 1/R_F)^2}, \qqua
 
 independent of $r_O$, i.e. identical to the $\lambda = 0$ results. Only the output noise voltages change:
 
-- input shorted: $\overline{V_{n,out}^2} = 4kT\left(\dfrac{1}{R_F} + \gamma g_m\right)(R_F\parallel r_O)^2$ instead of $\ldots R_F^2$;
+- input shorted: $\overline{V_{n,out}^2} = 4kT\left(\dfrac{1}{R_F} + \gamma g_m\right)(R_F\parallel r_O)^2$ instead of $4kT\left(\dfrac{1}{R_F} + \gamma g_m\right)R_F^2$;
 - input open: $\overline{V_{n,out}^2} = \dfrac{4kT(g_m^2R_F + \gamma g_m)}{(g_m + 1/r_O)^2}$ instead of $4kTR_F + 4kT\gamma/g_m$.
 
 $r_O$ is noiseless and scales the noise and the gain equally, so it drops out of the input-referred quantities.

@@ -101,7 +101,7 @@ I_X + \frac{V_{DS}}{R_1} &= 1.000\ \mathrm{mA} = I_1 .\ \checkmark
 \end{aligned}
 $$
 
-So **$I_X(0) \approx 0.61\,I_1$**. The simple divider estimate gives $R_{on} = 1/(1\ \mathrm{mA/V^2}\times1.789\ \mathrm{V}) = 559\ \Omega$ and $I_X \approx 1000/1559 = 0.64$ mA, close. With a larger $R_1 = 10\ \mathrm{k\Omega}$ the same calculation gives $I_X(0) \approx 0.95\,I_1$; with a weaker device ($\beta = 0.2\ \mathrm{mA/V^2}$, $R_1 = 1\ \mathrm{k\Omega}$) only about $0.28\,I_1$.
+So **$I_X(0) \approx 0.61\,I_1$**. The simple divider estimate gives $R_{on} = 1/(1\ \mathrm{mA/V^2}\times1.789\ \mathrm{V}) = 559\ \Omega$ and $I_X \approx 1000/1559 = 0.64$ mA, close. With a larger $R_1 = 10\ \mathrm{k\Omega}$ the same calculation gives $I_X(0) \approx 0.95\,I_1$. With a weaker device ($\beta = 0.2\ \mathrm{mA/V^2}$, $R_1 = 1\ \mathrm{k\Omega}$) it gives only about $0.28\,I_1$, but there the source would sit at about $-0.72$ V, deep enough for the source–bulk junction to take part of $I_1$ (see the next paragraph).
 
 The source sits 0.385 V below the grounded bulk, so the source–bulk junction is slightly forward-biased; at this level its current is negligible. (If $I_1R_1$ were large enough to push $V_S$ below about $-0.5$ V, that junction would start to conduct and take part of $I_1$.)
 

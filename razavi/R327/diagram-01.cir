@@ -1,0 +1,8 @@
+* Small-signal model of the CS stage with C_GD = 0: input node X and output node isolated, linked only by g_m*V_X
+V1 in 0 AC 1
+RS in X {R_S}
+CGS X 0 {C_GS}
+G1 out 0 X 0 {g_m}
+RD out 0 {R_D}
+CDB out 0 {C_DB}
+.end

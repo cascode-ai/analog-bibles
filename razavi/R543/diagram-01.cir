@@ -1,0 +1,9 @@
+* Small-signal noise model: PMOS noise currents i_n1 and i_n2 injected into nodes A and B, op-amp noise set to zero
+G1 A 0 P 0 {gmP}
+In1 0 A {i_n1}
+RA A 0 {1/gmN}
+G2 B 0 P 0 {gmP}
+In2 0 B {i_n2}
+RB B 0 {R1+1/gmN}
+Eop P 0 B A {A0}
+.end

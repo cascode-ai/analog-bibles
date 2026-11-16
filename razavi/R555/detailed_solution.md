@@ -28,7 +28,7 @@ $$V_{DD} \ge |V_{BE1}| + |V_{DS3}|.$$
 
 $M_3$ only has to stay saturated, which a wide device with a very small overdrive manages with $|V_{DS3}| \approx 50$ mV:
 
-$$V_{DD,min}(\text{core}) \approx 0.7\text{–}0.8\ \mathrm{V} + 0.05\ \mathrm{V} = 0.75\text{–}0.85\ \mathrm{V}.$$
+$$V_{DD,min}(\text{core}) \approx 0.7\text{--}0.8\ \mathrm{V} + 0.05\ \mathrm{V} = 0.75\text{--}0.85\ \mathrm{V}.$$
 
 ### Step 3 — Constraint 1: the input common-mode level (input side)
 
@@ -40,7 +40,7 @@ This condition does not contain $V_{DD}$; raising the supply does not help. The 
 
 **Numbers.** With $V_{TH,n} = 0.7$ V, an overdrive of 0.1 V and $V_{DS,ISS(min)} = 0.1$ V:
 
-$$V_{GS,a} + V_{DS,ISS(min)} = (0.7 + 0.1) + 0.1 = 0.9\ \mathrm{V} > 0.7\text{–}0.8\ \mathrm{V}.$$
+$$V_{GS,a} + V_{DS,ISS(min)} = (0.7 + 0.1) + 0.1 = 0.9\ \mathrm{V} > 0.7\text{--}0.8\ \mathrm{V}.$$
 
 The condition is violated. Even with the overdrive pushed toward zero and $V_{DS,ISS} = 50$ mV, it needs 0.75 V, which is barely met at $|V_{BE1}| = 0.8$ V and fails at 0.7 V. The margin also shrinks at high temperature, where $|V_{BE}|$ drops by about 1.5–2 mV/K (only partly offset by the fall of $V_{TH}$), so it must be checked over the full temperature range. In practice the input pair needs **low-threshold (or native) devices, or operation in subthreshold**.
 
