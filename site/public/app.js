@@ -43,6 +43,13 @@ const client = store.get("ab.client") || (() => {
   return id;
 })();
 
+// /browse (and /) only shows the questions; /review is the maintainers' mode,
+// behind the review key that the Worker checks on every API call.
+const mode = location.pathname.startsWith("/review") ? "review" : "browse";
+document.body.dataset.mode = mode;
+let reviewKey = store.get("ab.key") || "";
+const apiHeaders = () => ({ "x-review-key": reviewKey });
+
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const num = (n) => n.toLocaleString("en-US");
@@ -55,7 +62,7 @@ const state = {
   mine: {},
   scope: BOOKS.some((b) => b.key === params.get("scope")) ? params.get("scope") : "random",
   level: LEVELS.some((l) => l.key === params.get("level")) ? params.get("level") : "all",
-  status: STATUSES.some((s) => s.key === params.get("status")) ? params.get("status") : "all",
+  status: mode === "review" && STATUSES.some((s) => s.key === params.get("status")) ? params.get("status") : "all",
   search: "",
   cards: [],
   index: 0,
@@ -66,8 +73,8 @@ const state = {
 // ---------- data ----------
 
 async function getJSON(url) {
-  const response = await fetch(url, { credentials: "same-origin" });
-  if (!response.ok) throw new Error(`${url}: ${response.status}`);
+  const response = await fetch(url, { credentials: "same-origin", headers: apiHeaders() });
+  if (!response.ok) throw Object.assign(new Error(`${url}: ${response.status}`), { status: response.status });
   return response.json();
 }
 
@@ -169,7 +176,11 @@ function syncUrl() {
   if (state.level !== "all") parts.push(`level=${state.level}`);
   if (state.status !== "all") parts.push(`status=${state.status}`);
   if (q) parts.push(`id=${encodeURIComponent(q.id)}`);
-  history.replaceState(null, "", `/review?${parts.join("&")}`);
+  history.replaceState(null, "", `/${mode}?${parts.join("&")}`);
+  // The mode switch keeps the question and filters (status is review's own).
+  const shared = parts.filter((p) => !p.startsWith("status=")).join("&");
+  $("mode-browse").href = `/browse?${shared}`;
+  $("mode-review").href = `/review?${parts.join("&")}`;
 }
 
 // ---------- the question ----------
@@ -193,24 +204,16 @@ async function renderItem() {
   }
   const s = state.summary[q.id] || [0, 0, 0];
   const mine = state.mine[q.id];
+  const reviewing = mode === "review";
   item.innerHTML = `
     <div class="head">
       <span class="id">${esc(q.id)}</span>
       <span class="tag">${BOOK_NAME[q.book]}</span>
       <span class="tag lv-${q.level}">${LEVEL_NAME[q.level]}</span>
-      ${mine ? `<span class="mine-${mine}">${mine === "pass" ? "✓ 你已通过" : "✕ 你已报错"}</span>` : ""}
-      <span class="stats">${num(s[0])} 通过 · ${num(s[1])} 报错 · ${num(s[2])} 评论</span>
+      ${reviewing && mine ? `<span class="mine-${mine}">${mine === "pass" ? "✓ 你已通过" : "✕ 你已报错"}</span>` : ""}
+      ${reviewing ? `<span class="stats">${num(s[0])} 通过 · ${num(s[1])} 报错 · ${num(s[2])} 评论</span>` : ""}
     </div>
-    <div class="actions">
-      <textarea class="note" id="note" rows="1" maxlength="2000" placeholder="评论或说明哪里有问题（可选）。Enter 提交，Shift+Enter 换行"></textarea>
-      <button type="button" class="btn pass${mine === "pass" ? " on" : ""}" id="pass" title="题目和答案都没问题 (P)">✓ 通过 <kbd>P</kbd></button>
-      <button type="button" class="btn issue" id="issue" title="先在下面选原因">✕ 报错</button>
-    </div>
-    <div class="flags" role="group" aria-label="报错原因">
-      ${FLAGS.map((f) => `<button type="button" class="flag" data-flag="${f.key}"><kbd>${f.hotkey}</kbd>${esc(f.label)}</button>`).join("")}
-    </div>
-    <p class="message" id="message"></p>
-    <details class="others" id="others"><summary>其他人的审阅（加载中）</summary></details>
+    ${reviewing ? reviewControls(mine) : ""}
     <div class="cols">
       <section class="panel">
         <h4>题目</h4>
@@ -238,7 +241,39 @@ async function renderItem() {
     $("grading").hidden = false;
     $("grading").querySelector(".md").innerHTML = renderMarkdown(grading);
   }
-  loadOthers(id);
+  if (reviewing) loadOthers(id);
+}
+
+function reviewControls(mine) {
+  return `
+    <div class="actions">
+      <textarea class="note" id="note" rows="1" maxlength="2000" placeholder="评论或说明哪里有问题（可选）。Enter 提交，Shift+Enter 换行"></textarea>
+      <button type="button" class="btn pass${mine === "pass" ? " on" : ""}" id="pass" title="题目和答案都没问题 (P)">✓ 通过 <kbd>P</kbd></button>
+      <button type="button" class="btn issue" id="issue" title="先在下面选原因">✕ 报错</button>
+    </div>
+    <div class="flags" role="group" aria-label="报错原因">
+      ${FLAGS.map((f) => `<button type="button" class="flag" data-flag="${f.key}"><kbd>${f.hotkey}</kbd>${esc(f.label)}</button>`).join("")}
+    </div>
+    <p class="message" id="message"></p>
+    <details class="others" id="others"><summary>其他人的审阅（加载中）</summary></details>`;
+}
+
+// Review mode without a working key: ask for it instead of the question.
+function askForKey(wrong) {
+  $("item").innerHTML = `
+    <form class="keyform" id="keyform">
+      <h3>审阅模式（维护者）</h3>
+      <p>${wrong ? "口令不对，请重新输入。" : "审阅模式用来通过、报错、评论，需要维护者口令。"}只想看题，请用 <a href="/browse">浏览模式</a>。</p>
+      <input id="keyinput" class="search" type="password" autocomplete="current-password" placeholder="维护者口令">
+      <button type="submit" class="btn">进入审阅</button>
+    </form>`;
+  $("keyinput").focus();
+  $("keyform").addEventListener("submit", (event) => {
+    event.preventDefault();
+    reviewKey = $("keyinput").value.trim();
+    store.set("ab.key", reviewKey);
+    location.reload();
+  });
 }
 
 function picture(id, file, label) {
@@ -314,7 +349,7 @@ async function submit(verdict) {
   try {
     const response = await fetch("/api/reviews", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", ...apiHeaders() },
       body: JSON.stringify({
         qid: q.id,
         verdict,
@@ -395,7 +430,7 @@ document.addEventListener("click", async (event) => {
     $("zoom").hidden = false;
   } else if (target.dataset.del) {
     const id = Number(target.dataset.del);
-    const r = await fetch(`/api/reviews/${id}?client=${encodeURIComponent(client)}`, { method: "DELETE" });
+    const r = await fetch(`/api/reviews/${id}?client=${encodeURIComponent(client)}`, { method: "DELETE", headers: apiHeaders() });
     if (r.ok) {
       mineIds.delete(id);
       store.set("ab.mineIds", JSON.stringify([...mineIds]));
@@ -421,13 +456,14 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   if (event.target.closest("input, textarea")) return;
-  const flag = FLAGS.find((f) => f.hotkey === event.key);
+  const flag = mode === "review" && $("pass") ? FLAGS.find((f) => f.hotkey === event.key) : null;
+  const reviewing = mode === "review" && $("pass");
   if (flag) toggleFlag(flag.key);
   else if (event.key === "ArrowLeft") go(state.index - 1);
   else if (event.key === "ArrowRight") go(state.index + 1);
   else if (event.key === "r" || event.key === "R") jumpRandom();
-  else if (event.key === "p" || event.key === "P") submit("pass");
-  else if (event.key === "Enter" && state.flags.length) submit("issue");
+  else if (reviewing && (event.key === "p" || event.key === "P")) submit("pass");
+  else if (reviewing && event.key === "Enter" && state.flags.length) submit("issue");
   else if (event.key === "/") { event.preventDefault(); $("search").focus(); }
   else return;
   event.preventDefault();
@@ -456,11 +492,18 @@ $("author").addEventListener("change", (event) => store.set("ab.author", event.t
     return;
   }
   state.shuffled = shuffle(state.all);
-  // Reviews are extra: the questions still show if the API is down.
-  [state.summary, state.mine] = await Promise.all([
-    getJSON("/api/summary").catch(() => ({})),
-    getJSON(`/api/mine?client=${encodeURIComponent(client)}`).catch(() => ({})),
-  ]);
+  if (mode === "review") {
+    if (!reviewKey) return askForKey(false);
+    try {
+      [state.summary, state.mine] = await Promise.all([
+        getJSON("/api/summary"),
+        getJSON(`/api/mine?client=${encodeURIComponent(client)}`),
+      ]);
+    } catch (error) {
+      if (error.status === 401) return askForKey(true);
+      // Reviews are extra: the questions still show if the API is down.
+    }
+  }
   const wanted = params.get("id");
   refilter(wanted);
   if (wanted && state.cards[state.index]?.id !== wanted) {

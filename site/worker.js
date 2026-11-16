@@ -16,6 +16,10 @@ export default {
       // "/" (not "/index.html", which they redirect to "/") keeps the address.
       return env.ASSETS.fetch(new Request(new URL("/", url), request));
     }
+    // Every review call is the maintainers': the review key comes as a
+    // header from the page, or as ?key= for opening /api/export directly.
+    const key = request.headers.get("x-review-key") || url.searchParams.get("key");
+    if (!env.REVIEW_KEY || key !== env.REVIEW_KEY) return json({ error: "unauthorized" }, 401);
     try {
       if (pathname === "/api/summary" && request.method === "GET") {
         const { results } = await env.DB.prepare(

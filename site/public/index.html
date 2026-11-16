@@ -13,8 +13,12 @@
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="/review?scope=random">Analog Bibles</a>
-  <span class="sub">Razavi · Gray · Allen 习题审阅</span>
+  <a class="brand" href="/">Analog Bibles</a>
+  <span class="sub">Razavi · Gray · Allen 教材习题</span>
+  <nav class="modes" aria-label="模式">
+    <a id="mode-browse" href="/browse">浏览</a>
+    <a id="mode-review" href="/review" title="给维护者：通过、报错、评论">审阅</a>
+  </nav>
   <a class="gh" href="https://github.com/cascode-ai/analog-bibles" target="_blank" rel="noopener">GitHub ↗</a>
 </header>
 <div class="layout">
@@ -24,20 +28,23 @@
     <div class="list" id="scopes"></div>
     <div class="group-title">难度</div>
     <div class="list" id="levels"></div>
-    <div class="group-title">状态</div>
-    <div class="list" id="statuses"></div>
-    <div class="group-title">署名</div>
-    <input id="author" class="search" type="text" maxlength="40" placeholder="你的名字（可选）">
-    <p class="hint">快捷键：← → 翻题 · R 随机 · P 通过 · 1–6 选报错原因 · Enter 提交</p>
+    <div class="review-only">
+      <div class="group-title">状态</div>
+      <div class="list" id="statuses"></div>
+      <div class="group-title">署名</div>
+      <input id="author" class="search" type="text" maxlength="40" placeholder="你的名字（可选）">
+    </div>
+    <p class="hint review-only">快捷键：← → 翻题 · R 随机 · P 通过 · 1–6 选报错原因 · Enter 提交</p>
+    <p class="hint browse-only">快捷键：← → 翻题 · R 随机 · / 搜索</p>
   </aside>
   <main class="main">
     <div class="toolbar">
-      <div class="progress" id="progress"></div>
+      <div class="progress review-only" id="progress"></div>
       <span class="steps">
         <button type="button" id="prev" title="上一题 (←)" aria-label="上一题">←</button>
         <span class="position" id="position">– / –</span>
         <button type="button" id="next" title="下一题 (→)" aria-label="下一题">→</button>
-        <button type="button" id="random" title="随机一道你还没看过的题 (R)">随机 <kbd>R</kbd></button>
+        <button type="button" id="random" title="随机一道题 (R)">随机 <kbd>R</kbd></button>
       </span>
     </div>
     <article class="item" id="item"><p class="empty">加载中…</p></article>
