@@ -115,7 +115,7 @@ $$
 
 因此 $W_{1,2} \approx 46.6\ \mu\mathrm{m}$，且 $V_{GS1} = 0.7 + 0.2 = 0.9$ V。
 
-**尾电流源**（流过 0.5 mA 的 NMOS 管 $M_{SS}$）。**自由选择：** $V_{ov,SS} = 0.3$ V。
+**尾电流源（tail current source）**，即流过 0.5 mA 的 NMOS 管 $M_{SS}$。**自由选择：** $V_{ov,SS} = 0.3$ V。
 
 $$
 \begin{aligned}
@@ -166,7 +166,7 @@ A_2 &= g_{m5}(r_{O5}\parallel r_{O7}) = (3\ \mathrm{mS})(4.44\ \mathrm{k}\Omega)
 \end{aligned}
 $$
 
-**总差分增益。** P 点为虚地（virtual ground），每个半边电路都是一个共源级（common-source stage）驱动另一个共源级：
+**总差模增益（differential gain）。** P 点为虚地（virtual ground），每个半边电路都是一个共源级（common-source stage）驱动另一个共源级：
 
 $$A_v = A_1A_2 = g_{m1}(r_{O1}\parallel r_{O3})\cdot g_{m5}(r_{O5}\parallel r_{O7}) = 33.3\times13.3 \approx 444 .$$
 

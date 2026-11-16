@@ -1,0 +1,1 @@
+求全差分（fully differential）折叠式共源共栅（folded cascode）运算放大器（op amp）的压摆率（slew rate）。设输入差分对（differential pair）由尾电流（tail current）$I_{SS}$ 偏置；位于两个折叠节点（folding node）的电流源（current source）各提供 $I_P$，因此平衡时每条共源共栅支路和每个输出侧电流源都流过 $I_P - I_{SS}/2$；每个输出端驱动一个负载电容 $C_L$（忽略其他电容）。考虑一个大的差分输入阶跃。

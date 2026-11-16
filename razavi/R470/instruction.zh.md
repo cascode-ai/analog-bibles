@@ -1,0 +1,1 @@
+[图 1] 所示的运算放大器（op amp）把快速通路与慢速通路结合在一起：$M_1'$、$M_2'$ 构成快速通路，并有自己的尾电流源（tail current source）；慢速通路由第一级 $M_1$–$M_4$ 及其后的 $M_5$、$M_6$ 构成；$M_3$、$M_4$、$M_7$、$M_8$ 是电流源（current source）。用小信号参数（$M_1' = M_2'$，$M_1 = M_2$，等等）计算其（低频）输入参考热噪声电压（input-referred thermal noise voltage）。将每个 MOSFET 的沟道热噪声（channel thermal noise）建模为谱密度为 $4kT\gamma g_m$ 的漏极噪声电流，其中 $\gamma = 2/3$。

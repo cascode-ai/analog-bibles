@@ -1,0 +1,1 @@
+[图 1] 所示为折叠式共源共栅（folded cascode）运算放大器（op amp），差分输入为 $V_{in}$，差分输出为 $V_{out}$。计算其输入参考闪烁噪声电压（input-referred flicker noise voltage）。将每个 MOSFET 的闪烁噪声建模为折合到栅极的电压源，其谱密度为 $K/(C_{ox}WLf)$，NMOS 器件的系数为 $K_N$，PMOS 器件的系数为 $K_P$。用器件的尺寸和跨导（transconductance）表示结果；所有晶体管均工作在饱和区（saturation region）。

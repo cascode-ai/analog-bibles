@@ -96,7 +96,7 @@ $$
 
 $$T = g_{mE}(r_{OE1}\parallel r_{OE3})\cdot g_{m3}\cdot\left\{\left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3}\right]\parallel\left[(g_{mPC} + g_{mbPC})r_{OPC}r_{OP}\right]\right\}.$$
 
-运放的差模增益为 $A_{DM} \approx g_{m1}R_{out}$，其输出电阻几乎相同，因此 $T \approx A_E\,(g_{m3}/g_{m1})\,A_{DM}$：大致等于运放增益与误差放大器增益的乘积，这就是共模电平被保持在非常接近 $V_{REF}$ 的原因。
+运放的差模增益（differential gain）为 $A_{DM} \approx g_{m1}R_{out}$，其输出电阻几乎相同，因此 $T \approx A_E\,(g_{m3}/g_{m1})\,A_{DM}$：大致等于运放增益与误差放大器增益的乘积，这就是共模电平被保持在非常接近 $V_{REF}$ 的原因。
 
 ### 结果
 

@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路中由 $M_1$–$M_4$ 和尾电流源（tail current source）构成的运算放大器（op amp）的共模抑制比（common-mode rejection ratio，CMRR）。把尾电流源建模为理想电流 $I_{SS}$ 与输出电阻（output resistance）$R_{SS}$ 的并联，假设器件完全匹配，并用 $M_1$–$M_4$ 的小信号参数表示结果；可以忽略体效应（body effect）。

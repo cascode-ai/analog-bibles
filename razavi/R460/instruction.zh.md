@@ -1,0 +1,3 @@
+[图 1] 所示的两级运算放大器（two-stage op amp）在 $V_{DD} = 3$ V 下按如下参数设计：$M_7$ 流过 1 mA，过驱动电压（overdrive voltage）为 $|V_{GS7} - V_{TH7}| = 0.4$ V；$M_1$ 和 $M_2$（各 0.5 mA）的 $(W/L)_{1,2} = 206$，即 $|V_{GS} - V_{TH}| = 0.356$ V；$M_3$ 和 $M_4$ 的 $V_{GS3} = V_{GS4} = 0.95$ V；$M_5$ 流过 1 mA，$V_{GS5} = 0.95$ V（过驱动电压 0.25 V），$M_6$ 提供 1 mA。将该运放接成单位增益反馈：输出端接到 $M_1$ 的栅极（反相输入端），输入电压加在 $M_2$ 的栅极上。在所有晶体管都工作在饱和区（saturation region）的条件下，允许的输入电压范围是多少？PMOS 器件的 n 阱接 $V_{DD}$；计算偏置时忽略沟道长度调制（channel-length modulation）。
+
+器件参数：NMOS 管 $V_{TH0} = 0.7$ V；PMOS 管 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V，$\gamma = 0.4\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.8$ V。
