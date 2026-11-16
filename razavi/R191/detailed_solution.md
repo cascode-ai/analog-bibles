@@ -15,7 +15,7 @@ From the figure (left half; the right half is its mirror image):
 
 **The sweep.** $V_{in2} = 3\ \mathrm{V} - V_{in1}$, so the input common mode is fixed at 1.5 V and $\Delta V_{in} = V_{in1} - V_{in2} = 2V_{in1} - 3$ V. By symmetry, $V_{out}$ is odd about $V_{in1} = 1.5$ V. We analyse $V_{in1} \le 1.5$ V, where $I_{D1} \le I_{D2}$.
 
-**Model of the current sources.** $M_5$ and $M_6$ are treated as current sources: they deliver $I_P$ as long as they are saturated, which for $M_5$ means $V_X \le V_{b1} + |V_{THP}|$. This holds over the whole range where the diode conducts, since there $V_X \le V_{DD} - |V_{THP}|$. If the node is pushed above that limit, the source enters triode and its current falls, reaching zero at $V_X = V_{DD}$.
+**Model of the current sources.** $M_5$ and $M_6$ are treated as current sources: they deliver $I_P$ as long as they are saturated, which for $M_5$ means $V_X \le V_{b1} + |V_{THP}|$. While the diode conducts, $V_X \le V_{DD} - |V_{THP}| = 2.2$ V. So we assume the bias places the saturation edge of $M_5$ at or above 2.2 V, i.e. $V_{b1} + |V_{THP}| \ge V_{DD} - |V_{THP}|$; then $M_5$ is a true current source whenever the diode conducts. If the node is pushed above $V_{b1} + |V_{THP}|$, the source enters triode and its current falls, reaching zero at $V_X = V_{DD}$. (If the bias put that edge below 2.2 V, $M_5$ would already be in triode near the top of the diode range. The steep step of Step 4 would then be rounded off, but the end levels of Step 5 would not change.)
 
 ### Step 2 — KCL at the output: how the current divides
 

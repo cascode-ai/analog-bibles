@@ -1,0 +1,7 @@
+* Model with load: step source at X, amplifier as -A*V_X behind R_out, C_F from X to Y and C_L from Y to ground
+Vstep x 0 {Delta_V}
+E1 n1 0 x 0 {-A}
+Rout n1 y {R_out}
+CF x y {C_F}
+CL y 0 {C_L}
+.end

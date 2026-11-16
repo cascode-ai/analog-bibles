@@ -94,7 +94,7 @@ Check that $M_4$ is still off: $V_{SG4} = 3 - 2.341 = 0.659\ \mathrm{V} < 0.8$ V
 
 As $V_{in1}$ rises further, $V_P = V_{in1} - 1.147$ V rises, and Y (which equals $V_P$) rises with it. $M_3$'s gate drive $V_{SG3} = V_{DD} - V_Y$ shrinks, so to keep carrying $I_{SS}$, $M_3$ needs a larger $V_{SD3}$, and **X falls**.
 
-When X falls below $V_{DD} - |V_{THP}| = 2.2$ V, $M_4$ turns on and starts feeding Y. Y rises above $V_P$, which weakens $M_3$ further, so X falls further and $M_4$ turns on harder. This is the positive feedback of Step 2, now with loop gain above one. The circuit **flips abruptly** to the opposite state, "X low / Y high".
+When X falls below $V_{DD} - |V_{THP}| = 2.2$ V, $M_4$ turns on and starts feeding Y. Y rises above $V_P$, which weakens $M_3$ further, so X falls further and $M_4$ turns on harder. This closes the positive-feedback loop of Step 2. As $M_4$ turns on, the loop gain quickly exceeds one, and the circuit **flips abruptly** to the opposite state, "X low / Y high".
 
 **Onset in the example.** X reaches 2.2 V when $M_3$, at $V_{SD3} = 0.8$ V, can just carry $I_{SS}$:
 
@@ -107,7 +107,7 @@ V_{in1} &= V_P + V_{GS1} = 0.55 + 0.7 + 0.447 = 1.70\ \mathrm{V}.
 \end{aligned}
 $$
 
-So the "+" branch ends near $V_{in1} \approx 1.7$ V, at $V_{out} \approx 2.2 - 0.55 = +1.65$ V. (A full numerical solution with $\lambda = 0.05\ \mathrm{V^{-1}}$ puts the jump at $V_{in1} \approx 1.72$ V.)
+So the "+" branch ends near $V_{in1} \approx 1.7$ V, at $V_{out} \approx 2.2 - 0.55 = +1.65$ V. At this point $M_2$ is also barely on ($V_{GS2} = 1.30 - 0.55 = 0.75$ V), so it can hardly sink the current that $M_4$ starts delivering into Y, and the flip follows at once. (A full numerical solution with $\lambda = 0.05\ \mathrm{V^{-1}}$ puts the jump at $V_{in1} \approx 1.72$ V.)
 
 **After the flip** the circuit is in the mirror-image state. $M_2$ carries the current through $M_4$, X sits at $V_P$, and $V_{out}$ is the negative of the "+" branch value at the mirrored input $3\ \mathrm{V} - V_{in1}$. At $V_{in1} = 1.7$ V this is $-V_{out}(1.3\ \mathrm{V})$. Solving at 1.3 V exactly as in Step 4 gives $V_P = 0.186$ V, $I_{D1} = 171\ \mu$A, $V_X = 2.52$ V and $V_{out} = +2.33$ V. So the output jumps from about $+1.65$ V to about $-2.33$ V. In the new state $M_3$ is off (its gate is at the high node Y), so $M_1$ carries no current and X sits at $V_P$; all the tail current flows through $M_2$ and $M_4$. As $V_{in1}$ rises further, $V_{in2}$ falls and $M_2$ conducts less. Once $M_2$ turns off (near $V_{in1} \approx 2.3$ V, the mirror of 0.7 V) the current collapses and $V_{out}$ reaches $-V_{DD}$.
 

@@ -34,18 +34,18 @@ with $G_mR_{out} = A_v$, the dc small-signal gain from $V_{in}$ to $V_{out}$.
 
 ### Step 4 — Output resistance $R_{out}$
 
-Ground both gates (small-signal) and apply $v_x$ at the output. Branch currents:
+Ground both gates (small-signal) and apply a test voltage $v_t$ at the output; $i_t$ is the current it supplies. Branch currents:
 
 $$
 \begin{aligned}
 i_1 &= -g_Nv_P + g_{oN}(v_X - v_P) && (M_1:\ \text{X} \to \text{P}),\\
-i_2 &= -g_Nv_P + g_{oN}(v_x - v_P) && (M_2:\ \text{out} \to \text{P}),\\
+i_2 &= -g_Nv_P + g_{oN}(v_t - v_P) && (M_2:\ \text{out} \to \text{P}),\\
 i_3 &= (g_P + g_{oP})\,v_X && (M_3 \text{ diode}:\ \text{X} \to \text{ac ground}),\\
-i_4 &= g_Pv_X + g_{oP}v_x && (M_4:\ \text{out} \to \text{ac ground}).
+i_4 &= g_Pv_X + g_{oP}v_t && (M_4:\ \text{out} \to \text{ac ground}).
 \end{aligned}
 $$
 
-KCL: at X, $i_1 + i_3 = 0$; at P (ideal tail), $i_1 + i_2 = 0$; at the output, $i_x = i_2 + i_4$. The first two give $i_2 = i_3$.
+KCL: at X, $i_1 + i_3 = 0$; at P (ideal tail), $i_1 + i_2 = 0$; at the output, $i_t = i_2 + i_4$. The first two give $i_2 = i_3$.
 
 From $i_1 = -i_3$:
 
@@ -53,11 +53,11 @@ $$(g_N + g_{oN})v_P = (g_{oN} + g_P + g_{oP})v_X .$$
 
 From $i_2 = i_3$, then substituting the previous line:
 
-$$g_{oN}v_x = (g_P + g_{oP})v_X + (g_N + g_{oN})v_P = (2g_P + 2g_{oP} + g_{oN})v_X \quad\Longrightarrow\quad v_X = \frac{g_{oN}\,v_x}{2g_P + 2g_{oP} + g_{oN}} .$$
+$$g_{oN}v_t = (g_P + g_{oP})v_X + (g_N + g_{oN})v_P = (2g_P + 2g_{oP} + g_{oN})v_X \quad\Longrightarrow\quad v_X = \frac{g_{oN}\,v_t}{2g_P + 2g_{oP} + g_{oN}} .$$
 
-Then $i_x = i_3 + i_4 = (2g_P + g_{oP})v_X + g_{oP}v_x$, so
+Then $i_t = i_3 + i_4 = (2g_P + g_{oP})v_X + g_{oP}v_t$, so
 
-$$\frac{i_x}{v_x} = \frac{g_{oN}(2g_P + g_{oP}) + g_{oP}(2g_P + 2g_{oP} + g_{oN})}{2g_P + 2g_{oP} + g_{oN}} = \frac{2(g_{oN} + g_{oP})(g_P + g_{oP})}{2g_P + 2g_{oP} + g_{oN}} .$$
+$$\frac{i_t}{v_t} = \frac{g_{oN}(2g_P + g_{oP}) + g_{oP}(2g_P + 2g_{oP} + g_{oN})}{2g_P + 2g_{oP} + g_{oN}} = \frac{2(g_{oN} + g_{oP})(g_P + g_{oP})}{2g_P + 2g_{oP} + g_{oN}} .$$
 
 $$R_{out} = \frac{g_{oN} + 2g_P + 2g_{oP}}{2(g_{oN} + g_{oP})(g_P + g_{oP})} \approx \frac{1}{g_{oN} + g_{oP}} = r_{O2}\,\|\,r_{O4} \quad (g_P \gg g_o).$$
 

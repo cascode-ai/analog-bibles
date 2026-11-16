@@ -95,7 +95,7 @@ Use $\alpha \approx g_N$, $1 + 2g_Pr_P \approx 2g_Pr_P$, $K_a \approx g_P(r_N + 
 
 $$A_v \approx \frac{g_Ng_Pr_Nr_P(1 + 2g_NR_1)}{2g_Ng_PR_1(r_N + r_P) + (g_N + g_P)r_N + 2g_Pr_P} = g_N(r_N\|r_P)\,\frac{1 + \dfrac{1}{2g_NR_1}}{1 + \dfrac{(g_N + g_P)r_N + 2g_Pr_P}{2g_Ng_PR_1(r_N + r_P)}} .$$
 
-For equal $g_m$ and $r_O$ this is $A_v \approx g_m\dfrac{r_O}{2}\cdot\dfrac{1 + 2g_mR_1}{2(1 + g_mR_1)}$. For $g_mR_1 \gg 1$ it becomes
+For equal $g_m$ and $r_O$ this is $A_v \approx g_m\dfrac{r_O}{2}\cdot\dfrac{1 + 2g_mR_1}{2(1 + g_mR_1)}$. For $g_mR_1 \gg 1$ it becomes (for unequal devices the coefficient of the small correction changes slightly, but it stays of order $1/(g_mR_1)$)
 
 $$A_v \approx g_{m1}(r_{O2}\|r_{O4})\left(1 - \frac{1}{2g_{m3}R_1}\right).$$
 
@@ -123,7 +123,7 @@ For a balanced input,
 
 $$A_v = \frac{(1 + 2g_{m3}r_{O3})\,g_{m1}\left(2\alpha + 1/R_1\right)}{2\left[(\alpha + 1/R_1)K_a + \alpha K_b\right]},\quad \alpha = g_{m1} + \frac{1}{r_{O1}},\ K_a = g_{m3} + \frac{1}{r_{O3}} + \frac{1 + 2g_{m3}r_{O3}}{r_{O1}},\ K_b = \frac{1}{r_{O1}} + g_{m3} + \frac{1}{r_{O3}} + \frac{1}{R_1},$$
 
-which for $g_mr_O \gg 1$ is
+which for $g_mr_O \gg 1$ and $g_mR_1 \gg 1$ is
 
 $$|A_v| \approx g_{m1}(r_{O2}\|r_{O4})\left(1 - \frac{1}{2g_{m3}R_1}\right).$$
 

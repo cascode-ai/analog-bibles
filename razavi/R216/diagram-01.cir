@@ -1,0 +1,9 @@
+* Small-signal model of the resistively loaded pair with unequal transconductances and tail resistance RSS
+Vin1 in1 0 AC {vin1}
+Vin2 in2 0 AC {vin2}
+G1 X P in1 P {gm1}
+G2 Y P in2 P {gm2}
+RD1 X 0 {R_D}
+RD2 Y 0 {R_D}
+RSS P 0 {R_SS}
+.end

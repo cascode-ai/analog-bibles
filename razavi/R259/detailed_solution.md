@@ -20,7 +20,7 @@ Saturation conditions:
 - $M_4$: $V_X - V_A \ge V_b - V_A - V_{TH}(V_A)$, i.e. $V_X \ge V_b - V_{TH}(V_A)$.
 - $M_3$: $V_{DD} - V_B \ge V_b - V_B - V_{TH}(V_B)$, i.e. $V_b \le V_{DD} + V_{TH}$. This holds over the whole sweep up to $V_{DD}$, so **$M_3$ is always saturated**.
 
-As in any cascode mirror, whenever $M_3$ and $M_4$ are both saturated (and $\lambda = 0$), the two stacks are identical circuits with the same gate voltages. Then $V_A = V_B$ and $I_{out} = I_{REF}$ exactly, whatever region $M_1$ and $M_2$ are in.
+As in any cascode mirror, whenever $M_3$ and $M_4$ are both saturated (and $\lambda = 0$), the two stacks are identical circuits with the same gate voltages. Then $V_A = V_B$ and $I_{out} = I_{REF}$ exactly, whatever region $M_1$ and $M_2$ are in. The reason is that in each stack the upper device's current falls as the middle node rises, while the lower device's current rises (triode) or stays constant (saturation). So the middle-node voltage is unique, and it is the same in both stacks.
 
 ### Step 2 — The normal region: all transistors saturated
 

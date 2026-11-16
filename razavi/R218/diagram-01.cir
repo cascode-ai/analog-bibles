@@ -1,0 +1,7 @@
+* Thevenin equivalents of the two halves seen from node P: VT1 and VT2 behind equal resistances RT, tail source IT
+VT1 t1 0 AC {VT1}
+RT1 t1 P {R_T}
+VT2 t2 0 AC {VT2}
+RT2 t2 P {R_T}
+IT P 0 {I_T}
+.end

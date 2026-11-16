@@ -42,7 +42,7 @@ Therefore
 
 $$R_S = \frac{v_t}{i_t} = \frac{R_D + r_O}{1 + g_mr_O} .$$
 
-For $r_O \to \infty$ this tends to the familiar $1/g_m$. With finite $r_O$ it is larger, because current that enters through $r_O$ must also flow through $R_D$, which raises $v_Y$ and opposes the current.
+For $r_O \to \infty$ this tends to the familiar $1/g_m$. With finite $r_O$ it depends on the drain load: the current that enters through $r_O$ must also flow through $R_D$, which raises $v_Y$ and opposes that current. For $R_D = 0$ the result is $r_O/(1 + g_mr_O) = (1/g_m)\|r_O$, slightly below $1/g_m$; for the usual case $g_mR_D > 1$ it is larger than $1/g_m$.
 
 ### Step 3 — $M_1$ as a degenerated CS stage: $v_X$
 

@@ -1,0 +1,6 @@
+* Model used for V_Y/V_in: ideal source at X, amplifier as the controlled source -A*V_X behind R_out, and C_F from X to Y
+Vin x 0 AC {V_in}
+E1 n1 0 x 0 {-A}
+Rout n1 y {R_out}
+CF x y {C_F}
+.end

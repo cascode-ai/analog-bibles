@@ -40,12 +40,11 @@ $$\frac{v_A - v_B}{R_1} = g_{m1}v_{in} + \frac{v_B}{r_{O1}} . \tag{2}$$
 
 Substitute (2) into (1) to replace the $R_1$ current:
 
-$$
-\begin{aligned}
-g_{m3}v_B + \frac{v_A}{r_{O3}} + g_{m1}v_{in} + \frac{v_B}{r_{O1}} &= 0\\
-v_A &= -r_{O3}\left[g_{m1}v_{in} + \left(g_{m3} + \frac{1}{r_{O1}}\right)v_B\right]. \tag{3}
-\end{aligned}
-$$
+$$g_{m3}v_B + \frac{v_A}{r_{O3}} + g_{m1}v_{in} + \frac{v_B}{r_{O1}} = 0 .$$
+
+Multiply by $r_{O3}$ and solve for $v_A$:
+
+$$v_A = -r_{O3}\left[g_{m1}v_{in} + \left(g_{m3} + \frac{1}{r_{O1}}\right)v_B\right]. \tag{3}$$
 
 From (2), solve for $v_A$ as well:
 

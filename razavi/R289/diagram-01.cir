@@ -1,0 +1,9 @@
+* Small-signal model of the common-source stage: R_S into the gate node X, C_GS and C_GD at X, gm*v_X, R_D and C_DB at the output
+Vin in 0 AC {v_in}
+RS in x {R_S}
+CGS x 0 {C_GS}
+CGD x out {C_GD}
+G1 out 0 x 0 {gm}
+RD out 0 {R_D}
+CDB out 0 {C_DB}
+.end

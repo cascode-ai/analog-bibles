@@ -1,0 +1,8 @@
+* Small-signal model for a common-mode input: matched input devices into the tail resistance RSS, unequal diode loads 1/gm3 and 1/gm4 (M5, M6 open for lambda = 0)
+Vcm inc 0 AC {vcm}
+G1 X P inc P {gm1}
+G2 Y P inc P {gm1}
+RSS P 0 {R_SS}
+R3 X 0 {1/gm3}
+R4 Y 0 {1/gm4}
+.end
