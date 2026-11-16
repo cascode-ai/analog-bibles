@@ -1,24 +1,20 @@
 # Detailed solution - R603
 
-**Approach.** With $I$ and $R_D$ fixed, $W/L$ affects the circuit only through the overdrive $V_{ov}$ and the transconductance $g_m$. We express the distortion (from the square law) and the input-referred thermal noise (from the device and resistor noise sources) in terms of $V_{ov}$ and $g_m$, then substitute their dependence on $W/L$ to get the shape of each curve. Finally we combine the two to expose the trade-off with power.
+**Approach.** With $I$ and $R_D$ fixed, $W/L$ acts only through the overdrive $V_{ov}$ and $g_m$. Express the distortion and the input-referred thermal noise in terms of $V_{ov}$ and $g_m$, substitute their dependence on $W/L$ to get the shape of each curve, and combine the two to expose the trade-off with power.
 
 ### Step 1 — How $V_{ov}$ and $g_m$ depend on $W/L$ at constant current
 
-From the square law $I = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$, with $V_{ov} = V_{GS} - V_{TH}$ the overdrive voltage:
+From $I = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$:
 
-$$V_{ov} = \sqrt{\frac{2I}{\mu_nC_{ox}W/L}} \;\propto\; (W/L)^{-1/2}.$$
-
-The transconductance $g_m = \partial I_D/\partial V_{GS} = \mu_nC_{ox}(W/L)V_{ov}$ becomes
+$$V_{ov} = \sqrt{\frac{2I}{\mu_nC_{ox}W/L}} \;\propto\; (W/L)^{-1/2},$$
 
 $$g_m = \sqrt{2\mu_nC_{ox}(W/L)\,I} = \frac{2I}{V_{ov}} \;\propto\; (W/L)^{1/2}.$$
 
-A wider device carries the same current with a smaller overdrive, and so has a larger $g_m$.
-
-**Power.** $P = V_{DD}I$ does not depend on $W/L$. The DC output level $V_{DD} - IR_D$ does not change either.
+A wider device carries the same current with a smaller overdrive and a larger $g_m$. The power $P = V_{DD}I$ and the DC output level $V_{DD} - IR_D$ do not depend on $W/L$.
 
 ### Step 2 — Distortion versus $W/L$
 
-With $V_{GS} = V_{GS0} + V_m\cos\omega t$, the drain current is
+With $V_{GS} = V_{GS0} + V_m\cos\omega t$,
 
 $$
 \begin{aligned}
@@ -27,26 +23,23 @@ I_D &= \tfrac12\mu_nC_{ox}\tfrac{W}{L}(V_{ov} + V_m\cos\omega t)^2\\
 \end{aligned}
 $$
 
-The fundamental is $\mu_nC_{ox}(W/L)V_{ov}V_m$ and the second harmonic $\tfrac14\mu_nC_{ox}(W/L)V_m^2$; the square law produces nothing beyond $2\omega$. The output $V_{DD} - R_DI_D$ has the same ratio, so
+The fundamental is $\mu_nC_{ox}(W/L)V_{ov}V_m$ and the second harmonic $\tfrac14\mu_nC_{ox}(W/L)V_m^2$, with nothing beyond $2\omega$, and the output $V_{DD} - R_DI_D$ has the same ratio:
 
 $$\mathrm{THD} = \mathrm{HD2} = \frac{\tfrac14V_m^2}{V_{ov}V_m} = \frac{V_m}{4V_{ov}} = \frac{V_m}{4}\sqrt{\frac{\mu_nC_{ox}W/L}{2I}} \;\propto\; \sqrt{W/L}.$$
 
-**Curve:** THD rises from the origin as a square root of $W/L$ (concave, rising ever more slowly). Doubling $W/L$ multiplies the distortion by $\sqrt2 = 1.41$. The formula holds while $V_m < V_{ov}$; once the overdrive becomes comparable to $V_m$, the device starts to cut off during part of the cycle.
+**Curve:** THD rises from the origin as $\sqrt{W/L}$ (concave); doubling $W/L$ multiplies it by $\sqrt2 = 1.41$. The formula holds while $V_m < V_{ov}$; beyond that the device cuts off during part of the cycle.
 
 ### Step 3 — Input-referred thermal noise versus $W/L$
 
-**Noise sources** (all at the output node, which sees $R_D$ to AC ground, channel-length modulation neglected):
-
-- channel thermal noise of $M_0$: a current $\overline{I_{n,M}^2} = 4kT\gamma g_m$ from drain to source, with $\gamma = 2/3$ for a long-channel device;
-- thermal noise of $R_D$: a current $\overline{I_{n,R}^2} = 4kT/R_D$ in parallel with it.
+The output node, with $R_D$ to AC ground, carries the channel noise of $M_0$, $\overline{I_{n,M}^2} = 4kT\gamma g_m$ ($\gamma = 2/3$), and the noise of $R_D$, $\overline{I_{n,R}^2} = 4kT/R_D$ (channel-length modulation neglected).
 
 <!-- diagram: diagram-01.cir -->
 
-Both currents flow through $R_D$ and are uncorrelated, so their powers add:
+The two are uncorrelated and both flow through $R_D$:
 
 $$\overline{V_{n,out}^2} = \left(4kT\gamma g_m + \frac{4kT}{R_D}\right)R_D^2.$$
 
-The voltage gain is $|A_v| = g_mR_D$. Dividing by $A_v^2$ refers the noise to the input:
+Dividing by $A_v^2 = (g_mR_D)^2$:
 
 $$
 \begin{aligned}
@@ -55,16 +48,16 @@ $$
 \end{aligned}
 $$
 
-**Dependence on $W/L$** ($g_m \propto (W/L)^{1/2}$, $R_D$ fixed):
+With $g_m \propto (W/L)^{1/2}$ and $R_D$ fixed:
 
 - transistor term $\dfrac{2}{3g_m} \propto (W/L)^{-1/2}$;
 - resistor term $\dfrac{1}{g_m^2R_D} \propto (W/L)^{-1}$.
 
-**Curve:** the noise PSD falls monotonically with $W/L$. When the transistor term dominates (i.e. $g_mR_D \gg 3/2$, a gain well above unity), the PSD falls as $(W/L)^{-1/2}$ and the rms noise voltage as $(W/L)^{-1/4}$.
+**Curve:** the noise PSD falls monotonically with $W/L$. When the transistor term dominates ($g_mR_D \gg 3/2$), the PSD falls as $(W/L)^{-1/2}$ and the rms noise as $(W/L)^{-1/4}$.
 
 ### Step 4 — The two curves side by side
 
-Normalized to a reference design $(W/L)_0$:
+Normalized to a starting design $(W/L)_0$:
 
 | $W/L \,/\, (W/L)_0$ | 0.25 | 0.5 | 1 | 2 | 4 |
 |---|---|---|---|---|---|
@@ -73,22 +66,17 @@ Normalized to a reference design $(W/L)_0$:
 | noise PSD, resistor term (∝ $(W/L)^{-1}$) | 4.0 | 2.0 | 1 | 0.50 | 0.25 |
 | power ($V_{DD}I$) | 1 | 1 | 1 | 1 | 1 |
 
-The THD curve rises and the noise curve falls: they move in opposite directions as $W/L$ changes, while the power line is flat.
+THD rises and noise falls as $W/L$ grows, while the power line is flat.
 
-**At the extremes.** For very large $W/L$ the overdrive shrinks until the device enters weak inversion; there $g_m \to I/(\zeta V_T)$ stops growing and the distortion approaches $V_m/(4\zeta V_T)$ (with $\zeta V_T$ the subthreshold slope factor times the thermal voltage), so both curves flatten. For very small $W/L$ the overdrive becomes large, which eats into the headroom needed to keep the transistor saturated ($V_{DS} \ge V_{ov}$) and pushes the device into velocity-saturation effects that the square law does not describe.
+**At the extremes.** For very large $W/L$ the device enters weak inversion, where $g_m \to I/(\zeta V_T)$ stops growing and the distortion approaches $V_m/(4\zeta V_T)$ ($\zeta V_T$ is the subthreshold slope factor times the thermal voltage), so both curves flatten. For very small $W/L$ the large overdrive eats into the headroom needed for saturation ($V_{DS} \ge V_{ov}$) and brings velocity-saturation effects outside the square law.
 
 ### Step 5 — The trade-off among noise, linearity and power
 
-Multiply the transistor noise term by the distortion:
+Multiply the transistor noise term by the distortion, using $g_mV_{ov} = 2I$:
 
-$$\overline{V_{n,in}^2}\Big|_{M_0}\times\mathrm{HD2} = \frac{4kT\gamma}{g_m}\cdot\frac{V_m}{4V_{ov}} = \frac{kT\gamma V_m}{g_mV_{ov}} = \frac{kT\gamma V_m}{2I} = \frac{kTV_m}{3I}\quad(\gamma = \tfrac23),$$
+$$\overline{V_{n,in}^2}\Big|_{M_0}\times\mathrm{HD2} = \frac{4kT\gamma}{g_m}\cdot\frac{V_m}{4V_{ov}} = \frac{kT\gamma V_m}{g_mV_{ov}} = \frac{kT\gamma V_m}{2I} = \frac{kTV_m}{3I}\quad(\gamma = \tfrac23).$$
 
-using $g_mV_{ov} = 2I$. The product **does not depend on $W/L$**:
-
-- at a given current (i.e. at a given power $V_{DD}I$), $W/L$ only moves the design along this curve: a larger $W/L$ (smaller overdrive) gives lower noise but more distortion; a smaller $W/L$ (larger overdrive) gives better linearity but more noise;
-- to improve noise and linearity *together*, the product $kTV_m/(3I)$ must be reduced, which requires a larger $I$, i.e. **more power**.
-
-The resistor term adds a further incentive for large $g_m$, but it does not change this conclusion.
+The product **does not depend on $W/L$**. At a given current (power $V_{DD}I$), $W/L$ only moves the design along this curve: a larger $W/L$ gives lower noise but more distortion, a smaller $W/L$ the opposite. Improving both *together* requires a larger $I$, i.e. **more power**. The resistor term adds a further incentive for large $g_m$ but does not change this conclusion.
 
 ### Result
 
@@ -99,6 +87,6 @@ At constant $I$ (and hence constant power), increasing $W/L$ lowers the overdriv
 
 The trade-off: for a given power, $W/L$ (i.e. the overdrive) trades noise against linearity, because $\overline{V_{n,in}^2}\cdot\mathrm{HD2} = kTV_m/(3I)$ is fixed by the current; reducing both requires more current, hence more power.
 
-**Common mistake.** Concluding that a wider transistor is more linear because it has more gain. At fixed current a wider device has a *smaller* overdrive, so the same input swing is a larger fraction of $V_{ov}$ and the distortion grows.
+**Common mistake.** Concluding that a wider transistor is more linear because it has more gain. At fixed current it has a *smaller* overdrive, so the same input swing is a larger fraction of $V_{ov}$ and the distortion grows.
 
-**Common mistake.** Stating that the noise increases with $W/L$, or that the power changes with $W/L$. With $I$ fixed, $g_m$ grows as $\sqrt{W/L}$ and the input-referred noise falls; the supply current, and therefore the power, is set by $I$ alone.
+**Common mistake.** Stating that the noise increases with $W/L$, or that the power changes with $W/L$. With $I$ fixed, $g_m$ grows as $\sqrt{W/L}$ and the input-referred noise falls; the power is set by $I$ alone.

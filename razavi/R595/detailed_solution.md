@@ -4,19 +4,19 @@
 
 ### Step 1 — How the CMFB fixes the output CM level
 
-The PMOS loads $M_3$, $M_4$ are current sources (gates at $V_b$). Their total current must flow through $M_1$, $M_2$ and the tail transistor $M_5$. The CMFB adjusts the gate of $M_5$ (node X) until $M_5$ conducts exactly that current, $I_{D5} = 1$ mA. With channel-length modulation neglected, $I_{D5}$ depends only on $V_{GS5}$, so
+The PMOS loads' total current must flow through $M_1$, $M_2$ and $M_5$, and the CMFB adjusts the gate of $M_5$ (node X) until $I_{D5} = 1$ mA. With no channel-length modulation this depends only on $V_{GS5}$:
 
 $$V_X = V_{GS5}(1\ \mathrm{mA}).$$
 
-In the CM-definition phase (zero differential input) both outputs are at $V_{out,CM}$, the followers $M_6$, $M_7$ (50 µA each) place their common source at $V_{out,CM} - V_{GS6}$, and $S_1$ connects that node to X:
+In the CM-definition phase both outputs are at $V_{out,CM}$, the followers $M_6$, $M_7$ (50 µA each) place their common source at $V_{out,CM} - V_{GS6}$, and $S_1$ connects that node to X:
 
 $$V_{out,CM} = V_X + V_{GS6} = V_{GS5} + V_{GS6}.$$
 
-After $S_1$ opens, $C_1$ and $C_2$ hold $V_{GS6}$ and keep transferring the output CM level to X, so the same output CM is maintained. This output CM does not depend on the input CM, as long as all devices are saturated.
+After $S_1$ opens, $C_1$ and $C_2$ hold $V_{GS6}$ and keep the same output CM, independent of the input CM as long as all devices are saturated.
 
 ### Step 2 — $V_{GS5}$
 
-For $M_1$–$M_5$, $\mu_nC_{ox}(W/L) = 134\ \mu\mathrm{A/V^2}\times(50/0.5) = 13.4\ \mathrm{mA/V^2}$. The square law $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$ gives the overdrive $V_{ov} = V_{GS} - V_{TH}$:
+For $M_1$–$M_5$, $\mu_nC_{ox}(W/L) = 134\ \mu\mathrm{A/V^2}\times(50/0.5) = 13.4\ \mathrm{mA/V^2}$:
 
 $$V_{ov5} = \sqrt{\frac{2(1\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = \sqrt{0.1493}\ \mathrm{V} = 0.386\ \mathrm{V}.$$
 
@@ -26,11 +26,11 @@ $$V_{GS5} = V_{TH0} + V_{ov5} = 0.7 + 0.386 = 1.086\ \mathrm{V} = V_X.$$
 
 ### Step 3 — $V_{GS6}$ of the smaller followers, and the output CM
 
-The followers are now only $W/L = 10/0.5 = 20$, so $\mu_nC_{ox}(W/L)_6 = 134\ \mu\mathrm{A/V^2}\times20 = 2.68\ \mathrm{mA/V^2}$:
+The followers have $W/L = 10/0.5 = 20$, so $\mu_nC_{ox}(W/L)_6 = 134\ \mu\mathrm{A/V^2}\times20 = 2.68\ \mathrm{mA/V^2}$:
 
 $$V_{ov6} = \sqrt{\frac{2(50\ \mu\mathrm{A})}{2.68\ \mathrm{mA/V^2}}} = \sqrt{0.0373}\ \mathrm{V} = 0.193\ \mathrm{V}.$$
 
-Their common source is at $V_X = 1.086$ V while their bulk is grounded, so $V_{SB6} = 1.086$ V and the **body effect** gives
+Their common source is at $V_X = 1.086$ V with the bulk grounded, so $V_{SB6} = 1.086$ V:
 
 $$
 \begin{aligned}
@@ -46,13 +46,13 @@ $$V_{out,CM} = V_{GS5} + V_{GS6} = 1.086 + 1.100 = 2.19\ \mathrm{V}.$$
 
 **Check of the PMOS loads** (0.5 mA each):
 
-$$|V_{ov3}| = \sqrt{\frac{2(0.5\ \mathrm{mA})}{(38.4\ \mu\mathrm{A/V^2})(100)}} = 0.510\ \mathrm{V},\qquad V_{out,max} = 3 - 0.510 = 2.49\ \mathrm{V} > 2.19\ \mathrm{V}.\ \checkmark$$
+$$|V_{ov3}| = \sqrt{\frac{2(0.5\ \mathrm{mA})}{(38.4\ \mu\mathrm{A/V^2})(100)}} = 0.510\ \mathrm{V},\qquad V_{out,max} = 3 - 0.510 = 2.49\ \mathrm{V} > 2.19\ \mathrm{V},\ \checkmark$$
 
-So the loads are saturated, with 0.3 V to spare.
+so the loads are saturated, with 0.3 V to spare.
 
 ### Step 4 — Lower limit of the input CM ($M_5$ in saturation)
 
-$M_5$ stays saturated if its drain (the tail node P) satisfies $V_P \ge V_{ov5} = 0.386$ V. Each input device carries 0.5 mA:
+$M_5$ stays saturated while the tail node P satisfies $V_P \ge V_{ov5} = 0.386$ V. Each input device carries 0.5 mA:
 
 $$V_{ov1} = \sqrt{\frac{2(0.5\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}} = \sqrt{0.0746}\ \mathrm{V} = 0.273\ \mathrm{V}.$$
 
@@ -69,7 +69,7 @@ This limit involves only $M_5$ and $M_1$, so it is unaffected by the follower si
 
 ### Step 5 — Upper limit of the input CM ($M_1$, $M_2$ in saturation)
 
-$M_1$ is saturated if $V_D \ge V_G - V_{TH1}$, i.e.
+$M_1$ is saturated while $V_D \ge V_G - V_{TH1}$, i.e.
 
 $$V_{in,CM} \le V_{out,CM} + V_{TH1}.$$
 
@@ -83,7 +83,7 @@ V_{in,CM,max} &= V_{out,CM} + V_{TH1} = 2.187 + 1.028 = 3.21\ \mathrm{V}.
 \end{aligned}
 $$
 
-This exceeds $V_{DD} = 3$ V, so the input pair remains saturated for any input CM up to the supply. (Raising the input CM only increases $V_{DS5}$; the loads and followers are unaffected.)
+This exceeds $V_{DD} = 3$ V, so the input pair stays saturated for any input CM up to the supply (raising the input CM only increases $V_{DS5}$).
 
 ### Step 6 — Summary and comparison
 
@@ -99,7 +99,7 @@ V_{in,CM,max} &= 1.98 + 0.7 = 2.68\ \mathrm{V}.
 \end{aligned}
 $$
 
-**Effect of the smaller followers.** Shrinking $M_6$, $M_7$ from 50/0.5 to 10/0.5 raises their overdrive from 0.086 V to 0.193 V, so the output CM rises by about 0.11 V (from 2.08 V to 2.19 V). That moves the upper limit up by a similar amount but leaves the lower limit unchanged; it also eats into the headroom of the PMOS loads (2.19 V against their 2.49-V limit).
+**Effect of the smaller followers.** Shrinking $M_6$, $M_7$ from 50/0.5 to 10/0.5 raises their overdrive from 0.086 V to 0.193 V, so the output CM rises by about 0.11 V (from 2.08 V to 2.19 V). The upper limit moves up by a similar amount, the lower limit is unchanged, and the PMOS loads lose headroom (2.19 V against their 2.49-V limit).
 
 ### Result
 
@@ -111,4 +111,4 @@ i.e. from 1.44 V (tail transistor $M_5$ at the edge of saturation) up to essenti
 
 **Common mistake.** Taking the output CM as $V_{GS5}$ alone (X connected directly to the outputs) or assuming 1.5 V. In the CM-definition phase X is connected to the followers' common source, so the outputs are one follower $V_{GS}$ (1.10 V here, including body effect) above X.
 
-**Common mistake.** Letting the follower size change the lower limit. The lower limit is set only by $M_5$'s headroom and $M_1$'s $V_{GS}$ at 0.5 mA; the followers' 50 µA flows only in $M_6$, $M_7$ and must not be assigned to the input pair.
+**Common mistake.** Letting the follower size change the lower limit. That limit is set only by $M_5$'s headroom and $M_1$'s $V_{GS}$ at 0.5 mA; the followers' 50 µA flows only in $M_6$, $M_7$.

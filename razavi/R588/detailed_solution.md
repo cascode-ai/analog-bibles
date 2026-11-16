@@ -1,15 +1,10 @@
 # Detailed solution - R588
 
-**Approach.** First derive the cycle-by-cycle behavior from charge conservation: every clock period $C_1$ samples the input and dumps that charge onto $C_2$, so the output changes by $-(C_1/C_2)V_{in}$ per cycle (a staircase). Then replace $C_1$ with its switches by the average resistor $R_{eq} = 1/(C_1f_{CK})$, treat the circuit as a continuous-time RC integrator, and evaluate its gain at 10 MHz. An exact discrete-time check confirms the estimate.
+**Approach.** Charge conservation shows that every clock period $C_1$ samples the input and dumps that charge onto $C_2$, so the output steps by $-(C_1/C_2)V_{in}$ per cycle (a staircase). Replacing $C_1$ and its switches by $R_{eq} = 1/(C_1f_{CK})$ turns the circuit into a continuous-time RC integrator, whose gain at 10 MHz gives the amplitude; an exact discrete-time check confirms it.
 
-### Step 1 — How the integrator works (charge transfer per cycle)
+### Step 1 — Charge transfer per cycle
 
-The clock period is $T = 1/f_{CK} = 1/(100\ \mathrm{MHz}) = 10$ ns. In each period:
-
-- **Phase 1 ($S_1$ on, $S_2$ off):** $C_1$ is charged to the input. Its top plate P holds $Q_1 = C_1V_{in}[k]$, where $V_{in}[k]$ is the input at the end of this phase. The op amp holds $C_2$'s charge unchanged.
-- **Phase 2 ($S_2$ on, $S_1$ off):** P is connected to X, which the high-gain op amp keeps at **virtual ground** ($V_X \approx 0$). $C_1$ is therefore fully discharged, and its charge must go somewhere: it flows onto the X-side plate of $C_2$.
-
-**Charge conservation** on the node formed by P and X during phase 2 (no conducting path to it other than the capacitors):
+The clock period is $T = 1/f_{CK} = 1/(100\ \mathrm{MHz}) = 10$ ns. In phase 1 ($S_1$ on), $C_1$'s top plate P charges to $Q_1 = C_1V_{in}[k]$, the input at the end of the phase. In phase 2 ($S_2$ on), P is connected to the virtual ground X ($V_X \approx 0$), so $C_1$ fully discharges onto $C_2$. Charge conservation on the P–X node:
 
 $$
 \begin{aligned}
@@ -18,15 +13,11 @@ V_{out}[k+1] &= V_{out}[k] - \frac{C_1}{C_2}\,V_{in}[k].
 \end{aligned}
 $$
 
-Each clock cycle the output takes a step of $-(C_1/C_2)V_{in}[k]$: a discrete-time **inverting integrator** (an accumulator). Here $C_1/C_2 = 1$, so every step equals minus the sampled input.
+Each cycle the output steps by $-(C_1/C_2)V_{in}[k]$: a discrete-time **inverting integrator** (accumulator). Here $C_1/C_2 = 1$, so every step equals minus the sampled input.
 
 ### Step 2 — Equivalent resistor
 
-Each period, a charge $C_1V_{in}$ is carried from the input to the virtual ground. The **average current** is charge per period:
-
-$$I_{avg} = \frac{C_1V_{in}}{T} = C_1f_{CK}V_{in}.$$
-
-A resistor $R_{eq}$ from $V_{in}$ to the virtual ground would carry $V_{in}/R_{eq}$, so
+A charge $C_1V_{in}$ moves from the input to the virtual ground once per period, an average current $I_{avg} = C_1V_{in}/T = C_1f_{CK}V_{in}$, so
 
 $$
 \begin{aligned}
@@ -35,19 +26,19 @@ R_{eq} &= \frac{V_{in}}{I_{avg}} = \frac{1}{C_1f_{CK}}\\
 \end{aligned}
 $$
 
-This approximation is good when the input changes little within one clock period, i.e. $f_{in} \ll f_{CK}$. Here $f_{in}/f_{CK} = 0.1$, so we expect a few percent of error.
+This holds for $f_{in} \ll f_{CK}$; here $f_{in}/f_{CK} = 0.1$, so expect an error of a few percent.
 
 ### Step 3 — Continuous-time estimate of the output amplitude
 
-With $R_{eq}$ in place of $C_1$, $S_1$ and $S_2$, the circuit is the classic RC (Miller) integrator: $R_{eq}$ from the input to the virtual ground X, $C_2$ from X to the output.
+With $R_{eq}$ from the input to X and $C_2$ from X to the output, the circuit is an RC (Miller) integrator.
 
 <!-- diagram: diagram-01.cir -->
 
-**KCL at X** (the current through $R_{eq}$ must flow through $C_2$, since the op amp draws none):
+KCL at X gives
 
-$$\frac{V_{in} - 0}{R_{eq}} = sC_2\,(0 - V_{out})\quad\Longrightarrow\quad \frac{V_{out}}{V_{in}} = -\frac{1}{sR_{eq}C_2}.$$
+$$\frac{V_{in} - 0}{R_{eq}} = sC_2\,(0 - V_{out})\quad\Longrightarrow\quad \frac{V_{out}}{V_{in}} = -\frac{1}{sR_{eq}C_2},$$
 
-At $s = j\omega$ the magnitude is $1/(\omega R_{eq}C_2)$. Compute each quantity:
+with magnitude $1/(\omega R_{eq}C_2)$ at $s = j\omega$:
 
 $$
 \begin{aligned}
@@ -62,9 +53,7 @@ Output amplitude:
 
 $$V_{out,p} = |H|\,V_{in,p} = 1.59\times0.5\ \mathrm{V} \approx 0.80\ \mathrm{V}.$$
 
-The output is *larger* than the input because 10 MHz lies below the integrator's unity-gain frequency, $1/(2\pi R_{eq}C_2) = 1/(2\pi\times10\ \mathrm{ns}) = 15.9$ MHz.
-
-**Phase.** $-1/(j\omega R_{eq}C_2) = +j/(\omega R_{eq}C_2)$, so the output leads the input by 90°: for $V_{in} = 0.5\sin\omega t$, the AC part of the output is $+0.8\cos\omega t$ (from $-\int\sin = +\cos$).
+The output exceeds the input because 10 MHz lies below the integrator's unity-gain frequency, $1/(2\pi R_{eq}C_2) = 1/(2\pi\times10\ \mathrm{ns}) = 15.9$ MHz. Since $-1/(j\omega R_{eq}C_2) = +j/(\omega R_{eq}C_2)$, the output leads the input by 90°: for $V_{in} = 0.5\sin\omega t$, the AC part of the output is $+0.8\cos\omega t$.
 
 ### Step 4 — Exact discrete-time check
 
@@ -86,7 +75,7 @@ The continuous-time estimate (0.80 V) is within 2 %, as expected for $f_{in}/f_{
 
 ### Step 5 — Sketch of the output
 
-The input completes one cycle in $1/(10\ \mathrm{MHz}) = 100$ ns, so there are $100/10 = 10$ clock periods, i.e. **10 steps per input cycle**. The input is sampled every 36°, $V_{in}[k] = 0.5\sin(36^\circ k)$. Starting from $V_{out} = 0$ at $k = 0$ (input starting at 0):
+One input cycle lasts $1/(10\ \mathrm{MHz}) = 100$ ns, i.e. $100/10 = 10$ clock periods: **10 steps per input cycle**, with the input sampled every 36°, $V_{in}[k] = 0.5\sin(36^\circ k)$. Starting from $V_{out} = 0$ at $k = 0$ (input starting at 0):
 
 | $k$ | $t_k$ (ns) | $V_{in}[k]$ (V) | step $-V_{in}[k]$ (V) | $V_{out}$ after the step (V) |
 |---|---|---|---|---|
@@ -102,11 +91,9 @@ The input completes one cycle in $1/(10\ \mathrm{MHz}) = 100$ ns, so there are $
 | 9 | 90 | −0.294 | +0.294 | 0 |
 | 10 | 100 | 0 | 0 | 0 |
 
-**Shape of the sketch.**
-
-- A **staircase**: $V_{out}$ changes only in phase 2 (when $C_1$ dumps its charge, with the op amp's settling) and is flat in phase 1. One step every 10 ns; the largest steps are 0.476 V, where the input is near its peaks.
-- The staircase traces a **10-MHz sinusoid of about 0.8 V amplitude**: while the input is positive the output steps *down*, while it is negative the output steps *up*. Its extremes occur where the input crosses zero, i.e. it is 90° shifted from the input (inverted integration of a sine gives $+\cos$).
-- **DC level.** An integrator has infinite DC gain, so the average output level is not set by the input but by the initial condition. Starting from 0 V as above, the staircase stays between 0 and −1.54 V (centred near −0.8 V). In practice the DC level must be defined by a reset or a feedback path.
+- A **staircase**: $V_{out}$ changes only in phase 2 (with the op amp's settling) and is flat in phase 1, one step every 10 ns; the largest steps, 0.476 V, occur near the input peaks.
+- It traces a **10-MHz sinusoid of about 0.8 V amplitude**, stepping *down* while the input is positive and *up* while it is negative, with its extremes at the input's zero crossings (90° shift).
+- **DC level.** The integrator's infinite DC gain leaves the average level to the initial condition: starting from 0 V, the staircase stays between 0 and −1.54 V (centred near −0.8 V). In practice a reset or a feedback path must define it.
 
 ### Result
 
@@ -116,6 +103,6 @@ $$V_{out,p} \approx \frac{0.5\ \mathrm{V}}{0.628} \approx 0.8\ \mathrm{V}$$
 
 (0.81 V with the exact discrete-time gain $1/[2\sin(\pi/10)] = 1.62$). The output is a staircase with 10 steps per 100-ns input period, each step equal to $-V_{in}(kT)$ (up to 0.5 V in magnitude), approximating a 10-MHz sinusoid of about 0.8 V amplitude, shifted by 90° from the input, on a DC level set by the initial condition.
 
-**Common mistake.** Treating the circuit as an amplifier with gain $C_1/C_2 = 1$ and answering 0.5 V. $C_1/C_2$ is the size of *one step*; the steps accumulate on $C_2$ because nothing ever discharges it, so the output is the running sum (integral) of the input.
+**Common mistake.** Treating the circuit as an amplifier with gain $C_1/C_2 = 1$ and answering 0.5 V. $C_1/C_2$ is the size of *one step*; nothing discharges $C_2$, so the steps accumulate into the integral of the input.
 
-**Common mistake.** Errors in $R_{eq}$ or in $\omega$: writing $R_{eq} = f_{CK}/C_1$ (wrong units) or $1/(2\pi C_1f_{CK})$ (there is no $2\pi$: the charge $C_1V_{in}$ is moved once per *period*), or using $f$ instead of $\omega = 2\pi f$ in $1/(\omega R_{eq}C_2)$, which gives an amplitude of about 5 V.
+**Common mistake.** Errors in $R_{eq}$ or in $\omega$: writing $R_{eq} = f_{CK}/C_1$ (wrong units) or $1/(2\pi C_1f_{CK})$ (the charge moves once per *period*, with no $2\pi$), or using $f$ instead of $\omega = 2\pi f$ in $1/(\omega R_{eq}C_2)$, which gives an amplitude of about 5 V.
