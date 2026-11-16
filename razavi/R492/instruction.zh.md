@@ -1,0 +1,1 @@
+在 [图 1] 所示的全差分（fully differential）两级运算放大器（two-stage op amp）中，$I_{SS} = 0.25$ mA，每条输出支路偏置在 1 mA，各电流源（current source）的偏置使 $M_3$ 和 $M_4$ 各流过 $I_{SS}/2$。每个输出端接负载 $C_L = 1$ pF，运放采用密勒补偿（Miller compensation），$C_C = 0.9$ pF 分别接在 X 与 $V_{out1}$ 之间以及 Y 与 $V_{out2}$ 之间。求压摆率（slew rate）。

@@ -1,0 +1,6 @@
+零极点对（doublet）附近的闭环极点位于 $\omega_{pA} \approx \omega_z\left[1 - \dfrac{\omega_z}{(1 + A_0)\omega_{p1}}\left(1 - \dfrac{\omega_z}{\omega_{p2}}\right)\right]$，非常靠近零点。它在阶跃响应中对应的项（输入阶跃为 $V_0$）为
+$$-AV_0\frac{1 - \omega_{pA}/\omega_z}{1 - \omega_{pA}/\omega_{pB}}e^{-\omega_{pA}t} \approx -AV_0\frac{\omega_z}{(1 + A_0)\omega_{p1}}\left(1 - \frac{\omega_z}{\omega_{p2}}\right)e^{-\omega_zt},$$
+其中 $A = A_0/(1 + A_0)$，$\omega_{pB} \approx (1 + A_0)\omega_{p1}$。该项的幅度正比于 $1 - \omega_z/\omega_{p2}$（精确对消时为零），并以时间常数 ≈ $1/\omega_z$（≈ $1/\omega_{p2}$）衰减，比时间常数为 $1/[(1 + A_0)\omega_{p1}]$ 的主指数项慢：这是一个建立缓慢的拖尾。
+- 分母 $D(s) = (1 + s/\omega_{p1})(1 + s/\omega_{p2}) + A_0(1 + s/\omega_z)$。在 $s = -\omega_z$ 处：$D(-\omega_z) = (1 - \omega_z/\omega_{p1})(1 - \omega_z/\omega_{p2}) \approx -(\omega_z/\omega_{p1})(1 - \omega_z/\omega_{p2})$。另外 $D'(-\omega_z) \approx A_0/\omega_z$（因为 $A_0\omega_{p1} \gg \omega_z$）。做一步牛顿迭代即得上面的 $\omega_{pA}$。
+- 因此 $1 - \omega_{pA}/\omega_z \approx \dfrac{\omega_z}{(1 + A_0)\omega_{p1}}(1 - \omega_z/\omega_{p2})$。$H_{closed}V_0/s$ 在 $-\omega_{pA}$ 处的留数给出上面的那一项。
+- 若在留数中直接令 $\omega_{pA} = \omega_{p2}$，得到的幅度为 $1 - \omega_{p2}/\omega_z \approx -(1 - \omega_z/\omega_{p2})$：对失配的依赖关系相同，但大了 ≈ $(1 + A_0)\omega_{p1}/\omega_{p2}$ 倍，因为实际上闭环极点会向零点移动。例如：$A_0$ = 1000，$\omega_{p1}$ = 10⁶，$\omega_{p2}$ = 10⁸，$\omega_z$ = 1.1×10⁸ rad/s，得到的拖尾为终值的 ≈ +1.4%（近似公式给出 1.1%），而不是 10%。

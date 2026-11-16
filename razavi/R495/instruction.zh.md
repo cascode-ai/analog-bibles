@@ -1,0 +1,3 @@
+[图 1] 所示为一个采用电压-电流反馈（voltage–current feedback）的跨阻放大器（transimpedance amplifier）。注意，由于 $M_3$ 的存在，反馈系数（feedback factor）可能大于 1。假设 $I_1$–$I_3$ 为理想电流源，$I_1 = I_2 = 1$ mA，$I_3 = 10\ \mu$A，$(W/L)_{1,2} = 50/0.5$，$(W/L)_3 = 5/0.5$；$V_{DD} = 3$ V。在 $M_3$ 的栅极处断开环路，估算开环传递函数的极点。
+
+器件参数：NMOS 管 $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$V_{TH} = 0.7$ V，$\lambda = 0.1\ \mathrm{V^{-1}}$；PMOS 管 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH} = -0.8$ V，$\lambda = 0.2\ \mathrm{V^{-1}}$。对于电容，只考虑 $M_1$–$M_3$ 的栅源电容和栅漏电容：$C_{ox} = 3.84\ \mathrm{fF/\mu m^2}$，单位宽度交叠电容（overlap capacitance）为 0.4 fF/µm（NMOS）和 0.3 fF/µm（PMOS），有效沟道长度（effective channel length）$L = 0.5\ \mu$m。忽略结电容（junction capacitance）。

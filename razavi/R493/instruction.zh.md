@@ -1,0 +1,3 @@
+[图 1] 所示的全差分（fully differential）两级运算放大器（two-stage op amp）中，除 $M_{5,6}$ 为 $60/0.5$ 外，所有晶体管的 $W/L = 50/0.5$；$I_{SS} = 0.25$ mA；每条输出支路电流为 1 mA；$V_{DD} = 3$ V。该运放的每个输出端驱动 $C_L = 1$ pF，并采用密勒补偿（Miller compensation），$C_C = 0.9$ pF 分别接在 X 与 $V_{out1}$ 之间以及 Y 与 $V_{out2}$ 之间。与每个 $C_C$ 串联的电阻使零点恰好落在次极点（non-dominant pole）上。这个用于零极点对消（pole–zero cancellation）的电阻由按 [图 2] 偏置的 PMOS 器件 $M_{15}$ 实现，其中 [图 2] 中的 $M_9$ 和 $M_{11}$ 对应于运放的 $M_5$ 和 $M_7$（或 $M_6$ 和 $M_8$）；忽略 $C_E$ 以及其他所有晶体管电容。若 $I_1 = 100\ \mu$A，计算 $M_{13}$–$M_{15}$ 的尺寸。所有器件均取 $L = 0.5\ \mu$m。
+
+器件参数：PMOS 管 $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$，$V_{TH0} = -0.8$ V，$\gamma = 0.4\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.8$ V，衬底（bulk）接 $V_{DD}$。

@@ -1,0 +1,9 @@
+输入节点处的主极点（dominant pole）≈ 8.7×10⁵ rad/s（≈ 140 kHz）。在 Y 处保留复制负载 $C_{GS3} + C_{GD3}$ 时，次极点（non-dominant pole）≈ 2.6×10⁹ rad/s（$M_1$ 的漏极）和 ≈ 3.3×10¹⁰ rad/s（输出 Y）；若只是用理想测试源驱动 $M_3$ 的栅极、在 Y 处不加复制负载，则极点为 ≈ 8.7×10⁵、2.9×10⁹ 和 5.3×10¹⁰ rad/s。环路增益（loop gain）≈ 1.2×10⁵（101 dB），因此未补偿的环路不稳定（PM ≈ −35°）。
+- 偏置：$V_Y = V_{GS3}$ = 0.82 V（10 µA），输入节点 A 处于 $V_{GS1}$ = 1.09 V，$M_1$ 的漏极（节点 B）处于 $V_{DD} - |V_{GS2}|$ = 1.48 V。所有器件均工作在饱和区（saturation region）；没有体效应（body effect），因为所有源极都接在电源轨上。
+- 小信号：$g_{m1}$ = 5.18 mS，$r_{O1}$ = 10 kΩ；PMOS 共源级（common-source stage）的 $g_{m2}$ = 2.77 mS，$r_{O2}$ = 5 kΩ；$g_{m3}$ = 0.164 mS，$r_{O3}$ = 1 MΩ。环路增益 $T_0 = g_{m3}r_{O3}\cdot g_{m1}r_{O1}\cdot g_{m2}r_{O2}$ = 163.7 × 51.8 × 13.9 ≈ 1.17×10⁵。（三个反相级，因此是负反馈。）
+- 电容：$C_{GS1}$ = 84 fF，$C_{GD1}$ = 20 fF，$C_{GS2}$ = 79 fF，$C_{GD2}$ = 15 fF，$C_{GS3}$ = 8.4 fF，$C_{GD3}$ = 2 fF（$C_{GS3} + C_{GD3}$ 作为断开环路的复制负载保留在 Y 处）。
+- 节点 A：$R_A = r_{O3}$ = 1 MΩ，$C_A \approx C_{GS1} + (1 + g_{m1}r_{O1})C_{GD1} + C_{GD3}$ ≈ 1.14 pF，因此 $\omega_A \approx 8.8\times10^5$ rad/s。
+- 节点 B：按密勒效应（Miller effect）逐节点估算，$1/\{r_{O1}[C_{GD1} + C_{GS2} + (1 + g_{m2}r_{O2})C_{GD2}]\}$ ≈ 1/(10 kΩ × 0.32 pF) ≈ 3×10⁸ rad/s，这个值太低了。$C_{GD1}$ 把 B 耦合到高阻节点 A 上，使极点分裂（pole splitting）：取未经倍增的 $C_{A0} = C_{GS1} + C_{GD3}$ ≈ 86 fF 和 $C_B = C_{GS2} + (1 + g_{m2}r_{O2})C_{GD2}$ ≈ 0.30 pF，得 $\omega_B \approx g_{m1}C_{GD1}/(C_{A0}C_{GD1} + C_{A0}C_B + C_{GD1}C_B) \approx 3\times10^9$ rad/s。完整的三节点分析给出 2.6×10⁹ rad/s。
+- 节点 Y：逐节点估算得 $1/[r_{O2}(C_{GD2} + C_{GS3} + C_{GD3})]$ ≈ 7.9×10⁹ rad/s；考虑经 $C_{GD2}$ 的耦合后，精确的第三个极点 ≈ 3.3×10¹⁰ rad/s（若无复制负载，只有 $C_{GD2}$ 接到 Y，则为 5.3×10¹⁰ rad/s）。
+- 若采用 $r_O = (1 + \lambda V_{DS})/(\lambda I_D)$，并在偏置计算中也计入 $(1 + \lambda V_{DS})$ 因子，则得到 ≈ 6.4×10⁵、2.0×10⁹ 和 5.6×10¹⁰ rad/s（无复制负载），$T_0$ ≈ 2.9×10⁵；这是一个合理的、更细致的模型。
+- $T_0\omega_A \approx 10^{11}$ rad/s，远高于次极点：增益交点（gain crossover）≈ 1.5×10¹⁰ rad/s，PM ≈ −35°，因此必须进行补偿。
