@@ -1,0 +1,3 @@
+For the p-channel input CMOS differential amplifier with an n-channel current-mirror load shown in [Fig. 1], assume that $V_{DD}$ varies from 4 to 6 V and that $V_{SS} = 0$ (the bottom rail). Use the worst-case values of the parameters below to calculate the input common-mode range. Assume that the tail current ($I_{SS}$, labelled $I_{DD}$ in the figure) is 100 µA, $W_1/L_1 = W_2/L_2 = 5$, $W_3/L_3 = W_4/L_4 = 1$, and $V_{SD5}(\mathrm{sat}) = 0.2$ V. Include worst-case variation in $K'$. Assume that all bulk–source voltages are zero.
+
+Parameters: n-channel $V_{TN} = 0.7 \pm 0.15$ V, $K'_N = 110\ \mu\mathrm{A/V^2} \pm 10\,\%$; p-channel $V_{TP} = -0.7 \pm 0.15$ V, $K'_P = 50\ \mu\mathrm{A/V^2} \pm 10\,\%$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$.

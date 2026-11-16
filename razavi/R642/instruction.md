@@ -1,0 +1,1 @@
+The stage shown in [Fig. 1] (one stage of a three-stage ring oscillator) is designed with $I_T = 1$ mA, $(W/L)_{1,2} = 50/0.5$ and $R_1 = R_2 = R = 546\ \Omega$; $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$. Determine $(W/L)_{3,4}$ such that $g_{m3,4}R = 0.5$ when each of $M_3$ and $M_4$ carries $I_T/2$. Neglect channel-length modulation.

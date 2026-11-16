@@ -1,0 +1,1 @@
+The input–output characteristic of an amplifier is approximated as $y(t) = \alpha_1 x(t) + \alpha_2 x^2(t)$ in the range $x = [0,\ x_{max}]$. What is the maximum nonlinearity? Quantify the nonlinearity as the maximum deviation of the characteristic from the straight line passing through its end points (at $x = 0$ and $x = x_{max}$), normalized to the maximum output swing.

@@ -1,0 +1,6 @@
+For the fully differential op amp shown in [Fig. 1], all transistors operate in the active region with $|V_{ov}| = |V_{GS} - V_t| = 0.2$ V and $I_{D5} = 200\ \mu$A, so $I_{D1} = I_{D2} = |I_{D3}| = |I_{D4}| = 100\ \mu$A. Use $V_{An} = 10$ V for the NMOS and $|V_{Ap}| = 20$ V for the PMOS devices ($r_o = |V_A|/|I_D|$), and ignore body effect. The gate of $M_5$ ($V_{cmc}$) is held at a constant dc bias (no common-mode feedback acts on the amplifier).
+
+Find the element values of the two models for the output ports: the Thévenin T-network model in [Fig. 2] and the Norton π-network model in [Fig. 3]. The definitions are $v_{id} = v_{i1} - v_{i2}$, $v_{ic} = (v_{i1} + v_{i2})/2$, $v_{od} = v_{o1} - v_{o2}$, $v_{oc} = (v_{o1} + v_{o2})/2$, $i_{od} = (i_{o1} - i_{o2})/2$, $i_{oc} = (i_{o1} + i_{o2})/2$, where $i_{o1}$ and $i_{o2}$ flow into the output terminals. The models satisfy
+$v_{o1} = a_{dm}v_{id}/2 + a_{cm}v_{ic} + (R_{od}/2)i_{od} + R_{oc}i_{oc}$, $v_{o2} = -a_{dm}v_{id}/2 + a_{cm}v_{ic} - (R_{od}/2)i_{od} + R_{oc}i_{oc}$,
+and $i_{o1} = G_{md}v_{id} + G_{mc}v_{ic} + v_{od}/R_{od} + v_{oc}/R_{oc}$, $i_{o2} = -G_{md}v_{id} + G_{mc}v_{ic} - v_{od}/R_{od} + v_{oc}/R_{oc}$.
+Give $a_{dm}$, $a_{cm}$, $R_{od}$, $R_{oc}$, $G_{md}$, $G_{mc}$ and the element values in each network.

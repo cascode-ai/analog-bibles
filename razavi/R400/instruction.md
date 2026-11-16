@@ -1,0 +1,1 @@
+Using feedback techniques, calculate the input and output impedances of the circuit shown in [Fig. 1]. Here $\lambda \neq 0$: denote the output resistances of the transistors by $r_{O1}$, $r_{O2}$ and their transconductances by $g_{m1}$, $g_{m2}$; express the results in terms of these, $C_1$, $C_2$ and $s$.

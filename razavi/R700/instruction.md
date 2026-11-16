@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], $N$ identical NMOS current sources $M_1$–$M_N$ share the gate voltage $V_b$. Their sources are returned to ground through a ground line: the line resistance between ground and the source of $M_1$, and between the sources of every two consecutive transistors, is $r$. Take $V_b = 1.2$ V, $N = 32$, and $(W/L)_{1-N} = 20\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$, with all transistors in saturation. Determine the maximum value of $r$ for a maximum current mismatch of 1%.
+
+The bulk of each NMOS is at the (ideal) ground potential; neglect channel-length modulation. NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V.

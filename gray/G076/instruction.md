@@ -1,0 +1,1 @@
+For the emitter-coupled pair shown in [Fig. 1], determine the input offset voltage if the transistor base widths mismatch by 10 percent but the circuit is otherwise balanced (equal emitter areas, base doping, and collector resistors). Let $R_{\text{TAIL}} \to \infty$. Assume uniformly doped bases and $V_T = 26$ mV.

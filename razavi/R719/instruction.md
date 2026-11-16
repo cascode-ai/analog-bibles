@@ -1,0 +1,1 @@
+Two bond wires, each 4 mm long, run parallel to each other 5 mm above a ground plane, with a center-to-center spacing of 1 mm. Treat them as long round wires above a perfectly conducting ground plane (neglect end effects). If one wire carries a 100-MHz sinusoidal current with a peak amplitude of 1 mA, what is the voltage induced across the other wire?

@@ -1,0 +1,3 @@
+For the circuit shown in [Fig. 1], assume that $W_1/L_1 = 2\ \mu$m$/1\ \mu$m and $W_2/L_2 = W_3/L_3 = W_4/L_4 = 1\ \mu$m$/1\ \mu$m. Find the dc value of $V_{in}$ that will give a dc current in M1 of 110 µA. Calculate the small-signal voltage gain and output resistance of the circuit, assuming all transistors are saturated.
+
+Device data (in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$): n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$.

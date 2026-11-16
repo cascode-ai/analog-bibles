@@ -1,0 +1,1 @@
+In the circuit shown in [Fig. 1], assume that $\lambda = 0$, $g_{m1} = g_{m2} = 1/(200\ \Omega)$, $R_1 = R_2 = R_3 = 2\ \mathrm{k\Omega}$, and $C_1 = 100$ pF ($M_2$ is a current source biased by $V_b$). Neglecting other capacitances, estimate the closed-loop voltage gain $V_{out}/V_{in}$ at very low and very high frequencies.

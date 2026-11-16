@@ -1,0 +1,1 @@
+Sketch $V_X$ and $I_X$ as a function of time for the circuit shown in [Fig. 1]. The initial voltage of $C_1$ is equal to 3 V, and $V_{DD} = 3$ V. NMOS data: $V_{TH0} = 0.7$ V; the bulk of $M_1$ is grounded. $V_b$, $C_1$ and the size of $M_1$ are not specified.

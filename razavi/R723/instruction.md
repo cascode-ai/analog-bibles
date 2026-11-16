@@ -1,0 +1,1 @@
+The input bandwidth of high-speed circuits may be limited by the bond-wire inductance and the pad capacitance. Consider two cases: (a) the bond-wire diameter is 50 μm and the pad size 100 μm × 100 μm; (b) the bond-wire diameter is 25 μm and the pad size 50 μm × 50 μm. If all other dimensions are constant, which case is preferable?

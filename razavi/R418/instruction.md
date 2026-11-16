@@ -1,0 +1,1 @@
+Calculate the input-referred thermal noise voltage (per unit bandwidth) of the circuit shown in [Fig. 1]: a CMOS inverter, with both transistors in saturation, driven through $R_1$ and with feedback resistor $R_2$. Express the result in terms of $g_{m1}$, $g_{m2}$, $R_1$, $R_2$ and the thermal channel-noise coefficient γ (the output resistances $r_{O1}$, $r_{O2}$ are finite).

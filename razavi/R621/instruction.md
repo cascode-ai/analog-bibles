@@ -1,0 +1,3 @@
+Source degeneration can improve the matching between current sources if resistor mismatches are small. Prove that in the circuit shown in [Fig. 1],
+$$\frac{\Delta I_D}{I_D} = \frac{1}{1+g_mR_S}\left[\frac{\Delta(\mu_nC_{ox})}{\mu_nC_{ox}} + \frac{\Delta(W/L)}{W/L} - \frac{2\Delta V_{TH}}{V_{GS}-V_{TH}} - g_m\Delta R_S\right],$$
+where $\Delta R_S$ denotes the mismatch between $R_{S1}$ and $R_{S2}$, $R_S$ is their nominal value and $V_{GS}$ is the nominal gate–source voltage of each transistor. Note that for an appreciable reduction of $\Delta I_D/I_D$, $R_S$ must be greater than $1/g_m$. Use the square-law model and neglect channel-length modulation and body effect.

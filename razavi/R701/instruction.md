@@ -1,0 +1,3 @@
+The total capacitance per unit length of a single wire of width $W$ and thickness $t$, running above a conducting substrate with its bottom surface at height $h$ above the substrate, can be estimated by the empirical relation
+$$C = \epsilon\left[\frac{W}{h} + 0.77 + 1.06\left(\frac{W}{h}\right)^{0.25} + 1.06\left(\frac{t}{h}\right)^{0.5}\right],$$
+where the first term is the parallel-plate component and the remaining three terms constitute the fringe component. Suppose $t = 1\ \mu$m and $h = 3\ \mu$m. For what value of $W$ are the parallel-plate and fringe capacitances equal? What if $h = 5\ \mu$m?

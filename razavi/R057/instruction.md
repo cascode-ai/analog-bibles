@@ -1,0 +1,1 @@
+Consider the circuit shown in [Fig. 1], where the initial voltage at node X is equal to $V_{DD}$ and the circuit is at rest before $t = 0$ ($M_1$ carries $I_1$). Assuming that $\lambda = \gamma = 0$ and neglecting other capacitances, plot $V_X$ and $V_Y$ versus time if $V_{in}$ is a positive step with amplitude $V_0 > V_{TH}$. ($\beta = \mu_nC_{ox}W/L$ is not specified.)

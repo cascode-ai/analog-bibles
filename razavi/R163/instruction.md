@@ -1,0 +1,1 @@
+A differential pair uses input NMOS devices with $W/L = 50/0.5$ (μm) and a tail current of 2 mA (ideal tail current source, square-law devices, λ = 0, $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$). What is the equilibrium overdrive voltage of each transistor? Compare with the value obtained with a 1-mA tail current.

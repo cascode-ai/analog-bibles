@@ -1,0 +1,1 @@
+Plot the small-signal gain of the circuit shown in [Fig. 1] as $I_S$ goes from 0 to $0.75I_1$, where $I_1$, the drain current of $M_1$, is held constant. Assume that $M_1$ is always saturated, and neglect channel-length modulation and body effect. The device sizes are not given; express the result relative to the gain magnitude $A_0$ obtained with $I_S = 0$.

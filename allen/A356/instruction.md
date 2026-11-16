@@ -1,0 +1,5 @@
+The op amp shown in [Fig. 1] has been designed for low 1/f noise: p-channel input transistors M1 = M2 with W = 100 µm, L = 1 µm; n-channel mirror loads M3 = M4 with W = 100 µm, L = 20 µm; cascodes M8 = M9 sized like M1; each input transistor carries 50 µA. For that design one computes the equivalent input 1/f noise spectral density, the corresponding thermal noise, the noise corner frequency, the rms noise in the 1 Hz to 100 kHz band (from the 1/f and thermal densities), and the dynamic range for a maximum signal of a 1-V peak-to-peak sinusoid.
+
+Repeat this design with $W_1 = W_2 = 500$ µm and $L_1 = L_2 = 0.5$ µm (M3, M4 unchanged, same currents) to decrease the noise by a factor of 10.
+
+Data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $C_{ox} = 24.7\times10^{-4}$ F/m², flicker coefficients $KF = 4\times10^{-28}$ F·A (n-channel) and $0.5\times10^{-28}$ F·A (p-channel). Gate-referred noise of each transistor: 1/f, $e^2 = KF/(2fC_{ox}WLK')$ (V²/Hz); thermal, $e^2 = 8kT/(3g_m)$ with T = 300 K. Only M1–M4 need be considered (the noise of the cascodes, the current sources and the second stage is negligible).

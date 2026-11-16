@@ -1,0 +1,1 @@
+For the circuit shown in [Fig. 1], use the Miller simplification (Miller's theorem) to find the output resistance $v_o/i_o$ seen looking into the output terminals, with $v_{in}$ set to zero. Then calculate the output resistance without using the Miller simplification, and compare the results.

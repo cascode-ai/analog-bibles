@@ -1,0 +1,1 @@
+For the polysilicon and metal-1 lines shown in [Fig. 1] (widths and thicknesses as labeled), polysilicon has a sheet resistance of 30 Ω/□ (before silicidation) and metal 1 a sheet resistance of 80 mΩ/□. What is the ratio of the resistivities of the two materials?

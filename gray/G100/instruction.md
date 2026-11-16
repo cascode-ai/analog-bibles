@@ -1,0 +1,3 @@
+A band-gap reference like that shown in [Fig. 1] (pnp transistors $Q_1$ and $Q_2$ with bases and collectors grounded; $V_{OS}$ models the op-amp offset, assume $V_{OS} = 0$ and an otherwise ideal op amp) is designed to have nominally zero $TC_F$ of $V_{OUT}$ at 25 °C. Assume that the values of $I_S$, $R_2$ and $R_1$ are nominal but that $R_3$ is 1 percent low. What is $dV_{OUT}/dT$ at 25 °C? Assume $V_{BE(\text{on})} = 0.6$ V for the emitter-base voltage of $Q_1$, and neglect base currents.
+
+Model: $V_{EB} = V_T\ln(I/I_S)$ with $I_S \propto T^{\gamma}\exp(-V_{G0}/V_T)$, $\gamma = 3.2$, $V_{G0} = 1.205$ V; temperature-independent resistors; $V_T = 25.7$ mV at 25 °C ($T = 298$ K).

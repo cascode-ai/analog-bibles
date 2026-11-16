@@ -1,0 +1,3 @@
+In the amplifier shown in [Fig. 1], $I_1 = 100\ \mu$A, $I_2 = 0.5$ mA, and $(W/L)_{1-3} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$. $I_1$ and $I_2$ are implemented with PMOS devices having $(W/L)_P = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$, and $V_{in}$ is biased so that $M_1$ carries $I_2$. $V_{DD} = 3$ V. Calculate the gate bias voltages of $M_2$ and $M_3$. The bulks of all NMOS devices are at ground; ignore channel-length modulation in the bias calculation.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V.

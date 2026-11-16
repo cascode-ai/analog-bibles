@@ -1,0 +1,3 @@
+Plot the transfer characteristic (digital output code versus analog input normalized to $V_{REF}$) of a 3-bit ADC that has the largest possible differential nonlinearity when the integral nonlinearity is limited to ±1 LSB. What is the maximum value of the differential nonlinearity for this case?
+
+Use these definitions, both referenced to the digital output code: the INL is the vertical difference, in LSBs, between the actual staircase characteristic and the ideal 3-bit staircase (whose code transitions lie at $v_{in}/V_{REF} = (2k-1)/16$, $k = 1, \dots, 7$); at each vertical step of the actual characteristic, $DNL = (D_{cx} - 1)$ LSB, where $D_{cx}$ is the signed size of that step in LSBs.

@@ -1,0 +1,1 @@
+A layout of an NMOS transistor is shown in [Fig. 1] (each grid square is 1 µm × 1 µm), together with the schematic used to model it. If the gate–drain overlap capacitance per unit channel width is $220\times10^{-12}$ F/m, what is $C_{GD}$ when the transistor is cut off?

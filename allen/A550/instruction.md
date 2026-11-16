@@ -1,0 +1,3 @@
+Assume that the quantizer noise spectral density at the output of a 1-bit ΔΣ modulator is
+$|N(f)| = \dfrac{2V_{REF}}{\sqrt{12}}\sqrt{\dfrac{2}{f_s}}\,\sin^2\!\left(\dfrac{\omega}{2f_s}\right)$, with $\omega = 2\pi f$,
+where $f_s$ = 10 MHz is the sampling frequency. Find the maximum signal bandwidth $f_B$ in hertz if the ΔΣ modulator is used in a 16-bit oversampled ADC. Take 16-bit performance to mean that the rms noise in the band 0 to $f_B$ (ideal low-pass decimation filter) does not exceed the rms quantization noise of an ideal 16-bit ADC with full scale $V_{REF}$, i.e. $V_{REF}/(2^{16}\sqrt{12})$.

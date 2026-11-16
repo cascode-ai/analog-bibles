@@ -1,0 +1,3 @@
+An NMOS latch [Fig. 1] uses transistors with $W/L = 10\ \mu\mathrm{m}/1\ \mu$m, each carrying a dc latch current of 50 µA. Before the latch is enabled, the difference between its output voltages is $\Delta V_i$. For $\Delta V_i = 0.01(V_{OH}-V_{OL})$ and $\Delta V_i = 0.1(V_{OH}-V_{OL})$, find the time from enabling the latch until the output difference $\Delta V_{out}$ equals $V_{OH}-V_{OL}$, and the propagation delay time of the latch (time until $\Delta V_{out} = 0.5(V_{OH}-V_{OL})$). Assume the capacitance at each latch node is dominated by the gate–source capacitance $C \approx \tfrac23WLC_{ox}$ and that $g_mR \gg 1$.
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$, $C_{ox} = 24.7\times10^{-4}\ \mathrm{F/m^2}$.

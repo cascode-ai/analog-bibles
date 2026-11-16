@@ -1,0 +1,5 @@
+In a charge-pump PLL, the PFD outputs $Q_A$ (UP) and $Q_B$ (DOWN) drive a charge pump with two branches:
+- an UP branch: a PMOS current source $M_2$ in series with a PMOS switch $M_4$, driven by $\overline{Q_A}$, which delivers $|I_{D4}|$ to the loop-filter capacitor;
+- a DOWN branch: an NMOS switch $M_3$, driven by $Q_{B\Delta}$ (that is, $Q_B$ delayed to match the inverter that produces $\overline{Q_A}$), in series with an NMOS current source $M_1$, which draws $I_{D3}$ from the capacitor.
+
+Because of the PFD's reset path, both branches are turned on together for a time $T_P$ in every cycle, even when the input phase difference is zero. The UP and DOWN currents are mismatched: $|I_{D4}| - I_{D3} = \Delta I$, with $\Delta I \ll I_{D3} \approx I_P$. [Fig. 1] shows the resulting waveforms (a) with perfectly aligned UP and DOWN pulses and (b) after the loop has settled in lock. The mismatch translates to a phase offset at the input of the PLL. With the aid of these waveforms, calculate the phase offset in terms of the current mismatch. The input period is $T_{in}$.

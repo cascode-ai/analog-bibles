@@ -1,0 +1,16 @@
+# Golden Solution - R493
+
+## Reference answer
+
+$(W/L)_{13} = 6/0.5$. $(W/L)_{14}$ is a free choice, but it must exceed ≈ 21 for $V_b > 0$ (body effect raises $|V_{TH14}|$ to 1.04 V), and $(W/L)_{15} = \sqrt{(W/L)_{14}(W/L)_9\,I_{D9}/I_1}\;\dfrac{C_C}{C_C + C_L}$. For example, $(W/L)_{14} = 30/0.5$ gives $V_b \approx 0.2$ V and $(W/L)_{15} \approx 127$ (≈ 64 µm/0.5 µm), so $R_{on15} \approx 695\ \Omega$. (The choice $(W/L)_{14} = 6/0.5$ would give $(W/L)_{15} \approx 57$, but $V_b \approx -0.16$ V, so it is not feasible.)
+- Required resistance: $R_z = (1/g_{m9})(1 + C_L/C_C)$ with $g_{m9} = g_{m5} = 3.04$ mS: 329 Ω × 2.11 ≈ 695 Ω.
+- $V_{GS13} = V_{GS9}$ requires the same current density: $(W/L)_{13} = (W/L)_9 \cdot I_1/I_{D9} = 120 \times 0.1 = 12$, i.e. 6 µm/0.5 µm. The node between $M_{13}$ and $M_{14}$ then sits at the DC level of X (≈ 1.54 V).
+- $M_{15}$ carries no DC current, so both of its terminals are at the X level. Its gate is at $V_b$, the gate of $M_{14}$, so $V_{SG15} = V_{SG14}$; with equal $V_{SB}$ the thresholds are equal and the overdrive of $M_{15}$ equals that of $M_{14}$.
+- $R_{on15} = 1/[\mu_pC_{ox}(W/L)_{15}V_{ov14}] = \dfrac{1}{g_{m14}}\dfrac{(W/L)_{14}}{(W/L)_{15}}$. Setting this equal to $R_z$ gives $(W/L)_{15} = (W/L)_{14}\dfrac{g_{m9}}{g_{m14}}\dfrac{C_C}{C_C + C_L}$ with $g_{m9}/g_{m14} = \sqrt{(W/L)_9I_{D9}/[(W/L)_{14}I_1]}$, which is the formula above.
+- Arithmetic check with $(W/L)_{14} = 12$ (overdrive 0.659 V, $g_{m14}$ = 0.304 mS; not feasible, see the headroom check): $(W/L)_{15} = 12 \times 10 \times 0.474 = 56.8$, and $R_{on15} = 1/(38.4\ \mu \times 56.8 \times 0.659) \approx 695\ \Omega$.
+- Headroom check: with $M_{14} = M_{13}$ the stack needs $V_{SG13} + V_{SG14}$ ≈ 1.46 + 1.70 V (body effect raises $|V_{TH14}|$ to ≈ 1.04 V), so $V_b \approx -0.16$ V and $I_1$ cannot operate. A wider $M_{14}$ helps: e.g., 30/0.5 (W/L = 60) gives an overdrive of 0.29 V, $V_b$ ≈ 0.2 V (≈ 0.45 V if its n-well is tied to its source), and then $(W/L)_{15} = 60 \times 4.47 \times 0.474 \approx 127$ ($g_{m14}$ = 0.68 mS; $R_{on15} = 1/(38.4\ \mu \times 127 \times 0.295) \approx 695\ \Omega$).
+- One bias branch $M_{13}$–$M_{14}$ can serve both $M_{15}$ devices (one per side).
+
+## Grading notes
+
++2: $(W/L)_{13}$ = 12 from $V_{GS13} = V_{GS9}$; $R_z$ ≈ 0.65–0.7 kΩ; a $(W/L)_{15}$ consistent with the stated $(W/L)_{14}$ via $R_{on15} = (W/L)_{14}/[(W/L)_{15}g_{m14}]$ (e.g., ≈ 127 ± 8% for $(W/L)_{14}$ = 60, ≈ 57 ± 8% for $(W/L)_{14}$ = 12), with a $(W/L)_{14}$ that leaves $V_b > 0$ (roughly $(W/L)_{14} > 21$) or with the headroom problem noted. +1: method right with a slip in one size, or the ratio right without a concrete $(W/L)_{14}$, or an otherwise correct design whose $(W/L)_{14}$ leaves $V_b < 0$ (e.g. 12) without noting the headroom problem. 0: only $(W/L)_{13}$ right; this includes a wrong $R_z$ (e.g. 366 Ω from dropping the $1/g_{m9}$ term) carried consistently into $(W/L)_{15}$, whatever $(W/L)_{14}$ is chosen. -2 (asserted as fact): $C_C/(C_C + C_L)$ placed under the square root (giving ≈ 83 for $(W/L)_{14}$ = 12, $R_{on}$ ≈ 480 Ω), $M_{13}$ sized for equal current instead of equal $V_{GS}$, or $M_{15}$ treated as a saturated device.

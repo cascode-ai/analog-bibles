@@ -1,0 +1,1 @@
+Sketch $I_X$ and the transconductance of the transistor as a function of $V_X$ for the circuit shown in [Fig. 1] as $V_X$ varies from 0 to $V_{DD} = 3$ V. $M_1$ is a PMOS device with $V_{TH} = -0.8$ V, its bulk tied to $V_{DD}$. $R_1$, $R_2$ and the size of $M_1$ are not specified; describe the curves in terms of them ($\beta_p = \mu_pC_{ox}W/L$).

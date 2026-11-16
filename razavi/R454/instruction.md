@@ -1,0 +1,3 @@
+We design a two-stage op amp based on the topology shown in [Fig. 1]. Assume a power budget of 6 mW, $V_{DD} = 3$ V, a required output swing of 2.5 V (peak-to-peak at $V_{out}$), and $L_{eff} = 0.5\ \mu$m for all devices. Allocating a current of 1 mA to the output stage and roughly equal overdrive voltages to $M_5$ and $M_6$, determine $(W/L)_5$ and $(W/L)_6$. Note that the gate-source capacitance of $M_5$ is in the signal path, whereas that of $M_6$ is not; thus $M_6$ can be quite a lot larger than $M_5$.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V.

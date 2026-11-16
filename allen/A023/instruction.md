@@ -1,0 +1,1 @@
+What change in the forward voltage $v_D$ of a silicon pn diode will cause an increase of 10 (an order of magnitude) in the forward diode current? Assume room temperature ($kT/q = 25.9$ mV) and that the diode follows the ideal diode equation.

@@ -1,0 +1,1 @@
+For a typical n-well CMOS process, the bulk-threshold (body-effect) parameter is $\gamma_N = 0.4\ \mathrm{V^{1/2}}$ for the n-channel transistor and $\gamma_P = 0.57\ \mathrm{V^{1/2}}$ for the p-channel transistor; both transistors have the same gate oxide ($t_{ox}$ = 140 Å). Why is $\gamma_P$ greater than $\gamma_N$ in an n-well CMOS technology?

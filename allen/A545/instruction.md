@@ -1,0 +1,3 @@
+Assume the modulation noise spectral density of a second-order 1-bit ΔΣ modulator is given as
+$|N(f)| = \dfrac{4\Delta}{\sqrt{12}}\sqrt{\dfrac{2}{f_s}}\,\sin^2\!\left(\dfrac{\omega\tau}{2}\right)$
+where $\Delta$ is the signal level out of the 1-bit quantizer, $\omega = 2\pi f$, and $f_s = 1/\tau$ = the sampling frequency = 10 MHz. Find the signal bandwidth $f_B$ in hertz if the modulator is to be used in an 18-bit oversampled ADC. Assume that 18-bit performance means that the rms noise in the band 0 to $f_B$ (ideal low-pass decimation filter) does not exceed the rms quantization noise of an ideal 18-bit quantizer whose full-scale range is $\Delta$, i.e. $\Delta/(2^{18}\sqrt{12})$. State any other assumption you use.

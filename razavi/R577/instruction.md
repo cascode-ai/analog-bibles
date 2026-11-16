@@ -1,0 +1,1 @@
+[Fig. 1] shows a complementary sampling switch: $M_1$ (NMOS, gate driven by CK) in parallel with $M_2$ (PMOS, gate driven by $\overline{CK}$), followed by the sampling capacitor $C_H$. Describe an efficient SPICE simulation that yields the plot of the switch's equivalent on-resistance $R_{on,eq}$ as a function of the input level $V_{in}$ (from 0 to $V_{DD}$).

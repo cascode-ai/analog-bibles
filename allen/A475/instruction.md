@@ -1,0 +1,3 @@
+A 6-bit two-stage charge scaling DAC (bits $b_0$ = MSB … $b_5$ = LSB) uses a coupling capacitor $C_x$ that is in error by $\Delta C_x$. Its output is given as
+$v_{OUT} = \frac{V_{REF}}{8}\left(1 - \frac{17\Delta C_x}{100C_x}\right)\left[\sum_{i=1}^{3} b_{i-1}\cdot 2^{3-i} + \left(1 + \frac{8\Delta C_x}{10C_x}\right)\sum_{i=4}^{6}\frac{b_{i-1}\cdot 2^{6-i}}{8}\right]$
+(for $\Delta C_x = 0$ it is the ideal 6-bit output). What is the accuracy of $C_x$ ($\pm\Delta C_x/C_x$) necessary to avoid an error, using worst-case considerations? An error means that for some input code the output deviates from its ideal value by more than $\pm\frac12$ LSB ($V_{REF}/128$).

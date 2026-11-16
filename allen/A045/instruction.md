@@ -1,0 +1,1 @@
+Design an optimal layout of a matched pair of MOS transistors whose $W/L$ is 16 µm/0.5 µm (each). The matching should be photolithographic invariant (all units drawn with the same orientation, so that angled implants and alignment errors affect both transistors identically) as well as common centroid. Sketch (or describe precisely) the layout.

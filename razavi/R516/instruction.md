@@ -1,0 +1,1 @@
+Suppose a hypothetical transistor exhibits a transconductance given by $g_m = \beta(V_{GS} - V_{TH})^2$ (in saturation), where β is a device constant. Find an expression for $I_D$ as a function of $V_{GS} - V_{TH}$.

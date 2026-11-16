@@ -1,0 +1,3 @@
+For the n-channel input differential amplifier with a current-mirror load shown in [Fig. 1], with all transistors 10 µm/1 µm, $I_{SS} = 10\ \mu$A and all transistors saturated, find the small-signal voltage gain $v_o/v_i$ if $v_{in} = v_1 - v_2$ ($v_1$, $v_2$ the gate voltages of M1 and M2). If a 10 pF capacitor is connected from the output to ground, what is the −3 dB frequency of $V_{out}(j\omega)/V_{in}(j\omega)$ in hertz? Neglect any device capacitances.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

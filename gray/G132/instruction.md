@@ -1,0 +1,1 @@
+For the output stage shown in [Fig. 1], assume that $V_{CC} = 15$ V and for all devices $V_{CE(\text{sat})} = 0.2$ V, $V_{BE(\text{on})} = 0.7$ V and $\beta_F = 50$. Calculate the maximum positive and negative limits of $V_o$ for $R_L = 10\ \mathrm{k\Omega}$ and $R_L = 2\ \mathrm{k\Omega}$.

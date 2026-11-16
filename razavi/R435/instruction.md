@@ -1,0 +1,3 @@
+In the two-stage op amp shown in [Fig. 1], $(W/L)_{1-8} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ and $I_{SS} = 1$ mA (ideal). $V_{DD} = 3$ V. What common-mode level must be established at the drains of $M_3$ and $M_4$ (nodes X and Y) so that $I_{D5} = I_{D6} = 1$ mA? How does this constrain the maximum input common-mode level? Bulks of NMOS devices are at ground and of PMOS devices at $V_{DD}$; ignore channel-length modulation in the bias calculation.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V.

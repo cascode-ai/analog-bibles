@@ -1,0 +1,1 @@
+Draw a single-ended switched-capacitor realization of everything within the dashed box of the delta-sigma modulator shown in [Fig. 1]. Assume that the output of the 1-bit DAC is $\pm 0.5V_{REF}$. Be sure to show the phases of the switches ($\phi_1$ and $\phi_2$, nonoverlapping).

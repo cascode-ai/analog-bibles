@@ -1,0 +1,3 @@
+Calculate the output resistance of the MOS cascode current mirror shown in [Fig. 1], assuming that $I_{IN} = 100$ µA and the devices have drawn dimensions of 100 µm/1 µm. Assume for all devices that $X_d = 0$, and ignore the body effect for simplicity. Compare your answer with a SPICE simulation and also use SPICE to plot the $I_{OUT}$–$V_{OUT}$ characteristic for $V_{OUT}$ from 0 to 3 V.
+
+Process data (n-channel): $t_{ox} = 80$ Å ($C_{ox} = 4.32$ fF/µm²), $\mu_n = 450$ cm²/V·s ($k' = 194\ \mu\mathrm{A/V^2}$), $V_t = 0.6$ V, lateral diffusion $L_d = 0.09$ µm (so $L_{\text{eff}} = 0.82$ µm), $dX_d/dV_{DS} = 0.02$ µm/V, $\lambda = (dX_d/dV_{DS})/L_{\text{eff}} = 0.0244\ \mathrm{V^{-1}}$.

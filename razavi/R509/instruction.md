@@ -1,0 +1,3 @@
+A two-stage op amp has the open-loop transfer function
+$$H_{open}(s) = \frac{A_0\left(1 + \dfrac{s}{\omega_z}\right)}{\left(1 + \dfrac{s}{\omega_{p1}}\right)\left(1 + \dfrac{s}{\omega_{p2}}\right)},$$
+where the zero is created by a resistor in series with the Miller compensation capacitor and is intended to cancel the nondominant pole; $A_0 = 494$, $\omega_{p1} = 3.66\times10^6$ rad/s, and $\omega_{p2} = 3.33\times10^9$ rad/s. The op amp is placed in a unity-gain feedback loop and a small step of height $V_0$ is applied at the input. Determine the step response if there is a 10% mismatch between the pole and the zero magnitudes.

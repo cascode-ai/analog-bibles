@@ -1,0 +1,1 @@
+For a VCO, we have $\omega_{out} = \omega_0 + K_{VCO}V_{cont}$. The control line experiences a small sinusoidal ripple, $V_{cont} = V_m\cos\omega_mt$. If the VCO is followed by a ÷M circuit (frequency divider), determine the output spectrum of the divider. Consider two cases: $\omega_0/M > \omega_m$ and $\omega_0/M < \omega_m$.

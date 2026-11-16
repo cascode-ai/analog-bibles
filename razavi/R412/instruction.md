@@ -1,0 +1,3 @@
+Consider the circuit shown in [Fig. 1], where $(W/L)_{1-4} = 50/0.5$, $|I_{D1-4}| = 0.5$ mA, $R_2 = 3\ \mathrm{k\Omega}$ and $R_1 \approx 0.97\ \mathrm{k\Omega}$ (the middle of the range of $R_1$ for which these currents flow with all transistors, $M_2$ in particular, in saturation); $M_3$ and $M_4$ are PMOS current sources biased by $V_b$. Calculate the closed-loop gain $V_{out}/V_{in}$ and the output impedance. NMOS bulks are at ground.
+
+Device data: $V_{DD} = 3$ V; NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $\lambda = 0.2\ \mathrm{V^{-1}}$.

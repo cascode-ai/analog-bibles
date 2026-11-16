@@ -1,0 +1,1 @@
+Two bond wires run parallel to each other 5 mm above a ground plane, with a center-to-center spacing of 1 mm. Treat them as long round wires above a perfectly conducting ground plane (neglect end effects). What is the total mutual inductance between them if each wire is 4 mm long?

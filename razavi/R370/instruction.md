@@ -1,0 +1,1 @@
+The source follower shown in [Fig. 1] (NMOS $M_1$ with gate = input and source = output, biased by the NMOS current source $M_2$ with its gate at a fixed bias $V_b$) is to provide an output resistance of 100 Ω with a bias current of 0.1 mA. Calculate $(W/L)_1$. Use the square law with $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$; neglect body effect and channel-length modulation.

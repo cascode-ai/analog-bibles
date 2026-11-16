@@ -1,0 +1,1 @@
+Suppose that in the transimpedance amplifier of [Fig. 1] ($I_1$–$I_3$ ideal, $I_1 = I_2 = 1$ mA, $I_3 = 10\ \mu$A, $(W/L)_{1,2} = 50/0.5$, $(W/L)_3 = 5/0.5$, $V_{DD} = 3$ V), a large negative input current is applied such that $M_1$ turns off momentarily. What is the slew rate at the output? Denote the total capacitance at the output node by $C_L$.

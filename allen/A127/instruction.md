@@ -1,0 +1,3 @@
+A current-source load amplifier is shown in [Fig. 1]: M3 is diode-connected and carries an ideal, noiseless 100 µA reference current, M2 mirrors it as the load of the n-channel input transistor M1, and all W/L ratios are 10 µm/1 µm. If Boltzmann's constant is $1.38\times10^{-23}$ J/K, find the equivalent-input thermal noise voltage (spectral density, in V/√Hz) of this amplifier at room temperature (T = 300 K). Ignore bulk effects ($g_{mbs} = 0$). Model the thermal noise of each MOSFET by a drain-current noise source of spectral density $\overline{i_n^2} = \frac{8kT}{3}g_m$ (A²/Hz) in parallel with its channel.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$.

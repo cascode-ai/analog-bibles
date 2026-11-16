@@ -1,0 +1,3 @@
+Using SPICE, generate a set of parametric I–V curves for an n-channel transistor with $W/L = 10\ \mu\mathrm{m}/1\ \mu\mathrm{m}$ operating as a switch, using the test circuit of [Fig. 1]: terminal A is held at 2.5 V by a dc source, the source $V_1$ is connected between A and B ($v_B = 2.5\ \mathrm{V} + V_1$), the bulk is grounded, and the gate voltage $V_G$ takes the values 1, 2, 3, 4 and 5 V. Plot the current $I$ (flowing from A through the channel and out of terminal B) versus $V_1$ swept from −2.5 V to +2.5 V, one curve per $V_G$.
+
+Model parameters (simple/LEVEL-1 model, 0.8-µm process): VTO = 0.7 V, KP = 110 µA/V², GAMMA = 0.4 V^½, PHI = 0.7 V, LAMBDA = 0.04 V⁻¹ (for $L = 1\ \mu$m).

@@ -1,0 +1,1 @@
+For the op amp shown in [Fig. 1] (supplies +1.5 V and −1.5 V), the dc currents are $I_8 = 22.8$ µA in the bias branch M9–M8, $I_5 = 45.7$ µA in the differential pair and $I_7 = I_6 = 228$ µA in the output stage. Find the power dissipation.

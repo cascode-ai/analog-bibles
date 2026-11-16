@@ -1,0 +1,1 @@
+The aperture jitter of the clock in an ADC is 200 ps and the input signal is a 1-MHz sinusoid with a peak-to-peak value of $V_{REF}$ (the full-scale range of the ADC). What is the number of bits that this ADC can resolve? Take the worst-case voltage error caused by the jitter (at the steepest point of the sinusoid) and require it not to exceed ½ LSB.

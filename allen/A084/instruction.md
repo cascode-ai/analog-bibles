@@ -1,0 +1,3 @@
+Using the cascode circuit shown in [Fig. 1], design the $W/L$ of M1 to achieve the same output resistance as the circuit of [Fig. 2]. In [Fig. 1], M2 is an n-channel transistor with $W/L$ = 2/1 and its gate at $V_{GG}$, and M1 is a diode-connected n-channel transistor from M2's source to ground; the output current is 10 µA. [Fig. 2] is the same 2/1 transistor carrying 10 µA with a 100-kΩ resistor from its source to ground. Ignore the body effect.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, λ = 0.04 V⁻¹ (for $L = 1\ \mu$m); in saturation $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2(1 + \lambda v_{DS})$.

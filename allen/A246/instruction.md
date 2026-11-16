@@ -1,0 +1,1 @@
+The folded-cascode op amp shown in [Fig. 1] is broken into a V→I stage (input pair M1–M2 with current source M3), an I→I stage (M4–M7) and an I→V stage (cascode current-mirror load M8–M11). Replace the I→I stage with a current-mirror load. How would you increase the gain of this configuration to make it equivalent to a two-stage op amp?

@@ -1,0 +1,3 @@
+Consider the fully differential amplifier shown in [Fig. 1], with $(W/L)_{1-4} = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$, $I_{SS} = 1$ mA (ideal current source), and an input common-mode level of 1.3 V. $V_b$ is set so that $M_3$ and $M_4$ each carry $I_{SS}/2$. $V_{DD} = 3$ V. Calculate the small-signal differential voltage gain and the maximum output swing if all transistors remain in saturation. The bulk of each NMOS is at ground and that of each PMOS at $V_{DD}$.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$.

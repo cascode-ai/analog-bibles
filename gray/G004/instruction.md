@@ -1,0 +1,1 @@
+Calculate the avalanche breakdown voltage of a plane-abrupt silicon $pn$ junction with doping densities $N_A = 8\times10^{15}$ atoms/cm³ and $N_D = 10^{17}$ atoms/cm³ if the critical field is $\mathcal{E}_{crit} = 4\times10^5$ V/cm. Use $\epsilon_{Si} = 1.04\times10^{-12}$ F/cm and $q = 1.6\times10^{-19}$ C.

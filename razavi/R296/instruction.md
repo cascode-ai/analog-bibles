@@ -1,0 +1,1 @@
+Estimate the poles of the circuit shown in [Fig. 1]. $M_1$ and $M_2$ are NMOS transistors in saturation with $\lambda \ne 0$ (output resistances $r_{O1}$, $r_{O2}$); $I_1$ and $I_2$ are ideal current sources. Take into account the capacitances $C_{GS}$, $C_{GD}$ and $C_{DB}$ of both transistors and express the results symbolically.

@@ -1,0 +1,1 @@
+Consider the arrangement shown in [Fig. 1], where the NMOS transistor has $V_{TH} = 0.7$ V (source and bulk grounded) and its drain is held at 1.2 V. Explain what happens to the pinch-off point as $V_G$ increases.

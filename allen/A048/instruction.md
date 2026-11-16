@@ -1,0 +1,1 @@
+Sketch to scale the output characteristics ($i_D$ versus $v_{DS}$) of an enhancement p-channel MOS transistor if $V_T = -0.7$ V and $I_D = -500\ \mu$A when $V_{GS} = -5$ V in saturation. Choose values of $V_{GS}$ = −1, −2, −3, −4 and −6 V. Assume that the channel-length modulation parameter is zero, and use the square-law model.

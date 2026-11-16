@@ -1,0 +1,13 @@
+# Golden Solution - R707
+
+## Reference answer
+
+[Fig. 2] (distributing the reference as a current and mirroring it locally) performs much better. In [Fig. 1] the mirrored currents drift away from $I_{REF}$ by roughly 0.5–1.5 % per kelvin of temperature difference between $M_{REF}$ and each remote $M_k$.
+
+- [Fig. 1] distributes a voltage: the $V_{GS}$ set up by $M_{REF}$ at its own temperature is applied to $M_1 \ldots M_n$, which sit at other temperatures. With $I_D = \tfrac12\mu(T)C_{ox}(W/L)(V_{GS} - V_{TH}(T))^2$, a temperature difference ΔT gives $\Delta I/I \approx [\partial\mu/\mu\partial T + 2|dV_{TH}/dT|/(V_{GS}-V_{TH})]\Delta T$. With $\mu \propto T^{-3/2}$ (−0.5 %/K at 300 K), $|dV_{TH}/dT|$ ≈ 1–2 mV/K and a 0.2-V overdrive, this is ≈ +0.5 to +1.5 %/K. A few kelvin across the die gives several percent of systematic mismatch, changing with the chip's activity (thermal transients). The voltage drop on the ground line adds error, and the wire's own temperature coefficient (≈ 0.3 %/K for Al) makes it temperature dependent as well.
+- [Fig. 2] distributes currents: $I_{REF1}$, $I_{REF2}$ come from $M_{0a}$, $M_{0b}$ placed side by side (same temperature), and the wire resistance in series with a current source does not change the current. At each destination the diode-connected $M_{REF,k}$ sits next to $M_k$ at the same temperature, so the local mirror ratio is preserved regardless of the global gradient.
+- Residual errors in [Fig. 2]: random mismatch between $M_{0a}$/$M_{0b}$ and between each $M_{REF,k}$/$M_k$, the small local gradient within each mirror, and longer lines that need local bypass capacitors against noise pickup. The common temperature dependence of $I_{REF}$ itself affects all blocks equally.
+
+## Grading notes
+
++2: [Fig. 2] judged better, with the mechanism: in [Fig. 1] one gate–source voltage is shared by devices at different temperatures, and since $V_{TH}$ and μ depend on temperature the remote currents deviate; in [Fig. 2] mirroring is local (both mirror devices at the same temperature) and the reference travels as a current, insensitive to wire resistance. A numerical estimate is not required. +1: right choice with the temperature mechanism stated only vaguely, or with one minor misstatement (e.g., wrong sign of the $V_{TH}$ temperature coefficient) that does not change the conclusion. 0: right choice argued only by IR drop on the ground line, missing the temperature effect. -2 (asserted as fact): [Fig. 1] judged better or the two judged equivalent under temperature gradients, or the claim that the temperature dependence cancels in [Fig. 1] because all devices share the same $V_{GS}$.

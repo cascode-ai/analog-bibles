@@ -1,0 +1,3 @@
+The capacitances of M1 and M2 in [Fig. 1] are $C_{gs1} = C_{gs2} = 200$ fF, $C_{gd1} = C_{gd2} = 50$ fF and $C_{bd1} = C_{bd2} = 100$ fF. M1 and M2 are n-channel devices with $W/L = 5\ \mu\mathrm{m}/1\ \mu\mathrm{m}$, each biased by a 100-µA dc current source; M1 is diode-connected and also receives the small-signal input current $i_{in}$, and the output (drain of M2) is shorted to ground for signals ($R_L = 0$). Find the low-frequency current gain $i_{out}/i_{in}$, the input resistance seen by $i_{in}$, the output resistance looking into the drain of M2, and the −3 dB frequency in Hz.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, λ = 0.04 V⁻¹ (for $L = 1\ \mu$m).

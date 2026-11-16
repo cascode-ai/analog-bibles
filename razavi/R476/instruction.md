@@ -1,0 +1,1 @@
+An amplifier has a forward gain of $A_0 = 1000$ and two poles at $\omega_{p1}$ and $\omega_{p2}$. For $\omega_{p1}$ = 1 MHz, calculate the phase margin of a unity-gain feedback loop if $\omega_{p2} = 2\omega_{p1}$.

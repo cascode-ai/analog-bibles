@@ -1,0 +1,3 @@
+For the 3-bit interpolating ADC (interpolation factor 4) shown in [Fig. 1], find the accuracy (tolerance $\pm\Delta R/R$) required for the two resistors connected between $V_{REF}$ and ground, using a worst-case approach, so that every comparator transition stays within ±0.5 LSB (1 LSB = $V_{REF}/8$) of its ideal position. Repeat this analysis for the eight series interpolating resistors using a worst-case approach.
+
+Treat the amplifier outputs as ideal voltage sources; $A_1$ and $A_2$ are identical, all comparators have the same threshold $V_{th}$, and the ideal transitions are spaced exactly 1 LSB apart. Use the idealized interpolation picture in which a comparator's transition point moves in proportion to the resistive division ratio of the tap it is connected to.

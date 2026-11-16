@@ -1,0 +1,3 @@
+For the CMOS push–pull inverter shown in [Fig. 1], find the small-signal voltage gain $A_v$, the output resistance $R_{out}$ and the −3 dB frequency $f_{-3\,\mathrm{dB}}$ if $I_D = 200\ \mu$A, $W_1/L_1 = W_2/L_2 = 5\ \mu$m$/1\ \mu$m, $C_{gd1} = C_{gd2} = 5$ fF, $C_{bd1} = C_{bd2} = 30$ fF and $C_L = 10$ pF. Both transistors are saturated and the input is driven by an ideal voltage source.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

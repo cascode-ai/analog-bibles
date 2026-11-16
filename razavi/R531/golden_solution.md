@@ -1,0 +1,13 @@
+# Golden Solution - R531
+
+## Reference answer
+
+The observed closed-loop time constant is about 1.4–1.5 ns, against about 1.0–1.1 ns predicted from the 1.7-MHz dominant pole. The two agree only roughly: the amplifier settles about 40% more slowly than predicted, as if the dominant pole were nearer 1.1–1.3 MHz.
+
+- Waveform: after a fast initial jump to about 60 mV (within ≈ 0.5 ns), the output approaches 98.8 mV along a single exponential. From (b), the error $98.83 - V_{out}$ is ≈ 1.85 mV at 5 ns and ≈ 0.31 mV at 7.6 ns, so $\tau \approx 2.6\ \mathrm{ns}/\ln 5.9 \approx 1.45$ ns. The 1% band (≈ 97.84 mV) is reached at about 5.9 ns, i.e., $t_s \approx 4.6\tau$ gives τ ≈ 1.3 ns. The corresponding closed-loop bandwidth is ≈ 110 MHz.
+- Prediction: the feedback factor is $\beta = C_2/(C_1+C_2+C_{in}) = 0.25/1.3 \approx 0.19$. The closed-loop bandwidth is ≈ $\beta A_0 f_{p1}$ = 0.19 × 500 × 1.7 MHz ≈ 163 MHz, so τ ≈ 0.98 ns. The final value implies a gain error of 1.18% = $(C_1+C_2+C_{in})/(C_2A_0)$, i.e., $A_0 \approx 440$, which gives ≈ 144 MHz and τ ≈ 1.1 ns.
+- Inverting the measurement, a 110-MHz bandwidth implies $f_{p1} \approx 110\ \mathrm{MHz}/(\beta A_0) \approx 1.1$–1.3 MHz. The 1.7-MHz figure was itself only an estimate, obtained by scaling $C_C$. Other contributors are the lower actual gain, the loading of the output by the feedback capacitors, and the imperfect pole–zero cancellation by $R_z$, which also produces the fast initial jump.
+
+## Grading notes
+
++2: τ estimated from the exponential approach (accept 1.2–1.8 ns), the prediction $\tau \approx 1/(2\pi\beta A_0 f_{p1})$ with β ≈ 0.19–0.2 (≈ 0.9–1.1 ns, or a 145–170 MHz bandwidth), and the conclusion that they agree only roughly (same order, observed settling slower than predicted by roughly 1.3–2 times, consistent with the answer's own measured and predicted values, or implied dominant pole ≈ 1.0–1.3 MHz). Attributing the fast initial jump to capacitive feedthrough is a minor false claim in a side remark (the direct feedthrough through $C_1$, $C_2$ is only a few mV), not a critical one. +1: correct measured τ and prediction with an imprecise conclusion (e.g., "they agree" without noting the ~40% difference). 0: τ from the initial fast jump (≈ 0.4 ns) while acknowledging the slow tail, or a correct measurement with no prediction. -2 (asserted as fact): the prediction computed without the loop gain ($\tau = 1/(2\pi \cdot 1.7\ \mathrm{MHz}) \approx 94$ ns, "disagrees by 100 times"), τ taken only from the initial jump with the conclusion that the amplifier is faster than predicted, or β taken as 1 or 4.

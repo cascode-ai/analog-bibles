@@ -1,0 +1,1 @@
+[Fig. 1] shows the simulated transconductance of an NMOS transistor with $W/L = 5\ \mu\mathrm{m}/40\ \mathrm{nm}$ (40-nm CMOS) as a function of its overdrive voltage $V_{GS} - V_{TH}$, with $V_{DS} = 200$ mV. Explain why $g_m$ falls as $V_{GS} - V_{TH}$ exceeds 0.5 V.

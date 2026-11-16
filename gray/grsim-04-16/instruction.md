@@ -1,0 +1,3 @@
+Determine the unloaded voltage gain $v_o/v_i$ and output resistance for the cascode active-load circuit shown in [Fig. 1]. Neglect $r_\mu$. Verify with SPICE and also use SPICE to plot the large-signal $V_O$–$V_I$ transfer characteristic for $V_{SUP} = 2.5$ V.
+
+Device data: npn $\beta_F = \beta_0 = 200$, $V_A = 130$ V, $I_S = 5\times10^{-15}$ A; lateral pnp $\beta_F = \beta_0 = 50$, $V_A = 50$ V, $I_S = 2\times10^{-15}$ A; $r_b = 0$; $V_T = 26$ mV. The tail current $I_{TAIL}$ is not specified: give the results in terms of $I_{TAIL}$ (for the simulation choose a value, e.g. 100 µA, and state it).

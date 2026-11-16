@@ -1,0 +1,3 @@
+For the circuit shown in [Fig. 1], calculate the small-signal voltage gain if $(W/L)_1 = 50/0.5$, $(W/L)_2 = 10/0.5$, and $I_{D1} = I_{D2} = 0.5$ mA. What is the gain if $M_2$ is instead implemented as a diode-connected PMOS device, as shown in [Fig. 2], with the same $(W/L)_2 = 10/0.5$ and the same current? $V_{DD} = 3$ V; the bulk of each NMOS is at ground and the bulk of the PMOS is at $V_{DD}$. Dimensions are effective values in μm.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$.

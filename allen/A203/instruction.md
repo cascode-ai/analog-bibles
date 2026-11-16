@@ -1,0 +1,3 @@
+Design the W/L ratios of M1 and M2 of the Class A amplifier shown in [Fig. 1] (n-channel driver M1, p-channel current-source load M2 with its gate at the fixed voltage $V_{GG2}$, load $R_L \| C_L$ to ground) so that a voltage swing of ±3 V and a slew rate of 5 V/µs are achieved if $R_L$ = 10 kΩ and $C_L$ = 1 nF. Assume that $V_{DD} = -V_{SS}$ = 5 V and $V_{GG2}$ = 2 V (measured from ground), that $v_{IN}$ can be driven up to $V_{DD}$, and that the slew rate is to be met (in both directions) at $v_{OUT}$ = 0 V. Use channel lengths of 1 µm and neglect channel-length modulation in these large-signal calculations.
+
+Device data: n-channel $V_T$ = 0.7 V, $K'_N$ = 110 µA/V²; p-channel $V_T$ = −0.7 V, $K'_P$ = 50 µA/V².

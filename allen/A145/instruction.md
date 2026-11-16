@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] is the small-signal model for common-mode analysis of a differential amplifier with diode-connected loads (one half circuit: the tail resistance appears as $2r_{ds5}$, and the load of M1 is $r_{ds3}$ in parallel with $1/g_{m3}$). Perform a small-signal analysis of this circuit that does not ignore $r_{ds1}$ (shown dashed) to find $v_{o1}/v_{ic}$. Compare your result with the expression obtained when $r_{ds1}$ is ignored:
+
+$\dfrac{v_{o1}}{v_{ic}} = -\dfrac{g_{m1}[r_{ds3}\,\|\,(1/g_{m3})]}{1 + 2g_{m1}r_{ds5}} \approx -\dfrac{g_{m1}/g_{m3}}{1 + 2g_{m1}r_{ds5}} \approx -\dfrac{g_{ds5}}{2g_{m3}}$

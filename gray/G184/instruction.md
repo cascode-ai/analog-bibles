@@ -1,0 +1,3 @@
+For the common-source amplifier whose ac schematic is shown in [Fig. 1], use the Miller approximation to calculate the −3-dB frequency of the small-signal voltage gain $v_o/v_i$. Use $R_S = 10\ \mathrm{k\Omega}$, $R_L = 5\ \mathrm{k\Omega}$ and $I_D = 0.5$ mA.
+
+NMOS data: $W = 100\ \mu$m, $L_{\text{drwn}} = 2\ \mu$m, $L_d = 0.2\ \mu$m, $X_d = 0$ (effective length $L_{\text{eff}} = L_{\text{drwn}} - 2L_d - X_d$), $k_n' = \mu_nC_{ox} = 60\ \mu\mathrm{A/V^2}$, $\lambda = 0$, $\gamma = 0$, $C_{ox} = 0.7\ \mathrm{fF/\mu m^2}$, $C_{gd} = 14$ fF, $C_{sb} = C_{db} = 0$. Take $C_{gs} = \tfrac{2}{3}WL_{\text{eff}}C_{ox}$ and use the square-law model $I_D = \tfrac{k_n'}{2}\tfrac{W}{L_{\text{eff}}}(V_{GS}-V_t)^2$.

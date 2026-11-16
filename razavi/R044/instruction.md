@@ -1,0 +1,1 @@
+Consider the structure shown in [Fig. 1]: two identical NMOS transistors, each with aspect ratio $W/L$, connected in series with their gates tied together. Determine $I_D$ as a function of $V_{GS}$ and $V_{DS}$, and prove that the structure can be viewed as a single transistor having an aspect ratio $W/(2L)$. Assume that $\lambda = \gamma = 0$ and use square-law characteristics.

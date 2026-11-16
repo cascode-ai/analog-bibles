@@ -1,0 +1,5 @@
+Use SPICE to simulate the folded-cascode op amp of [Fig. 1], with the design below. The differential frequency response, power dissipation, phase margin, input common-mode range, output-voltage range, slew rate, and settling time are to be simulated with a load capacitance of 20 pF. Use the level-1 model parameters given below.
+
+Design (originally targeted at: single 2.5-V supply, $C_L$ = 10 pF, slew rate 10 V/µs, output range 0.5–2 V, ICMR 1–2.5 V, GB 10 MHz, gain > 3000, $P_{diss}$ < 5 mW): $V_{DD} = 2.5$ V, ground as the negative rail; $I_3 = 100\ \mu$A, $I_4 = I_5 = 125\ \mu$A (75 µA in each cascode branch); W/L: M1 = M2 = 33, M3 = 15, M4 = M5 = 160, M6 = M7 = 160, M8 = M9 = M10 = M11 = 20; use L = 1 µm for all devices. Generate (or apply ideal) bias voltages $V_{PB1}$, $V_{PB2}$, $V_{NB1}$, $V_{NB2}$ that set these currents and place M4, M5 and M10, M11 at about the edge of saturation for the output range.
+
+Model parameters (level 1): NMOS VTO = 0.7 V, KP = 110 µA/V², GAMMA = 0.4 V^1/2, LAMBDA = 0.04 V⁻¹, PHI = 0.7 V; PMOS VTO = −0.7 V, KP = 50 µA/V², GAMMA = 0.57 V^1/2, LAMBDA = 0.05 V⁻¹, PHI = 0.8 V.

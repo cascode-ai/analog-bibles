@@ -1,0 +1,3 @@
+Why are only $2^N - 1$ comparators required for an $N$-bit flash ADC? Give a logic diagram for the digital encoding network of the 3-bit flash ADC shown in [Fig. 1] that will provide the correct digital output word.
+
+In this converter each resistor-string tap drives the non-inverting (+) input of a comparator and $V^*_{in}$ drives all the inverting (−) inputs, so a comparator outputs 1 when $V^*_{in}$ is below its tap voltage. The output word is the 3-bit binary number equal to the count of tap voltages that $V^*_{in}$ exceeds (000 for $V^*_{in} < 0.125V_{REF}$, 111 for $V^*_{in} > 0.875V_{REF}$).

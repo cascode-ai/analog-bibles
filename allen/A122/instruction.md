@@ -1,0 +1,3 @@
+A CMOS amplifier is shown in [Fig. 1]: M1 is a p-channel transistor (W/L = 5 µm/1 µm, source at $V_{DD}$, gate driven by $v_{in}$) and M2 is an n-channel transistor (W/L = 1 µm/1 µm, source grounded, gate at the dc voltage $V_{GG}$); the output is taken at the common drains. Assume M1 and M2 operate in the saturation region. What value of $V_{GG}$ gives 100 µA through M1 and M2?
+
+Device data: n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$ (channel-length modulation may be neglected for the dc bias).

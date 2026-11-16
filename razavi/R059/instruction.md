@@ -1,0 +1,1 @@
+An NMOS device operating in the subthreshold region, where $I_D \propto \exp[V_{GS}/(\zeta V_T)]$, has $\zeta = 1.5$. What variation in $V_{GS}$ results in a tenfold change in $I_D$? If $I_D = 10\ \mu$A, what is $g_m$? Assume room temperature ($V_T = kT/q \approx 26$ mV).

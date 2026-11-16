@@ -1,0 +1,1 @@
+Assuming that the devices in the circuit shown in [Fig. 1] experience complete velocity saturation, derive an expression for the voltage gain $V_{out}/V_{in}$ of the circuit in terms of the transistor widths W and $v_{sat}$. All four transistors are NMOS devices ($M_1$ and $M_2$ are identical, and $M_3$ and $M_4$ are identical). Assume that $\lambda = \gamma = 0$.

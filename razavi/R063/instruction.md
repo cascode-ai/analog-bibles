@@ -1,0 +1,1 @@
+Plotted in [Fig. 1] are the $I_D$–$V_{DS}$ characteristics of a square-law NMOS device with $W/L_{drawn} = 5\ \mu\mathrm{m}/40$ nm and $t_{ox} = 18$ Å ($\epsilon_{ox} = 3.9\epsilon_0$). Here, $V_{GS}$ is incremented in equal steps from one curve to the next. Estimate $\mu_n$, $V_{TH}$, $\lambda$, and the $V_{GS}$ steps.

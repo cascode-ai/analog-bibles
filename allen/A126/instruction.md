@@ -1,0 +1,3 @@
+A current-source load amplifier is shown in [Fig. 1]: M3 is diode-connected and carries the 100 µA reference, M2 mirrors it as the load of the n-channel input transistor M1, and all W/L ratios are 10 µm/1 µm. The input $v_{in}$ is an ideal voltage source and $C_L$ is the load capacitance at the output. If $C_{bdn} = C_{bdp} = 10$ fF, $C_{gdn} = C_{gdp} = 5$ fF, $C_{gsn} = C_{gsp} = 10$ fF and $C_L = 1$ pF, find the −3 dB frequency in hertz. (Subscripts n and p denote the n-channel and p-channel transistors.)
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

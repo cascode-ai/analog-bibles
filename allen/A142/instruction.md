@@ -1,0 +1,1 @@
+For the p-channel input differential amplifier with an n-channel current-mirror load shown in [Fig. 1], what is the slew rate if a 100 pF capacitor is attached to the output, for a tail current ($I_{SS}$, labelled $I_{DD}$ in the figure) of $I_{SS} = 10\ \mu$A and of $I_{SS} = 1\ \mu$A? Neglect all device capacitances.

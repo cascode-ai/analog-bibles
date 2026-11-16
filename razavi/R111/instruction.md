@@ -1,0 +1,1 @@
+Assuming all MOSFETs are in saturation, calculate the small-signal voltage gain of the circuit shown in [Fig. 1] ($\lambda \ne 0$, $\gamma = 0$). $V_{in}$ is an ideal voltage source and $V_b$ is a dc bias. Express the result in terms of $g_{m1}$, $r_{O1}$, $R_1$ and $R_2$.

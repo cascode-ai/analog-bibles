@@ -1,0 +1,1 @@
+In the DAC shown in [Fig. 1], $R_1 = R_5 = 2R$, $R_2 = R_6 = 4R$, $R_3 = R_7 = 8R$, $R_4 = R_8 = 16R$, and the op amps are ideal. Switch $b_i$ is closed when bit $i$ is 1 and open when it is 0; $b_0$ is the MSB and $b_7$ the LSB. Find the values of $R_9$ and $R_{10}$ in terms of $R$ that give an ideal 8-bit DAC.

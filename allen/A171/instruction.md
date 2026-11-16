@@ -1,0 +1,3 @@
+Assume that the dc current in each transistor in [Fig. 1] is 100 µA (M2 and M3 are p-channel current sources with both gates at the dc bias $V_{P1}$, whose line passes over the M2 symbol to reach M3's gate; the drains of M1, M2 and M3 and the source of M4 form one node; the gates of M4, M5 and M6 are at the dc biases $V_{P2}$, $V_{N2}$ and $V_{N1}$). If all transistors have a W/L of 10 µm/1 µm, find the small-signal voltage gain $v_{out}/v_{in}$ and the small-signal output resistance $R_{out}$, if all transistors are in the saturated region.
+
+Device data: n-channel $K'_N$ = 110 µA/V², λ = 0.04 V⁻¹; p-channel $K'_P$ = 50 µA/V², λ = 0.05 V⁻¹. Neglect the body effect.

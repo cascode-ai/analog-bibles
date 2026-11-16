@@ -1,0 +1,3 @@
+In the circuit of [Fig. 1], the n-channel switch M1 ($W = 5\ \mu$m, $L = 1\ \mu$m, bulk at ground) connects a 2.0-V source to the capacitor $C_1 = 30$ fF, which is initially uncharged; its gate is driven by the pulse $\phi_1$ (0 V to 5 V). How long must $\phi_1$ remain high (at 5 V) for $C_1$ to charge up to 99% of the desired final value (2.0 V)?
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.7$ V; nonsaturation region $i_D = K'\frac{W}{L}\left[(v_{GS}-V_T)v_{DS} - \frac{v_{DS}^2}{2}\right]$, $V_T = V_{T0} + \gamma\left(\sqrt{2|\phi_F| + v_{SB}} - \sqrt{2|\phi_F|}\right)$.

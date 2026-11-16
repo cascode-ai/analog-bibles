@@ -1,0 +1,3 @@
+The current mirror shown in [Fig. 1] is used for current boosting: M1 is diode-connected and M2 normally operates in the active (triode) region with a small $V_{ds2}$, so that $i_2 = i_1$; when M2 is driven into saturation, the mirror gives current gain. Design this mirror to achieve 100 µA output when M2 is saturated, assuming $i_1 = 10$ µA and $W_1/L_1 = 10$. Find $W_2/L_2$ and the value of $V_{DS2}$ where $i_2 = 10$ µA.
+
+Use $K'_N = 110\ \mu\mathrm{A/V^2}$ and $V_{TN} = 0.7$ V, neglect channel-length modulation; in saturation $i_D = \frac{K'}{2}\frac{W}{L}(v_{GS} - V_T)^2$ and in the active region $i_D = K'\frac{W}{L}\left[(v_{GS} - V_T)v_{DS} - \frac{v_{DS}^2}{2}\right]$.

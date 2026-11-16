@@ -1,0 +1,1 @@
+An op amp has a low-frequency gain of 1000 V/V and a single dominant pole at $-10^4$ rad/s. Compare the −3 dB bandwidths of the two configurations shown in [Fig. 1] built with this op amp: (a) a single inverting amplifier with input resistor $R$ and feedback resistor $25R$; (b) two cascaded inverting amplifiers, each with input resistor $R$ and feedback resistor $5R$.

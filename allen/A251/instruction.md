@@ -1,0 +1,1 @@
+For an op amp model with three poles and no zero (a dominant pole $p_1$, a second pole $p_2$ and a third, highest pole $p_3$; feedback factor F = 1), prove that if the highest pole is ten times GB, then in order to achieve a 60° phase margin the second pole must be placed at least 2.2 times GB. Assume a large dc gain and evaluate the phase at $\omega = GB$.

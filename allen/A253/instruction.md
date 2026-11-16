@@ -1,0 +1,1 @@
+Physically explain why the right-half-plane (RHP) zero occurs in the Miller compensation scheme illustrated in the two-stage op amp shown in [Fig. 1] ($C_c$ connected between the gate and the drain of M6). Why does the RHP zero have a stronger influence on a CMOS op amp than on a similar-type BJT op amp?

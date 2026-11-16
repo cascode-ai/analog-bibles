@@ -1,0 +1,16 @@
+Consider the source-coupled pair with current-mirror load of [Fig. 1] ($T_1$, $T_2$ input pair; $T_3$ diode-connected, $T_4$ mirror output; $T_5$ tail source with output resistance $r_{tail}$), with the output shorted to small-signal ground. Notation: $i_1$, $i_2$ are the small-signal drain currents of $T_1$, $T_2$; $i_3 = -i_1$ is the current in the diode $T_3$; $v_3$ is the small-signal gate voltage of $T_3$/$T_4$; averages and differences are $g_{m1-2} = (g_{m1}+g_{m2})/2$, $\Delta g_{m1-2} = g_{m1} - g_{m2}$, $r_{o(dp)} = (r_{o1}+r_{o2})/2$, $\Delta r_{o(dp)} = r_{o1} - r_{o2}$, $g_{m3-4}$, $\Delta g_{m3-4}$ likewise. For a pure common-mode input $v_{ic}$, define the pair's gain error $\epsilon_d$ by $i_1 = i_2(1 - \epsilon_d)$ and the mirror's gain error $\epsilon_m$ by $g_{m4}v_3 = i_3(1 - \epsilon_m)$; then $i_{out} = -(1-\epsilon_m)i_3 - i_2 \approx -i_2(\epsilon_d + \epsilon_m)$, so $G_m[cm] = i_{out}/v_{ic} \approx -(i_2/v_{ic})(\epsilon_d + \epsilon_m)$.
+
+Although $G_m[cm]$ can be calculated exactly from a small-signal diagram where mismatch is allowed, the calculation is complicated because the mismatch terms interact, and the results are difficult to interpret. In practice, the mismatch terms are often a small fraction of the corresponding average values, and the interactions between mismatch terms are often negligible. Using the following steps as a guide, calculate an approximation to $G_m[cm]$ including the effects of mismatch. Ignore the body effect.
+
+(a) Derive the ratio $i_2/v_{ic}$ that appears in $G_m[cm] \approx -(i_2/v_{ic})(\epsilon_d + \epsilon_m)$, and show that this ratio is approximately $1/(2r_{tail})$ if $\epsilon_d \ll 2$, $g_{m2}r_{o2} \gg 1$ and $2g_{m2}r_{tail} \gg 1$.
+(b) With perfect matching, the diode $T_3$ presents ≈ $1/g_{m(mir)}$ at the drain of $T_1$ while the drain of $T_2$ is grounded; calculate $\epsilon_d$ for this case (show $\epsilon_d \approx 1/(1 + g_{m(mir)}r_{o(dp)})$).
+(c) Calculate $\epsilon_d$ if $1/g_{m3} = 0$ and the only mismatch is $g_{m1} \ne g_{m2}$.
+(d) Calculate $\epsilon_d$ if $1/g_{m3} = 0$ and the only mismatch is $r_{o1} \ne r_{o2}$.
+(e) Now estimate the total $\epsilon_d$ including mismatch by adding the values calculated in parts (b), (c) and (d). Show that the result agrees with $\epsilon_d \simeq \dfrac{1}{g_{m3}r_{o(dp)}} - \dfrac{\Delta g_{m1-2}}{g_{m1-2}}\left(1 + \dfrac{2r_{tail}}{r_{o(dp)}}\right) - \dfrac{2r_{tail}}{r_{o(dp)}}\dfrac{\Delta r_{o(dp)}}{r_{o(dp)}}$ if $g_{m3}r_{o(dp)} \gg 1$.
+(f) Calculate $\epsilon_m$ (with $r_{o3}$ finite and $g_{m3} \ne g_{m4}$) and show that the result agrees with $\epsilon_m = \dfrac{1}{1 + g_{m3}r_{o3}} + \dfrac{(g_{m3} - g_{m4})r_{o3}}{1 + g_{m3}r_{o3}} \simeq \dfrac{1}{g_{m3}r_{o3}} + \dfrac{\Delta g_{m3-4}}{g_{m3-4}}$.
+(g) Calculate the value of $G_m[cm]$ using $G_m[cm] \simeq -(\epsilon_d + \epsilon_m)/(2r_{tail})$, and the CMRR $= |G_m[dm]/G_m[cm]|$, for the data below ($G_m[dm] \approx 0.907$ mA/V with these data). Compare your answer with a SPICE simulation. Also, compare your answer to the result that would apply without mismatch.
+
+| | $T_1$ | $T_2$ | $T_3$ | $T_4$ | $T_5$ |
+|---|---|---|---|---|---|
+| $g_m$ (mA/V) | 1.05 | 0.95 | 1.1 | 0.9 | 2.0 |
+| $r_o$ (MΩ) | 0.95 | 1.05 | 1.0 | 1.0 | 0.5 |

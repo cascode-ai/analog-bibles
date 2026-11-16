@@ -1,0 +1,1 @@
+Two versions of a 2-bit flash ADC are shown in [Fig. 1]. Design $R_1$, $R_2$ and $R_3$ to make the right-hand (proposed) version equivalent to the left-hand (conventional) version of the 2-bit flash ADC. Compare the performance advantages and disadvantages of the two ADCs.

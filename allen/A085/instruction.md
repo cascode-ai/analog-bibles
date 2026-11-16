@@ -1,0 +1,3 @@
+(1) For the current sink of [Fig. 1] (n-channel transistor, $W/L$ = 2/1, gate at $V_{GG}$, 100-kΩ resistor from source to ground, output current 10 µA), calculate the minimum output voltage required to keep the transistor in saturation. (2) Compare this result with the minimum output voltage of the cascode circuit of [Fig. 2], in which the resistor is replaced by the diode-connected n-channel transistor M1 with $W/L$ = 1/22, sized so that its small-signal resistance ($\approx 1/g_{m1}$ = 100 kΩ) gives the same output resistance; M2 is the 2/1 transistor carrying 10 µA. Which circuit is a better choice in most cases? Ignore the body effect.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2$.

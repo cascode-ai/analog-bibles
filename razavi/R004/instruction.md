@@ -1,0 +1,1 @@
+Plot $I_D$ versus $V_{GS}$ for a MOS transistor with $V_{DS}$ as a parameter (a family of curves, each for a fixed $V_{DS}$), and identify the break points in the characteristics. Take an NMOS device with source and bulk grounded and $V_{TH} = 0.7$ V, and use the square-law model.

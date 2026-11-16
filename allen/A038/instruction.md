@@ -1,0 +1,1 @@
+Given the polysilicon resistor shown in [Fig. 1] (top view and side view), with a resistivity of $\rho = 4\times10^{-3}\ \Omega\cdot$cm, calculate the resistance of the structure. Consider only the resistance defined by the silicide block.

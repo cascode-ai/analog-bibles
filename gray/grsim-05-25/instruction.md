@@ -1,0 +1,12 @@
+[Fig. 1] shows a complementary class AB output stage with common-source output devices $M_1$ (p-channel) and $M_2$ (n-channel), each driven by an error amplifier. [Fig. 2] is the transistor-level schematic of the top error amplifier and $M_1$; the bottom error amplifier and $M_2$ use the complementary circuit, with transistors $M_{21}$–$M_{27}$ (the complements of $M_{11}$–$M_{17}$) and current sources $I_{\text{BIASP}}$, $I_{\text{TAILP}}$ (complements of $I_{\text{BIAS}}$, $I_{\text{TAIL}}$). In [Fig. 2], with zero offset, $|I_{D1}| = I_{\text{BIAS}}(W/L)_1/(W/L)_{17}$, $|I_{D13}| = |I_{D14}| = I_{\text{BIAS}}(W/L)_{13}/(W/L)_{17}$, and the error-amplifier gain is $A = g_{m11}/(g_{m16} + g_{mb16})$; the output stage's transfer characteristic with both output devices active is $V_o \approx V_i/(1 + 1/(2Ag_mR_L))$ with $g_m = g_{m1} = g_{m2}$ when $k_p'(W/L)_1 = k_n'(W/L)_2$. Design the output stage to satisfy the following requirements.
+(a) $V_{DD} = V_{SS} = 2.5$ V.
+(b) The standby power dissipation should be no more than 70 mW.
+(c) $R_L = 100\ \Omega$.
+(d) The maximum allowed gain error with zero offsets and all transistors operating in the active region is 1 percent.
+(e) $(W/L)_{17} = (W/L)_1/100$ and $(W/L)_{13} = (W/L)_{14} = (W/L)_1/10$. Similarly, $(W/L)_{27} = (W/L)_2/100$ and $(W/L)_{23} = (W/L)_{24} = (W/L)_2/10$.
+(f) To control the quiescent current, the maximum allowed error-amplifier gain is 5.
+(g) Your solution is allowed to use four ideal current sources, two in each error amplifier. To allow these ideal current sources to be replaced by real transistors in a later design step, the voltage across each ideal current source in the top circuit must be at least 0.5 V when $V_o \ge 0$. Similarly, the voltage across each ideal current source in the complementary circuit must be at least 0.5 V when $V_o \le 0$.
+(h) To guarantee that $M_{16}$ and $M_{26}$ do not cut off under these conditions, assume $I_{\text{TAIL}} = 5I_{\text{BIAS}}$ and $I_{\text{TAILP}} = 5I_{\text{BIASP}}$.
+(i) For both n- and p-channel transistors, assume that $\lambda = 0$, $L_d = X_d = 0$, and ignore the body effect. Use $L_{\text{drwn}} = 1$ µm for all transistors, with $k_n' = 127\ \mu\mathrm{A/V^2}$, $k_p' = 57.5\ \mu\mathrm{A/V^2}$, $V_{tn} = 0.7$ V and $V_{tp} = -0.7$ V (0.8-µm process, $t_{ox} = 150$ Å).
+(j) The distortion of the output stage should be minimized under the above conditions.
+Verify your design using SPICE.

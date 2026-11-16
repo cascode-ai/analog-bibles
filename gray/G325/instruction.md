@@ -1,0 +1,1 @@
+The single-stage (telescopic-cascode) op amp in [Fig. 1] has a nondominant pole $p_2$ with $|p_2| = 200$ Mrad/s. The op amp is in a unity-gain negative feedback loop ($f = 1$). If $g_{m1} = 0.3$ mA/V, what value of $C_L$ gives a 45° phase margin? (Assume that the capacitance at the op-amp output is dominated by $C_L$ and the op-amp gain $a(s)$ can be modeled as having two poles.)

@@ -1,0 +1,1 @@
+When negative feedback is applied around an op amp whose gain is large enough, its differential input port becomes a null port: the voltage across the two input terminals is zero and the current flowing into or out of them is also zero. Use this null-port concept to find the voltage-transfer function $v_{out}/v_{in}$ of the noninverting voltage amplifier shown in [Fig. 1].

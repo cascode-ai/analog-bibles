@@ -1,0 +1,1 @@
+For the 3-bit flash ADC shown in [Fig. 1], what are the comparator outputs, listed in order from the upper (tap $0.875V_{REF}$) to the lower (tap $0.125V_{REF}$) comparator, if $V^*_{in} = 0.6V_{REF}$? Each tap drives the non-inverting (+) input of its comparator and $V^*_{in}$ drives the inverting (−) inputs; a comparator outputs logic 1 when its output is high.

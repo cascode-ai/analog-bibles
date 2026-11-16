@@ -1,0 +1,3 @@
+A band-gap reference like that shown in [Fig. 1] (pnp transistors $Q_1$ and $Q_2$ with bases and collectors grounded; $V_{OS}$ models the op-amp offset) is designed to have nominally zero $TC_F$ of $V_{OUT}$ at 25 °C. Due to process variations, the saturation current $I_S$ of the transistors is actually twice the nominal value (for both transistors). Assume $V_{OS} = 0$ and an otherwise ideal op amp. What is $dV_{OUT}/dT$ at 25 °C? Neglect base currents.
+
+Model: $V_{EB} = V_T\ln(I/I_S)$ with $I_S \propto T^{\gamma}\exp(-V_{G0}/V_T)$; the resistors are temperature independent; $k/q = 86.2\ \mu\mathrm{V/K}$, $T = 298$ K at 25 °C.

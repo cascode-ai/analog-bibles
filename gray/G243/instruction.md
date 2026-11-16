@@ -1,0 +1,1 @@
+In a negative-feedback amplifier the forward gain is $a = 100{,}000$ and the feedback factor is $f = 10^{-3}$. Calculate the overall (closed-loop) gain $A$ and the percentage change in $A$ if $a$ changes by 10 percent.

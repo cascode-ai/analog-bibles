@@ -1,0 +1,1 @@
+Plot $I_D$ versus $V_{GS}$ for an NMOS transistor with the bulk–source voltage $V_{BS}$ as a parameter, and identify the break points in the characteristics. Keep $V_{DS}$ constant and use the square-law model with $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F| = 0.9$ V.

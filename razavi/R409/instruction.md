@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1] ($M_2$ is a PMOS current source with its gate at a fixed bias $V_b$), $(W/L)_{1-3} = 50/0.5$, $I_{D1} = |I_{D2}| = |I_{D3}| = 0.5$ mA, and $R_{S1} = R_F = R_{D2} = 3\ \mathrm{k\Omega}$. Calculate the closed-loop voltage gain and output resistance. Assume all transistors operate in saturation; the bulk of $M_1$ is at ground.
+
+Device data: $V_{DD} = 3$ V; NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$.

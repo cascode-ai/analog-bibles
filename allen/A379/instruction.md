@@ -1,0 +1,3 @@
+The inverting stage shown in [Fig. 1] has a p-channel input transistor M6 with $(W/L)_6 = 10$ and an n-channel current sink M7 with $(W/L)_7 = 100$ and $V_{BIAS} = 1$ V (above $V_{SS}$); $V_{SS} = 0$ V, $V_{DD} = 4$ V, and the output drives a 10 pF capacitive load. The input has been at 4 V for a very long time and then steps from 4 V to 1 V. Sketch the output response and find the delay time from the input step to when the output changes logical (CMOS) state, i.e. crosses $V_{DD}/2$.
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $V_{TN} = 0.7$ V, $V_{TP} = -0.7$ V; neglect channel-length modulation unless you state otherwise.

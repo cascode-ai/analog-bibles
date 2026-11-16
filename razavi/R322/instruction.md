@@ -1,0 +1,1 @@
+Determine the transfer function $V_{out}/V_{in}$ of the common-gate stage shown in [Fig. 1], in which a resistance $R_G$ appears in series with the gate (the gate is biased at $V_b$ through $R_G$), including only the capacitances $C_{GD}$ and $C_{DB}$ of $M_1$. Assume $\lambda = \gamma = 0$.

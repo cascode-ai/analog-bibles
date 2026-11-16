@@ -1,0 +1,16 @@
+# Golden Solution - G259
+
+## Reference answer
+
+$i_o/v_s \approx 29.0$ mA/V (≈ 1/34.4 Ω, close to $1/f = 29.2$ mA/V; with the common simplification $f = z_{12f} = 33.9$ Ω, without the $1/\alpha_3$ factor, the two-port result is $a/(1+T) = 29.3$ mA/V and the ideal value $1/z_{12f} = 29.5$ mA/V, within 2% of the exact value); loop gain $T \approx 167$ (two-port $T = af$, $r_o$ neglected in the forward path; ≈ 147 if $r_o$ is put across $R_{L1}$, $R_{L2}$); $Z_{in} \approx 6.3$ MΩ ($r_o$ neglected; exact small-signal value with every $r_o$ included ≈ 3.5 MΩ); $Z_{out} \approx 5.6$ MΩ (exact small-signal value, close to the $(\beta+1)r_{o3} = 6.6$ MΩ ceiling).
+
+- Small-signal values: $g_{m1,2,3} = 19.2, 29.6, 28.1$ mS; $r_{\pi1,2,3} = 6.24, 4.05, 4.27$ kΩ; $r_{o1,2,3} = 80, 51.9, 54.8$ kΩ.
+- Feedback network (z parameters): $z_{11f} = R_{E1}\|(R_F+R_{E2}) = 256$ Ω, $z_{22f} = R_{E2}\|(R_F+R_{E1}) = 256$ Ω, $f = \dfrac{1}{\alpha_3}\dfrac{R_{E1}R_{E2}}{R_{E1}+R_{E2}+R_F} = 1.0083\times33.9 = 34.2$ Ω.
+- Basic amplifier ($z_{11f}$ in the emitter of $Q_1$, $z_{22f}$ in the emitter of $Q_3$): $R_{in1} = r_{\pi1} + 121\times256 = 37.2$ kΩ, $i_{c1} = 120\,v_s/37.2\text{k}$; $Q_3$ input $R_{in3} = r_{\pi3} + 121\times256 = 35.3$ kΩ; $v_{c1} = -i_{c1}(R_{L1}\|r_{\pi2})$, $v_{c2} = -g_{m2}v_{c1}(R_{L2}\|R_{in3})$, $i_{o} = 120\,v_{c2}/R_{in3}$ → $a = 4.88$ A/V; $T = af = 167$.
+- $A = a/(1+T) = 29.07$ mA/V. $Z_{in} = R_{in1}(1+T) = 37.2\text{k}\times168 = 6.25$ MΩ.
+- Output impedance: the two-port shortcut $(1+T)\times[r_{o3}(1+g_{m3}R'_E\ldots)] \approx 215\text{k}\times168 \approx 36$ MΩ is not valid here, because the loop senses the emitter current of $Q_3$, not its collector current ($\alpha_3$ and the base current are outside the loop), so $Z_{out}$ cannot exceed about $(\beta+1)r_{o3} = 6.6$ MΩ. Exact nodal analysis (all $r_o$ included, input grounded) gives 5.6 MΩ.
+- If the loop gain is instead taken as a return ratio, its value depends on the controlled source chosen (exact small-signal values, all $r_o$ included): ≈ 545 for $g_{m1}$, ≈ 153 for $g_{m2}$, ≈ 101 for $g_{m3}$ (≈ 962, 169, 102 with $r_o$ neglected).
+
+## Grading notes
+
+Four quantities, equal weight. +2: gain 28.5–29.6 mA/V; $T$ in 140–175 from the two-port $T = af$ with the method stated (with or without $r_o$ in the basic amplifier, with or without the $1/\alpha_3$ factor in $f$), or a return ratio for an explicitly stated controlled source that matches the value for that source within ±10% (≈ 545 for $g_{m1}$, 153 for $g_{m2}$, 101 for $g_{m3}$ with $r_o$ included; ≈ 962, 169, 102 with $r_o$ neglected); $Z_{in}$ in 3.4–6.4 MΩ with the treatment of $r_o$ stated (≈ 6.25 MΩ with $r_o$ neglected at the input is the standard answer); $Z_{out}$ in 5–7 MΩ, or an explicit statement that it is limited to about $(\beta+1)r_{o3} \approx 6.6$ MΩ with a value near it. +1: the only deviation is $Z_{out}$ taken from the two-port shortcut $(1+T)z_{oa}$ (≈ 30–40 MΩ), or one other quantity off by a slip. 0: two of four right. −2 (asserted as fact): gain more than 10% from $1/f$ (e.g. off by a factor of β or 2+), $Z_{in}$ divided by $(1+T)$, or the feedback factor computed without the $R_{E1}R_{E2}/(R_{E1}+R_{E2}+R_F)$ divider.

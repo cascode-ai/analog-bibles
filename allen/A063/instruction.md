@@ -1,0 +1,3 @@
+Find the complete small-signal model for an n-channel transistor with the drain at 4 V, gate at 4 V, source at 2 V and bulk at 0 V. The W/L is 10 µm/1 µm.
+
+Data: $V_{T0}$ = 0.7 V, $K'$ = 110 µA/V², γ = 0.4 V$^{1/2}$, $2|\phi_F|$ = 0.7 V, λ = 0.04 V⁻¹ (for L = 1 µm); $C_{ox} = 24.7\times10^{-4}$ F/m²; CGSO = CGDO = $220\times10^{-12}$ F/m (per unit width); CGBO = $700\times10^{-12}$ F/m (per unit length); take $L_{eff} = L$. The source/drain diffusion geometry is not given: give numerical values for $g_m$, $g_{mbs}$, $g_{ds}$, $C_{gs}$, $C_{gd}$ and $C_{gb}$, and state how the remaining elements of the model enter.

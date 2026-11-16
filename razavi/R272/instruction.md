@@ -1,0 +1,1 @@
+The circuit shown in [Fig. 1] exhibits a negative input inductance. Calculate the input impedance $Z_{in}$ and identify the inductive component. $I_1$ is an ideal current source, all transistors are saturated, and body effect can be neglected. Express the result in terms of the small-signal parameters of $M_1$–$M_3$ and $C_1$.

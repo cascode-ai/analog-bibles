@@ -1,0 +1,1 @@
+A PLL using an XOR gate as a phase detector (followed by a low-pass filter that drives the VCO) locks with $\phi_{in} - \phi_{out} \approx 90^\circ$ if $K_{PD}K_{VCO}$ is large. Explain why. ($K_{PD}$ is the phase-detector gain and $K_{VCO}$ the VCO gain.)

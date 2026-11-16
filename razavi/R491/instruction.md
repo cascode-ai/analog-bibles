@@ -1,0 +1,3 @@
+In the fully differential two-stage op amp of [Fig. 1], $W/L = 50/0.5$ for all transistors except for $M_{5,6}$, for which $W/L = 60/0.5$. Also, $I_{SS} = 0.25$ mA and each output branch is biased at 1 mA; $V_{DD} = 3$ V. Each output is loaded by $C_L = 1$ pF, and the op amp is Miller-compensated with $C_C = 0.9$ pF from X to $V_{out1}$ and from Y to $V_{out2}$. Calculate the resistance that must be placed in series with the compensation capacitors to position the zero atop the nondominant pole. Consider only $C_L$ and $C_C$ (neglect transistor capacitances).
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $\lambda = 0.1\ \mathrm{V^{-1}}$; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $\lambda = 0.2\ \mathrm{V^{-1}}$.

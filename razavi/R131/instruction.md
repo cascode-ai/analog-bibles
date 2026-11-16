@@ -1,0 +1,1 @@
+Consider the degenerated common-source stage shown in [Fig. 1] with $(W/L)_1 = 50/0.5$, $R_D = 2$ kΩ, and $R_S = 200$ Ω; $V_{DD} = 3$ V. Assuming $\lambda = \gamma = 0$, calculate the input voltage that places $M_1$ at the edge of the triode region. What is the gain under this condition? NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V.

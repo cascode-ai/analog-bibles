@@ -1,0 +1,13 @@
+# Golden Solution - R063
+
+## Reference answer
+
+$V_{GS}$ step ≈ 0.1 V (the six curves have overdrives ≈ 0.1, 0.2, …, 0.6 V); $\lambda \approx 0.3\ \mathrm{V^{-1}}$; $\mu_n \approx 58\ \mathrm{cm^2/V\cdot s}$ (≈ 55–70 depending on how CLM is handled). $V_{TH} = V_{GS,lowest} - 0.1$ V; the curves fix only overdrives, and taking the top curve at $V_{GS} = 1$ V (the 1-V supply implied by the $V_{DS}$ axis) gives $V_{TH} \approx 0.4$ V.
+- λ: the saturated parts are straight lines; e.g. top curve 3.02 mA at 0.7 V and 3.24 mA at 1.0 V gives slope 0.77 mA/V and intercept 2.48 mA at $V_{DS} = 0$, so λ = 0.77/2.48 ≈ 0.31 V⁻¹. The other curves give 0.29–0.30 V⁻¹.
+- Steps: the knees ($V_{DS,sat} = V_{GS} - V_{TH}$) sit at ≈ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 V. Consistently, $\sqrt{I_{D,sat}}$ (intercepts 0.070, 0.278, 0.626, 1.11, 1.74, 2.48 mA) rises in equal steps of ≈ 0.263 √mA. And in the triode region adjacent curves differ by a constant ≈ 0.374 mA at $V_{DS} = 0.25$ V = $\beta\,\Delta V_{GS}\,V_{DS}(1+\lambda V_{DS})$. Combining: $\Delta V_{GS} \approx 0.10$ V, $\beta = \mu_nC_{ox}W/L \approx 14\ \mathrm{mA/V^2}$ (from $\tfrac12\beta(0.6)^2 = 2.48$ mA: 13.8 mA/V²).
+- $C_{ox} = 3.9 \times 8.85\times10^{-12}/1.8\times10^{-9} = 19.2\ \mathrm{fF/\mu m^2}$; $W/L = 125$; $\mu_nC_{ox} = 14\ \mathrm{mA/V^2}/125 = 112\ \mu\mathrm{A/V^2}$; $\mu_n = 112\times10^{-6}/0.0192 \approx 5.8\times10^{-3}\ \mathrm{m^2/V\cdot s} = 58\ \mathrm{cm^2/V\cdot s}$. (Ignoring CLM and using the knee current 2.95 mA gives ≈ 68 cm²/V·s.)
+- $V_{TH}$: the lowest curve has an overdrive of ≈ 0.1 V. With equal 0.1-V steps ending at $V_{GS} = 1$ V on the top curve, the curves are at 0.5–1.0 V and $V_{TH} \approx 0.4$ V.
+
+## Grading notes
+
++2: step ≈ 0.1 V (0.09–0.11), λ ≈ 0.25–0.4 V⁻¹, $\mu_n$ in about 50–75 cm²/V·s with the $C_{ox}$ and W/L = 125 calculation shown, and $V_{TH}$ either ≈ 0.4 V with the stated assumption about the absolute $V_{GS}$ or the relation $V_{TH} = V_{GS,lowest} - 0.1$ V with an explanation that the plot alone fixes only overdrives. +1: three of the four quantities right, or all four with one slip. 0: about half right. -2 (asserted as fact): step taken as the spacing of currents rather than of overdrives (e.g., 0.5 V), λ off by an order of magnitude, $\mu_n$ off by ≥ 3× because of a wrong formula or a units error inside the derivation (e.g., $C_{ox}$ or W/L in wrong units), or $V_{TH}$ asserted from a misreading (e.g., the $V_{DS}$ value where the curves start). A correct SI value of $\mu_n$ (≈ 5.8×10⁻³ m²/V·s) that is mis-converted to cm²/V·s while the SI value is also given is a minor slip, not -2: treat that part as at most 0 and the whole answer as +1 if the other three quantities are right.

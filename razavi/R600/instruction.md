@@ -1,0 +1,1 @@
+The input–output characteristic of an amplifier is approximated as $y(t) = \alpha_1 x(t) + \alpha_2 x^2(t)$ in the range $x = [0,\ x_{max}]$. What is the total harmonic distortion (THD) of the output for the input $x(t) = (x_{max}\cos\omega t + x_{max})/2$?

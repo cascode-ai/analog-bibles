@@ -1,0 +1,1 @@
+When a charge-pump PLL incorporating a phase/frequency detector (PFD) is turned on, the VCO frequency may be far from the input frequency. Explain why the order of the PLL transfer function is lower by one while the PFD operates as a frequency detector.

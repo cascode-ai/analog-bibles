@@ -1,0 +1,1 @@
+Calculate the gain $V_{out}/V_{in}$ of the circuit shown in [Fig. 1] at very low and very high frequencies. $M_1$ and $M_2$ are NMOS and $M_3$ a PMOS transistor, all in saturation; $V_{b2}$ denotes fixed bias voltages. Neglect all capacitances other than $C_1$, and assume $\lambda = 0$ and $\gamma = 0$.

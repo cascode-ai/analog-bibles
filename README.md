@@ -1,0 +1,11 @@
+# analog-bibles
+
+三本模拟集成电路经典教材的习题（题目 + 参考答案），来自 did-ai-get-hired-today。
+
+每道题一个文件夹：`instruction.md` 为题目，`golden_solution.md` 为参考答案，`figure-*.png` 为配图。难度见各书 README 中的列表，或 `difficulty.json`。
+
+| 书 | 简单 | 中等 | 困难 | 仿真 | 合计 |
+|---|---|---|---|---|---|
+| [Razavi — Design of Analog CMOS Integrated Circuits](razavi/) | 338 | 300 | 4 | 0 | 642 |
+| [Gray — Analysis and Design of Analog Integrated Circuits](gray/) | 216 | 190 | 1 | 85 | 492 |
+| [Allen & Holberg — CMOS Analog Circuit Design](allen/) | 266 | 228 | 7 | 27 | 528 |

@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], all of the transistors have $W/L = 50/0.5$ (μm), and the PMOS loads $M_3$ and $M_4$ (gates tied to the common source node of $M_1$, $M_2$) are to operate in the deep triode region with an on-resistance of 2 kΩ. Assuming that $I_{D5} = 20\ \mu$A ($M_5$ stays saturated) and λ = γ = 0, calculate the input common-mode level that yields such resistance. Then sketch $V_{out1}$ and $V_{out2}$ as $V_{in1}$ and $V_{in2}$ vary differentially from 0 to $V_{DD}$, i.e. $V_{in1}$ rises from 0 to $V_{DD}$ while $V_{in2} = V_{DD} - V_{in1}$ falls from $V_{DD}$ to 0. $V_{DD} = 3$ V.
+
+Data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH} = -0.8$ V.

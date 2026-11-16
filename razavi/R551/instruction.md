@@ -1,0 +1,3 @@
+For a bandgap reference $V_{REF} = V_{BE} + V_T\ln n$ ($V_T = kT/q$, $n$ a fixed ratio), setting $\partial V_{REF}/\partial T = 0$ and using $\partial V_{BE}/\partial T = [V_{BE} - (4 + m)V_T - E_g/q]/T$ yields the zero-TC reference value
+$V_{REF} = \dfrac{E_g}{q} + (4 + m)V_T$,
+where $E_g$ is the bandgap energy of silicon and $m \approx -3/2$ the temperature exponent of the mobility. Since the bandgap of silicon exhibits only a small temperature coefficient, this expression suggests that $\partial V_{REF}/\partial T \propto (4 + m)k/q$, a relatively large value, whereas $V_{REF}$ was derived precisely so that it has a zero TC. Explain the flaw in this argument.

@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] is designed to provide an output voltage swing of 2.2 V with a bias current of 1 mA and a small-signal voltage gain of 100. Calculate the dimensions of $M_1$ and $M_2$. $V_{DD} = 3$ V. The channel-length modulation coefficient is inversely proportional to $L$; the λ values below apply to $L = 0.5$ μm. Dimensions are effective values in μm.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$ (λ values at $L = 0.5$ μm).

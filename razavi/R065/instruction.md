@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], $(W/L)_1 = 50/0.5$ (NMOS $M_1$), $(W/L)_2 = 50/2$ (PMOS $M_2$), and $I_{D1} = I_{D2} = 0.5$ mA when both devices are in saturation. The channel-length modulation coefficient is inversely proportional to $L$; the λ values below apply to $L = 0.5$ μm. Calculate the small-signal voltage gain. Dimensions are effective values in μm.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$ (at $L = 0.5$ μm); PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$ (at $L = 0.5$ μm).

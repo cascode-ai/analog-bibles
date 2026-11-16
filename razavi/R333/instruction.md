@@ -1,0 +1,1 @@
+Calculate the input-referred thermal noise voltage of the circuit shown in [Fig. 1] (common-source stage with drain resistor $R_D$ and source resistor $R_S$). Neglect channel-length modulation and body effect. Model the channel thermal noise of the MOSFET as a drain current with PSD $4kT\gamma g_m$ and the thermal noise of each resistor $R$ as a current with PSD $4kT/R$.

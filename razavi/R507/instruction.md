@@ -1,0 +1,3 @@
+The open-loop transfer function of a two-stage op amp is
+$$H_{open}(s) = \frac{A_0\left(1 + \dfrac{s}{\omega_z}\right)}{\left(1 + \dfrac{s}{\omega_{p1}}\right)\left(1 + \dfrac{s}{\omega_{p2}}\right)},$$
+and the amplifier is placed in a unity-gain feedback loop, with $\omega_z \approx \omega_{p2}$ and $\omega_{p2} \ll (1 + A_0)\omega_{p1}$. Prove that the small-signal step response contains an exponential term of the form $(1 - \omega_z/\omega_{p2})\exp(-\omega_{p2}t)$, i.e., if the zero does not exactly cancel the pole, the step response exhibits an exponential with an amplitude proportional to $1 - \omega_z/\omega_{p2}$ (which depends on the mismatch between $\omega_z$ and $\omega_{p2}$) and a time constant of about $1/\omega_z$.

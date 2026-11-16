@@ -1,0 +1,1 @@
+In the three-stage ring oscillator shown in [Fig. 1], assume that $g_{m1} = g_{m2} = g_{m3} = (200\ \Omega)^{-1}$. What is the minimum value of $R_D$ that ensures oscillation? Neglect channel-length modulation and all capacitances other than the three $C_L$.

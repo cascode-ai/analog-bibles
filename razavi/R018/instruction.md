@@ -1,0 +1,1 @@
+Sketch $V_{out}$ as a function of $V_{in}$ for the circuit shown in [Fig. 1] as $V_{in}$ varies from 0 to $V_{DD} = 3$ V. NMOS data: $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; the bulk of $M_1$ is tied to ground. $R_1$ and the size of $M_1$ are not specified ($\beta = \mu_nC_{ox}W/L$).

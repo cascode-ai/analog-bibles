@@ -1,0 +1,1 @@
+Consider the gate–source voltage of $M_1$ in the circuit shown in [Fig. 1]: $V_{GS} = V_{in} - I_DR_S$. Determine $\Delta V_{GS}$ in response to a change $\Delta V_{in}$ and show that it decreases as $g_mR_S$ increases. How does this trend show that the circuit becomes more linear? Neglect channel-length modulation and body effect.

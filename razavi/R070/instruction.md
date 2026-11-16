@@ -1,0 +1,1 @@
+The common-source stage shown in [Fig. 1] is to provide an output swing from 1 V to 2.5 V. Assume $(W/L)_1 = 50/0.5$, $R_D = 2$ kΩ, $\lambda = 0$, and $V_{DD} = 3$ V; the source and bulk of $M_1$ are grounded. NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V. Calculate the input voltages that yield $V_{out} = 1$ V and $V_{out} = 2.5$ V.

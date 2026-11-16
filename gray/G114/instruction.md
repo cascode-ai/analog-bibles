@@ -1,0 +1,1 @@
+Prove that any load line in the $I_c$–$V_{ce}$ plane that is tangent to a power hyperbola $I_cV_{ce} = P$ makes contact with the hyperbola at the midpoint of the load line (the point midway between the load line's intersections with the $I_c$ and $V_{ce}$ axes).

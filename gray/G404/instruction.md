@@ -1,0 +1,1 @@
+An NMOS transistor is operating in the triode region. Using the square-law model $I_d = k'(W/L)[(V_{gs} - V_t)V_{ds} - V_{ds}^2/2]$, find a formula for its transconductance $g_m = \partial I_d/\partial V_{gs}$. Compare it with $g_m$ of the same transistor in the active (saturation) region at the same dc drain current. Which is larger?

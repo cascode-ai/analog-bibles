@@ -1,0 +1,3 @@
+Calculate the transfer function $v_{out}(s)/v_{in}(s)$ for the circuit shown in [Fig. 1]. The W/L of M1 is 2 µm/0.8 µm and the W/L of M2 is 4 µm/4 µm. Note that this is a small-signal analysis and the input voltage has a dc value of 2 V.
+
+Data (both transistors n-channel, with their bulk at ground): $V_{T0}$ = 0.7 V, $K'$ = 110 µA/V², γ = 0.4 V$^{1/2}$, $2|\phi_F|$ = 0.7 V; $C_{ox} = 24.7\times10^{-4}$ F/m²; CGSO = CGDO = $220\times10^{-12}$ F/m (per unit width); CGBO = $700\times10^{-12}$ F/m (per unit length). Take $L_{eff} = L$, and neglect the source/drain junction capacitances of M1 (their geometry is not given).

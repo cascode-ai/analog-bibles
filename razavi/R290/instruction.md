@@ -1,0 +1,3 @@
+Consider the common-source stage shown in [Fig. 1], where the current source $I_1$ is realized by a PMOS transistor operating in saturation (source at $V_{DD} = 3$ V, gate at a fixed bias voltage). Assume that $(W/L)_1 = 50/0.5$ (effective dimensions in microns), $I_{D1} = 1$ mA, and $R_S = 1\ \mathrm{k\Omega}$. Determine the aspect ratio of the PMOS transistor such that the maximum allowable output level is 2.6 V. What is the maximum peak-to-peak output swing? Use the square-law model and neglect channel-length modulation in the bias calculation.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V.

@@ -1,0 +1,1 @@
+Calculate the common-mode input range of the folded-cascode op amp shown in [Fig. 1]. Assume that all the transistors are enhancement-mode devices with $|V_t| = 1$ V, and ignore the body effect. The biasing is arranged so that $|V_{ov}| = 0.2$ V for each transistor. Assume that $M_{11}$ and $M_{12}$ are biased at the edge of the active region.

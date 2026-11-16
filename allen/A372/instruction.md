@@ -1,0 +1,1 @@
+An open-loop comparator has a dc gain of $10^4$, a single dominant pole at $-10^5$ rad/s, a slew rate of 1 V/µs, and a binary output voltage swing $V_{OH} - V_{OL}$ of 1 V. Find the propagation delay time (time for the output to change by half its swing) when the applied input step is 10 mV.

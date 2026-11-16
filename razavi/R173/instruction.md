@@ -1,0 +1,3 @@
+The differential pair shown in [Fig. 1] (diode-connected PMOS loads $M_3$, $M_4$) is designed with $(W/L)_{1,2} = 50/0.5$, $(W/L)_{3,4} = 10/0.5$ (μm) and $I_{SS} = 0.5$ mA, where $I_{SS}$ is implemented with an NMOS transistor having $(W/L) = 50/0.5$ whose gate voltage is fixed at the value that gives 0.5 mA in saturation. For $V_{in,CM} = 1.2$ V, sketch the small-signal differential voltage gain as $V_{DD}$ goes from 0 to 3 V.
+
+Data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$ (bulks at ground); PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$ (bulks at $V_{DD}$).

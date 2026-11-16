@@ -1,0 +1,3 @@
+The two-stage op amp shown in [Fig. 1] is designed with $I_{SS} = 1$ mA, $I_{D9}$–$I_{D12}$ equal to 0.5 mA, and $(W/L)_{9-12} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$; the common-mode level of X and Y is set so that $M_9$ and $M_{10}$ carry 0.5 mA. $V_{DD} = 3$ V. If $I_{SS}$ requires a minimum voltage of 400 mV, choose the minimum dimensions of $M_1$–$M_8$ (L = 0.5 μm) to allow a peak-to-peak swing of 200 mV at X and at Y. The bias voltages $V_{b1}$–$V_{b3}$ can be chosen freely. Ignore channel-length modulation in the bias calculation.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V.

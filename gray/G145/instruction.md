@@ -1,0 +1,1 @@
+For the circuit shown in [Fig. 1], determine the output current $I_{out}$ (the current flowing into the drain of the transistor, in the direction of the arrow) as a function of the input voltage $V_{in}$. The op amp is ideal. Assume that the transistor operates in the active (saturation) region.

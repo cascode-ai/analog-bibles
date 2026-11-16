@@ -1,0 +1,3 @@
+The ac schematic of a common-source stage is shown in [Fig. 1], with $R_S = 10\ \mathrm{k\Omega}$ and $R_L = 5\ \mathrm{k\Omega}$; in addition, a source-degeneration resistor $R_{SS} = 900\ \Omega$ is connected between the source and ground. The transistor is biased at $I_D = 0.5$ mA. Calculate the low-frequency small-signal voltage gain $v_o/v_i$ and use the zero-value time-constant method to estimate the −3-dB frequency.
+
+NMOS data: $W = 100\ \mu$m, $L_{\text{eff}} = 1.6\ \mu$m, $k_n' = 60\ \mu\mathrm{A/V^2}$, $\lambda = 0$, $\gamma = 0$, $C_{gs} = \tfrac23WL_{\text{eff}}C_{ox}$ with $C_{ox} = 0.7\ \mathrm{fF/\mu m^2}$, $C_{gd} = 14$ fF, $C_{sb} = C_{db} = 0$; square-law model.

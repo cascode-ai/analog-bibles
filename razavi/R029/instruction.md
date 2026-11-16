@@ -1,0 +1,1 @@
+Sketch $V_X$ and $I_X$ as a function of time for the circuit shown in [Fig. 1]. At $t = 0$, $C_1$ is charged to 3 V and $C_2$ is fully discharged (0 V). NMOS data: $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; the bulk of $M_1$ is grounded. $C_1$, $C_2$ and the size of $M_1$ are not specified ($\beta = \mu_nC_{ox}W/L$).

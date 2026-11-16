@@ -1,0 +1,1 @@
+Each inductor in the circuit shown in [Fig. 1] exhibits a series resistance $R_S$. How low must $R_S$ be to ensure that the low-frequency loop gain is less than unity? (This condition is necessary to avoid latch-up.) Express the result in terms of the transconductances $g_{m1}$ and $g_{m2}$ of the transistors; neglect channel-length modulation.

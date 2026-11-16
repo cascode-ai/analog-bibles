@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] is called a folded-current-mirror differential amplifier and is useful for low values of power supply ($V_{DD} = 1.5$ V). Assume that the W/L value of each transistor is 100 µm/1 µm. Find the maximum input common-mode voltage, $v_{IC}(\max)$, and the minimum input common-mode voltage, $v_{IC}(\min)$. Keep all transistors in saturation, and neglect the body effect.
+
+Device data: n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$.

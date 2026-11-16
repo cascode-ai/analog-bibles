@@ -1,0 +1,1 @@
+An amplifier has low-frequency gain $a_0 = 200$ and its transfer function has three negative real poles with magnitudes 1 MHz, 3 MHz, and 4 MHz. Calculate and sketch the root locus when frequency-independent negative feedback is applied as the feedback factor $f$ varies from 0 to 1. Estimate the value of $f$ causing instability.

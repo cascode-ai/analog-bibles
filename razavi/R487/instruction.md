@@ -1,0 +1,1 @@
+Consider the amplifier shown in [Fig. 1], where $(W/L)_{1-4} = 50/0.5$, $I_{SS} = I_1 = 0.5$ mA, and $M_3$ (gate at $V_b$) is a current source carrying $I_{SS}/2$; $V_{DD} = 3$ V. Neglect all capacitances other than $C_X$ and $C_Y$. Estimate the slew rate of this op amp for (i) $C_X = C_Y = 0.5$ pF and (ii) $C_X = 0.5$ pF, $C_Y = 1.2$ pF.

@@ -1,0 +1,3 @@
+Find the small-signal voltage gain, the output resistance and the −3 dB frequency in hertz of the push–pull inverter (right circuit in [Fig. 1]; the gates of M1 and M2 are both driven by $v_{IN}$) if $W_1 = 2\ \mu$m, $L_1 = 1\ \mu$m, $W_2 = 1\ \mu$m, $L_2 = 1\ \mu$m and the dc current is 50 µA, with both transistors saturated. Assume that $C_{gd1} = 4$ fF, $C_{bd1} = 10$ fF, $C_{gd2} = 4$ fF, $C_{bd2} = 10$ fF, $C_{gs2} = 5$ fF and $C_L = 1$ pF (load capacitance at the output). The input is driven by an ideal voltage source.
+
+Device data: n-channel M1 $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel M2 $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

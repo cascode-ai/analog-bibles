@@ -1,0 +1,1 @@
+The feedback circuit in [Fig. 2] is a switched-capacitor integrator during one clock phase (switches ideal). Assume the op amp is the telescopic-cascode op amp of [Fig. 1]. Take $C_L = 1.5$ pF, $C_I = 4$ pF, $C_S = 0.4$ pF, and $C_{ip} = 0.1$ pF ($C_{ip}$ models the total parasitic capacitance at the op-amp input). If $I_{\text{TAIL}} = 0.2$ mA, what is the output slew rate?

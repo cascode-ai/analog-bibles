@@ -1,0 +1,5 @@
+The simple MOS amplifier of [Fig. 1] uses $V_{DD}$ = 5 V, three transistors of W/L = 5 µm/1 µm, and R1 = 200 kΩ. Use the level-1 model parameters: n-channel VTO = 0.7 V, KP = 110 µA/V², GAMMA = 0.4 V$^{1/2}$, LAMBDA = 0.04 V⁻¹, PHI = 0.7 V; p-channel VTO = −0.7 V, KP = 50 µA/V², GAMMA = 0.57 V$^{1/2}$, LAMBDA = 0.05 V⁻¹, PHI = 0.8 V (bulks of M2 and M3 at $V_{DD}$, of M1 at ground).
+
+(a) Use SPICE to obtain a plot of $v_{OUT}$ as a function of $v_{IN}$ (dc sweep from 0 to 5 V, in steps of 0.1 V or finer). Identify the dc value of $v_{IN}$ that gives $v_{OUT}$ = 2.5 V.
+(b) Use SPICE to obtain the small-signal frequency response $V_{out}(\omega)/V_{in}(\omega)$ when the amplifier is biased in the transition region. Assume that a 5 pF capacitor is attached to the output, and find the magnitude and phase response over the frequency range of 100 Hz to 100 MHz.
+(c) Use SPICE to obtain the transient response, with the 5 pF output capacitor, from time 0 to 4 µs when $v_{IN}$ is the piecewise-linear pulse PWL(0 0 V, 1 µs 0 V, 1.05 µs 3 V, 3 µs 3 V, 3.05 µs 0 V).

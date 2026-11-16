@@ -1,0 +1,3 @@
+[Fig. 1] shows the differential input stage of a comparator with internal hysteresis: M3 and M4 are diode-connected p-channel loads, and the cross-coupled p-channel transistors M6 (gate at $v_{o1}$, drain at $v_{o2}$) and M7 (gate at $v_{o2}$, drain at $v_{o1}$) provide positive feedback. All channel lengths are 1 µm; $W_1 = W_2 = 10\ \mu$m, $W_3 = W_4 = 2\ \mu$m, $W_6 = W_7 = 10\ \mu$m; the tail current is $i_5 = 20\ \mu$A. Assume that all transistors are operating in saturation (the input is at the balance point, $v_{i1} = v_{i2}$). What is the gain of the positive-feedback loop formed by M6–M7?
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$.

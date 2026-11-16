@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] uses a single n-channel MOS transistor with $W/L = 2\ \mu\mathrm{m}/1\ \mu\mathrm{m}$ as a switch (resistor). Its gate is at 5 V, its bulk is at ground, its left terminal is driven by the dc source $V_S$, and no current flows out of the right terminal ($I = 0$). Calculate the small-signal ON resistance of the transistor for $V_S$ = 1.0 V, 3.0 V and 5.0 V (fill in a table of $V_S$ versus $R$).
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.7$ V. In the nonsaturation region $i_D = K'\frac{W}{L}\left[(v_{GS}-V_T)v_{DS} - \frac{v_{DS}^2}{2}\right]$, with $V_T = V_{T0} + \gamma\left(\sqrt{2|\phi_F| + v_{SB}} - \sqrt{2|\phi_F|}\right)$.

@@ -1,0 +1,3 @@
+In [Fig. 1], transistors M1 through M4 are identical n-channel devices with a $W/L$ ratio of 10 µm/1 µm. The 100-µA current source feeds the drain of M3, which is also connected to the gates of M1 and M2; M3 and M4 have their gates at $V_{Bias}$; M3 is stacked on M1 and M4 on M2, and the output (resistance $R_{out}$) is the drain of M4. What value of $V_{Bias}$ gives the smallest value of $V_{min}$ (the minimum output voltage), and what is this value of $V_{min}$, assuming all transistors are in saturation? What is the small-signal output resistance in ohms? Neglect the body effect.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, λ = 0.04 V⁻¹ (for $L = 1\ \mu$m); in saturation $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2(1 + \lambda v_{DS})$.

@@ -1,0 +1,1 @@
+A differential-output op amp drives a load capacitor $C_L$ connected between its two outputs, as shown in [Fig. 1]. Find the single-ended equivalent loads, i.e., the loads from each output to ground that give the same behaviour for differential signals. What would the single-ended equivalent loads be if $C_L$ were replaced with a resistor $R_L$?

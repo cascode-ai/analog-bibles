@@ -1,0 +1,1 @@
+An 8-bit successive-approximation ADC uses an ideal 8-bit DAC whose output is $D\cdot V_{REF}/2^8$ for the input code $D$; starting with the MSB, each trial bit is kept (set to 1) if the sampled input exceeds the DAC output and cleared otherwise. If the sampled analog input is $0.7V_{REF}$, find the output digital word.

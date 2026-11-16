@@ -1,0 +1,13 @@
+# Golden Solution - R536
+
+## Reference answer
+
+Operation: the core can stay in its degenerate zero-current state. $M_5$ (gate at $X$, drain at the gate/drain node of $M_3$, i.e. the drain of $M_2$) injects a start-up current, and the network $R_a$–$R_b$–$M_6$ keeps $V_X$ high only while $V_{DD}$ is low.
+- During power-up, before $M_6$ conducts, no current flows in $R_a$ and $R_b$, so $V_X = V_N = V_{DD}$ ($N$ = junction of $R_a$ and $R_b$ = gate of $M_6$). Once $V_X > V_{TH}$, $M_5$ pulls current out of the gate node of $M_3$/$M_4$. $M_3$ and $M_4$ turn on, $M_4$ drives current into $M_1$, $M_1$ and $M_2$ turn on, and the positive-feedback loop of the core regenerates to its normal operating point.
+- As $V_{DD}$ rises further, $M_6$ (with $V_{GS6} = V_N$) conducts a current $I_{D6} = (V_{DD} - V_{GS6})/R_a$ through $R_a$ and $R_b$, pulling $X$ down to $V_X = V_{GS6} - I_{D6}R_b$. If this is below $V_{TH}$, $M_5$ turns off and no longer disturbs the core. Any residual current in $M_5$ would add to $I_{D2}$ and upset the equality of the two branch currents.
+- Relationship at the final supply: $V_X = V_{GS6} - \dfrac{R_b}{R_a}(V_{DD} - V_{GS6}) < V_{TH}$, i.e. $\dfrac{R_b}{R_a}(3\ \mathrm{V} - V_{GS6}) > V_{GS6} - V_{TH}$, equivalently $I_{D6}R_b > V_{GS6} - V_{TH}$. With $M_6$ saturated this is $I_{D6}R_b > \sqrt{2I_{D6}/\beta_6}$, i.e. $I_{D6} > 2/(\beta_6R_b^2)$ or $g_{m6}R_b > 2$.
+- Design remark (optional): with equal thresholds, $V_X$ exceeds $V_{TH}$ only while $I_{D6} < 2/(\beta_6R_b^2)$, by at most $1/(2\beta_6R_b)$. This window must cover the supply range in which the core can start (roughly $V_{DD} > V_{GS1} + |V_{GS3}|$), and $R_a$, $R_b$ and $M_6$ draw a static current.
+
+## Grading notes
+
+Two parts with equal weight. (1) Operation: $M_5$ draws current from the $M_3$/$M_4$ gate node (drain of $M_2$) while $V_X > V_{TH}$, kicking the core out of the zero-current state; $R_a$, $R_b$, $M_6$ hold $X$ high at low supply and pull it down once $M_6$ conducts, so that $M_5$ is off in normal operation. (2) Relationship: $V_X = V_{GS6} - R_b(V_{DD} - V_{GS6})/R_a < V_{TH}$ or an equivalent form ($I_{D6}R_b > V_{GS6} - V_{TH}$, $g_{m6}R_b > 2$). +2: both parts correct. +1: both present with minor imprecision (e.g., the condition left as $I_{D6}R_b > V_{GS6} - V_{TH}$ without relating $I_{D6}$ to $R_a$ and $V_{DD}$). 0: one part correct, the other missing or wrong. -2 (asserted as fact): $M_5$ described as injecting current into the gate of $M_1$ or as staying on permanently, the gate of $M_6$ read as connected to $X$, or a reversed condition (e.g., requiring $V_X > V_{TH}$ in steady state).

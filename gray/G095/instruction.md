@@ -1,0 +1,1 @@
+Determine the output current and the output resistance of the circuit shown in [Fig. 1]. All transistors are identical npn devices in the forward-active region with $\beta_F = \beta_0 = 200$, $V_A = 130$ V, $I_S = 5\times10^{-15}$ A, $r_b = 0$, $r_\mu \to \infty$; $V_T = 26$ mV. Neglect base currents in the bias calculation.

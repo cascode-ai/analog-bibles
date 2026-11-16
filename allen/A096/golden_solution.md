@@ -1,0 +1,14 @@
+# Golden Solution - A096
+
+## Reference answer
+
+Layout 2, because M1 is rotated 90° with respect to M2A and M2B; Layout 1, whose 10/1 device is not built from 5/1 units, is an equally defensible answer, since the question gives no data that rank the two effects. (Layout 3 as drawn cannot be wired as this mirror at all; see the last point.)
+
+- The current gain relies on M1 and the M2 units being physically identical. Matched devices must have the same orientation, and in Layout 2 they do not. Effects that depend on orientation then differ between the input and output devices: lithographic and etch bias in x versus y (different ΔW and ΔL), shadowing of an angled source/drain implant by the poly (different overlap and effective length), and stress- or crystal-orientation-dependent mobility. These errors do not cancel even though the units have equal drawn size, and they can reach several percent.
+- Layout 1: the 10/1 device is one transistor rather than two 5/1 units, so the edge effects do not scale: with a width loss ΔW per edge (field-oxide encroachment, etch bias) the gain is $(10 - 2\Delta W)/(5 - 2\Delta W) \neq 2$ (≈ 2.04 for ΔW = 0.1 µm), and the junction perimeters and edge capacitances are not in a 2:1 ratio either. Which of Layouts 1 and 2 is worse depends on the process.
+- Layout 4, with identical units in the same orientation, is the most accurate.
+- Layout 3 as drawn is one continuous diffusion M2A–M1–M2B, so each diffusion of M1 is shared with an M2 unit. A diffusion shared by M1 (IN, GRD) and M2A or M2B (OUT, GRD) can only be GRD, so both terminals of M1 would be grounded and the layout cannot be wired as the mirror (in the order M1–M2A–M2B it could). This is a defect of the drawing, not a parasitic effect.
+
+## Grading notes
+
++2: Layout 2, explained by the rotated M1 and at least one orientation-dependent physical effect (lithographic/etch bias, implant shadowing, mobility/stress anisotropy); or Layout 1, explained by the 10/1 device not being built from 5/1 units, so that edge effects (ΔW, perimeter) do not scale and the gain is not exactly 2. An answer that names one of these and also notes the other's weakness, or also points out that Layout 3 as drawn cannot be wired, is fully correct. +1: Layout 1 or 2 named with only a vague reason; or Layout 3 named because, as drawn, it cannot be wired as the mirror (M1 shares both diffusions with M2A and M2B, which forces both its terminals to GRD), a correct observation about the drawing that leaves the parasitic comparison of the realizable layouts unanswered; or Layout 3 justified by shared-diffusion source resistance. 0: a layout named without a valid physical reason. −2 (asserted as fact): Layout 4 named least accurate, or the claim that orientation and unit size have no effect on the current gain.

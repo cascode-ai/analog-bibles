@@ -1,0 +1,5 @@
+An amplifier stage is shown in [Fig. 1] (emitter followers $Q_1$, $Q_4$ biased at 10 µA drive the differential pair $Q_2$, $Q_3$ with a 1-mA tail; 5-kΩ collector resistors; ±6 V supplies; the substrate is at −6 V).
+(a) Calculate the low-frequency, small-signal voltage gain $v_o/v_i$.
+(b) Apply the zero-value time-constant method to the DM half-circuit to calculate the −3-dB frequency of the gain. Data: $C_{cs0} = 2$ pF, $C_{\mu0} = 0.5$ pF, $C_{je} = 4$ pF (at the bias point), $f_T = 500$ MHz (at $I_C = 2$ mA), $\beta = 200$, $r_b = 0$, $r_o = \infty$, $V_T = 26$ mV, $V_{BE(\text{on})} = 0.7$ V. Junction capacitances follow $C = C_0/(1 + V_R/\psi_0)^n$ with $n = 0.5$ and $\psi_0 = 0.55$ V for all junctions. Obtain $\tau_F$ from $f_T$ assuming $C_\pi + C_\mu = g_m/\omega_T$ at 2 mA with $C_\pi = \tau_Fg_m + C_{je}$ and $C_\mu = C_{\mu0}$.
+(c) Use SPICE to find the small-signal gain and bandwidth of the amplifier and also the magnitude and phase of the transfer function at 100 MHz.
+(d) Investigate the influence of base resistance by repeating (c) with $r_b = 200\ \Omega$ and comparing the results.

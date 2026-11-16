@@ -1,0 +1,3 @@
+A CMOS amplifier is shown in [Fig. 1]: M1 is a p-channel transistor (W/L = 5 µm/1 µm, source at $V_{DD}$, gate driven by $v_{in}$ from an ideal voltage source) and M2 is an n-channel transistor (W/L = 1 µm/1 µm, source grounded, gate at a dc voltage $V_{GG}$); both carry 100 µA and operate in saturation. What is the −3 dB frequency in hertz of this amplifier if $C_{gd1} = C_{gd2} = 5$ fF, $C_{bd1} = C_{bd2} = 30$ fF and $C_L = 500$ fF (load capacitance from the output to ground)?
+
+Device data: n-channel $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$.

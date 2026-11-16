@@ -1,0 +1,1 @@
+Explain why, in the transimpedance amplifier of [Fig. 1] ($I_1$–$I_3$ ideal, $I_1 = I_2 = 1$ mA, $I_3 = 10\ \mu$A, $(W/L)_{1,2} = 50/0.5$, $(W/L)_3 = 5/0.5$), the compensation capacitor should not be placed between the gate and the drain of $M_2$ or $M_3$.

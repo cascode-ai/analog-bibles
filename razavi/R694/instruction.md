@@ -1,0 +1,1 @@
+An NMOS cascode current source used in a large circuit exhibits a substantially lower output impedance than expected. For each of the following fabrication errors, explain whether it could lead to this effect and why: (a) channeling during the source/drain implant, (b) omission of the channel-stop implant, (c) insufficient gate-oxide growth.

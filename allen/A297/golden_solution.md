@@ -1,0 +1,14 @@
+# Golden Solution - A297
+
+## Reference answer
+
+$R_{out} = \dfrac{1}{g_{ds8}+g_{ds9}}$; $\dfrac{v_{out}}{v_{in}} \approx \dfrac{g_{m1}}{g_{m4}}\cdot\dfrac{r_{ds2}}{r_{ds4}}\cdot\dfrac{g_{m8}}{g_{ds8}+g_{ds9}}$ (positive), i.e. $\left(\dfrac{\lambda_P}{\lambda_N}\right)\dfrac{\sqrt{2K'_NS_1S_8/(S_4I_9)}}{\lambda_N+\lambda_P}$ in terms of the design.
+
+- Second stage: common-source M8 with load M9: $v_{out} = -g_{m8}v_A/(g_{ds8}+g_{ds9})$, where $v_A$ is the voltage at the M6 drain/M4 source.
+- Node A is a low-impedance node: looking into the source of the cascode M4, whose drain is loaded only by M2 (a current source, ≈ $r_{ds2}$), gives $R \approx (r_{ds4}+r_{ds2})/(1+g_{m4}r_{ds4})$, of order $1/g_{m4}$, far below $r_{ds6}$. The high-impedance node of the first stage is the drain of M4 (node B), which only drives $C_c$.
+- Nodal analysis (tail current source treated as ideal; M2 current drawn through M4 from node A; note that the diode M5 sits above the fixed-gate cascode M3, so only part of M1's signal current reaches the M5–M6 mirror, which does not affect the leading term) gives, to leading order in $g_{ds}/g_m$, $v_A/v_{in} = -(g_{m1}/g_{m4})(g_{ds4}/g_{ds2})$: the large swing at node B is transferred to node A divided by the cascode's intrinsic gain. Hence the expression above. If the tail node is instead taken as an ac virtual ground, the exact result is $A_v = \dfrac{g_{m8}}{2(g_{ds8}+g_{ds9})P}\left[g_{ds4}g_{m2} + (g_{ds4}+g_{ds2})\dfrac{g_{m6}g_{ds3}g_{m1}}{D_1}\right]$ with $P = g_{ds4}(g_{ds6}+g_{ds2}) + g_{ds2}(g_{m4}+g_{ds6})$ and $D_1 = (g_{ds3}+g_{ds1})(g_{m5}+g_{ds5}) + g_{ds1}(g_{m3}+g_{ds3})$; it differs only by a factor of order one (about 20 % lower for equal device parameters) and is equally acceptable. With equal currents in M2 and M4, $r_{ds2}/r_{ds4} = \lambda_P/\lambda_N$.
+- With $g_{m1} = \sqrt{K'_NS_1I_7}$, $g_{m4} = \sqrt{K'_PS_4I_7}$, $g_{m8} = \sqrt{2K'_PS_8I_9}$ and $g_{ds8}+g_{ds9} = (\lambda_N+\lambda_P)I_9$ this becomes the design form above. The first stage thus contributes only a gain of order $g_{m1}/g_{m4}$ (a few), so the overall gain of the circuit as drawn is of order $10^2$, not $g_mr_{ds}$ squared.
+
+## Grading notes
+
++2: $R_{out} = 1/(g_{ds8}+g_{ds9})$ and a gain expression that recognizes node A (M8 gate) as low impedance, i.e. $A_v \approx (g_{m1}/g_{m4})(r_{ds2}/r_{ds4})\,g_{m8}/(g_{ds8}+g_{ds9})$ or an equivalent/more complete expression; a factor-of-order-one difference from approximating the node resistance (e.g. $(1 + r_{ds2}/r_{ds4})/g_{m4}$) or from treating the tail node as an ac ground is acceptable. +1: low-impedance node recognized and $R_{out}$ right, but the first-stage factor with a slip. 0: $R_{out}$ right, gain only qualitative. −2 (asserted as fact): $A_v = g_{m1}r_{ds6}\,g_{m8}/(g_{ds8}+g_{ds9})$ or $g_{m1}(r_{ds2}\|r_{ds6})\,g_{m8}/(g_{ds8}+g_{ds9})$, i.e. treating the M8 gate node as a high-impedance node; or $R_{out}$ given as a cascode resistance.

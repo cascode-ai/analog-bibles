@@ -1,0 +1,1 @@
+Calculate the return ratio (with respect to the controlled source) for the integrator in [Fig. 1]. The + terminal of $v_x$ is at ground and its − terminal at the node joining $R$ and $C$. Show that this feedback circuit is stable for all values of $R$ and $C$ if $a_v(s)$ has two left half-plane poles and $a_v(s = 0) > 0$.

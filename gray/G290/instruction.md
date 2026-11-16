@@ -1,0 +1,1 @@
+If a feedback amplifier has a phase margin of 20°, how much does the closed-loop gain peak (above the low-frequency value) at the frequency where the loop-gain magnitude is unity? Assume a frequency-independent feedback factor $f$ and a large low-frequency loop gain.

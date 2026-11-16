@@ -1,0 +1,1 @@
+Neglecting other capacitances, calculate the input impedance $Z_{in}$ of the circuit shown in [Fig. 1]. $M_1$ is an NMOS transistor, $I_1$ is an ideal current source, and $\lambda = 0$.

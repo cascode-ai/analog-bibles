@@ -1,0 +1,1 @@
+Calculate the source resistance giving minimum noise figure and the corresponding noise figure in decibels for a bipolar transistor with $I_C = 10\ \mu$A, $\beta_F = 100$, $r_b = 300\ \Omega$. Consider low frequencies (no capacitive effects) and neglect flicker noise. Use $4kT = 1.66\times10^{-20}$ V·C, $q = 1.6\times10^{-19}$ C and $kT/q = 26$ mV.

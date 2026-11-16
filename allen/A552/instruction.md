@@ -1,0 +1,1 @@
+A ΔΣ modulator is shown in [Fig. 1]. Solve for the output $Y(z)$ as a function of the input $X(z)$ and the quantization noise sources $Q_1(z)$, $Q_2(z)$ and $Q_3(z)$. Find the noise transfer function $NTF_Q(z)$.

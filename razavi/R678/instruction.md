@@ -1,0 +1,1 @@
+Assuming that the transistor in the circuit shown in [Fig. 1] experiences complete velocity saturation, derive an expression for the voltage gain of the circuit in terms of W and $v_{sat}$. Assume that $\lambda = \gamma = 0$.

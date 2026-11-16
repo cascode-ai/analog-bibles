@@ -1,0 +1,1 @@
+Sketch $I_X$ and the transconductance of the transistor as a function of $V_X$ for the circuit shown in [Fig. 1] as $V_X$ varies from 0 to $V_{DD} = 3$ V. NMOS data: $V_{TH0} = 0.7$ V; source and bulk of $M_1$ are grounded. $R_1$, $I_1$ and the size of $M_1$ are not specified; describe the curves in terms of them ($\beta = \mu_nC_{ox}W/L$).

@@ -1,0 +1,1 @@
+How much noise voltage in rms volts can a 1 V reference voltage have and not cause errors in a 14-bit DAC? What must be the fractional temperature coefficient (ppm/°C) for the reference voltage of this DAC over the temperature range of 0–100 °C?

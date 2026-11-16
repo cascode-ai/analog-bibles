@@ -1,0 +1,1 @@
+Assume that the current sinks and the R–2R ladder are ideal for the N-bit DAC shown in [Fig. 1]. If bit $i$ is 1, then switch $S_i$ connects its current sink $I$ to the R–2R ladder; otherwise, $S_i$ is connected to ground ($S_1$ is the switch nearest the op amp). The output is $v_{OUT} = RI\sum_{i=1}^{N} b_i 2^{-i}$. Design the value of $I$ (in terms of $R$) if $V_{REF}$ = 5 V.

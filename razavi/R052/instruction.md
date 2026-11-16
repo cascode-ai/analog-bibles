@@ -1,0 +1,1 @@
+Suppose we have received a MOS transistor in a package with four unmarked pins, and we do not know whether the device is an NFET or a PFET. Describe the minimum number of dc measurement steps using an ohmmeter that is necessary to determine the device type and the gate, source/drain, and bulk terminals of the device.

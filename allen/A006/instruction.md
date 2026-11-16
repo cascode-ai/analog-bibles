@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], $i$ is the current through $R_2$ in the direction of the arrow drawn above $R_2$ (left to right). It controls the dependent voltage source $r_mi$, whose − terminal is at the node between $R_2$ and $R_3$ and whose + terminal is at ground. Use source rearrangement and source substitution to simplify the circuit, and solve for $i_{out}/i_{in}$ by making chain-type calculations only.
+
+(Source rearrangement: a voltage source can be moved through a node into series with each of the other branches connected to that node, its original branch becoming a short circuit. Source substitution: a dependent voltage source controlled by its own current, or a dependent current source controlled by its own voltage, is equivalent to a resistor.)

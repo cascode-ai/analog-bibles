@@ -1,0 +1,2 @@
+(a) For the common-emitter amplifier whose ac schematic is shown in [Fig. 1], with $R_S = 5\ \mathrm{k\Omega}$, $R_L = 3\ \mathrm{k\Omega}$, $r_b = 300\ \Omega$, $I_C = 0.5$ mA, $\beta = 200$, $f_T = 500$ MHz (at $I_C = 0.5$ mA), $C_\mu = 0.3$ pF, $C_{cs} = 0$, $V_A = \infty$ and $V_T = 26$ mV, use zero-value time constants to estimate the dominant pole and short-circuit time constants to estimate the nondominant pole.
+(b) Compare your estimates with a SPICE simulation.

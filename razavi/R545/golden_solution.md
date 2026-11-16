@@ -1,0 +1,12 @@
+# Golden Solution - R545
+
+## Reference answer
+
+At power-on all devices are off. The circuit starts if the $V_{DD}$ step either lifts node N (gates of $M_1$, $M_2$ = drains of $M_1$ and $M_4$) above $V_{TH}$, or leaves node P (gates of $M_3$, $M_4$ = drains of $M_3$ and $M_2$) far enough below $V_{DD}$ that $|V_{GS3,4}| > |V_{TH}|$. Once any device conducts, the positive-feedback loop completes the start-up.
+- Coupling to node N (helps start-up): the drain–bulk junction capacitance of $M_4$ (its p+ drain sits in the n-well at $V_{DD}$), and the gate–drain (overlap) capacitances $C_{GD4}$ and $C_{GD2}$ from node P, which itself rises with $V_{DD}$. If these are large compared with N's capacitance to ground ($C_{GS1}$, $C_{GS2}$, $C_{DB1}$, gate–bulk), N jumps above $V_{TH}$. $M_1$ and $M_2$ then conduct, $M_2$ pulls P down, $M_3$ and $M_4$ turn on, and the loop regenerates to the desired operating point.
+- Node P: coupled to $V_{DD}$ by $C_{GS3}$, $C_{GS4}$ (sources at $V_{DD}$) and $C_{DB3}$ (n-well), which make P follow $V_{DD}$ and by themselves keep $M_3$, $M_4$ off. It is also coupled to ground by $C_{DB2}$ (n+ drain to p-substrate) and to N by $C_{GD2}$. If this ground-referred capacitance is significant, P lags the supply step, $|V_{GS3,4}|$ momentarily exceeds $|V_{TH}|$, and $M_4$ injects current into N.
+- Such capacitive start-up depends on the ramp rate (a slow supply ramp gives no kick) and is unreliable, so an explicit start-up circuit and a slow dc-sweep simulation are still needed.
+
+## Grading notes
+
++2: names specific coupling capacitances and how they start the loop. Examples: the drain–n-well junction and gate–drain overlap capacitances of $M_4$ (and $C_{GD2}$) lifting the $M_1$/$M_2$ gate node above $V_{TH}$; and/or the capacitive divider at the $M_3$/$M_4$ gate node ($C_{GS3}$, $C_{GS4}$, $C_{DB3}$ to $V_{DD}$ versus $C_{DB2}$ to ground) producing a transient $|V_{GS}|$ on $M_3$, $M_4$. Plus the statement that positive feedback then completes the start-up. +1: one correct specific path with an incomplete explanation of how it turns the circuit on. 0: only a generic statement ("parasitic capacitances couple $V_{DD}$ to the internal nodes") without identifying any capacitance or node. -2 (asserted as fact): coupling of the PMOS gate node to $V_{DD}$ through $C_{GS3,4}$ alone presented as what turns $M_3$, $M_4$ on (it does the opposite), resistive leakage claimed as the only mechanism, or the claim that the circuit can never start without a start-up device.

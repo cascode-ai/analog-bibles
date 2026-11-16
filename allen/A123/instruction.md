@@ -1,0 +1,3 @@
+A CMOS amplifier is shown in [Fig. 1]: M1 is a p-channel transistor (W/L = 5 µm/1 µm, source at $V_{DD}$, gate driven by $v_{IN}$) and M2 is an n-channel transistor (W/L = 1 µm/1 µm, source grounded, gate at the dc voltage $V_{GG}$ chosen so that 100 µA flows through M1 and M2). Assume M1 and M2 operate in the saturation region. What is the dc value of $v_{IN}$? $V_{DD}$ is not specified: give $v_{IN}$ in terms of $V_{DD}$ and evaluate it for $V_{DD} = 5$ V.
+
+Device data: p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$; n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$ (channel-length modulation may be neglected for the dc bias).

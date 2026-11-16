@@ -1,0 +1,17 @@
+# Golden Solution - A525
+
+## Reference answer
+
+$R_1 = \tfrac{4}{3}R$, $R_2 = 2R$, $R_3 = 4R$.
+
+- Proposed comparator $k$: its inverting input is a summing node fed from $V^*_{IN}$ through $R$ and from $-V_{REF}$ through $R_k$, and its + input is grounded. With no comparator input current, $V_X = \dfrac{V^*_{IN}R_k - V_{REF}R}{R + R_k}$, which changes sign at $V^*_{IN} = V_{REF}R/R_k$.
+- Conventional thresholds (equal-R string): comparator 1 at $3V_{REF}/4$, 2 at $V_{REF}/2$, 3 at $V_{REF}/4$. Matching them: $R/R_1 = 3/4$, $R/R_2 = 1/2$, $R/R_3 = 1/4$.
+- The proposed comparator's output is high for $V^*_{IN}$ below its threshold (the complement of the conventional one), which the encoder takes into account.
+
+Conventional ADC. Advantages: all resistors equal (good matching, small resistor area, threshold order and monotonicity guaranteed by the string); $V^*_{IN}$ drives only high-impedance comparator inputs and supplies no dc current; the input goes straight to the comparators (fast). Disadvantages: each comparator works at a different input common-mode level ($V_{REF}/4$ … $3V_{REF}/4$), so CMRR and common-mode-range limits cause threshold errors; the tap nodes are relatively high-impedance (kickback, slow recovery when $V_{REF}$ changes).
+
+Proposed ADC. Advantages: every comparator input sits near ground (+ input grounded), so it is insensitive to common-mode effects and simple comparators can be used; the summing nodes are low-impedance ($R \parallel R_k$), which reduces kickback and speeds recovery. Disadvantages: $V^*_{IN}$ must supply current (the comparator input is not a virtual ground, so each branch presents $R + R_k$ between $V^*_{IN}$ and $-V_{REF}$; here $R_{in} = (7R/3)\parallel 3R \parallel 5R = 105R/101 \approx 1.04R$, falling roughly as $1/2^N$ for $N$ bits, and the branch currents $(V^*_{IN} + V_{REF})/(R + R_k)$ are signal dependent); a negative reference is needed; the comparator offset referred to the input is multiplied by $1 + R/R_k$ (7/4, 3/2, 5/4 for comparators 1–3), because the summing node sees only the fraction $R_k/(R + R_k)$ of $V^*_{IN}$; more and unequal resistors, with a spread that grows about as $2^N$ ($R_k = 2^N R/k$); each threshold depends on an independent ratio $R/R_k$, so mismatch can produce nonmonotonic or missing codes; more resistors bring more area and thermal noise.
+
+## Grading notes
+
++2: $R_1 = 4R/3$, $R_2 = 2R$, $R_3 = 4R$ derived from the summing-node threshold $V^*_{IN} = V_{REF}R/R_k$, and a comparison naming at least the main points: common-mode insensitivity of the proposed version vs CM-dependent comparators in the conventional one; input current/loading of $V^*_{IN}$ and unequal resistors with large spread (and possible nonmonotonicity) in the proposed version vs equal resistors and guaranteed monotonicity in the conventional one. The other points of the reference (the input-resistance value, the input-referred offset multiplied by $1 + R/R_k$, area and noise) are not required for +2; an input resistance computed as if the summing nodes were virtual grounds (e.g., $R/3$) is a minor inaccuracy of the comparison. +1: correct values with a thin or partly inaccurate comparison. 0: values assigned to the wrong comparators (e.g., $R_1 = 4R$, $R_3 = 4R/3$) with an otherwise sound comparison, or correct values with no comparison. −2 (asserted as fact): wrong threshold relation (e.g., $V_{th} = V_{REF}R_k/R$ or $V_{REF}R_k/(R+R_k)$) giving wrong resistor values.

@@ -1,0 +1,1 @@
+Assuming that all the transistors in the circuit shown in [Fig. 1] are saturated and λ ≠ 0, calculate the small-signal differential voltage gain $V_{out}/(V_{in1} - V_{in2})$, where $V_{out}$ is the left output minus the right output. The circuit is symmetric. Express the result in terms of the small-signal parameters ($g_m$, $r_O$) and $R_1$.

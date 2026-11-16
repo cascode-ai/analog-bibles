@@ -1,0 +1,1 @@
+For the amplifier shown in [Fig. 1], the bias string M6–(100 µA)–M5–M4 holds the gates of M1, M2 and M3 at fixed dc voltages (ac ground). Find the exact algebraic expression (ignoring bulk effects), in terms of $g_m$ and $r_{ds}$ as the ratio of two polynomials, for the small-signal input resistance $R_{in}$ seen at the input terminal with the output terminal unloaded (open).

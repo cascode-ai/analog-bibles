@@ -1,0 +1,1 @@
+In the small-signal model of a two-stage op amp with a nulling resistor shown in [Fig. 1], assume that $R_I = 150$ kΩ, $R_{II} = 100$ kΩ, $g_{mII} = 500$ µS, $C_I = 1$ pF, $C_{II} = 5$ pF and $C_c = 30$ pF. Find the value of $R_z$ and the locations of all roots for the case where the zero cancels the next highest pole ($p_2$).

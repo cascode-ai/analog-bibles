@@ -1,0 +1,3 @@
+Design M3 and M4 of [Fig. 1] so that its output characteristics are identical to those of the circuit shown in [Fig. 2]. It is desired that $i_{OUT}$ is ideally 10 µA. In [Fig. 2], M4 ($W/L$ = 1/1) and M3 ($W/L$ = 4/1) are diode-connected with grounded sources and are each fed by 10 µA; M1 (4/1) has its gate tied to M3's gate, M2 (4/1) has its gate tied to M4's gate, and M2 is stacked on M1 with the output at M2's drain. [Fig. 1] has the same connections, but its two bias currents are 5 µA each; M1 and M2 are 4/1, and M3 and M4 are to be designed. All devices are n-channel with $L = 1\ \mu$m.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2$ (ignore λ for the design).

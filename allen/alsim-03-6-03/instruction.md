@@ -1,0 +1,1 @@
+Use SPICE to plot $i_2$ as a function of $v_2$ for the current mirror of [Fig. 1] (M1 and M2 n-channel, W/L = 10 µm/2 µm, sources and bulks grounded) when $i_1$ has values of 10, 20, 30, 40, 50, 60 and 70 µA. The maximum value of $v_2$ is 5 V. Use the model parameters $V_T$ = 0.7 V, $K'$ = 110 µA/V² and λ = 0.01 V⁻¹. Repeat with λ = 0.04 V⁻¹.

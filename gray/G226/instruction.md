@@ -1,0 +1,1 @@
+The ac schematic of a common-source stage is shown in [Fig. 1], with $R_S = 10\ \mathrm{k\Omega}$ and $R_L = 20\ \mathrm{k\Omega}$. Calculate the low-frequency small-signal voltage gain $v_o/v_i$. NMOS data: $I_D = 0.5$ mA, $W = 100\ \mu$m, $L_{\text{eff}} = 1.6\ \mu$m, $k_n' = 60\ \mu\mathrm{A/V^2}$, $\lambda = 0$, $\gamma = 0$; square-law model.

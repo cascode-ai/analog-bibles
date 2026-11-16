@@ -1,0 +1,1 @@
+An open-loop comparator has a dominant pole at $-10^3$ rad/s, a dc gain of $10^4$, a slew rate of 1 V/µs, and a binary output voltage swing of 1 V. What value of the input step $V_{in}$ will give a slewing (rather than a linear, single-pole) response?

@@ -1,0 +1,14 @@
+# Golden Solution - G160
+
+## Reference answer
+
+$\mathrm{CMRR} = \left|\dfrac{A_{dm}}{A_{cm}}\right| \simeq (2g_{m1}r_{o5})\,g_{m3}(r_{o1}\parallel r_{o3}) \simeq \dfrac{2V_{A5}}{V_{ov1}}\cdot\dfrac{2}{|V_{ov3}|}\cdot\dfrac{V_{A1}|V_{A3}|}{V_{A1}+|V_{A3}|}$
+
+- The CMRR is set by the first stage: $\mathrm{CMRR} = \dfrac{v_{o1}/v_{id}}{v_{o1}/v_{ic}} = \mathrm{CMRR}_1$. The second stage has a single-ended input and output and scales the differential and common-mode outputs equally.
+- First stage with a current-mirror load and tail resistance $r_{tail} = r_{o5}$: $A_{dm1} = g_{m1}(r_{o2}\parallel r_{o4})$. A common-mode input changes both drain currents by about $v_{ic}/(2r_{o5})$; the mirror subtracts these two equal changes, leaving only the small residue due to finite $g_{m3}r_o$. The common-mode gain is therefore $|A_{cm1}| \approx 1/(2g_{m3}r_{o5})$, and $\mathrm{CMRR}_1 \simeq (2g_{m1}r_{o5})\,g_{m3}(r_{o1}\parallel r_{o3})$ (with $r_{o1} = r_{o2}$, $r_{o3} = r_{o4}$).
+- With $g_m = 2|I_D|/|V_{ov}|$, $r_o = |V_A|/|I_D|$, $I_{D5} = 2I_{D1}$ and $|I_{D3}| = I_{D1}$: $2g_{m1}r_{o5} = 2V_{A5}/V_{ov1}$ and $g_{m3}(r_{o1}\parallel r_{o3}) = \dfrac{2}{|V_{ov3}|}\dfrac{V_{A1}|V_{A3}|}{V_{A1}+|V_{A3}|}$. This is a product of two $g_mr_o$-type factors, so it is large. Small overdrives (and long channels) raise it, and a higher-output-resistance tail source raises it further at the cost of common-mode range.
+- The body effect is neglected. With the bodies of $M_1$, $M_2$ at $-V_{SS}$, $2g_{m1}r_{o5}$ becomes $2(g_{m1}+g_{mb1})r_{o5}$ and the CMRR is slightly higher; that form is equally correct.
+
+## Grading notes
+
++2: $\mathrm{CMRR} \approx 2g_{m1}r_{o5}\cdot g_{m3}(r_{o1}\parallel r_{o3})$ (or an equivalent closed form) with the statement that only the first stage matters, and a consistent $V_{ov}/V_A$ version including the tail Early voltage $V_{A5}$. Including the body effect ($2(g_{m1}+g_{mb1})r_{o5}$ in place of $2g_{m1}r_{o5}$) is equally correct. +1: the $g_mr_o$ form correct but the $V_{ov}/V_A$ version dropped or missing the $V_{A5}$ factor (a dimensionally inconsistent form copied from a reference); or $V_{ov3}$ used as a positive magnitude in the $V_{ov}/V_A$ form, contrary to the stated sign convention but with the right magnitude, with everything else right. 0: CMRR given as $2g_{m1}r_{o5}$ only (resistive-load result) with otherwise sound reasoning; or correctly written node equations solved with an algebra error (e.g. a CMRR off by a factor of 2, such as $2g_{m1}g_{m3}r_{o5}r_{o4}$ instead of $2g_{m1}g_{m3}r_{o5}(r_{o2}\parallel r_{o4})$), which is a computational slip, not -2. -2 (asserted as fact): CMRR infinite with perfect matching for a finite tail resistance, CMRR multiplied by the second-stage gain, or $g_m$/$r_o$ of the wrong devices used (a modeling error) so that the expression is wrong in form.

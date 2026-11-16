@@ -1,0 +1,1 @@
+For the circuit shown in [Fig. 1], sketch $V_X$ and $V_Y$ as a function of $I_{REF}$ (from zero upward), with $V_{DD} = 3$ V. Assume the transistors are identical. Use the square-law model with $\lambda = 0$ and $V_{TH} = 0.7$ V (sources and bulks grounded). $R_1$, $R_2$ and the device size are not specified; describe the curves in terms of them ($\beta = \mu_nC_{ox}W/L$).

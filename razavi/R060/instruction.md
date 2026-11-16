@@ -1,0 +1,1 @@
+Consider an NMOS device with $V_G = 1.5$ V and $V_S = 0$, its bulk (substrate) at ground unless stated otherwise ($V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V). Explain what happens if we continually decrease $V_D$ below zero, or if we increase the substrate voltage $V_{sub}$ above zero (with $V_D$ positive).

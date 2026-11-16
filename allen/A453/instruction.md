@@ -1,0 +1,1 @@
+A binary-weighted DAC using a charge amplifier is shown in [Fig. 1]: capacitors $C$, $2C$, …, $2^{N-1}C$ (bit $b_i$ controls $2^{N-1-i}C$) are discharged at the start of a conversion and then switched to $V_{REF}$ (bit = 1) or ground (bit = 0); they drive the inverting input of the op amp, whose feedback capacitor is $C_X = 2^NC$. Can this DAC be nonmonotonic? Explain.

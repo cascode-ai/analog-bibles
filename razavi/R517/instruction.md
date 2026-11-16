@@ -1,0 +1,1 @@
+A hypothetical transistor exhibits a transconductance $g_m = \beta(V_{GS} - V_{TH})^2$ in saturation, where β is a device constant and $I_D = 0$ at $V_{GS} = V_{TH}$. Find two other expressions for $g_m$: one in terms of $I_D$ and β, and one in terms of $I_D$ and $V_{GS} - V_{TH}$.

@@ -1,0 +1,1 @@
+For the two-stage Miller, differential-in, differential-out op amp of [Fig. 1], assume $g_{mN} = g_{mP}$ (= $g_m$) and $r_{dsN} = r_{dsP}$ (= $r_{ds}$). Find an approximate expression for the small-signal differential-in, differential-out voltage gain and for the small-signal differential output resistance.

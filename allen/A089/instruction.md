@@ -1,0 +1,3 @@
+Consider the simple n-channel current mirror illustrated in [Fig. 1]: M1 is diode-connected and driven by 20 µA, M2 delivers $i_O$, and both have $W/L$ = 3/1. Over the process, the absolute variations of the physical parameters are as follows: width ±5%, length ±5%, $K'$ ±5%, $V_T$ ±5 mV. Each transistor's parameters can independently take any value within these ranges. Assuming that the drain voltages are identical, what is the minimum and maximum output current measured over the process variations given above?
+
+Nominal device data: $K' = 110\ \mu\mathrm{A/V^2}$, $V_T = 0.7$ V; in saturation $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2$.

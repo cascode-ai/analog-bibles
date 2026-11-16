@@ -1,0 +1,1 @@
+Suppose the supply voltage of a switched-capacitor amplifier is reduced by a factor of two, and so is the maximum allowable output voltage swing. In order to maintain the dynamic range constant, the noise voltage must scale down by the same factor. If the noise is only of $kT/C$ type, how should the capacitors in the circuit be scaled?

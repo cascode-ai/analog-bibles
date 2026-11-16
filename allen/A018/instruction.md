@@ -1,0 +1,3 @@
+A silicon pn diode has a step junction with $N_A = 5\times10^{15}\ \mathrm{cm^{-3}}$ on the p side, $N_D = 10^{20}\ \mathrm{cm^{-3}}$ on the n side, and a junction area of 10 µm by 10 µm. Measure $x$ from the metallurgical junction, positive into the n side, so that the depletion region extends from $x_p$ ($x_p < 0$) to $x_n$ ($x_n > 0$). For an applied voltage $v_D = -2$ V (reverse bias), find $x_p$, $x_n$, the depletion-region width $x_d$, the barrier potential $\phi_0$, the zero-bias depletion capacitance $C_{j0}$, and the depletion capacitance $C_j$.
+
+Use room temperature: $kT/q = 25.9$ mV, $n_i = 1.45\times10^{10}\ \mathrm{cm^{-3}}$, $q = 1.6\times10^{-19}$ C, $\varepsilon_{Si} = 11.7\varepsilon_0$, $\varepsilon_0 = 8.85\times10^{-14}$ F/cm.

@@ -1,0 +1,1 @@
+For an op amp model with two poles and one RHP zero (a dominant pole $p_1$, a second pole $p_2$ and a right-half-plane zero $z$; feedback factor F = 1), prove that if the zero is ten times larger than GB, then in order to achieve a 45° phase margin the second pole must be placed at least 1.22 times higher than GB. Assume a large dc gain and evaluate the phase at $\omega = GB$.

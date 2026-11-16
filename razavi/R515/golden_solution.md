@@ -1,0 +1,12 @@
+# Golden Solution - R515
+
+## Reference answer
+
+The main cause is mobility degradation by the vertical (gate) field. At this large overdrive the device is no longer saturated at $V_{DS} = 0.2$ V, so the extra overdrive no longer adds current by itself, and the falling mobility makes $\partial I_D/\partial V_{GS}$ decrease.
+- Raising $V_{GS}$ adds channel charge ($\propto C_{ox}\Delta V_{GS}$) but also raises the vertical field, which lowers the effective mobility (e.g., $\mu = \mu_0/[1+\theta(V_{GS}-V_{TH})]$). The incremental current is the new charge times its velocity minus the velocity lost by all the existing charge. At large overdrive the loss catches up with the gain, so $g_m$ peaks (≈ 5 mS near 0.5 V) and then declines.
+- With $V_{DS}$ fixed at 200 mV, the knee ($V_{D,sat}$) exceeds 0.2 V at these overdrives, so the transistor is in the triode region. There, ideally, $g_m = \mu C_{ox}(W/L)V_{DS}$, which does not grow with overdrive at all. With mobility degradation it decreases: $I_D = \mu_0C_{ox}(W/L)(V_{ov}V_{DS} - V_{DS}^2/2)/(1+\theta V_{ov})$ gives $g_m = \mu_0C_{ox}(W/L)V_{DS}(1+\theta V_{DS}/2)/(1+\theta V_{ov})^2$, a falling function of $V_{ov}$.
+- Velocity saturation (lateral field) is what makes $g_m$ level off toward $WC_{ox}v_{sat}$, and source/drain series resistance reduces the effective $g_m$ further at high current. In saturation the simple θ model only makes $g_m$ level off. The actual decline comes from the strong vertical-field degradation together with operation below the knee.
+
+## Grading notes
+
++2: identifies vertical-field mobility degradation as the reason $g_m$ actually decreases (mobility falling faster than the charge grows), preferably together with the device leaving saturation at the fixed $V_{DS} = 200$ mV (triode $g_m \propto \mu V_{DS}$). Either "mobility degradation" with a correct explanation of why the derivative falls, or "triode at 0.2 V plus mobility degradation", earns +2. +1: only the triode argument ("the device leaves saturation at $V_{DS}$ = 0.2 V, so $g_m$ stops growing") without explaining the decrease. 0: only velocity saturation or series resistance (these explain the flattening, not the fall), or a vague "short-channel effects" with no mechanism. -2 (asserted as fact): the transistor entering subthreshold or cutoff, $I_D$ decreasing with $V_{GS}$, channel-length modulation or body effect as the cause, or a claim that the square law predicts a falling $g_m$.

@@ -1,0 +1,1 @@
+Sketch $V_{out}$ as a function of $V_{in}$ for the circuit shown in [Fig. 1] as $V_{in}$ varies from 0 to $V_{DD} = 3$ V. $M_1$ is a PMOS device with $V_{TH0} = -0.8$ V, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.8$ V, and its bulk is tied to $V_{DD}$. $R_1$ and the size of $M_1$ are not specified ($\beta_p = \mu_pC_{ox}W/L$).

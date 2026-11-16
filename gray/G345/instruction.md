@@ -1,0 +1,3 @@
+The ac schematic of an amplifier is shown in [Fig. 1]. The transistor has $I_C = 1$ mA, $\beta = 50$, $r_b = 0$, $r_o = \infty$, and $R_L = 10$ kΩ. Neglect capacitive effects and flicker noise.
+
+Calculate the equivalent input noise voltage and current generators of the amplifier (omitting $R_S$). Using these results, calculate the total equivalent input noise current in a 2-MHz bandwidth (sharp cutoff) for the circuit with $R_S = 1$ kΩ, neglecting correlation between the noise generators. Compare this with the value obtained by computing the total output noise of the circuit directly from all the individual noise sources and dividing by the squared transimpedance. Use $4kT = 1.66\times10^{-20}$ V·C, $q = 1.6\times10^{-19}$ C, $kT/q = 26$ mV.

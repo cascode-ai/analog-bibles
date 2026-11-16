@@ -1,0 +1,1 @@
+Sketch $V_X$ as a function of time for the circuit shown in [Fig. 1]. $V_{in}$ steps from 3 V to 0 at $t = 0$; just before the step $C_1$ holds 3 V with the polarity shown (node X positive). $V_{DD} = 3$ V. NMOS data: $V_{TH0} = 0.7$ V; the bulk of $M_1$ is grounded. $C_1$ and the size of $M_1$ are not specified ($\beta = \mu_nC_{ox}W/L$).

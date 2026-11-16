@@ -1,0 +1,1 @@
+Sketch $V_X$ as a function of time for the circuit shown in [Fig. 1]. $V_{in}$ steps from 0 to 3 V at $t = 0$; at that instant $C_1$ and $C_2$ each hold 3 V with the polarities shown. NMOS data: $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; the bulk of $M_1$ is grounded. $C_1$, $C_2$ and the size of $M_1$ are not specified ($\beta = \mu_nC_{ox}W/L$).

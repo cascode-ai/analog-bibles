@@ -1,0 +1,4 @@
+A balanced monolithic series-shunt feedback amplifier is shown in [Fig. 1] (input $v_i$ between the bases of $Q_1$ and $Q_2$, output $v_o$ between the collectors of $Q_3$ and $Q_4$; both horizontal rails are +3 V and the open terminal is −3 V).
+(a) If the common-mode input voltage is zero, calculate the bias current in each device. Assume that $\beta_F$ is large and $V_{BE(on)} = 0.7$ V.
+(b) Calculate the voltage gain, input impedance, output impedance and loop gain of the circuit at low frequencies using $\beta = 100$, $r_b = 50$ Ω, $V_A = \infty$, $V_{BE(on)} = 0.7$ V, $V_T = 26$ mV.
+(c) Compare your answers with a SPICE simulation (omit the loop gain) and also use SPICE to plot the complete large-signal transfer characteristic. If the resistors have a temperature coefficient of +1000 ppm/°C, use SPICE to determine the temperature coefficient of the circuit gain over the range −55 °C to +125 °C.

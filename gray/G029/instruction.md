@@ -1,0 +1,1 @@
+Calculate the transconductance of an $n$-channel MOSFET at $I_D = 10$ nA and $V_{DS} = 1$ V, assuming subthreshold (weak-inversion) operation with slope factor $n = 1.5$. Assuming $(C_{gs} + C_{gd} + C_{gb}) = 10$ fF, calculate the corresponding device $f_T$. Use $kT/q = 26$ mV.

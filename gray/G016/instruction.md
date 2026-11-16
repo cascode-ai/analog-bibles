@@ -1,0 +1,1 @@
+A lateral $pnp$ transistor has an effective (uniformly doped) base width of 10 µm. If the collector–base depletion-layer width changes by 0.11 µm per volt of $V_{CE}$, calculate the small-signal output resistance $r_o$ of this transistor at $I_C = -0.5$ mA.

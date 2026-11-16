@@ -1,0 +1,1 @@
+In the fully differential two-stage op amp of [Fig. 1], $I_{SS} = 0.25$ mA, each output branch is biased at 1 mA, and the current sources are biased so that $M_3$ and $M_4$ each carry $I_{SS}/2$. Each output is loaded by $C_L = 1$ pF, and the op amp is Miller-compensated with $C_C = 0.9$ pF from X to $V_{out1}$ and from Y to $V_{out2}$. Determine the slew rate.

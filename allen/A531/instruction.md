@@ -1,0 +1,1 @@
+What number of comparators is needed for a folding and interpolating ADC that has $N_1 = 3$ coarse bits and $N_2 = 4$ fine bits and uses an interpolation factor of 4 on the fine bits? How many comparators would be needed for an equivalent 7-bit flash ADC?

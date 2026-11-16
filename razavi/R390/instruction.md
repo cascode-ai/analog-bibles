@@ -1,0 +1,1 @@
+In the circuit shown in [Fig. 1], the amplifier has infinite input impedance and an open-circuit voltage gain $A_0$ (from its differential input), and it exhibits an output impedance of $R_0$. Calculate the closed-loop voltage gain and output impedance, taking into account loading effects.

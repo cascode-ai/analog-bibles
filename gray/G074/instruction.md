@@ -1,0 +1,3 @@
+Design an emitter-coupled pair of the type shown in [Fig. 1] with $I_{\text{TAIL}} = 0$ (the tail is the resistor $R_{\text{TAIL}}$ alone). Select values of $R_C$ and $R_{\text{TAIL}}$ to give a differential input resistance $R_{id} = v_{id}/i_b$ of 2 MΩ, a differential voltage gain $|v_{od}/v_{id}|$ of 500, and a CMRR $= |A_{dm}/A_{cm}|$ of 500. What are the minimum values of $V_{CC}$ and $V_{EE}$ that will yield this performance while keeping the transistors biased in the forward-active region under zero-signal conditions? Assume that the dc common-mode input voltage is zero. Neglect $r_b$, $r_\mu$, and $r_o$.
+
+npn transistor data: $\beta_F = \beta_0 = 200$, $V_{BE(\text{on})} \approx 0.7$ V, $V_T = 26$ mV.

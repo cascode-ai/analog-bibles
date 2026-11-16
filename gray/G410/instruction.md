@@ -1,0 +1,1 @@
+For the fully differential folded-cascode op amp in [Fig. 1], all transistors have $|V_{ov}| = 0.15$ V and the supplies are $V_{DD} = V_{SS} = 2$ V. The cascode bias voltages $V_{BB3}$ and $V_{BB4}$ are chosen to give the maximum output swing. What is the maximum peak differential output swing (peak value of $V_{od} = V_{o1} - V_{o2}$)?

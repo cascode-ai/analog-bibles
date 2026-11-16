@@ -1,0 +1,2 @@
+(a) Use zero-value time constants to estimate the dominant pole and short-circuit time constants to estimate the nondominant pole for the common-source amplifier whose ac schematic is shown in [Fig. 1], with $R_S = 10\ \mathrm{k\Omega}$, $R_L = 5\ \mathrm{k\Omega}$ and $I_D = 0.5$ mA. NMOS data: $W = 100\ \mu$m, $L_{\text{eff}} = 1.6\ \mu$m, $k_n' = 60\ \mu\mathrm{A/V^2}$, $\lambda = 0$, $\gamma = 0$, $C_{gs} = \tfrac23WL_{\text{eff}}C_{ox}$ with $C_{ox} = 0.7\ \mathrm{fF/\mu m^2}$, $C_{gd} = 14$ fF, $C_{sb} = C_{db} = 0$.
+(b) Compare your answers with a SPICE simulation.

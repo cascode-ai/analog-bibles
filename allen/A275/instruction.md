@@ -1,0 +1,1 @@
+For the op amp shown in [Fig. 1] (p-channel output transistor M6 with W/L = 100/1 µm/µm carrying $I_6 = 228$ µA; $C_c$ = 5 pF; load capacitance 20 pF; $K'_P = 50\ \mu\mathrm{A/V^2}$), find the phase margin assuming that the open-loop unity-gain frequency is 1 MHz. Use the two-pole model with the RHP zero ($|p_2| = g_{m6}/C_L$, $z = g_{m6}/C_c$) and a large dc gain.

@@ -1,0 +1,1 @@
+The sinusoid shown in [Fig. 1] (amplitude versus normalized time $t/T$) is processed by an analog sample-and-hold. The samples are taken at each integer value of $t/T$ ($t/T$ = 0, 1, 2, …, 11, the sample times marked by the arrows). Sketch the output of the sample-and-hold over $0 \le t/T \le 11$ and give the value held during each sampling interval.

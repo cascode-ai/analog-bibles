@@ -1,0 +1,1 @@
+An 8-bit current DAC is shown in [Fig. 1]: bit $b_i$ connects its current sink ($I$, $I/2$, $I/4$, …, $I/128$ for $b_0$ … $b_7$) to the op amp's inverting input when $b_i = 1$ and to ground when $b_i = 0$. Assume that the full-scale range is 1 V. Find the value of $I$ if $R$ = 1 kΩ.

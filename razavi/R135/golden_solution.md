@@ -1,0 +1,14 @@
+# Golden Solution - R135
+
+## Reference answer
+
+$|A_v|$ starts small, rises as $V_b$ increases (the triode load resistance of $M_2$ grows), reaches a finite maximum between the point where $M_1$ enters the triode region and the point where $M_2$ saturates (its exact location depends on $V_{in}$ and the sizes), then falls, reaching zero at $V_b = V_{DD} - |V_{THP}| = 2.2$ V and staying zero above. The two devices are never saturated together, so there is no $g_{m1}(r_{O1}\|r_{O2})$ plateau.
+
+- $M_1$ saturated with fixed current $I_1 = \tfrac12\beta_1(V_{in} - 0.7)^2$; $M_2$ (overdrive $2.2 - V_b$) in triode: $|A_v| = g_{m1}r_2$, $r_2 = 1/[\beta_2(2.2 - V_b - V_{SD2})]$. Raising $V_b$ weakens $M_2$: $V_{SD2}$ grows and $r_2$ grows, so $|A_v|$ increases (faster than linearly).
+- When $V_{out}$ falls to $V_{in} - 0.7$ V while $M_2$ is still in triode, $M_1$ enters triode: its $g_m$ ($= \beta_1V_{out}$) drops and its output conductance $\beta_1(V_{in} - 0.7 - V_{out})$ rises, but $M_2$'s triode conductance $\beta_2(V_{out} - V_b - 0.8)$ keeps falling: $|A_v| = \beta_1V_{out}/[\beta_1(V_{in} - 0.7 - V_{out}) + \beta_2(V_{out} - V_b - 0.8)]$ (λ = 0). With $A = V_{in} - 0.7$, the peak is at $M_1$'s triode entry (value $g_{m1}r_2$) if $(\beta_2/\beta_1)(3 - A)^2 < 3A(2 - A)$, which always holds in this case for $V_{in} < 2.2$ V; otherwise (larger $V_{in}$, $\beta_2 \gtrsim \beta_1$) $|A_v|$ keeps rising after $M_1$ enters triode and peaks between the two points or at $M_2$'s saturation, where $|A_v| = V_{out}/(V_{in} - 0.7 - V_{out})$. Example: $V_{in} = 2.7$ V, $\beta_2/\beta_1 = 1.74$: $|A_v|$ = 1.77 at $M_1$'s triode entry ($V_b$ = 0.55 V) and 3.23 at $M_2$'s saturation ($V_b$ = 0.73 V). The peak is finite, and higher the closer the two points are.
+- Beyond the peak: less current, $V_{out}$ lower, $M_1$ deeper in triode; $M_2$ always saturates before it cuts off, after which $|A_v| = V_{out}/(V_{in} - 0.7 - V_{out})$ (λ = 0) keeps falling with $V_{out}$.
+- $V_b \ge 2.2$ V: $M_2$ off, $V_{out} = 0$, $A_v = 0$.
+
+## Grading notes
+
++2: gain magnitude increasing while $M_2$ is a triode resistor, a finite maximum in the transition region between $M_1$'s triode entry and $M_2$'s saturation (placing it at $M_1$'s triode entry, near $M_2$'s saturation, or stating that its location depends on $V_{in}$ and the sizes are all acceptable), decrease afterward, and zero at $V_b \ge V_{DD} - |V_{THP}| = 2.2$ V. +1: shape right but the cutoff at 2.2 V or the reason for the peak missing. 0: increasing part right but behaviour after $M_1$ enters triode wrong (e.g. the gain still rising after $M_2$ saturates, or not falling to zero). -2 (asserted as fact): gain decreasing with $V_b$ from the start, a tall peak $g_{m1}(r_{O1}\|r_{O2})$ claimed for this case, or nonzero gain for $V_b > 2.2$ V.

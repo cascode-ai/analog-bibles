@@ -1,0 +1,1 @@
+In the circuit shown in [Fig. 1], suppose all resistors ($R_{D1}$, $R_{D2}$, $R_{S1}$, $R_{F1}$, $R_{F2}$) are equal to 2 kΩ and $g_{m1} = g_{m2} = 1/(200\ \Omega)$. Assuming that $\lambda = \gamma = 0$, calculate the closed-loop gain $V_{out}/V_{in}$ and the output impedance.

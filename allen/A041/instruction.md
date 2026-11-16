@@ -1,0 +1,1 @@
+You wish to match two MOS transistors having a $W/L$ of 40 µm/0.3 µm each. Sketch (or describe precisely) the layout of these two transistors that achieves the best possible matching, and explain the layout techniques used.

@@ -1,0 +1,5 @@
+The common-source stage shown in [Fig. 1] is designed with $W/L = 200\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$, $I = 1$ mA and $R_D = 2\ \mathrm{k\Omega}$ ($V_{DD} = 3$ V). It is used as the forward amplifier of the feedback system shown in [Fig. 2], with $\beta = 0.2$ (polarity arranged for negative feedback), and the system senses an input sinusoid with a peak amplitude of 10 mV. Calculate the THD at the output.
+
+For a forward amplifier $y = \alpha_1x + \alpha_2x^2$ in this loop and input $V_m\cos\omega t$, the ratio of the output second harmonic to the fundamental is approximately $\dfrac ba = \dfrac{\alpha_2V_m}{2\alpha_1}\cdot\dfrac{1}{(1+\beta\alpha_1)^2}$, which suggests that if the open-loop gain $\alpha_1$ increases while the other parameters remain constant, the harmonic distortion drops sharply. The wider device is meant to achieve a higher open-loop gain: compare your result with the same design using $W/L = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ and explain the results.
+
+Use the square-law model with $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, keep the transistor in saturation, and neglect channel-length modulation.

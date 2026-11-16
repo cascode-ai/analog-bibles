@@ -1,0 +1,1 @@
+Calculate the input-referred thermal noise voltage (per unit bandwidth) of the CMOS inverter amplifier shown in [Fig. 1], with both transistors in saturation. Express the result in terms of the transconductances $g_{m1}$, $g_{m2}$ and the thermal channel-noise coefficient γ (the output resistances $r_{O1}$, $r_{O2}$ are finite).

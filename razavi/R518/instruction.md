@@ -1,0 +1,1 @@
+[Fig. 1] shows, for a long-channel square-law MOSFET, how $g_m$ (plotted upward) and $I_D$ (plotted downward) depend on $W/L$ when $V_{GS} - V_{TH}$ is held constant. Sketch the corresponding plots for a hypothetical transistor whose transconductance in saturation is $g_m = \beta(V_{GS} - V_{TH})^2$, where β is proportional to $W/L$ (so that $I_D = \beta(V_{GS} - V_{TH})^3/3$).

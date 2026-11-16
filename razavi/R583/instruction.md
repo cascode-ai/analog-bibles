@@ -1,0 +1,1 @@
+For $V_{in} = V_0\sin\omega_0t + V_0$, where $V_0 = 0.5$ V and $\omega_0 = 2\pi \times (10\ \mathrm{MHz})$, plot the output waveform of the circuit shown in [Fig. 1] (a sampling switch $S_1$ and capacitor $C_H$ followed by a unity-gain buffer). Assume a clock frequency of 50 MHz with 50% duty cycle, $S_1$ closed while the clock is high, and an ideal switch and op amp.

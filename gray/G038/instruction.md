@@ -1,0 +1,3 @@
+Calculate the total zero-bias parasitic junction capacitance associated with a 10-kΩ base-diffused resistor if the base sheet resistance is 100 Ω/□ and the resistor width is 6 μm. Repeat for a resistor width of 12 μm. The resistor is a $p$-type base diffusion with a junction depth of 3 μm, formed in an $n$-type epitaxial layer of 5 Ω-cm ($N_D \approx 10^{15}\ \mathrm{cm^{-3}}$), and the base doping is much higher than the epi doping. Assume the contact clubheads at the two ends are 26 μm × 26 μm. Account for sidewall effects.
+
+Use a built-in potential of 0.55 V for the base-epi junction, $\epsilon_{Si} = 1.04\times10^{-12}$ F/cm and $q = 1.6\times10^{-19}$ C.

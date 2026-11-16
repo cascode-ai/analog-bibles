@@ -1,0 +1,3 @@
+An integrated-circuit $npn$ transistor has the following measured characteristics: $r_b = 100\ \Omega$, $r_c = 100\ \Omega$, $\beta_0 = 100$, $r_o = 50$ kΩ at $I_C = 1$ mA, $f_T = 600$ MHz with $I_C = 1$ mA and $V_{CB} = 10$ V, $f_T = 1$ GHz with $I_C = 10$ mA and $V_{CB} = 10$ V, $C_\mu = 0.15$ pF with $V_{CB} = 10$ V, and $C_{cs} = 1$ pF with $V_{CS} = 10$ V. Assume $\psi_0 = 0.55$ V for all junctions, model the reverse-biased junction capacitances as $C = C_0/(1+V_R/\psi_0)^{1/2}$, and assume the emitter–base depletion capacitance $C_{je}$ is constant in the forward-bias region. Use $r_\mu = 5\beta_0r_o$ and $V_T = 26$ mV.
+
+Form the complete small-signal equivalent circuit for this transistor at $I_C$ = 0.1 mA, 1 mA, and 5 mA with $V_{CB} = 2$ V and $V_{CS} = 15$ V.

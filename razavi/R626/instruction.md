@@ -1,0 +1,1 @@
+Explain why the circuit shown in [Fig. 1] (NMOS differential pair $M_1$–$M_2$ with PMOS current-source loads $M_3$–$M_4$ biased by $V_b$, all transistors in saturation) suffers from a trade-off between the input offset voltage and the output voltage swing, for a given tail current.

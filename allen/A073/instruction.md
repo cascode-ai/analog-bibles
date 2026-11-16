@@ -1,0 +1,3 @@
+In the circuit of [Fig. 1], M1 is an n-channel transistor with $W/L = 2.64$ and its bulk at ground. With its gate at 5 V it gives a small-signal response $v_{out}/v_{in}$ that is flat (0 dB) up to a −3 dB corner of 20 MHz and then falls at −20 dB/decade. $v_{in}$ is a small-signal source in series with $V_{DC} = 3$ V, the load is 2 pF, and M1 has no parasitic capacitances. Calculate the frequency response that results from changing the gate voltage of M1 to 4.5 V, and draw a Bode diagram of the resulting frequency response.
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.7$ V; $V_T = V_{T0} + \gamma\left(\sqrt{2|\phi_F| + v_{SB}} - \sqrt{2|\phi_F|}\right)$; nonsaturation-region square law.

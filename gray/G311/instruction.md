@@ -1,0 +1,1 @@
+The input stages of an op amp are shown in [Fig. 1] (supplies ±15 V; use $V_T = 26$ mV and neglect base currents). If this circuit is connected in a noninverting unity-gain feedback loop, sketch the output waveform $V_o$ if $V_i$ is a sinusoid of 10 V amplitude and frequency 45 kHz.

@@ -1,0 +1,3 @@
+Find the maximum input common-mode voltage, $v_{IC}(\max)$, and the minimum input common-mode voltage, $v_{IC}(\min)$, of the n-channel input differential amplifier with a current-mirror load shown in [Fig. 1] ($V_{SS}$ = ground). Assume all transistors have a W/L of 10 µm/1 µm and are in saturation, $I_{SS} = 10\ \mu$A, and neglect the body effect. Give $v_{IC}(\max)$ in terms of $V_{DD}$ and evaluate it for $V_{DD} = 5$ V. What is the input common-mode voltage range for this amplifier?
+
+Device data: n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$; p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$.

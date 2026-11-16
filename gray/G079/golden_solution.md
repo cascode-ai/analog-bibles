@@ -1,0 +1,16 @@
+# Golden Solution - G079
+
+## Reference answer
+
+$A_{dm} \approx -9.80$, $A_{cm} \approx -5.0\times10^{-3}$, $A_{cm-dm} \approx -3.9\times10^{-4}$, $A_{dm-cm} \approx -4.9\times10^{-7}$ (≈ 0). As $r_{\text{tail}} \to \infty$: $A_{cm} \to 0$ and $A_{dm-cm} \to 0$, $A_{dm}$ is unchanged, but $A_{cm-dm}$ does not vanish; it tends to $\approx -R\,\Delta r_o/[(r_o + R)(r_o + 1/g_m)] \approx -R\,\Delta r_o/r_o^2 \approx -3.9\times10^{-4}$.
+
+With $\bar r_o = 500$ kΩ, $\Delta r_o = r_{o1} - r_{o2} = 10$ kΩ, $R = 10$ kΩ:
+- $A_{dm}$: differential half circuit (tail at ac ground) is a CS stage with load $R\|r_o$: $A_{dm} \approx -g_m(R\|\bar r_o) = -1\ \mathrm{m} \times 9.80\ \mathrm{k} = -9.80$.
+- $A_{cm}$: common-mode half circuit with $2r_{\text{tail}}$ degeneration: $\approx -g_m R/(1 + 2g_m r_{\text{tail}}) \approx -10/2001 = -5.0\times10^{-3}$ (exact −4.99×10⁻³).
+- $A_{cm-dm}$: the mismatch of $r_o$ converts a common-mode input into a differential output: exact value −3.93×10⁻⁴ at $r_{\text{tail}} = 1$ MΩ. Mechanism: a common-mode input moves the tail node with it, so each $v_{ds}$ changes by about $-v_{ic}$, and the unequal $r_{o1}$, $r_{o2}$ draw unequal current changes, $\approx v_{ic}(1/r_{o2} - 1/r_{o1})$ in difference.
+- $A_{dm-cm}$: the circuit is almost symmetric for differential inputs; the residual comes from $\Delta r_o$ and is $\approx -4.9\times10^{-7}$, negligible.
+- $r_{\text{tail}} \to \infty$: the tail current is fixed, so the common-mode output vanishes ($A_{cm} \to 0$, $A_{dm-cm} \to 0$), but because the sources follow $v_{ic}$ exactly, the $v_{ds}$ changes still drive unequal currents through $r_{o1}$ and $r_{o2}$, which the fixed sum forces to appear as a differential current: $A_{cm-dm} \to -3.91\times10^{-4}$. An ideal tail source does not remove the common-mode-to-differential conversion caused by $r_o$ mismatch (unlike the load-mismatch case).
+
+## Grading notes
+
+Five parts (four gains plus the $r_{\text{tail}} \to \infty$ conclusion). +2: $A_{dm} \approx -9.8$ (accept −9.8 to −10), $A_{cm} \approx -0.005$, $|A_{cm-dm}| \approx 3.9\times10^{-4}$ (±10%), $A_{dm-cm} \approx 0$ (any value below ~10⁻⁵ in magnitude, or "negligible"), and the limit: $A_{cm}$, $A_{dm-cm} \to 0$ while $A_{cm-dm}$ stays at about $-3.9\times10^{-4}$. +1: one slip (e.g. sign of $A_{cm-dm}$, or $A_{dm} = -10$ with $r_o$ ignored). 0: about half right; a model error confined to one part caps the score at 0, e.g. claims that $A_{cm-dm} \to 0$ as $r_{\text{tail}} \to \infty$ while the finite-$r_{\text{tail}}$ values are right, or a wrong $A_{dm-cm}$ with the other parts right, such as $-g_m\Delta r_o/4$-type large values (e.g. −2.5) or the naive half-circuit value $\approx -g_m[(R\|r_{o1}) - (R\|r_{o2})]/4 \approx -9.6\times10^{-4}$ (tail node taken as ac ground for the differential input, ignoring the coupling through the shared tail node). −2 (asserted as fact): both $A_{cm-dm}$ and its $r_{\text{tail}} \to \infty$ limit wrong because the common-mode-to-differential conversion by the $r_o$ mismatch is missed (the main point of the problem), e.g. $A_{cm-dm} = 0$ for matched loads, or the naive half-circuit value $A_{cm-dm} \approx -2\times10^{-7}$ (each common-mode half circuit given its own $2r_{\text{tail}}$) followed by "all mismatch effects vanish with an ideal tail source"; or most of the gains wrong.

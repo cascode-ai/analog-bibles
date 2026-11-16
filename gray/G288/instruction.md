@@ -1,0 +1,1 @@
+An amplifier has a low-frequency forward gain of 200 and its transfer function has three negative real poles with magnitudes 1 MHz, 2 MHz, and 4 MHz. Calculate and sketch the Nyquist diagram for this amplifier if it is placed in a negative feedback loop with a frequency-independent feedback factor $f = 0.05$. Is the amplifier stable? Explain.

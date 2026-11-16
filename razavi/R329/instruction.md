@@ -1,0 +1,3 @@
+Consider the common-source stage shown in [Fig. 1]: NMOS $M_1$ is driven at its gate and loaded by the PMOS current source $M_2$, whose gate is held at a fixed bias $V_b$. Assume that $(W/L)_1 = 50/0.5$, $I_{D1} = |I_{D2}| = 0.1$ mA, and $V_{DD} = 3$ V; both transistors must operate in saturation. If the contribution of $M_2$ to the input-referred thermal noise voltage (not voltage squared) must be one-fifth of that of $M_1$, what is the maximum output voltage swing of the amplifier?
+
+Device data (square law): NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH} = -0.8$ V. Model the channel thermal noise of each transistor as $4kT\gamma g_m$ with the same γ for both devices.

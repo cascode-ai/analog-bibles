@@ -1,0 +1,1 @@
+Sketch $I_X$ versus $V_X$ for the circuit shown in [Fig. 1] as $V_X$ varies from 0 to $V_{DD} = 3$ V. Identify important transition points. $M_1$ is an NMOS device with $V_{TH} = 0.7$ V, source and bulk grounded. $V_b$, $R_D$ and $\beta = \mu_nC_{ox}W/L$ are not specified; express the results in terms of them. Neglect channel-length modulation.

@@ -1,0 +1,1 @@
+Consider an ideal voltage amplifier (infinite input resistance, zero output resistance) with a voltage gain of $A_v = 0.99$. A resistance $R = 50$ kΩ is connected from the output back to the input. Find the input resistance of this circuit by applying the Miller simplification (Miller's theorem).

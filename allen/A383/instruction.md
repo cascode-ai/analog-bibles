@@ -1,0 +1,1 @@
+An open-loop comparator has a dc gain of $10^4$, a single dominant pole at $10^5$ rad/s, a slew rate of 5 V/µs, and an output swing of 1 V. If the input step is $V_{in} = 1$ mV, find the propagation delay time of this comparator (the time for the output to go halfway from one state to the other).

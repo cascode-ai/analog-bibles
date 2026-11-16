@@ -1,0 +1,1 @@
+For the op amp shown in [Fig. 1] (supplies ±1.5 V; n-channel input pair M1–M2 with W/L = 10/1 µm/µm, $C_c$ = 5 pF), all transistors operate in saturation and the tail current is $I_5 = 45.7$ µA. Use $K'_N = 110\ \mu\mathrm{A/V^2}$. Find the unity-gain bandwidth GB in Hz.

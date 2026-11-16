@@ -1,0 +1,1 @@
+The input stages of an op amp are shown in [Fig. 1] (supplies ±15 V). Use $V_T = 26$ mV and neglect base currents. Calculate the full-power bandwidth of the circuit, that is, the highest frequency at which it can deliver a sinusoidal output with an amplitude equal to the supply voltage (15 V) without slew-rate limiting.

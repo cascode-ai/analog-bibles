@@ -1,0 +1,1 @@
+Determine the output current in the circuit shown in [Fig. 1]. The two npn transistors are identical, with $I_S = 5\times10^{-15}$ A, $\beta_F = 200$, $V_T = 26$ mV; neglect the Early effect. $Q_2$ operates in the forward-active region.

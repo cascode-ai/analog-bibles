@@ -1,0 +1,3 @@
+A differential amplifier with local common-mode feedback is shown in [Fig. 1]: two 20-kΩ resistors in series between $V_{o1}$ and $V_{o2}$, with their midpoint connected to the gates of the PMOS loads $M_3$ and $M_4$. Use $|V_{ov}| = 0.2$ V for all transistors, $V_{tn} = -V_{tp} = 0.6$ V, $I_{D5} = 200\ \mu$A, $V_{An} = 10$ V, $|V_{Ap}| = 20$ V ($r_o = |V_A|/|I_D|$) and $\gamma = 0$; $V_{DD} = V_{SS} = 2.5$ V, $V_{ic} = 0$.
+
+Compute the low-frequency gains $a_{dm} = v_{od}/v_{id}$ and $a_{cm} = v_{oc}/v_{ic}$. Compare them with the gains of the amplifier in [Fig. 2] (same devices and bias, no resistors, gates of $M_3$ and $M_4$ at a fixed bias $V_{BIAS}$, gate of $M_5$ at a fixed bias).

@@ -1,0 +1,5 @@
+Consider the emitter-coupled pair shown in [Fig. 1], modified by adding an emitter-degeneration resistor $R_E = 4\ \mathrm{k\Omega}$ in series with the emitter of each transistor (each emitter connects through its own 4-kΩ resistor to the common tail node). The tail current source is $I_{\text{TAIL}} = 20\ \mu$A in parallel with $R_{\text{TAIL}} = 10\ \mathrm{M\Omega}$; $R_C = 100\ \mathrm{k\Omega}$; $V_{EE} = V_{CC} = 5$ V; the dc input voltages are zero. Determine the differential-mode gain, the common-mode gain, the differential-mode input resistance, and the common-mode input resistance, and calculate the CMRR. Neglect $r_b$, $r_o$, and $r_\mu$.
+
+Definitions: $v_{id} = v_{i1} - v_{i2}$, $v_{ic} = (v_{i1}+v_{i2})/2$, $v_{od} = v_{o1} - v_{o2}$, $v_{oc} = (v_{o1}+v_{o2})/2$; $A_{dm} = v_{od}/v_{id}$ (with $v_{ic} = 0$), $A_{cm} = v_{oc}/v_{ic}$ (with $v_{id} = 0$); $R_{id} = v_{id}/i_b$ for a pure differential input and $R_{ic} = v_{ic}/i_b$ for a pure common-mode input ($i_b$ the base current of one transistor); CMRR $= |A_{dm}/A_{cm}|$.
+
+npn transistor data: $\beta_F = \beta_0 = 200$, $I_S = 5\times10^{-15}$ A, $V_T = 26$ mV.

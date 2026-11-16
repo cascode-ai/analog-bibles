@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], the gate of $M_1$ is biased by the resistive divider $R_1$–$R_2$ connected to $V_{DD}$. $(W/L)_1 = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ (effective dimensions), $\lambda = 0$, and $M_1$ is saturated. The divider is chosen so that $I_{out} = 0.5$ mA at the nominal conditions $V_{DD} = 3$ V, $V_{TH} = 0.7$ V, $T = 300$ K. The mobility varies as $\mu_n \propto T^{-3/2}$ and $V_{TH}$ is independent of temperature. What is the worst-case change in $I_{out}$ if $V_{DD}$ changes by 10%, $V_{TH}$ changes by 50 mV, and $T$ changes from 300 K to 370 K?
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$ at 300 K (source and bulk grounded).

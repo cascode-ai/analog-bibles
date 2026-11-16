@@ -1,0 +1,3 @@
+In the push–pull source follower shown in [Fig. 1], the n-channel M1 has its bulk at $V_{SS}$, the p-channel M2 has its bulk at $V_{DD}$, the two floating batteries are identical ($V_{BIAS}$ each; gate of M1 at $v_{IN}+V_{BIAS}$, gate of M2 at $v_{IN}-V_{BIAS}$), and the load $R_L$ is connected from the output to ground. Find an expression for $V_{BIAS}$ so that M1 and M2 are working in Class B operation, that is, M1 starts to turn on when M2 starts to turn off.
+
+Device data: n-channel $V_{T0}$ = 0.7 V, $K'_N$ = 110 µA/V², γ = 0.4 V$^{1/2}$, $2|\phi_F|$ = 0.7 V; p-channel $V_{T0}$ = −0.7 V, $K'_P$ = 50 µA/V², γ = 0.57 V$^{1/2}$, $2|\phi_F|$ = 0.8 V.

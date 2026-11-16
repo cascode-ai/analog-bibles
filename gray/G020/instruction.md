@@ -1,0 +1,3 @@
+An NMOS transistor has $W = 10\ \mu$m, $L = 1\ \mu$m (effective), $k' = \mu_nC_{ox} = 194\ \mu\mathrm{A/V^2}$, $\lambda = 0.024\ \mathrm{V^{-1}}$, gate-oxide thickness $t_{ox} = 80$ Å, $\phi_f = 0.3$ V, $V_{t0} = 0.6$ V (threshold at $V_{SB} = 0$), and substrate doping $N_A = 5\times10^{15}$ atoms/cm³. Ignore velocity-saturation effects and subthreshold conduction, and use the square-law model with the body effect. Sketch the $I_D$–$V_{GS}$ characteristics for $V_{DS} = 2$ V as $V_{GS}$ varies from 0 to 2 V, with $V_{SB}$ = 0, 0.5 V, and 1 V.
+
+Use $\epsilon_{ox} = 3.45\times10^{-13}$ F/cm, $\epsilon_{Si} = 1.04\times10^{-12}$ F/cm and $q = 1.6\times10^{-19}$ C.

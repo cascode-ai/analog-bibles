@@ -1,0 +1,1 @@
+A diffused resistor has a length of 200 μm and a width of 5 μm. The sheet resistance of the base diffusion is 100 Ω/□ and the emitter diffusion is 5 Ω/□. The base pinched layer has a sheet resistance of 5 kΩ/□. Determine the resistance of the resistor if it is an emitter-diffused, base-diffused, or pinch resistor.

@@ -1,0 +1,1 @@
+Suppose we have received an NMOS transistor in a package with four unmarked pins. Describe the minimum number of dc measurement steps using an ohmmeter that is necessary to determine the gate, source/drain, and bulk terminals of the device.

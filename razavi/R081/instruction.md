@@ -1,0 +1,1 @@
+Consider the circuit shown in [Fig. 1] with $(W/L)_1 = 50/0.5$ and $(W/L)_2 = 10/0.5$; $V_{DD} = 3$ V. Assume that $\lambda = \gamma = 0$. NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V. At what input voltage is $M_1$ at the edge of the triode region? What is the small-signal gain under this condition?

@@ -1,0 +1,1 @@
+Neglecting other capacitances, calculate the input impedance $Z_{in}$ of the circuit shown in [Fig. 1]. $M_1$ is an NMOS and $M_2$ a PMOS transistor, both in saturation, with $\lambda \ne 0$ (output resistances $r_{O1}$, $r_{O2}$).

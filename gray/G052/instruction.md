@@ -1,0 +1,3 @@
+Calculate the small-signal model parameters $g_m$, $r_o$, $C_{gs}$ and $C_{gd}$ for an NMOS transistor. Assume the transistor operates in the active region with $I_D = 100\ \mu$A, $V_{DS} = 1$ V, $V_{BS} = 0$ V, $W = 0.9$ μm, and $L = 0.2$ μm (drawn).
+
+Process data (NMOS): $t_{ox} = 42$ Å ($C_{ox} = 8.22\ \mathrm{fF/\mu m^2}$); $\mu_n = 300$ cm²/V-s ($k' = \mu_nC_{ox} = 247\ \mu\mathrm{A/V^2}$); $V_t = 0.5$ V; source/drain lateral diffusion $L_d = 0.01$ μm (take $L_{\text{eff}} = L_{\text{drwn}} - 2L_d$); overlap capacitance $C_{ol} = 0.36$ fF per μm of gate width; channel-length modulation $dX_d/dV_{DS} = 0.028\ \mu$m/V with $\lambda = (dX_d/dV_{DS})/L_{\text{eff}}$.

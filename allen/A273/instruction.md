@@ -1,0 +1,1 @@
+For the op amp shown in [Fig. 1] (supplies ±1.5 V; first-stage tail current $I_5 = 45.7$ µA; p-channel output transistor M6 with the n-channel current sink M7 carrying $I_7 = 228$ µA; $C_c$ = 5 pF; load capacitance 20 pF), find the negative slew rate (the slew rate of a falling output).

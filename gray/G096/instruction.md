@@ -1,0 +1,1 @@
+Determine the value of the sensitivity $S$ of the output current to the supply voltage for the circuit shown in [Fig. 1], where $S = (V_{CC}/I_{OUT})(\partial I_{OUT}/\partial V_{CC})$. Both transistors are identical npn devices with $I_S = 5\times10^{-15}$ A and $V_T = 26$ mV; neglect base currents and the Early effect.

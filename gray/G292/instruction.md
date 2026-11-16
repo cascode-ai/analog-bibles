@@ -1,0 +1,1 @@
+An amplifier has a low-frequency forward gain of 40,000 and its transfer function has three negative real poles with magnitudes 2 kHz, 200 kHz, and 4 MHz. It is connected in a feedback loop with a frequency-independent feedback factor $f$. Estimate the phase margin when $f$ is chosen to give a low-frequency closed-loop gain $A_0 = 200$, and then when it gives $A_0 = 100$.

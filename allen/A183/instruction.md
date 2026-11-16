@@ -1,0 +1,3 @@
+[Fig. 1] is the small-signal model of a current-source-load inverter (input transistor M1 with current-source load M2) driven by a high-resistance source $R_s$, drawn in Norton form ($V_{in}/R_s$ in parallel with $R_1$). The elements are $C_1 = C_{gs1}$, $C_2 = C_{gd1}$, $C_3 = C_{bd1}+C_{bd2}+C_{gd2}$, $R_1 = R_s$ and $R_3 = r_{ds1}\|r_{ds2}$. Use the Miller simplification on the capacitor $C_2$ and derive an expression for the dominant pole $p_1$, assuming that the reactance of $C_2$ at the frequency of interest is greater than $R_3$. Compare your result with the expression obtained from the full nodal analysis under the assumption of widely separated poles:
+
+$p_1 = \dfrac{-1}{R_1(C_1+C_2) + R_3(C_2+C_3) + g_{m1}R_1R_3C_2} \cong \dfrac{-1}{g_{m1}R_1R_3C_2}$.

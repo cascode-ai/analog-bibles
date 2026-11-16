@@ -1,0 +1,1 @@
+Find an expression for the output $Y_o(z)$ in terms of the input $X(z)$ and the quantization noise sources $Q_1(z)$ and $Q_2(z)$ for the multistage ΔΣ modulator shown in [Fig. 1]. What is the order of this modulator?

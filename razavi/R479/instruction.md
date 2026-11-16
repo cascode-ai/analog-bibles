@@ -1,0 +1,1 @@
+Consider the transimpedance amplifier shown in [Fig. 1], where $R_D = 1$ kΩ, $R_F = 10$ kΩ, $g_{m1} = g_{m2} = 1/(100\ \Omega)$, and $C_A = C_X = C_Y = 100$ fF. Neglecting all other capacitances and assuming that $\lambda = \gamma = 0$, compute the phase margin of the circuit. (Hint: break the loop at node X.)

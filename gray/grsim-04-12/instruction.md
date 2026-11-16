@@ -1,0 +1,3 @@
+Determine the unloaded voltage gain $v_o/v_i$ and the output resistance for the circuit shown in [Fig. 1]. Check with SPICE and also use SPICE to plot the large-signal $V_O$–$V_I$ transfer characteristic for $V_{SUP} = 2.5$ V. Use SPICE to determine the CMRR if the current-source output resistance is 1 MΩ.
+
+Device data: npn $\beta_F = \beta_0 = 200$, $V_A = 130$ V, $I_S = 5\times10^{-15}$ A; lateral pnp $\beta_F = \beta_0 = 50$, $V_A = 50$ V, $I_S = 2\times10^{-15}$ A; $r_b = 0$, $r_\mu \to \infty$, $V_T = 26$ mV. All transistors operate in the forward-active region (for the small-signal parts); neglect base currents in bias calculations.

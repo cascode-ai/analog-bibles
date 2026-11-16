@@ -1,0 +1,1 @@
+[Fig. 1] shows a noiseless amplifier driven by a source resistance $R_S$ (the amplifier draws no input current). If the amplifier can be modeled by a low-frequency gain of $A_0$ and a single pole at $\omega_0$ (rad/s), determine the total integrated noise at the output due to $R_S$ (over all frequencies). Model the noise of $R_S$ as $4kTR_S$ (V²/Hz).

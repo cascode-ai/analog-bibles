@@ -1,0 +1,11 @@
+# Golden Solution - grsim-05-10
+
+## Reference answer
+
+(a) Dead band: $V_o = 0$ for $|V_i| < 0.6$ V. $V_o = V_i - 0.6$ for $0.6 < V_i < 15.4$ V ($Q_1$ follower), $V_o = V_i + 0.6$ for $-15.4 < V_i < -0.6$ V ($Q_2$ follower), slope 1; flat at $\pm14.8$ V beyond ($Q_1$/$Q_2$ saturated).
+(b) 1 V: output pulses of 0.4 V peak, conducting only while $|\sin\omega t| > 0.6$ (≈ 37°–143° of each half cycle), i.e. heavy crossover distortion; $I_{c1}$ = positive pulses of 0.2 mA peak in the positive half, $I_{c2}$ the same in the negative half. 10 V: 9.4 V peak with a small notch (≈ ±3.4°) at each zero crossing; current half-sines of 4.7 mA peak. 20 V: output follows with the crossover notch (±1.7°) and is clipped flat at ±14.8 V for $|\sin\omega t| > 0.77$ (≈ 50°–130°); currents are flat-topped half-sines of 7.4 mA peak.
+(c) Expected harmonics: $HD_2 \approx 0$ (odd-symmetric characteristic with matched devices). With the abrupt model: $HD_3 \approx 46\%$ (1 V), $2.7\%$ (10 V), $8.7\%$ (20 V, mostly clipping). With exponential devices ($I_S = 10^{-16}$ A gives $|V_{BE}| \approx 0.74$–0.82 V, so the dead band is wider): $HD_3 \approx 54\%$, $3.6\%$, $7.7\%$. A simulation should land near the exponential values: very large distortion at 1 V, a few percent at 10 V, rising again at 20 V because of clipping; $HD_2$ small (it is nonzero only through pnp/npn mismatch, which these identical models do not have).
+
+## Grading notes
+
+A correct result shows the dead band (about ±0.6 V abrupt, ±0.7–0.8 V in SPICE), unity slope outside it, saturation near ±14.8 V; crossover-dominated distortion that falls from tens of percent at 1 V to a few percent at 10 V and rises at 20 V due to clipping; $HD_2 \approx 0$. Tolerances: $HD_3$ within ±25% relative of 46–54% (1 V), 2.7–3.6% (10 V), 7.7–8.7% (20 V). +2 for all of this; +1 if the trend is right but one amplitude is clearly off; 0 if only (a)/(b) are right; −2 for a large $HD_2$ reported for this symmetric circuit, or distortion decreasing monotonically with amplitude through 20 V asserted.

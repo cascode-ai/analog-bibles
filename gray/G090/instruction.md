@@ -1,0 +1,3 @@
+In the design of a bipolar Widlar current source of the type shown in [Fig. 1] to produce a specified output current, two resistors must be selected: resistor $R_1$ sets $I_{IN}$, and the emitter resistor $R_2$ sets $I_{OUT}$. Assuming a supply voltage $V_{CC}$ and a desired output current $I_{OUT}$, determine the values of the two resistors so that the total resistance $R_1 + R_2$ in the circuit is minimized. Give your answer as expressions for $R_1$ and $R_2$ in terms of $V_{CC}$ and $I_{OUT}$ (and the thermal voltage $V_T$). What values would these expressions give for $V_{CC} = 30$ V and $I_{OUT} = 5$ µA? Are these values practical?
+
+Assume identical transistors, neglect base currents and the Early effect, and use $V_T = 26$ mV.

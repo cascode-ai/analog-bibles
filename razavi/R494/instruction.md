@@ -1,0 +1,3 @@
+Calculate the input-referred thermal noise voltage of the fully differential two-stage op amp shown in [Fig. 1], where $W/L = 50/0.5$ for all transistors except for $M_{5,6}$, for which $W/L = 60/0.5$, $I_{SS} = 0.25$ mA, each output branch is biased at 1 mA, and the current sources are biased so that $M_3$, $M_4$ carry $I_{SS}/2$ each and $M_7$, $M_8$ carry 1 mA each. Model the channel thermal noise as $\overline{I_n^2} = 4kT\gamma g_m$ with $\gamma = 2/3$ and $T = 300$ K.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $\lambda = 0.1\ \mathrm{V^{-1}}$; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $\lambda = 0.2\ \mathrm{V^{-1}}$.

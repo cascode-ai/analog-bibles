@@ -1,0 +1,1 @@
+Using feedback techniques, calculate the input and output impedances of the circuit shown in [Fig. 1]. Assume $\lambda = 0$ and an ideal current source $I_1$; express the results in terms of $g_{m1}$, $C_1$, $C_2$ and $s$.

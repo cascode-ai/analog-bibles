@@ -1,0 +1,3 @@
+For the common-emitter stage whose ac schematic is shown in [Fig. 1], calculate an expression for the small-signal output impedance seen by $R_L$ (looking into the collector, $v_i = 0$), form an equivalent circuit, and plot its magnitude on log scales from $f = 1$ kHz to $f = 100$ MHz, for two cases: (1) $R_S = 0$ and (2) $R_S = \infty$.
+
+Data: $r_b = 300\ \Omega$, $I_C = 0.5$ mA, $\beta = 200$, $f_T = 500$ MHz (at $I_C = 0.5$ mA), $C_\mu = 0.3$ pF, $C_{cs} = 0$, $V_A = \infty$ ($r_o = \infty$), $V_T = 26$ mV. Use the hybrid-π model with $r_b$, $r_\pi$, $C_\pi$, $C_\mu$, and $g_m$ (no $r_\mu$).

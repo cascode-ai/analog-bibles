@@ -1,0 +1,1 @@
+A null port is a pair of terminals of a network across which the voltage is zero and through which the current is also zero. Show that if the voltage gain of an op amp approaches infinity, its differential input becomes a null port. Assume that the output is returned to the input by means of negative feedback.

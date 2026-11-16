@@ -1,0 +1,1 @@
+If the mobility of an electron is 500 cm²/(V·s) and the mobility of a hole is 200 cm²/(V·s), compare the performance of an n-channel with a p-channel MOS transistor (same gate oxide). In particular, consider the value of the transconductance parameter and the speed of the MOS transistor.

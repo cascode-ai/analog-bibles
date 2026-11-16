@@ -1,0 +1,3 @@
+For the common-source stage whose ac schematic is shown in [Fig. 1], calculate an expression for the small-signal output impedance seen by $R_L$ (looking into the drain, with $v_i = 0$ and $R_S = 10\ \mathrm{k\Omega}$ in place), form an equivalent circuit for it, and plot its magnitude on log scales from $f = 1$ kHz to $f = 100$ MHz. The transistor is biased at $I_D = 0.5$ mA.
+
+NMOS data: $W = 100\ \mu$m, $L_{\text{eff}} = 1.6\ \mu$m, $k_n' = 60\ \mu\mathrm{A/V^2}$, $\lambda = 0$, $\gamma = 0$, $C_{gs} = \tfrac23WL_{\text{eff}}C_{ox}$ with $C_{ox} = 0.7\ \mathrm{fF/\mu m^2}$, $C_{gd} = 14$ fF, $C_{sb} = C_{db} = 0$. Use the square-law model.

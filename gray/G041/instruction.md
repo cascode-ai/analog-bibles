@@ -1,0 +1,1 @@
+An MOS transistor biased in the active region displays a drain current of 100 μA at a $V_{GS}$ of 1.5 V and a drain current of 10 μA at a $V_{GS}$ of 0.8 V. Determine the threshold voltage and $\mu_nC_{ox}(W/L)$. Neglect subthreshold conduction and assume that the mobility is constant.

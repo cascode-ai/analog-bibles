@@ -1,0 +1,1 @@
+A two-stage op amp is compensated for a phase margin of 60° with a feedback factor β = 1. If β is reduced to $\beta_1 < 1$, determine the new phase margin. Model the compensated op amp by a dominant pole and a single nondominant pole, and neglect zeros.

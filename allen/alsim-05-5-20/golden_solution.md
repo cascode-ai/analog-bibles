@@ -1,0 +1,14 @@
+# Golden Solution - alsim-05-5-20
+
+## Reference answer
+
+The task is open; one workable design and its expected (hand-estimated) performance:
+
+- Output device: substrate NPN emitter follower Q1 (collector at +2 V, emitter = output) for sourcing; n-channel current sink M2 for sinking, made of four 100 µm/1 µm devices in parallel (β ≈ 44 mA/V²) biased at $I_Q$ ≈ 20 mA through a mirror (so $V_{DS(sat)}$ ≈ 0.95 V and M2 stays saturated down to $v_{OUT}$ ≈ −1 V).
+- Driver/level shift: p-channel source follower Mp (two 100/1 in parallel, bulk tied to its source in its own n-well) from $v_{IN}$ to the base of Q1, biased by a p-channel current source (≈ 0.5 mA, four 100/1 in parallel) from +2 V, which also supplies Q1's base current (≤ 0.4 mA). The base sits at $v_{IN}+V_{SG,p}$, so $v_{OUT} \approx v_{IN} + V_{SG,p} - V_{BE}$ (a few hundred mV of offset, irrelevant to the peak-to-peak definitions).
+- Expected performance: SR: rising edge driven by Q1 (tens of mA available), falling edge limited by $I_Q$ = 20 mA → ≥ 10 V/µs into 1 nF over ±1 V (10 points). $V_P$: at +1 V Q1 supplies 30 mA (base ≈ 1.75 V, just within the driver headroom); at −1 V the 100-Ω load returns 10 mA and Q1 still conducts 10 mA → $V_P$ ≈ 1 V (≈ 10 points). Efficiency: 5 mW in the load versus ≈ 4 V × 21 mA ≈ 84 mW → η ≈ 6% (≈ 2.4 points). Gain: emitter follower ($r_e$ ≈ 1.3 Ω) and source follower without body effect → $A_v$ ≈ 0.97–0.98 (≈ 9.7 points). Expected SCORE ≈ 32 of 40.
+- Higher scores require a Class AB output (e.g. an NPN follower for sourcing and a feedback-controlled n-channel common-source sink) to raise the efficiency toward 25% while keeping $V_P \ge$ 1 V; a MOS follower alone cannot deliver ±1 V into 100 Ω from ±2 V supplies because of its threshold (with body effect) plus overdrive at 10 mA.
+
+## Grading notes
+
+Open design task: accept any design that obeys the constraints (±2 V supplies; only MOSFETs with 1 ≤ W/L ≤ 100 (parallel devices allowed) and substrate NPNs with collectors at the positive supply, plus $C_L$ and $R_L$; the given models) and whose reported metrics are consistent with the circuit and correctly extracted by the stated definitions: SR measured with the 1-nF load over ±1 V (smaller of the two directions), $V_P$ as the smaller of the ± deviations with 100 Ω, η from load and total supply power, $A_v$ from peak-to-peak values with 100 Ω. A correct simulation shows a gain close to +1 (non-inverting), and the SCORE must be computed from the four capped terms (each ≤ 10). A reasonable design scores roughly 25–35; claims near the maximum need a Class AB stage and convincing simulation evidence. Errors: NPN used with its collector not at the positive supply, W/L outside 1–100, inverting gain, efficiency computed without the bias currents, or metrics taken from hand analysis presented as simulation.

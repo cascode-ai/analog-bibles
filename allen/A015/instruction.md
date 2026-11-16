@@ -1,0 +1,1 @@
+Consider a photomask that is opaque everywhere except for a transparent circle in the center. Metal is deposited on a substrate, followed by an application of negative photoresist, which is patterned with this mask. After exposure, developing, and subsequent etching, what will remain?

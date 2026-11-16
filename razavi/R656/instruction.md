@@ -1,0 +1,1 @@
+A type I PLL (a phase detector, a first-order low-pass filter $1/(1 + s/\omega_{LPF})$, and a VCO in a unity-feedback loop) incorporates a VCO with $K_{VCO} = 100$ MHz/V, a PD with $K_{PD} = 1$ V/rad, and an LPF with $\omega_{LPF} = 2\pi(1\ \mathrm{MHz})$. Determine the step response of the PLL.

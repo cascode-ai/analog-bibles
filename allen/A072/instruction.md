@@ -1,0 +1,3 @@
+For the circuit in [Fig. 1], assume that there are no capacitive parasitics associated with M1. M1 is an n-channel transistor with its gate at 5 V and its bulk at ground. The voltage source $v_{in}$ is a small-signal source, whereas the voltage source $V_{DC}$ has a dc value of 3 V; the load is a 2-pF capacitor. Design M1 (find its $W/L$) to achieve the asymptotic frequency response of $|v_{out}/v_{in}|$ shown in [Fig. 2].
+
+Device data (n-channel): $V_{T0} = 0.7$ V, $K' = 110\ \mu\mathrm{A/V^2}$, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.7$ V. Nonsaturation region: $i_D = K'\frac{W}{L}\left[(v_{GS}-V_T)v_{DS} - \frac{v_{DS}^2}{2}\right]$; $V_T = V_{T0} + \gamma\left(\sqrt{2|\phi_F| + v_{SB}} - \sqrt{2|\phi_F|}\right)$.

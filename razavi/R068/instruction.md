@@ -1,0 +1,1 @@
+In the common-source stage shown in [Fig. 1], $(W/L)_1 = 50/0.5$, $R_D = 2$ kΩ, $\lambda = 0$, and $V_{DD} = 3$ V; the source and bulk of $M_1$ are grounded. NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH} = 0.7$ V. What input voltage places $M_1$ at the edge of the triode region? What is the small-signal gain under this condition?

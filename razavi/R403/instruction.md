@@ -1,0 +1,1 @@
+Suppose the amplifier in the circuit shown in [Fig. 1] has an open-loop transfer function $A_0/(1 + s/\omega_0)$, infinite input impedance and an output resistance $R_0$. Calculate the output impedance of the closed-loop circuit and plot its magnitude as a function of frequency. Explain the behavior.

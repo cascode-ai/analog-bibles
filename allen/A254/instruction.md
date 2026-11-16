@@ -1,0 +1,1 @@
+A two-stage, Miller-compensated CMOS op amp has an RHP zero at 20GB, a dominant pole due to the Miller compensation, a second pole at $p_2$, and another pole at $-3GB$. If GB is 1 MHz, find the location of $p_2$ corresponding to a 45° phase margin (feedback factor 1, large dc gain; evaluate the phase at $\omega = GB$).

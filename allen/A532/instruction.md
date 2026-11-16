@@ -1,0 +1,1 @@
+Give a schematic for a folder having a single-ended output that varies between 1 and 3 V, starts at 1 V, ends at 1 V, and passes through 2 V six times as the analog input is swept from 0 to $V_{REF}$.

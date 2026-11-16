@@ -1,0 +1,3 @@
+For the n-channel differential amplifier with diode-connected p-channel loads (enhancement loads) shown in [Fig. 1], calculate the differential-in to single-ended-output voltage gain ($v_{o2}/v_{id}$ or $v_{o1}/v_{id}$, with $v_{id} = v_1 - v_2$). Assume that $I_{SS}$ is 50 µA and all transistors are saturated. The W/L values are not given: express the gain in terms of $(W/L)_1/(W/L)_3$ (M1, M2 matched; M3, M4 matched) and evaluate it for equal W/L of all four transistors (L = 1 µm).
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

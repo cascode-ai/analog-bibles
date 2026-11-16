@@ -1,0 +1,1 @@
+Calculate the differential-mode output slew rate $dV_{od}/dt$ for the fully differential op amp shown in [Fig. 1]. Assume $I_{D5} = 200\ \mu$A (so the PMOS loads $M_3$ and $M_4$ each supply 100 μA), and a 5-pF capacitor is connected from each op-amp output to ground. Assume the current-source transistors stay in the active region during slewing.

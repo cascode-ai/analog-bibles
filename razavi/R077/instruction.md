@@ -1,0 +1,1 @@
+Assuming a constant channel length $L$, plot the intrinsic gain $g_mr_O$ of a saturated MOSFET versus $W/L$ if the drain current is held constant. Use the square-law model with $r_O = 1/(\lambda I_D)$.

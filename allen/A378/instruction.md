@@ -1,0 +1,3 @@
+Calculate the trip voltage of the inverting stage shown in [Fig. 1] (the output stage of a two-stage comparator): M6 is the p-channel input transistor with $(W/L)_6 = 10$, and M7 is the n-channel current sink with $(W/L)_7 = 100$ whose gate is biased at $V_{BIAS} = 1$ V above $V_{SS}$. $V_{SS} = 0$ V and $V_{DD} = 4$ V. The trip voltage is the input voltage at which both transistors are saturated and carry the same current. Also compute the worst-case (maximum and minimum) trip voltage assuming a ±10 % variation on $V_T$ (both types), $K'$ (both types), $V_{DD}$ and $V_{BIAS}$.
+
+Device data (nominal): $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $V_{TN} = 0.7$ V, $V_{TP} = -0.7$ V. Neglect channel-length modulation and the body effect.

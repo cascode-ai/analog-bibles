@@ -1,0 +1,1 @@
+[Fig. 1] shows the simulated small-signal output resistance $r_O$ of an NMOS transistor with $W/L = 5\ \mu\mathrm{m}/40\ \mathrm{nm}$ (40-nm CMOS) as a function of its drain current, with the same terminal voltages throughout. We wish to bias a transistor with $L = 40$ nm at $I_D = 0.25$ mA. Determine which case yields a higher output impedance: $W = 5\ \mu$m or $W = 10\ \mu$m.

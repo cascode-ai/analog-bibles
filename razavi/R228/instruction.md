@@ -1,0 +1,3 @@
+In the circuit shown in [Fig. 1], the gate of $M_1$ is biased by the resistive divider $R_1$–$R_2$ connected to $V_{DD} = 3$ V. $(W/L)_1 = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ (effective dimensions), $\lambda = 0$, $M_1$ is saturated, and the divider is chosen so that $I_{out} = 0.5$ mA at $T = 300$ K. If the temperature dependence of $\mu_n$ is expressed as $\mu_n \propto T^{-3/2}$ but $V_{TH}$ is independent of temperature, how much does $I_{out}$ vary if $T$ changes from 300 K to 370 K?
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$ at 300 K, $V_{TH} = 0.7$ V (source and bulk grounded).

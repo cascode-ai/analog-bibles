@@ -1,0 +1,12 @@
+# Golden Solution - A316
+
+## Reference answer
+
+- p-well CMOS (n-type substrate): npn transistors. The substrate (vertical) npn uses an n+ source/drain diffusion in the p-well as emitter, the p-well as base, and the n-substrate as collector, so the collector is permanently tied to $V_{DD}$; a lateral npn (n+ emitter and collector diffusions in the p-well, p-well base) is also possible.
+- n-well CMOS (p-type substrate): pnp transistors. The substrate pnp has a p+ emitter in the n-well, the n-well as base and the p-substrate as collector, tied to $V_{SS}$; lateral pnp devices are also possible.
+- Pros in a Class A output: much higher transconductance than a MOSFET at the same current ($g_m = I_C/V_t$, e.g., 1/(38.7 mS) ≈ 26 Ω at 1 mA), hence a low output resistance as an emitter follower, with no extra process steps; the follower also gives level shifting and a large current gain.
+- Cons: the substrate device can only be used as an emitter follower (collector fixed to a supply), so the Class A stage is asymmetric: it sources (npn) or sinks (pnp) strongly while the opposite direction is limited by a current source, giving asymmetric slew rate and limited output current; base current must be supplied by the previous stage, and the resistance seen at the base divided by $1 + \beta_F$ adds to $r_{out}$ (often requiring a MOS follower first); the output cannot swing close to the collector-side rail because of $V_{BE}$ and the driving device's saturation voltage; Class A biasing dissipates quiescent power; $\beta$ and $I_S$ are poorly controlled; substrate currents can cause latch-up and noise injection; lateral devices have low $\beta$ and poor frequency response.
+
+## Grading notes
+
++2: npn (vertical/substrate, collector = n-substrate at $V_{DD}$) for p-well and pnp (collector = p-substrate at $V_{SS}$) for n-well, with lateral devices optionally mentioned; at least one solid advantage (low output resistance from high $g_m$) and at least two drawbacks among: unsymmetrical drive/sourcing only, limited output current or base-current demand, collector tied to the substrate supply, reduced swing, quiescent power. +1: types right but the pros/cons discussion thin (one con only), or a minor inaccuracy. 0: only one of the two technologies right, or types right with no discussion. −2 (asserted as fact): types reversed (pnp in p-well, npn in n-well), claiming the collector can be freely connected for a substrate BJT, or claiming the BJT raises the output resistance.

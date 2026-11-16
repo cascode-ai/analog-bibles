@@ -1,0 +1,1 @@
+A 4-bit binary-weighted DAC is shown in [Fig. 1]. Switch $b_i$ connects its resistor to $V_{REF}$ when $b_i = 1$ and is open when $b_i = 0$ ($b_0$ is the MSB); the op amp is otherwise ideal. If $R_0 = 7R/8$, $R_1 = 2R$, $R_2 = 4R$, $R_3 = 8R$, $R_4 = 16R$, and $V_{OS} = 0$ V, sketch the digital–analog transfer curve (output versus input code 0000 to 1111).

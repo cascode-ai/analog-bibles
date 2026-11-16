@@ -1,0 +1,1 @@
+The circuit shown in [Fig. 1] is designed with $C_1 = 2$ pF and $C_2 = 0.5$ pF; the resistor $R_F$ defines the dc bias of the inverting input. If the op amp is ideal, determine the minimum value of $R_F$ that guarantees a gain error of (at most) 1% for an input frequency of 1 MHz.

@@ -1,0 +1,1 @@
+In the three-stage ring oscillator shown in [Fig. 1], assume that $g_{m1} = g_{m2} = g_{m3} = (200\ \Omega)^{-1}$. Determine the value of $C_L$ for an oscillation frequency of 1 GHz and a total low-frequency loop gain of 16. Neglect channel-length modulation and all capacitances other than the three $C_L$.

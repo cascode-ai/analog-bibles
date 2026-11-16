@@ -1,0 +1,1 @@
+Determine the output voltage $V_{out}$ as a function of the input voltage $V_{in}$ for the circuit shown in [Fig. 1]. Assume the op amp is ideal (its output saturates at a supply rail when there is no negative feedback) and that the output terminal is unloaded.

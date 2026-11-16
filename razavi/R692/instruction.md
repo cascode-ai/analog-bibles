@@ -1,0 +1,1 @@
+Due to a layout error, the circuit shown in [Fig. 1] suffers from contact spiking in one of its junctions. The bulk of $M_1$ is the p-substrate, which is tied to ground; $M_2$ sits in an n-well tied to $V_{DD}$. Identify the faulty junction if the voltage gain is higher than expected.

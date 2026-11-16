@@ -1,0 +1,3 @@
+A long-channel MOSFET model that accounts for the variation of the threshold voltage along the channel gives the drain current (below saturation) as
+$$I_D = \mu C_{ox}\frac{W}{L}\left\{(V_{GS}-V_{TH0})V_{DS} - \frac{V_{DS}^2}{2} - \frac23\gamma\left[(V_{DS} - V_{BS} + 2\phi_F)^{3/2} - (-V_{BS} + 2\phi_F)^{3/2}\right]\right\}.$$
+Using this equation, calculate the body transconductance $g_{mb} = \partial I_D/\partial V_{BS}$. Compare the result with that of the simple square-law model, in which the threshold voltage is the same along the whole channel, $V_{TH} = V_{TH0} + \gamma\left(\sqrt{2\phi_F + V_{SB}} - \sqrt{2\phi_F}\right)$.

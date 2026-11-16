@@ -1,0 +1,1 @@
+In the circuit shown in [Fig. 1], determine the value of $R_x$ that makes the output voltage zero when the input voltage is zero. The op amp is ideal except for a nonzero input bias current: the same dc current $I_B$ flows into each of its two input terminals. The input offset current and the input offset voltage are zero.

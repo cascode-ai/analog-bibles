@@ -1,0 +1,1 @@
+Show that two MOS transistors connected in parallel with channel widths of $W_1$ and $W_2$ and identical channel lengths of $L$ can be modeled as one equivalent MOS transistor whose width is $W_1 + W_2$ and whose length is $L$, as shown in [Fig. 1]. Assume the transistors are identical except for their channel widths.

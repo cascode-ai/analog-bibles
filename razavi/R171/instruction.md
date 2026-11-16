@@ -1,0 +1,3 @@
+Consider the circuit shown in [Fig. 1], but with both load resistors exactly equal, $R_D = 2$ kΩ ($\Delta R_D = 0$); instead, $M_1$ and $M_2$ ($(W/L)_{1,2} = 50/0.5$ μm) suffer from a threshold-voltage mismatch of 1 mV. $R_{SS}$ represents the output impedance of an NMOS current source with $(W/L) = 50/0.5$ and a drain current of 1 mA (this source provides the tail current); the input common-mode level is 1.5 V. Calculate the CMRR (differential gain divided by the common-mode-to-differential conversion gain).
+
+Data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$; $\lambda = 0.1\ \mathrm{V^{-1}}$ for the current-source transistor. Neglect channel-length modulation and body effect in $M_1$ and $M_2$.

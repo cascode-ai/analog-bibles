@@ -1,0 +1,1 @@
+Show how to compensate the differential-output op amp of [Fig. 1]: an n-channel input pair with p-channel current-source loads and an n-channel tail current source, whose two outputs each drive a CMOS inverter (common p- and n-channel gates) that forms the corresponding output $v_{out}^+$ or $v_{out}^-$. Each output drives a load capacitance $C_L$ to ground.

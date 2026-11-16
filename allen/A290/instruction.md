@@ -1,0 +1,3 @@
+For the cascoded differential stage shown in [Fig. 1], all W/L ratios are initially 10 µm/1 µm and $I_{DS1} = I_{DS2} = 50\ \mu$A; the output $v_{o1}$ drives a load capacitance only. Find new values of $W_1$ and $W_2$ ($L_1 = L_2 = 1\ \mu$m, all other devices and currents unchanged) that will give a small-signal voltage gain $v_{o1}/v_{in}$ of 10,000, and find the load capacitance at $v_{o1}$ that then gives a unity-gain bandwidth $GB$ of 10 MHz.
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$ (L = 1 µm). Neglect the body effect.

@@ -1,0 +1,1 @@
+The Miller-compensated two-stage op amp in [Fig. 1] is modeled as shown in [Fig. 2], with $g_{m1} = 0.5$ mA/V, $R_1 = 200$ kΩ, $g_{m6} = 2$ mA/V, $R_2 = 100$ kΩ, $C_1 = 0.1$ pF, and $C_2 = 8$ pF. What value of $R_Z$ in [Fig. 2] eliminates the right half-plane zero?

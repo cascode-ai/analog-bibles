@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] is designed with $(W/L)_{1} = (W/L)_{2} = (W/L)_{3} = (W/L)_{4} = 50/0.5$ (effective dimensions in μm) and $I_{SS} = 2I_1 = 0.5$ mA, with $V_{DD} = 3$ V; $I_{SS}$ and $I_1$ are ideal current sources. Determine the maximum output voltage swing if the input common-mode level is 1.3 V (the range of $V_{out}$ over which $M_2$ and $M_4$ remain saturated).
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V (bulk at ground); PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V (bulk at $V_{DD}$).

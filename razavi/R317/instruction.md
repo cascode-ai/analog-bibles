@@ -1,0 +1,1 @@
+A differential pair driven by an ideal voltage source is required to have a total phase shift of 135° at the frequency where its gain drops to unity. Explain why a topology in which the load is realized by diode-connected devices or by current sources does not satisfy this condition.

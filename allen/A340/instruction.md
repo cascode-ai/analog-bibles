@@ -1,0 +1,1 @@
+For the folded-cascode, differential-output op amp of [Fig. 1], assume $g_{mN} = g_{mP}$ (= $g_m$) and $r_{dsN} = r_{dsP}$ (= $r_{ds}$). Find an approximate expression for the differential voltage gain and the differential output resistance.

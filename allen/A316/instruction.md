@@ -1,0 +1,1 @@
+What type of bipolar junction transistor is available in a bulk CMOS p-well technology? In a bulk CMOS n-well technology? Discuss the pros and cons of using such a BJT in a Class A output stage of an op amp.

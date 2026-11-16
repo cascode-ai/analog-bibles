@@ -1,0 +1,1 @@
+Assuming that $I_1$ and $I_{SS}$ in the circuit shown in [Fig. 1] are ideal current sources and λ, γ > 0, determine the small-signal gains $V_{out1}/V_{in}$ and $V_{out2}/V_{in}$ ($V_b$ is a constant bias voltage; the bulks of $M_1$ and $M_2$ are at ground).

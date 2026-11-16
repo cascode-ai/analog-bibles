@@ -1,0 +1,3 @@
+A source follower employing an NFET with $W/L = 50\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ (effective dimensions) and a bias current of 1 mA is driven by a source impedance of $10\ \mathrm{k\Omega}$ (a resistance in series with the gate). Calculate the equivalent inductance seen at the output. Consider only the gate–source capacitance $C_{GS}$ of the transistor (neglect $C_{GD}$ and the junction capacitances) and neglect channel-length modulation and the body effect.
+
+NMOS data: $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $C_{ox} = 3.84\ \mathrm{fF/\mu m^2}$, gate–source overlap capacitance $0.4\ \mathrm{fF/\mu m}$.

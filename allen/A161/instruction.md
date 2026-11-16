@@ -1,0 +1,3 @@
+Find the small-signal transfer function $V_3(s)/V_{in}(s)$ of the circuit shown in [Fig. 1], where $V_{in} = V_1 - V_2$ is applied differentially ($V_1 = V_{in}/2$, $V_2 = -V_{in}/2$), including the capacitors shown, in algebraic form (in terms of the small-signal model parameters and capacitances). Evaluate the low-frequency gain and all zeros and poles if $I = 200\ \mu$A and $C_1 = C_2 = C_3 = C_4 = 1$ pF. Let all W/L = 10 (L = 1 µm). Neglect device capacitances other than $C_1$–$C_4$.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

@@ -1,0 +1,3 @@
+For the active-resistor (diode-connected PMOS) load inverter, the current-source load inverter and the push–pull inverter shown in [Fig. 1] (M1 is the n-channel input transistor in each; M2 is p-channel), compare the active channel area (the sum of W·L of M1 and M2), assuming the length of every transistor is 1 µm, if the gain is to be −100 V/V at a current of $I_D = 10\ \mu$A and the PMOS transistor has a W/L of 1. All transistors are saturated.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$.

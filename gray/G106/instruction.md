@@ -1,0 +1,3 @@
+A pair of bipolar current sources is to be designed to produce output currents that match within ±1 percent. Each source is an npn transistor whose base is driven from a common bias voltage and whose emitter is returned to ground through an emitter resistor $R$ (nominally equal resistors). If the resistors display a worst-case mismatch of ±0.5 percent and the transistors a worst-case $V_{BE}$ mismatch of 2 mV (at equal collector currents), how much voltage must be dropped across the emitter resistors?
+
+Here "mismatch" means the difference between the two values divided by their average (so the requirement is $|\Delta I_C/I_C| \le 1\%$ with $|\Delta R/R| = 0.5\%$). Neglect base currents and $\alpha_F$ mismatch; $V_T = 26$ mV.

@@ -1,0 +1,1 @@
+Sketch a circuit configuration suitable for simulating the following op amp characteristics: (a) slew rate, (b) transient response, (c) input common-mode voltage range (ICMR), and (d) output-voltage swing. Repeat for the measurement (on the bench) of the above op amp characteristics. What changes are made and why?

@@ -1,0 +1,1 @@
+A common-gate stage designed for an input impedance of 50 Ω undergoes ideal scaling by a factor $\alpha > 1$ (all lateral and vertical dimensions divided by $\alpha$, all voltages, including supply, bias and threshold voltages, divided by $\alpha$, and all doping levels multiplied by $\alpha$). If $\lambda = \gamma = 0$, what is the input impedance?

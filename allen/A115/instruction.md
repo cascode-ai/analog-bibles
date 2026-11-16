@@ -1,0 +1,3 @@
+For the active PMOS-load inverter shown in [Fig. 1] ($V_{DD} = 5$ V), let $W_1/L_1 = 5\ \mu$m$/1\ \mu$m and $W_2/L_2 = 2\ \mu$m$/1\ \mu$m. What value of $V_{in}$ will give a current in the inverter of 100 µA? For this value of $V_{in}$, what is the small-signal voltage gain and output resistance, assuming all transistors are saturated?
+
+Device data (in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$): n-channel $V_{TN} = 0.7$ V, $K'_N = 110\ \mu\mathrm{A/V^2}$, $\lambda_N = 0.04\ \mathrm{V^{-1}}$; p-channel $V_{TP} = -0.7$ V, $K'_P = 50\ \mu\mathrm{A/V^2}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$.

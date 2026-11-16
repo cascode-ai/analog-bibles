@@ -1,0 +1,14 @@
+# Golden Solution - alsim-08-4-07
+
+## Reference answer
+
+The simulated trip points are about +0.09 V (rising) and −0.10 V (falling), versus ±0.136 V calculated. The main reason is an error in the hand calculation; the switching-point theory itself agrees well with simulation once it is corrected.
+- Development: with $v_{in}$ very negative, M1 carries $i_5$, M3 and M6 conduct, M4 and M7 are off and $v_{o2}$ is high. As $v_{in}$ rises, M2 takes current; switching starts when $i_2$ equals what M6 can source ($i_6 = 5i_3 = 5i_1$), i.e. $i_1 = i_5/6$, $i_2 = 5i_5/6$; $V_{TRP}^+ = v_{GS2}-v_{GS1}$ with $v_{GS} = V_T+\sqrt{2i/\beta}$. The negative trip point follows by symmetry with M7/M4.
+- The calculation used $\beta = (5)(110) = 550\ \mu\mathrm{A/V^2}$, but $\beta = K'_N(W/L) = 110\times10 = 1100\ \mu\mathrm{A/V^2}$ for $W/L = 10/1$. This overstates both overdrives by $\sqrt2$. Corrected: $v_{GS1}-V_T = \sqrt{6.67/1100} = 0.078$ V, $v_{GS2}-V_T = \sqrt{33.3/1100} = 0.174$ V, so $V_{TRP}^\pm \approx \pm0.096$ V — within ≈ 0.01 V of the simulation (a LEVEL-1 simulation with these parameters gives ±0.091 V).
+- Remaining small differences: channel-length modulation (M6 and M3 operate at different $V_{SD}$, so $i_6/i_3$ is not exactly 5, and the input devices have different $V_{DS}$), the simulation model (a more complete model with mobility degradation and a different saturation voltage than the square law), the regenerative switching actually beginning when the positive-feedback loop gain passes unity rather than exactly at $i_2 = i_6$, and the finite slope and asymmetric output levels visible in the simulated curve. The body effect is not a significant cause: M1 and M2 share their source node, so their threshold voltages are equal and cancel in $v_{GS2}-v_{GS1}$.
+
+Expected simulation: a hysteresis loop of $v_{o2}$ between ≈ 2.5 V and ≈ 1.2 V with trip points ≈ ±0.09 V (LEVEL 1 with the parameters $K'$, $V_T$, γ, λ above) or ≈ ±0.08 V (LEVEL 3).
+
+## Grading notes
+
+A correct answer reads the simulated trip points (≈ +0.09 V and ≈ −0.10 V), reviews the $i_2 = i_6 = 5i_1$ switching condition, and identifies that the hand calculation used $\beta = 550$ instead of $K'W/L = 1100\ \mu\mathrm{A/V^2}$; with this corrected (±0.096 V) theory and simulation agree, and second-order effects (λ, model differences, regeneration onset) explain the rest. An answer that only cites generic model limitations (square-law/Sah model saturation voltage, channel-length modulation) without spotting the β error is incomplete but not wrong; asserting the body effect of M1/M2 as the main cause is a minor error (it cancels for the common-source pair). Claiming the simulation is wrong, or that the corrected hand values move further from the simulation, is wrong. If the answer re-simulates, ≈ ±0.08–0.10 V trip points for these sizes and $i_5 = 20\ \mu$A are correct.

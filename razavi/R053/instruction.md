@@ -1,0 +1,1 @@
+For an NMOS transistor, the threshold voltage is known, but $\mu_nC_{ox}$ and $W/L$ are not. Assume that $\lambda = \gamma = 0$. If we cannot measure $C_{ox}$ independently, is it possible to devise a sequence of dc measurement tests to determine $\mu_nC_{ox}$ and $W/L$? What if we have two transistors and we know that one has twice the aspect ratio of the other?

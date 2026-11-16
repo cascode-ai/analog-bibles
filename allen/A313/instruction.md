@@ -1,0 +1,1 @@
+An MOS output stage is shown in [Fig. 1]: M1, M2 and M4 are n-channel and M3 is p-channel; M3 is diode-connected at the output and its gate also drives the gate of M2. Draw a small-signal model and calculate the ac voltage gain $v_{out}/v_{in}$ at low frequency. Assume that bulk effects can be neglected; express the result in terms of the transistors' $g_m$ and $g_{ds}$.

@@ -1,0 +1,1 @@
+Prove that the −3-dB bandwidth of a cascade of $N$ identical first-order gain stages (non-interacting, each with transfer function $A_0/(1 + s/\omega_p)$) is given by $\sqrt{\sqrt[N]{2} - 1}\;\omega_p$, where $\omega_p$ denotes the pole of one stage.

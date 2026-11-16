@@ -1,0 +1,3 @@
+Find the input-equivalent rms noise voltage, over a bandwidth of 1 Hz to 100 kHz, of the two-stage op amp shown in [Fig. 1] (all dimensions and bias currents as given in the figure; each input transistor carries 15 µA).
+
+Data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $C_{ox} = 24.7\times10^{-4}$ F/m², $KF = 4\times10^{-28}$ F·A (n-channel) and $0.5\times10^{-28}$ F·A (p-channel). Gate-referred noise of each transistor: 1/f, $e^2 = KF/(2fC_{ox}WLK')$ (V²/Hz); thermal, $e^2 = 8kT/(3g_m)$ with T = 300 K. Consider the noise of M1–M4; the contributions of M5–M8 (current sources and second stage) may be neglected.

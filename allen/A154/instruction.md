@@ -1,0 +1,3 @@
+For the n-channel input CMOS differential amplifier with a p-channel current-mirror load shown in [Fig. 1], the equivalent-input-noise voltage of each transistor is $1\ \mathrm{nV}/\sqrt{\mathrm{Hz}}$. Find the equivalent-input-noise voltage of the amplifier if $W_1/L_1 = W_2/L_2 = 2\ \mu$m$/1\ \mu$m, $W_3/L_3 = W_4/L_4 = 1\ \mu$m$/1\ \mu$m and $I_{SS} = 50\ \mu$A. What is the equivalent-output-noise current (the short-circuit noise current at the output) under these conditions? All transistors are saturated.
+
+Device data: n-channel $K'_N = 110\ \mu\mathrm{A/V^2}$; p-channel $K'_P = 50\ \mu\mathrm{A/V^2}$; in saturation $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2$.

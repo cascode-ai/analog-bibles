@@ -1,0 +1,1 @@
+A differential pair uses input NMOS devices with $W/L = 50/0.5$ (μm) and a tail current of 1 mA (ideal tail current source, square-law devices, λ = 0, $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$). For what value of $V_{in1} - V_{in2}$ does the equivalent transconductance $G_m = \partial(I_{D1} - I_{D2})/\partial(V_{in1} - V_{in2})$ drop by 10% from its equilibrium value? By 90%?

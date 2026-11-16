@@ -1,0 +1,1 @@
+Calculate the input-referred thermal noise voltage of the circuit shown in [Fig. 1] (NMOS $M_1$ with source resistor $R_S$, loaded by the diode-connected PMOS $M_2$). Neglect channel-length modulation and body effect. Model the channel thermal noise of each MOSFET as a drain current with PSD $4kT\gamma g_m$ and the thermal noise of the resistor as $4kTR_S$ (voltage).

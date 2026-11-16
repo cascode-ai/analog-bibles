@@ -1,0 +1,1 @@
+The single-stage (telescopic-cascode) op amp in [Fig. 1] has a 45° phase margin when the op amp is in a unity-gain negative feedback loop ($f = 1$) with an output load capacitance $C_L = 2$ pF. What value of $C_L$ will give a 60° phase margin? (Assume that the capacitance at the op-amp output is dominated by $C_L$ and the op-amp gain $a_v(s)$ can be modeled as having two poles.)

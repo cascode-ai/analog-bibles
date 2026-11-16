@@ -1,0 +1,1 @@
+The large-signal behaviour of an amplifier around its quiescent point is described by the power series $v_o = a_1v_i + a_2v_i^2 + a_3v_i^3 + \dots$, where $v_i$ and $v_o$ are the deviations of the input and output from their quiescent values. Calculate an expression for the small-signal (incremental) gain $A_v = dv_o/dv_i$.
