@@ -1,56 +1,44 @@
 # Detailed solution - R565
 
-**Approach.** Write the loop equation of the modified circuit (KVL around the gate–source loop, with the PMOS mirror forcing equal currents) and look for operating points. Then check their *stability* by computing the loop gain of the positive-feedback current loop, either as a small-signal return ratio or by tracing the large-signal current transfer around the loop. We compare everything with the original circuit to see what the source resistor actually does.
+**Approach.** Write the loop equation of the modified circuit (KVL around the gate–source loop, with the PMOS mirror forcing equal currents) and look for operating points. Then check their *stability* through the loop gain of the positive-feedback current loop, both as a small-signal return ratio and by tracing the large-signal current transfer, and compare with the original circuit.
 
-### Step 1 — Reminder: why the original circuit works
+### Step 1 — Loop equations of the original and modified circuits
 
-In the original circuit, $M_1$ (diode-connected, source grounded) and $M_2$ ($K$ times wider, with $R_S$ in its source) share a gate. $M_3$ (diode-connected) and $M_4$ form a 1:1 PMOS mirror, so $I_{REF} = I_{out} = I$. KVL around the gate loop:
+In both circuits the 1:1 PMOS mirror forces $I_{REF} = I_{out} = I$. In the original, KVL around the gate loop with $\beta_N = \mu_nC_{ox}(W/L)_N$ gives
 
-$$V_{GS1} = V_{GS2} + IR_S .$$
+$$V_{GS1} = V_{GS2} + IR_S, \qquad \sqrt{\frac{2I}{\beta_N}}\left(1 - \frac{1}{\sqrt K}\right) = IR_S \quad\Longrightarrow\quad I = \frac{2}{\beta_NR_S^2}\left(1 - \frac{1}{\sqrt K}\right)^2 ,$$
 
-With $\beta_N = \mu_nC_{ox}(W/L)_N$ and the square law $V_{GS} = V_{TH} + \sqrt{2I/\beta}$:
+independent of $V_{DD}$: the wider $M_2$ needs less overdrive than $M_1$, and the voltage saved drops across $R_S$.
 
-$$\sqrt{\frac{2I}{\beta_N}}\left(1 - \frac{1}{\sqrt K}\right) = IR_S \quad\Longrightarrow\quad I = \frac{2}{\beta_NR_S^2}\left(1 - \frac{1}{\sqrt K}\right)^2,$$
-
-which is independent of $V_{DD}$. The wider $M_2$ needs less overdrive than $M_1$, and the voltage saved is exactly what drops across $R_S$.
-
-### Step 2 — The modified circuit and its loop equation
-
-Now $M_2$'s source is grounded and $R_S$ sits between $M_1$'s source and ground. $M_1$ is still diode-connected (gate and drain at node N), but its source is at $IR_S$, so
-
-$$V_N = V_{GS1} + IR_S .$$
-
-$M_2$'s gate is at N and its source at ground, so $V_{GS2} = V_N$. The new loop equation is
+In the modified circuit $M_1$ is still diode-connected (gate and drain at node N), but its source is at $IR_S$, so $V_N = V_{GS1} + IR_S$; $M_2$'s source is grounded, so $V_{GS2} = V_N$:
 
 $$V_{GS2} = V_{GS1} + IR_S .$$
 
-$M_1$'s source is now above its grounded bulk, so it also suffers body effect: $V_{TH1} = V_{TH0} + \Delta V_{TH1}$ with $\Delta V_{TH1} > 0$ for $I > 0$.
+$M_1$'s source is now above its grounded bulk, so $V_{TH1} = V_{TH0} + \Delta V_{TH1}$ with $\Delta V_{TH1} > 0$ for $I > 0$.
 
 <!-- diagram: diagram-01.cir -->
 
-### Step 3 — Labeled sizes ($M_2$ is $K$ times wider): no operating point
+### Step 2 — Labeled sizes ($M_2$ is $K$ times wider): no operating point
 
-Substitute the square law into the loop equation:
+With the square law:
 
-$$V_{TH0} + \sqrt{\frac{2I}{K\beta_N}} = V_{TH0} + \Delta V_{TH1} + \sqrt{\frac{2I}{\beta_N}} + IR_S .$$
-
-Cancel $V_{TH0}$ and move the overdrive terms to the left:
+$$V_{TH0} + \sqrt{\frac{2I}{K\beta_N}} = V_{TH0} + \Delta V_{TH1} + \sqrt{\frac{2I}{\beta_N}} + IR_S ,$$
 
 $$\sqrt{\frac{2I}{\beta_N}}\left(\frac{1}{\sqrt K} - 1\right) = IR_S + \Delta V_{TH1}.$$
 
-For $K > 1$ and $I > 0$ the left side is **negative** and the right side is **positive**, so the only solution is $I = 0$. In words: $M_2$ is wider, so it needs *less* $V_{GS}$ than $M_1$ for the same current, yet the loop now gives it *more* $V_{GS}$ than $M_1$ (by $IR_S$).
+For $K > 1$ and $I > 0$ the left side is **negative** and the right side **positive**, so the only solution is $I = 0$: the wider $M_2$ needs *less* $V_{GS}$ than $M_1$ for the same current, yet the loop gives it *more* (by $IR_S$).
 
-**What actually happens: a current-transfer argument.** Suppose $M_4$ delivers some current $I_{REF}$ to $M_1$. Then $M_1$ has overdrive $V_{ov1} = \sqrt{2I_{REF}/\beta_N}$, and $M_2$ gets the overdrive $V_{ov1} + I_{REF}R_S + \Delta V_{TH1}$, so
+**Current transfer.** If $M_4$ delivers $I_{REF}$ to $M_1$, then $V_{ov1} = \sqrt{2I_{REF}/\beta_N}$ and $M_2$ gets the overdrive $V_{ov1} + I_{REF}R_S + \Delta V_{TH1}$, so
 
 $$I_{out} = \frac12K\beta_N\left(V_{ov1} + I_{REF}R_S + \Delta V_{TH1}\right)^2 > \frac12K\beta_NV_{ov1}^2 = K\,I_{REF} > I_{REF}.$$
 
-The PMOS mirror returns $I_{out}$ as the new $I_{REF}$. Each trip around the loop multiplies the current by *more* than $K$, at every current level including near zero (where, as in the original circuit, the gain is about $K$). The zero-current state is therefore unstable too, and any small current **regenerates and grows**.
+The mirror returns $I_{out}$ as the new $I_{REF}$, so each trip multiplies the current by *more* than $K$, at every level including near zero (where, as in the original, the gain is about $K$). The zero-current state is unstable too, and any small current **regenerates and grows**.
 
-The growth stops only when a transistor leaves saturation. As the current rises, node N ($V_{GS1} + IR_S$) moves up and node P ($V_{DD} - |V_{GS3}|$) moves down, until $M_2$ or $M_4$ enters the triode region. (The diode-connected $M_1$ and $M_3$ always stay saturated, since $V_{DS} = V_{GS}$.) The final current is then set by $V_{DD}$ and the triode resistance, so it is **not** supply-independent, and it may be very large.
+The growth stops only when a transistor leaves saturation: as the current rises, N ($V_{GS1} + IR_S$) moves up and P ($V_{DD} - |V_{GS3}|$) moves down, until $M_2$ or $M_4$ enters triode (the diode-connected $M_1$ and $M_3$ always stay saturated). The final current is then set by $V_{DD}$ and the triode resistance: **not** supply-independent, and possibly very large.
 
-### Step 4 — Reversed sizes ($M_1$ is $K$ times wider): an operating point exists
+### Step 3 — Reversed sizes ($M_1$ is $K$ times wider): an operating point exists
 
-One might try to rescue the circuit by making $M_1$ the wider device: $(W/L)_1 = K(W/L)_2$, with $\beta_2 = \mu_nC_{ox}(W/L)_2$. Neglecting $M_1$'s body effect, the loop equation becomes
+With $(W/L)_1 = K(W/L)_2$, $\beta_2 = \mu_nC_{ox}(W/L)_2$, and $M_1$'s body effect neglected:
 
 $$
 \begin{aligned}
@@ -60,17 +48,17 @@ I &= \frac{2}{\mu_nC_{ox}(W/L)_2R_S^2}\left(1 - \frac{1}{\sqrt K}\right)^2 ,
 \end{aligned}
 $$
 
-the same form as the original. Is this point usable? We must check its stability.
+the same form as the original. Whether this point is usable depends on its stability.
 
-### Step 5 — Stability: loop gain at the operating point
+### Step 4 — Stability: loop gain at the operating point
 
-Break the loop at the current that $M_4$ injects into node N, inject a small current $i$, and follow it around (small-signal, body effect neglected).
+Break the loop at the current $M_4$ injects into N, inject a small current $i$, and follow it around (body effect neglected).
 
-**Modified circuit (reversed sizes).** The diode-connected $M_1$ with $R_S$ in its source presents an impedance $1/g_{m1} + R_S$ at N, because $i = g_{m1}(v_N - v_{S1})$ and $v_{S1} = iR_S$. So $v_N = i(1/g_{m1} + R_S)$. $M_2$ (source grounded) converts this to $g_{m2}v_N$, and the 1:1 mirror returns it to N. The loop gain is
+**Modified circuit (reversed sizes).** The diode-connected $M_1$ with $R_S$ in its source presents $1/g_{m1} + R_S$ at N (since $i = g_{m1}(v_N - v_{S1})$ and $v_{S1} = iR_S$). $M_2$ converts $v_N$ to $g_{m2}v_N$, and the mirror returns it to N:
 
 $$L_{mod} = g_{m2}\left(R_S + \frac{1}{g_{m1}}\right).$$
 
-At the operating point, $V_{ov1} = V_{ov2}/\sqrt K$ ($M_1$ is $K$ times wider), so $IR_S = V_{ov2} - V_{ov1} = V_{ov2}(1 - 1/\sqrt K)$. With $g_m = 2I/V_{ov}$:
+At the operating point $V_{ov1} = V_{ov2}/\sqrt K$, so $IR_S = V_{ov2} - V_{ov1} = V_{ov2}(1 - 1/\sqrt K)$. With $g_m = 2I/V_{ov}$:
 
 $$
 \begin{aligned}
@@ -82,7 +70,7 @@ $$
 
 For $K = 4$: $L_{mod} = 2 - 0.5 = 1.5 > 1$.
 
-**Original circuit.** Now N has impedance $1/g_{m1}$, and $M_2$ with source degeneration has transconductance $g_{m2}/(1 + g_{m2}R_S)$:
+**Original circuit.** N has impedance $1/g_{m1}$, and the degenerated $M_2$ has transconductance $g_{m2}/(1 + g_{m2}R_S)$:
 
 $$L_{orig} = \frac{g_{m2}}{g_{m1}(1 + g_{m2}R_S)} .$$
 
@@ -90,9 +78,9 @@ At its operating point $g_{m2}/g_{m1} = \sqrt K$ and $g_{m2}R_S = 2IR_S/V_{ov2} 
 
 $$L_{orig} = \frac{\sqrt K}{2\sqrt K - 1} \quad(= 0.67 \text{ for } K = 4) < 1 .$$
 
-**Meaning.** The loop is a *positive*-feedback loop (an increase of current returns as a further increase). An equilibrium of such a loop is stable only if the returned perturbation is smaller than the original one, $L < 1$. The original circuit satisfies this. The modified one does not: a slightly larger current returns even larger and runs away to the supply-limited state, while a slightly smaller one collapses toward zero.
+An equilibrium of a positive-feedback loop is stable only if $L < 1$. The original satisfies this; in the modified circuit a slightly larger current returns even larger and runs away to the supply-limited state, while a slightly smaller one collapses toward zero.
 
-### Step 6 — A numerical picture
+### Step 5 — A numerical picture
 
 Take $\beta = 1$ mA/V² (for $M_1$ in the original and labeled cases, for $M_2$ in the reversed case), $K = 4$ and $R_S = 1$ kΩ, neglecting body effect. For each injected $I_{REF}$, the NMOS pair returns $I_{out}$ (all values in mA):
 
@@ -104,9 +92,9 @@ Take $\beta = 1$ mA/V² (for $M_1$ in the original and labeled cases, for $M_2$ 
 | 0.6 | 0.564 | 5.75 | 0.659 |
 | 0.8 | 0.681 | 8.53 | 1.026 |
 
-- **Original:** $I_{out} > I_{REF}$ below 0.5 mA and $I_{out} < I_{REF}$ above it, so the current is pushed toward 0.5 mA from both sides. The equilibrium is stable.
-- **Labeled sizes:** $I_{out}$ is always several times $I_{REF}$. There is no equilibrium, and the current runs away.
-- **Reversed sizes:** $I_{out} < I_{REF}$ below 0.5 mA (the current decays toward zero) and $I_{out} > I_{REF}$ above it (it runs away). The equilibrium is unstable, with slope $1.5$ there, matching $L_{mod}$.
+- **Original:** $I_{out} > I_{REF}$ below 0.5 mA and $I_{out} < I_{REF}$ above it, so the current is pushed toward 0.5 mA from both sides: a stable equilibrium.
+- **Labeled sizes:** $I_{out}$ is always several times $I_{REF}$: no equilibrium, and the current runs away.
+- **Reversed sizes:** $I_{out} < I_{REF}$ below 0.5 mA (the current decays toward zero) and $I_{out} > I_{REF}$ above it (it runs away): an unstable equilibrium, with slope $1.5$ there, matching $L_{mod}$.
 
 ### Result
 
@@ -117,8 +105,8 @@ The modified circuit has **no stable, supply-independent operating point**.
 - **If $M_1$ is made the wider device** ($(W/L)_1 = K(W/L)_2$), an equilibrium $I = \dfrac{2}{\mu_nC_{ox}(W/L)_2R_S^2}\left(1 - \dfrac{1}{\sqrt K}\right)^2$ exists, but it is unstable. Its loop gain is $g_{m2}(R_S + 1/g_{m1}) = 2 - 1/\sqrt K > 1$ (1.5 for $K = 4$), against $\sqrt K/(2\sqrt K - 1) < 1$ (0.67) in the original. Any perturbation grows, toward zero current or toward the supply-limited state.
 - **Role of $K$ and $R_S$:** the degeneration must sit in the source of the *wider* transistor driven by the diode-connected device ($M_2$). There it reduces the positive-feedback loop gain below unity at the operating point. Moving $R_S$ to $M_1$ destroys the useful operating point, so the modified circuit is not a usable bias.
 
-**Common mistake.** Assuming the circuit still works with the same current formula, $I = \frac{2}{\mu_nC_{ox}(W/L)_NR_S^2}(1 - 1/\sqrt K)^2$, and $M_2$ wider. With $R_S$ under $M_1$, the loop requires $V_{GS2} > V_{GS1}$, which a wider $M_2$ carrying the same current cannot satisfy, so that formula has no meaning here.
+**Common mistake.** Assuming the circuit still works with the same current formula and $M_2$ wider. With $R_S$ under $M_1$ the loop requires $V_{GS2} > V_{GS1}$, which a wider $M_2$ carrying the same current cannot satisfy.
 
-**Common mistake.** Swapping the sizes, finding a valid-looking solution, and declaring the circuit supply-independent. A solution of the dc equations is not automatically an operating point. In a positive-feedback loop it must also have a loop gain below one. Here it is $2 - 1/\sqrt K > 1$, so the circuit never settles there.
+**Common mistake.** Swapping the sizes, finding a valid-looking solution, and declaring the circuit supply-independent. In a positive-feedback loop a dc solution is an operating point only if its loop gain is below one; here it is $2 - 1/\sqrt K > 1$.
 
-**Common mistake.** Concluding that, without a valid operating point, the circuit simply carries zero current. With $M_2$ wider the zero state is unstable as well (the low-current loop gain exceeds $K$), so any leakage or start-up kick makes the current run away to a supply-dependent value, possibly large.
+**Common mistake.** Concluding that, without a valid operating point, the circuit simply carries zero current. With $M_2$ wider the zero state is unstable as well (low-current loop gain above $K$), so any leakage or start-up kick makes the current run away to a supply-dependent, possibly large value.

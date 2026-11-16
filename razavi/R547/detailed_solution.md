@@ -1,46 +1,22 @@
 # Detailed solution - R547
 
-**Approach.** Differentiate the TC expression with respect to $T$ using the quotient rule. The essential point is that $V_{BE}$ is itself a function of $T$, so its derivative appears inside the result. That derivative is the original expression again, and it cancels, leaving a very simple formula. We then evaluate it, sketch it, and interpret it as the curvature of $V_{BE}(T)$.
+**Approach.** Differentiate the TC expression with the quotient rule. Because $V_{BE}$ depends on $T$, its derivative (the original expression) appears in the result and cancels, leaving a very simple formula. Then evaluate it, sketch it, and interpret it as the curvature of $V_{BE}(T)$.
 
-### Step 1 — Set up the differentiation
+### Step 1 — Differentiate and cancel
 
-The first derivative (the temperature coefficient of $V_{BE}$ at constant collector current) is
+Name the numerator:
 
-$$\frac{\partial V_{BE}}{\partial T} = \frac{V_{BE} - (4+m)V_T - E_g/q}{T} = \frac{N(T)}{T},$$
+$$\frac{\partial V_{BE}}{\partial T} = \frac{N(T)}{T}, \qquad N(T) = V_{BE}(T) - (4+m)\frac{kT}{q} - \frac{E_g}{q}.$$
 
-where we have named the numerator
-
-$$N(T) = V_{BE}(T) - (4+m)\frac{kT}{q} - \frac{E_g}{q}.$$
-
-Here $V_T = kT/q$ is the thermal voltage, $k$ is Boltzmann's constant, $q$ the electron charge, $E_g$ the bandgap energy of silicon and $m$ the temperature exponent of the minority-carrier mobility.
-
-Which quantities depend on $T$?
-
-- $V_{BE}$ does: it is the very function whose TC we are describing. So $dV_{BE}/dT = \partial V_{BE}/\partial T$, which is not zero.
-- $V_T = kT/q$ does, with $dV_T/dT = k/q$.
-- $E_g/q$ is treated as constant (the model already absorbs its weak temperature dependence), and so is $m$.
-
-Differentiating each term of $N$:
+$V_{BE}$ and $V_T = kT/q$ depend on $T$, while $E_g/q$ and $m$ are constants, so
 
 $$\frac{dN}{dT} = \frac{\partial V_{BE}}{\partial T} - (4+m)\frac{k}{q}.$$
 
-### Step 2 — Apply the quotient rule
+The quotient rule gives
 
-For $f = N/T$, the quotient rule gives
+$$\frac{\partial^2 V_{BE}}{\partial T^2} = \frac{1}{T}\,\frac{dN}{dT} - \frac{N}{T^2} = \frac{1}{T}\left[\frac{\partial V_{BE}}{\partial T} - (4+m)\frac{k}{q}\right] - \frac{N}{T^2}.$$
 
-$$\frac{df}{dT} = \frac{1}{T}\,\frac{dN}{dT} - \frac{N}{T^2}.$$
-
-Substitute $dN/dT$ from Step 1:
-
-$$\frac{\partial^2 V_{BE}}{\partial T^2} = \frac{1}{T}\left[\frac{\partial V_{BE}}{\partial T} - (4+m)\frac{k}{q}\right] - \frac{N}{T^2}.$$
-
-### Step 3 — Use the original expression to cancel terms
-
-By the definition in Step 1, $N/T = \partial V_{BE}/\partial T$, so
-
-$$\frac{N}{T^2} = \frac{1}{T}\cdot\frac{N}{T} = \frac{1}{T}\,\frac{\partial V_{BE}}{\partial T}.$$
-
-Substitute this into the last term:
+By definition $N/T = \partial V_{BE}/\partial T$, so $N/T^2 = (1/T)\,\partial V_{BE}/\partial T$, and
 
 $$
 \begin{aligned}
@@ -49,19 +25,17 @@ $$
 \end{aligned}
 $$
 
-$V_{BE}$ and $E_g$ have dropped out completely. Since $k/(qT) = (kT/q)/T^2 = V_T/T^2$, an equivalent form is
+$V_{BE}$ and $E_g$ drop out completely. Since $k/(qT) = V_T/T^2$,
 
 $$\boxed{\frac{\partial^2 V_{BE}}{\partial T^2} = -\frac{(4+m)k}{qT} = -\frac{(4+m)V_T}{T^2}.}$$
 
-**Sign.** With $m = -3/2$, $4 + m = 2.5 > 0$, so the second derivative is **negative** at every temperature.
+With $m = -3/2$, $4 + m = 2.5 > 0$, so the second derivative is **negative** at every temperature.
 
-### Step 4 — Numerical values
+### Step 2 — Numerical values
 
-The constant in front is
+$$(4+m)\frac{k}{q} = 2.5\times\left(8.617\times10^{-5}\ \mathrm{V/K}\right) = 2.154\times10^{-4}\ \mathrm{V/K} = 0.2154\ \mathrm{mV/K},$$
 
-$$(4+m)\frac{k}{q} = 2.5\times\left(8.617\times10^{-5}\ \mathrm{V/K}\right) = 2.154\times10^{-4}\ \mathrm{V/K} = 0.2154\ \mathrm{mV/K}.$$
-
-So $\partial^2V_{BE}/\partial T^2 = -(0.2154\ \mathrm{mV/K})/T$. Evaluate:
+so $\partial^2V_{BE}/\partial T^2 = -(0.2154\ \mathrm{mV/K})/T$:
 
 $$
 \begin{aligned}
@@ -71,26 +45,26 @@ T = 400\ \mathrm{K}:&\quad -\frac{2.154\times10^{-4}}{400} = -0.54\ \mu\mathrm{V
 \end{aligned}
 $$
 
-Check with the second form at 300 K: $V_T = 25.85$ mV, so $-(2.5)(25.85\ \mathrm{mV})/(300\ \mathrm{K})^2 = -64.6\ \mathrm{mV}/9\times10^4\ \mathrm{K^2} = -0.72\ \mu\mathrm{V/K^2}$. The two forms agree.
+Check with the second form at 300 K: $V_T = 25.85$ mV, so $-(2.5)(25.85\ \mathrm{mV})/(300\ \mathrm{K})^2 = -64.6\ \mathrm{mV}/9\times10^4\ \mathrm{K^2} = -0.72\ \mu\mathrm{V/K^2}$.
 
-### Step 5 — The sketch
+### Step 3 — The sketch
 
 | $T$ (K) | 200 | 250 | 300 | 350 | 400 |
 |---|---|---|---|---|---|
 | $\partial^2V_{BE}/\partial T^2$ (μV/K²) | −1.08 | −0.86 | −0.72 | −0.62 | −0.54 |
 
-Plot $T$ horizontally and $\partial^2V_{BE}/\partial T^2$ vertically. The curve is a branch of the hyperbola $y = -C/T$ with $C = 0.2154$ mV/K:
+With $T$ horizontal, the curve is a branch of the hyperbola $y = -C/T$ with $C = 0.2154$ mV/K:
 
 - it lies entirely **below zero**;
 - its magnitude is largest at low temperature and **falls toward zero as $T$ increases** (halving from 200 K to 400 K), approaching the $T$ axis asymptotically;
-- it rises with $T$, with slope $+C/T^2$ (2.4 nV/K³ at 300 K), and bends over (concave down), because the second derivative of $-C/T$ is $-2C/T^3 < 0$;
+- it rises with slope $+C/T^2$ (2.4 nV/K³ at 300 K) and is concave down, since the second derivative of $-C/T$ is $-2C/T^3 < 0$;
 - toward $T \to 0$ it would diverge to $-\infty$, but the model applies only over the normal operating range.
 
-### Step 6 — What the result means: curvature of $V_{BE}(T)$
+### Step 4 — What the result means: curvature of $V_{BE}(T)$
 
-A negative second derivative means that $V_{BE}(T)$ is **concave down**: its slope, already negative (about −1.5 mV/K), becomes slightly more negative as temperature rises. Over 100 K near room temperature the slope changes by roughly $0.72\ \mu\mathrm{V/K^2}\times100\ \mathrm{K} \approx 0.07$ mV/K, i.e. about 5 %.
+$V_{BE}(T)$ is **concave down**: its slope, already about −1.5 mV/K, becomes slightly more negative as temperature rises. Over 100 K near room temperature the slope changes by roughly $0.72\ \mu\mathrm{V/K^2}\times100\ \mathrm{K} \approx 0.07$ mV/K, about 5 %.
 
-This matters for bandgap references. A bandgap adds a term proportional to absolute temperature (PTAT, $\propto V_T$) to $V_{BE}$, with its size chosen so that the total TC is zero at some temperature $T_0$. A PTAT term is linear in $T$, so its second derivative is zero. It cancels the *slope* of $V_{BE}$ at $T_0$ but cannot cancel the curvature. Expanding the reference voltage in a Taylor series about $T_0$ (value, zero slope, then curvature):
+A bandgap reference adds a PTAT term ($\propto V_T$) sized to make the total TC zero at some temperature $T_0$. That term is linear in $T$, so it cancels the *slope* of $V_{BE}$ at $T_0$ but not the curvature. A Taylor expansion about $T_0$ gives
 
 $$
 \begin{aligned}
@@ -103,7 +77,7 @@ So the reference voltage has a maximum at $T_0$ and falls off parabolically on b
 
 $$\Delta V_{REF} \approx -\frac{2.154\times10^{-4}\ \mathrm{V/K}}{2\times300\ \mathrm{K}}\,(100\ \mathrm{K})^2 = -\frac{2.154}{600}\ \mathrm{V} = -3.6\ \mathrm{mV}.$$
 
-This residual "bow" of a few millivolts limits a simple bandgap's accuracy to roughly 10–20 ppm/°C and is the motivation for curvature-correction techniques.
+This residual "bow" of a few millivolts limits a simple bandgap to roughly 10–20 ppm/°C and motivates curvature correction.
 
 ### Result
 
@@ -117,8 +91,8 @@ The $V_{BE}$ and $E_g$ terms cancel. For $m = -3/2$ this is $-(0.215\ \mathrm{mV
 
 $$\frac{d}{dT}\left[\frac{V_{BE} - (4+m)kT/q - E_g/q}{T}\right]_{V_{BE}\,\text{fixed}} = \frac{E_g/q - V_{BE}}{T^2},$$
 
-which is positive (about $+0.37\ \mathrm{V}/(300\ \mathrm{K})^2 = +4.1\ \mu\mathrm{V/K^2}$ at room temperature). It has the wrong sign and is about six times too large. $V_{BE}$ changes by about −1.5 mV/K, and leaving out that change removes exactly the term that cancels $N/T^2$.
+which is positive (about $+0.37\ \mathrm{V}/(300\ \mathrm{K})^2 = +4.1\ \mu\mathrm{V/K^2}$ at room temperature): the wrong sign and about six times too large, because the dropped term is exactly the one that cancels $N/T^2$.
 
-**Common mistake.** Treating $V_T$ as a constant. Then the $-(4+m)k/q$ term from differentiating $V_T$ disappears and the result is zero. The entire curvature comes from the $T$ dependence of the $(4+m)V_T$ term.
+**Common mistake.** Treating $V_T$ as a constant. The $-(4+m)k/q$ term then disappears and the result is zero, yet the entire curvature comes from the $T$ dependence of $(4+m)V_T$.
 
 **Common mistake.** Drawing a curvature that grows in magnitude with temperature. The result is proportional to $1/T$, so its magnitude *decreases* as $T$ rises.
