@@ -1,6 +1,6 @@
 # Detailed solution - R022
 
-**Approach.** Decide which diffusion terminal of $M_1$ acts as the source, show that $M_1$ is then always saturated, and write KCL at $V_{out}$ using the square law. $V_{in}$ enters only through the body effect: the bulk acts as a second ("back") gate. We solve the resulting equation point by point, find the slope and curvature, and finally note where the source–bulk junction becomes forward-biased.
+**Approach.** Decide which diffusion terminal of $M_1$ acts as the source, show that $M_1$ is then always saturated, and write Kirchhoff's current law (KCL) at $V_{out}$ using the square law. $V_{in}$ enters only through the body effect: the bulk acts as a second ("back") gate. We solve the resulting equation point by point, find the slope and curvature, and finally note where the source–bulk junction becomes forward-biased.
 
 ### Step 1 — Which terminal is the source?
 
@@ -77,10 +77,14 @@ Substitute $u = \sqrt{0.9 + V_{out} - V_{in}}$, so that $V_{out} = u^2 - 0.9 + V
 $$
 \begin{aligned}
 u^2 - 0.9 + V_{in} + 0.7 + 0.45u - 0.4269 &= 2\\
-u^2 + 0.45u - (2.6269 - V_{in}) &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 4\,(2.6269 - V_{in})}}{2}.
+u^2 + 0.45u + (V_{in} - 0.9 + 0.7 - 0.4269 - 2) &= 0\\
+u^2 + 0.45u - (2.6269 - V_{in}) &= 0 .
 \end{aligned}
 $$
+
+This is a quadratic in $u$. Since $u$ is a square root it must be positive, so take the "+" root of the quadratic formula:
+
+$$u = \frac{-0.45 + \sqrt{0.45^2 + 4\,(2.6269 - V_{in})}}{2} = \frac{-0.45 + \sqrt{0.2025 + 4\,(2.6269 - V_{in})}}{2}.$$
 
 Evaluate point by point:
 
@@ -107,12 +111,14 @@ dV_{out}\,(1 + \eta) &= \eta\,dV_{in}\\
 \end{aligned}
 $$
 
-**Finite load.** Differentiate $V_{out}/R_1 = \tfrac12\beta V_{ov}^2$, where $dV_{ov} = -dV_{out} - \eta(dV_{out} - dV_{in})$ and $g_m = \beta V_{ov}$:
+**Finite load.** Differentiate both sides of $V_{out}/R_1 = \tfrac12\beta V_{ov}^2$, with $V_{ov} = 2 - V_{out} - V_{TH}$. The change in overdrive is $dV_{ov} = -dV_{out} - \eta\,(dV_{out} - dV_{in})$, and $g_m = \beta V_{ov}$ is the transconductance:
 
 $$
 \begin{aligned}
+\frac{dV_{out}}{R_1} &= \beta V_{ov}\,dV_{ov} = g_m\,dV_{ov}\\
 \frac{dV_{out}}{R_1} &= g_m\left[-dV_{out}(1 + \eta) + \eta\,dV_{in}\right]\\
-\frac{dV_{out}}{dV_{in}} &= \frac{\eta}{1 + \eta + 1/(g_mR_1)} = \frac{g_{mb}}{g_m + g_{mb} + 1/R_1},
+dV_{out}\left[\frac{1}{R_1} + g_m(1 + \eta)\right] &= g_m\eta\,dV_{in}\\
+\frac{dV_{out}}{dV_{in}} &= \frac{g_m\eta}{1/R_1 + g_m(1 + \eta)} = \frac{\eta}{1 + \eta + 1/(g_mR_1)} = \frac{g_{mb}}{g_m + g_{mb} + 1/R_1},
 \end{aligned}
 $$
 
@@ -121,8 +127,8 @@ where $g_{mb} = \eta g_m$ is the body transconductance. This is the gain of a so
 Numbers in the light-load case:
 
 - $V_{in} = 0$: $\eta = 0.45/(2\times1.4113) = 0.159$, so the slope is $0.159/1.159 = 0.14$.
-- $V_{in} = 1.3$ V: $\eta = 0.45/(2\times0.9487) = 0.237$, so the slope is $0.19$.
-- $V_{in} = 2.0$ V: $\eta = 0.45/(2\times0.5981) = 0.376$, so the slope is $0.27$.
+- $V_{in} = 1.3$ V: $\eta = 0.45/(2\times0.9487) = 0.237$, so the slope is $0.237/1.237 = 0.19$.
+- $V_{in} = 2.0$ V: $\eta = 0.45/(2\times0.5981) = 0.376$, so the slope is $0.376/1.376 = 0.27$.
 
 The slope is well below 1, because the back gate is much weaker than the front gate ($\eta < 1$). It grows as $V_{SB}$ falls, because $\eta \propto 1/\sqrt{0.9 + V_{SB}}$. **The curve is therefore rising and concave up.**
 
@@ -130,18 +136,18 @@ The slope is well below 1, because the back gate is much weaker than the front g
 
 With a finite load, the transistor must carry the current $V_{out}/R_1$, which needs an overdrive $V_{ov} = \sqrt{2V_{out}/(\beta R_1)}$. That overdrive pushes $V_{out}$ further below $2 - V_{TH}$. The equation is solved by iteration.
 
-**Example: $\beta R_1 = 10\ \mathrm{V^{-1}}$, $V_{in} = 0$.** Try $V_{out} = 0.758$ V:
+**Example: $\beta R_1 = 10\ \mathrm{V^{-1}}$, $V_{in} = 0$.** Start from the light-load value (1.09 V), which is too high because it leaves no overdrive. Lower the guess until $\tfrac12\beta R_1V_{ov}^2$ equals $V_{out}$; a few trials (or a bisection) give $V_{out} \approx 0.758$ V. Check:
 
 $$
 \begin{aligned}
-V_{SB} &= 0.758\ \mathrm{V},\\
-V_{TH} &= 0.7 + 0.45(\sqrt{1.658} - 0.9487) = 0.7 + 0.45(0.3389) = 0.853\ \mathrm{V},\\
-V_{ov} &= 2 - 0.758 - 0.853 = 0.389\ \mathrm{V},\\
-\tfrac12\beta R_1V_{ov}^2 &= 5\times(0.389)^2 = 0.758\ \mathrm{V} = V_{out}.\ \checkmark
+V_{SB} &= V_{out} - V_{in} = 0.758\ \mathrm{V},\\
+V_{TH} &= 0.7 + 0.45(\sqrt{0.9 + 0.758} - 0.9487) = 0.7 + 0.45(1.2876 - 0.9487) = 0.7 + 0.1525 = 0.8525\ \mathrm{V},\\
+V_{ov} &= 2 - V_{out} - V_{TH} = 2 - 0.758 - 0.8525 = 0.3895\ \mathrm{V},\\
+\tfrac12\beta R_1V_{ov}^2 &= \tfrac12(10\ \mathrm{V^{-1}})(0.3895\ \mathrm{V})^2 = 5\times0.1517\ \mathrm{V} = 0.758\ \mathrm{V} = V_{out}.\ \checkmark
 \end{aligned}
 $$
 
-The guess satisfies the equation. Results for three loads:
+The overdrive (0.39 V), partly offset by a threshold that is 0.06 V lower because $V_{SB}$ is smaller, pulls $V_{out}$ about 0.33 V below its light-load value. Results for three loads:
 
 | $V_{in}$ (V) | $V_{out}$, $\beta R_1\to\infty$ | $V_{out}$, $\beta R_1 = 100\ \mathrm{V^{-1}}$ | $V_{out}$, $\beta R_1 = 10\ \mathrm{V^{-1}}$ |
 |---|---|---|---|

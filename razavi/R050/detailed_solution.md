@@ -14,7 +14,7 @@ Under the ring there is p-type substrate, exactly as under the gate of an ordina
 
 When $V_{GS} > V_{TH}$ (gate–source voltage above the threshold voltage), an inversion layer (the channel) forms under the *entire* ring. This channel connects the drain to the source on **all four sides** of the drain square. Electrons flow inward from the surrounding source, under the gate, into the central drain; the conventional current therefore flows outward from the drain to the source.
 
-Each side of the ring is an ordinary channel of width $\approx W$ (the length of the drain edge) and length $L$ (the gate width in the current-flow direction). The four sides share the same gate, drain and source. So the ring device behaves like **four identical transistors connected in parallel**.
+Each side of the ring is an ordinary channel of width $\approx W$ (the length of the drain edge) and length $L$ (the width of the poly ring, measured along the direction of current flow). The four sides share the same gate, drain and source. So the ring device behaves like **four identical transistors connected in parallel**.
 
 (The poly strip that crosses the source to reach the gate contact forms a channel only between two parts of the source, which are at the same potential. It carries no drain current and only adds a little gate capacitance.)
 
@@ -34,14 +34,14 @@ In words: the effective width is the inner perimeter of the ring, $4W$.
 
 The four $L\times L$ corner squares of the ring also carry some current, but less effectively than the straight sides, because the paths from the drain's corner points to the outer corners are longer. Two simple estimates bracket the true value.
 
-- **Lower bound: ignore the corners.** If current flowed only in the four $W\times L$ rectangles, then $(W/L)_{eq} = 4W/L$. The real current also spreads into the corners, so the real device conducts slightly better.
+- **Lower bound: ignore the corners.** If current flowed only in the four $W\times L$ rectangles, then $(W/L)_{eq} = 4W/L$. The real current also spreads into the corners, so the real device conducts slightly better. (Forcing the current into restricted paths can only raise the resistance: Thomson's minimum-dissipation principle.)
 - **Upper bound: square equipotentials.** Assume the potential is constant on concentric squares. At distance $x$ from the drain edge ($0 \le x \le L$), a thin square shell has perimeter $4(W + 2x)$ and thickness $dx$. With $R_\square$ the channel sheet resistance, the shell is a resistor of value
 $$dR = R_\square\,\frac{dx}{4(W + 2x)} .$$
-The shells are in series, so integrate:
-$$R = \frac{R_\square}{4}\int_0^L\frac{dx}{W + 2x} = \frac{R_\square}{8}\ln\!\left(\frac{W + 2L}{W}\right).$$
-The equivalent number of squares in parallel is then
+The shells are in series, so integrate, using $\int dx/(W + 2x) = \tfrac12\ln(W + 2x)$:
+$$R = \frac{R_\square}{4}\int_0^L\frac{dx}{W + 2x} = \frac{R_\square}{4}\cdot\frac12\Big[\ln(W + 2x)\Big]_0^L = \frac{R_\square}{8}\ln\!\left(\frac{W + 2L}{W}\right).$$
+An ordinary rectangular channel has $R = R_\square\,L/W$, so its aspect ratio is $W/L = R_\square/R$. By the same definition,
 $$\left(\frac{W}{L}\right)_{eq} = \frac{R_\square}{R} = \frac{8}{\ln(1 + 2L/W)} .$$
-Assuming a wrong (non-physical) potential pattern can only raise the computed conductance (Dirichlet's minimum-energy principle), so this is an upper bound.
+Forcing the potential into an assumed pattern can only *overestimate* the conductance. By Dirichlet's minimum-energy principle, the true potential minimizes the dissipated power for given terminal voltages. So this is an upper bound.
 
 For $L \ll W$, use $\ln(1 + \epsilon) \approx \epsilon - \epsilon^2/2$ with $\epsilon = 2L/W$:
 
@@ -126,7 +126,17 @@ $$W^2 - 2EW - \frac{2EC_{jsw}}{C_j} = 0 \;\Rightarrow\; W_c = E + \sqrt{E^2 + \f
 
 Against the straight device the crossover is near $W \approx 4E$, or somewhat above it once sidewalls are counted.
 
-**Per unit of effective width.** Divide by $W_{eq} = 4W$. The ring's drain capacitance is then $(W/4)C_j + C_{jsw}$, which *grows* with $W$, because the drain area grows as $W^2$ while the width grows only as $4W$. A wide transistor should therefore be built from **several small rings in parallel**, each with $W \approx E$, not from one large ring.
+**Per unit of effective width.** Divide each capacitance by $W_{eq} = 4W$:
+
+$$
+\begin{aligned}
+\frac{C_{DB,ring}}{W_{eq}} &= \frac{W}{4}C_j + C_{jsw},\\
+\frac{C_{DB,straight}}{W_{eq}} &= E\,C_j + 2C_{jsw} + \frac{E}{2W}C_{jsw},\\
+\frac{C_{DB,folded}}{W_{eq}} &= \frac{E}{2}C_j + C_{jsw} + \frac{E}{2W}C_{jsw}.
+\end{aligned}
+$$
+
+For the straight and folded devices this is essentially constant. For the ring it *grows* with $W$, because the drain area grows as $W^2$ while the width grows only as $4W$. A wide transistor should therefore be built from **several small rings in parallel**, each with $W \approx E$, not from one large ring.
 
 ### Step 9 — Remarks and costs
 

@@ -13,7 +13,7 @@ Reading the figure:
 
 **Consequence of the capacitors.** The noise of $M_4$, $M_0$, $I_1$ and $I_2$ would normally appear as a voltage on the gates of $M_3$ and $M_2$. The large capacitors short those gate nodes to ground at the frequencies of interest, so this noise never reaches $M_3$ or $M_2$. **The only noise sources that matter are the channel noise currents of $M_1$, $M_2$ and $M_3$.**
 
-Noise model (channel thermal noise): $\overline{I_n^2} = 4kT\gamma g_m$ in A²/Hz. Here $k = 1.38\times10^{-23}$ J/K is Boltzmann's constant, $T = 300$ K, $\gamma = 2/3$, and $g_m$ is the transconductance. The common factor is
+Noise model (channel thermal noise): $\overline{I_n^2} = 4kT\gamma g_m$ in A²/Hz. Here $k = 1.38\times10^{-23}$ J/K is Boltzmann's constant, $T = 300$ K, $\gamma = 2/3$ is the channel-noise coefficient (not the body-effect coefficient), and $g_m$ is the transconductance. The common factor is
 
 $$4kT\gamma = 4\times(1.38\times10^{-23}\ \mathrm{J/K})\times(300\ \mathrm{K})\times\tfrac23 = 1.104\times10^{-20}\ \mathrm{J}.$$
 
@@ -28,7 +28,7 @@ g_{m3} &= \sqrt{2\,(38.4\ \mu\mathrm{A/V^2})(100)(0.5\ \mathrm{mA})} = \sqrt{3.8
 \end{aligned}
 $$
 
-$M_1$ and $M_2$ are NMOS and use $\mu_nC_{ox}$; $M_3$ is PMOS and uses $\mu_pC_{ox}$.
+$M_1$ and $M_2$ are NMOS and use $\mu_nC_{ox}$; $M_3$ is PMOS and uses $\mu_pC_{ox}$. All three are assumed saturated. As a sanity check, their overdrive voltages $V_{ov} = 2I_D/g_m$ are $2(0.5\ \mathrm{mA})/(3.661\ \mathrm{mS}) = 0.27$ V for the NMOS devices and $2(0.5\ \mathrm{mA})/(1.960\ \mathrm{mS}) = 0.51$ V for the PMOS, which are normal values.
 
 The noise current spectral densities are:
 
@@ -51,7 +51,7 @@ Both are needed because the driving source impedance is not known. A CG stage ha
 - **$\overline{V_{n,in}^2}$: short the input to ground** (zero source impedance). The parallel current source is then shorted out, so the output noise must be produced by $\overline{V_{n,in}^2}$ alone.
 - **$\overline{I_{n,in}^2}$: leave the input open** (infinite source impedance). The series voltage source then drives an open circuit and has no effect, so the output noise must be produced by $\overline{I_{n,in}^2}$ alone.
 
-A convenient tool is the **short-circuit output current** $i_{out,sc}$: short $V_{out}$ to AC ground and find the current each source pushes into that short. The actual output voltage is $i_{out,sc}$ times the output impedance, and the output impedance is the same for every source. So it suffices to compare short-circuit output currents.
+A convenient tool is the **short-circuit output current** $i_{out,sc}$: short $V_{out}$ to AC ground and find the current each source pushes into that short. The actual output voltage is $i_{out,sc}$ times the output impedance, and for a given input termination (shorted or open) the output impedance is the same for every source. So it suffices to compare short-circuit output currents.
 
 Small-signal model of $M_1$: a current $g_{m1}v_{gs1}$ from drain to source, with $v_{gs1} = 0 - v_S = -v_S$ because the gate is at AC ground, in parallel with $r_{O1}$. Here $r_O$ is a transistor's output resistance and $v_S$ is the small-signal voltage of the input (source) node. $M_2$ appears as $r_{O2}$ from the input node to ground, and $M_3$ as $r_{O3}$ from the output to AC ground ($V_{DD}$). Each device's noise current is in parallel with its $r_O$. The body effect is neglected, so there is no $g_{mb}$ term.
 
@@ -60,7 +60,7 @@ Small-signal model of $M_1$: a current $g_{m1}v_{gs1}$ from drain to source, wit
 With the input shorted, $v_S = 0$.
 
 - **$M_2$:** its noise current $I_{n2}$ flows from the input node into the short to ground and never reaches the output. **It does not contribute.**
-- **$M_1$:** with $v_S = 0$ and $v_{out} = 0$ (output shorted for the Norton current), $M_1$ has $v_{gs1} = 0$ and $v_{ds1} = 0$, so its controlled source and $r_{O1}$ carry nothing. Its noise current $I_{n1}$, from drain to source, must be supplied by the output short: $i_{out,sc} = I_{n1}$.
+- **$M_1$:** with $v_S = 0$ and $v_{out} = 0$ (output shorted, as explained in Step 3), $M_1$ has $v_{gs1} = 0$ and $v_{ds1} = 0$, so its controlled source and $r_{O1}$ carry nothing. Its noise current $I_{n1}$, from drain to source, must be supplied by the output short: $i_{out,sc} = I_{n1}$.
 - **$M_3$:** its noise current flows from $V_{DD}$ into the output node and straight into the short: $i_{out,sc} = I_{n3}$.
 - **Input signal $v_{in}$** (applied at the source of $M_1$, i.e. $v_S = v_{in}$). With $v_{out} = 0$, the current through $M_1$ from drain to source is
 $$g_{m1}(0 - v_{in}) + \frac{0 - v_{in}}{r_{O1}} = -\left(g_{m1} + \frac{1}{r_{O1}}\right)v_{in}.$$
@@ -87,7 +87,7 @@ $$
 
 With the input open, the input node connects only to the source of $M_1$ and to $M_2$ ($r_{O2}$ in parallel with $I_{n2}$). The input-referred current source $I_{n,in}$ sits between this node and ground.
 
-**First, the current gain of the CG stage.** Inject a test current $i_{in}$ into the input node, with the output shorted. KCL at the input node: the injected current $i_{in}$ plus the current arriving from $M_1$'s drain-to-source branch must leave through $r_{O2}$:
+**First, the current gain of the CG stage.** Inject a test current $i_{in}$ into the input node, with the output shorted. Apply Kirchhoff's current law (KCL) at the input node: the injected current $i_{in}$ plus the current arriving from $M_1$'s drain-to-source branch must leave through $r_{O2}$:
 
 $$
 \begin{aligned}
@@ -96,7 +96,7 @@ v_S &= \frac{i_{in}}{g_{m1} + 1/r_{O1} + 1/r_{O2}}.
 \end{aligned}
 $$
 
-The current that $M_1$ draws from the output short is therefore
+The magnitude of the current that $M_1$ carries between the input node and the output short is therefore
 
 $$|i_{out,sc}| = \left(g_{m1} + \frac{1}{r_{O1}}\right)v_S = \frac{g_{m1} + 1/r_{O1}}{g_{m1} + 1/r_{O1} + 1/r_{O2}}\;i_{in} \approx \left(1 - \frac{1}{g_{m1}r_{O2}}\right)i_{in} \approx i_{in}.$$
 
@@ -110,10 +110,11 @@ Now take each noise source in turn:
 $$
 \begin{aligned}
 I_{n1} - g_{m1}v_S - \frac{v_S}{r_{O1}} &= \frac{v_S}{r_{O2}},\\
-v_S &= \frac{I_{n1}}{g_{m1} + 1/r_{O1} + 1/r_{O2}},\\
-|i_{out,sc}| = \frac{v_S}{r_{O2}} &= \frac{I_{n1}}{1 + (g_{m1} + 1/r_{O1})\,r_{O2}} \approx \frac{I_{n1}}{g_{m1}r_{O2}} .
+v_S &= \frac{I_{n1}}{g_{m1} + 1/r_{O1} + 1/r_{O2}}.
 \end{aligned}
 $$
+Everything that $M_1$'s branch (noise source, controlled source and $r_{O1}$ together) delivers to the input node must leave through $r_{O2}$. That same current is drawn from the output short:
+$$|i_{out,sc}| = \frac{v_S}{r_{O2}} = \frac{I_{n1}}{1 + (g_{m1} + 1/r_{O1})\,r_{O2}} \approx \frac{I_{n1}}{g_{m1}r_{O2}} .$$
 With the source left open, $M_1$ is degenerated by the large $r_{O2}$. Its noise current mostly circulates inside the device and reaches the output reduced by $g_{m1}r_{O2} \gg 1$. Referred to the input it is $I_{n1}/(g_{m1}r_{O2})$, which is **negligible**.
 
 Adding the powers:

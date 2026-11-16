@@ -7,7 +7,7 @@
 Reading the figure:
 
 - **Stage 1.** NMOS differential pair $M_1$–$M_2$, with sources tied at node P and a tail current $I_{SS}$. Its loads are the PMOS current sources $M_3$ (at node X) and $M_4$ (at node Y), whose gates sit at the bias voltage $V_{b1}$.
-- **Stage 2.** Two PMOS common-source amplifiers: $M_5$ (gate at X, output $V_{out1}$) and $M_6$ (gate at Y, output $V_{out2}$). Their loads are the NMOS current sources $M_7$ and $M_8$.
+- **Stage 2.** Two PMOS common-source (CS) amplifiers: $M_5$ (gate at X, output $V_{out1}$) and $M_6$ (gate at Y, output $V_{out2}$). Their loads are the NMOS current sources $M_7$ and $M_8$.
 - The input is the voltage between the gates of $M_1$ and $M_2$. The output is $V_{out1} - V_{out2}$.
 
 The **input-referred noise voltage** $\overline{V_{n,in}^2}$ is the single noise source which, placed in series with the input of a *noiseless* copy of the amplifier, produces the same output noise as all the real noise sources together:
@@ -16,7 +16,7 @@ $$\overline{V_{n,in}^2} = \frac{\overline{V_{n,out}^2}}{A_v^2} .$$
 
 Here $\overline{V_{n,out}^2}$ is the total output noise power spectral density (in V²/Hz) and $A_v$ is the differential voltage gain. Each transistor's noise is independent of the others, so their **powers add**.
 
-Noise model: each transistor has a channel thermal-noise current $\overline{I_n^2} = 4kT\gamma g_m$ (A²/Hz) between its drain and source. Here $k = 1.38\times10^{-23}$ J/K is Boltzmann's constant, $T = 300$ K, $\gamma = 2/3$, and $g_m$ is the device transconductance. The common factor is
+Noise model: each transistor has a channel thermal-noise current $\overline{I_n^2} = 4kT\gamma g_m$ (A²/Hz) between its drain and source. Here $k = 1.38\times10^{-23}$ J/K is Boltzmann's constant, $T = 300$ K, $\gamma = 2/3$ is the channel-noise coefficient, and $g_m$ is the device transconductance. The common factor is
 
 $$4kT\gamma = 4\times(1.38\times10^{-23}\ \mathrm{J/K})\times(300\ \mathrm{K})\times\tfrac23 = 1.104\times10^{-20}\ \mathrm{J}.$$
 
@@ -28,7 +28,9 @@ $$I_{D1} = I_{D2} = I_{D3} = I_{D4} = \frac{I_{SS}}{2} = 0.125\ \mathrm{mA}, \qq
 
 **Aspect ratios.** $W/L = 50/0.5 = 100$ for all devices except $M_{5,6}$, which have $W/L = 60/0.5 = 120$.
 
-**Transconductances** from the square law, $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$:
+All transistors are assumed to be in saturation (the bias voltages are chosen for this), so the square-law expressions apply.
+
+**Transconductances** from the square law, $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$. Here $\mu C_{ox}$ is the process transconductance parameter: $\mu_nC_{ox}$ for the NMOS devices ($M_1$, $M_2$, $M_7$, $M_8$) and $\mu_pC_{ox}$ for the PMOS devices ($M_3$–$M_6$).
 
 $$
 \begin{aligned}
@@ -41,7 +43,7 @@ $$
 
 By symmetry, $g_{m2} = g_{m1}$, $g_{m4} = g_{m3}$, $g_{m6} = g_{m5}$ and $g_{m8} = g_{m7}$.
 
-**Output resistances** from channel-length modulation, $r_O = 1/(\lambda I_D)$:
+**Output resistances** from channel-length modulation, $r_O = 1/(\lambda I_D)$, where $\lambda$ is the channel-length modulation coefficient (0.1 V⁻¹ for NMOS, 0.2 V⁻¹ for PMOS):
 
 $$
 \begin{aligned}
@@ -90,7 +92,7 @@ The same decomposition applies to every noise source on one side (for example $M
 
 ### Step 4 — First-stage contribution ($M_1$ and $M_3$)
 
-In the half circuit, the noise current of $M_1$ (from X to ground through $M_1$) and that of $M_3$ (from $V_{DD}$ into X) both flow into node X. Each is in parallel with its device. The total noise current power at X is
+In the half circuit, node P is at AC ground (Step 3). The noise current of $M_1$ (from X to ground through $M_1$) and that of $M_3$ (from $V_{DD}$ into X) both flow at node X, each in parallel with its own device. The two are uncorrelated, so their *powers* (not their amplitudes) add. The total noise current power at X is
 
 $$\overline{I_{n,X}^2} = 4kT\gamma\,(g_{m1} + g_{m3}).$$
 

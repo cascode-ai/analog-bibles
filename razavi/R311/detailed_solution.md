@@ -1,6 +1,6 @@
 # Detailed solution - R311
 
-**Approach.** Replace each transistor by its small-signal model, apply a test voltage $v_X$ at node X, and find the test current $i_X$ with KCL at node X and at the drain of $M_1$. The ratio $v_X/i_X$ gives $Z_X(s)$. Its zero, pole and asymptotes then give the Bode sketch of $|Z_X|$, which turns out to be inductive.
+**Approach.** Replace each transistor by its small-signal model, apply a test voltage $v_X$ at node X, and find the test current $i_X$ with Kirchhoff's current law (KCL) at node X and at the drain of $M_1$. The ratio $v_X/i_X$ gives $Z_X(s)$. Its zero, pole and asymptotes then give the Bode sketch of $|Z_X|$, which turns out to be inductive.
 
 ### Step 1 — Read the circuit
 
@@ -95,15 +95,19 @@ $$Z_X(\infty) = \frac{R_DC_1s}{g_{m2}R_DC_1s} = \frac{1}{g_{m2}} .$$
 
 Because $1 + g_{m1}R_D > 1$, the zero comes first ($\omega_z < \omega_p$), so $|Z_X|$ *increases* with frequency. The pole-to-zero ratio $\omega_p/\omega_z = 1 + g_{m1}R_D$ equals the ratio of the high- and low-frequency levels. This is consistent with a straight +20 dB/dec rise joining the two plateaus.
 
-**Physical intuition.** At low frequency $M_1$ and $M_2$ form a negative-feedback loop. If $v_X$ rises, $M_1$ pulls node D down by $g_{m1}R_Dv_X$, which increases $v_{gs2} = v_D - v_X$ by a factor $(1 + g_{m1}R_D)$. $M_2$ then absorbs $(1 + g_{m1}R_D)$ times more current than a plain follower would, so the impedance drops by that factor; the loop gain is $g_{m1}R_D$. At high frequency $C_1$ shorts node D to ground, the loop gain vanishes, and only the follower's $1/g_{m2}$ remains.
+**Physical intuition.** At low frequency $M_1$ and $M_2$ form a negative-feedback loop. If $v_X$ rises, $M_1$ pulls node D *down* by $g_{m1}R_Dv_X$. The gate–source voltage of $M_2$ therefore becomes $v_{gs2} = v_D - v_X = -(1 + g_{m1}R_D)v_X$ instead of just $-v_X$. $M_2$ then absorbs $(1 + g_{m1}R_D)$ times more current than a plain follower would, so the impedance drops by that factor; the loop gain is $g_{m1}R_D$. At high frequency $C_1$ shorts node D to ground, the loop gain vanishes, and only the follower's $1/g_{m2}$ remains.
 
 ### Step 7 — The magnitude and the Bode sketch
 
-Set $s = j\omega$ and take magnitudes, using $|a + jb| = \sqrt{a^2 + b^2}$:
+Set $s = j\omega$:
+
+$$Z_X(j\omega) = \frac{1 + j\omega R_DC_1}{g_{m2}\,(1 + g_{m1}R_D + j\omega R_DC_1)} .$$
+
+Take magnitudes, using $|a + jb| = \sqrt{a^2 + b^2}$ for the numerator and the denominator separately:
 
 $$|Z_X(j\omega)| = \frac{1}{g_{m2}}\sqrt{\frac{1 + \omega^2R_D^2C_1^2}{(1 + g_{m1}R_D)^2 + \omega^2R_D^2C_1^2}} .$$
 
-The asymptotic (Bode) description:
+The asymptotic (Bode) description follows by keeping only the larger term under each square root. For example, in the middle range ($\omega_z \ll \omega \ll \omega_p$) the numerator is dominated by $\omega R_DC_1$, because $\omega R_DC_1 \gg 1$. The denominator is dominated by $1 + g_{m1}R_D$, because $\omega R_DC_1 \ll 1 + g_{m1}R_D$.
 
 | Frequency range | Approximation of $\lvert Z_X\rvert$ | Behaviour |
 |---|---|---|
@@ -170,6 +174,6 @@ The port is **inductive**. It is equivalent to $R_0 = 1/[g_{m2}(1 + g_{m1}R_D)]$
 
 **Common mistake.** Concluding that $|Z_X|$ falls with frequency because "there is a capacitor". $C_1$ is not across the port. It sits inside the feedback loop, and shorting node D at high frequency *removes* the impedance-lowering feedback. The impedance therefore rises: it is inductive, not capacitive.
 
-**Common mistake.** Giving $1/g_{m2}$ (or $1/g_{m1}$) as the low-frequency value. That ignores the fact that $M_1$ moves the gate of $M_2$: $v_{gs2} = v_D - v_X = -(1 + g_{m1}R_D)v_X$, not $-v_X$. Writing $v_{gs2}$ as $v_D$ alone (treating $M_2$ as a common-source device with a grounded source) is the same error.
+**Common mistake.** Giving $1/g_{m2}$ (or $1/g_{m1}$) as the low-frequency value. That ignores the fact that $M_1$ moves the gate of $M_2$: $v_{gs2} = v_D - v_X = -(1 + g_{m1}R_D)v_X$, not $-v_X$. A related error is treating $M_2$ as a common-source device, i.e. writing $v_{gs2} = v_D$ as if its source were grounded. The source of $M_2$ *is* node X.
 
 **Common mistake.** Replacing $I_1$ by a short or by a resistor. An ideal current source has infinite small-signal impedance, so it is an open circuit and does not appear in $Z_X$.

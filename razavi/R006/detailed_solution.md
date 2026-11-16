@@ -22,7 +22,7 @@ V_{SB} &= V_S - V_B = V_X - 0 = V_X .
 \end{aligned}
 $$
 
-Here $V_{GS}$, $V_{DS}$ and $V_{SB}$ are the gate–source, drain–source and source–bulk voltages. The gate draws no DC current, so KCL at the source node gives
+Here $V_{GS}$, $V_{DS}$ and $V_{SB}$ are the gate–source, drain–source and source–bulk voltages. The gate draws no DC current, so Kirchhoff's current law (KCL) at the source node gives
 
 $$I_X = I_D ,$$
 
@@ -77,10 +77,10 @@ $$V_{ov} = 3 - V_X - V_{TH}(V_X).$$
 
 Evaluate this at the same four points:
 
-- $V_X = 0$: $V_{ov} = 3 - 0 - 0.7000 = 2.300$ V, $V_{ov}^2 = 5.290\ \mathrm{V^2}$, so $I_X = \tfrac12(5.290)\beta = 2.645\,\beta$.
-- $V_X = 0.5$ V: $V_{ov} = 3 - 0.5 - 0.8055 = 1.6945$ V, $V_{ov}^2 = 2.871\ \mathrm{V^2}$, so $I_X = 1.436\,\beta$.
-- $V_X = 1.0$ V: $V_{ov} = 3 - 1.0 - 0.8934 = 1.1066$ V, $V_{ov}^2 = 1.2246\ \mathrm{V^2}$, so $I_X = 0.612\,\beta$.
-- $V_X = 1.5$ V: $V_{ov} = 3 - 1.5 - 0.9702 = 0.5298$ V, $V_{ov}^2 = 0.2807\ \mathrm{V^2}$, so $I_X = 0.140\,\beta$.
+- $V_X = 0$: $V_{ov} = 3 - 0 - 0.7000 = 2.300$ V, $V_{ov}^2 = 5.290\ \mathrm{V^2}$, so $I_X = \tfrac12(5.290\ \mathrm{V^2})\,\beta = 2.645\,\beta$.
+- $V_X = 0.5$ V: $V_{ov} = 3 - 0.5 - 0.8055 = 1.6945$ V, $V_{ov}^2 = 2.871\ \mathrm{V^2}$, so $I_X = \tfrac12(2.871\ \mathrm{V^2})\,\beta = 1.436\,\beta$.
+- $V_X = 1.0$ V: $V_{ov} = 3 - 1.0 - 0.8934 = 1.1066$ V, $V_{ov}^2 = 1.2246\ \mathrm{V^2}$, so $I_X = \tfrac12(1.2246\ \mathrm{V^2})\,\beta = 0.612\,\beta$.
+- $V_X = 1.5$ V: $V_{ov} = 3 - 1.5 - 0.9702 = 0.5298$ V, $V_{ov}^2 = 0.2807\ \mathrm{V^2}$, so $I_X = \tfrac12(0.2807\ \mathrm{V^2})\,\beta = 0.140\,\beta$.
 
 Units: with $\beta$ in $\mathrm{A/V^2}$, $I_X$ comes out in amperes. For example, $\beta = 1\ \mathrm{mA/V^2}$ gives $I_X$ falling from 2.65 mA to 0.14 mA.
 
@@ -142,7 +142,7 @@ All points (β in A/V²; $I_X$ in A; $g_m$ in A/V):
 What the sketch looks like:
 
 - **$I_X$ versus $V_X$**: monotonically decreasing and concave up, roughly a parabola. It starts steep ($-2.85\beta$ per volt) at $2.65\beta$ and flattens toward $0.14\beta$ at $V_X = 1.5$ V. The parabola's minimum, where the current reaches zero, lies beyond the plotted range (Step 7).
-- **$g_m$ versus $V_X$**: an almost straight line falling from $2.30\beta$ to $0.53\beta$. Its slope eases slightly, from $-1.24\beta$ to $-1.15\beta$ per volt, so the line bows very slightly upward. Without the body effect it would be an exactly straight line of slope $-\beta$ per volt. The body effect makes it fall faster.
+- **$g_m$ versus $V_X$**: an almost straight line falling from $2.30\beta$ to $0.53\beta$. Its slope eases slightly, from $-1.24\beta$ to $-1.15\beta$ per volt, so the curve is very slightly concave up. Without the body effect it would be an exactly straight line of slope $-\beta$ per volt. The body effect makes it fall faster.
 
 ### Step 7 — Where $M_1$ would turn off (outside the range)
 
@@ -179,4 +179,4 @@ $$V_{TH} = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - \sqrt{0.9}\right)\ \mathrm{V}.$$
 
 **Common mistake.** Claiming that $M_1$ enters the triode region as $V_X$ rises. Here $V_{DS} = V_{GS}$ always, so $V_{DS} > V_{GS} - V_{TH}$ automatically. The device can only be saturated or off.
 
-**Common mistake.** Treating the $V_X$ terminal as the drain. That would give a fixed $V_{GS}$, and an $I_X$ that stays constant or increases with $V_X$. The source of an NMOS is its lower-potential terminal, so raising $V_X$ *reduces* $V_{GS}$ and the current falls. For the same reason $g_m = \beta V_{ov}$ is not constant: it follows the overdrive down.
+**Common mistake.** Mixing up source and drain. Taking the $V_{DD}$ terminal as the source gives $V_{GS} = 0$ and a transistor that is "always off". Treating $V_X$ as if it were a drain voltage leads to an $I_X$ that grows with $V_X$. The source of an NMOS is its lower-potential terminal, here the $V_X$ node, so raising $V_X$ *reduces* $V_{GS}$ and the current falls. For the same reason $g_m = \beta V_{ov}$ is not constant: it follows the overdrive down.
