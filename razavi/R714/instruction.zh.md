@@ -1,0 +1,1 @@
+一根长 1,000 μm、宽 2 μm 的金属 4 导线由 500 Ω 的源阻抗驱动。金属 4 的方块电阻（sheet resistance）为 40 mΩ/□，对衬底的平板电容（parallel-plate capacitance），即底面电容，为 7.0 aF/μm²，两侧合计的边缘电容（fringe capacitance）为 30 aF/μm。计算信号通过该导线的延迟，并将结果与源阻抗乘以导线总电容得到的集总时间常数进行比较。

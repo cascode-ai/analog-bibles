@@ -1,0 +1,1 @@
+假设采用硅化物阻挡（silicide block）的多晶硅（polysilicon）的方块电阻（sheet resistance）为 60 Ω/□，对衬底的平板电容（parallel-plate capacitance）为 100 aF/μm²。另外假设 n 阱（n-well）的这两个参数分别为 2 kΩ/□ 和 1,000 aF/μm²。如果出于匹配的考虑，要求多晶硅的最小宽度为 3 μm、n 阱的最小长度为 6 μm，确定应使用哪种材料来制作一个 500 Ω 的电阻。忽略边缘电容（fringe capacitance）。

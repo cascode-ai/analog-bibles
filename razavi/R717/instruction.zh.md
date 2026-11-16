@@ -1,0 +1,1 @@
+在 [图 1] 所示电路中，$(W/L)_1 = 100/0.5$，$I_{D1} = 1$ mA，$M_1$ 工作在饱和区（saturation region）。$M_1$ 的衬底（bulk）即为衬底节点，其电压 $V_{sub}$ 受到时钟反相器（inverter）经衬底传来的干扰；$M_1$ 的源极接地。如果衬底噪声（substrate noise）$V_{sub}$ 的峰峰值幅度为 50 mV，折算到 $M_1$ 栅极的影响是多少？NMOS 参数：$\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$，$\gamma = 0.45\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.9$ V。

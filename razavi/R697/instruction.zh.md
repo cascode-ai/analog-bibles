@@ -1,0 +1,1 @@
+[图 1] 所示的开关电容（switched-capacitor）放大器存在很大的增益误差（gain error）。在采样相（sampling phase），$S_1$ 和 $S_2$ 导通；在放大相（amplification phase），$S_3$ 导通。运算放大器（op amp）的偏置电流等于期望值。对于下列每一种制造错误，说明它是否可能造成这一增益误差，并解释原因：(a) 阈值调整注入（threshold-adjust implant）剂量过大，(b) 位于节点 $P$ 的 $C_1$ 底极板（bottom plate）掺杂极重，(c) 源/漏注入时发生沟道效应（channeling）。

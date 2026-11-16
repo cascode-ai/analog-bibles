@@ -1,0 +1,1 @@
+[图 1] 给出了一个以 PMOS 电流源（current source）为负载的 NMOS 差分对（differential pair）的版图（layout），以及它的一部分设计规则（design rule）$A_1$–$A_8$。阴影区域是容纳两个 PMOS 负载（上方）的 n 阱（n-well），中间一行的两个 NMOS 晶体管构成输入对管，底部的 NMOS 是尾电流源（tail current source）。灰色虚线矩形是有源区（active area）；灰色条是多晶硅（polysilicon），与有源区交叉处颜色较深，构成栅极；白色轮廓的条带是金属 1；黑色方块是接触孔。如果设计规则 $A_1$–$A_8$ 中的每一条分别被违反，说明差分放大器（differential amplifier）会出现什么情况。
