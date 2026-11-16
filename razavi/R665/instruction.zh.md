@@ -1,0 +1,1 @@
+MOSFET 源区和漏区所能达到的最大掺杂浓度受硅的“固溶度”（solid solubility）限制。若按因子 $\alpha > 1$ 进行理想按比例缩小（ideal scaling），即所有横向和纵向尺寸（包括结深）都除以 $\alpha$，电源电压和阈值电压（threshold voltage）都除以 $\alpha$，掺杂浓度都乘以 $\alpha$，但源/漏（S/D）掺杂浓度保持不变，解释源/漏结电容（junction capacitance）和串联电阻会发生什么变化。漏致势垒降低（DIBL）是变得更显著还是更不显著？

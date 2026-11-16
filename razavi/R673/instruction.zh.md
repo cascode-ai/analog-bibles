@@ -1,0 +1,1 @@
+在注重功耗的应用中，常把器件的跨导（transconductance）对其偏置电流归一化后的值 $g_m/I_D$ 定义为一种优值（figure of merit）。求工作在强反型（strong inversion）区（平方律模型）或亚阈值（subthreshold）区的长沟道器件的这一参数。漏极电流为多大时两者相等？结果用 $\mu C_{ox}$、$W/L$、过驱动电压（overdrive voltage）或漏极电流、热电压（thermal voltage）$V_T = kT/q$ 以及亚阈值斜率因子 $\zeta$ 表示（在亚阈值区，$I_D \propto \exp[V_{GS}/(\zeta V_T)]$）。

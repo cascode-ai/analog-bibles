@@ -1,0 +1,1 @@
+在某 CMOS 工艺中，阈值调整注入（threshold-adjust implant）在栅氧化层生长之后进行。其目的是在硅表面正下方形成一薄层 p 型掺杂，使 NMOS 和 PMOS 晶体管的阈值都向正方向移动：不进行注入时 $V_{THN} \approx 0$，$V_{THP} \approx -1$ V，目标值为 $V_{THN} = 0.7$ V 和 $V_{THP} = -0.8$ V。在这次阈值调整注入中，晶圆没有倾斜，导致了严重的沟道效应（channeling）。解释最终得到的阈值电压（threshold voltage）是高于还是低于目标值。

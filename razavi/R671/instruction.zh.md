@@ -1,0 +1,1 @@
+一个按 50 Ω 输入阻抗设计的共栅级（common-gate stage）按因子 $\alpha > 1$ 进行理想按比例缩小（ideal scaling）：所有横向和纵向尺寸都除以 $\alpha$，所有电压都除以 $\alpha$，包括电源电压、偏置电压和阈值电压（threshold voltage），所有掺杂浓度都乘以 $\alpha$。若 $\lambda = \gamma = 0$，输入阻抗是多少？

@@ -1,0 +1,1 @@
+假设某开关电容（switched-capacitor）放大器的电源电压降低为原来的一半，最大允许输出电压摆幅（output swing）也同样减半。为了保持动态范围（dynamic range）不变，噪声电压也必须按同一因子减小。噪声只有 $kT/C$ 噪声，电容已相应地进行了缩放。单级运算放大器（op amp）的跨导（transconductance）$G_m$ 就是其输入差分对（differential pair）的跨导，它已经过缩放，以保持小信号时间常数 $C/G_m$ 不变。运放输入差分对的尺寸和尾电流（tail current）应如何缩放？假设采用平方律（square law）模型，输入晶体管的过驱动电压（overdrive voltage）与电源一样减半，且输入晶体管的工艺（$\mu C_{ox}$）和沟道长度不变。

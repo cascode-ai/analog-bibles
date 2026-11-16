@@ -1,0 +1,1 @@
+假设 CMOS 工艺的快工艺角（fast corner）源于较高的 $\mu C_{ox}$，慢工艺角（slow corner）源于较低的 $\mu C_{ox}$，NMOS 和 PMOS 器件各自独立变化，而其他器件参数（例如 $V_{TH}$、λ）保持不变。若晶体管以固定的 $V_{GS}$ 而不是恒定电流偏置，解释 [图 1] 所示电路的电压增益和输入参考热噪声（input-referred thermal noise）在工艺的四个工艺角下（快或慢 NMOS 与快或慢 PMOS 的组合）会如何变化。这里，输入晶体管 $M_1$ 的栅源偏置电压固定，二极管连接（diode-connected）的 $M_2$ 流过由此产生的电流。

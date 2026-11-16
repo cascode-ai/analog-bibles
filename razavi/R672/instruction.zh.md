@@ -1,0 +1,1 @@
+一个以 MOS 电流源（current source）为负载的共栅级（common-gate stage）按 50 Ω 输入阻抗设计。沟道长度调制（channel-length modulation）和体效应（body effect）都存在（$\lambda \neq 0$，$\gamma \neq 0$）。随后，该级（包括其电流源负载）按因子 $\alpha > 1$ 进行理想按比例缩小（ideal scaling）：所有横向和纵向尺寸都除以 $\alpha$，所有电压都除以 $\alpha$，包括电源电压、偏置电压和阈值电压（threshold voltage），所有掺杂浓度都乘以 $\alpha$。输入阻抗是多少？

@@ -1,0 +1,5 @@
+- 强反型：$g_m/I_D = \dfrac{2}{V_{GS}-V_{TH}} = \sqrt{\dfrac{2\mu C_{ox}(W/L)}{I_D}}$，按 $1/\sqrt{I_D}$ 下降。
+- 亚阈值：$g_m/I_D = \dfrac{1}{\zeta V_T}$，为常数：300 K、ζ = 1.5 时 ≈ 26 V⁻¹，最大为 $1/V_T$ ≈ 39 V⁻¹。
+- 当 $V_{GS}-V_{TH} = 2\zeta V_T$，即 $I_D = \tfrac12\mu C_{ox}\frac{W}{L}(2\zeta V_T)^2 = 2\mu C_{ox}\dfrac{W}{L}(\zeta V_T)^2$ 时，两者相等。
+- 示例：NMOS，$\mu_nC_{ox}$ = 134 μA/V²，ζ = 1.5，T = 300 K，得到过驱动电压 ≈ 78 mV，$I_D$ ≈ 0.40 μA × (W/L)；ζ = 1 时为 0.18 μA × (W/L)。
+- 说明：低于这一电流时，平方律预测的 $g_m/I_D$ 会大于亚阈值值，这在物理上是不成立的。在弱反型（weak inversion）区，实际的 $g_m/I_D$ 趋于平稳，等于 $1/(\zeta V_T)$。因此交点大致标志着中等反型（moderate inversion）区的边界。单位电流的最高 $g_m$ 是在亚阈值区获得的，代价是很大的 W/L（电容）和较低的速度。

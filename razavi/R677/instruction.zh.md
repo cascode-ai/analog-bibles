@@ -1,0 +1,1 @@
+假设为了表示输出阻抗对 $V_{DS}$ 的依赖关系，把饱和区（saturation region）MOSFET 的沟道长度调制（channel-length modulation）系数 λ 修正为 $\lambda/(1 + \kappa V_{DS})$，其中 κ 为常数；即 $I_D = \tfrac12\mu C_{ox}(W/L)(V_{GS}-V_{TH})^2\left[1 + \dfrac{\lambda V_{DS}}{1+\kappa V_{DS}}\right]$。计算 $r_O$。解释具有这种特性的电流源（current source）如何使其两端的电压产生失真。

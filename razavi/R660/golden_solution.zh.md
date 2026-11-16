@@ -7,4 +7,4 @@
 - ÷M 电路每 M 个输入周期产生一个输出周期；它把总相位除以 M：$\phi_{div} = \dfrac{\omega_0}{M}t + \beta\sin\omega_mt$，其中 $\beta = \dfrac{K_{VCO}V_m}{M\omega_m}$。载波和频偏（frequency deviation）都被除以 M，而调制速率不变。
 - 当 β ≪ 1 时：$A\cos\phi_{div} \approx A\cos\dfrac{\omega_0}{M}t + \dfrac{A\beta}{2}\left[\cos\left(\dfrac{\omega_0}{M} + \omega_m\right)t - \cos\left(\dfrac{\omega_0}{M} - \omega_m\right)t\right]$。
 - 在第二种情况下，$\cos[(\omega_0/M - \omega_m)t] = \cos[(\omega_m - \omega_0/M)t]$，因此该分量出现在 $\omega_m - \omega_0/M$ 处。
-- 分频器的方波输出还含有奇次谐波 $k\omega_0/M$，每个谐波在 $\pm\omega_m$ 处都有边带（调制指数为 kβ，恰好抵消了谐波幅度中的 1/k，因此这些边带与基波的边带一样大）。当 $\omega_m > \omega_0/M$ 时，这些边带与各次谐波相互交错，其中一些（例如 $|3\omega_0/M - \omega_m|$）可能落在基波附近甚至低于基波。
+- 分频器的方波输出还含有奇次谐波 $k\omega_0/M$，每个谐波在 $\pm\omega_m$ 处都有边带，其调制指数（modulation index）为 kβ，恰好抵消了谐波幅度中的 1/k，因此这些边带与基波的边带一样大。当 $\omega_m > \omega_0/M$ 时，这些边带与各次谐波相互交错，其中一些（例如 $|3\omega_0/M - \omega_m|$）可能落在基波附近甚至低于基波。

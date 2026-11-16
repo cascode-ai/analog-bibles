@@ -15,7 +15,7 @@ $$
 \end{aligned}
 $$
 
-VCO 输出 $V_{VCO}(t) = A\cos\phi_{VCO}(t)$ 是一个调频信号，其峰值频偏为 $K_{VCO}V_m$，调制指数（modulation index）即峰值相位偏移，其值为
+VCO 输出 $V_{VCO}(t) = A\cos\phi_{VCO}(t)$ 是一个调频信号，其峰值频偏为 $K_{VCO}V_m$，调制指数即峰值相位偏移，其值为
 
 $$\beta_{VCO} = \frac{K_{VCO}V_m}{\omega_m}.$$
 
