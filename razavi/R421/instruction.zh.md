@@ -1,0 +1,1 @@
+推导工作在线性区（triode region）的 MOSFET 的跨导（transconductance）和输出电阻（output resistance）的表达式。然后在固定的 $V_{GS}$ 下，即过驱动电压（overdrive voltage）$V_{OD} = V_{GS} - V_{TH} > 0$ 固定时，画出这些量以及乘积 $g_m r_O$ 随 $V_{DS}$ 变化的曲线，范围覆盖线性区和饱和区（saturation region）。采用平方律（square law）模型，并在饱和区计入沟道长度调制（channel-length modulation），其系数为 λ。

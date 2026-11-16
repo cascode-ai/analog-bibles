@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路单位带宽内的输入参考热噪声电压（input-referred thermal noise voltage）。该电路是一个经 $R_1$ 驱动、带反馈电阻 $R_2$ 的 CMOS 反相器（inverter），两个晶体管都处于饱和区（saturation region）。用 $g_{m1}$、$g_{m2}$、$R_1$、$R_2$ 和沟道热噪声系数（thermal channel-noise coefficient）γ 表示结果；输出电阻（output resistance）$r_{O1}$、$r_{O2}$ 为有限值。

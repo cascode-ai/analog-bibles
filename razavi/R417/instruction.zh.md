@@ -1,0 +1,1 @@
+计算 [图 1] 所示 CMOS 反相器（inverter）放大器单位带宽内的输入参考热噪声电压（input-referred thermal noise voltage），两个晶体管都处于饱和区（saturation region）。用跨导（transconductance）$g_{m1}$、$g_{m2}$ 和沟道热噪声系数（thermal channel-noise coefficient）γ 表示结果；输出电阻（output resistance）$r_{O1}$、$r_{O2}$ 为有限值。

@@ -1,0 +1,5 @@
+无反馈：$\partial V_{out}/\partial V_{DD} = (g_{m2} + 1/r_{O2})(r_{O1}\|r_{O2}) = (1 + g_{m2}r_{O2})\dfrac{r_{O1}}{r_{O1}+r_{O2}} \approx 7.5$。有反馈：$\dfrac{g_{m2} + 1/r_{O2}}{1/R_0 + 1/R_2 + \alpha(G_m - 1/R_2)} \approx 2.5$（$\alpha = R_1/(R_1+R_2)$）。带反馈的电路灵敏度更低，两者之比约为 1 + 环路增益（loop gain）≈ 3。（若在偏置中计入 λ：采用 $g_o = \lambda I_D$ 时为 7.7 和 2.7；对 $I_D = \tfrac{k}{2}V_{ov}^2(1+\lambda V_{DS})$ 精确求导，即 $g_m = 8.36$ mS、4.90 mS，$g_o = 0.206$ mS、0.343 mS，得 9.5 和 2.84。结论相同。）
+
+- 偏置（两个电路相同）：$V_M = 1.223$ V，$I_D = 1.83$ mA，$g_{m1} = 7.01$ mS，$g_{m2} = 3.75$ mS，$r_{O1} = 5.46\ \mathrm{k\Omega}$，$r_{O2} = 2.73\ \mathrm{k\Omega}$，$R_0 = 1.82\ \mathrm{k\Omega}$，$G_m = 10.76$ mS。
+- 电源变化 $v_{dd}$ 使 $M_2$ 的源极（和衬底）随之变化；栅极固定时，$M_2$ 向输出端注入 $g_{m2}v_{dd} + (v_{dd} - v_{out})/r_{O2}$，该电流流入 $r_{O1}$：$v_{out}(1/r_{O1} + 1/r_{O2}) = v_{dd}(g_{m2} + 1/r_{O2})$ → $4.12\ \mathrm{mS} \times 1.82\ \mathrm{k\Omega} = 7.5$。
+- 有反馈（$V_{in}$ 经 $R_1$ 接交流地）：$v_G = v_{out}R_1/(R_1+R_2)$；对输出端列基尔霍夫电流定律（KCL）：$v_{out}[1/R_0 + 1/R_2 + \alpha(G_m - 1/R_2)] = v_{dd}(g_{m2} + 1/r_{O2})$ → $4.12\ \mathrm{mS}/1.62\ \mathrm{mS} \approx 2.54$。

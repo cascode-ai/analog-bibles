@@ -1,0 +1,1 @@
+计算 [图 1] 所示电路在较低频率下单位带宽内的输入参考噪声电压（input-referred noise voltage），此时 $C_1$ 和 $C_2$ 从输出端取用的电流可以忽略。图中未画出 $M_2$ 栅极的偏置网络，也未给出晶体管尺寸：请用 $g_{m1}$（$= g_{m2}$）、$g_{m3}$（$= g_{m4}$）、沟道热噪声系数（thermal channel-noise coefficient）γ、闪烁噪声（flicker noise）系数 $K_N$、$K_P$（折算到栅极的闪烁噪声为 $K/(C_{ox}WLf)$）以及器件尺寸表示结果。
