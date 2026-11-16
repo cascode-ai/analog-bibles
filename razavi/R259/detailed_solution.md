@@ -1,16 +1,14 @@
 # Detailed solution - R259
 
-**Approach.** The circuit is a low-voltage cascode mirror whose cascode gate voltage $V_b$ is swept while $I_{REF}$ stays fixed. With $I_{REF}$ fixed, the overdrive voltages of the devices are fixed too, so the analysis reduces to finding which transistor leaves saturation at each end of the sweep. We use the square law with body effect for $M_3$ and $M_4$, find the "normal" window where all devices are saturated, and then follow the circuit below and above that window.
+**Approach.** With $I_{REF}$ fixed, the overdrive voltages are fixed too, so sweeping the cascode gate voltage $V_b$ reduces to finding which transistor leaves saturation at each end of the sweep. Using the square law with body effect for $M_3$ and $M_4$, find the "normal" window where all devices are saturated, then follow the circuit below and above it.
 
-### Step 1 — The circuit and notation
-
-From the figure: $I_{REF}$ enters node X. The reference stack is $M_4$ (drain X, gate $V_b$, source A) on top of $M_2$ (drain A, gate X, source grounded). The output stack is $M_3$ (drain at $V_{DD}$, carrying $I_{out}$; gate $V_b$; source B) on top of $M_1$ (drain B, gate X, source grounded).
+### Step 1 — Notation and saturation conditions
 
 Define the saturation overdrives at the fixed current $I_{REF}$:
 
 $$v_L = \sqrt{\frac{2I_{REF}}{\beta_{12}}} \ \ (M_1, M_2), \qquad v_U = \sqrt{\frac{2I_{REF}}{\beta_{34}}} \ \ (M_3, M_4),$$
 
-where $\beta_{12} = \mu_nC_{ox}(W/L)_{1,2}$ and $\beta_{34} = \mu_nC_{ox}(W/L)_{3,4}$. The cascode devices have grounded bulks, so their threshold depends on their source voltage $s$:
+where $\beta_{12} = \mu_nC_{ox}(W/L)_{1,2}$ and $\beta_{34} = \mu_nC_{ox}(W/L)_{3,4}$. The cascode devices have grounded bulks, so with source voltage $s$
 
 $$V_{TH}(s) = 0.7 + 0.45\left(\sqrt{0.9 + s} - \sqrt{0.9}\right)\ \mathrm{V}.$$
 
@@ -18,27 +16,27 @@ Saturation conditions:
 
 - $M_2$: $V_A \ge V_X - 0.7$.
 - $M_4$: $V_X - V_A \ge V_b - V_A - V_{TH}(V_A)$, i.e. $V_X \ge V_b - V_{TH}(V_A)$.
-- $M_3$: $V_{DD} - V_B \ge V_b - V_B - V_{TH}(V_B)$, i.e. $V_b \le V_{DD} + V_{TH}$. This holds over the whole sweep up to $V_{DD}$, so **$M_3$ is always saturated**.
+- $M_3$: $V_{DD} - V_B \ge V_b - V_B - V_{TH}(V_B)$, i.e. $V_b \le V_{DD} + V_{TH}$, which holds over the whole sweep up to $V_{DD}$, so **$M_3$ is always saturated**.
 
-As in any cascode mirror, whenever $M_3$ and $M_4$ are both saturated (and $\lambda = 0$), the two stacks are identical circuits with the same gate voltages. Then $V_A = V_B$ and $I_{out} = I_{REF}$ exactly, whatever region $M_1$ and $M_2$ are in. The reason is that in each stack the upper device's current falls as the middle node rises, while the lower device's current rises (triode) or stays constant (saturation). So the middle-node voltage is unique, and it is the same in both stacks.
+Whenever $M_3$ and $M_4$ are both saturated ($\lambda = 0$), the two stacks are identical circuits with the same gate voltages, so $V_A = V_B$ and $I_{out} = I_{REF}$ exactly, whatever region $M_1$ and $M_2$ are in: in each stack the upper device's current falls as the middle node rises while the lower device's current rises or stays constant, so the middle-node voltage is unique.
 
 ### Step 2 — The normal region: all transistors saturated
 
 **$V_X$.** $M_2$ carries $I_{REF}$ in saturation:
 
-$$V_X = V_{GS2} = 0.7 + v_L = \text{constant}.$$
+$$V_X = V_{GS2} = 0.7 + v_L = \text{constant},$$
 
-$V_X$ does not depend on $V_b$ at all: it is set by $I_{REF}$ and $M_2$ alone.
+independent of $V_b$.
 
-**$V_A = V_B$.** $M_4$ carries $I_{REF}$ in saturation, so its gate–source voltage is fixed at $V_{GS4} = V_{TH}(V_A) + v_U$:
+**$V_A = V_B$.** $M_4$ carries $I_{REF}$ in saturation, so $V_{GS4} = V_{TH}(V_A) + v_U$ is fixed:
 
 $$V_A = V_b - V_{GS4} \quad\Longleftrightarrow\quad V_A + V_{TH}(V_A) = V_b - v_U .$$
 
-$M_4$ acts as a source follower, so $V_A$ tracks $V_b$. The slope follows from differentiating, with $\eta = dV_{TH}/dV_A = \gamma/(2\sqrt{0.9 + V_A})$:
+$M_4$ acts as a source follower, so $V_A$ tracks $V_b$. With $\eta = dV_{TH}/dV_A = \gamma/(2\sqrt{0.9 + V_A})$:
 
 $$(1 + \eta)\,dV_A = dV_b \quad\Longrightarrow\quad \frac{dV_A}{dV_b} = \frac{1}{1 + \eta} \approx \frac{1}{1 + 0.19} \approx 0.84 .$$
 
-The slope is a little below 1 because, as $V_A$ rises, the body effect raises $V_{TH4}$ and eats part of the increase.
+The slope is a little below 1 because the body effect raises $V_{TH4}$ as $V_A$ rises.
 
 **$I_{out}$.** $M_1$ has the same $V_{GS}$ as $M_2$ and is saturated, so $I_{out} = I_{REF}$.
 
@@ -46,13 +44,13 @@ The slope is a little below 1 because, as $V_A$ rises, the body effect raises $V
 
 $M_2$ stays saturated while $V_A \ge V_X - 0.7 = v_L$. Setting $V_A = v_L$ in $V_A + V_{TH}(V_A) = V_b - v_U$ gives the lower edge of the normal region:
 
-$$V_{b,low} = v_L + V_{TH}(v_L) + v_U .$$
+$$V_{b,low} = v_L + V_{TH}(v_L) + v_U ,$$
 
-Physically, $V_b$ must leave room for one threshold plus two overdrives, which is the familiar minimum bias of a low-voltage cascode.
+one threshold plus two overdrives, the familiar minimum bias of a low-voltage cascode.
 
 ### Step 4 — Low $V_b$: $M_2$ (and $M_1$) in triode, $V_X$ shoots up
 
-For $V_b < V_{b,low}$, $V_A < v_L$ and $M_2$ is in triode. $M_4$ is still saturated, so $V_A$ still obeys $V_A + V_{TH}(V_A) = V_b - v_U$ and keeps falling with $V_b$. $M_2$ must still carry $I_{REF}$ with a smaller $V_{DS}$, so its gate voltage must rise. From the triode equation:
+For $V_b < V_{b,low}$, $V_A < v_L$ and $M_2$ is in triode. $M_4$ is still saturated, so $V_A$ still obeys $V_A + V_{TH}(V_A) = V_b - v_U$ and keeps falling with $V_b$. $M_2$ must still carry $I_{REF}$ with a smaller $V_{DS}$, so its gate voltage must rise:
 
 $$
 \begin{aligned}
@@ -62,7 +60,7 @@ V_X &= 0.7 + \frac{v_L^2 + V_A^2}{2V_A}, \qquad \text{using } I_{REF}/\beta_{12}
 \end{aligned}
 $$
 
-At $V_A = v_L$ this gives $0.7 + v_L$, so it joins the flat region continuously. As $V_A \to 0$, $V_X \to \infty$. $V_A$ reaches 0 when $V_b - v_U = V_{TH}(0) = 0.7$ V, i.e. at
+At $V_A = v_L$ this gives $0.7 + v_L$, joining the flat region continuously. As $V_A \to 0$, $V_X \to \infty$; $V_A$ reaches 0 when $V_b - v_U = V_{TH}(0) = 0.7$ V, i.e. at
 
 $$V_b \to 0.7 + v_U .$$
 
@@ -77,9 +75,9 @@ $M_4$ stays saturated while $V_X \ge V_b - V_{TH}(V_A)$. In the normal region $V
 
 $$V_{b,high} = V_{GS2} + V_{TH}\!\left(V_{GS2} - v_U\right).$$
 
-At this point $M_4$'s drain–source voltage $V_X - V_A$ equals exactly its overdrive $v_U$.
+There $M_4$'s drain–source voltage $V_X - V_A$ equals exactly its overdrive $v_U$.
 
-The normal window exists only if $V_{b,high} > V_{b,low}$. For equal sizes ($v_L = v_U = v$) the difference is $0.7 - v + V_{TH}(0.7) - V_{TH}(v)$, which is positive for $v$ below roughly 0.7 V. That is the usual case.
+The normal window exists only if $V_{b,high} > V_{b,low}$. For equal sizes ($v_L = v_U = v$) the difference is $0.7 - v + V_{TH}(0.7) - V_{TH}(v)$, which is positive for $v$ below roughly 0.7 V, the usual case.
 
 ### Step 6 — High $V_b$: $V_A$ flattens, $V_B$ keeps rising
 
@@ -87,13 +85,13 @@ For $V_b > V_{b,high}$, $M_4$ is in triode. $M_2$ is now comfortably saturated (
 
 $$I_{REF} = \beta_{34}\left[(V_b - V_A - V_{TH}(V_A))(V_X - V_A) - \tfrac12(V_X - V_A)^2\right] \ \Longrightarrow\ V_X - V_A \approx \frac{I_{REF}}{\beta_{34}\,(V_b - V_A - V_{TH})} .$$
 
-As $V_b$ grows, $M_4$'s overdrive grows and $V_X - V_A$ shrinks, so **$V_A$ flattens just below $V_X = V_{GS2}$**. $M_4$ behaves like a closed switch connecting A to X.
+As $V_b$ grows, $M_4$'s overdrive grows and $V_X - V_A$ shrinks, so **$V_A$ flattens just below $V_X = V_{GS2}$**: $M_4$ behaves like a closed switch from A to X.
 
 $M_3$, however, is still saturated (its drain is at $V_{DD}$), so
 
 $$V_B + V_{TH}(V_B) = V_b - v_U :$$
 
-**$V_B$ keeps rising** with slope $1/(1 + \eta)$, and now $V_B > V_A$. $M_1$ has $V_{DS1} = V_B > V_A > v_L$, so it is saturated with $V_{GS1} = V_X$, hence $I_{out} = I_{REF}$ still (with $\lambda = 0$; a real device with $\lambda > 0$ would give a slightly larger $I_{out}$ because $V_{DS1} > V_{DS2}$).
+**$V_B$ keeps rising** with slope $1/(1 + \eta)$, and now $V_B > V_A$. $M_1$ has $V_{DS1} = V_B > V_A > v_L$, so it is saturated with $V_{GS1} = V_X$, hence $I_{out} = I_{REF}$ still (with $\lambda = 0$; with $\lambda > 0$, $V_{DS1} > V_{DS2}$ would make $I_{out}$ slightly larger).
 
 ### Step 7 — Numerical example
 
@@ -138,8 +136,8 @@ Three regions (usual sizing, $v_U = \sqrt{2I_{REF}/\beta_{34}} < 0.7$ V, sweep u
 - **$I_{out} = I_{REF}$ wherever a solution exists.**
 - **Example** ($\beta = 5.36\ \mathrm{mA/V^2}$ for all, $I_{REF} = 100\ \mu\mathrm{A}$): $V_X = 0.89$ V for $V_b \gtrsim 1.13$ V; $V_A = V_B \approx 0.25$, 0.42, 0.59 V at $V_b = 1.2$, 1.4, 1.6 V; above about 1.74 V, $V_A \approx 0.83$–0.88 V while $V_B \approx 0.93$, 1.36, 1.80 V at $V_b = 2$, 2.5, 3 V.
 
-**Common mistake.** Letting $V_X$ follow $V_b$. In the normal and high regions $V_X$ is the gate–source voltage of the diode-like $M_2$ at the fixed current $I_{REF}$, which does not depend on $V_b$. Only at the low end does $V_X$ move, and then it goes *up* as $V_b$ goes *down*, because $M_2$ is squeezed into triode.
+**Common mistake.** Letting $V_X$ follow $V_b$. In the normal and high regions $V_X$ is $M_2$'s gate–source voltage at the fixed current $I_{REF}$, independent of $V_b$; only at the low end does $V_X$ move, and then it goes *up* as $V_b$ goes *down*, because $M_2$ is squeezed into triode.
 
-**Common mistake.** Clamping $V_B$ together with $V_A$ at high $V_b$. Only $M_4$ enters triode, because its drain is X, which sits at a low $V_{GS2}$. $M_3$'s drain is at $V_{DD}$, so it remains a saturated source follower and $V_B$ keeps tracking $V_b$.
+**Common mistake.** Clamping $V_B$ together with $V_A$ at high $V_b$. Only $M_4$ enters triode, because its drain is X, at the low $V_{GS2}$; $M_3$'s drain is at $V_{DD}$, so $V_B$ keeps tracking $V_b$.
 
-**Common mistake.** Making $I_{out}$ proportional to $V_b$. The output current is set by $M_1$'s gate voltage $V_X$ (a copy of $I_{REF}$). $V_b$ only sets the drain voltages of $M_1$ and $M_2$, which do not matter with $\lambda = 0$ as long as $M_1$ is saturated or matched to $M_2$.
+**Common mistake.** Making $I_{out}$ proportional to $V_b$. $I_{out}$ is set by $M_1$'s gate voltage $V_X$; $V_b$ only sets the drain voltages of $M_1$ and $M_2$, which do not matter with $\lambda = 0$ as long as $M_1$ is saturated or matched to $M_2$.

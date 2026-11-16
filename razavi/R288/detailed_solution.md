@@ -1,46 +1,34 @@
 # Detailed solution - R288
 
-**Approach.** Write Kirchhoff's current law (KCL) at the output node Y in the Laplace domain. The capacitors become admittances $sC_F$ and $sC_L$, and the amplifier is the controlled source $-AV_X$ behind $R_{out}$. Because X is held by an ideal source, $V_X = V_{in}$, and a single equation gives $V_Y/V_{in}$. The step response then follows from a partial-fraction expansion of $H(s)\,\Delta V/s$.
+**Approach.** Write KCL at the output node Y in the Laplace domain, with $V_X = V_{in}$ (ideal source), the capacitors as admittances $sC_F$ and $sC_L$, and the amplifier as $-AV_X$ behind $R_{out}$; one equation gives $V_Y/V_{in}$. The step response follows from a partial-fraction expansion of $H(s)\,\Delta V/s$.
 
-### Step 1 — The model
-
-- X is driven by the ideal source: $V_X = V_{in}$.
-- The amplifier output is an ideal source $-AV_X$ at an internal node, connected to Y through $R_{out}$.
-- $C_F$ connects X and Y; $C_L$ connects Y to ground. Nothing else is connected to Y.
+### Step 1 — KCL at Y
 
 <!-- diagram: diagram-01.cir -->
 
-### Step 2 — KCL at Y
-
-The three currents leaving Y must sum to zero:
+The three currents leaving Y sum to zero:
 
 $$\underbrace{\frac{V_Y - (-AV_{in})}{R_{out}}}_{\text{through } R_{out}} + \underbrace{(V_Y - V_{in})\,sC_F}_{\text{through } C_F} + \underbrace{V_Y\,sC_L}_{\text{through } C_L} = 0 .$$
 
-Multiply by $R_{out}$:
+Multiplying by $R_{out}$ and collecting terms:
 
-$$V_Y + AV_{in} + sR_{out}C_F\,V_Y - sR_{out}C_F\,V_{in} + sR_{out}C_L\,V_Y = 0 .$$
+$$V_Y + AV_{in} + sR_{out}C_F\,V_Y - sR_{out}C_F\,V_{in} + sR_{out}C_L\,V_Y = 0 \quad\Longrightarrow\quad V_Y\left[1 + sR_{out}(C_F + C_L)\right] = V_{in}\left(sR_{out}C_F - A\right).$$
 
-Collect $V_Y$ on the left and $V_{in}$ on the right:
-
-$$V_Y\left[1 + sR_{out}(C_F + C_L)\right] = V_{in}\left(sR_{out}C_F - A\right).$$
-
-### Step 3 — Transfer function, pole and zero
+### Step 2 — Transfer function, pole and zero
 
 $$\boxed{\frac{V_Y}{V_{in}}(s) = \frac{R_{out}C_Fs - A}{1 + R_{out}(C_F + C_L)s}}$$
 
-- **Pole:** $s_p = -\dfrac{1}{R_{out}(C_F + C_L)}$. The output resistance drives the total capacitance at Y; $C_F$ counts fully because its other end is held by an ideal source.
-- **Zero:** $s_z = +\dfrac{A}{R_{out}C_F}$, a **right-half-plane zero**. It depends only on $C_F$, the feedforward element, not on $C_L$.
+- **Pole:** $s_p = -\dfrac{1}{R_{out}(C_F + C_L)}$: $R_{out}$ drives the total capacitance at Y, with $C_F$ counting fully because its other end is held by an ideal source.
+- **Zero:** $s_z = +\dfrac{A}{R_{out}C_F}$, a **right-half-plane zero** that depends only on the feedforward element $C_F$, not on $C_L$.
 - **dc gain:** $-A$. **High-frequency gain:** $\dfrac{R_{out}C_F}{R_{out}(C_F + C_L)} = \dfrac{C_F}{C_F + C_L}$, positive: the input is fed forward through $C_F$ and divided against $C_L$.
 
-(With Miller's theorem one would place $(1 + 1/A)C_F$ at the output and find a single pole and **no zero**, missing the feedforward path. That is why the direct nodal analysis is needed.)
+(Miller's theorem would place $(1 + 1/A)C_F$ at the output and give a single pole and **no zero**, missing the feedforward path.)
 
-### Step 4 — Step response by partial fractions
+### Step 3 — Step response by partial fractions
 
 Let $\tau = R_{out}(C_F + C_L)$ and $\tau_F = R_{out}C_F$. For $V_{in}(s) = \Delta V/s$:
 
-$$V_Y(s) = \frac{\Delta V}{s}\cdot\frac{\tau_Fs - A}{1 + \tau s} = \Delta V\left[\frac{a}{s} + \frac{b}{1 + \tau s}\right].$$
-
-Coefficients (cover-up method):
+$$V_Y(s) = \frac{\Delta V}{s}\cdot\frac{\tau_Fs - A}{1 + \tau s} = \Delta V\left[\frac{a}{s} + \frac{b}{1 + \tau s}\right],$$
 
 $$
 \begin{aligned}
@@ -51,20 +39,20 @@ $$
 
 Hence
 
-$$V_Y(s) = \Delta V\left[-\frac{A}{s} + \frac{\tau_F + A\tau}{1 + \tau s}\right] = \Delta V\left[-\frac{A}{s} + \frac{A + \tau_F/\tau}{s + 1/\tau}\right].$$
+$$V_Y(s) = \Delta V\left[-\frac{A}{s} + \frac{\tau_F + A\tau}{1 + \tau s}\right] = \Delta V\left[-\frac{A}{s} + \frac{A + \tau_F/\tau}{s + 1/\tau}\right],$$
 
-With $\tau_F/\tau = C_F/(C_F + C_L)$ and the inverse transforms $1/s \to 1$ and $1/(s + 1/\tau) \to e^{-t/\tau}$:
+and with $\tau_F/\tau = C_F/(C_F + C_L)$, inverting term by term:
 
 $$\boxed{V_Y(t) = \Delta V\left[-A + \left(A + \frac{C_F}{C_F + C_L}\right)e^{-t/\tau}\right], \qquad \tau = R_{out}(C_F + C_L),\ \ t \ge 0 .}$$
 
-### Step 5 — Checking the result
+### Step 4 — Checking the result
 
-- **$t = 0^+$:** $V_Y = \Delta V\,C_F/(C_F + C_L)$, a jump in the same direction as the input. It agrees with $H(\infty)\Delta V$ (initial value theorem) and with charge conservation at Y. The finite $R_{out}$ cannot deliver charge instantly, so the step reaches Y only through the capacitive divider $C_F$–$C_L$.
-- **$t \to \infty$:** $V_Y = -A\Delta V$, equal to $H(0)\Delta V$ (final value theorem).
+- **$t = 0^+$:** $V_Y = \Delta V\,C_F/(C_F + C_L)$, a jump in the direction of the input, in agreement with $H(\infty)\Delta V$ and with charge conservation at Y: the finite $R_{out}$ cannot deliver charge instantly, so the step reaches Y only through the capacitive divider $C_F$–$C_L$.
+- **$t \to \infty$:** $V_Y = -A\Delta V = H(0)\Delta V$.
 - **Special case $C_L = 0$:** $V_Y(t) = \Delta V[-A + (1 + A)e^{-t/(R_{out}C_F)}]$, the unloaded result.
 - **Zero crossing:** $e^{-t/\tau} = A/[A + C_F/(C_F + C_L)]$, i.e. $t = \tau\ln\left[1 + \frac{C_F}{A(C_F + C_L)}\right]$, a very short time when $A$ is large.
 
-### Step 6 — Numerical example
+### Step 5 — Numerical example
 
 $A = 10$, $R_{out} = 10\ \mathrm{k}\Omega$, $C_F = 1$ pF, $C_L = 4$ pF, $\Delta V = 0.1$ V:
 
@@ -94,8 +82,8 @@ $$V_Y(t) = \Delta V\left[-A + \left(A + \frac{C_F}{C_F + C_L}\right)e^{-t/\tau}\
 
 It starts at $\Delta V\,C_F/(C_F + C_L)$ and decays to $-A\Delta V$.
 
-**Common mistake.** Leaving $C_L$ out of the pole, i.e. using $\tau = R_{out}C_F$. Both capacitors hang on node Y, and the other end of each is held at a fixed voltage after the step (the ideal source and ground), so $R_{out}$ sees $C_F + C_L$.
+**Common mistake.** Leaving $C_L$ out of the pole, i.e. using $\tau = R_{out}C_F$. Both capacitors hang on node Y with their other ends held fixed after the step (the ideal source and ground), so $R_{out}$ sees $C_F + C_L$.
 
-**Common mistake.** Putting $C_L$ into the zero, or placing the zero in the left half plane. The zero comes from the cancellation of the feedforward current $sC_FV_{in}$ and the amplifier current $AV_{in}/R_{out}$. It involves only $C_F$, and since the two currents have opposite signs, it lies at positive $s$.
+**Common mistake.** Putting $C_L$ into the zero, or placing the zero in the left half plane. The zero comes from the cancellation of the feedforward current $sC_FV_{in}$ and the amplifier current $AV_{in}/R_{out}$; it involves only $C_F$, and since the two currents have opposite signs it lies at positive $s$.
 
-**Common mistake.** Using Miller's theorem, which gives a single pole with $(1 + 1/A)C_F + C_L$ and no zero. It predicts a step response that starts at 0 and goes straight down, missing the initial jump.
+**Common mistake.** Using Miller's theorem, which gives a single pole with $(1 + 1/A)C_F + C_L$ and no zero, and so a step response that starts at 0 and goes straight down, missing the initial jump.

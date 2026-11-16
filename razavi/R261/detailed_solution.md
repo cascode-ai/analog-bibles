@@ -1,12 +1,10 @@
 # Detailed solution - R261
 
-**Approach.** Write $V_{DS2}$ as a sum of gate–source voltages around the bias network, as in the $\gamma = 0$ case, but now give each transistor whose source is above ground its body-effect threshold. This shows that the body effect pushes $V_{DS2}$ *below* the edge of saturation, so $M_2$ enters the triode region. We then compare $M_2$'s triode current with $M_1$'s saturation current and evaluate the result for a representative design.
+**Approach.** Write $V_{DS2}$ as a sum of gate–source voltages around the bias network, as in the $\gamma = 0$ case, but give each transistor whose source is above ground its body-effect threshold. The body effect pushes $V_{DS2}$ *below* the edge of saturation, so $M_2$ enters triode; compare its triode current with $M_1$'s saturation current and evaluate the result for a representative design.
 
-### Step 1 — The circuit and the $\gamma = 0$ starting point
+### Step 1 — The loop and the $\gamma = 0$ starting point
 
-From the figure: $I_{REF}$ flows through two stacked diode-connected devices, $M_0$ (gate/drain at $V_{b1}$, source at X) and $M_1$ (gate/drain at X, source grounded). $M_2$ mirrors $M_1$ ($V_{GS2} = V_{GS1}$). The wide source follower $M_4$ (gate at $V_{b1}$, biased by the small current $I_1$) drives the gate of the cascode $M_3$, whose source is $M_2$'s drain (call that node B). $I_{out}$ flows into $M_3$'s drain.
-
-Going around the loop of gate–source voltages:
+Call $M_2$'s drain (the source of $M_3$) node B. Going around the loop of gate–source voltages ($M_0$ and $M_1$ diode-connected, $M_4$ a follower driving the gate of $M_3$):
 
 $$V_{DS2} = V_B = \underbrace{V_{GS1} + V_{GS0}}_{V_{b1}} - V_{GS4} - V_{GS3}.$$
 
@@ -14,18 +12,11 @@ With $\gamma = 0$: $V_{GS3} \approx V_{GS0}$ and $V_{GS4} \approx V_{TH}$, so $V
 
 ### Step 2 — Which thresholds the body effect raises
 
-All bulks are grounded, so a transistor whose source sits at voltage $s$ has the threshold
+With grounded bulks, a transistor whose source sits at $s$ has
 
 $$V_{TH}(s) = V_{TH0} + \gamma\left(\sqrt{2|\phi_F| + s} - \sqrt{2|\phi_F|}\right), \qquad V_{TH0} = 0.7\ \mathrm{V}.$$
 
-| Device | Source at | Body effect |
-|---|---|---|
-| $M_1$, $M_2$ | ground | none, $V_{TH} = V_{TH0}$ |
-| $M_0$ | X, $V_X = V_{GS1} \approx 0.9$ V | large: raises $V_{b1}$ |
-| $M_4$ | gate of $M_3$, $V_{G3} \approx 1$ V | largest: increases the level shift $V_{GS4}$ |
-| $M_3$ | B, $V_B = V_{DS2} \approx 0.15$ V | small |
-
-$M_0$'s raised threshold *helps* (it lifts $V_{b1}$). $M_4$'s and $M_3$'s raised thresholds *hurt* (they lower the gate and the source of $M_3$). Because $M_4$'s source is the highest of the three, its threshold rises the most, so the net effect is expected to lower $V_{DS2}$.
+$M_1$ and $M_2$ have grounded sources. The threshold of $M_0$ (source at X, $V_X = V_{GS1} \approx 0.9$ V) rises and *helps*, lifting $V_{b1}$; those of $M_4$ (source at $V_{G3} \approx 1$ V) and $M_3$ (source at B, $V_B = V_{DS2} \approx 0.15$ V) rise and *hurt*, lowering the gate and the source of $M_3$. $M_4$'s source is the highest of the three, so the net effect is expected to lower $V_{DS2}$.
 
 ### Step 3 — General expression for $V_{DS2}$
 
@@ -33,7 +24,7 @@ Write each gate–source voltage as threshold plus overdrive:
 
 $$V_{GS1} = V_{TH0} + V_{ov1}, \quad V_{GS0} = V_{TH}(V_X) + V_{ov0}, \quad V_{GS4} = V_{TH}(V_{G3}) + V_{ov4}, \quad V_{GS3} = V_{TH}(V_B) + V_{ov3}.$$
 
-Substitute into $V_{DS2} = V_{GS1} + V_{GS0} - V_{GS4} - V_{GS3}$ and group the overdrives and the thresholds:
+Substituting into $V_{DS2} = V_{GS1} + V_{GS0} - V_{GS4} - V_{GS3}$:
 
 $$V_{DS2} = V_{ov1} + (V_{ov0} - V_{ov3}) - V_{ov4} + \left[V_{TH0} + V_{TH}(V_X) - V_{TH}(V_{G3}) - V_{TH}(V_B)\right].$$
 
@@ -103,15 +94,15 @@ In threshold terms: $M_0$'s threshold rises by 0.174 V (helps), $M_4$'s by 0.199
 
 ### Step 5 — Current ratio with $M_2$ in triode
 
-$M_1$ is saturated and $M_2$ is in triode, with the same $V_{GS}$ (overdrive $V_{ov}$). Keeping the $(1 + \lambda V_{DS})$ factor in both regions so that the model is continuous:
+$M_1$ is saturated and $M_2$ is in triode, with the same overdrive $V_{ov}$. Keeping the $(1 + \lambda V_{DS})$ factor in both regions so that the model is continuous:
 
 $$I_{REF} = \frac{\beta}{2}V_{ov}^2(1 + \lambda V_{GS1}), \qquad I_{out} = \beta\left(V_{ov}V_{DS2} - \tfrac12V_{DS2}^2\right)(1 + \lambda V_{DS2}).$$
 
-Divide, and write $x = V_{DS2}/V_{ov}$:
+Dividing, with $x = V_{DS2}/V_{ov}$:
 
 $$\frac{I_{out}}{I_{REF}} = \frac{2V_{ov}V_{DS2} - V_{DS2}^2}{V_{ov}^2}\cdot\frac{1 + \lambda V_{DS2}}{1 + \lambda V_{GS1}} = (2x - x^2)\,\frac{1 + \lambda V_{DS2}}{1 + \lambda V_{GS1}} .$$
 
-The factor $2x - x^2$ equals 1 at the edge ($x = 1$) and drops faster and faster as $x$ falls below 1. So the error grows rapidly once $V_{DS2}$ goes below $V_{ov}$.
+The factor $2x - x^2$ equals 1 at the edge ($x = 1$) and drops faster and faster as $x$ falls below 1, so the error grows rapidly once $V_{DS2}$ goes below $V_{ov}$.
 
 **Numbers:**
 
@@ -141,8 +132,8 @@ $$\frac{I_{out}}{I_{REF}} \approx \left[2\frac{V_{DS2}}{V_{ov}} - \left(\frac{V_
 
 and the mismatch is **considerably larger than for $\gamma = 0$: typically 10–15 % low** (−13 % for the example, versus −6.4 % with $\gamma = 0$). The output resistance of the cascode is also degraded, because $M_2$ in triode has a much lower small-signal resistance.
 
-**Common mistake.** Keeping the $\gamma = 0$ premise that $M_2$ sits at the edge of saturation and quoting the 6–7 % error. The edge was designed with $V_{GS4} \approx 0.7$ V. With the body effect, $M_4$'s source at about 1 V raises its threshold by about 0.2 V. The premise no longer holds, and checking it is the point of the problem.
+**Common mistake.** Keeping the $\gamma = 0$ premise that $M_2$ sits at the edge of saturation and quoting the 6–7 % error. That edge was designed with $V_{GS4} \approx 0.7$ V; with $M_4$'s source at about 1 V, the body effect raises its threshold by about 0.2 V and the premise no longer holds.
 
 **Common mistake.** Concluding that the body effect *raises* $V_{DS2}$ or cancels the error because $M_0$'s threshold also rises. $M_0$'s source (0.885 V) is lower than $M_4$'s (1.03 V), and $M_3$'s threshold rises as well, so the net change in $V_{DS2}$ is negative.
 
-**Common mistake.** Using $M_2$'s saturation equation, $\tfrac{\beta}{2}V_{ov}^2(1 + \lambda V_{DS2})$, once $V_{DS2} < V_{ov}$. That predicts only a slightly larger λ-error. In triode the current falls as $2x - x^2$, which dominates the error.
+**Common mistake.** Using $M_2$'s saturation equation, $\tfrac{\beta}{2}V_{ov}^2(1 + \lambda V_{DS2})$, once $V_{DS2} < V_{ov}$. That predicts only a slightly larger λ-error; in triode the current falls as $2x - x^2$, which dominates the error.

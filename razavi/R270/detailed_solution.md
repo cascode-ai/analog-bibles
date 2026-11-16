@@ -1,49 +1,38 @@
 # Detailed solution - R270
 
-**Approach.** Identify what $C_1$ is attached to: the n-well of the PMOS $M_3$. At $t = 0$ that well sits at 0 V while $M_3$'s p+ source sits at $V_{DD}$, so a pn junction is strongly forward-biased and charges $C_1$. Then analyse the transistor loop $M_1 \to M_3 \to M_2 \to M_1$, which is a positive-feedback loop with two possible dc states. The junction currents at $t = 0$ kick it into the latched (conducting) state. Finally, follow $V_Y$ as the well charges and $M_3$'s threshold recovers. We assume the node capacitances of X and Y are small, so X and Y follow quasi-statically, and we model the junctions as diodes (about 0.7 V when carrying a large current).
+**Approach.** $C_1$ hangs on the n-well of the PMOS $M_3$, which at $t = 0$ sits at 0 V while $M_3$'s p+ source sits at $V_{DD}$: a pn junction is strongly forward-biased and charges $C_1$. The transistor loop $M_1 \to M_3 \to M_2 \to M_1$ is a positive-feedback loop with two dc states, and the junction currents at $t = 0$ kick it into the latched state. Finally, follow $V_Y$ as the well charges and $M_3$'s threshold recovers. The node capacitances of X and Y are taken as small, so X and Y follow quasi-statically, and the junctions are modelled as diodes (about 0.7 V when carrying a large current).
 
-### Step 1 — Reading the circuit
+### Step 1 — $t = 0$: forward-biased junctions charge $C_1$
 
-From the figure:
+$M_3$'s p+ source is at 3 V and its n-well at 0 V, so the **source–well junction is forward-biased by 3 V**, far beyond the point where a pn diode conducts heavily; the drain–well junction (p+ drain at Y) is too whenever $V_Y > 0.7$ V. Consequences:
 
-- $M_3$ (PMOS): source at $V_{DD}$, gate and drain tied together at Y. It is **diode-connected**. Its **n-well (bulk)** is connected to the top plate of $C_1$, whose other plate is grounded. At $t = 0$, $V_{C1} = 0$, so the well is at 0 V.
-- $M_2$ (PMOS, bulk at $V_{DD}$): source at $V_{DD}$, gate at Y (it mirrors $M_3$), drain at X.
-- $M_1$ (NMOS): gate at X, drain at Y, source grounded.
-- **Node X** connects only to $M_2$'s drain and $M_1$'s gate: it has **no dc load**.
+- **The well charges very quickly.** A large diode current flows from the source (and from Y) into the well and onto $C_1$, raising the well rapidly to about $V_{DD} - 0.7$ V = 2.3 V, where the forward bias has dropped to an ordinary diode voltage.
+- **Then it creeps toward $V_{DD}$.** With an exponential diode, $I = I_S e^{v/V_T}$ with $v = V_{DD} - V_{well}$, the charging law $-C_1\,dv/dt = I_Se^{v/V_T}$ integrates to
+$$v(t) \approx V_T\ln\frac{C_1V_T}{I_St} \qquad (\text{large } t),$$
+so the forward bias falls by only $V_T\ln10 \approx 60$ mV per decade of time: a slow, roughly logarithmic tail. (A fixed-drop diode model simply stops at about 2.3 V; the exact tail also depends on junction leakage.)
+- The forward-biased p+/n-well junction and the p-substrate form a parasitic PNP, so part of this early current also flows to the substrate while the well is low.
+- The square-law body-effect formula does not apply during this strong forward bias; $M_3$'s channel is then much stronger than normal.
 
-PMOS threshold with body effect (magnitude), with $V_{BS} = V_{well} - V_S$ ($V_{BS} > 0$ is reverse bias for a PMOS):
+Once the bias is moderate, the PMOS threshold magnitude with body effect is, with $V_{BS} = V_{well} - V_S$ ($V_{BS} > 0$ is reverse bias),
 
 $$|V_{TH3}| = 0.8 + 0.4\left(\sqrt{0.8 + V_{BS}} - \sqrt{0.8}\right)\ \mathrm{V}.$$
 
-### Step 2 — $t = 0$: forward-biased junctions charge $C_1$
+### Step 2 — The transistor loop has positive feedback and latches
 
-$M_3$'s p+ source is at 3 V and its n-well at 0 V. The **source–well junction is forward-biased by 3 V**: a pn diode conducts a very large current long before that. The same holds for the drain–well junction (p+ drain at Y) whenever $V_Y > 0.7$ V. Consequences:
+A small increase of $M_3$'s current lowers $V_Y$, so $M_2$ pushes more current into X. Node X connects only to $M_2$'s drain and $M_1$'s gate (**no dc load**), so $V_X$ rises, $M_1$ pulls more current out of Y, and $V_Y$ falls further: positive feedback. There are two dc solutions:
 
-- **The well charges very quickly.** A large diode current flows from the source (and from Y) into the well and onto $C_1$. The well voltage rises rapidly to about $V_{DD} - 0.7$ V = 2.3 V, where the forward bias has dropped to an ordinary diode voltage.
-- **Then it creeps toward $V_{DD}$.** With an exponential diode, $I = I_S e^{v/V_T}$ with $v = V_{DD} - V_{well}$, the charging law $-C_1\,dv/dt = I_Se^{v/V_T}$ integrates to
-$$v(t) \approx V_T\ln\frac{C_1V_T}{I_St} \qquad (\text{large } t),$$
-so the forward bias falls by only $V_T\ln10 \approx 60$ mV per decade of time: a slow, roughly logarithmic tail. (With a fixed-drop diode model the charging simply stops at about 2.3 V. The exact tail also depends on junction leakage.)
-- The forward-biased p+/n-well junction, together with the p-substrate, forms a parasitic PNP transistor, so part of this early current also flows to the substrate. This lasts only as long as the well is low.
-- The square-law body-effect formula does not apply during this strong forward bias. $M_3$'s channel is then much stronger than normal.
+- **Off state:** $V_X \le 0.7$ V, $M_1$ off, so no current anywhere and $M_2$, $M_3$ off. This is consistent only if nothing ever pulls current from Y or charges X.
+- **Latched state:** $M_2$ is on but has no dc load, so it must carry zero current, which a conducting PMOS does only at $V_{SD} = 0$: **$V_X = V_{DD}$**, with $M_2$ in deep triode. Then $M_1$ has $V_{GS1} = V_{DD} = 3$ V and conducts heavily, and $M_3$ supplies that current.
 
-### Step 3 — The transistor loop has positive feedback and latches
+**Which state is reached?** At $t = 0$ the drain–well junction draws current out of Y (if $V_Y > 0.7$ V), which pulls Y down, turns on $M_3$ and $M_2$, and charges X; if $V_Y$ is already low, $M_2$ is on anyway. Either way the **latched state is the expected outcome**: **$V_X$ goes to $V_{DD}$ almost at once and stays there.** (With unknown initial node voltages and finite node capacitances, start-up is not strictly guaranteed; the off state remains a mathematical possibility, but the junction currents make it unlikely.)
 
-Trace a small increase of $M_3$'s current: $V_Y$ falls, so $M_2$'s source–gate voltage grows and $M_2$ pushes more current into X. X has no dc load, so $V_X$ rises, which turns $M_1$ on harder. $M_1$ pulls more current out of Y, so $V_Y$ falls further. The original change is **reinforced**: positive feedback.
+### Step 3 — The level of $V_Y$ in the latched state
 
-There are two dc solutions:
-
-- **Off state:** $V_X \le 0.7$ V, $M_1$ off, so no current anywhere and $M_2$, $M_3$ off. This is consistent, but only if nothing ever pulls current from Y or charges X.
-- **Latched state:** $M_2$ is on but has no dc load, so it must carry zero current. A conducting PMOS carries zero current only when $V_{SD} = 0$, so **$V_X = V_{DD}$** with $M_2$ in deep triode. Then $M_1$ has $V_{GS1} = V_{DD} = 3$ V and conducts heavily, and $M_3$ supplies that current.
-
-**Which state is reached?** At $t = 0$ the drain–well junction draws current out of Y (if $V_Y > 0.7$ V). That pulls Y down, turns on $M_3$ and therefore $M_2$, which charges X, and the positive feedback does the rest. If $V_Y$ is already low, $M_2$ is on anyway and charges X. Either way the **latched state is the expected outcome**: **$V_X$ goes to $V_{DD}$ almost at once and stays there.** (With unknown initial node voltages and finite node capacitances, start-up is not strictly guaranteed. The off state remains a mathematical possibility, but the junction currents make it unlikely.)
-
-### Step 4 — The level of $V_Y$ in the latched state
-
-In the latched state, $M_3$ (diode, saturated) and $M_1$ (gate at 3 V) carry the same current. $M_1$ is in triode because $V_Y$ is well below $V_{GS1} - V_{TH} = 2.3$ V. KCL at Y:
+$M_3$ (diode, saturated) and $M_1$ (gate at 3 V) carry the same current, with $M_1$ in triode because $V_Y$ is well below $V_{GS1} - V_{TH} = 2.3$ V. KCL at Y:
 
 $$\frac{\beta_p}{2}\left(V_{DD} - V_Y - |V_{TH3}|\right)^2 = \beta_n\left[(V_{DD} - 0.7)V_Y - \tfrac12V_Y^2\right].$$
 
-$V_Y$ is a low-to-moderate level set by the strength of $M_3$ against $M_1$. It depends on $|V_{TH3}|$, which changes as the well charges.
+$V_Y$ is a low-to-moderate level set by the strength of $M_3$ against $M_1$, and it depends on $|V_{TH3}|$, which changes as the well charges.
 
 **Example with equal $\beta_n = \beta_p$**, final state (well at $V_{DD}$, $|V_{TH3}| = 0.8$ V):
 
@@ -62,9 +51,9 @@ $$|V_{TH3}| = 0.8 + 0.4\left(\sqrt{0.8 - 0.7} - \sqrt{0.8}\right) = 0.8 + 0.4(0.
 
 The forward body bias *lowers* $|V_{TH3}|$, so $M_3$ is stronger. Repeating the calculation with 0.57 V gives $V_Y^2 - 4.73V_Y + 2.952 = 0$, so $V_Y = (4.73 - \sqrt{22.37 - 11.81})/2 = 0.74$ V.
 
-### Step 5 — The time evolution of $V_Y$
+### Step 4 — The time evolution of $V_Y$
 
-- **Very early** (well near 0 V): $V_Y$ is governed by the forward-biased drain–well junction and by the abnormally strong $M_3$. It may be held near the well voltage + 0.7 V and can first move up or down depending on the sizes (for instance, it rises with the well if $M_1$ is weak). The square-law model says little here.
+- **Very early** (well near 0 V): $V_Y$ is governed by the forward-biased drain–well junction and the abnormally strong $M_3$. It may be held near the well voltage + 0.7 V and can first move up or down depending on the sizes (for instance, it rises with the well if $M_1$ is weak); the square-law model says little here.
 - **After the fast charging** (well ≈ 2.3 V): $|V_{TH3}| \approx 0.57$ V and $V_Y$ sits at the corresponding latched level (≈ 0.74 V for equal β).
 - **Slow tail:** as $C_1$ creeps toward $V_{DD}$, the forward bias disappears, $|V_{TH3}|$ returns to 0.8 V, $M_3$ weakens, and **$V_Y$ drifts slowly down** to its final value (≈ 0.62 V for equal β).
 
@@ -82,6 +71,6 @@ The forward body bias *lowers* $|V_{TH3}|$, so $M_3$ is stronger. Repeating the 
 
 **Common mistake.** Treating $C_1$ as a capacitor on node Y or on the gate line, and drawing an RC-type charging of Y. $C_1$ hangs on the n-well of $M_3$, so the physics at $t = 0$ is junction conduction, not channel current into a capacitor.
 
-**Common mistake.** Applying the body-effect formula with 3 V of forward bias (or with the wrong sign). A forward-biased source–well junction conducts and clamps the bias near 0.7 V. Moreover, forward body bias *lowers* a PMOS threshold magnitude, so $M_3$ is stronger, not weaker, while the well is low.
+**Common mistake.** Applying the body-effect formula with 3 V of forward bias (or with the wrong sign). A forward-biased source–well junction conducts and clamps the bias near 0.7 V, and forward body bias *lowers* a PMOS threshold magnitude, so $M_3$ is stronger, not weaker, while the well is low.
 
-**Common mistake.** Letting $V_X$ settle at a mid-supply "mirror" voltage. Node X has no dc load. Once $M_2$ conducts at all, X is pulled to $V_{DD}$, and the loop latches.
+**Common mistake.** Letting $V_X$ settle at a mid-supply "mirror" voltage. Node X has no dc load, so once $M_2$ conducts at all, X is pulled to $V_{DD}$ and the loop latches.

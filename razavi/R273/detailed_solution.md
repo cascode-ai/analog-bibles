@@ -1,16 +1,10 @@
 # Detailed solution - R273
 
-**Approach.** Write the small-signal model of the five-transistor amplifier with the extra resistor $R_1$ between the diode node F (drain of $M_1$, gate/drain of $M_3$) and the tail node P. Kirchhoff's current law (KCL) at F, P and the output gives three equations. A neat combination of two of them fixes $v_{out}$ in terms of $v_F$, and the remaining two give $v_F$. We then simplify for $g_mr_O \gg 1$ and interpret the result: $R_1$ connects two low-impedance nodes, so it barely changes the gain.
+**Approach.** Write the small-signal model of the five-transistor amplifier with the extra resistor $R_1$ between the diode node F and the tail node P. KCL at F, P and the output gives three equations; a combination of two of them fixes $v_{out}$ in terms of $v_F$, and the remaining two give $v_F$. We then simplify for $g_mr_O \gg 1$: $R_1$ connects two low-impedance nodes, so it barely changes the gain.
 
-### Step 1 — Circuit and notation
+### Step 1 — Small-signal model and KCL
 
-From the figure: $M_1$, $M_2$ form an NMOS differential pair with sources at P and an ideal tail current source $I_{SS}$. $M_3$ (PMOS, diode-connected at F) loads $M_1$. $M_4$ (PMOS, gate at F) mirrors it and loads $M_2$ at the output. The defect $R_1$ connects F to P.
-
-Notation: $g_N = g_{m1} = g_{m2}$, $r_N = r_{O1} = r_{O2}$, $g_P = g_{m3} = g_{m4}$, $r_P = r_{O3} = r_{O4}$. Inputs $v_1$, $v_2$; differential input $v_d = v_1 - v_2$.
-
-### Step 2 — Small-signal model
-
-$V_{DD}$ and ground are ac ground; the ideal tail source is an open circuit. Body effect is neglected. Each transistor is a controlled current $g_mv_{gs}$ (drain to source) in parallel with its $r_O$:
+Call the drain of $M_1$ (gate/drain of $M_3$) node F and the common source node P. Notation: $g_N = g_{m1} = g_{m2}$, $r_N = r_{O1} = r_{O2}$, $g_P = g_{m3} = g_{m4}$, $r_P = r_{O3} = r_{O4}$; inputs $v_1$, $v_2$, differential input $v_d = v_1 - v_2$. The ideal tail source is an open circuit, and each transistor is $g_mv_{gs}$ (drain to source) in parallel with its $r_O$:
 
 - **$M_1$** (drain F, source P): $i_1 = g_N(v_1 - v_P) + (v_F - v_P)/r_N$, flowing F → P.
 - **$M_2$** (drain out, source P): $i_2 = g_N(v_2 - v_P) + (v_{out} - v_P)/r_N$, flowing out → P.
@@ -20,7 +14,7 @@ $V_{DD}$ and ground are ac ground; the ideal tail source is an open circuit. Bod
 
 <!-- diagram: diagram-01.cir -->
 
-**KCL** (output unloaded):
+KCL (output unloaded):
 
 $$
 \begin{aligned}
@@ -30,9 +24,9 @@ $$
 \end{aligned}
 $$
 
-### Step 3 — The output voltage in terms of $v_F$
+### Step 2 — The output voltage in terms of $v_F$
 
-Subtract the P equation from the F equation: $i_3 - i_2 = 0$, so $i_2 = i_3$. The current of $M_2$ equals the diode current, whatever $R_1$ does, because $R_1$ and $M_1$ return their currents to the same pair of nodes. Then the output KCL gives $i_4 = -i_3$:
+Subtracting the P equation from the F equation gives $i_2 = i_3$: the current of $M_2$ equals the diode current whatever $R_1$ does, because $R_1$ and $M_1$ return their currents to the same pair of nodes. The output KCL then gives $i_4 = -i_3$:
 
 $$
 \begin{aligned}
@@ -42,13 +36,13 @@ v_{out} &= -(1 + 2g_Pr_P)\,v_F . \tag{1}
 \end{aligned}
 $$
 
-### Step 4 — Solving for $v_F$
+### Step 3 — Solving for $v_F$
 
 **Equation A** ($i_2 = i_3$, with (1) substituted):
 
 $$g_N(v_2 - v_P) + \frac{-(1 + 2g_Pr_P)v_F - v_P}{r_N} = \left(g_P + \frac{1}{r_P}\right)v_F .$$
 
-Collect terms, with $\alpha \equiv g_N + 1/r_N$ and $K_a \equiv g_P + 1/r_P + (1 + 2g_Pr_P)/r_N$:
+With $\alpha \equiv g_N + 1/r_N$ and $K_a \equiv g_P + 1/r_P + (1 + 2g_Pr_P)/r_N$:
 
 $$g_Nv_2 - \alpha v_P = K_av_F \quad\Longrightarrow\quad v_P = \frac{g_Nv_2 - K_av_F}{\alpha}. \tag{2}$$
 
@@ -60,7 +54,7 @@ i.e., with $K_b \equiv 1/r_N + g_P + 1/r_P + 1/R_1$,
 
 $$g_Nv_1 = \left(\alpha + \frac{1}{R_1}\right)v_P - K_bv_F . \tag{3}$$
 
-Substitute (2) into (3) and multiply by $\alpha$:
+Substituting (2) into (3) and multiplying by $\alpha$:
 
 $$
 \begin{aligned}
@@ -69,13 +63,13 @@ v_F &= -\,\frac{g_N\left[\alpha v_1 - \left(\alpha + \tfrac{1}{R_1}\right)v_2\ri
 \end{aligned}
 $$
 
-### Step 5 — Exact gain
+### Step 4 — Exact gain
 
-Put $v_F$ into (1):
+Putting $v_F$ into (1):
 
 $$v_{out} = \frac{(1 + 2g_Pr_P)\,g_N\left[\alpha v_1 - \left(\alpha + \tfrac{1}{R_1}\right)v_2\right]}{\left(\alpha + \tfrac{1}{R_1}\right)K_a + \alpha K_b}.$$
 
-$v_1$ and $v_2$ enter with **different weights** ($\alpha$ versus $\alpha + 1/R_1$), because $R_1$ breaks the symmetry. The circuit therefore has a common-mode gain, and $V_{out}/(V_{in1} - V_{in2})$ depends on how the input is applied. For the standard **balanced** drive, $v_1 = v_d/2$ and $v_2 = -v_d/2$, the bracket becomes $(2\alpha + 1/R_1)v_d/2$:
+$v_1$ and $v_2$ enter with **different weights** ($\alpha$ versus $\alpha + 1/R_1$) because $R_1$ breaks the symmetry, so the circuit has a common-mode gain and $V_{out}/(V_{in1} - V_{in2})$ depends on how the input is applied. For the standard **balanced** drive, $v_1 = v_d/2$ and $v_2 = -v_d/2$, the bracket becomes $(2\alpha + 1/R_1)v_d/2$:
 
 $$\boxed{A_v = \frac{v_{out}}{v_d} = \frac{(1 + 2g_Pr_P)\,g_N\left(2\alpha + \tfrac{1}{R_1}\right)}{2\left[\left(\alpha + \tfrac{1}{R_1}\right)K_a + \alpha K_b\right]}}$$
 
@@ -87,9 +81,9 @@ $$A_v = \frac{g_Nr_Nr_P(1 + 2g_Pr_P)\left[2R_1(1 + g_Nr_N) + r_N\right]}{2\left\
 
 $$A_v \to \frac{(1 + 2g_Pr_P)g_N}{2(1 + g_Pr_P)(1/r_N + 1/r_P)} = g_N(r_N\|r_P)\frac{1 + 2g_Pr_P}{2(1 + g_Pr_P)} \approx g_{m1}(r_{O2}\|r_{O4}),$$
 
-the familiar defect-free gain. ✓
+the familiar defect-free gain ✓.
 
-### Step 6 — Simplified result for $g_mr_O \gg 1$
+### Step 5 — Simplified result for $g_mr_O \gg 1$
 
 Use $\alpha \approx g_N$, $1 + 2g_Pr_P \approx 2g_Pr_P$, $K_a \approx g_P(r_N + 2r_P)/r_N$ and $K_b \approx g_P + 1/R_1$, then multiply numerator and denominator by $r_NR_1$:
 
@@ -99,11 +93,11 @@ For equal $g_m$ and $r_O$ this is $A_v \approx g_m\dfrac{r_O}{2}\cdot\dfrac{1 + 
 
 $$A_v \approx g_{m1}(r_{O2}\|r_{O4})\left(1 - \frac{1}{2g_{m3}R_1}\right).$$
 
-**Why the gain hardly changes.** $R_1$ connects two **low-impedance** nodes: F, which looks like $\approx 1/g_{m3}$ (the diode), and P, which looks like $\approx 1/(2g_{m1})$ (the two sources). With a balanced input, $v_F \approx -(g_{m1}v_d/2)/g_{m3}$ and $v_P$ is small, so $R_1$ carries only $i_R \approx v_F/R_1$. That is a fraction of about $1/(2g_{m3}R_1)$ of the signal current, so it diverts very little. The short-circuit transconductance becomes $G_m \approx g_{m1}(1 - 1/(2g_{m3}R_1))$, while the output resistance stays $\approx r_{O2}\|r_{O4}$.
+**Why the gain hardly changes.** $R_1$ connects two **low-impedance** nodes, F ($\approx 1/g_{m3}$, the diode) and P ($\approx 1/(2g_{m1})$, the two sources). With a balanced input, $v_F \approx -(g_{m1}v_d/2)/g_{m3}$ and $v_P$ is small, so $R_1$ carries only $i_R \approx v_F/R_1$, a fraction of about $1/(2g_{m3}R_1)$ of the signal current. The short-circuit transconductance becomes $G_m \approx g_{m1}(1 - 1/(2g_{m3}R_1))$, while the output resistance stays $\approx r_{O2}\|r_{O4}$.
 
 **Other drives.** With the same approximation, $v_{out} \approx 2g_Ng_Pr_Nr_P[g_NR_1v_1 - (1 + g_NR_1)v_2]/D$, where $D$ is the denominator above. For equal devices this gives, relative to $g_mr_O/2$, a factor $g_mR_1/(1 + g_mR_1)$ when only $V_{in1}$ is driven and a factor 1 when only $V_{in2}$ is driven. All the cases tend to $g_{m1}(r_{O2}\|r_{O4})$ when $R_1$ is large.
 
-### Step 7 — Numerical example
+### Step 6 — Numerical example
 
 Let $g_N = g_P = 1$ mS, $r_N = r_P = 100\ \mathrm{k}\Omega$, $R_1 = 10\ \mathrm{k}\Omega$:
 
@@ -129,8 +123,8 @@ $$|A_v| \approx g_{m1}(r_{O2}\|r_{O4})\left(1 - \frac{1}{2g_{m3}R_1}\right).$$
 
 The gain is **essentially unchanged** from the defect-free value $g_{m1}(r_{O2}\|r_{O4})$, because $R_1$ connects two low-impedance nodes ($\approx 1/g_{m3}$ and $\approx 1/(2g_{m1})$) and diverts only a small part of the signal current. Because $R_1$ breaks the symmetry, the circuit also acquires a small common-mode gain. (At dc, $R_1$ carries a bias current that the mirror copies, which causes a systematic offset; the result assumes all devices stay saturated.)
 
-**Common mistake.** Concluding that $R_1$ destroys the gain, for example that it becomes $g_mR_1$ or $g_m(r_O\|R_1)$. $R_1$ is not connected to the high-impedance output node. It sits between the diode node and the tail node, both of which have impedances of order $1/g_m \ll R_1$.
+**Common mistake.** Concluding that $R_1$ destroys the gain, for example that it becomes $g_mR_1$ or $g_m(r_O\|R_1)$. $R_1$ is not connected to the high-impedance output node; it sits between the diode node and the tail node, both of order $1/g_m \ll R_1$.
 
 **Common mistake.** Treating $R_1$ as appearing in parallel with $r_{O1}$ and therefore changing the gain through $r_{O1}$. $r_{O1}$ does not appear in the defect-free gain to first order (the diode node is low-impedance), and neither does $R_1$, apart from the small $1/(g_mR_1)$ correction.
 
-**Common mistake.** Doubling the gain or reversing its sign. $R_1$ does not add a second signal path to the output. The output current is still $i_1 - i_2$ copied by the mirror, minus the small part diverted through $R_1$.
+**Common mistake.** Doubling the gain or reversing its sign. $R_1$ adds no second signal path to the output: the output current is still $i_1 - i_2$ copied by the mirror, minus the small part diverted through $R_1$.

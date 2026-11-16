@@ -1,39 +1,28 @@
 # Detailed solution - R267
 
-**Approach.** The reference side ($I_{REF}$ into the diode $M_2$) fixes the common gate voltage of $M_1$ and $M_2$. $M_1$'s source sits on $C_1$, so its current charges the capacitor, the source rises, and the current decays. The same current flows through the cascode $M_3$ and through $R_1$. So $V_Y$ follows from $R_1$, and $V_X$ follows from $M_3$'s gate–source voltage at that decaying current, including the body effect.
+**Approach.** The reference side ($I_{REF}$ into the diode $M_2$) fixes the common gate voltage of $M_1$ and $M_2$. $M_1$'s source sits on $C_1$, so its current charges the capacitor, the source rises, and the current decays. The same current flows through the cascode $M_3$ and through $R_1$, so $V_Y$ follows from $R_1$, and $V_X$ from $M_3$'s gate–source voltage at that decaying current, including the body effect.
 
-### Step 1 — Reading the circuit
-
-From the figure:
-
-- $I_{REF}$ (ideal) flows from $V_{DD}$ into the **diode-connected** $M_2$, whose source is grounded. Its gate–drain node also drives the gate of $M_1$.
-- $M_1$: gate at that node, drain at X, source on the top plate of $C_1$, whose bottom plate is grounded. $C_1$ is uncharged at $t = 0$.
-- $M_3$: gate at the constant bias $V_b$, source at X, drain at Y, with $R_1$ from $V_{DD}$ to Y. $M_3$ is a cascode carrying $M_1$'s current.
-- All bulks are grounded, so $M_1$ has $V_{SB1} = V_{C1}$ and $M_3$ has $V_{SB3} = V_X$.
-
-Square law, $\lambda = 0$, $\beta = \mu_nC_{ox}W/L$, $V_{TH}(V_{SB}) = 0.7 + 0.45(\sqrt{0.9 + V_{SB}} - \sqrt{0.9})$ V. $M_1$ and $M_3$ are saturated (given).
-
-### Step 2 — The gate voltage of $M_1$ is constant
+### Step 1 — The gate voltage of $M_1$ is constant
 
 $M_2$ always carries $I_{REF}$ (the gate of $M_1$ draws no current) and its source is grounded, so
 
-$$V_G = V_{GS2} = 0.7 + V_{ov}, \qquad V_{ov} = \sqrt{\frac{2I_{REF}}{\beta}} .$$
+$$V_G = V_{GS2} = 0.7 + V_{ov}, \qquad V_{ov} = \sqrt{\frac{2I_{REF}}{\beta}},$$
 
-This does not change with time.
+constant in time. With grounded bulks, $V_{SB1} = V_{C1}$ and $V_{SB3} = V_X$, and $V_{TH}(V_{SB}) = 0.7 + 0.45(\sqrt{0.9 + V_{SB}} - \sqrt{0.9})$ V; $\lambda = 0$, and $M_1$, $M_3$ are saturated (given).
 
-### Step 3 — Initial values at $t = 0^+$
+### Step 2 — Initial values at $t = 0^+$
 
-At $t = 0^+$, $V_{C1} = 0$, so $M_1$'s source is at ground like $M_2$'s. Same gate voltage, identical devices, both saturated, so $M_1$ copies the reference:
+At $t = 0^+$, $V_{C1} = 0$, so $M_1$'s source is at ground like $M_2$'s; with the same gate voltage, $M_1$ copies the reference:
 
 $$I_{D1}(0^+) = I_{REF}.$$
 
-This current flows up through $M_3$ and $R_1$ (KCL at X and at Y), so
+This current flows up through $M_3$ and $R_1$, so
 
-$$V_Y(0^+) = V_{DD} - R_1I_{REF}, \qquad V_X(0^+) = V_b - V_{GS3}(I_{REF}) = V_b - V_{TH3}(V_X) - \sqrt{\frac{2I_{REF}}{\beta}} .$$
+$$V_Y(0^+) = V_{DD} - R_1I_{REF}, \qquad V_X(0^+) = V_b - V_{GS3}(I_{REF}) = V_b - V_{TH3}(V_X) - \sqrt{\frac{2I_{REF}}{\beta}} ,$$
 
-$M_3$ is a source follower with its gate fixed at $V_b$, and node X sits one $V_{GS3}$ below that gate.
+since node X sits one $V_{GS3}$ below $M_3$'s fixed gate.
 
-### Step 4 — $C_1$ charges and $M_1$'s current decays
+### Step 3 — $C_1$ charges and $M_1$'s current decays
 
 $M_1$'s source current flows only into $C_1$:
 
@@ -50,19 +39,19 @@ I_{D1}(t) &= \frac{\beta}{2}w^2 = \frac{I_{REF}}{(1 + t/\tau)^2}.
 \end{aligned}
 $$
 
-The source of $M_1$ climbs toward $V_G - V_{TH1}$ and the current dies out, quickly at first and then with a slow $1/t^2$ tail. As the source rises, it squeezes $M_1$'s gate–source voltage.
+The source of $M_1$ climbs toward $V_G - V_{TH1}$ and the current dies out, quickly at first and then with a slow $1/t^2$ tail.
 
 **With body effect**, $dw = -(1 + \eta_1)\,dV_{S1}$ with $\eta_1 = \gamma/(2\sqrt{0.9 + V_{S1}}) \approx 0.22$. The decay is about $1 + \eta_1$ times faster, and the source stops a little lower, where $V_{S1} + V_{TH1}(V_{S1}) = V_G$.
 
-### Step 5 — $V_Y(t)$: rising back to $V_{DD}$
+### Step 4 — $V_Y(t)$: rising back to $V_{DD}$
 
-KCL at Y: $R_1$ carries $M_3$'s current, which equals $M_1$'s current. So
+$R_1$ carries $M_3$'s current, which equals $M_1$'s:
 
 $$V_Y(t) = V_{DD} - R_1I_{D1}(t) \approx V_{DD} - \frac{R_1I_{REF}}{(1 + t/\tau)^2} .$$
 
 $V_Y$ starts at $V_{DD} - R_1I_{REF}$ and **rises toward $V_{DD}$**, quickly at first and then slowly.
 
-### Step 6 — $V_X(t)$: rising toward $V_b - V_{TH3}$
+### Step 5 — $V_X(t)$: rising toward $V_b - V_{TH3}$
 
 $M_3$ is saturated and carries $I_{D1}(t)$:
 
@@ -76,11 +65,11 @@ The total rise is the initial overdrive minus the extra threshold caused by the 
 
 $$\Delta V_X = V_{X,\infty} - V_X(0^+) = \sqrt{\frac{2I_{REF}}{\beta}} - \left[V_{TH3}(V_{X,\infty}) - V_{TH3}(V_X(0^+))\right].$$
 
-**Shape.** $V_X$ approaches its final value in proportion to $\sqrt{I_{D1}} \propto 1/(1 + t/\tau)$, a $1/t$ tail. That is slower than $V_Y$'s $1/t^2$ tail, because the overdrive depends on the square root of the current.
+**Shape.** $V_X$ approaches its final value in proportion to $\sqrt{I_{D1}} \propto 1/(1 + t/\tau)$, a $1/t$ tail, slower than $V_Y$'s $1/t^2$ tail.
 
-**Saturation checks.** $M_1$: $V_{DS1} = V_X - V_{S1}$ stays almost constant (both nodes rise by similar amounts) while its overdrive shrinks, so $M_1$ remains saturated if it starts so. $M_3$: $V_{DS3} = V_Y - V_X$ grows, because $V_Y$ rises by about $R_1I_{REF}$, much more than $V_X$ does. So $M_3$ remains saturated as well.
+**Saturation checks.** $V_{DS1} = V_X - V_{S1}$ stays almost constant (both nodes rise by similar amounts) while $M_1$'s overdrive shrinks, and $V_{DS3} = V_Y - V_X$ grows ($V_Y$ rises by about $R_1I_{REF}$, much more than $V_X$), so both stay saturated if they start so.
 
-### Step 7 — Numerical example
+### Step 6 — Numerical example
 
 Take $\beta = 2.68\ \mathrm{mA/V^2}$ ($W/L = 10/0.5$), $I_{REF} = 100\ \mu\mathrm{A}$, $R_1 = 10\ \mathrm{k}\Omega$, $C_1 = 10$ pF, $V_b = 2$ V.
 
@@ -119,8 +108,8 @@ Numerical integration (with body effect in $M_1$ and $M_3$):
 - **$V_X$ rises toward $V_b - V_{TH3}(V_X)$**, by $\Delta V_X = \sqrt{2I_{REF}/\beta} - [V_{TH3}(V_{X,\infty}) - V_{TH3}(V_{X,0})]$, slightly less than the initial overdrive because the higher $V_X$ raises $V_{TH3}$.
 - Both rise quickly at first and then slowly. The current never stays at $I_{REF}$.
 
-**Common mistake.** Assuming the circuit keeps copying $I_{REF}$ indefinitely, as an ordinary cascode mirror would. $M_1$'s source is not grounded but sits on a capacitor, which integrates the current. Once the source has risen by about one overdrive, $M_1$ turns off.
+**Common mistake.** Assuming the circuit keeps copying $I_{REF}$ indefinitely, as an ordinary cascode mirror would. $M_1$'s source sits on a capacitor, which integrates the current; once the source has risen by about one overdrive, $M_1$ turns off.
 
-**Common mistake.** Keeping $V_X$ constant. $V_X$ is set by the cascode $M_3$, whose $V_{GS}$ depends on the current it carries. As the current decays to zero, $V_{GS3}$ shrinks from $V_{TH3} + V_{ov}$ to $V_{TH3}$, so X rises by almost $V_{ov}$.
+**Common mistake.** Keeping $V_X$ constant. $V_X$ is set by the cascode $M_3$, whose $V_{GS}$ shrinks from $V_{TH3} + V_{ov}$ to $V_{TH3}$ as the current decays, so X rises by almost $V_{ov}$.
 
 **Common mistake.** Letting $V_Y$ fall, or $V_X$ fall to 0. The current through $R_1$ and $M_3$ only *decreases* with time, so the drop across $R_1$ shrinks ($V_Y$ up) and $M_3$ needs less gate–source voltage ($V_X$ up).
