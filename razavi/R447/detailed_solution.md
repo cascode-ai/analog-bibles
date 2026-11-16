@@ -1,66 +1,61 @@
 # Detailed solution - R447
 
-**Approach.** Break the CMFB loop at $V_E$ (the gates of $M_3$/$M_4$), inject a small test voltage $v_E$, and follow it around the loop: $v_E$ changes the currents of $M_3$ and $M_4$ by $g_{m3}v_E$; these currents flow into the outputs, whose *common-mode* resistance turns them into a common-mode output voltage; the resistive divider senses it; the error amplifier amplifies it back to $V_E$. The loop gain is the product of the three gains. Because the excitation is purely common-mode, we can use a common-mode half circuit.
+**Approach.** Break the CMFB loop at $V_E$ (the gates of $M_3$/$M_4$), inject a test voltage $v_E$, and follow it around: it changes the currents of $M_3$ and $M_4$ by $g_{m3}v_E$, the *common-mode* output resistance turns these into a common-mode output voltage, the divider senses it, and the error amplifier returns it to $V_E$. The loop gain is the product of these gains, found with a common-mode half circuit.
 
 ### Step 1 — The loop and its polarity
 
-Reading the figure: the op amp is a folded cascode. The NMOS input pair $M_1$–$M_2$ (tail $I_{SS}$) drives the folding nodes, i.e. the drains of the top PMOS current sources (output resistance $r_{OP}$). Below each folding node are a PMOS cascode device, the output node, an NMOS cascode device, and finally the NMOS current source $M_3$ (or $M_4$), whose gate is $V_E$. $R_1$ and $R_2$ connect $V_{out1}$ and $V_{out2}$ to a centre tap, which provides $V_{out,CM}$ to the "+" input of the error amplifier; $V_{REF}$ drives its "−" input.
-
-**Polarity.** If $V_E$ rises, $M_3$ and $M_4$ sink more current, so both outputs fall; the error amplifier sees a lower "+" input and lowers $V_E$. The loop therefore opposes the original change: it is **negative feedback**. We compute the magnitude $T$ of the loop gain.
-
-**Breaking the loop.** Disconnect the error-amplifier output from the gates of $M_3$/$M_4$ and drive those gates with a small-signal test voltage $v_E$. At low frequency the gates draw no current, so breaking the loop here does not change any loading. The differential input $V_{in}$ is held at zero and $V_{REF}$ is constant (AC ground).
+If $V_E$ rises, $M_3$ and $M_4$ sink more current, both outputs fall, and the error amplifier lowers $V_E$: **negative feedback**. Compute the magnitude $T$ of the loop gain by driving the gates of $M_3$/$M_4$ with a test voltage $v_E$ in place of the error-amplifier output; at low frequency these gates draw no current, so the break changes no loading. $V_{in}$ is held at zero and $V_{REF}$ is ac ground.
 
 ### Step 2 — Why a common-mode half circuit, and why $R_1$, $R_2$ drop out
 
-$v_E$ drives $M_3$ and $M_4$ identically, so the two halves respond identically: $v_{out1} = v_{out2} = v_{out,CM}$.
+$v_E$ drives $M_3$ and $M_4$ identically, so $v_{out1} = v_{out2} = v_{out,CM}$.
 
-- **$R_1$, $R_2$:** both ends of the divider move by the same amount, and the centre tap feeds only a gate. Hence no small-signal current flows through $R_1$ or $R_2$, and they do not load the outputs for a common-mode change. The sensed voltage is $(v_{out1} + v_{out2})/2 = v_{out,CM}$.
-- **Input pair:** the ideal tail source $I_{SS}$ fixes $I_{D1} + I_{D2}$, and by symmetry the two drain currents stay equal. So for a common-mode change $M_1$ and $M_2$ carry **no** small-signal current, and $r_{O1}$ does not load the folding node. The folding node sees only $r_{OP}$. (For a *differential* signal the folding node sees $r_{OP}\parallel r_{O1}$. Using that value here is a common and slightly conservative approximation.)
+- **$R_1$, $R_2$:** both ends of the divider move together and the centre tap feeds only a gate, so no small-signal current flows in them; they do not load the outputs, and the sensed voltage is $(v_{out1} + v_{out2})/2 = v_{out,CM}$.
+- **Input pair:** the ideal tail $I_{SS}$ fixes $I_{D1} + I_{D2}$ and symmetry keeps the two equal, so for a common-mode change $M_1$ and $M_2$ carry **no** small-signal current and $r_{O1}$ does not load the folding node, which sees only $r_{OP}$. (Using the differential-mode value $r_{OP}\parallel r_{O1}$ here is a common, slightly conservative approximation.)
 
 ### Step 3 — Small-signal model of the common-mode half circuit
 
-Nodes: E (gate of $M_3$, driven by $v_E$), A (drain of $M_3$ = source of the NMOS cascode), out, F (folding node = drain of the top PMOS = source of the PMOS cascode), and ground (AC ground for $V_{DD}$, all bias gates and all bulks).
+Call the drain of $M_3$ (source of the NMOS cascode) A and the folding node (drain of the top PMOS, source of the PMOS cascode) F; $V_{DD}$, all bias gates and all bulks are ac ground.
 
-- $M_3$: current $g_{m3}v_E$ from A to ground, with $r_{O3}$ from A to ground.
-- NMOS cascode: current $(g_{mNC} + g_{mbNC})(-v_A)$ from out to A (its gate and bulk are at AC ground), with $r_{ONC}$ between out and A.
-- PMOS cascode: current $(g_{mPC} + g_{mbPC})v_F$ from F to out, with $r_{OPC}$ between F and out.
-- Top PMOS current source: $r_{OP}$ from F to AC ground. (The drain of $M_1$ also lands on F but, as shown in Step 2, carries no common-mode current.)
+- $M_3$: $g_{m3}v_E$ from A to ground, with $r_{O3}$.
+- NMOS cascode: $(g_{mNC} + g_{mbNC})(-v_A)$ from out to A, with $r_{ONC}$ between out and A.
+- PMOS cascode: $(g_{mPC} + g_{mbPC})v_F$ from F to out, with $r_{OPC}$ between F and out.
+- Top PMOS current source: $r_{OP}$ from F to ground (the drain of $M_1$ also lands on F but carries no common-mode current).
 
 <!-- diagram: diagram-01.cir -->
 
-The output node is therefore driven by a transconductance (from $v_E$) into the parallel combination of the resistance looking down into the NMOS cascode and the resistance looking up into the PMOS cascode.
+The output is thus driven by a transconductance from $v_E$ into the resistance looking down into the NMOS cascode in parallel with that looking up into the PMOS cascode.
 
 ### Step 4 — Resistance looking down: NMOS cascode over $M_3$
 
-Set $v_E = 0$, apply a test voltage $v_t$ at the output and let $i_t$ flow down. The same current flows through $r_{O3}$, so $v_A = i_tr_{O3}$. The current through the cascode device:
+With $v_E = 0$ and a test current $i_t$ into the output, $v_A = i_tr_{O3}$ and the current through the cascode is
 
 $$
 \begin{aligned}
 i_t &= (g_{mNC} + g_{mbNC})(-v_A) + \frac{v_t - v_A}{r_{ONC}}\\
-i_tr_{ONC} &= -(g_{mNC} + g_{mbNC})r_{ONC}r_{O3}\,i_t + v_t - r_{O3}i_t\\
-v_t &= i_t\left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3} + r_{ONC} + r_{O3}\right].
+v_t &= i_t\left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3} + r_{ONC} + r_{O3}\right],
 \end{aligned}
 $$
 
-$$R_{down} = (g_{mNC} + g_{mbNC})r_{ONC}r_{O3} + r_{ONC} + r_{O3} \approx (g_{mNC} + g_{mbNC})r_{ONC}r_{O3}.$$
+so, since $(g_{mNC} + g_{mbNC})r_{ONC} \gg 1$,
 
-The approximation holds because the intrinsic gain $(g_{mNC} + g_{mbNC})r_{ONC} \gg 1$.
+$$R_{down} = (g_{mNC} + g_{mbNC})r_{ONC}r_{O3} + r_{ONC} + r_{O3} \approx (g_{mNC} + g_{mbNC})r_{ONC}r_{O3}.$$
 
 ### Step 5 — Resistance looking up: PMOS cascode over the folding node
 
-The structure is the same: a cascode device ($g_{mPC}$, $g_{mbPC}$, $r_{OPC}$) degenerated by the resistance at F, which for a common-mode change is $r_{OP}$. Repeating the derivation of Step 4 with these elements:
+The PMOS cascode is degenerated by the resistance at F, $r_{OP}$ for a common-mode change, so by the same derivation
 
-$$R_{up} = (g_{mPC} + g_{mbPC})r_{OPC}r_{OP} + r_{OPC} + r_{OP} \approx (g_{mPC} + g_{mbPC})r_{OPC}r_{OP}.$$
+$$R_{up} = (g_{mPC} + g_{mbPC})r_{OPC}r_{OP} + r_{OPC} + r_{OP} \approx (g_{mPC} + g_{mbPC})r_{OPC}r_{OP},$$
 
-The common-mode output resistance per side is
+and the common-mode output resistance per side is
 
 $$R_{out,CM} = R_{down}\parallel R_{up} \approx \left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3}\right]\parallel\left[(g_{mPC} + g_{mbPC})r_{OPC}r_{OP}\right].$$
 
-(With the usual approximation of Step 2, $r_{OP}$ is replaced by $r_{OP}\parallel r_{O1}$.)
+(With the approximation of Step 2, $r_{OP}$ becomes $r_{OP}\parallel r_{O1}$.)
 
 ### Step 6 — From $v_E$ to $v_{out,CM}$
 
-With the output shorted to AC ground, KCL at A gives the fraction of $M_3$'s current that reaches the output:
+With the output shorted to ac ground, KCL at A gives the fraction of $M_3$'s current that reaches the output:
 
 $$
 \begin{aligned}
@@ -69,30 +64,25 @@ v_A &= -\frac{g_{m3}v_E}{g_{mNC} + g_{mbNC} + 1/r_{ONC} + 1/r_{O3}} .
 \end{aligned}
 $$
 
-The short-circuit current pulled out of the output node is $(g_{mNC} + g_{mbNC} + 1/r_{ONC})(-v_A)$, so the effective transconductance is
+The short-circuit current pulled out of the output is $(g_{mNC} + g_{mbNC} + 1/r_{ONC})(-v_A)$, so
 
 $$G_{m,CM} = g_{m3}\,\frac{g_{mNC} + g_{mbNC} + 1/r_{ONC}}{g_{mNC} + g_{mbNC} + 1/r_{ONC} + 1/r_{O3}} \approx g_{m3},$$
 
-because the cascode's source presents a resistance of only about $1/(g_{mNC} + g_{mbNC})$, far below $r_{O3}$. This current is pulled *out of* the output node, so
+because the cascode's source resistance, about $1/(g_{mNC} + g_{mbNC})$, is far below $r_{O3}$. This current is pulled *out of* the output node, so
 
 $$v_{out,CM} = -G_{m,CM}R_{out,CM}\,v_E \approx -g_{m3}R_{out,CM}\,v_E .$$
 
 ### Step 7 — The error amplifier
 
-The error amplifier is a differential pair with an active current-mirror load. Its "−" input is at $V_{REF}$ (AC ground), so its differential input is just $v_{out,CM}$. The standard result for this stage is:
+Its "−" input is at $V_{REF}$ (ac ground), so its differential input is $v_{out,CM}$, applied to the non-inverting input. A pair with an active mirror load has short-circuit output current $g_{mE}v_{out,CM}$ and output resistance $r_{OE1}\parallel r_{OE3}$, so
 
-- The mirror adds the two halves' signal currents, so the short-circuit output current is $g_{mE}v_{out,CM}$.
-- The output node sees the output resistance of the output-side input device in parallel with that of the output-side mirror device, $r_{OE1}\parallel r_{OE3}$.
+$$v_E' = +A_E\,v_{out,CM}, \qquad A_E = g_{mE}(r_{OE1}\parallel r_{OE3}),$$
 
-Since $v_{out,CM}$ drives the non-inverting input:
-
-$$v_E' = +A_E\,v_{out,CM}, \qquad A_E = g_{mE}(r_{OE1}\parallel r_{OE3}).$$
-
-Its output drives only the gates of $M_3$/$M_4$, so (at low frequency) it is unloaded.
+unloaded at low frequency, since it drives only the gates of $M_3$/$M_4$.
 
 ### Step 8 — Loop gain
 
-Combine Steps 6 and 7. The voltage returned to the break point is
+The voltage returned to the break point is
 
 $$
 \begin{aligned}
@@ -106,7 +96,7 @@ The minus sign confirms negative feedback, and the loop-gain magnitude is
 
 $$T = g_{mE}(r_{OE1}\parallel r_{OE3})\cdot g_{m3}\cdot\left\{\left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3}\right]\parallel\left[(g_{mPC} + g_{mbPC})r_{OPC}r_{OP}\right]\right\}.$$
 
-**Size of $T$.** The differential gain of the op amp is $A_{DM} \approx g_{m1}R_{out}$, with nearly the same output resistance. So $T \approx A_E\,(g_{m3}/g_{m1})\,A_{DM}$: roughly the product of the op amp's gain and the error amplifier's gain, a very large number. That is why the CM level is held very close to $V_{REF}$.
+The op amp's differential gain is $A_{DM} \approx g_{m1}R_{out}$ with nearly the same output resistance, so $T \approx A_E\,(g_{m3}/g_{m1})\,A_{DM}$: roughly the product of the op amp's and the error amplifier's gains, which is why the CM level is held very close to $V_{REF}$.
 
 ### Result
 
@@ -116,8 +106,8 @@ $$R_{out,CM} = \left[(g_{mNC} + g_{mbNC})r_{ONC}r_{O3}\right]\parallel\left[(g_{
 
 with negative feedback ($V_{out,CM}\uparrow \Rightarrow V_E\uparrow \Rightarrow$ outputs $\downarrow$). $R_1$ and $R_2$ carry no current for a common-mode change and do not load the outputs. For a common-mode change the input pair carries no current (ideal $I_{SS}$), so the folding node sees $r_{OP}$; writing $r_{OP}\parallel r_{O1}$ there, the differential-mode value, is a common acceptable approximation.
 
-**Common mistake.** Letting $R_1$ and $R_2$ load the output, e.g. writing $R_{out} \approx R_{out}\parallel(R_1 + R_2)/2$ or $R_1\parallel R_2$. For a common-mode change both ends of the divider move together, so no current flows in it. (For a *differential* signal the divider does load the outputs, which is why large resistors are needed there.)
+**Common mistake.** Letting $R_1$ and $R_2$ load the output, e.g. $R_{out}\parallel(R_1 + R_2)/2$ or $R_1\parallel R_2$. For a common-mode change no current flows in the divider (it does load the outputs differentially, which is why large resistors are needed).
 
-**Common mistake.** Taking the CMFB loop gain to be the op amp's differential gain. The loop is entered through $g_{m3}$ (not $g_{m1}$) and also contains the error amplifier's gain $A_E$.
+**Common mistake.** Taking the CMFB loop gain to be the op amp's differential gain. The loop is entered through $g_{m3}$ (not $g_{m1}$) and also contains $A_E$.
 
-**Common mistake.** Using only $r_{O3}$ (or only one cascode branch) as the output resistance. The current from $M_3$ reaches a high-impedance output node that is loaded by *both* the NMOS cascode looking down and the PMOS cascode looking up, in parallel.
+**Common mistake.** Using only $r_{O3}$ (or only one cascode branch) as the output resistance. The output is loaded by *both* the NMOS cascode below and the PMOS cascode above, in parallel.

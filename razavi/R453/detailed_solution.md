@@ -1,78 +1,66 @@
 # Detailed solution - R453
 
-**Approach.** Represent each transistor's flicker noise as a voltage source $V_{n,j}$ in series with its gate, of density $\overline{V_{n,j}^2} = K/(C_{ox}W_jL_jf)$. A gate voltage $V_{n,j}$ makes the device's drain current change by $g_{mj}V_{n,j}$. We follow that current to the output and compare it with the current produced by an input signal ($g_{m1}$ per volt). This gives each device's weight when referred to the input; finally we add the powers of all the uncorrelated sources.
+**Approach.** Represent each transistor's flicker noise as a voltage $V_{n,j}$ in series with its gate, of density $\overline{V_{n,j}^2} = K/(C_{ox}W_jL_jf)$; it changes the drain current by $g_{mj}V_{n,j}$. Following that current to the output and comparing it with the input's $g_{m1}$ per volt gives each device's input-referred weight; the uncorrelated powers add. By symmetry $M_1 = M_2$, $M_3 = M_4$, $M_5 = M_6$, $M_7 = M_8$ and $M_9 = M_{10}$.
 
-### Step 1 — The topology
+### Step 1 — How the input signal reaches the output
 
-From the figure:
+For a differential input $v_{in}$, $M_1$ and $M_2$ change their currents by $\pm g_{m1}v_{in}/2$. Each folding node looks into the source of a cascode, about $1/g_{m5}$, far below $r_{O1}\parallel r_{O7}$, so essentially all of $M_1$'s signal current is diverted from $M_5$ and the output. The differential output current is therefore $g_{m1}v_{in}$ in magnitude, and the output voltage is this current times $R_{out}$.
 
-- **Input pair:** NMOS $M_1$, $M_2$ with sources joined and tail device $M_{11}$; the differential input $V_{in}$ is applied between their gates.
-- **Folding nodes:** the drains of $M_1$ and $M_2$ connect to the drains of the PMOS current sources $M_7$, $M_8$ (gates at $V_{b3}$, sources at $V_{DD}$).
-- **PMOS cascodes** $M_5$, $M_6$ (gates at $V_{b2}$) carry the folded current down to the outputs.
-- **NMOS cascodes** $M_3$, $M_4$ (gates at $V_{b1}$) sit below the outputs, on top of the **NMOS current sources** $M_9$, $M_{10}$ (gates at $V_{b4}$).
-- The differential output $V_{out}$ is taken between the drains of $M_5/M_3$ and $M_6/M_4$.
-
-By symmetry $M_1 = M_2$, $M_3 = M_4$, $M_5 = M_6$, $M_7 = M_8$ and $M_9 = M_{10}$.
-
-### Step 2 — How the input signal reaches the output
-
-For a differential input $v_{in}$, $M_1$ and $M_2$ change their currents by $\pm g_{m1}v_{in}/2$. Each folding node is a low-impedance node: it looks into the source of a cascode device, about $1/g_{m5}$, much smaller than $r_{O1}\parallel r_{O7}$. So essentially all of $M_1$'s signal current is diverted from $M_5$ and the output. The differential output current is therefore $g_{m1}v_{in}$ (magnitude), and the differential output voltage is this current times the output resistance $R_{out}$.
-
-**Half circuit used below.** One side contains: the input device $M_1$ (current $g_{m1}v_{g1}$ from the folding node F to the virtual ground P, with $r_{O1}$); the PMOS source $M_7$ (current $g_{m7}v_{g7}$ into F, with $r_{O7}$ from F to AC ground); the PMOS cascode $M_5$ from F to the output; the NMOS cascode $M_3$ from the output down to node B; and the NMOS source $M_9$ (current $g_{m9}v_{g9}$ from B to ground, with $r_{O9}$). The flicker-noise voltages $V_{n1}$, $V_{n7}$, $V_{n9}$ sit in series with the gates of $M_1$, $M_7$, $M_9$.
+**Half circuit.** Call the folding node F, the drain of $M_9$ (source of $M_3$) B, and the virtual-ground tail node P. $M_1$ draws $g_{m1}v_{g1}$ from F to P, with $r_{O1}$; the PMOS source $M_7$, with its source at ac ground, injects $g_{m7}v_{sg7} = -g_{m7}v_{g7}$ into F, with $r_{O7}$ from F to ground; the PMOS cascode $M_5$ runs from F to the output, the NMOS cascode $M_3$ from the output down to B, and $M_9$ draws $g_{m9}v_{g9}$ from B to ground, with $r_{O9}$. The flicker-noise voltages $V_{n1}$, $V_{n7}$, $V_{n9}$ sit in series with the gates of $M_1$, $M_7$, $M_9$.
 
 <!-- diagram: diagram-01.cir -->
 
-**Referral rule.** Any noise current $I_n$ that reaches one output *in the same way* (through the same high-impedance output node, with the same $R_{out}$) is equivalent to an input voltage
+**Referral rule.** A noise current $I_n$ that reaches an output the same way as the signal current (through the same output node and $R_{out}$) is equivalent to an input voltage
 
 $$V_{n,in} = \frac{I_n}{g_{m1}} .$$
 
-### Step 3 — Input pair $M_1$, $M_2$
+### Step 2 — Input pair $M_1$, $M_2$
 
-$V_{n1}$ is in series with the gate of $M_1$, so it adds directly to the input: it is already an input-referred voltage, with weight 1. Likewise $V_{n2}$ appears (with opposite sign) at the input. The two are uncorrelated, so their powers add:
+$V_{n1}$ and $V_{n2}$ are in series with the input gates, so they are already input-referred (weight 1), and being uncorrelated their powers add:
 
 $$\overline{V_{n,in}^2}\Big|_{M_1,M_2} = 2\,\frac{K_N}{C_{ox}(WL)_1f} .$$
 
-### Step 4 — PMOS current sources $M_7$, $M_8$
+### Step 3 — PMOS current sources $M_7$, $M_8$
 
-$V_{n7}$ in series with the gate of $M_7$ changes its drain current by $I_{n7} = g_{m7}V_{n7}$. This current enters the folding node, which also receives the signal current of $M_1$. Because the folding node looks into the low impedance of $M_5$'s source, $I_{n7}$ flows through $M_5$ to the output *exactly* like the signal current. By the referral rule:
+$V_{n7}$ changes the current $M_7$ injects into F by $I_{n7} = g_{m7}V_{n7}$ in magnitude. F looks into the low impedance of $M_5$'s source, so $I_{n7}$ flows through $M_5$ to the output *exactly* like the signal current of $M_1$, and
 
 $$V_{n,in}\Big|_{M_7} = \frac{g_{m7}V_{n7}}{g_{m1}}, \qquad \overline{V_{n,in}^2}\Big|_{M_7} = \frac{g_{m7}^2}{g_{m1}^2}\cdot\frac{K_P}{C_{ox}(WL)_7f} .$$
 
-$M_8$ contributes the same amount on the other side, so the pair gives
+With $M_8$ on the other side:
 
 $$\overline{V_{n,in}^2}\Big|_{M_7,M_8} = 2\,\frac{K_P}{C_{ox}(WL)_7f}\cdot\frac{g_{m7}^2}{g_{m1}^2} .$$
 
-### Step 5 — NMOS current sources $M_9$, $M_{10}$
+### Step 4 — NMOS current sources $M_9$, $M_{10}$
 
-$V_{n9}$ changes the drain current of $M_9$ by $I_{n9} = g_{m9}V_{n9}$. This current is drawn from the source of the cascode $M_3$, whose input impedance ($\approx 1/g_{m3}$) is much lower than $r_{O9}$. So essentially all of $I_{n9}$ is pulled through $M_3$ from the output node: again just like a signal current. Hence
+$V_{n9}$ changes the current of $M_9$ by $I_{n9} = g_{m9}V_{n9}$, drawn from the source of $M_3$, whose impedance ($\approx 1/g_{m3}$) is far below $r_{O9}$. So essentially all of $I_{n9}$ is pulled through $M_3$ from the output, again like a signal current:
 
 $$\overline{V_{n,in}^2}\Big|_{M_9,M_{10}} = 2\,\frac{K_N}{C_{ox}(WL)_9f}\cdot\frac{g_{m9}^2}{g_{m1}^2} .$$
 
-### Step 6 — Cascode devices $M_3$–$M_6$: negligible
+### Step 5 — Cascode devices $M_3$–$M_6$: negligible
 
-Take $M_3$. Its gate noise $V_{n3}$ acts like a small signal on the gate of a stage whose source is degenerated by $r_{O9}$ (the resistance of the current source below it). With the output held at AC ground, the current that $V_{n3}$ produces is
+$M_3$'s gate noise $V_{n3}$ drives a stage degenerated by $r_{O9}$, so with the output at ac ground it produces
 
-$$I_{out} = \frac{g_{m3}V_{n3}}{1 + g_{m3}r_{O9}} \approx \frac{V_{n3}}{r_{O9}} \qquad (g_{m3}r_{O9} \gg 1).$$
+$$I_{out} = \frac{g_{m3}V_{n3}}{1 + g_{m3}r_{O9}} \approx \frac{V_{n3}}{r_{O9}} \qquad (g_{m3}r_{O9} \gg 1)$$
 
-Physically, $M_3$ behaves as a source follower: its source follows the noise on its gate, and only the small current $V_{n3}/r_{O9}$ flows. Referred to the input:
+(the source simply follows the gate noise). Referred to the input:
 
 $$V_{n,in}\Big|_{M_3} \approx \frac{V_{n3}}{g_{m1}r_{O9}}, \qquad \overline{V_{n,in}^2}\Big|_{M_3} \approx \frac{\overline{V_{n3}^2}}{(g_{m1}r_{O9})^2} .$$
 
-The factor $1/(g_{m1}r_{O9})^2$ is typically $10^{-3}$–$10^{-4}$. In the same way, $M_5$ is degenerated by $r_{O7}\parallel r_{O1}$ and is suppressed by $[g_{m1}(r_{O7}\parallel r_{O1})]^2$. Both are negligible at low frequencies.
+The factor $1/(g_{m1}r_{O9})^2$ is typically $10^{-3}$–$10^{-4}$. Likewise $M_5$, degenerated by $r_{O7}\parallel r_{O1}$, is suppressed by $[g_{m1}(r_{O7}\parallel r_{O1})]^2$. Both are negligible at low frequencies.
 
-### Step 7 — Tail device $M_{11}$: common mode only
+### Step 6 — Tail device $M_{11}$: common mode only
 
-The noise current of $M_{11}$ divides equally between $M_1$ and $M_2$ (the circuit is symmetric). Both folding nodes, and so both outputs, move identically, so the differential output does not change. In a matched circuit $M_{11}$ contributes nothing to the differential noise.
+The noise current of $M_{11}$ divides equally between $M_1$ and $M_2$, moving both outputs identically, so in a matched circuit it contributes nothing to the differential noise.
 
-### Step 8 — Total input-referred flicker noise
+### Step 7 — Total input-referred flicker noise
 
-Add the uncorrelated contributions of Steps 3–5:
+Adding Steps 2–4:
 
 $$
 \overline{V_{n,in}^2}\Big|_{1/f} \approx \frac{2}{C_{ox}f}\left[\frac{K_N}{(WL)_1} + \frac{K_P}{(WL)_7}\frac{g_{m7}^2}{g_{m1}^2} + \frac{K_N}{(WL)_9}\frac{g_{m9}^2}{g_{m1}^2}\right].
 $$
 
-**Design insight.** $M_7$ and $M_8$ carry the input-pair current *plus* the cascode-branch current, so their $g_m$ tends to be large, and they are usually significant contributors. To reduce their noise, give them a small $g_m$ (large overdrive, i.e. long channels) and a large area $WL$. The same applies to $M_9$, $M_{10}$. The input pair should have a large $g_{m1}$ and a large area.
+$M_7$ and $M_8$ carry the input-pair current *plus* the cascode-branch current, so their $g_m$ tends to be large and they are usually significant contributors. They (and $M_9$, $M_{10}$) should have a small $g_m$ (long channels, large overdrive) and a large area $WL$; the input pair should have a large $g_{m1}$ and a large area.
 
 ### Result
 
@@ -80,8 +68,8 @@ $$\overline{V_{n,in}^2}\Big|_{1/f} \approx \frac{2}{C_{ox}f}\left[\frac{K_N}{(WL
 
 (with $M_1 = M_2$, $M_7 = M_8$, $M_9 = M_{10}$). The input pair appears directly; the current sources $M_7$–$M_{10}$ are weighted by $(g_m/g_{m1})^2$; the cascodes $M_3$–$M_6$ are suppressed by $(g_{m1}r_O)^2$ and are negligible; the tail $M_{11}$ produces only common-mode noise.
 
-**Common mistake.** Forgetting the factor 2. Both halves of the circuit contain an independent copy of each noise source, and both appear in the differential input-referred noise.
+**Common mistake.** Forgetting the factor 2: each half contains an independent copy of every noise source.
 
-**Common mistake.** Weighting the current sources by $1/g_{m7}^2$ or by $g_{m7}/g_{m1}$ instead of $(g_{m7}/g_{m1})^2$. The gate-referred noise voltage of $M_7$ becomes a current $g_{m7}V_{n7}$; the input reproduces that current through $g_{m1}$; and noise *powers* scale with the square of the ratio.
+**Common mistake.** Weighting the current sources by $1/g_{m7}^2$ or by $g_{m7}/g_{m1}$. The gate noise of $M_7$ becomes a current $g_{m7}V_{n7}$, which the input reproduces through $g_{m1}$, and powers scale with the square, $(g_{m7}/g_{m1})^2$.
 
-**Common mistake.** Treating the cascode devices $M_3$–$M_6$ as major contributors, or adding the tail $M_{11}$ as a differential contributor. The cascodes are degenerated by large resistances, so their noise currents barely reach the output, and the tail noise is pure common mode in a matched circuit.
+**Common mistake.** Treating the cascodes $M_3$–$M_6$ as major contributors, or counting the tail $M_{11}$ as differential noise. The cascodes are degenerated by large resistances, and the tail noise is pure common mode in a matched circuit.
