@@ -519,10 +519,13 @@ function renderFeed(from = 0) {
     return;
   }
   item.innerHTML = `
-    <button type="button" class="btn earlier" id="earlier">${t("earlier")}</button>
     <div id="cards"></div>
     <div class="sentinel" id="sentinel"></div>`;
   appendCards();
+  // The first card shown is where the reader is.
+  pin.el = $("cards").firstElementChild;
+  pin.top = pin.el.getBoundingClientRect().top;
+  pin.adjusting = false;
   state.index = feed.start;
   syncUrl();
   renderPosition();
@@ -536,6 +539,9 @@ function onFeedScroll() {
   const cards = $("cards");
   if (mode !== "browse" || !sentinel || !cards) return;
   if (!sentinel.hidden && sentinel.getBoundingClientRect().top < window.innerHeight + 1500) appendCards();
+  // Near the top of a list that starts later in the book: the questions
+  // before it load above, keeping the reader's place.
+  else if (feed.start > 0 && cards.firstElementChild && cards.firstElementChild.getBoundingClientRect().top > -1500) prependCards();
   let current = cards.firstElementChild;
   for (const el of cards.children) {
     if (el.getBoundingClientRect().top > 180) break;
@@ -558,6 +564,40 @@ window.addEventListener("scroll", () => {
   }, 80);
 }, { passive: true });
 
+// The reader's place: the card at the top of the window and where it sits.
+// Cards loading or growing above it (text, figures, earlier questions) would
+// push it down; after any such change the page is scrolled to put it back.
+// The reader's own scrolling moves the pin.
+const pin = { el: null, top: 0, adjusting: false };
+
+function setPin() {
+  const cards = $("cards");
+  if (mode !== "browse" || !cards) return;
+  let el = cards.firstElementChild;
+  for (const card of cards.children) {
+    if (card.getBoundingClientRect().top > 180) break;
+    el = card;
+  }
+  pin.el = el;
+  pin.top = el ? el.getBoundingClientRect().top : 0;
+}
+
+function keepPlace() {
+  if (!pin.el || !pin.el.isConnected) return;
+  const drift = pin.el.getBoundingClientRect().top - pin.top;
+  if (Math.abs(drift) < 1) return;
+  pin.adjusting = true;
+  window.scrollBy(0, drift);
+}
+
+window.addEventListener("scroll", () => {
+  // A scroll this page made to keep the place is not the reader moving.
+  if (pin.adjusting) pin.adjusting = false;
+  else setPin();
+}, { passive: true });
+
+const cardSizes = new ResizeObserver(() => keepPlace());
+
 function feedCard(at) {
   const q = state.cards[at];
   const el = document.createElement("article");
@@ -570,6 +610,7 @@ function feedCard(at) {
   el.innerHTML = cardHead(q, `<a class="btn review-this" href="/review?${params.join("&")}" title="${esc(t("reviewThisTitle"))}">${t("reviewThis")}</a>`) + cardBody(q);
   // Its text arrives later and makes it taller: look again for the list's end.
   fillCard(el, q).then(onFeedScroll);
+  cardSizes.observe(el);
   return el;
 }
 
@@ -578,7 +619,6 @@ function appendCards() {
   const cards = $("cards");
   for (let at = feed.end; at < until; at++) cards.append(feedCard(at));
   feed.end = until;
-  $("earlier").hidden = feed.start === 0;
   $("sentinel").hidden = feed.end >= state.cards.length;
 }
 
@@ -592,8 +632,11 @@ function prependCards() {
   for (let at = from; at < feed.start; at++) batch.append(feedCard(at));
   cards.prepend(batch);
   feed.start = from;
-  $("earlier").hidden = feed.start === 0;
-  window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+  if (!pin.el) {
+    pin.el = anchor;
+    pin.top = before;
+  }
+  keepPlace();
 }
 
 // Scrolls to a card, laying the list out again when it is not near.
@@ -852,8 +895,6 @@ document.addEventListener("click", async (event) => {
     refilter(keep);
     // A new filter starts the list from its top.
     render(0);
-  } else if (target.id === "earlier") {
-    prependCards();
   } else if (target.dataset.flag) {
     toggleFlag(target.dataset.flag);
   } else if (target.id === "pass") {

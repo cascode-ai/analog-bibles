@@ -294,3 +294,6 @@ details[open].steps-sol > summary { margin-bottom: 8px; }
 details.step { margin: 6px 0; padding-left: 2px; }
 details.step > summary { font-weight: 600; font-size: 14px; margin: .6em 0 .3em; }
 details.step > :not(summary) { margin-left: 1.25em; }
+
+/* Keeping the reader's place is done by hand (see cardSizes in app.js). */
+.feed #cards { overflow-anchor: none; }
