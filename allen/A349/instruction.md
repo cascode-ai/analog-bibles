@@ -1,0 +1,1 @@
+If $g_{mN} = g_{mP}$ (= $g_m$) and $r_{dsN} = r_{dsP}$ (= $r_{ds}$), find the loop gain of the common-mode feedback circuit shown in [Fig. 1] at low frequency.

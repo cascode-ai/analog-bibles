@@ -4,13 +4,14 @@
 
 在线浏览、报错、评论：**https://analog-bibles.tokenzhang.com/review?scope=random**
 
-每道题一个文件夹：`instruction.md` 为题目，`golden_solution.md` 为参考答案，`figure-*.png` 为配图。难度见各书 README 中的列表，或 `difficulty.json`。
+每道题一个文件夹：`instruction.md` 为题目，`golden_solution.md` 为参考答案，`figure-*.png` 为配图。难度见各书 README 中的列表，或 `difficulty.json`。困难 = 原仓库的最终评测集（`tasks/`，模型得分最低的题）加上答案过长的 12 题（`hard-questions/`）。
 
 | 书 | 简单 | 中等 | 困难 | 仿真 | 合计 |
 |---|---|---|---|---|---|
-| [Razavi — Design of Analog CMOS Integrated Circuits](razavi/) | 338 | 300 | 4 | 0 | 642 |
-| [Gray — Analysis and Design of Analog Integrated Circuits](gray/) | 216 | 190 | 1 | 85 | 492 |
-| [Allen & Holberg — CMOS Analog Circuit Design](allen/) | 266 | 228 | 7 | 27 | 528 |
+| [Razavi — Design of Analog CMOS Integrated Circuits](razavi/) | 338 | 300 | 85 | 0 | 723 |
+| [Gray — Analysis and Design of Analog Integrated Circuits](gray/) | 216 | 190 | 26 | 85 | 517 |
+| [Allen & Holberg — CMOS Analog Circuit Design](allen/) | 266 | 228 | 63 | 27 | 584 |
+| **合计** | 820 | 718 | 174 | 112 | 1824 |
 
 ## 网站
 

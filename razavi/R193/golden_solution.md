@@ -1,0 +1,12 @@
+# Golden Solution - R193
+
+## Reference answer
+
+A non-inverting S-curve: $V_{out} = R_D(I_{D2} - I_{D1})$, going from $-R_DI_{SS}$ (low $V_{in1}$) to $+R_DI_{SS}$ (high $V_{in1}$), with central slope $+g_{m1}R_D$ per volt of $V_{in1} - V_{in2}$ (i.e. $2g_{m1}R_D$ per volt of $V_{in1}$ in this sweep) (λ = 0), assuming $I_N \ge I_{SS}$ and enough headroom for $M_3$–$M_7$ (e.g. $R_DI_N$ small enough that $M_5$/$M_6$ stay saturated).
+- Topology: PMOS input pair (tail $M_7$ from $V_{DD}$); the drain of $M_1$ feeds the node of $M_3$ and the source of cascode $M_6$ (right output), the drain of $M_2$ feeds $M_4$ and cascode $M_5$ (left output). So $I_{M6} = I_N - I_{D1}$, $I_{M5} = I_N - I_{D2}$, $V_{left} = V_{DD} - R_D(I_N - I_{D2})$, $V_{right} = V_{DD} - R_D(I_N - I_{D1})$, and $V_{out} = R_D(I_{D2} - I_{D1})$.
+- Low $V_{in1}$: the PMOS $M_1$ (gate at 0) takes all of $I_{SS}$ and $M_2$ (gate near $V_{DD}$) is off, so $V_{out} = -R_DI_{SS}$; it rises through zero at $V_{in1} = V_{in2}$ and reaches $+R_DI_{SS}$ once $M_2$ carries all the current. Raising $V_{in1}$ reduces the current of PMOS $M_1$, so the curve is non-inverting.
+- If $I_{SS}/2 < I_N < I_{SS}$, the curve is the normal one until the strong branch reaches $I_N$ ($|V_{out}| = (2I_N - I_{SS})R_D$); then that cascode cuts off, the input device and the tail are pushed into triode, the slope changes, and the ends are $\pm R_DI_N$. If $I_{SS} > 2I_N$, $M_7$ cannot carry its nominal current even at balance: both cascodes are off around the center, giving a dead zone with $V_{out} = 0$, before the curve moves toward $\pm R_DI_N$.
+
+## Grading notes
+
++2: non-inverting S-curve centered at $V_{in1} = V_{in2}$, end levels ±$R_DI_{SS}$ (or ±$R_D\min(I_{SS}, I_N)$), slope $g_{m1}R_D$ versus $V_{in1} - V_{in2}$ or $2g_{m1}R_D$ versus $V_{in1}$ (either, if the axis is clear); a correct case-by-case treatment of $I_N < I_{SS}$ is a plus; the crossed connection (M1 to the right output) and the PMOS input recognized. +1: correct levels and shape but the sign convention inverted with an otherwise correct analysis of which output rises. 0: shape only. -2 (asserted as fact): inverting curve from a misread of the crossed connections or of the PMOS input, end levels ±$R_DI_N$ asserted for the normal case $I_N \ge I_{SS}$ (levels set by the cascode or $M_3$/$M_4$ currents only), or gain $g_{m1}(R_D\|g_{m5}r_{O5}r_{O1})$ presented as the end level.

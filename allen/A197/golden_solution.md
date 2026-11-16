@@ -1,0 +1,15 @@
+# Golden Solution - A197
+
+## Reference answer
+
+$R_{in} = \dfrac{1}{g_{ds2} + g_{ds4} + g_{m4}(1 + g_{m3}r_{ds3})} \approx \dfrac{1}{g_{m3}g_{m4}r_{ds3}}$; with identical transistors and $g_m = 100g_{ds}$: $R_{in} = \dfrac{1}{(2+100+10^4)g_{ds}} = \dfrac{r_{ds}}{10102} \approx \dfrac{1}{101\,g_m}$.
+
+- The input enters node B (drain of M2, source of M4, gate of M3). M2's gate is set by the diode M1 fed by an ideal source, so M2 is a constant-current sink with output resistance $r_{ds2}$.
+- M3 (gate at B) with the ideal current source at its drain is a common-source amplifier with gain $-g_{m3}r_{ds3}$ driving the gate of M4: $v_{g4} = -g_{m3}r_{ds3}v_B$.
+- With the output at ac ground, M4 delivers into B the current $g_{m4}(v_{g4}-v_B) - g_{ds4}v_B$. KCL at B: $i_{in} = g_{ds2}v_B + g_{ds4}v_B + g_{m4}(1+g_{m3}r_{ds3})v_B$, which gives $R_{in}$ above. The local feedback (regulated-cascode action) lowers the resistance by the factor $g_{m3}r_{ds3}$ below $1/g_{m4}$.
+
+Plot: M2 sinks the fixed current $I$, so M4 carries $I - i_{in}$ and, since the output source supplies $I$, $i_{out} = -i_{in}$: a straight line of slope −1 through the origin. In small signal with finite $r_{ds2}$ the exact short-circuit gain is $i_{out}/i_{in} = -(1 - g_{ds2}R_{in}) = -10101/10102 \approx -0.9999$ (part of $i_{in}$ goes into $r_{ds2}$); this is the same line. The line holds for $i_{in} < I$ (more precisely up to $I_{D2} \approx I$); there M4 cuts off and $i_{out}$ stays at $-I$ for larger $i_{in}$ (the excess has no path but $r_{ds2}$, so node B rises, M3 is driven into the nonsaturation region and holds M4 off). For negative $i_{in}$ the line continues ($i_{out} = |i_{in}|$) until the headroom runs out (the gate drive available to M4 with a real middle current source, or the output voltage). The clipping is not part of the book answer and is not required. Level-1 simulation (all W/L = 10, $I$ = 100 µA): $R_{in}$ = 15.46 Ω equal to the formula with the simulated $g_m$, $g_{ds}$; dc sweep $i_{out} = -i_{in}$ up to $i_{in}$ = 100 µA, flat at −100 µA beyond.
+
+## Grading notes
+
++2: exact expression equivalent to the reference, the simplified value ≈ $1/(101g_m)$ (or $r_{ds}/10102$, or ≈ $1/(g_m^2r_{ds})$ = $0.01/g_m$), and $i_{out} = -i_{in}$ (slope −1, or the exact small-signal slope $-10101/10102 \approx -0.9999$) through the origin. The clipping at $i_{in} \approx I$ is welcome but not required. +1: correct approximation $1/(g_{m3}g_{m4}r_{ds3})$ without the exact form, with the plot right. 0: correct analysis with an algebra slip in the exact form, or the plot right and $R_{in}$ wrong by a factor ≈ 2. −2 (asserted as fact): $R_{in} \approx 1/g_m$ (feedback missed), a positive slope with the figure's arrow directions (an answer that states it redefines $i_{out}$ as the current delivered out of the terminal and then gives +1 is correct), a slope magnitude materially different from 1 (e.g. 0.5 or 2), a clipping level other than $-I$ asserted, or M3 treated as a source follower.

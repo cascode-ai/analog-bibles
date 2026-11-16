@@ -1,0 +1,1 @@
+A differential circuit incorporating a well-designed common-mode feedback (CMFB) network exhibits the open-loop input–output characteristic shown in [Fig. 1] (outputs $V_{out1}$ and $V_{out2}$ versus the differential input $V_{in}$). In some circuits, however, the characteristic appears as in [Fig. 2]. Explain how this effect occurs.

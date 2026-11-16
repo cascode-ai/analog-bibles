@@ -1,0 +1,3 @@
+[Fig. 1] shows a cascode amplifier (upper right; $V_{DD}$ = 5 V, gate of the p-channel load M3 at 2.3 V, gate of the cascode transistor M2 at 3.4 V, all W/L = 2 µm/1 µm, sources of M1 at ground) together with the output characteristics and the resulting large-signal voltage-transfer curve $v_{OUT}$ versus $v_{IN}$ (lower right). Calculate the small-signal voltage gain of this amplifier assuming that the dc value of $v_{IN}$ is selected to keep all transistors in saturation. Compare this value with the slope of the voltage-transfer function given in the figure.
+
+Device data: n-channel $V_T$ = 0.7 V, $K'_N$ = 110 µA/V², λ = 0.04 V⁻¹; p-channel $V_T$ = −0.7 V, $K'_P$ = 50 µA/V², λ = 0.05 V⁻¹. Neglect the body effect.

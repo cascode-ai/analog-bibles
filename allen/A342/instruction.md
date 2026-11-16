@@ -1,0 +1,1 @@
+For the class B, folded-cascode, push–pull, differential-output op amp of [Fig. 1], assume $g_{mN} = g_{mP}$ (= $g_m$), $r_{dsN} = r_{dsP}$ (= $r_{ds}$), and 1:1 current mirrors. Find the differential voltage gain and the differential output resistance.

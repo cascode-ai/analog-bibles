@@ -1,0 +1,1 @@
+The circuit shown in [Fig. 1] employs positive feedback to produce a negative input capacitance. Using feedback analysis techniques, determine $Z_{in}$ and identify the negative capacitance component. Assume that $\lambda = \gamma = 0$ and that $I_1$ is an ideal current source.

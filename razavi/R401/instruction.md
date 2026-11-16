@@ -1,0 +1,1 @@
+Using feedback techniques, calculate the input and output impedances of the circuit shown in [Fig. 1] ($V_{in}$ drives the source of $M_1$; the bulk of $M_1$ is at ground). Assume $\lambda = 0$ and an ideal current source $I_1$; express the results in terms of $g_{m1}$ (and $g_{mb1}$ if you include the body effect), $C_1$, $C_2$ and $s$.

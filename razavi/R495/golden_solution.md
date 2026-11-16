@@ -1,0 +1,17 @@
+# Golden Solution - R495
+
+## Reference answer
+
+Dominant pole at the input node ≈ 8.7×10⁵ rad/s (≈ 140 kHz). Nondominant poles ≈ 2.6×10⁹ rad/s (drain of $M_1$) and ≈ 3.3×10¹⁰ rad/s (output Y) with the replica load $C_{GS3} + C_{GD3}$ kept at Y; if the gate of $M_3$ is simply driven by an ideal test source with no replica load at Y, the poles are ≈ 8.7×10⁵, 2.9×10⁹ and 5.3×10¹⁰ rad/s. The loop gain ≈ 1.2×10⁵ (101 dB), so the uncompensated loop is unstable (PM ≈ −35°).
+- Bias: $V_Y = V_{GS3}$ = 0.82 V (10 µA), input node A at $V_{GS1}$ = 1.09 V, drain of $M_1$ (node B) at $V_{DD} - |V_{GS2}|$ = 1.48 V. All devices saturated; no body effect (all sources on the rails).
+- Small signal: $g_{m1}$ = 5.18 mS, $r_{O1}$ = 10 kΩ; $g_{m2}$ (PMOS, common source) = 2.77 mS, $r_{O2}$ = 5 kΩ; $g_{m3}$ = 0.164 mS, $r_{O3}$ = 1 MΩ. Loop gain $T_0 = g_{m3}r_{O3}\cdot g_{m1}r_{O1}\cdot g_{m2}r_{O2}$ = 163.7 × 51.8 × 13.9 ≈ 1.17×10⁵. (Three inverting stages, so negative feedback.)
+- Capacitances: $C_{GS1}$ = 84 fF, $C_{GD1}$ = 20 fF, $C_{GS2}$ = 79 fF, $C_{GD2}$ = 15 fF, $C_{GS3}$ = 8.4 fF, $C_{GD3}$ = 2 fF ($C_{GS3} + C_{GD3}$ is kept at Y as the replica load of the broken loop).
+- Node A: $R_A = r_{O3}$ = 1 MΩ, $C_A \approx C_{GS1} + (1 + g_{m1}r_{O1})C_{GD1} + C_{GD3}$ ≈ 1.14 pF, so $\omega_A \approx 8.8\times10^5$ rad/s.
+- Node B: a per-node Miller estimate, $1/\{r_{O1}[C_{GD1} + C_{GS2} + (1 + g_{m2}r_{O2})C_{GD2}]\}$ ≈ 1/(10 kΩ × 0.32 pF) ≈ 3×10⁸ rad/s, is far too low. $C_{GD1}$ couples B to the high-impedance node A and splits the poles: with the unmultiplied $C_{A0} = C_{GS1} + C_{GD3}$ ≈ 86 fF and $C_B = C_{GS2} + (1 + g_{m2}r_{O2})C_{GD2}$ ≈ 0.30 pF, $\omega_B \approx g_{m1}C_{GD1}/(C_{A0}C_{GD1} + C_{A0}C_B + C_{GD1}C_B) \approx 3\times10^9$ rad/s. The full three-node analysis gives 2.6×10⁹ rad/s.
+- Node Y: $1/[r_{O2}(C_{GD2} + C_{GS3} + C_{GD3})]$ ≈ 7.9×10⁹ rad/s per node; with the coupling through $C_{GD2}$ the exact third pole is ≈ 3.3×10¹⁰ rad/s (5.3×10¹⁰ rad/s without the replica load, when only $C_{GD2}$ touches Y).
+- Using $r_O = (1 + \lambda V_{DS})/(\lambda I_D)$ with the $(1 + \lambda V_{DS})$ factor also in the bias gives ≈ 6.4×10⁵, 2.0×10⁹ and 5.6×10¹⁰ rad/s (no replica load) and $T_0$ ≈ 2.9×10⁵; this is a legitimate, more detailed model.
+- $T_0\omega_A \approx 10^{11}$ rad/s, far beyond the nondominant poles: the gain crossover is ≈ 1.5×10¹⁰ rad/s with PM ≈ −35°, so compensation is required.
+
+## Grading notes
+
+The question asks only for the poles; the loop gain and the instability conclusion are a plus, not required. Either loop-breaking convention (replica load $C_{GS3} + C_{GD3}$ at Y, or an ideal test source with no replica load) is acceptable, as is $r_O = 1/(\lambda I_D)$ or the full $(1 + \lambda V_{DS})$ model, if stated; check the numbers against the stated model. +2: dominant pole at the input node with the Miller-multiplied $C_{GD1}$ and $R_A = r_{O3}$ (≈ 8.8×10⁵ rad/s ±15%, or ≈ 6.4×10⁵ with the full $(1 + \lambda V_{DS})$ model); nondominant poles consistent with pole splitting (≈ 2.6–2.9×10⁹ and ≈ 3.3–5.6×10¹⁰ rad/s, ±50% for hand estimates). +1: dominant pole right, but the nondominant poles taken from per-node Miller estimates (≈ 3×10⁸ and ≈ 8×10⁹ rad/s) without pole splitting. 0: only the dominant pole right. -2 (asserted as fact): $M_2$ treated as an NMOS source follower (positive-feedback loop or wrong gain), loop gain off by more than 3×, the input-node resistance taken as $1/g_{m3}$ or as the closed-loop value, or the uncompensated loop declared stable with a healthy PM.

@@ -1,0 +1,1 @@
+Sketch $V_X$ and $I_X$ as a function of time for the circuit shown in [Fig. 1]. The switch connects node X to a battery and turns off at $t = 0$; at that moment the voltage across $C_1$ (from node X to the source of $M_1$) is 3 V. NMOS data: $V_{TH0} = 0.7$ V; the bulk of $M_1$ is grounded. $V_b$, $I_1$, $C_1$ and the size of $M_1$ are not specified.

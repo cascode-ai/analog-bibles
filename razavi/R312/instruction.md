@@ -1,0 +1,1 @@
+Neglecting other capacitances, calculate $Z_X$ in the circuit shown in [Fig. 1] and sketch $|Z_X|$ versus frequency. $M_1$ and $M_2$ are NMOS transistors in saturation, $I_1$ is an ideal current source, and $\lambda = \gamma = 0$.

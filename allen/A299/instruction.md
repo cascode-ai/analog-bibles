@@ -1,0 +1,1 @@
+Find all poles of the folded-cascode op amp shown in [Fig. 1] if $g_{mN} = 100\ \mu$S, $g_{mP} = 50\ \mu$S, $r_{dsN} = 2$ MΩ, $r_{dsP} = 1$ MΩ, $C_{gs} = 100$ fF and $C_{bd} = 10$ fF for all transistors, and $C_L = 10$ pF. M1, M2, M3 and M8–M11 are n-channel; M4–M7 are p-channel.

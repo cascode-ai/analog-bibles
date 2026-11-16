@@ -1,0 +1,3 @@
+In the feedback amplifier shown in [Fig. 1], $(W/L)_{1-4} = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$, $C_1 = C_2 = 0.5$ pF, and $I_{SS} = 1$ mA (ideal). $V_{DD} = 3$ V; the bias network for the gate of $M_2$ is not shown, and all transistors are in saturation. Calculate the small-signal time constant of the circuit (for small input steps). Treat the op amp formed by $M_1$–$M_4$ as a single-pole amplifier: neglect the transistor capacitances (including the pole at the gates of $M_3$/$M_4$).
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $\lambda = 0.1\ \mathrm{V^{-1}}$; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $\lambda = 0.2\ \mathrm{V^{-1}}$.

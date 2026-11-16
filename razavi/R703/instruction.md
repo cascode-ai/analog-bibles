@@ -1,0 +1,1 @@
+A MOSFET with $W/L = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ undergoes ideal (constant-field) scaling by a factor of two. What happens to the sheet resistivity (sheet resistance) of the gate polysilicon and to the total resistance of the gate?

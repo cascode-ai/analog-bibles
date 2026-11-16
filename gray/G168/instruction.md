@@ -1,0 +1,1 @@
+List and explain at least three reasons to select a two-stage CMOS op amp (differential input stage with current-mirror load, followed by a common-source second stage) with an n-channel input pair instead of a p-channel input pair for a given application.

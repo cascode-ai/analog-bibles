@@ -1,0 +1,3 @@
+A CMOS circuit used as an output buffer for an OTA is shown in [Fig. 1] (W/L values in µm; $V_{DD} = 3$ V, $V_{SS} = -3$ V; M5 sinks 100 µA). Find the value of the small-signal output resistance $R_{out}$, and from this value estimate the −3 dB bandwidth if a 50 pF capacitor is attached to the output. What is the maximum and minimum output voltage if a 1 kΩ resistor is attached to the output? What is the quiescent power dissipation of this circuit?
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $V_{TN} = 0.7$ V, $V_{TP} = -0.7$ V, $\lambda_N = 0.04\ \mathrm{V^{-1}}$, $\lambda_P = 0.05\ \mathrm{V^{-1}}$.

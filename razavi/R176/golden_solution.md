@@ -1,0 +1,12 @@
+# Golden Solution - R176
+
+## Reference answer
+
+Gain ≈ 2.4 ($g_{m1}/g_{m3} = 2.64$ if λ is neglected); $V_{in,CM,min} \approx 1.46$ V (1.37 V without body effect); each output can swing only between ≈ 1.18 V and 2.2 V (≈ 1.0 V pp single-ended, ≈ ±1.0 V, i.e. ≈ 2.0 V pp, differential), limited by the diode loads rather than by the input pair.
+- $g_{m1} = \sqrt{2(13.4\ \mathrm{m})(0.5\ \mathrm{m})} = 3.66$ mS; $g_{m3} = \sqrt{2(38.4\ \mu\times50)(0.5\ \mathrm{m})} = 1.39$ mS ($1/g_{m3} = 722$ Ω); $r_{O1} = 20$ kΩ, $r_{O3} = 10$ kΩ. $|A_v| = g_{m1}(1/g_{m3}\|r_{O1}\|r_{O3}) = 3.66\ \mathrm{m}\times 651\ \Omega = 2.38$.
+- Minimum CM: $V_P = 0.4$ V, overdrive of $M_1$ = 0.273 V, $V_{TH1}(V_{SB} = 0.4) = 0.786$ V: $V_{in,CM} = 0.4 + 0.273 + 0.786 = 1.46$ V.
+- With this CM level and zero differential input, $M_1$ stays saturated down to $V_{in,CM} - V_{TH1} = 0.4 + 0.273 = 0.673$ V; at full steering ($|V_{in1}-V_{in2}| \approx 0.386$ V) the tail node rises to ≈ 0.467 V, $V_{TH1} \approx 0.80$ V and the conducting device needs $V_D \ge 1.653 - 0.80 \approx 0.85$ V. But a diode-connected load gives $V_{out} = V_{DD} - |V_{THP}| - \sqrt{2I_D/\beta_p}$ with $\beta_p = 1.92\ \mathrm{mA/V^2}$: from 2.2 V ($I_D \to 0$) down to only $3 - 0.8 - 1.02 = 1.18$ V ($I_D = I_{SS}$), with the CM level at 1.48 V. So each output covers 1.18–2.2 V and $V_{out1} - V_{out2}$ reaches ±1.02 V at full current steering; neither the 0.673-V nor the 0.85-V limit is reached, and the tail headroom only grows as the pair steers.
+
+## Grading notes
+
+Three parts: gain, minimum CM, swing. +2: gain ≈ 2.4 (or 2.64 with λ = 0), $V_{in,CM,min}$ ≈ 1.46 V (body effect), and the swing limited by the diode loads (≈ 1.18–2.2 V per output, ≈ 1 V pp single-ended or ≈ 2 V pp differential). +1: body effect neglected in the CM level (1.37 V) with the rest right, or a slip in one number. 0: gain and CM level right but the swing taken as $V_{DD} - |V_{THP}|$ down to $V_{in,CM} - V_{TH1}$ (≈ 1.53 V per output) without checking that the diode cannot reach the lower limit. -2 (asserted as fact): gain from a wrong formula (e.g., $g_{m1}(r_{O1}\|r_{O3})$ ≈ 24 for diode loads), output allowed to reach $V_{DD}$, or minimum CM without the 0.4-V tail headroom. Including λ in the dc bias equations ($I_D = \tfrac12\beta V_{ov}^2(1 + \lambda V_{DS})$) is an acceptable alternative: it gives $|V_{GS3}|$ ≈ 1.44 V, $V_{in,CM,min}$ ≈ 1.445 V, gain ≈ 2.25–2.3, and a diode-limited swing of ≈ 1.32–2.2 V per output (≈ ±0.88 V differential); grade such answers on the same scale as the λ-free values.

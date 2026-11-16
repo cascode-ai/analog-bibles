@@ -1,0 +1,1 @@
+A cascode structure uses $W/L = 100\ \mu\mathrm{m}/0.5\ \mu\mathrm{m}$ for both the input device and the cascode device. If the sheet resistance of polysilicon is 5 Ω/□ and the maximum tolerable gate resistance is 10 Ω, draw the layout of the structure while minimizing the drain junction capacitances.

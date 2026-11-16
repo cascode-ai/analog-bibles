@@ -1,0 +1,3 @@
+Design the op amp shown in [Fig. 1] for the following requirements: maximum output swing = 2.4 V peak-to-peak at the single-ended output $V_{out}$, total power dissipation = 6 mW, $V_{DD} = 3$ V. Assume that the gate of $M_2$ is never shorted to the output. Use L = 0.5 μm for all devices; bulks of NMOS devices at ground and of PMOS devices at $V_{DD}$. Give the device sizes, the bias voltages, and the resulting open-loop gain.
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $V_{TH0} = 0.7$ V, $\lambda = 0.1\ \mathrm{V^{-1}}$, $\gamma = 0.45\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.9$ V; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $V_{TH0} = -0.8$ V, $\lambda = 0.2\ \mathrm{V^{-1}}$, $\gamma = 0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.8$ V.

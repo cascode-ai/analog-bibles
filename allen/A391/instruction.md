@@ -1,0 +1,3 @@
+The circuit shown in [Fig. 1] is a clamped comparator (W/L values in µm/µm are given next to each transistor; the 20 µA reference current sets the bias through M10–M11). Calculate the small-signal differential voltage gain $v_{out}/(v_1 - v_2)$ of this comparator. What are the positive and negative slew rates if the load capacitance at $v_{out}$ is 5 pF? Assume all transistors are saturated at the quiescent point.
+
+Device data: $K'_N = 110\ \mu\mathrm{A/V^2}$, $K'_P = 50\ \mu\mathrm{A/V^2}$, $V_{TN} = 0.7$ V, $V_{TP} = -0.7$ V; $\lambda_N = \lambda_P = 0.01\ \mathrm{V^{-1}}$ for $L = 2\ \mu$m; the output conductance of the $L = 4\ \mu$m devices (M5, M6, M11) may be neglected.

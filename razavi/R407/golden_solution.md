@@ -1,0 +1,14 @@
+# Golden Solution - R407
+
+## Reference answer
+
+$\overline{V_{n,in}^2} = \overline{V_{n2}^2}$; $\quad I_{n,in} = \dfrac{G_{m1}V_{n1}}{2} + \dfrac{V_{n2}}{2R_0}$, i.e. $\overline{I_{n,in}^2} = \dfrac{G_{m1}^2\overline{V_{n1}^2}}{4} + \dfrac{\overline{V_{n2}^2}}{4R_0^2}$ ≈ $G_{m1}^2\overline{V_{n1}^2}/4$ only when $G_{m1}^2R_0^2\overline{V_{n1}^2} \gg \overline{V_{n2}^2}$ (the $V_{n2}$ part of the current is fully correlated with $V_{n,in}$).
+
+- Input shorted (zero differential input voltage): the output currents of $G_{m1}$ flow into the short and cannot reach the output, so only $G_{m2}$'s noise appears, exactly as an input voltage: $V_{n,in} = V_{n2}$.
+- Input open: divide the open-input output noise by the closed-loop transimpedance. With $A_1 = G_{m1}R_0$, $A_2 = G_{m2}Z_L$, $Z_L = R_0\|(1/sC_1)$, $L = A_1A_2$: $V_{out,n} = A_2(V_{n2} - A_1V_{n1})/(1+L)$ and $Z_t = 2R_0A_2/(1+L)$ (differential port current entering one input node and leaving the other, port resistance $2R_0$ before feedback), so $I_{n,in} = V_{n2}/(2R_0) - G_{m1}V_{n1}/2$; the $(1+L)$ and $Z_L$ factors cancel. Equivalently, $G_{m1}$'s noise is a Norton current $G_{m1}V_{n1}/2$ into the input nodes (open-loop it would develop $G_{m1}R_0V_{n1}$ across the $2R_0$; the actual closed-loop port voltage is that divided by $1+L$). The sign of the $V_{n1}$ term is a polarity convention.
+- $C_1$ does not enter the input-referred quantities.
+- If $G_m$ is instead defined by the differential output current ($I_{out,d} = G_mV_{in,d}$), the current term becomes $G_{m1}V_{n1}$ (only the factor of 2 changes).
+
+## Grading notes
+
++2: $V_{n,in} = V_{n2}$ (with the reason that $G_{m1}$'s noise is shorted at the input) and $I_{n,in} \approx G_{m1}V_{n1}/2$ (or $G_{m1}V_{n1}$ with a stated differential-current definition of $G_m$), the correlated term $V_{n2}/(2R_0)$ included, or neglected with a stated condition (e.g. $G_{m1}R_0 \gg 1$ with comparable $V_{n1}$, $V_{n2}$). The sign of the $V_{n1}$ term is a polarity convention. +1: both main terms right but the $V_{n2}$ contribution to the current mishandled or dropped without any justification, or the factor of 2 inconsistent with the stated definitions. 0: one of the two right, including an answer whose $V_{n,in}$ wrongly contains $V_{n1}$ but whose $I_{n,in}$ (open-input method) is right up to the factor-of-2 convention. -2 (asserted as fact): $V_{n,in}$ containing $V_{n1}$ (e.g. $V_{n1} + V_{n2}$ or $V_{n1}G_{m1}/G_{m2}$) together with a wrong or missing $I_{n,in}$, or noise claimed to be reduced by the loop gain. The open-circuit (Thevenin) port noise voltage, which contains $V_{n1}$ and the factor $1/(1+L)$, is not the input-referred noise voltage; an answer giving only port Thevenin/Norton values for the voltage earns credit only for a correct current part.

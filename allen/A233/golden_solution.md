@@ -1,0 +1,13 @@
+# Golden Solution - A233
+
+## Reference answer
+
+$A_v \approx -\dfrac{g_{m1}}{g_{ds3}} = -\sqrt{\dfrac{2K'_NW_1}{L_1I_D\lambda_P^2}} \propto I_D^{-1/2}$; $R_{out} \approx r_{ds3} = \dfrac{1}{\lambda_PI_D} \propto I_D^{-1}$; $|p_1| \approx \dfrac{g_{ds3}}{C_{out}} \propto I_D$.
+
+- General form: $R_{out} = r_{ds3} \parallel R_N$ with $R_N = r_{ds1} + r_{ds2} + g_{m2}r_{ds1}r_{ds2}$, and $A_v = -g_{m1}R_{out}\,(g_{m2}+g_{ds2})/(g_{m2}+g_{ds1}+g_{ds2}) \approx -g_{m1}(r_{ds3} \parallel g_{m2}r_{ds1}r_{ds2})$.
+- The cascode raises the resistance of the M1–M2 branch to $g_{m2}r_{ds1}r_{ds2} \propto I_D^{-3/2}$. Its ratio to the load is $R_N/r_{ds3} \approx g_{m2}r_{ds2}\,\lambda_P/\lambda_N \gg 1$ for any comparable $\lambda_P$, $\lambda_N$ (the book's standard device data have $\lambda_P$ = 0.05 V⁻¹ > $\lambda_N$ = 0.04 V⁻¹, giving a ratio of order $10^2$), so $r_{ds3}$ sets $R_{out}$ and the output behaves like that of the current-source inverter: $g_m \propto \sqrt{I_D}$ over $g_{ds3} \propto I_D$. The other limit ($R_N \ll r_{ds3}$: $R_{out} \propto I_D^{-3/2}$, $|A_v| \propto I_D^{-1}$, $|p_1| \propto I_D^{3/2}$) would need $\lambda_P < \lambda_N/(g_{m2}r_{ds2})$, i.e. a load device far longer than the input devices, which nothing in the question suggests.
+- The output pole is dominant because the output carries the large resistance and the stated load capacitance; the non-dominant pole at the cascode node ($\approx g_{m2}/C_1$) is higher by about $g_{m2}R_{out}C_{out}/C_1 \gg 1$ and rises as $\sqrt{I_D}$.
+
+## Grading notes
+
++2: gain ∝ $I_D^{-1/2}$ with $-g_{m1}/g_{ds3}$ (or the explicit form, or the general $-g_{m1}(r_{ds3} \parallel R_N)$ reduced to it), $R_{out}$ ∝ $1/I_D$, $|p_1|$ ∝ $I_D$. An answer that also gives the cascode-limited scalings as a conditional limit with the correct condition is not docked, provided it concludes that the $r_{ds3}$-limited set applies for ordinary (comparable-λ) devices. +1: proportionalities right, gain formula missing or with a slip; or the general formulas right and both limits given with the correct condition, with the $r_{ds3}$-limited set only described as the usual or likely case rather than concluded. 0: two of three; or both sets of scalings given with the condition but no indication which applies. −2 (asserted as fact): $R_{out}$ ∝ $I_D^{-3/2}$ for this circuit (the cascode branch is not the dominant resistance), gain ∝ $I_D^{-1}$, or gain increasing with $I_D$. An answer that offers both sets without the condition, favours the cascode-branch set, or reaches the right set only through a wrong model (e.g. $R_{out} \approx r_{ds2}\|r_{ds3}$) is −1 if hedged, −2 if asserted.

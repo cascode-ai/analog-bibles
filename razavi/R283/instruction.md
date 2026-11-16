@@ -1,0 +1,1 @@
+Determine the corner frequency resulting from $C_{in}$ in the circuit shown in [Fig. 1]. For simplicity, assume $C_1$ is a short circuit. $I_1$ is an ideal current source, the input is driven by an ideal voltage source, and both transistors are saturated. Express the result in terms of $g_{m1}$, $g_{m2}$, $r_{O1}$, $r_{O2}$, $R_F$ and $C_{in}$.

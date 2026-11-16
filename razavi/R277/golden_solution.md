@@ -1,0 +1,18 @@
+# Golden Solution - R277
+
+## Reference answer
+
+- $t = 0^+$: $V_P = V_X \approx 2.2 - \sqrt{2I_{SS}/[\mu_pC_{ox}(W/L)_3]}$ (≈ 1.7 V for usual sizes) > 1.5 V − $V_{TH}$, so $M_1$ and $M_2$ are off. The whole $I_{SS}$ flows from the diode $M_3$ through $C_1$, so $V_X = V_{DD} - 0.8 - \sqrt{2I_{SS}/[\mu_pC_{ox}(W/L)_3]}$. $M_4$ has a large $V_{SG}$ but no path for current ($M_2$ off), so it sits in triode with zero current: $V_Y = V_{DD}$. This cut-off start holds whenever that initial $V_X$ is above the turn-on level 0.66 V, i.e. PMOS final overdrive $\sqrt{I_{SS}/[\mu_pC_{ox}(W/L)_3]} \lesssim 1.09$ V, which any sensible 3-V design satisfies. Otherwise $M_2$ conducts from the start and there is no initial plateau.
+- Phase 1: $C_1$ charges at $I_{SS}/C_1$; $V_X$ stays constant while $V_P$ falls linearly.
+- When $V_P$ reaches $1.5 - V_{TH}(V_P)$ (≈ 0.66 V with the given body effect, $V_{TH} \approx 0.84$ V), $M_1$ and $M_2$ turn on. The capacitor current decays as the pair takes over $I_{SS}$, with time constant ≈ $\tfrac{C_1}{2}\left[1/g_{m3} + 1/(g_{m1}+g_{mb1})\right]$ (since $V_X$ rises while $V_P$ falls). $M_3$'s current drops from $I_{SS}$ to $I_{SS}/2$, so $V_X$ rises to its final $V_{DD} - 0.8 - \sqrt{I_{SS}/[\mu_pC_{ox}(W/L)_3]}$.
+- $V_Y$: Y has no capacitance, so $|I_{D4}| = I_{D2}$ at all times. While the capacitor current flows, $M_4$'s saturation current (a copy of $M_3$'s) exceeds what $M_2$ sinks. $M_4$ therefore stays in triode with Y close to $V_{DD}$, sinking slightly as $I_{D2}$ grows. Once the capacitor current has nearly died out, $M_4$ leaves triode and $V_Y$ drops (continuously, but fairly steeply) to its balanced value ≈ $V_X$.
+- Final: $V_X = V_Y = V_{DD} - |V_{GS3}|(I_{SS}/2)$, $V_P = 1.5 - V_{GS1}(I_{SS}/2)$, $C_1$ holding $V_X - V_P$.
+- Transient simulation (square law, $I_{SS}$ = 200 μA, NMOS 10/0.5, PMOS 20/0.5 with Razavi's 0.5-μm $\mu C_{ox}$, $\lambda_n$ = 0.1, $\lambda_p$ = 0.2 V⁻¹, $C_1$ = 1 pF): $V_X$ = 1.74 V and $V_Y$ = 3 V while $V_P$ ramps down at 0.2 V/ns, starting from 1.74 V. The pair turns on at $V_P$ ≈ 0.66 V ($t$ ≈ 5.4 ns). $V_X$ then rises to 1.87 V with τ ≈ 1.3–1.5 ns. $V_Y$ = 2.97, 2.79, 2.39, 2.03, 1.88 V at 6, 8, 9.5, 11, 14.5 ns, settling at 1.87 V. $V_P$ ends at 0.45 V.
+
+## Grading notes
+
++2: initial state with $M_1$, $M_2$ off, $I_{SS}$ flowing through $C_1$ and $M_3$ (lower initial $V_X$), and $V_Y = V_{DD}$; linear charging until the pair turns on; then $V_X$ rising to its normal value and $V_Y$ dropping from (near) $V_{DD}$ to ≈ $V_X$. Describing $V_Y$ as easing down slightly before the main drop, or the drop as gradual, is fine. An answer that explicitly states the sizing condition for the cut-off start and also gives the conducting-from-the-start branch for extreme sizes is correct.
++1: correct phases with the initial $V_X$ level wrong (e.g. taken at $I_{SS}/2$), or $V_Y$'s late drop missing. An error only in the body-effect term (e.g. $2|\phi_F|$ taken as 0.45 V, moving the turn-on $V_P$ by a few tens of mV) does not change any phase, level or trend: +1 if everything else is right.
+0: final state right but the initial phase missed. This includes asserting, for normal sizing, that $M_2$ conducts at $t = 0^+$ with $V_Y$ falling from the start.
+-2 (asserted as fact): $V_X$ constant throughout and $V_Y$ falling at $t = 0$ ($M_1$, $M_2$ assumed on, with no phase structure); $C_1$ read as connected between X and Y or to ground; or a final $V_Y$ near 0.
+The phase-2 time constant is not required. An estimate that neglects the motion of $V_X$ (e.g. $C_1/(2g_{m1})$) is at most a minor imprecision.

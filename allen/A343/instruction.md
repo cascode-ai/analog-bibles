@@ -1,0 +1,1 @@
+For the class AB, differential-output op amp using a cross-coupled differential-input stage shown in [Fig. 1], assume $g_{mN} = g_{mP}$ (= $g_m$), $r_{dsN} = r_{dsP}$ (= $r_{ds}$), and 1:1 current mirrors. Find the differential voltage gain and the differential output resistance.

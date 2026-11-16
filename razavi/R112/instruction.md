@@ -1,0 +1,1 @@
+Assuming all MOSFETs are in saturation, calculate the small-signal voltage gain of the circuit shown in [Fig. 1] ($\lambda \ne 0$, $\gamma = 0$). Express the result in terms of $g_{m1}$, $g_{m2}$, $r_{O1}$ and $r_{O2}$.

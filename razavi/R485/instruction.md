@@ -1,0 +1,3 @@
+Consider the amplifier shown in [Fig. 1], where $(W/L)_{1-4} = 50/0.5$, $I_{SS} = I_1 = 0.5$ mA, and $M_3$ (gate at $V_b$) is a current source carrying $I_{SS}/2$; $V_{DD} = 3$ V. Estimate the poles at nodes X and Y by multiplying the small-signal resistance and capacitance to ground. Assume that $C_X = C_Y = 0.5$ pF and neglect all other capacitances. What is the phase margin for unity-gain feedback?
+
+Device data: NMOS $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $\lambda = 0.1\ \mathrm{V^{-1}}$; PMOS $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$, $\lambda = 0.2\ \mathrm{V^{-1}}$. Neglect body effect; all transistors are in saturation.

@@ -1,0 +1,1 @@
+Use intuitive (inspection) analysis methods to find the small-signal resistances looking into the sources of the cascode transistors MC1 and MC2 of the cascoded differential stage shown in [Fig. 1], assuming that the output $v_{o1}$ is short-circuited to ac ground. Express the results in terms of the small-signal parameters ($g_m$, $r_{ds}$) of the transistors.

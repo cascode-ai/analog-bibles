@@ -1,0 +1,1 @@
+Consider the transimpedance amplifier shown in [Fig. 1], where $R_D = 1$ kΩ, $R_F = 10$ kΩ, $g_{m1} = g_{m2} = 1/(100\ \Omega)$, $C_X = C_Y = 100$ fF; all other capacitances are neglected and $\lambda = \gamma = 0$. If the phase margin required of the amplifier is 45°, what is the maximum value of $C_A$ while the other two capacitances remain constant?

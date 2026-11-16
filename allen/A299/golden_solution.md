@@ -1,0 +1,16 @@
+# Golden Solution - A299
+
+## Reference answer
+
+Six poles (the usual differential-mode count, with the M1/M2 common-source tail node taken as ac ground; a seventh, tail-node mode is listed at the end):
+- Output (dominant): $R_{out} = (g_{m9}r_{ds9}r_{ds11})\,\|\,[g_{m7}r_{ds7}(r_{ds2}\|r_{ds5})] = 400\ \mathrm{M\Omega}\,\|\,33.3\ \mathrm{M\Omega} = 30.8$ MΩ → $p_{out} = -1/(R_{out}C_L) = -3.25\times10^3$ rad/s (517 Hz; −3.1×10³ rad/s with the $r_{ds}$ additive terms).
+- Node A (drains of M1, M4; source of M6): $p_A \approx -g_{m6}/(C_{gs}+2C_{bd}) = -50\,\mu/120\,\mathrm{f} = -4.17\times10^8$ rad/s.
+- Node B (drains of M2, M5; source of M7): $p_B \approx -g_{m7}/(C_{gs}+2C_{bd}) = -4.17\times10^8$ rad/s.
+- Drain of M6 (= drain of M8, gates of M10 and M11): $p_6 \approx -g_{m10}/(2C_{gs}+2C_{bd}) = -100\,\mu/220\,\mathrm{f} = -4.55\times10^8$ rad/s.
+- Source of M8 (drain of M10): standard estimate $p_8 \approx -g_{m8}/(C_{gs}+C_{bd}) = -100\,\mu/110\,\mathrm{f} = -9.09\times10^8$ rad/s. The low-frequency resistance at this node, ≈ $1/(g_{m8}r_{ds8}g_{m10})$ = 50 Ω (local feedback through the M10 gate), must not be used for the pole: that feedback needs the M6/M8 drain node to swing, and its own 220 fF removes the loop gain above ≈ 4.5×10⁸ rad/s. Solving nodes 6 and 8 together gives a complex pair ≈ $(-4.65 \pm j4.51)\times10^8$ rad/s, $|p| \approx \sqrt{g_{m8}g_{m10}/(C_6C_8)} \approx 6.4\times10^8$ rad/s, in place of the separate estimates $p_6$ and $p_8$; there is no pole of order 10¹¹ rad/s.
+- Source of M9 (drain of M11): $p_9 \approx -g_{m9}/(C_{gs}+C_{bd}) = -9.09\times10^8$ rad/s.
+A full six-node solution (tail node at ac ground, $C_{gd}$ neglected) gives −3.10×10³, −4.33×10⁸, −4.38×10⁸, $(-4.65 \pm j4.51)\times10^8$ and −9.18×10⁸ rad/s. All nondominant poles are near or above 4×10⁸ rad/s (≈ 66 MHz), far above $GB$ ≈ $g_{m1}/C_L$ = 10⁷ rad/s. Keeping the tail node (210 fF, ≈ $2g_{mN}$ = 200 µS) adds a seventh mode at ≈ −9.67×10⁸ rad/s and shifts the folding poles slightly: −3.10×10³, −4.27×10⁸, −4.36×10⁸, $(-4.65 \pm j4.51)\times10^8$, −9.18×10⁸, −9.67×10⁸ rad/s (numerical nodal solution). In $v_{out}/v_{in}$ the tail mode, the M9-source pole and one folding pole are almost exactly cancelled by nearby zeros (doublets within < 1 %).
+
+## Grading notes
+
+Six poles, about equal weight. Both the six-node answer (tail at ac ground) and a seven-node answer that adds the tail mode (≈ −9.5 to −9.7×10⁸ rad/s) are fully acceptable; describing the near pole–zero doublets as cancellation is not an error. +2: all six within ±10% of the standard estimates ($p_{out}$ ≈ −3.1 to −3.25×10³, $p_A = p_B$ ≈ −4.17×10⁸, $p_6$ ≈ −4.55×10⁸, $p_8 = p_9$ ≈ −9.09×10⁸ rad/s); a coupled solution that gives $p_6$ and $p_8$ as a complex pair near $(-4.65 \pm j4.5)\times10^8$ rad/s is also +2. +1: one pole off, e.g. $p_6$ = −9.1×10⁸ rad/s by counting only one gate and one drain at that node, or $p_{out}$ with a slip. $p_8$ of order 10¹¹ rad/s from the low-frequency resistance $1/(g_{m8}r_{ds8}g_{m10})$ is a wrong model for that pole: one pole wrong, at most 0. 0: about half right. −2 (asserted as fact): $p_{out}$ computed with a single $r_{ds}$ (≈ 10⁵ rad/s) or the dominant pole placed at an internal node, or nondominant poles of order $1/(r_{ds}C)$.

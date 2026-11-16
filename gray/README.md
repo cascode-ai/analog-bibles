@@ -412,9 +412,34 @@
 - [G431](G431/instruction.md)
 - [G432](G432/instruction.md)
 
-## 困难 Hard（1）
+## 困难 Hard（26）
 
+- [G011](G011/instruction.md)
+- [G083](G083/instruction.md)
+- [G134](G134/instruction.md)
+- [G135](G135/instruction.md)
+- [G136](G136/instruction.md)
+- [G137](G137/instruction.md)
+- [G138](G138/instruction.md)
+- [G141](G141/instruction.md)
+- [G142](G142/instruction.md)
+- [G159](G159/instruction.md)
+- [G168](G168/instruction.md)
+- [G169](G169/instruction.md)
 - [G177](G177/instruction.md)
+- [G182](G182/instruction.md)
+- [G260](G260/instruction.md)
+- [G261](G261/instruction.md)
+- [G264](G264/instruction.md)
+- [G266](G266/instruction.md)
+- [G284](G284/instruction.md)
+- [G285](G285/instruction.md)
+- [G287](G287/instruction.md)
+- [G308](G308/instruction.md)
+- [G370](G370/instruction.md)
+- [G371](G371/instruction.md)
+- [G374](G374/instruction.md)
+- [G380](G380/instruction.md)
 
 ## 仿真 Simulation（85）
 

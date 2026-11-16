@@ -1,0 +1,3 @@
+It is possible to use the bulk terminal of PMOS devices as an input. Consider the amplifier shown in [Fig. 1]: the input $V_{in}$ is applied to the n-wells (bulks) of $M_1$ and $M_2$ (dotted connections), whose sources are at $V_{DD}$ and whose gates are held at the bias voltage $V_{b1}$; $M_3$ and $M_4$ are NMOS current sources biased by $V_{b2}$. Calculate the input-referred thermal noise voltage and compare the result with that of a regular (gate-driven) PMOS differential pair having NMOS current-source loads, at the same bias currents. Model the channel thermal noise of each MOSFET as a drain noise current of density $4kT\gamma_n g_m$ with $\gamma_n = 2/3$.
+
+Device data: PMOS $V_{TH0} = -0.8$ V, body-effect coefficient $0.4\ \mathrm{V^{1/2}}$, $2|\phi_F| = 0.8$ V.
