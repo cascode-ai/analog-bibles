@@ -169,6 +169,31 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     assert.match(await b.evaluate('document.getElementById("item").textContent'), /没有符合条件/);
   });
 
+  await t.test("textbook search works together with Review, focus reading and the Browse feed", async () => {
+    await b.viewport(1440,960);
+    async function search(query) {
+      await b.evaluate(`(() => { const input=document.getElementById('search'); input.value=${JSON.stringify(query)}; input.dispatchEvent(new Event('input',{bubbles:true})); })()`);
+      await b.waitFor(`state.search === ${JSON.stringify(query)}`);
+      return b.evaluate('state.cards.map(q => q.id).sort()');
+    }
+    for (const url of ["/review?scope=random&id=R050&lang=en", "/browse?scope=random&id=R050&view=focus&lang=en", "/browse?scope=random&id=R050&lang=en"]) {
+      await b.open(url);
+      assert.deepEqual(await search("Allen 5.3-3"), ["A168"]);
+      assert.deepEqual(await search("ALLEN PROBLEMS 5.3-3"), ["A168"]);
+      assert.deepEqual(await search("razavi problems 7.6"), ["R333","R334","R335","R336","R337","R338"]);
+      if (url.includes("review") || url.includes("view=focus")) await split();
+      else assert.equal(await b.evaluate('getComputedStyle(document.querySelector(".question-panel")).overflowY'), "visible");
+      assert.deepEqual(await search("Razavi 7.600"), []);
+      assert.equal(await b.evaluate('document.querySelector(".cols") === null'), true);
+      await click('[data-kind="scope"][data-key="allen"]');
+      assert.deepEqual(await search("5.3-3"), ["A168"]);
+      assert.deepEqual(await search("a168"), ["A168"]);
+      assert.ok((await search("MOSFET")).length > 0);
+      await b.waitFor('searchText !== null');
+      assert.equal(await b.evaluate('state.cards.every(q => searchText[q.id].includes("mosfet"))'), true);
+    }
+  });
+
   await t.test("sidebar folding expands reading space, persists, and keeps search accessible", async () => {
     await b.viewport(1440,960);
     await b.open("/review?scope=razavi&id=R050&lang=en");

@@ -11,7 +11,7 @@ const STRINGS = {
     review: "Review",
     reviewTitle: "For maintainers: pass, report issues, comment",
     switchLang: "切换到中文",
-    search: "Search ID or question text (/)",
+    search: "Search ID, textbook problem or text (/)",
     book: "Book",
     difficulty: "Difficulty",
     status: "Status",
@@ -104,7 +104,7 @@ const STRINGS = {
     review: "审阅",
     reviewTitle: "给维护者：通过、报错、评论",
     switchLang: "Switch to English",
-    search: "搜索题号或题目文字（/）",
+    search: "搜索内部 ID、教材题号或题目文字（/）",
     book: "教材",
     difficulty: "难度",
     status: "状态",
@@ -370,8 +370,18 @@ function matches(q, { scope = state.scope, level = state.level, status = state.s
   if (status === "notes" && !(s && s[2])) return false;
   if (state.search) {
     const needle = state.search.toLowerCase();
-    const text = q.t !== undefined ? q.t.toLowerCase() : searchText?.[q.id] || "";
-    if (!q.id.toLowerCase().includes(needle) && !text.includes(needle)) return false;
+    // Textbook references use the light index's metadata, without needing
+    // the question texts. Match complete numbers so 7.6 cannot find 7.60;
+    // a base number includes its parenthesized subparts.
+    const problem = needle.match(/^(?:(razavi|gray|allen)\s+(?:problems?\s+)?)?((?:\d+(?:[.-]\d+)+|a-\d+)(?:\s*\(.*\))?)$/);
+    if (problem) {
+      if (problem[1] && q.book !== problem[1]) return false;
+      const exercise = q.ex.toLowerCase();
+      if (exercise !== problem[2] && exercise.replace(/\s*\(.*$/, "") !== problem[2]) return false;
+    } else {
+      const text = q.t !== undefined ? q.t.toLowerCase() : searchText?.[q.id] || "";
+      if (!q.id.toLowerCase().includes(needle) && !text.includes(needle)) return false;
+    }
   }
   return true;
 }
