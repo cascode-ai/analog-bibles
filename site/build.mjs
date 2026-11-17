@@ -1,6 +1,11 @@
 // Writes dist/: the review page, index.json, and q/<id>/ for every question.
+// For a fast page it also writes content-hashed files that browsers may cache
+// for good (see _headers below): the page's script and stylesheet, a light
+// index without the question texts, the texts for the search box apart, and
+// one b/<id>.<hash>.json per question with all its Markdown files.
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const dist = path.join(root, "dist");
@@ -24,6 +29,9 @@ const diagrams = (dir, files) => {
   return Object.keys(out).length ? out : undefined;
 };
 
+const hash = (data) => crypto.createHash("sha256").update(data).digest("hex").slice(0, 10);
+fs.mkdirSync(path.join(dist, "b"), { recursive: true });
+
 const index = [];
 for (const book of books) {
   for (const [level, ids] of Object.entries(difficulty[book])) {
@@ -31,7 +39,16 @@ for (const book of books) {
       const dir = path.join(root, book, id);
       const files = fs.readdirSync(dir).sort();
       fs.cpSync(dir, path.join(dist, "q", id), { recursive: true });
+      // Every file of the question goes into its hash, so a changed figure or
+      // diagram gets a new address too (the page asks for /q/ files with ?v=).
+      const h = crypto.createHash("sha256");
+      for (const f of files) h.update(f).update("\0").update(fs.readFileSync(path.join(dir, f))).update("\0");
+      const v = h.digest("hex").slice(0, 10);
+      const md = {};
+      for (const f of files) if (f.endsWith(".md")) md[f] = fs.readFileSync(path.join(dir, f), "utf8");
+      fs.writeFileSync(path.join(dist, "b", `${id}.${v}.json`), JSON.stringify(md));
       index.push({
+        v,
         id,
         book,
         level,
@@ -66,5 +83,43 @@ index.sort((a, b) => {
   if (ka !== kb) return ka - kb;
   return va < vb ? -1 : va > vb ? 1 : 0;
 });
+// The full index stays at /index.json for anyone who reads it directly.
 fs.writeFileSync(path.join(dist, "index.json"), JSON.stringify(index));
-console.log(`dist/: ${index.length} questions`);
+
+// The page loads a light index (no question texts: they are most of the
+// bytes) and fetches the texts only when someone searches.
+const light = JSON.stringify(index.map(({ t, ...rest }) => rest));
+const search = JSON.stringify(Object.fromEntries(index.map((q) => [q.id, q.t.toLowerCase()])));
+const files = {
+  index: `/assets/index.${hash(light)}.json`,
+  search: `/assets/search.${hash(search)}.json`,
+};
+fs.mkdirSync(path.join(dist, "assets"), { recursive: true });
+fs.writeFileSync(path.join(dist, files.index.slice(1)), light);
+fs.writeFileSync(path.join(dist, files.search.slice(1)), search);
+
+// The script and stylesheet under content-hashed names, and the page pointing
+// at them. The page starts fetching the index before its scripts have run.
+let html = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+for (const name of ["app.js", "style.css"]) {
+  const data = fs.readFileSync(path.join(dist, name));
+  const [base, ext] = name.split(".");
+  const hashed = `/assets/${base}.${hash(data)}.${ext}`;
+  fs.writeFileSync(path.join(dist, hashed.slice(1)), data);
+  html = html.replace(`"/${name}"`, `"${hashed}"`);
+}
+const boot = `<script>window.AB=${JSON.stringify(files)};` +
+  `AB.indexP=fetch(AB.index).then((r)=>{if(!r.ok)throw new Error(r.status);return r.json()});AB.indexP.catch(()=>{});</script>`;
+html = html.replace("<meta charset=\"utf-8\">", `<meta charset="utf-8">\n${boot}\n<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>`);
+fs.writeFileSync(path.join(dist, "index.html"), html);
+
+// Hashed files never change under their name; the page itself is always
+// checked. /q/ files are asked for with ?v=<hash>, but may be linked bare.
+fs.writeFileSync(path.join(dist, "_headers"), `/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/b/*
+  Cache-Control: public, max-age=31536000, immutable
+/q/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=604800
+`);
+console.log(`dist/: ${index.length} questions; light index ${(light.length / 1024).toFixed(0)} KB (full ${(JSON.stringify(index).length / 1024).toFixed(0)} KB)`);

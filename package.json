@@ -9,6 +9,6 @@
     "deploy": "node site/build.mjs && wrangler deploy"
   },
   "devDependencies": {
-    "wrangler": "3.114.0"
+    "wrangler": "4.163.0"
   }
 }
