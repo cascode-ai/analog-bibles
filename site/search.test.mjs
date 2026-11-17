@@ -24,7 +24,7 @@ function app(fetchResponse = () => new Promise(() => {})) {
     localStorage: { getItem() { return null; }, setItem() {} },
     crypto: { randomUUID() { return "test-client"; } },
     document: {
-      body: { dataset: {} }, documentElement: {},
+      body: { dataset: {}, classList: { toggle() {} } }, documentElement: {},
       getElementById() { return element; },
       querySelectorAll() { return []; }, addEventListener() {},
     },

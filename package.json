@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "npm run build && node --test site/search.test.mjs",
+    "test": "npm run build && node --test site/search.test.mjs site/reading.test.mjs",
     "build": "node site/build.mjs",
     "dev": "node site/build.mjs && wrangler dev",
     "db:init": "wrangler d1 execute analog-bibles --remote --file site/schema.sql",
