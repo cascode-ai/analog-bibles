@@ -26,6 +26,10 @@
   </button>
 </header>
 <div class="layout">
+  <div class="sidebar-shell">
+    <button type="button" id="sidebar-toggle" aria-controls="side" aria-expanded="true" aria-label="Collapse sidebar" title="Collapse sidebar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
   <aside class="side" id="side">
     <input id="search" class="search" type="search" data-i18n-ph="search" placeholder="Search ID or question text (/)" autocomplete="off">
     <div class="group-title" data-i18n="book">Book</div>
@@ -41,9 +45,11 @@
     <p class="hint review-only" data-i18n="hintReview">Keys: ← → step · R random · P pass · 1–6 pick a reason · Enter submit</p>
     <p class="hint browse-only" data-i18n="hintBrowse">Keys: ← → step · R random · / search</p>
   </aside>
+  </div>
   <main class="main">
     <div class="toolbar">
       <div class="progress review-only" id="progress"></div>
+      <button type="button" id="reading-view" class="btn browse-only" aria-pressed="false">Focus reading</button>
       <span class="steps">
         <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
         <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>

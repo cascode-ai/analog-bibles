@@ -79,6 +79,11 @@ const STRINGS = {
     keyGo: "Enter review",
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
+    focus: "Focus reading",
+    listView: "Back to list",
+    solution: "Solution",
+    hideSidebar: "Collapse sidebar",
+    showSidebar: "Expand sidebar",
     showOriginal: "English original",
     showTranslation: "中文",
     prevCh: "Previous chapter (Shift+←)",
@@ -167,6 +172,11 @@ const STRINGS = {
     keyGo: "进入审阅",
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
+    focus: "专注阅读",
+    listView: "返回列表",
+    solution: "解答",
+    hideSidebar: "收起侧边栏",
+    showSidebar: "展开侧边栏",
     showOriginal: "查看英文原文",
     showTranslation: "查看中文译文",
     prevCh: "上一章 (Shift+←)",
@@ -243,6 +253,8 @@ const state = {
   level: LEVELS.includes(params.get("level")) ? params.get("level") : "all",
   status: mode === "review" && STATUSES.some((s) => s.key === params.get("status")) ? params.get("status") : "all",
   search: "",
+  focus: mode === "browse" && params.get("view") === "focus",
+  sidebarClosed: store.get("ab.sidebarClosed") === "1",
   cards: [],
   index: 0,
   flags: [],
@@ -262,7 +274,26 @@ function applyLanguage() {
   const button = $("lang-switch");
   button.title = t("switchLang");
   button.setAttribute("aria-label", t("switchLang"));
+  applySidebar();
 }
+
+function applySidebar() {
+  $("side").hidden = state.sidebarClosed;
+  document.body.classList.toggle("sidebar-collapsed", state.sidebarClosed);
+  const button = $("sidebar-toggle");
+  const label = t(state.sidebarClosed ? "showSidebar" : "hideSidebar");
+  button.setAttribute("aria-expanded", String(!state.sidebarClosed));
+  button.setAttribute("aria-label", label);
+  button.title = label;
+}
+
+function setSidebar(closed) {
+  state.sidebarClosed = closed;
+  store.set("ab.sidebarClosed", closed ? "1" : "0");
+  applySidebar();
+}
+
+$("sidebar-toggle").addEventListener("click", () => setSidebar(!state.sidebarClosed));
 
 $("lang-switch").addEventListener("click", () => {
   lang = lang === "en" ? "zh" : "en";
@@ -270,7 +301,7 @@ $("lang-switch").addEventListener("click", () => {
   applyLanguage();
   if (state.keyPrompt !== null) askForKey(state.keyPrompt);
   else if (!state.ready) syncUrl();
-  else if (mode === "review") renderItem(true);
+  else if (mode === "review" || state.focus) renderItem(true);
   else {
     // The same place in the list, in the other language.
     const y = window.scrollY;
@@ -422,9 +453,12 @@ function syncUrl() {
   if (state.status !== "all") parts.push(`status=${state.status}`);
   if (q) parts.push(`id=${encodeURIComponent(q.id)}`);
   if (lang === "zh") parts.push("lang=zh");
-  history.replaceState(null, "", `/${mode}?${parts.join("&")}`);
+  const focusPart = mode === "browse" && state.focus ? "&view=focus" : "";
+  history.replaceState(null, "", `/${mode}?${parts.join("&")}${focusPart}`);
+  $("reading-view").textContent = t(state.focus ? "listView" : "focus");
+  $("reading-view").setAttribute("aria-pressed", String(state.focus));
   // The mode switch keeps the question, filters and language (status is review's own).
-  $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}`;
+  $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}${mode === "review" ? "&view=focus" : focusPart}`;
   $("mode-review").href = `/review?${parts.join("&")}`;
 }
 
@@ -435,13 +469,19 @@ let shownId = null;
 // keepFlags: a re-render of the same question (a language switch) keeps
 // the reasons picked and the note typed.
 async function renderItem(keepFlags = false) {
+  cardSizes.disconnect();
+  pin.el = null;
+  const reviewing = mode === "review";
+  document.body.classList.add("single-reading");
   renderSide();
   renderProgress();
   syncUrl();
   const q = state.cards[state.index];
   const item = $("item");
+  item.className = "item reader";
   if (!q) {
     shownId = null;
+    delete item.dataset.qid;
     item.innerHTML = `<p class="empty">${t("noMatch")}</p>`;
     return;
   }
@@ -452,14 +492,14 @@ async function renderItem(keepFlags = false) {
   const mine = state.mine[q.id];
   item.dataset.qid = q.id;
   item.innerHTML = `
-    ${cardHead(q, `
+    ${cardHead(q, reviewing ? `
       ${mine ? `<span class="mine-${mine}">${mine === "pass" ? t("youPassed") : t("youFlagged")}</span>` : ""}
-      <span class="stats">${t("stats", num(s[0]), num(s[1]), num(s[2]))}</span>`)}
-    ${reviewControls(mine)}
-    ${cardBody(q)}`;
+      <span class="stats">${t("stats", num(s[0]), num(s[1]), num(s[2]))}</span>` : "")}
+    ${reviewing ? reviewControls(mine) : ""}
+    ${cardBody(q, reviewing)}`;
   if ($("note")) $("note").value = note;
-  renderFlags();
-  if (await fillCard(item, q)) loadOthers(q.id);
+  if (reviewing) renderFlags();
+  if (await fillCard(item, q) && reviewing) loadOthers(q.id);
 }
 
 function cardHead(q, extra = "") {
@@ -472,16 +512,17 @@ function cardHead(q, extra = "") {
     </div>`;
 }
 
-function cardBody(q) {
+function cardBody(q, reviewing = false) {
   return `
     <div class="cols">
-      <section class="panel">
+      <section class="panel question-panel" tabindex="0" role="region" aria-label="${esc(t("question"))}">
         <h4>${t("question")}${lang === "zh" && q.zh ? ` <button type="button" class="orig-toggle">${t("showOriginal")}</button>` : ""}</h4>
         <div class="md q-question"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.figs.map((f, i) => picture(q, f, t("fig", i + 1))).join("")}</div>
       </section>
-      <section class="panel">
-        <h4>${t("answer")}</h4>
+      <section class="panel solution-panel" tabindex="0" role="region" aria-label="${esc(t("solution"))}">
+        <h4 class="solution-label">${t("solution")}</h4>
+        <h4 class="answer-label">${t("answer")}</h4>
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q, f, t("refFig"))).join("")}</div>
         ${q.sol ? `<details class="steps-sol">
@@ -489,6 +530,7 @@ function cardBody(q) {
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
         </details>` : ""}
         <details class="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
+        ${reviewing ? `<details class="others" id="others"><summary>${t("othersLoading")}</summary></details>` : ""}
       </section>
     </div>`;
 }
@@ -569,10 +611,14 @@ const feed = { start: 0, end: 0 };
 
 // Lays the list out again from the card at `from` (an index into cards).
 function renderFeed(from = 0) {
+  document.body.classList.remove("single-reading");
+  cardSizes.disconnect();
+  pin.el = null;
   renderSide();
   feed.start = feed.end = Math.max(0, Math.min(from, state.cards.length));
   const item = $("item");
   item.className = "feed";
+  delete item.dataset.qid;
   if (!state.cards.length) {
     item.innerHTML = `<p class="empty">${t("noMatch")}</p>`;
     state.index = 0;
@@ -599,7 +645,7 @@ function renderFeed(from = 0) {
 function onFeedScroll() {
   const sentinel = $("sentinel");
   const cards = $("cards");
-  if (mode !== "browse" || !sentinel || !cards) return;
+  if (mode !== "browse" || state.focus || !sentinel || !cards) return;
   if (!sentinel.hidden && sentinel.getBoundingClientRect().top < window.innerHeight + 1500) appendCards();
   // Near the top of a list that starts later in the book: the questions
   // before it load above, keeping the reader's place.
@@ -634,7 +680,7 @@ const pin = { el: null, top: 0, adjusting: false };
 
 function setPin() {
   const cards = $("cards");
-  if (mode !== "browse" || !cards) return;
+  if (mode !== "browse" || state.focus || !cards) return;
   let el = cards.firstElementChild;
   for (const card of cards.children) {
     if (card.getBoundingClientRect().top > 180) break;
@@ -669,7 +715,7 @@ function feedCard(at) {
   el.id = `card-${q.id}`;
   const params = [`scope=${state.scope}`, `id=${encodeURIComponent(q.id)}`];
   if (lang === "zh") params.push("lang=zh");
-  el.innerHTML = cardHead(q, `<a class="btn review-this" href="/review?${params.join("&")}" title="${esc(t("reviewThisTitle"))}">${t("reviewThis")}</a>`) + cardBody(q);
+  el.innerHTML = cardHead(q, `<button type="button" class="btn focus-this" data-focus-id="${esc(q.id)}">${t("focus")}</button><a class="btn review-this" href="/review?${params.join("&")}" title="${esc(t("reviewThisTitle"))}">${t("reviewThis")}</a>`) + cardBody(q);
   // Its text arrives later and makes it taller: look again for the list's end.
   fillCard(el, q).then(onFeedScroll);
   cardSizes.observe(el);
@@ -720,18 +766,20 @@ function renderPosition() {
   updatePosition();
 }
 
-// The list in browse mode, the single question in review mode.
+// Browse keeps its feed unless the reader opts into one-question focus mode.
 function render(from) {
-  if (mode === "browse") {
+  if (mode === "browse" && !state.focus) {
     renderFeed(from ?? 0);
     window.scrollTo({ top: 0 });
   } else {
     renderItem();
+    window.scrollTo({ top: 0 });
   }
 }
 
 function reviewControls(mine) {
   return `
+    <div class="review-controls">
     <div class="actions">
       <textarea class="note" id="note" rows="1" maxlength="2000" placeholder="${esc(t("notePh"))}"></textarea>
       <button type="button" class="btn pass${mine === "pass" ? " on" : ""}" id="pass" title="${esc(t("passTitle"))}">${t("pass")} <kbd>P</kbd></button>
@@ -741,7 +789,7 @@ function reviewControls(mine) {
       ${FLAGS.map((f) => `<button type="button" class="flag" data-flag="${f.key}"><kbd>${f.hotkey}</kbd>${esc(t(f.label))}</button>`).join("")}
     </div>
     <p class="message" id="message"></p>
-    <details class="others" id="others"><summary>${t("othersLoading")}</summary></details>`;
+    </div>`;
 }
 
 // Review mode without a working key: ask for it instead of the question.
@@ -874,7 +922,7 @@ async function submit(verdict) {
 
 function go(index) {
   if (!state.cards.length) return;
-  if (mode === "browse") return scrollToCard(index);
+  if (mode === "browse" && !state.focus) return scrollToCard(index);
   state.index = Math.max(0, Math.min(state.cards.length - 1, index));
   renderItem();
   window.scrollTo({ top: 0 });
@@ -885,7 +933,7 @@ function jumpRandom() {
   const pool = left.length ? left : state.cards.map((q, i) => [q, i]);
   if (!pool.length) return;
   const at = pool[Math.floor(Math.random() * pool.length)][1];
-  if (mode === "browse") render(at);
+  if (mode === "browse" && !state.focus) render(at);
   else go(at);
 }
 
@@ -957,6 +1005,15 @@ document.addEventListener("click", async (event) => {
     refilter(keep);
     // A new filter starts the list from its top.
     render(0);
+  } else if (target.id === "reading-view" || target.dataset.focusId) {
+    if (mode !== "browse") return;
+    if (target.dataset.focusId) {
+      const at = state.cards.findIndex((q) => q.id === target.dataset.focusId);
+      if (at < 0) return;
+      state.index = at;
+      state.focus = true;
+    } else state.focus = !state.focus;
+    render(state.index);
   } else if (target.classList.contains("orig-toggle")) {
     const card = target.closest("[data-qid]");
     const q = state.cards.find((each) => each.id === card.dataset.qid);
@@ -1020,7 +1077,7 @@ document.addEventListener("keydown", (event) => {
   else if (event.key === "r" || event.key === "R") jumpRandom();
   else if (reviewing && (event.key === "p" || event.key === "P")) submit("pass");
   else if (reviewing && event.key === "Enter" && state.flags.length) submit("issue");
-  else if (event.key === "/") { event.preventDefault(); $("search").focus(); }
+  else if (event.key === "/") { event.preventDefault(); setSidebar(false); $("search").focus(); }
   else return;
   event.preventDefault();
 });
@@ -1074,6 +1131,6 @@ $("author").addEventListener("change", (event) => store.set("ab.author", event.t
     refilter(wanted);
   }
   state.ready = true;
-  if (mode === "browse") renderFeed(wanted ? state.index : 0);
+  if (mode === "browse" && !state.focus) renderFeed(wanted ? state.index : 0);
   else renderItem();
 })();
