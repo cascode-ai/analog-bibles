@@ -1,0 +1,1 @@
+[图 1] 中的超 β（super-β）差分对（differential pair）（$I_{EE} = 1\ \mu$A；$\beta_1 = \beta_2 = 5000$；$r_{b1} = r_{b2} = 500\ \Omega$）的两个基极均由源电阻（source resistance）$R_S = 100$ MΩ 驱动，如图所示，信号 $v_s$ 与 $Q_1$ 的基极串联。忽略闪烁噪声（flicker noise）和电容效应，计算 1 kHz 带宽内折算到 $v_s$ 处的总等效输入噪声电压（equivalent input noise voltage）。取 $4kT = 1.66\times10^{-20}$ V·C、$q = 1.6\times10^{-19}$ C，$kT/q = 26$ mV。

@@ -1,0 +1,4 @@
+精确（考虑相关性的）低频分析：$R_{S(\text{opt})} \approx 1.63$ kΩ，$F_{\text{opt}} \approx 5.3$（≈ 7.2 dB）。忽略相关性的标准等效噪声发生器分析：$R_{S(\text{opt})} \approx 1.56$ kΩ，$F_{\text{opt}} \approx 3.4$（≈ 5.3 dB）。无论哪种方法，1-kΩ 发射极电阻都使最小噪声系数从约 2 dB 升高到约 5–7 dB。
+
+- 标准方法（串联反馈）：$\overline{v_i^2} = 4kT(r_b + 1/2g_m + R_E) + 2qI_BR_E^2 = 4kT(1106.5) + 1.28\times10^{-17} = 3.12\times10^{-17}$ V²/Hz；$\overline{i_i^2} = 2qI_B = 1.28\times10^{-23}$ A²/Hz（$I_B = 40\ \mu$A）。$R_{S(\text{opt})} = \sqrt{\overline{v_i^2}/\overline{i_i^2}} = 1.56$ kΩ，$F_{\text{opt}} = 1 + 2\sqrt{\overline{v_i^2}\,\overline{i_i^2}}/4kT = 3.41$。
+- 精确分析：同一基极电流噪声流过 $R_S + r_b + R_E$，因此令 $R_t = R_S + r_b + R_E$：总输入噪声 $= 4kT(R_S + r_b + R_E) + 2qI_BR_t^2 + 2qI_C(1/g_m + R_t/\beta)^2$，$F = 1 + [4kT(r_b+R_E) + 2qI_BR_t^2 + 2qI_C(1/g_m+R_t/\beta)^2]/(4kTR_S)$；数值求最小值得 $R_S \approx 1.63$ kΩ，$F = 5.31$（7.25 dB）。造成差别的正是被忽略的交叉项 $2\cdot2qI_BR_SR_E$。

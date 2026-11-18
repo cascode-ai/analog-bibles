@@ -1,0 +1,1 @@
+[图 1] 所示全差分（fully differential）两级运放每个输出端的摆幅极限是多少？所有晶体管取 $|V_{ov}| = 0.2$ V，$V_{tn} = -V_{tp} = 0.6$ V。假设 $V_{DD} = V_{SS} = 2.5$ V，$V_{ic} = 0$，$\gamma = 0$。假设由不限制输出摆幅的开关电容（switched-capacitor）共模反馈（common-mode feedback）驱动 $V_{cmc}$。直流共模输出电压 $V_{OC}$ 取何值时可获得最大的对称差分输出摆幅？此时 $V_{od} = V_{o1} - V_{o2}$ 的峰值是多少？

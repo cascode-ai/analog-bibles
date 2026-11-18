@@ -1,0 +1,1 @@
+对于 [图 1] 所示的全差分（fully differential）运放，所有晶体管都工作在有源区（active region），$|V_{ov}| = 0.1$ V，$I_{D5} = 100\ \mu$A（$I_{D1} = I_{D2} = |I_{D3}| = |I_{D4}| = 50\ \mu$A）。取 $V_{An} = 10$ V，$|V_{Ap}| = 20$ V（$r_o = |V_A|/|I_D|$），并忽略体效应（body effect）。共模控制（common-mode control，CMC）输入端为 $M_5$ 的栅极（$V_{cmc}$）。计算低频共模控制增益 $a_{cmc} = v_{oc}/v_{cmc}$（$v_{ic} = 0$），其中 $v_{oc} = (v_{o1} + v_{o2})/2$。

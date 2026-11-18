@@ -1,0 +1,1 @@
+对于 $I_C = 10\ \mu$A、$\beta_F = 100$、$r_b = 300\ \Omega$ 的双极晶体管（bipolar transistor），计算使噪声系数（noise figure）最小的源电阻（source resistance），以及相应的噪声系数（以分贝表示）。只考虑低频（无电容效应），并忽略闪烁噪声（flicker noise）。取 $4kT = 1.66\times10^{-20}$ V·C、$q = 1.6\times10^{-19}$ C，$kT/q = 26$ mV。
