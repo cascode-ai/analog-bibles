@@ -479,6 +479,7 @@ let shownId = null;
 // keepFlags: a re-render of the same question (a language switch) keeps
 // the reasons picked and the note typed.
 async function renderItem(keepFlags = false) {
+  disposeImageViews($("item"));
   cardSizes.disconnect();
   pin.el = null;
   const reviewing = mode === "review";
@@ -569,6 +570,7 @@ async function fillCard(el, q) {
     q.sol ? pick("detailed_solution") : "",
   ]).catch(() => [t("loadFailed"), t("loadFailed"), "", q.sol ? t("loadFailed") : ""]);
   if (!el.isConnected || el.dataset.qid !== q.id) return false;
+  disposeImageViews(el);
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
   el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? answerZh : body);
@@ -586,6 +588,7 @@ async function fillCard(el, q) {
   el.querySelector(".grading .md").innerHTML = renderMarkdown(grading);
   const selected = el.querySelector('[role="tab"][aria-selected="true"]');
   if (selected.hidden) selectSolutionTab(el.querySelector('[data-solution-tab="answer"]'));
+  prepareImageViews(el);
   return true;
 }
 
@@ -642,6 +645,7 @@ const feed = { start: 0, end: 0 };
 
 // Lays the list out again from the card at `from` (an index into cards).
 function renderFeed(from = 0) {
+  disposeImageViews($("item"));
   document.body.classList.remove("single-reading");
   cardSizes.disconnect();
   pin.el = null;
@@ -846,6 +850,381 @@ function picture(q, file, label) {
   const src = asset(q, file);
   return `<div><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(label)}" loading="lazy"></a><div class="pic-label">${esc(label)}</div></div>`;
 }
+
+// ---------- inline image reading ----------
+// Translations are measured in CSS pixels; scale is relative to the existing
+// fitted image, never to its natural pixel resolution. One observer and
+// delegated listeners serve all images, including diagrams in Markdown.
+const imageViews = new WeakMap();
+let imageGesture = null;
+let imageTouchGesture = null;
+let imageScrollMotion = null;
+const imageSizes = new ResizeObserver((entries) => {
+  for (const { target } of entries) {
+    const view = imageViews.get(target);
+    if (view && (view.width !== target.clientWidth || view.height !== target.clientHeight)) fitImage(view);
+  }
+});
+
+function disposeImageViews(root) {
+  if (!root) return;
+  if (imageScrollMotion && root.contains(imageScrollMotion.view.frame)) stopImageScroll();
+  for (const frame of root.querySelectorAll(".image-viewport")) {
+    const view = imageViews.get(frame);
+    if (imageGesture?.view === view) cancelImageGesture();
+    if (view) fitImage(view);
+    imageSizes.unobserve(frame);
+    imageViews.delete(frame);
+  }
+}
+
+function prepareImageViews(root) {
+  for (const img of root.querySelectorAll(".question-panel img, .solution-content img")) {
+    let frame = img.closest(".image-viewport");
+    if (!frame) {
+      const link = img.closest("a.pic");
+      const wrapper = document.createElement("div");
+      wrapper.className = "image-view";
+      frame = link || document.createElement(img.closest("a") ? "span" : "a");
+      (link || img).replaceWith(wrapper);
+      if (!link) {
+        frame.className = "pic";
+        frame.dataset.zoom = img.currentSrc || img.src;
+        if (frame.tagName === "A") frame.href = frame.dataset.zoom;
+        frame.append(img);
+      }
+      frame.classList.add("image-viewport");
+      wrapper.append(frame);
+      const selection = document.createElement("span");
+      selection.className = "image-selection";
+      selection.hidden = true;
+      selection.setAttribute("aria-hidden", "true");
+      frame.append(selection);
+      const controls = document.createElement("div");
+      controls.className = "image-controls";
+      controls.hidden = true;
+      controls.innerHTML = `<span class="image-scale"></span><span aria-hidden="true"> · </span><button type="button" data-image-fit title="${lang === "zh" ? "恢复适配大小" : "Restore fitted size"}">Fit</button>`;
+      wrapper.append(controls);
+    }
+    if (imageViews.has(frame)) continue;
+    img.draggable = false;
+    frame.title = lang === "zh" ? "滚轮或双指捏合缩放 · Shift + 拖动框选 · 双击恢复适配" : "Scroll or pinch to zoom · Shift + drag to select · Double-click to fit";
+    const view = { frame, img, scale: 1, x: 0, y: 0, suppressUntil: 0 };
+    imageViews.set(frame, view);
+    fitImage(view);
+    imageSizes.observe(frame);
+  }
+}
+
+function paintImage(view) {
+  const { frame, img, scale, x, y } = view;
+  img.style.transform = scale === 1 ? "" : `translate(${x}px, ${y}px) scale(${scale})`;
+  frame.dataset.scale = String(scale);
+  frame.classList.toggle("is-zoomed", scale > 1);
+  const controls = frame.parentElement.querySelector(".image-controls");
+  controls.hidden = scale === 1;
+  controls.querySelector(".image-scale").textContent = `${Math.round(scale * 100)}%`;
+}
+
+function fitImage(view, keepTouch = false) {
+  if (imageScrollMotion?.view === view) stopImageScroll();
+  if (imageGesture?.view === view) cancelImageGesture();
+  if (!keepTouch && imageTouchGesture?.view === view) cancelImageTouchGesture();
+  view.scale = 1;
+  view.x = view.y = 0;
+  view.suppressUntil = 0;
+  view.img.style.transform = "";
+  const rect = view.img.getBoundingClientRect();
+  const frame = view.frame.getBoundingClientRect();
+  view.base = { x: rect.left - frame.left, y: rect.top - frame.top, width: rect.width, height: rect.height };
+  view.width = view.frame.clientWidth;
+  view.height = view.frame.clientHeight;
+  paintImage(view);
+}
+
+function constrainImage(view) {
+  const { base, frame, scale } = view;
+  // In a letterboxed axis, keep the whole image inside the viewport without
+  // forcing it back to the center: that would break the pointer's anchor.
+  const clampAxis = (value, start, size, border, available) => size * scale <= available
+    ? Math.max(border - start, Math.min(border + available - start - size * scale, value))
+    : Math.max(border + available - start - size * scale, Math.min(border - start, value));
+  view.x = clampAxis(view.x, base.x, base.width, frame.clientLeft, frame.clientWidth);
+  view.y = clampAxis(view.y, base.y, base.height, frame.clientTop, frame.clientHeight);
+}
+
+function zoomImage(view, scale, point, destination = point) {
+  const next = Math.max(1, Math.min(12, scale));
+  if (next <= 1.00001) return fitImage(view, true);
+  const ratio = next / view.scale;
+  view.x = destination.x - view.base.x - (point.x - view.base.x - view.x) * ratio;
+  view.y = destination.y - view.base.y - (point.y - view.base.y - view.y) * ratio;
+  view.scale = next;
+  constrainImage(view);
+  paintImage(view);
+}
+
+function imagePoint(view, event) {
+  const rect = view.frame.getBoundingClientRect();
+  return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+}
+
+function cancelImageGesture() {
+  if (!imageGesture) return;
+  const { view, pointerId } = imageGesture;
+  imageGesture = null;
+  view.frame.classList.remove("is-panning", "is-selecting");
+  view.frame.querySelector(".image-selection").hidden = true;
+  if (view.frame.hasPointerCapture(pointerId)) view.frame.releasePointerCapture(pointerId);
+}
+
+// Own image gestures from the first contact: native scrolling cannot be
+// reclaimed reliably when the second finger arrives after the first moves.
+// At 100%, single-finger movement scrolls the enclosing reader (with inertia).
+function imageTouches(view, event) {
+  return [...event.touches].filter((touch) => view.frame.contains(touch.target));
+}
+
+function beginImageTouch(view, touches) {
+  const hadMultiple = touches.length >= 2 || !!imageTouchGesture?.hadMultiple;
+  const rect = view.frame.getBoundingClientRect();
+  if (touches.length >= 2) {
+    const [a, b] = touches;
+    imageTouchGesture = {
+      view, mode: "pinch", hadMultiple, rect, ids: [a.identifier, b.identifier],
+      distance: Math.max(4, Math.hypot(b.clientX - a.clientX, b.clientY - a.clientY)),
+      center: imagePoint(view, { clientX: (a.clientX + b.clientX) / 2, clientY: (a.clientY + b.clientY) / 2 }),
+    };
+  } else {
+    imageTouchGesture = { view, mode: view.scale > 1 ? "pan" : "scroll", hadMultiple, rect, id: touches[0].identifier,
+      start: imagePoint(view, touches[0]), x: view.x, y: view.y, moved: hadMultiple,
+      clientY: touches[0].clientY, lastTime: performance.now(), velocity: 0, scrollTarget: imageScrollTarget(view) };
+  }
+  view.frame.classList.add("is-touching");
+}
+
+function imageScrollTarget(view) {
+  for (let el = view.frame.parentElement; el && el !== document.body; el = el.parentElement) {
+    if (/(auto|scroll)/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight + 1) return el;
+  }
+  return document.scrollingElement;
+}
+
+function stopImageScroll() {
+  if (imageScrollMotion) cancelAnimationFrame(imageScrollMotion.id);
+  imageScrollMotion = null;
+}
+
+function coastImageScroll(gesture) {
+  if (Math.abs(gesture.velocity) < .1 || performance.now() - gesture.lastTime > 90) return;
+  const motion = { view: gesture.view, target: gesture.scrollTarget, velocity: Math.max(-2.5, Math.min(2.5, gesture.velocity)), last: performance.now() };
+  imageScrollMotion = motion;
+  const tick = (now) => {
+    if (imageScrollMotion !== motion || !motion.view.frame.isConnected) return stopImageScroll();
+    const elapsed = Math.min(32, now - motion.last);
+    motion.last = now;
+    const before = motion.target.scrollTop;
+    motion.target.scrollTop += motion.velocity * elapsed;
+    motion.velocity *= Math.exp(-elapsed / 160);
+    if (Math.abs(motion.velocity) < .025 || motion.target.scrollTop === before) return stopImageScroll();
+    motion.id = requestAnimationFrame(tick);
+  };
+  motion.id = requestAnimationFrame(tick);
+}
+
+function cancelImageTouchGesture() {
+  if (!imageTouchGesture) return;
+  imageTouchGesture.view.suppressUntil = performance.now() + 500;
+  imageTouchGesture.view.frame.classList.remove("is-panning", "is-touching");
+  imageTouchGesture = null;
+}
+
+document.addEventListener("touchstart", (event) => {
+  stopImageScroll();
+  const view = imageTouchGesture?.view || imageViews.get(event.target.closest(".image-viewport"));
+  if (!view || !view.base.width || !view.base.height) return;
+  const touches = imageTouches(view, event);
+  if (!touches.length) return;
+  if (event.cancelable) event.preventDefault();
+  cancelImageGesture();
+  beginImageTouch(view, touches);
+}, { passive: false });
+
+document.addEventListener("touchmove", (event) => {
+  const gesture = imageTouchGesture;
+  if (!gesture) return;
+  if (event.cancelable) event.preventDefault();
+  const { view } = gesture;
+  const touches = imageTouches(view, event);
+  if (gesture.mode === "pinch") {
+    const [a, b] = gesture.ids.map((id) => touches.find((touch) => touch.identifier === id));
+    if (!a || !b) return;
+    const distance = Math.hypot(b.clientX - a.clientX, b.clientY - a.clientY);
+    const center = { x: (a.clientX + b.clientX) / 2 - gesture.rect.left, y: (a.clientY + b.clientY) / 2 - gesture.rect.top };
+    // Incremental anchors respond immediately when reversing at a limit,
+    // instead of requiring fingers to retrace an overshot distance first.
+    zoomImage(view, view.scale * Math.max(4, distance) / gesture.distance, gesture.center, center);
+    gesture.distance = Math.max(4, distance);
+    gesture.center = center;
+  } else if (gesture.mode === "pan") {
+    const touch = touches.find((touch) => touch.identifier === gesture.id);
+    if (!touch) return;
+    const point = { x: touch.clientX - gesture.rect.left, y: touch.clientY - gesture.rect.top };
+    view.x = gesture.x + point.x - gesture.start.x;
+    view.y = gesture.y + point.y - gesture.start.y;
+    constrainImage(view);
+    paintImage(view);
+    view.frame.classList.add("is-panning");
+  } else if (gesture.mode === "scroll") {
+    const touch = touches.find((touch) => touch.identifier === gesture.id);
+    if (!touch) return;
+    const now = performance.now();
+    const delta = gesture.clientY - touch.clientY;
+    gesture.moved ||= Math.abs(touch.clientY - gesture.rect.top - gesture.start.y) > 5;
+    if (gesture.moved) {
+      gesture.scrollTarget.scrollTop += delta;
+      gesture.velocity = .25 * gesture.velocity + .75 * delta / Math.max(8, now - gesture.lastTime);
+      gesture.clientY = touch.clientY;
+      gesture.lastTime = now;
+    }
+  }
+  view.suppressUntil = performance.now() + 500;
+}, { passive: false });
+
+document.addEventListener("touchend", (event) => {
+  if (!imageTouchGesture) return;
+  if (event.cancelable) event.preventDefault();
+  const gesture = imageTouchGesture;
+  const view = gesture.view;
+  const remaining = imageTouches(view, event);
+  if (remaining.length) beginImageTouch(view, remaining);
+  else {
+    if (gesture.mode === "scroll" && !gesture.moved && !gesture.hadMultiple) {
+      $("zoom").querySelector("img").src = view.img.currentSrc || view.img.src;
+      $("zoom").hidden = false;
+    }
+    cancelImageTouchGesture();
+    if (gesture.mode === "scroll" && gesture.moved) coastImageScroll(gesture);
+  }
+}, { passive: false });
+document.addEventListener("touchcancel", cancelImageTouchGesture);
+
+document.addEventListener("load", (event) => {
+  const frame = event.target.closest?.(".image-viewport");
+  const view = frame && imageViews.get(frame);
+  if (view && event.target === view.img) fitImage(view);
+}, true);
+
+function imageWheelKind(view, event) {
+  // Chromium reports trackpad pinches as Ctrl+wheel. Plain precision wheel
+  // streams are scrolling, rather than zooming. WheelEvent has no device ID;
+  // recognize common mouse detents and keep a precision stream classified
+  // consistently even when its later accelerated deltas become large.
+  if (event.ctrlKey) return "pinch";
+  const now = performance.now();
+  const amount = Math.abs(event.deltaY);
+  const detent = event.deltaMode !== 0 || (!event.deltaX && Number.isInteger(amount) && amount >= 40 && (amount % 40 === 0 || amount % 100 === 0));
+  const kind = !detent || (event.deltaMode === 0 && view.wheelKind === "scroll" && now - view.wheelAt < 350) ? "scroll" : "mouse";
+  view.wheelKind = kind;
+  view.wheelAt = now;
+  return kind;
+}
+
+document.addEventListener("wheel", (event) => {
+  stopImageScroll();
+  const view = imageViews.get(event.target.closest(".image-viewport"));
+  if (!view || !view.base.width || !view.base.height || (!event.deltaY && !event.deltaX)) return;
+  const kind = imageWheelKind(view, event);
+  if (kind === "scroll") {
+    // Two fingers moving together scroll normally at Fit and pan the image
+    // at higher magnification; they never change its scale.
+    if (view.scale === 1) return;
+    event.preventDefault();
+    if (imageGesture || imageTouchGesture) return;
+    view.x -= event.deltaX;
+    view.y -= event.deltaY;
+    constrainImage(view);
+    paintImage(view);
+    return;
+  }
+  // A pinch is always local, including at 100%; letting Ctrl+wheel through
+  // at that limit would unexpectedly zoom the entire browser page.
+  if (kind === "mouse" && view.scale === 1 && event.deltaY > 0) return;
+  event.preventDefault();
+  if (imageGesture || imageTouchGesture) return;
+  const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? view.height : 1);
+  zoomImage(view, view.scale * Math.exp(-Math.max(-160, Math.min(160, delta)) * (kind === "pinch" ? .01 : .0015)), imagePoint(view, event));
+}, { passive: false });
+
+document.addEventListener("pointerdown", (event) => {
+  const view = imageViews.get(event.target.closest(".image-viewport"));
+  if (!view || event.pointerType === "touch" || event.button !== 0 || !event.isPrimary || !view.base.width) return;
+  event.preventDefault();
+  const start = imagePoint(view, event);
+  imageGesture = { view, start, end: start, x: view.x, y: view.y, pointerId: event.pointerId, select: event.shiftKey, moved: false };
+  view.frame.setPointerCapture(event.pointerId);
+  if (event.shiftKey || view.scale > 1) view.frame.classList.add(event.shiftKey ? "is-selecting" : "is-panning");
+});
+
+document.addEventListener("pointermove", (event) => {
+  const gesture = imageGesture;
+  if (!gesture || event.pointerId !== gesture.pointerId) return;
+  const { view, start } = gesture;
+  const point = imagePoint(view, event);
+  gesture.moved ||= Math.hypot(point.x - start.x, point.y - start.y) > 4;
+  if (gesture.select) {
+    gesture.end = { x: Math.max(0, Math.min(view.width, point.x)), y: Math.max(0, Math.min(view.height, point.y)) };
+    const box = view.frame.querySelector(".image-selection");
+    box.hidden = !gesture.moved;
+    Object.assign(box.style, { left: `${Math.min(start.x, gesture.end.x)}px`, top: `${Math.min(start.y, gesture.end.y)}px`, width: `${Math.abs(start.x - gesture.end.x)}px`, height: `${Math.abs(start.y - gesture.end.y)}px` });
+  } else if (gesture.moved && view.scale > 1) {
+    view.x = gesture.x + point.x - start.x;
+    view.y = gesture.y + point.y - start.y;
+    constrainImage(view);
+    paintImage(view);
+  }
+});
+
+document.addEventListener("pointerup", (event) => {
+  const gesture = imageGesture;
+  if (!gesture || event.pointerId !== gesture.pointerId) return;
+  const { view, start, end } = gesture;
+  if (gesture.select) {
+    const width = Math.abs(end.x - start.x), height = Math.abs(end.y - start.y);
+    if (width >= 12 && height >= 12) zoomImage(view, view.scale * Math.min(view.width / width, view.height / height), { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 }, { x: view.width / 2, y: view.height / 2 });
+  }
+  view.suppressUntil = gesture.moved || gesture.select || view.scale > 1 ? performance.now() + 400 : 0;
+  cancelImageGesture();
+});
+document.addEventListener("pointercancel", cancelImageGesture);
+document.addEventListener("lostpointercapture", (event) => {
+  if (imageGesture?.pointerId === event.pointerId) cancelImageGesture();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && imageGesture) {
+    imageGesture.view.suppressUntil = performance.now() + 400;
+    cancelImageGesture();
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+});
+document.addEventListener("dblclick", (event) => {
+  const view = imageViews.get(event.target.closest(".image-viewport"));
+  if (view && view.scale > 1) { event.preventDefault(); fitImage(view); }
+});
+document.addEventListener("click", (event) => {
+  const fit = event.target.closest("[data-image-fit]");
+  const frame = fit ? fit.closest(".image-view").querySelector(".image-viewport") : event.target.closest(".image-viewport");
+  const view = frame && imageViews.get(frame);
+  if (!view) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  if (fit) { fitImage(view); frame.focus({ preventScroll: true }); }
+  else if (view.scale === 1 && performance.now() >= view.suppressUntil && !event.shiftKey) {
+    $("zoom").querySelector("img").src = view.img.currentSrc || view.img.src;
+    $("zoom").hidden = false;
+  }
+}, true);
 
 function renderFlags() {
   document.querySelectorAll(".flag").forEach((b) => {
@@ -1129,6 +1508,7 @@ document.addEventListener("keydown", (event) => {
   }
   // Let native Enter/Space activate tabs without triggering review shortcuts.
   if (tab) return;
+  if (event.target.closest(".image-view") && ["Enter", " "].includes(event.key)) return;
   const inNote = event.target.id === "note";
   if (inNote && event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
