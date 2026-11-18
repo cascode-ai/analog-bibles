@@ -1,0 +1,5 @@
+偏置：$I_Q = I_R = (0 - 0.7 + 15)/5\ \mathrm{k\Omega} = 2.86$ mA（在 $\beta_F = 100$ 的仿真中约为 2.80 mA，原因是电流镜的基极电流）。
+(a) $R_L = 2\ \mathrm{k\Omega}$（$I_QR_L = 5.72\ \mathrm{V} < V_{CC}$）：当 $-5.0\ \mathrm{V} \lesssim V_i \lesssim 15.5$ V 时 $V_o = V_i - 0.7$ V（斜率 ≈ 1）；在 $V_i \approx -5.0$ V 以下，$Q_1$ 截止，$V_o$ 保持在 $-I_QR_L = -5.72$ V（$Q_2$ 从 $R_L$ 吸收 $I_Q$）；在 $V_i \approx 15.5$ V 以上，$Q_1$ 饱和，$V_o \approx V_{CC} - V_{CE(\text{sat})} = 14.8$ V（几乎平坦）。
+(b) $R_L = 10\ \mathrm{k\Omega}$（$I_QR_L = 28.6\ \mathrm{V} > V_{CC}$）：正向极限相同；负向极限为 $Q_2$ 饱和，$V_o = -14.8$ V，在 $V_i \approx -14.1$ V 时达到。两者之间为线性（斜率 ≈ 1）。
+(c) 取 $V_i = 0.7 + 10\sin\omega t$：对于 2 kΩ，$V_o = 10\sin\omega t$，但负半周在每个周期约 110° 的范围内（$\sin\omega t < -0.572$ 处）被削平在 −5.72 V；正峰值为 10 V。对于 10 kΩ，$V_o$ 是无失真的 10 V 峰值正弦波。
+(d) 对削波波形做傅里叶分析：2 kΩ：$HD_2 \approx 14\%$，$HD_3 \approx 8\%$（在 −5.72 V 处削波时为 13.9% 和 7.9%；取 $I_Q = 2.80$ mA 时约为 14.4% 和 8.1%），基波约 8.4 V，直流偏移约 +0.86 V。10 kΩ：只有 $V_{BE}$ 的指数变化引起失真（$v_i = V_T\ln(1 + v_o/(I_QR_L)) + v_o$）：$HD_2 \approx 0.01\%$，$HD_3 \approx 0.001\%$，即可以忽略。

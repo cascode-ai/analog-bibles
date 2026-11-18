@@ -1,0 +1,1 @@
+对于 [图 1] 所示的达林顿（Darlington）射极跟随器（emitter follower），先求 $Q_1$ 和 $Q_2$ 的直流集电极电流，再求其输入电阻（input resistance）和电压增益。忽略 $r_\mu$、$r_b$ 和 $r_o$。假设两个晶体管均有 $V_{BE(\text{on})} = 0.7$ V，$\beta_F = \beta_0 = 200$，$V_T = 26$ mV。用 SPICE 验证你的结果，并用 SPICE 求该级的输出电阻（output resistance）。仿真时采用 npn 模型 $I_S = 5\times10^{-15}$ A，BF = 200，VAF = 130 V，RB = 200 Ω（为直接检验手工分析，另取 RB = 0、VAF = ∞ 再仿真一次）。

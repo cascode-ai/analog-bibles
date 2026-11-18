@@ -1,0 +1,7 @@
+原参数：$I_{C2} \approx 0.255$ mA，$I_{D1} \approx 0.745$ mA，$V_B \approx 2.30$ V，$v_o/v_i \approx -6.25$。新参数（重新调节偏置使 $V_O = 2$ V）：$V_B \approx 2.27$ V，电流几乎不变，$v_o/v_i \approx -5.45$。
+
+- 偏置：$R_L$ 中流过 1 mA。$I_{C2} + I_{D1} = 1$ mA，其中 $I_{D1} = V_{BE2}/R_B + I_{C2}/\beta_F$，$V_{BE2} = V_T\ln(I_{C2}/I_S)$ → $V_{BE2} = 0.743$ V，$I_{C2} = 0.255$ mA，$I_{D1} = 0.745$ mA。$V_{SB1} = 0.743$ V → $V_t = 0.696$ V，过驱动电压（overdrive voltage）$\sqrt{2I_{D1}/(k'W/L)} = 0.863$ V，$V_B = 0.743 + 0.696 + 0.863 = 2.30$ V。$M_1$ 处于饱和区（$V_{DS} = 1.26$ V > 0.86 V）。
+- 小信号：$g_{m1} = 1.73$ mA/V，$\chi = \gamma/(2\sqrt{2\phi_f + V_{SB}}) = 0.108$，$g_{mb1} = 0.186$ mA/V；$g_{m2} = 9.80$ mA/V，$r_{\pi2} = 10.2$ kΩ；$R_s = R_B\|r_{\pi2} = 911\ \Omega$。
+- 到 $Q_2$ 基极的源极跟随器（source follower）增益：$v_{b2}/v_i = g_{m1}R_s/[1 + (g_{m1} + g_{mb1})R_s] = 0.574$。$M_1$ 的漏极电流（$v_{b2}/R_s$）和 $Q_2$ 的集电极电流（$g_{m2}v_{b2}$）都流过 $R_L$：$v_o/v_i = -R_L(1/R_s + g_{m2})\,v_{b2}/v_i = -6.25$。
+- 新参数：$r_{o1} = 1/(\lambda I_{D1}) \approx 27$ kΩ，$r_{o2} = V_A/I_{C2} \approx 78$ kΩ，$r_b = 100\ \Omega$。完整节点求解：$v_o/v_i \approx -5.45$（约低 13%），主要原因是 $r_{o1}$ 把输出摆动反馈到 $M_1$ 的源极，此外还有 $R_L\|r_{o2}$ 以及 $r_b$ 分压的影响。
+- 直流传输特性（原参数下 $v_o$ 随栅极电压 $V_I$ 从 0 到 3 V 的变化）：$M_1$ 截止时（$V_I < 0.6$ V）$v_o = 3$ V；当 $0.6 < V_I \lesssim 2.1$ V 时，$M_1$ 的电流只流入 $R_B$，$v_o$ 缓慢下降（$V_I = 2.1$ V 时 ≈ 2.4 V）；$Q_2$ 在 $V_I \approx 2.2$ V 附近导通，$v_o$ 急剧下降，在 $V_I \approx 2.30$ V 处经过 2 V（斜率 ≈ −6.3）；$M_1$ 在 $V_I \approx 2.35$ V 附近进入线性区（triode region）（$v_o \approx 1.6$ V），曲线变平，在 $V_I = 3$ V 时达到 $v_o \approx 1.1$ V。$Q_2$ 不会饱和，因为 $M_1$ 使其基极电位始终低于集电极。

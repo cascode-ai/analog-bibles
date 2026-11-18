@@ -1,0 +1,3 @@
+用 SPICE 仿真 [图 1] 所示类型的带隙基准（bandgap reference）（pnp 晶体管 $Q_1$、$Q_2$ 的基极和集电极接地；取 $V_{OS} = 0$）。假设放大器只是一个开环增益（open-loop gain）为 10,000 的压控电压源（voltage-controlled voltage source），且电阻值与温度无关。再假设 $I_{S1} = 1.25\times10^{-17}$ A，$I_{S2} = 1\times10^{-16}$ A。在 SPICE 中调节放大器的闭环增益（通过选取合适的电阻值），使输出的 $TC_F$ 在 25 °C 时为零。由此得到的 $V_{OUT}$ 目标值是多少？现在将 $I_{S1}$ 和 $I_{S2}$ 加倍。用 SPICE 调节增益，使 25 °C 时 $V_{OUT}$ 等于目标值。用 SPICE 求 25 °C 时新的 $dV_{OUT}/dT$。将此结果与饱和电流加倍但不重新调节电阻的情况进行比较（在该情况下，$dV_{OUT}/dT = -(k/q)\ln2 \approx -60\ \mu\mathrm{V/°C}$）。
+
+手工估算时采用 $V_{EB} = V_T\ln(I/I_S)$，其中 $I_S \propto T^{\gamma}\exp(-V_{G0}/V_T)$，$\gamma = 3.2$，$V_{G0} = 1.205$ V；25 °C 时 $V_T = 25.7$ mV。
