@@ -61,7 +61,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   });
 
   await t.test("tabs switch cached content, reset only solution scrolling, and support keyboard navigation", async () => {
-    for (const url of ["/review?scope=razavi&id=R050&lang=en", "/browse?scope=razavi&id=R050&view=focus&lang=zh", "/browse?scope=razavi&id=R050&lang=en"]) {
+    for (const url of ["/review?scope=razavi&id=R050&lang=en", "/browse?scope=razavi&id=R050&view=focus&lang=zh", "/browse?scope=razavi&id=R050&lang=en&view=list"]) {
       await b.open(url);
       const card = url.includes("view=focus") || url.includes("review") ? "#item" : "#card-R050";
       const tab = (key) => `${card} [data-solution-tab="${key}"]`;
@@ -220,7 +220,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   });
 
   await t.test("Browse keeps ordinary document scrolling and incremental loading", async () => {
-    await b.open("/browse?scope=razavi&id=R050&lang=en");
+    await b.open("/browse?scope=razavi&id=R050&lang=en&view=list");
     assert.equal(await b.evaluate('document.body.classList.contains("single-reading")'), false);
     assert.equal(await b.evaluate('getComputedStyle(document.querySelector(".question-panel")).overflowY'), "visible");
     const before = await b.evaluate("feed.end");
@@ -230,14 +230,14 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   });
 
   await t.test("Browse focus isolates one card, preserves filters and returns to its list", async () => {
-    await b.open("/browse?scope=razavi&id=R050&lang=en");
+    await b.open("/browse?scope=razavi&id=R050&lang=en&view=list");
     const apiBefore = b.requests.filter((r) => r.path.startsWith("/api/")).length;
     await click('[data-focus-id="R050"]');
     await b.waitFor('state.focus && document.getElementById("item").dataset.qid === "R050"');
     await split();
     assert.equal(await b.evaluate('document.querySelectorAll(".cols").length'), 1);
     assert.equal(await b.evaluate('document.getElementById("cards") === null && document.getElementById("pass") === null'), true);
-    assert.ok(await b.evaluate('location.search.includes("view=focus")'));
+    assert.ok(await b.evaluate('!location.search.includes("view=list")'));
     assert.equal(b.requests.filter((r) => r.path.startsWith("/api/")).length, apiBefore);
     await click("#next");
     await b.waitFor('document.getElementById("item").dataset.qid === "R051"');
@@ -245,13 +245,13 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await b.waitFor('!state.focus && document.getElementById("card-R051") !== null');
     assert.equal(await b.evaluate("state.scope"), "razavi");
     assert.equal(await b.evaluate('getComputedStyle(document.querySelector(".panel")).overflowY'), "visible");
-    assert.ok(!(await b.evaluate("location.search")).includes("view=focus"));
+    assert.ok((await b.evaluate("location.search")).includes("view=list"));
   });
 
   await t.test("shareable focus links preserve language, search and lazy loading", async () => {
     const before = b.requests.length;
     await b.open("/browse?scope=razavi&id=R050&view=focus&lang=zh");
-    assert.equal(await b.evaluate('document.getElementById("reading-view").textContent'), "返回列表");
+    assert.equal(await b.evaluate('document.getElementById("reading-view").textContent'), "连续浏览");
     assert.equal(await b.evaluate('state.all.some(q => "t" in q)'), false);
     assert.ok(!b.requests.slice(before).some((r) => /\/assets\/search\./.test(r.path)));
     await click('[data-kind="level"][data-key="hard"]');
@@ -273,7 +273,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
       await b.waitFor(`state.search === ${JSON.stringify(query)}`);
       return b.evaluate('state.cards.map(q => q.id).sort()');
     }
-    for (const url of ["/review?scope=random&id=R050&lang=en", "/browse?scope=random&id=R050&view=focus&lang=en", "/browse?scope=random&id=R050&lang=en"]) {
+    for (const url of ["/review?scope=random&id=R050&lang=en", "/browse?scope=random&id=R050&view=focus&lang=en", "/browse?scope=random&id=R050&lang=en&view=list"]) {
       await b.open(url);
       assert.deepEqual(await search("Allen 5.3-3"), ["A168"]);
       assert.deepEqual(await search("ALLEN PROBLEMS 5.3-3"), ["A168"]);

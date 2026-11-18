@@ -8,7 +8,7 @@ test("review label in Browse, Review and focused reading, both languages and nar
   for (const [url, width, label] of [
     ["/browse?scope=razavi&id=R050&view=focus&lang=zh", 1440, "未审核"],
     ["/review?scope=razavi&id=R050&lang=en", 390, "Unreviewed"],
-    ["/browse?scope=razavi&id=R050&lang=zh", 320, "未审核"],
+    ["/browse?scope=razavi&id=R050&lang=zh&view=list", 320, "未审核"],
   ]) {
     await b.viewport(width, 960);
     await b.open(url);
