@@ -80,7 +80,7 @@ const STRINGS = {
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
     focus: "Focus reading",
-    listView: "Back to list",
+    listView: "Scrolling list",
     solution: "Solution",
     hideSidebar: "Collapse sidebar",
     showSidebar: "Expand sidebar",
@@ -173,7 +173,7 @@ const STRINGS = {
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
     focus: "专注阅读",
-    listView: "返回列表",
+    listView: "连续浏览",
     solution: "解答",
     hideSidebar: "收起侧边栏",
     showSidebar: "展开侧边栏",
@@ -253,7 +253,9 @@ const state = {
   level: LEVELS.includes(params.get("level")) ? params.get("level") : "all",
   status: mode === "review" && STATUSES.some((s) => s.key === params.get("status")) ? params.get("status") : "all",
   search: "",
-  focus: mode === "browse" && params.get("view") === "focus",
+  // Browse opens one question at a time (question left, answer right); the
+  // scrolling list of cards is the alternative, ?view=list.
+  focus: mode === "browse" && params.get("view") !== "list",
   sidebarClosed: store.get("ab.sidebarClosed") === "1",
   cards: [],
   index: 0,
@@ -463,12 +465,12 @@ function syncUrl() {
   if (state.status !== "all") parts.push(`status=${state.status}`);
   if (q) parts.push(`id=${encodeURIComponent(q.id)}`);
   if (lang === "zh") parts.push("lang=zh");
-  const focusPart = mode === "browse" && state.focus ? "&view=focus" : "";
+  const focusPart = mode === "browse" && !state.focus ? "&view=list" : "";
   history.replaceState(null, "", `/${mode}?${parts.join("&")}${focusPart}`);
   $("reading-view").textContent = t(state.focus ? "listView" : "focus");
   $("reading-view").setAttribute("aria-pressed", String(state.focus));
   // The mode switch keeps the question, filters and language (status is review's own).
-  $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}${mode === "review" ? "&view=focus" : focusPart}`;
+  $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}${mode === "review" ? "" : focusPart}`;
   $("mode-review").href = `/review?${parts.join("&")}`;
 }
 
@@ -801,7 +803,7 @@ function renderPosition() {
   updatePosition();
 }
 
-// Browse keeps its feed unless the reader opts into one-question focus mode.
+// Browse shows one question unless the reader switches to the list of cards.
 function render(from) {
   if (mode === "browse" && !state.focus) {
     renderFeed(from ?? 0);

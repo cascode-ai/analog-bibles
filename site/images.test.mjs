@@ -322,7 +322,7 @@ test("inline image viewer in a real browser", { timeout: 180000 }, async (t) => 
     await b.evaluate(`document.querySelector('${reference}').scrollIntoView({block:'center'})`);
     await wheel(-100, reference);
     assert.ok(await scale(reference) > 1);
-    await open("/browse?scope=razavi&id=R050&lang=en");
+    await open("/browse?scope=razavi&id=R050&lang=en&view=list");
     // The feed may prepend earlier cards as we scroll. Target this card,
     // rather than whichever image happens to be first in the document.
     const feedFrame = "#card-R050 .image-viewport";
