@@ -1,0 +1,8 @@
+两个跟随器的极点都在零点几 Grad/s 处，即只有 GB 的约 4–7 倍（GB = 31.4 Mrad/s，10GB = 314 Mrad/s）：联立求解时，它们构成一对复极点，≈ (−67 ± j97) Mrad/s（|p| ≈ 118 Mrad/s ≈ 19 MHz，ζ ≈ 0.57）；若分别估计，MOS 跟随器极点 ≈ −0.22 Grad/s，BJT 跟随器极点 ≈ −0.19 至 −0.21 Grad/s。它们的零点很远（≈ −3.9 Grad/s 和 ≈ −17 Grad/s）。由于这些极点低于 10GB，它们在 GB 处大约引入 16–18° 的相位滞后，使相位裕度（phase margin）变差。
+
+小信号参数：$g_{m9} = \sqrt{2(50\ \mu)(10)(100\ \mu)} = 316\ \mu$S；$V_{BS9} \approx 2.5 - V_{BE} \approx 1.84$ V，$g_{mbs9} = g_{m9}\gamma/(2\sqrt{0.8 + 1.84}) \approx 55\ \mu$S；$g_{ds8} = g_{ds9} = 5\ \mu$S；$g_{m10} = 1\ \mathrm{mA}/25.9\ \mathrm{mV} = 38.6$ mS，$g_\pi = 0.386$ mS，$g_{ds11} = 40\ \mu$S，$G_L = 2$ mS。
+电容：节点 B（M9 源极/Q10 基极）：$C_\mu = 1$ pF，$C_{bd8} \approx 0.27$ pF，$C_{gd8} \approx 0.03$ pF，$C_{sb9} \approx 0.02$ pF（$C_{gs9} \approx 0.019$ pF 接到输入端）；输出端：$C_L = 100$ pF，$C_{bd11} \approx 3.4$ pF，$C_{gd11} \approx 0.32$ pF；$C_\pi$ = 10 pF 跨接在节点 B 与输出端之间。
+- MOS 跟随器（单独考虑）：$p \approx -\dfrac{g_{m9} + g_{mbs9} + g_{ds8} + g_{ds9} + g_\pi(1-A_{BJT})}{C_\mu + C_{bd8} + C_{gd8} + C_{sb9} + C_\pi(1-A_{BJT})} \approx -\dfrac{400\ \mu\mathrm{S}}{1.82\ \mathrm{pF}} \approx -220$ Mrad/s（$A_{BJT} \approx 0.95$）；零点 $-g_{m9}/C_{gs9} \approx -1.7\times10^{10}$ rad/s。
+- BJT 跟随器（单独考虑）：$R_{o} = [r_\pi + 1/(g_{m9}+g_{mbs9}+\dots)]/(1+\beta_F) \approx (2.59 + 2.62)\ \mathrm{k}/101 \approx 52\ \Omega$；与 $R_L\|r_{ds11}$ 并联后为 47 Ω；$p \approx -1/(47\ \Omega\times104\ \mathrm{pF}) \approx -0.21$ Grad/s（计入 $C_\pi$ 后为 −0.19 Grad/s）；零点 $-(g_{m10}+g_\pi)/C_\pi \approx -3.9$ Grad/s。
+- 两个节点通过 $C_\pi$ 强耦合；双节点行列式给出上述复极点对。
+- 比较：GB = 2π(5 MHz) = 31.4 Mrad/s。这些零极点并不高于 10GB = 314 Mrad/s；在 GB 处的相位滞后 ≈ 16–18°，因此忽略跟随器的设计会损失这么多的相位裕度（例如 60° → ≈ 42°）。

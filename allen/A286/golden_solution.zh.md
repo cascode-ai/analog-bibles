@@ -1,0 +1,5 @@
+$V_{Bias} = V_T + 2V_{DS}(\mathrm{sat}) \approx 1.30$ V；$R = V_{SD}(\mathrm{sat})/I = 12.65$ kΩ；$v_{o1}/v_{in} = g_{m1}\left[(g_{mC2}r_{dsC2}r_{ds2})\,\|\,(g_{mC4}r_{dsC4}r_{ds4})\right] \approx 6.4\times10^3$。
+
+- n 沟道器件的 $V_{DS}(\mathrm{sat})$：$\sqrt{2(50\,\mu)/(110\,\mu\cdot10)} = 0.302$ V。偏置电池接在共源节点与 MC1/MC2 栅极之间，因此 $V_{Bias} = V_{DS1} + V_{GS,C1} = 0.302 + (0.7 + 0.302) = 1.30$ V。
+- p 沟道：$V_{SD}(\mathrm{sat}) = \sqrt{2(50\,\mu)/(50\,\mu\cdot5)} = 0.632$ V。M3 的栅极接 R 的上端，MC3 的栅极接下端，故 $V_{SG,C3} = V_{SG3} - V_{SD3} + IR$；相同器件在相同电流下有 $V_{SG,C3} = V_{SG3}$，所以 $V_{SD3} = IR$ → $R = 0.632/50\ \mu\mathrm{A} = 12.65$ kΩ。
+- 增益：$v_{in}$ 在两半边电路中分别产生 $\pm g_{m1}v_{in}/2$；电流镜在 $v_{o1}$ 处把二者相加，因此 $v_{o1}/v_{in} = g_{m1}R_{out}$，其中 $R_{out}$ 为 n 沟道与 p 沟道共源共栅输出电阻的并联。数值：$g_{m1} = g_{mC2} = 331.7\ \mu$S，$g_{mC4} = 158\ \mu$S，$r_{dsN} = 0.5$ MΩ，$r_{dsP} = 0.4$ MΩ：$R_{out} = 82.9\ \mathrm{M\Omega}\,\|\,25.3\ \mathrm{M\Omega} = 19.4$ MΩ → 增益 ≈ 6.4×10³（若保留 $g_mr_{ds}^2$ 之外附加的 $r_{ds}$ 项，则 ≈ 6.6×10³）。按图中的输入极性，输出与 $v_{in}$ 同相。
