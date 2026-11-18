@@ -1,0 +1,3 @@
+对于 [图 1] 所示的电流沉（current sink）负载 CMOS 反相器（p 沟道输入管 M1 的源极接 $V_{DD}$；n 沟道电流沉 M2 的栅极接直流电压 $V_{GG1}$），$W_1 = 2\ \mu$m，$L_1 = 1\ \mu$m，$W_2 = L_2 = 1\ \mu$m。当 $I_D$ = 0.1、5 和 100 µA 时，小信号电压增益各是多少？
+
+器件参数：n 沟道 $K'_N = 110\ \mu\mathrm{A/V^2}$，$\lambda_N = 0.04\ \mathrm{V^{-1}}$；p 沟道 $K'_P = 50\ \mu\mathrm{A/V^2}$，$\lambda_P = 0.05\ \mathrm{V^{-1}}$。在 5 µA 和 100 µA 时两管都处于强反型饱和，$i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$。假设 $I_D = 0.1\ \mu$A 时晶体管处于弱反型（weak inversion），用 $i_D = \frac{W}{L} I_{D0} \exp\!\left(\frac{v_{GS}}{n\,kT/q}\right)(1 + \lambda v_{DS})$ 描述（对 p 沟道器件用 $v_{SG}$ 和 $v_{SD}$），其中 n 沟道晶体管 $n_n = 1.5$，p 沟道晶体管 $n_p = 2.5$，$kT/q = 26$ mV。必须对弱反型大信号模型进行适当求导，以求出 $g_m$ 和 $g_{ds}$。
