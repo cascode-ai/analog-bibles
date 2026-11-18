@@ -11,4 +11,4 @@ Derivation:
 
 ## Grading notes
 
-+2: 6.25 (±5%). +1: correct method with a numerical slip. 0: correct $g_{m3,4}$ (0.915 mS) without the aspect ratio. -2 (asserted as fact): the full $I_T$ used per device (3.1), $g_m = \mu_nC_{ox}(W/L)I_D$ or another wrong $g_m$ formula, or an assumed overdrive not given in the problem.
++2: 6.25 (±5%). +1: correct method with a numerical slip. 0: correct $g_{m3,4}$ (0.916 mS) without the aspect ratio. -2 (asserted as fact): the full $I_T$ used per device (3.1), $g_m = \mu_nC_{ox}(W/L)I_D$ or another wrong $g_m$ formula, or an assumed overdrive not given in the problem.

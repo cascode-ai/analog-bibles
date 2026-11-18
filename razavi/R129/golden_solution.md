@@ -10,4 +10,4 @@ $V_X$ ranges from ≈ 0.29 V (at $V_{out} \approx 2.43$ V, where $M_1$ reaches t
 
 ## Grading notes
 
-+2: $V_X$ range ≈ 0.29–0.84 V (swing ≈ 0.55 V, ±0.03 V), consistent with the output range 2.43–3 V. +1: body effect neglected (≈ 0.29–0.93 V) or one endpoint slipped. 0: right method ($V_X = V_b - V_{GS2}(I_D)$) with wrong output limits carried over. -2 (asserted as fact): $V_X$ claimed constant (no swing) or a swing based on $M_2$ entering triode at $V_{out} \approx 0.93$ V.
++2: $V_X$ range ≈ 0.29–0.84 V (swing ≈ 0.55 V, ±0.03 V), consistent with the output range 2.43–3 V. +1: body effect neglected (≈ 0.29–0.93 V) or one endpoint slipped. 0: right method ($V_X = V_b - V_{GS2}(I_D)$) with wrong output limits carried over. -2 (asserted as fact): $V_X$ claimed constant (no swing) or a swing based on $M_2$ entering triode at $V_{out} \approx 0.94$ V.
