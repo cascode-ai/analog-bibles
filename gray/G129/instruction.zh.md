@@ -1,0 +1,1 @@
+对于 [图 1] 所示的 B 类（class B）输出级（output stage），假设 $V_{CC} = 12$ V，$R_L = 1\ \mathrm{k\Omega}$，$V_{CE(\text{sat})} = 0.2$ V。假设 $V_i$ 处有足够大的正弦输入电压，可将 $V_o$ 驱动到削波极限。计算不发生削波时能输送给 $R_L$ 的最大平均功率、相应的效率以及器件的最大瞬时功耗。忽略交越失真（crossover distortion）。

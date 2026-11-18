@@ -1,0 +1,1 @@
+[图 1] 所示为 AB 类（class AB）输出级（output stage），其中 $Q_3$ 和 $Q_4$ 为二极管连接（diode-connected）的晶体管。$V_{CC} = 12$ V，$I_Q = 0.1$ mA，$R_L = 1\ \mathrm{k\Omega}$，所有器件的 $I_S = 10^{-15}$ A，$\beta_F = 150$；$V_T = 26$ mV。计算 $V_o = 0$、$\pm5$ V 和 $\pm10$ V 时 $V_i$ 的值以及各器件中的电流。然后画出从 $V_o = 10$ V 到 $V_o = -10$ V 的传输特性草图。

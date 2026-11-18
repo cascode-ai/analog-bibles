@@ -1,0 +1,1 @@
+在 [图 1] 所示的射极跟随器（emitter follower）输出级（output stage）中，$V_{CC} = 15$ V，$R_1 = R_2 = 0$，$R_3 = 5\ \mathrm{k\Omega}$，所有晶体管的 $V_{CE(\text{sat})} = 0.2$ V、$V_{BE(\text{on})} = 0.7$ V，且所有器件面积相等；基极电流可以忽略。调节直流输入电压，使静态时 $V_o = 0$。计算 $R_L = 2\ \mathrm{k\Omega}$ 和 $R_L = 10\ \mathrm{k\Omega}$ 时 $Q_1$ 可能的最大瞬时功耗。

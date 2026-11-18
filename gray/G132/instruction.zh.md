@@ -1,0 +1,1 @@
+对于 [图 1] 所示的输出级（output stage），假设 $V_{CC} = 15$ V，所有器件的 $V_{CE(\text{sat})} = 0.2$ V、$V_{BE(\text{on})} = 0.7$ V、$\beta_F = 50$。计算 $R_L = 10\ \mathrm{k\Omega}$ 和 $R_L = 2\ \mathrm{k\Omega}$ 时 $V_o$ 的最大正向和负向极限。

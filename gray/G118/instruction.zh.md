@@ -1,0 +1,1 @@
+在 [图 1] 所示的射极跟随器（emitter follower）输出级（output stage）中，$V_{CC} = 15$ V，$R_1 = R_2 = 0$，$R_3 = 5\ \mathrm{k\Omega}$，$V_{BE(\text{on})} = 0.7$ V，所有器件面积相等，$\beta_F$ 很大，$V_T = 26$ mV，且该级由零内阻信号源驱动；调节直流输入，使静态时 $V_o = 0$。取 $R_L = 2\ \mathrm{k\Omega}$，对于峰值为 1 V 的正弦输出，计算传输特性的增量斜率 $dV_o/dV_i$ 在静态工作点以及信号摆幅两个极端处的值。

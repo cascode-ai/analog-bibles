@@ -1,0 +1,1 @@
+[图 1] 所示为 AB 类（class AB）输出级（output stage），其中 $Q_{18}$ 和 $Q_{19}$ 为二极管连接的晶体管，$Q_{13A}$ 和 $Q_{13B}$ 为 pnp 电流源。假设 $V_{CC} = 15$ V，$\beta_F(pnp) = 50$，$\beta_F(npn) = 200$，所有器件的 $V_{BE(\text{on})} = 0.7$ V、$V_{CE(\text{sat})} = 0.2$ V、$I_S = 10^{-14}$ A。$Q_{13A}$ 的集电极电流大小为 0.2 mA。计算 $R_L = 10\ \mathrm{k\Omega}$、$R_L = 1\ \mathrm{k\Omega}$ 和 $R_L = 200\ \Omega$ 时 $V_o$ 的最大正向和负向极限。

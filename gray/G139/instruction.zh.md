@@ -1,0 +1,1 @@
+对于 [图 1] 所示的准互补（quasi-complementary）B 类（class B）输出级（output stage），假设 $V_{CC} = 15$ V，$\beta_F(pnp) = 30$，$\beta_F(npn) = 150$，$I_S(npn) = 10^{-14}$ A，$I_S(pnp) = 10^{-15}$ A，所有器件的 $V_{BE(\text{on})} = 0.7$ V、$V_{CE(\text{sat})} = 0.2$ V。$Q_5$ 和 $Q_6$ 为二极管连接的 npn 器件，$Q_7$ 的集电极电流为 0.15 mA。计算 $R_L = 1\ \mathrm{k\Omega}$ 时 $V_o$ 的最大正向和负向极限。

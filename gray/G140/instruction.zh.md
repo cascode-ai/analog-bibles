@@ -1,0 +1,1 @@
+对于 [图 1] 所示的准互补（quasi-complementary）B 类（class B）输出级（output stage），假设 $V_{CC} = 15$ V，$\beta_F(pnp) = 30$，$\beta_F(npn) = 150$，$I_S(npn) = 10^{-14}$ A，$I_S(pnp) = 10^{-15}$ A（$|I_C| = I_S\exp(|V_{BE}|/V_T)$，$V_T = 26$ mV），所有器件的 $V_{CE(\text{sat})} = 0.2$ V。$Q_5$ 和 $Q_6$ 为二极管连接的 npn 器件，$Q_7$ 的集电极电流为 0.15 mA。计算 $V_o = 0$ V 时 $Q_1$–$Q_7$ 的静态电流。

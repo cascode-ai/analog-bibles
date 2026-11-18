@@ -1,0 +1,1 @@
+对于 [图 1] 所示的输出级（output stage），假设 $V_{CC} = 15$ V，所有器件的 $V_{CE(\text{sat})} = 0.2$ V、$V_{BE(\text{on})} = 0.7$ V、$\beta_F = 50$。计算 $R_L = 10\ \mathrm{k\Omega}$ 和 $R_L = 2\ \mathrm{k\Omega}$ 时，不发生削波时能输送给 $R_L$ 的最大平均功率。计算相应的电路效率（仅考虑输出器件）以及每个输出器件的平均功耗。忽略交越失真（crossover distortion），并假设信号为正弦波。

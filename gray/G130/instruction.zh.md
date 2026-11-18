@@ -1,0 +1,1 @@
+对于 [图 1] 所示的 B 类（class B）输出级（output stage），$V_{CC} = 15$ V，$R_L = 2\ \mathrm{k\Omega}$，$V_{BE(\text{on})} = 0.6$ V，$V_{CE(\text{sat})} = 0.2$ V。对于输出电压幅度（零到峰值）为 11.5 V、6 V 和 3 V 三种情况，计算并画出器件 $Q_1$ 在一个周期内的集电极电流 $I_{c1}$、集电极-发射极电压 $V_{ce1}$ 和瞬时功耗 $P_{c1}$ 的波形草图。忽略交越失真（crossover distortion），并假设信号为正弦波。
