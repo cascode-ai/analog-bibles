@@ -645,6 +645,19 @@ function foldSteps(box) {
 const BATCH = 6;
 const feed = { start: 0, end: 0 };
 
+// Where the sticky bar and toolbar end. Their height depends on the window
+// width (the toolbar wraps on a phone), so a fixed offset misplaces the reader.
+function headerBottom() {
+  let bottom = 0;
+  for (const el of document.querySelectorAll(".top, .toolbar")) bottom = Math.max(bottom, el.getBoundingClientRect().bottom);
+  return bottom;
+}
+
+// A card whose top is above this line is the one being read.
+function readingLine() {
+  return headerBottom() + 70;
+}
+
 // Lays the list out again from the card at `from` (an index into cards).
 function renderFeed(from = 0) {
   disposeImageViews($("item"));
@@ -688,8 +701,9 @@ function onFeedScroll() {
   // before it load above, keeping the reader's place.
   else if (feed.start > 0 && cards.firstElementChild && cards.firstElementChild.getBoundingClientRect().top > -1500) prependCards();
   let current = cards.firstElementChild;
+  const line = readingLine();
   for (const el of cards.children) {
-    if (el.getBoundingClientRect().top > 180) break;
+    if (el.getBoundingClientRect().top > line) break;
     current = el;
   }
   const at = current ? Number(current.dataset.at) : state.index;
@@ -719,8 +733,9 @@ function setPin() {
   const cards = $("cards");
   if (mode !== "browse" || state.focus || !cards) return;
   let el = cards.firstElementChild;
+  const line = readingLine();
   for (const card of cards.children) {
-    if (card.getBoundingClientRect().top > 180) break;
+    if (card.getBoundingClientRect().top > line) break;
     el = card;
   }
   pin.el = el;
@@ -795,7 +810,7 @@ function scrollToCard(at) {
   }
   while (at >= feed.end) appendCards();
   const el = $(`card-${state.cards[at].id}`);
-  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 124, behavior: "smooth" });
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - headerBottom() - 14, behavior: "smooth" });
 }
 
 function renderPosition() {
