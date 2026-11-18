@@ -7,7 +7,7 @@ For $k = 2$: $v_{OUT} = V_{REF}\left(\frac{b_0}{2} + \frac{b_1}{4} + \frac{b_2}{
 
 Derivation:
 - $\phi_1$: the left plates of the $C/2$ and $C/4$ capacitors of the upper 2-bit DAC are at $V_{REF}$ (of the lower DAC at $V_{REF}/k$), their right plates are grounded, and the feedback capacitor $C$ is shorted ($v_{OUT} = 0$).
-- $\phi_2$: the left plates go to ground and the bus is connected to the virtual ground. A capacitor whose bit switch is closed goes from $V_{ref}$ to 0 V across it, delivering $C_i V_{ref}$ to the feedback capacitor with a sign that makes the output positive: $v_{OUT} = \sum b_i (C_i/C)V_{ref,i}$, i.e. $\frac{1}{2}b_0 V_{REF} + \frac{1}{4}b_1 V_{REF} + \frac{1}{2}b_2\frac{V_{REF}}{k} + \frac{1}{4}b_3\frac{V_{REF}}{k}$.
+- $\phi_2$: the left plates go to ground and the bus is connected to the virtual ground. A capacitor whose bit switch is closed goes from $V_{ref,i}$ (the reference of its DAC, $V_{REF}$ or $V_{REF}/k$) to 0 V across it, delivering $C_i V_{ref,i}$ to the feedback capacitor with a sign that makes the output positive: $v_{OUT} = \sum b_i (C_i/C)V_{ref,i}$, i.e. $\frac{1}{2}b_0 V_{REF} + \frac{1}{4}b_1 V_{REF} + \frac{1}{2}b_2\frac{V_{REF}}{k} + \frac{1}{4}b_3\frac{V_{REF}}{k}$.
 - $k = 2$ (1 LSB $= V_{REF}/16$, code $= 4m + n$): output $= 4m + 2n$ LSB, error $= n$ = 0 … +3 LSB; steps 2 LSB in a group (DNL +1) and −2 LSB at 0011→0100, 0111→1000, 1011→1100 (DNL −3); the output decreases there, so it is nonmonotonic.
 
 ## Grading notes

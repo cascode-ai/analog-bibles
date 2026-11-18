@@ -1,3 +1,3 @@
-The noise power in the signal band of zero to $f_B$ of an $L$th-order oversampling ADC is given as
+The rms noise voltage in the signal band of zero to $f_B$ of an $L$th-order oversampling ADC is given as
 $n_o = \dfrac{\Delta}{\sqrt{12}}\,\dfrac{\pi^L}{\sqrt{2L+1}}\left(\dfrac{2f_B}{f_s}\right)^{L+0.5}$ (rms),
 where $f_s$ is the sampling frequency, $\Delta = V_{REF}/(2^B - 1)$, and $B$ is the number of bits of the quantizer. Find the minimum oversampling ratio, $OSR = f_s/2f_B$, for a 1-bit quantizer, third-order loop, 16-bit oversampled ADC. Take 16-bit performance to mean that $n_o$ does not exceed the rms quantization noise of an ideal 16-bit ADC with full scale $V_{REF}$, i.e. $V_{REF}/(2^{16}\sqrt{12})$.

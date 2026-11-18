@@ -7,7 +7,7 @@ $k \approx 11.5$, i.e., GB ≈ 0.087 $|p_6|$ ≈ $1.43\times10^8$ rad/s (≈ 22.
 - Phase margin with the dominant pole contributing 90°: $PM = 90° - 2\tan^{-1}\frac{GB}{0.702\,\mathrm{G}} - \tan^{-1}\frac{GB}{1.652\,\mathrm{G}} - \tan^{-1}\frac{GB}{4.176\,\mathrm{G}} - \tan^{-1}\frac{GB}{555\,\mathrm{G}} = 60°$.
 - Solving: GB = 143 Mrad/s; check: 2(11.53°) + 4.96° + 1.96° + 0.01° = 30.0°. So $|p_6|/GB = 1652/143 = 11.5$.
 - The 2.2 rule fails here: GB = $|p_A|/2.2$ = 319 Mrad/s would leave only ≈ 26° of phase margin, because $p_A$ and $p_B$ coincide and $p_6$, $p_9$ are close to them.
-(If the phase is evaluated at the true unity-gain frequency, including the magnitude roll-off of the nondominant poles, $g_m/C$-type GB = 0.091 $|p_6|$, $k$ ≈ 11.0.)
+(If the phase is evaluated at the true unity-gain frequency, which lies slightly below GB because the nondominant poles also roll off the magnitude, the gain–bandwidth product GB = $A_v(0)|p_d|$ can be 0.091 $|p_6|$, so $k$ ≈ 11.0.)
 
 ## Grading notes
 

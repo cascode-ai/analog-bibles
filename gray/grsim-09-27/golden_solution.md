@@ -10,7 +10,9 @@ Open-loop (forward) gain, output loaded by ≈ 1 MΩ:
 - Two-pole response (pole splitting by $C_{gd6}$): $p_1 ≈ 18$ kHz, $p_2 ≈ 9$ MHz, right-half-plane zero $g_{m6}/C_{gd6}$ ≈ 0.9 GHz, plus a current-mirror pole-zero pair near 30/60 MHz. Phase passes −135° near 9 MHz; with unity feedback the margin would be only ≈ 10°.
 
 $R_x$ for given phase margins (feedback factor $\beta = R_x/(1\text{ MΩ} + R_x)$, closed-loop gain ≈ $1/\beta$):
+
 | PM | β | $R_x$ | closed-loop gain | loop crossover |
+|---|---|---|---|---|
 | 80° | ≈ 0.004–0.005 | ≈ 4–5 kΩ | ≈ 210–250 (47 dB) | ≈ 1.5–1.7 MHz |
 | 60° | ≈ 0.013–0.016 | ≈ 13–17 kΩ | ≈ 60–75 (36 dB) | ≈ 4.5–5.3 MHz |
 | 45° | ≈ 0.025–0.034 | ≈ 26–36 kΩ | ≈ 30–40 (30 dB) | ≈ 7–9 MHz |

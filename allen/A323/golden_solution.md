@@ -6,7 +6,7 @@ GB(max) ≈ $1.43\times10^8$ rad/s (≈ 22.8 MHz); $C_L(\min) \approx 3.45$ pF.
 
 - 60° margin: $2\tan^{-1}\frac{GB}{0.702\,\mathrm{G}} + \tan^{-1}\frac{GB}{1.652\,\mathrm{G}} + \tan^{-1}\frac{GB}{4.176\,\mathrm{G}} + \tan^{-1}\frac{GB}{555\,\mathrm{G}} = 30°$ → GB = 143 Mrad/s.
 - $|p_d| = GB/A_{vd}(0) = 143\times10^6/3678 = 38.9\times10^3$ rad/s → $C_L = 1/(|p_d|R_{out}) = 1/(38.9\times10^3\times7.44\times10^6) = 3.45$ pF. A smaller $C_L$ raises GB and lowers the phase margin below 60°.
-- (Original: $C_L$ = 10 pF gives GB = 3678/(7.44 MΩ·10 pF) = 49 Mrad/s, 7.9 MHz, so the gain is about ×2.9.)
+- (Original: $C_L$ = 10 pF gives GB = 3678/(7.44 MΩ·10 pF) = 49 Mrad/s, 7.9 MHz, so the GB rises by about ×2.9.)
 - If the phase is evaluated at the exact unity-gain crossover, GB ≈ 150 Mrad/s and $C_L$ ≈ 3.3 pF.
 
 ## Grading notes

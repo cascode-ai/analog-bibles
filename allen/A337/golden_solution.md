@@ -7,7 +7,7 @@ $A_{vd} = g_{mN}(r_{dsN}\|r_{dsP})\cdot(g_{mN} + g_{mP})(r_{dsN}\|r_{dsP}) \appr
 - $g_{mN} = 331.7\ \mu$S, $g_{mP} = 223.6\ \mu$S, $r_{dsN}\|r_{dsP} = 500\ \mathrm{k}\|400\ \mathrm{k} = 222.2$ kΩ.
 - First stage: $g_{mN}(r_{dsN}\|r_{dsP}) = 73.7$.
 - Output inverters: both devices are driven by the same gate, so the transconductance is $g_{mN} + g_{mP} = 555.3\ \mu$S and the gain $555.3\ \mu\times222.2\ \mathrm{k} = 123.4$.
-- $A_{vd} = 73.7\times123.4 = 9094$ V/V (≈ 79.2 dB), about 2.5 times circuit (a) because the push–pull inverter adds both transconductances.
+- $A_{vd} = 73.7\times123.4 = 9094$ V/V (≈ 79.2 dB), about 2.5 times the ≈ 3.66×10³ V/V of circuit (a) in the same textbook problem (7.3-3(b)) because the push–pull inverter adds both transconductances.
 
 ## Grading notes
 

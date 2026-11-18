@@ -7,7 +7,7 @@ $T \approx 65.9$ ($a = 98.9$, $f = 2/3$).
 - Feedback network h parameters: $f = h_{12f} = R_1/(R_1+R_2) = 2/3$; $h_{11f} = R_1\|R_2 = 66.7$ kΩ in series with the op-amp input; $h_{22f}$: $R_1+R_2 = 300$ kΩ across the output.
 - Basic amplifier: $v_x = v_i\,R_i/(R_i + 66.7\text{k}) = 0.4286\,v_i$; $v_o = a_vv_x\,\dfrac{300\text{k}}{300\text{k} + 1\text{M}} = 0.2308\,a_vv_x$; $a = 1000\times0.4286\times0.2308 = 98.9$.
 - $T = af = 65.9$ (closed-loop gain $a/(1+T) = 1.478$, ideal 1.5). This is the standard unilateral two-port split, neglecting the feedback network's feed-forward $h_{21f} = -2/3$ against $h_{21a} = -a_vR_i/R_o = -50$; keeping it in the forward term gives $T = 66.8$.
-- Not the same quantity: the return ratio of the controlled source $a_v$ (with $V_i$ zeroed, all loading kept) is $a_v\,\frac{R_1\|R_i}{R_o+R_2+R_1\|R_i} = 35.1$. It is the exact loop quantity, but it is not the h-parameter $af$ asked for here; the two differ because the two-port split assigns $h_{11f}$ and $h_{22f}$ loading with the other port shorted/opened (the comparison is the point of parts (c) and (d) of this exercise).
+- Not the same quantity: the return ratio of the controlled source $a_v$ (with $V_i$ zeroed, all loading kept) is $a_v\,\frac{R_1\|R_i}{R_o+R_2+R_1\|R_i} = 35.1$. It is the exact loop quantity, but it is not the h-parameter $af$ asked for here; the two differ because the two-port split assigns $h_{11f}$ and $h_{22f}$ loading with the other port shorted/opened.
 
 ## Grading notes
 

@@ -7,7 +7,7 @@ $\mathcal{E}_cL = 0.75$ V, so velocity saturation dominates: the active-region c
 - Without velocity saturation: identical to any $W/L = 10$ device (0.97 mA/V² × $V_{ov}^2$ beyond $V_{DS} = V_{ov}$).
 - With velocity saturation: triode $I_D = \dfrac{\tfrac{k'}{2}\tfrac{W}{L}(2V_{ov}V_{DS} - V_{DS}^2)}{1 + V_{DS}/(\mathcal{E}_cL)}$; $V_{DS(act)} = \mathcal{E}_cL\left(\sqrt{1+2V_{ov}/(\mathcal{E}_cL)}-1\right)$ = 0.328, 0.882, 1.290 V; active current $\tfrac{k'}{2}\tfrac{W}{L}V_{DS(act)}^2$ = 0.105, 0.754, 1.615 mA.
 - Triode example ($V_{GS}$ = 3 V): 0.83 vs 1.10 mA at 0.25 V; 1.58 vs 3.69 mA at 1 V.
-- The current steps between $V_{GS}$ values are now nearly equal (current approaching linear in $V_{ov}$, the fully velocity-limited asymptote being $k'W\mathcal{E}_cV_{ov}$), and the short device delivers much less current than its $W/L$ predicts by the square law.
+- The current steps between $V_{GS}$ values are now much more evenly spaced (0.65 and 0.86 mA, against 1.75 and 3.69 mA without velocity saturation; current approaching linear in $V_{ov}$, the fully velocity-limited asymptote being $k'W\mathcal{E}_cV_{ov}$), and the short device delivers much less current than its $W/L$ predicts by the square law.
 
 ## Grading notes
 
