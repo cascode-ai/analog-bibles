@@ -27,12 +27,104 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   }
   await b.viewport(1440, 960);
 
+  await t.test("Tab skips passive reading containers and reaches actionable controls", async () => {
+    for (const [url, width, height] of [
+      ["/browse?scope=random&level=hard&id=R453&view=focus", 1440, 960],
+      ["/review?scope=razavi&id=R050&lang=zh", 1440, 960],
+      ["/browse?scope=gray&id=G001&view=focus", 390, 844],
+    ]) {
+      await b.viewport(width, height);
+      await b.open(url);
+      const stops = [];
+      for (let i = 0; i < 100; i++) {
+        await b.cdp("Input.dispatchKeyEvent", {type:"keyDown",key:"Tab",code:"Tab"});
+        const stop = await b.evaluate(`(() => {
+          const el = document.activeElement;
+          return {tag:el.tagName, passive:el.matches('.panel, .solution-content'),
+            tab:el.dataset.solutionTab || null, selected:el.getAttribute('aria-selected'), id:el.id};
+        })()`);
+        if (stop.tag === "BODY") break;
+        stops.push(stop);
+      }
+      assert.ok(stops.length > 0 && stops.length < 100);
+      assert.equal(stops.some((s) => s.passive), false);
+      assert.deepEqual(stops.filter((s) => s.tab).map((s) => [s.tab,s.selected]), [["answer","true"]]);
+      assert.ok(stops.some((s) => s.id === "search"));
+      assert.ok(stops.some((s) => s.id === "next"));
+    }
+    await b.viewport(1440, 960);
+    await b.open("/browse?scope=razavi&id=R050&view=focus");
+    await click('[data-solution-tab="detailed"]');
+    await b.evaluate('document.querySelector("[data-solution-tab=detailed]").focus()');
+    await b.cdp("Input.dispatchKeyEvent", {type:"keyDown",key:"Tab",code:"Tab"});
+    assert.equal(await b.evaluate('document.activeElement.matches("details.step > summary")'), true);
+  });
+
+  await t.test("tabs switch cached content, reset only solution scrolling, and support keyboard navigation", async () => {
+    for (const url of ["/review?scope=razavi&id=R050&lang=en", "/browse?scope=razavi&id=R050&view=focus&lang=zh", "/browse?scope=razavi&id=R050&lang=en"]) {
+      await b.open(url);
+      const card = url.includes("view=focus") || url.includes("review") ? "#item" : "#card-R050";
+      const tab = (key) => `${card} [data-solution-tab="${key}"]`;
+      await b.waitFor(`!document.querySelector(${JSON.stringify(tab("grading"))}).hidden`);
+      const contentRequests = () => b.requests.filter((r) => /^\/(b\/R050\.|q\/R050\/|api\/)/.test(r.path)).length;
+      const count = contentRequests();
+      await b.evaluate(`window.savedAnswer = document.querySelector('${card} .q-answer'); document.querySelector('${card} .question-panel').scrollTop=100`);
+      const left = await b.evaluate(`document.querySelector('${card} .question-panel').scrollTop`);
+      for (const key of ["detailed", "grading", "answer"]) {
+        await b.evaluate(`document.querySelector('${card} .solution-panel').scrollTop=200`);
+        await click(tab(key));
+        assert.equal(await b.evaluate(`document.querySelector('${card} .solution-panel').scrollTop`), 0);
+        assert.equal(await b.evaluate(`document.querySelector('${card} .question-panel').scrollTop`), left);
+        assert.equal(await b.evaluate(`document.querySelectorAll('${card} [role="tabpanel"]:not([hidden])').length`), 1);
+      }
+      assert.equal(await b.evaluate(`savedAnswer === document.querySelector('${card} .q-answer')`), true);
+      assert.equal(contentRequests(), count);
+      await b.evaluate(`document.querySelector(${JSON.stringify(tab("answer"))}).focus()`);
+      await b.cdp("Input.dispatchKeyEvent", { type: "keyDown", key: "ArrowRight", code: "ArrowRight" });
+      assert.equal(await b.evaluate('document.activeElement.dataset.solutionTab'), "detailed");
+      assert.equal(await b.evaluate(`document.querySelector('${card}').dataset.qid`), "R050");
+      assert.equal(await b.evaluate(`document.querySelector(${JSON.stringify(tab("answer"))}).textContent`), url.includes("lang=zh") ? "参考答案" : "Reference answer");
+    }
+  });
+
   await t.test("short review questions use the available height with answer visible by default", async () => {
     await b.open("/review?scope=razavi&id=R650");
     await split();
-    assert.equal(await b.evaluate('document.querySelector("details.steps-sol").open'), false);
+    assert.equal(await b.evaluate('document.querySelector(".steps-sol").hidden'), true);
     assert.ok(await b.evaluate('document.querySelector(".q-answer").textContent.length > 20'));
     assert.ok(await b.evaluate('document.getElementById("pass").getBoundingClientRect().bottom < document.querySelector(".cols").getBoundingClientRect().top'));
+  });
+
+  await t.test("unavailable tabs stay hidden and a new question starts with its reference answer", async () => {
+    await b.open("/browse?scope=gray&id=G001&view=focus&lang=en");
+    assert.equal(await b.evaluate('document.querySelector("[data-solution-tab=detailed]").hidden'), true);
+    await b.open("/review?scope=razavi&id=R050&lang=en");
+    await click('[data-solution-tab="grading"]');
+    await click("#next");
+    await b.waitFor('document.querySelector("#item").dataset.qid === "R051" && document.querySelector(".q-answer").textContent.length > 20');
+    assert.equal(await b.evaluate('document.querySelector("[role=tab][aria-selected=true]").dataset.solutionTab'), "answer");
+    assert.equal(await b.evaluate('document.querySelector(".solution-panel").scrollTop'), 0);
+    // Local fixture exercises absent/empty notes without editing any source Markdown.
+    await b.evaluate(`(async () => {
+      const original = bundle;
+      bundle = async () => ({'instruction.md':'Fixture question', 'golden_solution.md':'# Answer\\n## Reference answer\\nFixture answer\\n## Grading notes\\n  ', 'detailed_solution.md':'  '});
+      try { await fillCard(document.getElementById('item'),state.cards[state.index]); } finally { bundle = original; }
+    })()`);
+    assert.equal(await b.evaluate('document.querySelector("[data-solution-tab=grading]").hidden'), true);
+    assert.equal(await b.evaluate('document.querySelector("[data-solution-tab=detailed]").hidden'), true);
+    assert.equal(await b.evaluate('document.querySelector(".grading").hidden'), true);
+  });
+
+  await t.test("pane divider supports pointer and keyboard resizing without changing questions", async () => {
+    await b.open("/review?scope=razavi&id=R050&lang=en");
+    const rect = await b.evaluate('(() => { const r=document.querySelector(".pane-resizer").getBoundingClientRect(); return {x:r.x+4,y:r.y+40}; })()');
+    await b.cdp("Input.dispatchMouseEvent", {type:"mousePressed",x:rect.x,y:rect.y,button:"left",clickCount:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseMoved",x:rect.x+100,y:rect.y,button:"left",buttons:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseReleased",x:rect.x+100,y:rect.y,button:"left",clickCount:1});
+    assert.ok(await b.evaluate('Number(document.querySelector(".pane-resizer").getAttribute("aria-valuenow")) > 40'));
+    await b.cdp("Input.dispatchKeyEvent", {type:"keyDown",key:"Home",code:"Home"});
+    assert.equal(await b.evaluate('document.querySelector(".pane-resizer").getAttribute("aria-valuenow")'), "25");
+    assert.equal(await b.evaluate('document.querySelector("#item").dataset.qid'), "R050");
   });
 
   await t.test("three circuit figures, KaTeX and independent pane scrolling", async () => {
@@ -40,7 +132,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await b.waitFor('Array.from(document.querySelectorAll(".question-panel img")).every(i => i.complete && i.naturalWidth > 0)');
     assert.equal(await b.evaluate('document.querySelectorAll(".question-panel img").length'), 3);
     assert.ok(await b.evaluate('document.querySelectorAll(".katex").length > 0'));
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="detailed"]');
     await b.evaluate('document.querySelector(".question-panel").scrollTop=150; document.querySelector(".solution-panel").scrollTop=300');
     const at = await b.evaluate('({left:document.querySelector(".question-panel").scrollTop,right:document.querySelector(".solution-panel").scrollTop,y:scrollY})');
     assert.ok(at.left > 0);
@@ -55,19 +147,19 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     assert.equal(await b.evaluate('document.getElementById("zoom").hidden'), true);
   });
 
-  await t.test("detailed solutions and individual steps still fold independently", async () => {
+  await t.test("individual step folds survive tab switches", async () => {
     assert.ok(await b.evaluate('document.querySelectorAll("details.step").length > 0'));
     await click("details.step > summary");
     assert.equal(await b.evaluate('document.querySelector("details.step").open'), false);
-    await click("details.steps-sol > summary");
-    assert.equal(await b.evaluate('document.querySelector("details.steps-sol").open'), false);
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="answer"]');
+    assert.equal(await b.evaluate('document.querySelector(".steps-sol").hidden'), true);
+    await click('[data-solution-tab="detailed"]');
     assert.equal(await b.evaluate('document.querySelector("details.step").open'), false);
   });
 
   await t.test("long problems, oversized formulas, Markdown images and tables stay contained", async () => {
     await b.open("/review?scope=razavi&id=R377");
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="answer"]');
     await b.evaluate(`(() => {
       const answer=document.querySelector('.q-answer');
       answer.insertAdjacentHTML('beforeend', window.katex.renderToString('x='+'\\\\frac{g_m R_D}{1+g_m R_S}+'.repeat(40)+'1',{displayMode:true}));
@@ -89,6 +181,11 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await b.open("/review?scope=razavi&id=R050");
     await b.evaluate('document.getElementById("note").value="local review note"');
     await click('[data-flag="question"]');
+    await b.evaluate('document.querySelector("[data-solution-tab=detailed]").focus()');
+    const submitted = b.reviews.length;
+    await b.cdp("Input.dispatchKeyEvent", { type: "keyDown", key: "Enter", code: "Enter" });
+    assert.equal(b.reviews.length, submitted);
+    assert.equal(await b.evaluate('document.querySelector("#item").dataset.qid'), "R050");
     await click("#lang-switch");
     await b.waitFor('document.documentElement.lang === "zh-CN" && document.querySelector(".orig-toggle")?.textContent === "查看英文原文"');
     assert.equal(await b.evaluate('document.getElementById("note").value'), "local review note");
@@ -197,7 +294,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   await t.test("sidebar folding expands reading space, persists, and keeps search accessible", async () => {
     await b.viewport(1440,960);
     await b.open("/review?scope=razavi&id=R050&lang=en");
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="detailed"]');
     await b.evaluate('document.getElementById("note").value="keep my draft";document.querySelector(".solution-panel").scrollTop=100');
     const width = await b.evaluate('document.querySelector(".main").getBoundingClientRect().width');
     assert.equal(await b.evaluate('document.querySelector(".sidebar-shell > #sidebar-toggle") !== null'), true);
@@ -209,7 +306,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     assert.ok(await b.evaluate('document.querySelector(".main").getBoundingClientRect().width') > width + 180);
     assert.equal(await b.evaluate('document.getElementById("sidebar-toggle").getBoundingClientRect().width > 0'), true);
     assert.equal(await b.evaluate('document.getElementById("note").value'), "keep my draft");
-    assert.equal(await b.evaluate('document.querySelector("details.steps-sol").open'), true);
+    assert.equal(await b.evaluate('!document.querySelector(".steps-sol").hidden'), true);
     assert.equal(await b.evaluate('document.querySelector(".solution-panel").scrollTop'), 100);
     await split();
     if (screenshotDir) await b.screenshot(path.join(screenshotDir,"reading-sidebar-collapsed.png"));
@@ -233,7 +330,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
 
   await t.test("resizing and mobile use a single column without page-width overflow", async () => {
     await b.open("/review?scope=razavi&id=R050&lang=en");
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="detailed"]');
     for (const [width, height] of [[1280,720],[1024,768],[999,700],[768,1024],[390,844],[320,640],[1440,500]]) {
       await b.viewport(width, height);
       const p = await panels();
@@ -253,10 +350,28 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   await t.test("final desktop screenshot and no browser exceptions", async () => {
     await b.viewport(1440,960);
     await b.open("/review?scope=razavi&id=R050&lang=en");
-    await click("details.steps-sol > summary");
+    await click('[data-solution-tab="detailed"]');
     await b.waitFor('Array.from(document.querySelectorAll(".question-panel img")).every(i=>i.complete && i.naturalWidth>0)');
     if (screenshotDir) await b.screenshot(path.join(screenshotDir,"reading-after.png"));
     assert.deepEqual(b.errors, []);
     assert.ok(b.requests.every((r) => !r.path.startsWith("/api/") || ["GET","POST"].includes(r.method)));
+  });
+
+  await t.test("long derivations, translated grading and mobile solution typography", async () => {
+    await b.viewport(1440,960);
+    await b.open("/browse?scope=razavi&id=R377&view=focus&lang=zh");
+    await click('[data-solution-tab="detailed"]');
+    assert.ok(await b.evaluate('document.querySelectorAll(".q-steps .katex-display").length > 3'));
+    assert.ok(await b.evaluate('document.querySelector(".solution-panel").scrollHeight > document.querySelector(".solution-panel").clientHeight'));
+    if (screenshotDir) await b.screenshot(path.join(screenshotDir,"solution-long-zh.png"));
+    await click('[data-solution-tab="grading"]');
+    assert.ok(await b.evaluate('document.querySelector(".grading .md").textContent.trim().length > 0'));
+    if (screenshotDir) await b.screenshot(path.join(screenshotDir,"solution-grading-zh.png"));
+    await b.viewport(390,844);
+    await click('[data-solution-tab="detailed"]');
+    await b.evaluate('document.querySelector(".solution-tabs").scrollIntoView()');
+    assert.ok(await b.evaluate('document.documentElement.scrollWidth <= document.documentElement.clientWidth'));
+    if (screenshotDir) await b.screenshot(path.join(screenshotDir,"solution-mobile-zh.png"));
+    assert.deepEqual(b.errors, []);
   });
 });

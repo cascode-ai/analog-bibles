@@ -417,7 +417,7 @@ function renderMarkdown(text) {
   });
 }
 
-// The answer file: its title, the answer, then the grading notes (folded).
+// The answer file: its title, the answer, then the grading notes.
 function splitSolution(text) {
   const at = text.search(/^## Grading notes\s*$/m);
   const body = (at >= 0 ? text.slice(0, at) : text)
@@ -525,21 +525,25 @@ function cardHead(q, extra = "") {
 function cardBody(q, reviewing = false) {
   return `
     <div class="cols">
-      <section class="panel question-panel" tabindex="0" role="region" aria-label="${esc(t("question"))}">
+      <section class="panel question-panel" tabindex="-1" role="region" aria-label="${esc(t("question"))}">
         <h4>${t("question")}${lang === "zh" && q.zh ? ` <button type="button" class="orig-toggle">${t("showOriginal")}</button>` : ""}</h4>
         <div class="md q-question"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.figs.map((f, i) => picture(q, f, t("fig", i + 1))).join("")}</div>
       </section>
-      <section class="panel solution-panel" tabindex="0" role="region" aria-label="${esc(t("solution"))}">
-        <h4 class="solution-label">${t("solution")}</h4>
-        <h4 class="answer-label">${t("answer")}</h4>
+      <div class="pane-resizer" role="separator" tabindex="0" aria-label="${esc(t("solution"))}" aria-orientation="vertical" aria-valuemin="25" aria-valuemax="70" aria-valuenow="40"></div>
+      <section class="panel solution-panel" tabindex="-1" role="region" aria-label="${esc(t("solution"))}">
+        <div class="solution-tabs" role="tablist" aria-label="${esc(t("solution"))}">
+          ${["answer", "detailed", "grading"].map((key) => `<button type="button" role="tab" id="${q.id}-tab-${key}" aria-controls="${q.id}-panel-${key}" aria-selected="${key === "answer"}" tabindex="${key === "answer" ? 0 : -1}" data-solution-tab="${key}"${key !== "answer" ? " hidden" : ""}>${t(key)}</button>`).join("")}
+        </div>
+        <div class="solution-content" role="tabpanel" id="${q.id}-panel-answer" aria-labelledby="${q.id}-tab-answer" tabindex="-1" data-solution-content="answer">
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q, f, t("refFig"))).join("")}</div>
-        ${q.sol ? `<details class="steps-sol">
-          <summary><span class="sol-title">${t("detailed")}</span> <span class="ai-note">${t("aiNote")}</span></summary>
+        </div>
+        ${q.sol ? `<div class="solution-content steps-sol" role="tabpanel" id="${q.id}-panel-detailed" aria-labelledby="${q.id}-tab-detailed" tabindex="-1" data-solution-content="detailed" hidden>
+          <p class="ai-note">${t("aiNote")}</p>
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
-        </details>` : ""}
-        <details class="grading" hidden><summary>${t("grading")}</summary><div class="md"></div></details>
+        </div>` : ""}
+        <div class="solution-content grading" role="tabpanel" id="${q.id}-panel-grading" aria-labelledby="${q.id}-tab-grading" tabindex="-1" data-solution-content="grading" hidden><div class="md"></div></div>
         ${reviewing ? `<details class="others" id="others"><summary>${t("othersLoading")}</summary></details>` : ""}
       </section>
     </div>`;
@@ -574,13 +578,30 @@ async function fillCard(el, q) {
     const box = el.querySelector(".q-steps");
     box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
     foldSteps(box);
+    el.querySelector('[data-solution-tab="detailed"]').hidden = !steps.trim();
   }
-  if (grading.trim()) {
-    const box = el.querySelector(".grading");
-    box.hidden = false;
-    box.querySelector(".md").innerHTML = renderMarkdown(grading);
-  }
+  // Keep the existing availability rule: only notes supplied in the answer
+  // and actually nonempty are exposed. Review API authorization is unchanged.
+  el.querySelector('[data-solution-tab="grading"]').hidden = !grading.trim();
+  el.querySelector(".grading .md").innerHTML = renderMarkdown(grading);
+  const selected = el.querySelector('[role="tab"][aria-selected="true"]');
+  if (selected.hidden) selectSolutionTab(el.querySelector('[data-solution-tab="answer"]'));
   return true;
+}
+
+// Switching tabs never fetches or rebuilds Markdown, formulas or step folds.
+function selectSolutionTab(tab) {
+  if (tab.hidden) return;
+  const panel = tab.closest(".solution-panel");
+  for (const button of panel.querySelectorAll('[role="tab"]')) {
+    const selected = button === tab;
+    button.setAttribute("aria-selected", String(selected));
+    button.tabIndex = selected ? 0 : -1;
+  }
+  for (const content of panel.querySelectorAll('[role="tabpanel"]')) {
+    content.hidden = content.dataset.solutionContent !== tab.dataset.solutionTab;
+  }
+  panel.scrollTop = 0;
 }
 
 // "<!-- diagram: diagram-01.cir -->" marks where a drawing of the solution
@@ -1006,10 +1027,36 @@ $("goto").addEventListener("blur", () => updatePosition());
 
 // ---------- wiring ----------
 
+function resizePanes(handle, percent) {
+  const value = Math.max(25, Math.min(70, Math.round(percent)));
+  handle.closest(".cols").style.setProperty("--question-width", `${value}%`);
+  handle.setAttribute("aria-valuenow", String(value));
+}
+
+document.addEventListener("pointerdown", (event) => {
+  const handle = event.target.closest(".pane-resizer");
+  if (!handle || event.button !== 0) return;
+  event.preventDefault();
+  handle.focus({ preventScroll: true });
+  handle.setPointerCapture(event.pointerId);
+  const move = (e) => {
+    const rect = handle.closest(".cols").getBoundingClientRect();
+    resizePanes(handle, 100 * (e.clientX - rect.left) / rect.width);
+  };
+  const end = () => {
+    handle.removeEventListener("pointermove", move);
+    handle.removeEventListener("lostpointercapture", end);
+  };
+  handle.addEventListener("pointermove", move);
+  handle.addEventListener("lostpointercapture", end);
+});
+
 document.addEventListener("click", async (event) => {
   const target = event.target.closest("button, a");
   if (!target || !state.ready) return;
-  if (target.classList.contains("row")) {
+  if (target.dataset.solutionTab) {
+    selectSolutionTab(target);
+  } else if (target.classList.contains("row")) {
     const keep = state.cards[state.index]?.id;
     state[target.dataset.kind] = target.dataset.key;
     refilter(keep);
@@ -1065,6 +1112,23 @@ $("zoom").addEventListener("click", () => { $("zoom").hidden = true; });
 
 document.addEventListener("keydown", (event) => {
   if (event.metaKey || event.ctrlKey || event.altKey || !state.ready) return;
+  if (event.target.matches(".pane-resizer") && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+    event.preventDefault();
+    resizePanes(event.target, event.key === "Home" ? 25 : event.key === "End" ? 70 : Number(event.target.getAttribute("aria-valuenow")) + (event.key === "ArrowRight" ? 2 : -2));
+    return;
+  }
+  const tab = event.target.closest('[role="tab"]');
+  if (tab && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+    event.preventDefault();
+    const tabs = [...tab.parentElement.querySelectorAll('[role="tab"]')].filter((b) => !b.hidden);
+    const at = tabs.indexOf(tab);
+    const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (at + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    tabs[next].focus({ preventScroll: true });
+    selectSolutionTab(tabs[next]);
+    return;
+  }
+  // Let native Enter/Space activate tabs without triggering review shortcuts.
+  if (tab) return;
   const inNote = event.target.id === "note";
   if (inNote && event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
