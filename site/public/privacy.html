@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Analog Bibles</title>
+<style>
+  :root { --bg: #fff; --text: #1d2330; --muted: #5b6577; --border: #d9dee7; --accent: #2457c5; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #10161f; --text: #e8edf5; --muted: #aeb8ca; --border: #3a465a; --accent: #a8c2ff; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.65 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.1rem; margin: 28px 0 6px; }
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  code { font-size: .9em; }
+  .choice { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; }
+  .choice button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+  .choice button:hover { background: var(--accent); color: var(--bg); }
+  .lang { float: right; }
+</style>
+</head>
+<body>
+<main>
+  <a class="lang" href="/">← Analog Bibles</a>
+  <h1>隐私说明 · Privacy</h1>
+  <p class="muted">本站只做第一方的访问统计，规则与 Analog Canvas 相同。</p>
+
+  <h2>统计什么</h2>
+  <ul>
+    <li>每次打开页面算一次浏览，记录页面路径（如 <code>/browse</code>，不含题号等参数）、来源类别（如搜索引擎、微信或其他网站的域名）、Cloudflare 判断的国家或地区，以及约 1° 精度的大致位置。</li>
+    <li>为了区分回访者，第一次被统计时会设一个随机 ID 的 Cookie <code>ab_vid</code>，有效期一年，不续期。服务器只保存它的哈希和最后一次出现的日期；超过一年没出现的会被删除。</li>
+    <li>每次打开页面，还会匿名报告一次加载用时（首字节和页面显示的时间），不带 ID，也不设 Cookie。</li>
+    <li>不保存 IP 地址，不与任何人分享，只以总数的形式在 <a href="/analytics">统计页</a> 上公开。</li>
+  </ul>
+
+  <h2>不统计谁</h2>
+  <p>浏览器开启了“请勿跟踪”（Do Not Track）或“全局隐私控制”（Global Privacy Control）时，不统计、不设 Cookie。你也可以在这里选择不被统计（会记住 13 个月）：</p>
+  <div class="choice">
+    <span id="state">正在读取…</span>
+    <button type="button" id="toggle" hidden></button>
+  </div>
+
+  <h2>English</h2>
+  <p>The site counts page views first-party, by the same rules as Analog Canvas: the page path (without its query), a source category, the country and an approximate (≈1°) location from Cloudflare. A random-id cookie <code>ab_vid</code>, set on your first counted view, lasts one year and is never renewed; only its hash is stored. Load times are reported without an id. No IP address is kept, nothing is shared, and the counts are shown only as totals on the <a href="/analytics">analytics page</a>. Do Not Track, Global Privacy Control, or “Stop counting me” above mean no counting and no cookie.</p>
+</main>
+<script>
+  const state = document.getElementById("state");
+  const toggle = document.getElementById("toggle");
+  const show = (optedOut) => {
+    state.textContent = optedOut ? "本浏览器目前不被统计。 · This browser is not counted." : "本浏览器目前会被统计。 · This browser is counted.";
+    toggle.textContent = optedOut ? "恢复统计 · Count me again" : "不要统计我 · Stop counting me";
+    toggle.dataset.optOut = String(!optedOut);
+    toggle.hidden = false;
+  };
+  fetch("/api/track/opt-out", { cache: "no-store" }).then((r) => r.json()).then((d) => show(Boolean(d.optedOut))).catch(() => { state.textContent = "暂时无法读取。 · Unavailable."; });
+  toggle.addEventListener("click", async () => {
+    toggle.disabled = true;
+    try {
+      const response = await fetch("/api/track/opt-out", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ optOut: toggle.dataset.optOut === "true" }),
+      });
+      show(Boolean((await response.json()).optedOut));
+    } finally {
+      toggle.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

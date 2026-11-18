@@ -54,6 +54,21 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await b.evaluate('document.getElementById("sidebar-toggle").click()');
   });
 
+  await t.test("The bottom bar shows visitor counts and fits under the reading view", async () => {
+    const { identifier } = await b.cdp("Page.addScriptToEvaluateOnNewDocument", { source:
+      `{const real=window.fetch;window.fetch=(u,o)=>String(u).startsWith('/api/stats')?Promise.resolve(new Response('{"pv":12345,"uv":678,"scope":"all"}')):real(u,o);}` });
+    await b.viewport(1440, 900);
+    await b.open("/browse?scope=razavi&id=R001&lang=zh");
+    await b.waitFor('!document.getElementById("visit-stats").hidden');
+    assert.equal(await b.evaluate('document.getElementById("visit-stats").textContent'), "678 位访客 · 12,345 次浏览");
+    assert.equal(await b.evaluate('document.getElementById("visit-stats").getAttribute("href")'), "/analytics");
+    assert.ok(await b.evaluate('Math.abs(document.getElementById("site-foot").getBoundingClientRect().bottom - innerHeight) <= 1'));
+    assert.ok(await b.evaluate("document.documentElement.scrollHeight <= innerHeight + 1"));
+    await b.evaluate('document.getElementById("lang-switch").click()');
+    assert.equal(await b.evaluate('document.getElementById("visit-stats").textContent'), "678 visitors · 12,345 views");
+    await b.cdp("Page.removeScriptToEvaluateOnNewDocument", { identifier });
+  });
+
   await t.test("By default → walks the books in order, not shuffled", async () => {
     const current = () => b.evaluate("state.cards[state.index].id");
     const right = async () => {

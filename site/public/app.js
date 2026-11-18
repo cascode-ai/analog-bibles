@@ -13,6 +13,10 @@ const STRINGS = {
     switchLang: "切换到中文",
     search: "Search ID, problem no. or text (/)",
     sideWidth: "Sidebar width",
+    analytics: "Analytics",
+    analyticsTitle: "Open visitor analytics",
+    privacy: "Privacy",
+    visits: (uv, pv) => `${uv} visitors · ${pv} views`,
     sideWidthTitle: "Drag to resize; double-click to reset",
     book: "Book",
     difficulty: "Difficulty",
@@ -109,6 +113,10 @@ const STRINGS = {
     switchLang: "Switch to English",
     search: "搜索 ID、题号或题目（/）",
     sideWidth: "侧边栏宽度",
+    analytics: "访问统计",
+    analyticsTitle: "打开访问统计",
+    privacy: "隐私",
+    visits: (uv, pv) => `${uv} 位访客 · ${pv} 次浏览`,
     sideWidthTitle: "拖动调整宽度，双击恢复默认",
     book: "教材",
     difficulty: "难度",
@@ -288,6 +296,7 @@ function applyLanguage() {
   button.title = t("switchLang");
   button.setAttribute("aria-label", t("switchLang"));
   applySidebar();
+  showVisitStats();
 }
 
 function applySidebar() {
@@ -342,6 +351,87 @@ $("side-resizer").addEventListener("keydown", (event) => {
   event.stopPropagation();
   setSideWidth(to);
 });
+
+// ---------- visitor analytics, as on Analog Canvas ----------
+// The bottom bar shows the public totals to every visitor. Only the
+// production site counts this page load: once, without blocking anything,
+// and never for a browser that asks not to be tracked.
+let visitStats = null;
+
+function showVisitStats() {
+  const link = $("visit-stats");
+  if (!link) return;
+  link.hidden = !visitStats;
+  if (visitStats) link.textContent = t("visits", num(visitStats.uv), num(visitStats.pv));
+}
+
+function reportPageLoad() {
+  if (document.visibilityState === "hidden") return;
+  let largestPaint = 0;
+  let observer = null;
+  try {
+    observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) largestPaint = entry.startTime;
+    });
+    observer.observe({ type: "largest-contentful-paint", buffered: true });
+  } catch {
+    observer = null;
+  }
+  const send = () => {
+    observer?.disconnect();
+    const navigation = performance.getEntriesByType("navigation")[0];
+    if (!navigation) return;
+    const shown = largestPaint || navigation.loadEventEnd;
+    if (!(navigation.responseStart > 0) || !(shown > 0)) return;
+    fetch("/api/track/load", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      credentials: "same-origin",
+      keepalive: true,
+      cache: "no-store",
+      body: JSON.stringify({ t: Math.round(navigation.responseStart), l: Math.round(shown) }),
+    }).catch(() => {});
+  };
+  // The largest paint settles shortly after load.
+  const afterLoad = () => setTimeout(send, 3000);
+  if (document.readyState === "complete") afterLoad();
+  else addEventListener("load", afterLoad, { once: true });
+}
+
+function trackVisit() {
+  if (typeof fetch !== "function") return;
+  fetch("/api/stats", { cache: "no-store" })
+    .then((response) => (response.ok ? response.json() : null))
+    .then((value) => {
+      if (value && Number.isFinite(value.pv) && Number.isFinite(value.uv)) {
+        visitStats = value;
+        showVisitStats();
+      }
+    })
+    .catch(() => {});
+  const host = String(location.hostname || "");
+  const counted = host === "analog-bibles.tokenzhang.com" || host.endsWith(".workers.dev");
+  if (!counted) return;
+  // Do Not Track and Global Privacy Control both mean: do not count me.
+  if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
+  let referrer = "";
+  try {
+    const from = new URL(document.referrer);
+    if (/^https?:$/.test(from.protocol)) referrer = from.origin;
+  } catch {
+    // Direct visit or opaque referrer.
+  }
+  const source = (new URLSearchParams(location.search).get("utm_source") ?? "").trim().toLowerCase().slice(0, 40);
+  fetch("/api/track", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    credentials: "same-origin",
+    keepalive: true,
+    cache: "no-store",
+    body: JSON.stringify({ p: location.pathname, r: referrer, s: source }),
+  }).catch(() => {});
+  reportPageLoad();
+}
 
 $("lang-switch").addEventListener("click", () => {
   lang = lang === "en" ? "zh" : "en";
@@ -1651,4 +1741,6 @@ $("author").addEventListener("change", (event) => store.set("ab.author", event.t
   state.ready = true;
   if (mode === "browse" && !state.focus) renderFeed(wanted ? state.index : 0);
   else renderItem();
+  // After the questions are up, so counting never delays the first paint.
+  trackVisit();
 })();

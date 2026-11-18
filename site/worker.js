@@ -1,4 +1,9 @@
-// API for reviews; everything else is the static page and question files.
+// API for reviews and visitor analytics; everything else is the static page
+// and question files.
+import { routeAnalyticsRequest } from "./analytics.js";
+
+export { AnalyticsDO } from "./analytics.js";
+
 const FLAGS = new Set(["question", "answer", "figure", "render", "level", "other"]);
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -12,10 +17,16 @@ export default {
     const url = new URL(request.url);
     const { pathname } = url;
     if (!pathname.startsWith("/api/")) {
-      // Any page path (/, /review, ...) is the one-page app. Asking assets for
+      // The analytics dashboard and the privacy notice are pages of their own.
+      if (/^\/(analytics|privacy)\/?$/.test(pathname))
+        return env.ASSETS.fetch(new Request(new URL(`/${pathname.split("/")[1]}`, url), request));
+      // Any other page path (/, /review, ...) is the one-page app. Asking assets for
       // "/" (not "/index.html", which they redirect to "/") keeps the address.
       return env.ASSETS.fetch(new Request(new URL("/", url), request));
     }
+    // Visitor counting is public; only the reviews below need the review key.
+    const analyticsResponse = await routeAnalyticsRequest(request, env);
+    if (analyticsResponse) return analyticsResponse;
     // Every review call is the maintainers': the review key comes as a
     // header from the page, or as ?key= for opening /api/export directly.
     const key = request.headers.get("x-review-key") || url.searchParams.get("key");
