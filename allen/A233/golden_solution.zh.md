@@ -1,0 +1,5 @@
+$A_v \approx -\dfrac{g_{m1}}{g_{ds3}} = -\sqrt{\dfrac{2K'_NW_1}{L_1I_D\lambda_P^2}} \propto I_D^{-1/2}$；$R_{out} \approx r_{ds3} = \dfrac{1}{\lambda_PI_D} \propto I_D^{-1}$；$|p_1| \approx \dfrac{g_{ds3}}{C_{out}} \propto I_D$。
+
+- 一般形式：$R_{out} = r_{ds3} \parallel R_N$，其中 $R_N = r_{ds1} + r_{ds2} + g_{m2}r_{ds1}r_{ds2}$，且 $A_v = -g_{m1}R_{out}\,(g_{m2}+g_{ds2})/(g_{m2}+g_{ds1}+g_{ds2}) \approx -g_{m1}(r_{ds3} \parallel g_{m2}r_{ds1}r_{ds2})$。
+- 共源共栅结构把 M1–M2 支路的电阻提高到 $g_{m2}r_{ds1}r_{ds2} \propto I_D^{-3/2}$。它与负载电阻之比为 $R_N/r_{ds3} \approx g_{m2}r_{ds2}\,\lambda_P/\lambda_N \gg 1$，对任何量级相当的 $\lambda_P$、$\lambda_N$ 均成立（书中标准器件参数为 $\lambda_P$ = 0.05 V⁻¹ > $\lambda_N$ = 0.04 V⁻¹，该比值约为 $10^2$ 量级），因此 $R_{out}$ 由 $r_{ds3}$ 决定，输出特性与电流源负载反相器相同：$g_m \propto \sqrt{I_D}$ 除以 $g_{ds3} \propto I_D$。另一种极限情况（$R_N \ll r_{ds3}$：$R_{out} \propto I_D^{-3/2}$，$|A_v| \propto I_D^{-1}$，$|p_1| \propto I_D^{3/2}$）需要 $\lambda_P < \lambda_N/(g_{m2}r_{ds2})$，即负载器件比输入器件长得多，而题中并无此暗示。
+- 输出极点是主极点，因为输出节点上有大电阻和给定的负载电容；共源共栅节点处的次极点（$\approx g_{m2}/C_1$）比它高约 $g_{m2}R_{out}C_{out}/C_1 \gg 1$ 倍，并按 $\sqrt{I_D}$ 升高。
