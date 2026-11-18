@@ -1,0 +1,1 @@
+将 [图 1] 所示电路中的 $M_1$ 换成 $npn$ 晶体管 $Q_1$（基极对应栅极，发射极对应源极，集电极对应漏极），构成一个共射级（common-emitter stage），$R_S = 5\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$。计算低频小信号电压增益 $v_o/v_i$。参数：$I_C = 1$ mA，$\beta = 100$，$r_b = 0$，$r_o = \infty$，$V_T = 26$ mV。

@@ -1,0 +1,1 @@
+[图 1] 所示为一个共源级（common-source stage）的交流电路图（ac schematic），$R_S = 10\ \mathrm{k\Omega}$，$R_L = 20\ \mathrm{k\Omega}$。计算低频小信号电压增益 $v_o/v_i$。NMOS 参数：$I_D = 0.5$ mA，$W = 100\ \mu$m，$L_{\text{eff}} = 1.6\ \mu$m，$k_n' = 60\ \mu\mathrm{A/V^2}$，$\lambda = 0$，$\gamma = 0$；采用平方律模型（square law）。

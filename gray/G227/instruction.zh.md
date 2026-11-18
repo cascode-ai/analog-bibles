@@ -1,0 +1,1 @@
+[图 1] 所示为一个共源–共栅（cascode）级的交流电路图（ac schematic），其中 $M_1$ 经 $R_S$ 驱动，$M_2$ 的栅极接交流地，源极接 $M_1$ 的漏极，漏极接负载 $R_L$；$R_S = 10\ \mathrm{k\Omega}$，$R_L = 20\ \mathrm{k\Omega}$。计算低频小信号电压增益 $v_o/v_i$。NMOS 参数（两管相同）：$I_D = 0.5$ mA，$W = 100\ \mu$m，$L_{\text{eff}} = 1.6\ \mu$m，$k_n' = 60\ \mu\mathrm{A/V^2}$，$\lambda = 0$，$\gamma = 0$；采用平方律模型（square law）。

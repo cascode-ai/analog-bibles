@@ -1,0 +1,1 @@
+将 [图 1] 所示电路中的 $M_1$ 换成 $npn$ 晶体管（基极对应栅极，发射极对应源极，集电极对应漏极），构成一个共射级（common-emitter stage），$R_S = 5\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$。估算小阶跃输入下输出的 10%～90% 上升时间（rise time），并画出 1-mV 阶跃输入时 0 到 300 ns 内输出电压波形的草图。参数：$I_C = 1$ mA，$\beta = 100$，$r_b = 0$，$C_{cs} = 1$ pF，$C_\mu = 0.4$ pF，$f_T = 500$ MHz（$I_C = 1$ mA 时），$r_o = \infty$，$V_T = 26$ mV。
