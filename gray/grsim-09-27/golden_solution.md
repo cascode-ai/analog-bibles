@@ -17,6 +17,7 @@ $R_x$ for given phase margins (feedback factor $\beta = R_x/(1\text{ MΩ} + R_x)
 | 60° | ≈ 0.013–0.016 | ≈ 13–17 kΩ | ≈ 60–75 (36 dB) | ≈ 4.5–5.3 MHz |
 | 45° | ≈ 0.025–0.034 | ≈ 26–36 kΩ | ≈ 30–40 (30 dB) | ≈ 7–9 MHz |
 | 20° | ≈ 0.075–0.17 | ≈ 80–210 kΩ | ≈ 6–13 (16–22 dB) | ≈ 14–24 MHz |
+
 (The lower $R_x$ in each range includes the mirror pole-zero pair.)
 
 Closed-loop behaviour expected from second-order theory: PM 80° → damping ≈ 1.2, no peaking, no overshoot; 60° → ≈ 0.3 dB peaking, ≈ 9% overshoot; 45° → ≈ 2.4 dB peaking, ≈ 23% overshoot; 20° → ≈ 9 dB peaking near the crossover and ≈ 55–60% overshoot with prolonged ringing. The −3-dB bandwidth rises as the closed-loop gain falls, but the response becomes increasingly peaked and the step response increasingly oscillatory.
