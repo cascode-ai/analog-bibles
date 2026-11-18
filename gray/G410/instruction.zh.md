@@ -1,0 +1,1 @@
+对于 [图 1] 中的全差分（fully differential）折叠式共源共栅（folded cascode）运放，所有晶体管 $|V_{ov}| = 0.15$ V，电源为 $V_{DD} = V_{SS} = 2$ V。共源共栅偏置电压 $V_{BB3}$ 和 $V_{BB4}$ 的选取使输出摆幅（output swing）最大。最大差分输出摆幅（$V_{od} = V_{o1} - V_{o2}$ 的峰值）是多少？

@@ -1,0 +1,1 @@
+要在 [图 1] 的全差分（fully differential）两级运放（PMOS 输入对 $M_1$–$M_2$；$V_{DD} = V_{SS} = 1.65$ V）中加入中和电容（neutralization capacitor）$C_n$，以抵消输入晶体管 $C_{gd1}$ 和 $C_{gd2}$ 上的密勒效应（Miller effect）。输入晶体管的 $(W/L)_1 = (W/L)_2 = 77$，版图长度 $L = 1\ \mu$m（$W_1 = 77\ \mu$m），栅漏交叠电容为 $C_{gd} = C_{ol}W$，其中 $C_{ol} = 0.35$ fF/μm。从每个输入栅极到同一输入晶体管漏极的低频差模增益为 $a_{dm1} = -137$。说明这些 $C_n$ 电容在运放中应如何连接。$C_n$ 应取多大？

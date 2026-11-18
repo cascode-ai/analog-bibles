@@ -1,0 +1,1 @@
+在 [图 1] 的开关电容（switched-capacitor）共模反馈（CMFB）方案中，$C_1 = 0.1$ pF，$C_2 = 0.5$ pF。开关是理想的，由不交叠时钟（non-overlapping clocks）$\phi_1$、$\phi_2$ 驱动；$V_{cmc}$ 是运放的共模控制（CMC）输入端，运放从 $v_{cmc}$ 到 $v_{oc}$ 的增益为 $a_{cmc}$。当 $V_{CSBIAS} = -1$ V 时，电路稳定于 $V_{OC} = V_{CM} = 0.5$ V。若 $V_{CSBIAS}$ 变为 −1.1 V（$V_{CM}$ 不变），$V_{OC}$ 的新值是多少？假设 $|a_{cmc}| \gg 1$。

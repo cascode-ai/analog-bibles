@@ -1,0 +1,1 @@
+一个 NMOS 晶体管工作在线性区（triode region）。利用平方律（square law）模型 $I_d = k'(W/L)[(V_{gs} - V_t)V_{ds} - V_{ds}^2/2]$，求其跨导（transconductance）$g_m = \partial I_d/\partial V_{gs}$ 的表达式。将其与同一晶体管在有源区（饱和区）、相同直流漏极电流下的 $g_m$ 进行比较。哪个更大？

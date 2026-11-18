@@ -1,0 +1,3 @@
+一个存在失配（mismatch）的全差分（fully differential）运放接在 [图 1] 的反馈电路中，$R_1 = R_2 = 10$ kΩ，$R_3 = R_4 = 40$ kΩ。该运放输入阻抗无穷大、输出阻抗为零，由下式描述：
+$v_{od} = a_{dm}v_{id} + a_{cm-dm}v_{ic} + a_{cmc-dm}v_{cmc}$ 和 $v_{oc} = a_{cm}v_{ic} + a_{dm-cm}v_{id} + a_{cmc}v_{cmc}$，
+其中 $a_{dm} = -181$，$a_{cm} = -2.89$，$a_{cmc} = -226$，$a_{dm-cm} = 8.95$，$a_{cm-dm} = 0.15$，$a_{cmc-dm} = 11.6$。共模反馈（CMFB）电路是平衡的，并以 $v_{cmc} = a_{cms}v_{oc}$、$a_{cms} = 0.76$ 闭合环路。求闭环增益（closed-loop gain）$A_{dm} = v_{od}/v_{sd}$、$A_{cm} = v_{oc}/v_{sc}$、$A_{dm-cm} = v_{oc}/v_{sd}$ 和 $A_{cm-dm} = v_{od}/v_{sc}$。（$v_{id} = v_{i1} - v_{i2}$，$v_{ic} = (v_{i1} + v_{i2})/2$ 为运放输入端的量；$v_{sd}$、$v_{sc}$ 对信号源的定义与此类似；$v_{s1}$ 驱动 $R_1$。）
