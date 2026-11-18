@@ -1,0 +1,3 @@
+若 $C_L = 1$ pF（接在两个输出之间），[图 1] 所示前置放大器（preamplifier）的差模电压增益 $v_{out}/v_{in}$ 和 −3 dB 带宽（以 Hz 为单位）各为多少？$V_{DD} = 3$ V；n 沟道输入对 M1–M2 的 $W/L = 10\ \mu\mathrm{m}/1\ \mu$m，尾电流为 50 µA；所有 p 沟道晶体管（M3–M8）的 $W/L = 2\ \mu\mathrm{m}/1\ \mu$m。M7 和 M8 为二极管连接，各由一个 20 µA 电流沉偏置，并将其电流镜像到 M5 和 M6 中，再由它们向 M1 和 M2 的漏极提供电流；M3 和 M4 是接在这两个漏极上的二极管连接负载。忽略 pn 结电容随反偏电压的变化（采用零偏结电容），并假设衬底-源极和衬底-漏极面积均为 $W\times5\ \mu$m。
+
+器件数据：$K'_N = 110\ \mu\mathrm{A/V^2}$，$K'_P = 50\ \mu\mathrm{A/V^2}$，$\lambda_N = 0.04\ \mathrm{V^{-1}}$，$\lambda_P = 0.05\ \mathrm{V^{-1}}$；$C_{ox} = 24.7\times10^{-4}\ \mathrm{F/m^2}$，$C_{GSO} = C_{GDO} = 220\times10^{-12}$ F/m，$C_J = 770\times10^{-6}$ F/m²（n）和 $560\times10^{-6}$ F/m²（p），$C_{JSW} = 380\times10^{-12}$ F/m（n）和 $350\times10^{-12}$ F/m（p）。

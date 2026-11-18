@@ -1,0 +1,1 @@
+某比较器（comparator）由两个相同的放大器与一个锁存器（latch）级联构成。每个放大器的增益为 5 V/V，单极点 −3 dB 带宽为 $1/\tau_L$（rad/s），其中 $\tau_L$ 为锁存器的时间常数。锁存器以输入差 $\Delta V_i$ 被使能后，按 $\Delta V_i e^{t/\tau_L}$ 再生，因此它达到输出摆幅一半的延迟为 $\tau_L\ln[(V_{OH}-V_{OL})/(2\Delta V_i)]$。若所加输入阶跃为 $0.05(V_{OH}-V_{OL})$，加到锁存器上的电压为 $\Delta V_i = 0.1(V_{OH}-V_{OL})$，归一化传播延迟时间（propagation delay time）$t_p/\tau_L$ 是多少？

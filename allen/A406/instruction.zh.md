@@ -1,0 +1,3 @@
+若 $C_L = 1$ pF，[图 1] 所示前置放大器（preamplifier）（$V_{DD} = 3$ V，n 沟道输入对 M1–M2 的 $W/L = 40/1$，二极管连接的 p 沟道负载 M3–M4 的 $W/L = 2/1$，尾电流为 50 µA，负载 $C_L = 1$ pF 接在两个输出之间）的差模电压增益 $v_{out}/v_{in}$ 和 −3 dB 带宽（以 Hz 为单位）各为多少？忽略 pn 结电容随反偏电压的变化（采用零偏结电容），并假设衬底-源极和衬底-漏极面积均为 $W\times5\ \mu$m。
+
+器件数据：$K'_N = 110\ \mu\mathrm{A/V^2}$，$K'_P = 50\ \mu\mathrm{A/V^2}$，$\lambda_N = 0.04\ \mathrm{V^{-1}}$，$\lambda_P = 0.05\ \mathrm{V^{-1}}$；$C_{ox} = 24.7\times10^{-4}\ \mathrm{F/m^2}$，$C_{GSO} = C_{GDO} = 220\times10^{-12}$ F/m，$C_J = 770\times10^{-6}$ F/m²（n 沟道）和 $560\times10^{-6}$ F/m²（p 沟道），$C_{JSW} = 380\times10^{-12}$ F/m（n）和 $350\times10^{-12}$ F/m（p）。
