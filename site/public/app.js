@@ -93,7 +93,7 @@ const STRINGS = {
     exercise: (e) => `Problem ${e}`,
     chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
     detailed: "Detailed solution",
-    aiNote: "AI-written, checked against the reference answer; may still contain errors",
+    unreviewed: "Unreviewed",
     reviewThisTitle: "Review this question: pass it, report an issue or comment (maintainers)",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -186,7 +186,7 @@ const STRINGS = {
     exercise: (e) => `习题 ${e}`,
     chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
     detailed: "详细步骤",
-    aiNote: "AI 撰写，已对照参考答案，仍可能有误",
+    unreviewed: "未审核",
     reviewThisTitle: "进入这道题的审阅：通过、报错、评论（维护者）",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -517,6 +517,7 @@ function cardHead(q, extra = "") {
   return `
     <div class="head">
       <span class="id">${esc(q.id)}</span>
+      ${q.reviewStatus !== "APPROVED" ? `<span class="review-status">${t("unreviewed")}</span>` : ""}
       <span class="tag">${bookName(q.book)} · ${t("exercise", q.ex)}</span>
       <span class="tag lv-${q.level}">${t(q.level)}</span>
       ${extra}
@@ -541,7 +542,6 @@ function cardBody(q, reviewing = false) {
         <div class="pics">${q.refs.map((f) => picture(q, f, t("refFig"))).join("")}</div>
         </div>
         ${q.sol ? `<div class="solution-content steps-sol" role="tabpanel" id="${q.id}-panel-detailed" aria-labelledby="${q.id}-tab-detailed" tabindex="-1" data-solution-content="detailed" hidden>
-          <p class="ai-note">${t("aiNote")}</p>
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
         </div>` : ""}
         <div class="solution-content grading" role="tabpanel" id="${q.id}-panel-grading" aria-labelledby="${q.id}-tab-grading" tabindex="-1" data-solution-content="grading" hidden><div class="md"></div></div>
