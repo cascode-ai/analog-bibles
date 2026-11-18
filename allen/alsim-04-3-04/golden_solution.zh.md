@@ -1,0 +1,5 @@
+手工分析：$V_{OUT}(\min) = V_T + 2V_{ON} \approx 1.08$ V；$r_{out} \approx g_{m2}r_{ds1}r_{ds2} \approx 0.66$ GΩ（计入 M2 的体效应时 ≈ 0.76 GΩ）。
+
+- $V_{ON} = \sqrt{2\times10\ \mu/(110\ \mu\times5)} = 0.191$ V，$V_{GS} = 0.891$ V（不计体效应）。M2 的栅极位于 $2V_{GS}$ = 1.78 V；M1 的漏极位于 $V_{GS}$ = 0.891 V，因此当 $v_{OUT} \ge 2V_{GS} - V_T = V_T + 2V_{ON}$ = 1.08 V 时 M2 保持饱和。（计入 M4 和 M2 的体效应后，栅极和源极移动相同的量，仍得到 1.08 V。）
+- $g_m = \sqrt{2\times110\ \mu\times5\times10\ \mu} = 105\ \mu\mathrm{A/V}$，$r_{ds} = 1/(0.04\times10\ \mu) = 2.5$ MΩ。$r_{out} = r_{ds1} + r_{ds2} + g_{m2}r_{ds1}r_{ds2} = 5\ \mathrm{M} + 655\ \mathrm{M} \approx 660$ MΩ。计入 $g_{mbs2}$（$V_{SB}$ ≈ 0.89 V 时 $\eta$ = 0.16）：≈ 764 MΩ。
+- 预期仿真结果：$i_{OUT}$ 与 10 µA 相差几个百分点以内（≈ 10.0–10.3 µA；LEVEL-3 的短沟道效应以及 M1/M3 的 $V_{DS}$ 不相等造成了这一小幅偏大），$i_{OUT}$–$v_{OUT}$ 曲线在 ≈ 1.1 V 以上平坦，$r_{OUT}$（由斜率或用交流测试源求得）在几百 MΩ 到约 1 GΩ 量级，因为 LEVEL-3 的输出电导与 λ = 0.04 不同。
