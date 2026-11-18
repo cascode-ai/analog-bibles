@@ -1,0 +1,1 @@
+[图 1] 所示的 DAC 将一个基准电压为 $V_{REF}$ 的 $M$ 位 MSB 子 DAC（subDAC）与一个基准电压为 $V_{REF}/x$ 的 $K$ 位 LSB 子 DAC 组合起来，并将二者的输出相加（分段式，subranging）。其中 $M = 3$、$K = 3$，因此各位为 $b_0 \ldots b_5$，$b_0$ 为 MSB；$b_0 b_1 b_2$ 驱动 MSB 子 DAC，$b_3 b_4 b_5$ 驱动 LSB 子 DAC。求 $V_{REF}$ 的除数 $x$ 的理想值。

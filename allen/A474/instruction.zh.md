@@ -1,0 +1,1 @@
+[图 1] 所示为一个两级电荷定标 DAC（charge scaling DAC）。转换前所有电容都已放电；然后，若第 $i$ 位为 1，记为 $b_i$ 的开关接 $V_{REF}$，若第 $i$ 位为 0 则接地（$b_0$ 为 MSB，$b_5$ 为 LSB）。放大器是理想的单位增益缓冲器（unity-gain buffer）。耦合电容按理想 6 位 DAC 设计，标称值为 $C_x = 8C/7$，但存在误差 $\Delta C_x$（实际值为 $C_x + \Delta C_x$）。求 $v_{OUT}$ 的表达式，用 $C_x$、$\Delta C_x$、各位 $b_{i-1}$（$i = 1 \ldots 6$）和 $V_{REF}$ 表示。
