@@ -1,0 +1,1 @@
+[图 1] 所示为一个 4 位逐次逼近型 ADC（successive-approximation ADC）。假设 $V_{REF}$ = 5 V，4 位 DAC 的输出为 $V_{out} = V_{REF}\left(\frac{D_0}{2} + \frac{D_1}{4} + \frac{D_2}{8} + \frac{D_3}{16}\right)$（$D_0$ 为 MSB）。当 $v_{in}$ = 3 V 时，填写下表，时钟周期 1 到 4 各占一行。各列为：时钟周期；移位寄存器输出 $B_0B_1B_2B_3$；猜测的 $D_0D_1D_2D_3$；$V_{out}$；比较器输出；实际的 $D_0D_1D_2D_3$。
