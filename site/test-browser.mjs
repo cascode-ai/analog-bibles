@@ -103,8 +103,18 @@ export async function startBrowser() {
   }
   try {
     const portFile = path.join(profile, "DevToolsActivePort");
-    for (let i = 0; !fs.existsSync(portFile) && i < 100; i++) await delay(100);
-    const port = fs.readFileSync(portFile, "utf8").split("\n")[0];
+    // Windows may expose the file while Chromium still holds its write lock.
+    let port;
+    for (let i = 0; i < 100; i++) {
+      try {
+        const candidate = fs.readFileSync(portFile, "utf8").split("\n")[0].trim();
+        if (/^\d+$/.test(candidate)) { port = candidate; break; }
+      } catch (error) {
+        if (!["ENOENT", "EBUSY"].includes(error.code)) throw error;
+      }
+      await delay(100);
+    }
+    if (!port) throw new Error("Browser debug port was not ready within 10 seconds.");
     const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
     ws = new WebSocket(targets.find((target) => target.type === "page").webSocketDebuggerUrl);
     await new Promise((resolve, reject) => { ws.onopen = resolve; ws.onerror = reject; });
