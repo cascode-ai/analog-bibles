@@ -7,6 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { scanReviews } from "./review-status.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -14,6 +15,8 @@ const books = ["razavi", "gray", "allen"];
 const difficulty = JSON.parse(fs.readFileSync(path.join(root, "difficulty.json"), "utf8"));
 // Each question's exercise number in its book and its chapter.
 const exercises = JSON.parse(fs.readFileSync(path.join(root, "exercises.json"), "utf8"));
+const reviews = scanReviews(root);
+for (const error of reviews.errors) console.warn(`Review invalidated: ${error}`);
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.cpSync(path.join(root, "site/public"), dist, { recursive: true });
@@ -51,6 +54,7 @@ for (const book of books) {
       index.push({
         v,
         id,
+        reviewStatus: reviews.questions.get(id)?.status ?? "UNREVIEWED",
         book,
         level,
         ex: exercises[id].ex,

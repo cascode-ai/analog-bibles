@@ -261,7 +261,6 @@ details.grading summary { cursor: pointer; color: var(--muted); font-size: 13px;
 
 /* The worked solution, under the short reference answer. */
 .steps-sol { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
-.steps-sol .ai-note { margin-left: 6px; font-weight: 400; font-size: 12px; color: var(--muted); }
 .md h3 { font-size: 14px; margin: 1em 0 .4em; }
 
 /* The top bar stays on screen; the toolbar and the sidebar stick just below it. */
@@ -302,7 +301,6 @@ details.steps-sol > summary::before, details.step > summary::before, details.gra
 }
 details[open].steps-sol > summary::before, details[open].step > summary::before, details[open].grading > summary::before { transform: rotate(90deg); }
 details.steps-sol > summary .sol-title { font-weight: 600; font-size: 14px; color: var(--text); }
-details.steps-sol > summary .ai-note { margin-left: 0; }
 details[open].steps-sol > summary { margin-bottom: 8px; }
 details.step { margin: 6px 0; padding-left: 2px; }
 details.step > summary { font-weight: 600; font-size: 14px; margin: .6em 0 .3em; }
@@ -394,7 +392,6 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
 .solution-content .md blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 2px solid var(--border); color: var(--muted); }
 .solution-content .md hr { border: 0; border-top: 1px solid var(--border); margin: 1.8em 0; }
 .solution-content.steps-sol { margin: 0; padding-top: 0; border: 0; }
-.solution-content .ai-note { margin: 0 0 1.4em; color: var(--muted); font-size: 12px; }
 .solution-content details.step { margin: 1.3em 0; padding: 1em 0 0; border-top: 1px solid var(--border); }
 .solution-content details.step > summary { font-size: 16px; line-height: 1.6; margin: 0 0 .8em; padding: 3px 0; }
 .solution-content details.step > summary:hover { color: var(--accent); }
@@ -449,3 +446,5 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
   .sidebar-shell #sidebar-toggle { right: 0; }
   .sidebar-collapsed .sidebar-shell { position: sticky; top: calc(var(--top-h) + 12px); order: 0; padding-right: 0; }
 }
+
+.review-status { display: inline-block; margin-inline-start: 3px; padding: 1px 4px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: 10px; font-weight: 400; line-height: 1.3; vertical-align: middle; white-space: nowrap; }
