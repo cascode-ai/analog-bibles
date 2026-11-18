@@ -11,7 +11,9 @@ const STRINGS = {
     review: "Review",
     reviewTitle: "For maintainers: pass, report issues, comment",
     switchLang: "切换到中文",
-    search: "Search ID, textbook problem or text (/)",
+    search: "Search ID, problem no. or text (/)",
+    sideWidth: "Sidebar width",
+    sideWidthTitle: "Drag to resize; double-click to reset",
     book: "Book",
     difficulty: "Difficulty",
     status: "Status",
@@ -105,7 +107,9 @@ const STRINGS = {
     review: "审阅",
     reviewTitle: "给维护者：通过、报错、评论",
     switchLang: "Switch to English",
-    search: "搜索内部 ID、教材题号或题目文字（/）",
+    search: "搜索 ID、题号或题目（/）",
+    sideWidth: "侧边栏宽度",
+    sideWidthTitle: "拖动调整宽度，双击恢复默认",
     book: "教材",
     difficulty: "难度",
     status: "状态",
@@ -275,7 +279,9 @@ const state = {
 function applyLanguage() {
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
-  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); el.title = t(el.dataset.i18nPh); });
+  $("side-resizer").setAttribute("aria-label", t("sideWidth"));
+  $("side-resizer").title = t("sideWidthTitle");
   document.querySelectorAll("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
   document.querySelectorAll("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
   const button = $("lang-switch");
@@ -301,6 +307,41 @@ function setSidebar(closed) {
 }
 
 $("sidebar-toggle").addEventListener("click", () => setSidebar(!state.sidebarClosed));
+
+// The sidebar's width: drag its right edge (or ←/→ on it), double-click to reset.
+const SIDE_DEFAULT = 260, SIDE_MIN = 180, SIDE_MAX = 480;
+function setSideWidth(px, save = true) {
+  const value = Math.max(SIDE_MIN, Math.min(SIDE_MAX, Math.round(px)));
+  document.documentElement.style?.setProperty("--side-w", `${value}px`);
+  $("side-resizer").setAttribute("aria-valuenow", String(value));
+  if (save) store.set("ab.sideWidth", String(value));
+}
+setSideWidth(Number(store.get("ab.sideWidth")) || SIDE_DEFAULT, false);
+$("side-resizer").addEventListener("pointerdown", (event) => {
+  if (event.button !== 0) return;
+  event.preventDefault();
+  const handle = event.currentTarget;
+  handle.setPointerCapture(event.pointerId);
+  handle.classList.add("dragging");
+  const left = handle.closest(".sidebar-shell").getBoundingClientRect().left;
+  const move = (e) => setSideWidth(e.clientX - left);
+  const end = () => {
+    handle.classList.remove("dragging");
+    handle.removeEventListener("pointermove", move);
+    handle.removeEventListener("lostpointercapture", end);
+  };
+  handle.addEventListener("pointermove", move);
+  handle.addEventListener("lostpointercapture", end);
+});
+$("side-resizer").addEventListener("dblclick", () => setSideWidth(SIDE_DEFAULT));
+$("side-resizer").addEventListener("keydown", (event) => {
+  const now = Number($("side-resizer").getAttribute("aria-valuenow"));
+  const to = { ArrowLeft: now - 20, ArrowRight: now + 20, Home: SIDE_MIN, End: SIDE_MAX }[event.key];
+  if (to === undefined) return;
+  event.preventDefault();
+  event.stopPropagation();
+  setSideWidth(to);
+});
 
 $("lang-switch").addEventListener("click", () => {
   lang = lang === "en" ? "zh" : "en";

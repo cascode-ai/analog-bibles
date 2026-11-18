@@ -90,7 +90,7 @@ body[data-mode="browse"] .steps { margin-left: auto; }
 
 .layout {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: var(--side-w, 260px) minmax(0, 1fr);
   gap: 16px;
   max-width: 90rem;
   margin: 0 auto;
@@ -338,7 +338,7 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
   .single-reading .layout {
     max-width: none; height: calc(100vh - var(--top-h));
     height: calc(100dvh - var(--top-h));
-    grid-template-columns: 210px minmax(0, 1fr); gap: 14px;
+    grid-template-columns: var(--side-w, 260px) minmax(0, 1fr); gap: 14px;
   }
   .single-reading .side { position: static; min-height: 0; max-height: 100%; }
   .single-reading .main { display: flex; flex-direction: column; min-height: 0; }
@@ -438,6 +438,14 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
 #sidebar-toggle[aria-expanded="false"] svg { transform: rotate(180deg); }
 .side[hidden] { display: none; }
 .sidebar-collapsed .layout { grid-template-columns: 16px minmax(0, 1fr); }
+/* Drag the sidebar's right edge to make it wider or narrower. */
+.side-resizer {
+  position: absolute; top: 40px; bottom: 0; right: -9px; z-index: 5; width: 8px;
+  cursor: col-resize; touch-action: none; border-radius: 4px;
+}
+.side-resizer:hover, .side-resizer:focus-visible, .side-resizer.dragging { background: var(--accent-soft); outline: 1px solid var(--accent); }
+.sidebar-collapsed .side-resizer { display: none; }
+@media (max-width: 900px) { .side-resizer { display: none; } }
 @media (min-width: 1000px) and (min-height: 600px) {
   .single-reading .sidebar-shell { position: relative; top: auto; height: 100%; min-height: 0; }
 }

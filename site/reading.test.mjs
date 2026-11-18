@@ -27,6 +27,33 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   }
   await b.viewport(1440, 960);
 
+  await t.test("The sidebar's edge drags wider, the width is kept, double-click resets it", async () => {
+    await b.viewport(1440, 960);
+    await b.open("/browse?scope=razavi&id=R001&lang=zh");
+    const width = () => b.evaluate('Math.round(document.getElementById("side").getBoundingClientRect().width)');
+    const edge = () => b.evaluate('(() => { const r = document.getElementById("side-resizer").getBoundingClientRect(); return {x: r.x + r.width / 2, y: r.y + 40}; })()');
+    const before = await width();
+    const start = await edge();
+    await b.cdp("Input.dispatchMouseEvent", {type:"mousePressed",...start,button:"left",clickCount:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseMoved",x:start.x + 120,y:start.y,button:"left",buttons:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseReleased",x:start.x + 120,y:start.y,button:"left",clickCount:1});
+    const wider = await width();
+    assert.ok(wider >= before + 100, `${before} → ${wider}`);
+    // The search hint fits once the sidebar is wider.
+    assert.ok(await b.evaluate('(() => { const s = document.getElementById("search"); return s.scrollWidth <= s.clientWidth + 1; })()'));
+    await b.open("/browse?scope=razavi&id=R001&lang=zh");
+    assert.equal(await width(), wider);
+    const p = await edge();
+    await b.cdp("Input.dispatchMouseEvent", {type:"mousePressed",...p,button:"left",clickCount:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseReleased",...p,button:"left",clickCount:1});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mousePressed",...p,button:"left",clickCount:2});
+    await b.cdp("Input.dispatchMouseEvent", {type:"mouseReleased",...p,button:"left",clickCount:2});
+    assert.equal(await b.evaluate('document.getElementById("side-resizer").getAttribute("aria-valuenow")'), "260");
+    await b.evaluate('document.getElementById("sidebar-toggle").click()');
+    assert.equal(await b.evaluate('getComputedStyle(document.getElementById("side-resizer")).display'), "none");
+    await b.evaluate('document.getElementById("sidebar-toggle").click()');
+  });
+
   await t.test("By default → walks the books in order, not shuffled", async () => {
     const current = () => b.evaluate("state.cards[state.index].id");
     const right = async () => {
