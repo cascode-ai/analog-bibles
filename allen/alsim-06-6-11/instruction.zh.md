@@ -1,0 +1,3 @@
+[图 1] 所示的两级运放（尺寸、30 µA 偏置电流源、$C_c$ = 3 pF 以及 ±2.5 V 电源均如图中所标；本测试中负载为 20 pF，而不是图中所示的 10 pF）接成单位增益跟随器，用从 −0.1 V 到 +0.1 V 再返回的小输入阶跃（边沿 10 ns）进行仿真。仿真得到的小信号阶跃响应（step response）如 [图 2] 所示。解释为什么仿真得到的正阶跃响应的正向过冲（overshoot）小于负阶跃响应的负向过冲。
+
+仿真数据（level-1 模型）：NMOS VTO = 0.7 V，KP = 110 µA/V²，GAMMA = 0.4，LAMBDA = 0.04 V⁻¹，PHI = 0.7 V，CGSO = CGDO = 220 pF/m，CGBO = 700 pF/m，CJ = 770 µF/m²，CJSW = 380 pF/m，MJ = 0.5，MJSW = 0.38，LD = 0.016 µm，TOX = 14 nm；PMOS VTO = −0.7 V，KP = 50 µA/V²，GAMMA = 0.57，LAMBDA = 0.05 V⁻¹，PHI = 0.8 V，CGSO = CGDO = 220 pF/m，CGBO = 700 pF/m，CJ = 560 µF/m²，CJSW = 350 pF/m，MJ = 0.5，MJSW = 0.35，LD = 0.014 µm，TOX = 14 nm。每个器件的漏/源区面积和周长：AS = AD = W × 6 µm，PS = PD = 2W + 12 µm。

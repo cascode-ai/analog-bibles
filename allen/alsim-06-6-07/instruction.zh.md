@@ -1,0 +1,1 @@
+使用两个相同的运放，说明如何用 SPICE 得到一个与运放的电源抑制比（power-supply rejection ratio）成正比的电压（对 $V_{DD}$ 为 PSRR⁺，对 $V_{SS}$ 为 PSRR⁻），而不是像通常的直接测量电路那样得到与之成反比的关系（在直接测量电路中，运放接成单位增益跟随器，在 $V_{DD}$ 或 $V_{SS}$ 中串联一个小交流源，于是 $V_{out}/V_{dd} \approx 1/\mathrm{PSRR}^+$）。
