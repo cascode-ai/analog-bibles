@@ -1,0 +1,1 @@
+$N_A = N_D = 10^{16}\ \mathrm{cm^{-3}}$ 的硅 pn 结的击穿电压是多少？假设当耗尽区中的最大电场达到 $E_{max} = 3\times10^5$ V/cm 时发生击穿，并且反向偏置远大于势垒电势。取 $q = 1.6\times10^{-19}$ C，$\varepsilon_{Si} = 11.7\varepsilon_0$，$\varepsilon_0 = 8.85\times10^{-14}$ F/cm。
