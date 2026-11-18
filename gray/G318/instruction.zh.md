@@ -1,0 +1,1 @@
+[图 1] 中密勒补偿（Miller compensation）的两级运放用 [图 2] 所示的模型表示，其中 $g_{m1} = 0.5$ mA/V，$R_1 = 200$ kΩ，$g_{m6} = 2$ mA/V，$R_2 = 100$ kΩ，$C_1 = 0.1$ pF，$C_2 = 8$ pF。[图 2] 中 $R_Z$ 取何值时可以消除右半平面零点（right-half-plane zero）？

@@ -1,0 +1,1 @@
+某两级 CMOS 运放采用密勒补偿（Miller compensation），补偿电容 $C$ 与消除右半平面零点（right-half-plane zero）的调零电阻（nulling resistor）$R_Z = 1/g_{m6}$ 串联；其小信号模型（small-signal model）如 [图 1] 所示。第一级跨导为 $g_{m1} = 1$ mA/V，第二级跨导为 $g_{m6} = 1.55$ mA/V，节点 X 处的总电容为 $C_1 ≈ 0.12$ pF，运放驱动 5 pF 负载，因此 $C_2 ≈ 5$ pF。运放接成单位增益反馈，并可以假设由 $R_Z$ 引入的第三个极点（约在 $-1/(R_ZC_1)$ 处）远高于第二个极点。求给出 60° 相位裕度（phase margin）的补偿电容 $C$。

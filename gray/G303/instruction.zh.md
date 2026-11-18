@@ -1,0 +1,1 @@
+某放大器的低频前向增益（forward gain）为 40,000，其传递函数有三个负实极点，幅值分别为 2 kHz、200 kHz 和 4 MHz。对该放大器施加与频率无关的负反馈（negative feedback），当反馈系数（feedback factor）$f$ 从 0 变化到 1 时，计算并画出根轨迹（root locus）草图。估算引起不稳定的 $f$ 值，并用奈奎斯特判据（Nyquist criterion）加以验证。

@@ -1,0 +1,1 @@
+[图 1] 中密勒补偿（Miller compensation）的两级运放可以用 [图 2] 所示的模型表示。在该模型中，取 $g_{m1} = 0.5$ mA/V，$R_1 = 200$ kΩ，$g_{m6} = 2$ mA/V，$R_2 = 100$ kΩ，$C_1 = 0.1$ pF，$C_2 = 8$ pF（$C_{\text{in}}$ 可以忽略）。假设该运放接成负反馈（negative feedback），反馈系数（feedback factor）$f = 0.5$ 且与频率无关。给出 45° 相位裕度（phase margin）的补偿电容 $C$ 的值是多少？假设右半平面零点（right-half-plane zero）已被消除，且反馈网络不对运放构成负载。

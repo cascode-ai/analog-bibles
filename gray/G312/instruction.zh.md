@@ -1,0 +1,3 @@
+对于 [图 1] 所示的 CMOS 运算放大器（电源 ±1.5 V，偏置电流 200 μA，宽长比如图所示，单位为 μm/μm，补偿电容 5 pF），计算其开环电压增益、单位增益带宽和压摆率（slew rate）。假设 $M_9$ 的栅极接正电源，且 $M_9$ 的 $W/L$ 已选定以消除右半平面零点（right-half-plane zero）。
+
+器件参数（平方律模型，$I_D = \frac{k'}{2}\frac{W}{L_{\text{eff}}}(V_{GS}-V_t)^2$，小信号 $r_o = 1/(\lambda I_D)$）：$k'_n = \mu_nC_{ox} = 194$ μA/V²，$k'_p = \mu_pC_{ox} = 64.7$ μA/V²（$t_{ox}$ = 8 nm，$C_{ox}$ = 4.32 fF/μm²），$V_{tn} = 0.6$ V，$V_{tp} = -0.8$ V，横向扩散 $L_d = 0.09$ μm。对所有工作在有源区（active region）的晶体管取 $X_d = 0.1$ μm，因此 $L_{\text{eff}} = L_{\text{drwn}} - 2L_d - X_d$；沟道长度调制（channel-length modulation）$dX_d/dV_{DS}$ = 0.02 μm/V（NMOS）和 0.04 μm/V（PMOS），$\lambda = (dX_d/dV_{DS})/L_{\text{eff}}$。

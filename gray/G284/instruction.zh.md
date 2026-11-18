@@ -1,0 +1,1 @@
+对于 [图 1] 中的电压串联反馈（series-shunt feedback）电路（同相放大器，noninverting amplifier），用 h 参数二端口网络（two-port network）计算环路增益（loop gain）$T = af$（$R_2$ 支路上的 × 标记只是一个参考点，该连接是连续的）。取 $R_1 = 200$ kΩ，$R_2 = 100$ kΩ。对于运放，假设其两输入端之间的输入电阻为 $R_i = 50$ kΩ，与受控源 $a_v(v_+ - v_-)$ 串联的输出电阻为 $R_o = 1$ MΩ，且 $a_v = 1\times10^3$。
