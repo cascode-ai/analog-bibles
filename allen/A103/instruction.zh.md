@@ -1,0 +1,1 @@
+利用 [图 1] 所示的基准电路，设计一个在 $V_{DD}$ = 5.0 V 时 $V_{REF}$ = 2.5 V 的电压基准。电路中 $V_{DD}$ 经 $R$ 向输出节点供电；一个 pnp 晶体管的发射极接 $V_{REF}$，集电极接地，基极接在分压器 $R_1$（从 $V_{REF}$ 到基极）– $R_2$（从基极到地）的抽头处。假设 $I_s$ = 1 fA，$\beta_F$ = 100，$V_t = kT/q$ = 26 mV。求 $V_{REF}$ 对 $V_{DD}$ 的灵敏度（sensitivity）$S_{V_{DD}}^{V_{REF}} = \dfrac{V_{DD}}{V_{REF}}\dfrac{\partial V_{REF}}{\partial V_{DD}}$。
