@@ -1,0 +1,1 @@
+对于 [图 1] 所示的 MOS 峰值电流源（peaking current source），令 $R = 10$ kΩ，求使 $I_{OUT} = 0.1$ µA 所需的输入电流 $I_{IN}$。假设两个晶体管相同且工作在弱反型（weak inversion）区，此时 $I_D = (W/L)\,I_t\exp[(V_{GS}-V_t)/(nV_T)]$（$V_{DS} > 3V_T$ 时），其中 $I_t = 0.1$ µA，$n = 1.5$，$V_T = 26$ mV。假设晶体管工作在弱反型区需要 $V_{GS} - V_t < 0$，求最小的 $W/L$。

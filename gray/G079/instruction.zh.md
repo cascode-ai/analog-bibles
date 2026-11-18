@@ -1,0 +1,3 @@
+一个电阻负载差分对由两个晶体管 $M_1$ 和 $M_2$ 组成，其源极连接在公共尾节点上；栅极分别由 $v_{i1}$ 和 $v_{i2}$ 驱动，两漏极分别经负载 $R_1$（$M_1$）和 $R_2$（$M_2$）接电源，输出 $v_{o1}$、$v_{o2}$ 为两漏极电压。尾电流源对地的小信号电阻为 $r_{\text{tail}} = 1\ \mathrm{M\Omega}$。负载是匹配的，$R_1 = R_2 = 10\ \mathrm{k\Omega}$，且 $g_{m1} = g_{m2} = 1$ mA/V，但晶体管输出电阻（output resistance）失配（mismatch）：$r_{o1} = 505\ \mathrm{k\Omega}$，$r_{o2} = 495\ \mathrm{k\Omega}$。忽略体效应（body effect）。用半边电路（half circuit）分析求 $A_{dm}$、$A_{cm}$、$A_{cm-dm}$ 和 $A_{dm-cm}$。当 $r_{\text{tail}} \to \infty$ 时会怎样？
+
+定义：$v_{id} = v_{i1} - v_{i2}$，$v_{ic} = (v_{i1}+v_{i2})/2$，$v_{od} = v_{o1} - v_{o2}$，$v_{oc} = (v_{o1}+v_{o2})/2$；$v_{od} = A_{dm}v_{id} + A_{cm-dm}v_{ic}$，$v_{oc} = A_{dm-cm}v_{id} + A_{cm}v_{ic}$。

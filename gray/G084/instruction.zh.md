@@ -1,0 +1,3 @@
+对于 [图 1] 所示的耗尽型负载（depletion-mode load）共源放大器，计算小信号电压增益 $v_o/v_i$，同时计入体效应（body effect）和沟道长度调制（channel-length modulation）。$V_{DD} = 3$ V，调节直流输入电压使直流输出电压为 1 V。$M_1$ 的版图尺寸为 $W = 100$ µm、$L = 1$ µm；$M_2$（n 沟道耗尽型晶体管，栅极与源极相连并接在输出端）的 $W = 10$ µm、$L = 1$ µm，$V_{t0} = -1$ V。两者都是 n 沟道晶体管，其衬底为接地的 p 型衬底。
+
+器件参数：$k' = \mu_nC_{ox} = 194\ \mu\mathrm{A/V^2}$，$M_1$ 的 $V_{t0} = 0.6$ V，$L_d = 0.09$ µm，$X_d = 0$（故 $L_{\text{eff}} = 0.82$ µm），$\lambda = (0.02\ \mu\mathrm{m/V})/L_{\text{eff}} = 0.0244\ \mathrm{V^{-1}}$，体效应系数（body-effect coefficient）$\gamma = 0.28\ \mathrm{V^{1/2}}$，$2\phi_f = 0.66$ V，且 $V_t = V_{t0} + \gamma\left(\sqrt{2\phi_f + V_{SB}} - \sqrt{2\phi_f}\right)$。
