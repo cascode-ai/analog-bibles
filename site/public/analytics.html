@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Analytics — Analog Bibles</title>
+<script>
+  // The dashboard is dark unless this browser chose light, as on Analog Canvas.
+  try { if (localStorage.getItem("ab.analyticsTheme") === "light") document.documentElement.classList.add("light"); } catch {}
+</script>
+<link rel="stylesheet" href="/analytics.css">
+</head>
+<body class="analytics-body">
+<div id="root"><div class="analytics-loading">Loading analytics…</div></div>
+<script src="/analytics-page.js"></script>
+</body>
+</html>
