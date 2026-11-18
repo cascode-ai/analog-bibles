@@ -1,0 +1,1 @@
+[图 1] 所示的差分仪表放大器（instrumentation amplifier）（理想增益幅度为 $10^3$）所用运放的输入失调电压（input offset voltage）已在共模输入电压为零时调整为零。调整之后，在共模输入电压从 −10 V 到 +10 V 的范围内，输入参考失调电压的幅度必须保持小于 1 mV。满足这一要求的运放最小共模抑制比（common-mode rejection ratio，CMRR）是多少？假设电阻完全匹配。
