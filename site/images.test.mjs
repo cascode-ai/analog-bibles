@@ -13,11 +13,11 @@ test("inline image viewer in a real browser", { timeout: 180000 }, async (t) => 
   const scale = (selector = frame) => b.evaluate(`Number(document.querySelector(${JSON.stringify(selector)}).dataset.scale)`);
   const fit = (selector = frame) => b.evaluate(`document.querySelector(${JSON.stringify(selector)}).parentElement.querySelector('[data-image-fit]').click()`);
   const settle = () => b.evaluate('new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))');
-  async function open(url = "/review?scope=razavi&id=R050&lang=en") {
+  async function open(url = "/review?scope=razavi&id=R050&lang=en", loaded = ".image-viewport") {
     await b.cdp("Emulation.setTouchEmulationEnabled", {enabled:false});
     await b.viewport(1440, 960);
     await b.open(url);
-    await b.waitFor('document.querySelector(".image-viewport img")?.naturalWidth > 0');
+    await b.waitFor(`document.querySelector(${JSON.stringify(loaded + " img")})?.naturalWidth > 0`);
     await settle();
     await b.evaluate(`document.querySelector('${frame}').scrollIntoView({block:'center'})`);
   }
@@ -322,7 +322,7 @@ test("inline image viewer in a real browser", { timeout: 180000 }, async (t) => 
     await b.evaluate(`document.querySelector('${reference}').scrollIntoView({block:'center'})`);
     await wheel(-100, reference);
     assert.ok(await scale(reference) > 1);
-    await open("/browse?scope=razavi&id=R050&lang=en&view=list");
+    await open("/browse?scope=razavi&id=R050&lang=en&view=list", "#card-R050 .image-viewport");
     // The feed may prepend earlier cards as we scroll. Target this card,
     // rather than whichever image happens to be first in the document.
     const feedFrame = "#card-R050 .image-viewport";

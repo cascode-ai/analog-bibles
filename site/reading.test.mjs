@@ -27,6 +27,18 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   }
   await b.viewport(1440, 960);
 
+  await t.test("A list link keeps its question on a phone, where the toolbar is taller", async () => {
+    for (const [width, height] of [[1440, 960], [390, 844]]) {
+      await b.viewport(width, height);
+      await b.open("/browse?scope=razavi&id=R100&view=list");
+      // Cards above it load and grow after the first paint; give them time.
+      await b.waitFor('document.querySelector("#card-R099 .q-answer") && !document.querySelector("#card-R100 .q-answer .empty")');
+      await new Promise((r) => setTimeout(r, 3000));
+      assert.match(await b.evaluate("location.search"), /[?&]id=R100(&|$)/, `width ${width}`);
+    }
+    await b.viewport(1440, 960);
+  });
+
   await t.test("Tab skips passive reading containers and reaches actionable controls", async () => {
     for (const [url, width, height] of [
       ["/browse?scope=random&level=hard&id=R453&view=focus", 1440, 960],
@@ -38,12 +50,16 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
       const stops = [];
       for (let i = 0; i < 100; i++) {
         await b.cdp("Input.dispatchKeyEvent", {type:"keyDown",key:"Tab",code:"Tab"});
+        // Focus may wrap from the last control straight back to the first
+        // without resting on BODY: one full cycle is the whole order.
         const stop = await b.evaluate(`(() => {
           const el = document.activeElement;
-          return {tag:el.tagName, passive:el.matches('.panel, .solution-content'),
+          const wrapped = el === window.__firstTabStop;
+          if (!window.__firstTabStop) window.__firstTabStop = el;
+          return {tag:el.tagName, wrapped, passive:el.matches('.panel, .solution-content'),
             tab:el.dataset.solutionTab || null, selected:el.getAttribute('aria-selected'), id:el.id};
         })()`);
-        if (stop.tag === "BODY") break;
+        if (stop.tag === "BODY" || stop.wrapped) break;
         stops.push(stop);
       }
       assert.ok(stops.length > 0 && stops.length < 100);
