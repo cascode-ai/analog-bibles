@@ -1,0 +1,1 @@
+对于典型的 n 阱 CMOS 工艺，n 沟道晶体管的体阈值（体效应，body effect）参数为 $\gamma_N = 0.4\ \mathrm{V^{1/2}}$，p 沟道晶体管为 $\gamma_P = 0.57\ \mathrm{V^{1/2}}$；两种晶体管的栅氧化层相同（$t_{ox}$ = 140 Å）。在 n 阱 CMOS 工艺中，为什么 $\gamma_P$ 大于 $\gamma_N$？

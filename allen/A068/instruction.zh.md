@@ -1,0 +1,1 @@
+另一种近似确定强反型（strong inversion）到弱反型（weak inversion）过渡点的方法，是求出弱反型跨导与强反型跨导相等时的电流。用这种方法，取弱反型近似式 $i_D \approx \frac{W}{L}I_{D0}\exp\!\left(\frac{v_{GS}}{n(kT/q)}\right)$（n 为亚阈值斜率因子）和强反型饱和区模型 $i_D = \frac{K'W}{2L}(v_{GS} - V_T)^2$，推导强反型与弱反型过渡点处漏极电流的表达式。

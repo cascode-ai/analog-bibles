@@ -1,0 +1,3 @@
+[图 1] 所示电路是一个互补（CMOS）MOS 电阻：一个 $W/L = 2\ \mu\mathrm{m}/1\ \mu\mathrm{m}$ 的 n 沟道晶体管（栅极接 5 V，衬底接地）与一个 $W/L = 4\ \mu\mathrm{m}/1\ \mu\mathrm{m}$ 的 p 沟道晶体管（栅极接地，衬底接最高电源电压 5 V）并联。左端由直流源 $V_S$ 驱动，右端没有电流流出（$I = 0$）。计算 $V_S$ = 1.0 V、3.0 V 和 5.0 V 时该互补电阻的小信号导通电阻（on-resistance）（填写 $V_S$ 与 $R$ 的对照表）。
+
+器件参数：n 沟道 $V_{T0} = 0.7$ V，$K' = 110\ \mu\mathrm{A/V^2}$，$\gamma = 0.4\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.7$ V；p 沟道 $V_{T0} = -0.7$ V，$K' = 50\ \mu\mathrm{A/V^2}$，$\gamma = 0.57\ \mathrm{V^{1/2}}$，$2|\phi_F| = 0.8$ V。采用非饱和区平方律（square law）模型，其中 $|V_T| = |V_{T0}| + \gamma\left(\sqrt{2|\phi_F| + |v_{SB}|} - \sqrt{2|\phi_F|}\right)$。
