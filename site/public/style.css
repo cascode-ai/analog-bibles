@@ -337,7 +337,7 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
   .single-reading .note { max-height: 5rem; }
   .single-reading .reader .cols {
     flex: 1; min-height: 0; max-width: none;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-columns: minmax(0, var(--question-width, 40%)) 8px minmax(0, 1fr);
     gap: 0; margin-top: 10px; border-top: 1px solid var(--border);
   }
   .single-reading .reader .panel {
@@ -356,6 +356,46 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
   .single-reading .solution-label { display: block; }
   .single-reading .reader .answer-label { font-size: 12px; }
   .single-reading .others { margin-top: 18px; }
+}
+
+/* Quiet textbook typography, shared by all three solution views. */
+.solution-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 22px; background: var(--surface); }
+.solution-tabs button { flex: 0 1 auto; min-width: 0; padding: 12px 10px 10px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted); font-size: 13px; cursor: pointer; }
+.solution-tabs button:hover { color: var(--text); background: var(--surface-muted); }
+.solution-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.solution-tabs button[hidden], .solution-content[hidden] { display: none; }
+.solution-tabs button:focus-visible, .solution-content:focus-visible, .solution-content summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 3px; }
+.solution-content { min-width: 0; padding-bottom: 12px; font-size: 15px; line-height: 1.85; }
+.solution-content .md p { margin: 0 0 1.1em; }
+.solution-content .md h2 { font-size: 19px; line-height: 1.45; margin: 1.8em 0 .8em; font-weight: 650; }
+.solution-content .md h3 { font-size: 16px; line-height: 1.5; margin: 1.5em 0 .7em; }
+.solution-content .md h4 { color: var(--text); font-size: 15px; margin: 1.3em 0 .6em; }
+.solution-content .md > :first-child { margin-top: 0; }
+.solution-content .md ul, .solution-content .md ol { padding-left: 1.7em; margin: .6em 0 1.2em; }
+.solution-content .md li { padding-left: .15em; margin: .45em 0; }
+.solution-content .md li > ul, .solution-content .md li > ol { margin: .4em 0 .8em; }
+.solution-content .md .katex-display { margin: 1.4em 0; padding: .35em 0; text-align: left; }
+.solution-content .md .katex-display > .katex { text-align: left; }
+.solution-content .md table { margin: 1.2em 0; line-height: 1.65; }
+.solution-content .md td, .solution-content .md th { padding: 7px 12px; }
+.solution-content .md blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 2px solid var(--border); color: var(--muted); }
+.solution-content .md hr { border: 0; border-top: 1px solid var(--border); margin: 1.8em 0; }
+.solution-content.steps-sol { margin: 0; padding-top: 0; border: 0; }
+.solution-content .ai-note { margin: 0 0 1.4em; color: var(--muted); font-size: 12px; }
+.solution-content details.step { margin: 1.3em 0; padding: 1em 0 0; border-top: 1px solid var(--border); }
+.solution-content details.step > summary { font-size: 16px; line-height: 1.6; margin: 0 0 .8em; padding: 3px 0; }
+.solution-content details.step > summary:hover { color: var(--accent); }
+.solution-content details.step > :not(summary) { margin-left: 1.25em; }
+.pane-resizer { display: none; }
+@media (min-width: 1000px) and (min-height: 600px) {
+  .single-reading .solution-tabs { position: sticky; top: 0; z-index: 2; }
+  .single-reading .pane-resizer { display: block; cursor: col-resize; touch-action: none; border-left: 1px solid var(--border); }
+  .single-reading .pane-resizer:hover, .single-reading .pane-resizer:focus-visible { background: var(--accent-soft); outline: 1px solid var(--accent); }
+  .single-reading .reader .solution-panel { border-left: 0; padding-left: 16px; }
+}
+@media (max-width: 600px) {
+  .solution-tabs { gap: 0; margin-bottom: 18px; }
+  .solution-tabs button { padding: 10px 6px; font-size: 12px; }
 }
 
 /* At narrow widths or short window heights, use normal page scrolling so
