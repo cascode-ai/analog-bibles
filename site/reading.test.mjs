@@ -63,6 +63,12 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     assert.equal(await b.evaluate('document.getElementById("visit-stats").textContent'), "678 位访客 · 12,345 次浏览");
     assert.equal(await b.evaluate('document.getElementById("visit-stats").getAttribute("href")'), "/analytics");
     assert.ok(await b.evaluate('Math.abs(document.getElementById("site-foot").getBoundingClientRect().bottom - innerHeight) <= 1'));
+    // The counts sit in the bottom-right corner, the links stay centred.
+    const corner = '(() => { const s = document.getElementById("visit-stats").getBoundingClientRect(), f = document.getElementById("site-foot").getBoundingClientRect(), l = document.querySelector(".foot-links").getBoundingClientRect(); return f.right - s.right <= 17 && Math.abs((l.left + l.right) / 2 - innerWidth / 2) < 2; })()';
+    assert.ok(await b.evaluate(corner));
+    await b.viewport(390, 844);
+    assert.ok(await b.evaluate('(() => { const s = document.getElementById("visit-stats").getBoundingClientRect(); return s.right <= innerWidth && document.documentElement.scrollWidth <= innerWidth; })()'));
+    await b.viewport(1440, 900);
     assert.ok(await b.evaluate("document.documentElement.scrollHeight <= innerHeight + 1"));
     await b.evaluate('document.getElementById("lang-switch").click()');
     assert.equal(await b.evaluate('document.getElementById("visit-stats").textContent'), "678 visitors · 12,345 views");
