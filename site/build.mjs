@@ -65,10 +65,13 @@ for (const book of books) {
         refs: files.filter((f) => f.startsWith("reference-")),
         // A worked, step-by-step solution, where one has been written.
         sol: files.includes("detailed_solution.md") ? 1 : 0,
-        // A Chinese translation of the question, answer and worked solution.
-        // Only when all three are translated: a half-translated question
-        // (a translation still in progress) stays in English.
-        zh: ["instruction.zh.md", "golden_solution.zh.md", "detailed_solution.zh.md"].every((f) => files.includes(f)) ? 1 : 0,
+        // A Chinese translation of the question, the answer and, where there
+        // is one, the worked solution. Only when all of these are translated:
+        // a half-translated question (a translation still in progress) stays
+        // in English.
+        zh: ["instruction.md", "golden_solution.md", "detailed_solution.md"]
+          .filter((f) => files.includes(f))
+          .every((f) => files.includes(f.replace(/\.md$/, ".zh.md"))) ? 1 : 0,
         // Drawn diagrams of the worked solution: name -> caption (the first
         // comment line of its netlist), only for those with an SVG.
         diags: diagrams(dir, files),
