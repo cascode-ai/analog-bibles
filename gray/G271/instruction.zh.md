@@ -1,0 +1,1 @@
+用布莱克曼阻抗公式（Blackman's impedance formula）求 [图 1] 中有源共源共栅（active cascode）电流源从 $M_2$ 漏极看进去的输出电阻 $R_{out}$（$M_2$ 的漏极接到图中未画出的其他电路）。以运放中的压控电压源（voltage-controlled voltage source）$a$（即运放的电压增益）为对象进行计算。用 $g_{m1}$、$g_{m2}$、$r_{o1}$、$r_{o2}$ 和 $a$ 表示结果。假设所有晶体管都工作在有源区（active region），$(W/L)_1 = (W/L)_2 = (W/L)_3$，$\gamma = 0$，运放的输入阻抗为无穷大、输出阻抗为零。

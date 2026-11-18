@@ -1,0 +1,1 @@
+[图 1] 所示为一个局部电压并联反馈（local shunt–shunt feedback）电路的交流电路图（ac schematic），但其中的 MOS 晶体管换成 $npn$ 晶体管（基极对应栅极，发射极对应源极，集电极对应漏极）：由注入基极的信号电流 $i_i$ 驱动的共射级（common-emitter stage），反馈电阻 $R_F$ 接在集电极与基极之间，负载 $R_L$ 从集电极接地。取 $R_F = 2$ kΩ，$R_L = 2$ kΩ，$\beta = 200$，$I_C = 1$ mA，$r_b = 0$，$V_A = 100$ V，$V_T = 26$ mV。用二端口反馈分析，计算输入电阻、输出电阻、环路传输（loop transmission，这里即环路增益 $T = af$）以及闭环跨阻 $v_o/i_i$。

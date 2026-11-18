@@ -1,0 +1,2 @@
+某电流并联反馈（shunt-series feedback）放大器的模型如下。基本放大器（basic amplifier）的输入阻抗为 $z_i$，输出端为诺顿形式：受控电流源（controlled source）$a\,i_\epsilon$ 与输出阻抗 $z_o$ 并联，其中 $i_\epsilon$ 是流入基本放大器输入端的电流，$a$ 是无量纲的电流增益。反馈网络（feedback network）是理想且单向的（unilateral）：它以与输出串联的方式检测输出电流 $i_o$（在输出回路中引入的阻抗为零），并以与输入并联的方式反馈电流 $i_{fb} = f\,i_o$（在输入两端呈现无穷大阻抗），使得 $i_\epsilon = i_i - f\,i_o$，其中 $i_i$ 是来自理想电流源的输入信号电流。基本放大器只进行正向传输。令 $T = af$。证明闭环电流增益（输出端口短路时）、输入阻抗和输出阻抗分别为
+$$\frac{i_o}{i_i} = \frac{a}{1+af},\qquad Z_i = \frac{z_i}{1+T},\qquad Z_o = z_o(1+T).$$

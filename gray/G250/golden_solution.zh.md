@@ -1,0 +1,3 @@
+- 增益：输出短路时，$i_o = a v_\epsilon = a(v_i - f i_o)$，因此 $i_o/v_i = a/(1+af)$。
+- 输入阻抗：输入电流为 $i_i = v_\epsilon/z_i$，由增益结果 $v_\epsilon = v_i - f i_o = v_i/(1+af)$，所以 $i_i = v_i/[z_i(1+T)]$，$Z_i = z_i(1+T)$：输入端的串联反馈使输入阻抗升高。
+- 输出阻抗：令 $v_i = 0$（输入短路），在输出端加测试电压 $v$；设 $i$ 为注入输出端的电流，则 $i_o = -i$，于是 $v_\epsilon = -f i_o = f i$，$i = v/z_o - a v_\epsilon = v/z_o - af\,i$。因此 $Z_o = v/i = z_o(1+T)$：输出端的串联（电流）取样使输出阻抗升高。
