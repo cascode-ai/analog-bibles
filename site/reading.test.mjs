@@ -27,6 +27,26 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   }
   await b.viewport(1440, 960);
 
+  await t.test("By default → walks the books in order, not shuffled", async () => {
+    const current = () => b.evaluate("state.cards[state.index].id");
+    const right = async () => {
+      await b.evaluate("document.activeElement.blur()");
+      await b.cdp("Input.dispatchKeyEvent", {type:"keyDown",key:"ArrowRight",code:"ArrowRight"});
+    };
+    await b.open("/browse?id=R001");
+    assert.equal(await b.evaluate("state.scope"), "all");
+    for (const id of ["R002", "R003", "R004"]) {
+      await right();
+      await b.waitFor(`state.cards[state.index].id === ${JSON.stringify(id)}`);
+    }
+    const lastRazavi = await b.evaluate('state.all.filter((q) => q.book === "razavi").at(-1).id');
+    await b.open(`/browse?id=${lastRazavi}`);
+    await right();
+    await b.waitFor('state.cards[state.index].book === "gray"');
+    assert.equal(await current(), await b.evaluate('state.all.find((q) => q.book === "gray").id'));
+    assert.equal(await b.evaluate("new URL(location).searchParams.get('scope')"), "all");
+  });
+
   await t.test("A list link keeps its question on a phone, where the toolbar is taller", async () => {
     for (const [width, height] of [[1440, 960], [390, 844]]) {
       await b.viewport(width, height);
