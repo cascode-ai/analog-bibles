@@ -1,0 +1,3 @@
+[图 1] 所示为一个共源级（common-source stage）的交流电路图（ac schematic），其中 $R_S = 10\ \mathrm{k\Omega}$，$R_L = 5\ \mathrm{k\Omega}$。晶体管偏置在 $I_D = 0.5$ mA，漏极到衬底电压 $V_{DB} = 7.5$ V。求低频小信号电压增益 $v_o/v_i$，并用零值时间常数法（zero-value time-constant method）估算 −3-dB 频率。
+
+NMOS 参数：$W = 100\ \mu$m，$L_{\text{eff}} = 1.6\ \mu$m，$k_n' = 60\ \mu\mathrm{A/V^2}$，$\lambda = 0$，$\gamma = 0$，$C_{sb} = 0$；采用平方律模型。未给出 $C_{ox}$ 和 $C_{gd}$；改为给出该偏置下 $f_T = 3$ GHz，且 $\omega_T = g_m/(C_{gs} + C_{gd})$。用未知的 $C_{gd}$ 表示结果。漏极-衬底电容为 $C_{db} = C_{db0}/\sqrt{1 + V_{DB}/\psi_0}$，其中 $\psi_0 = 0.6$ V，$C_{db0} = A_DC_{j0} + P_DC_{jsw0}$，$A_D = (5\ \mu\mathrm{m})W$，$P_D = W$，$C_{j0} = 0.4\ \mathrm{fF/\mu m^2}$，$C_{jsw0} = 0.4\ \mathrm{fF/\mu m}$。

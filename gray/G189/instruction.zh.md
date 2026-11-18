@@ -1,0 +1,3 @@
+[图 1] 所示的 MOS 差分放大器（differential amplifier）中，$I_{SS} = 1$ mA，$R_S = 5\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$。尾电流源（tail current source）具有输出电阻 $R_T = 300\ \mathrm{k\Omega}$，并与电容 $C_T = 2$ pF 并联，二者都接在公共源极节点与交流地之间。求差模增益（differential gain）$A_{dm} = v_{od}/v_{id}$、共模增益（common-mode gain）$A_{cm} = v_{oc}/v_{ic}$（其中 $v_{oc}$ 是两个漏极输出电压的共模值即平均值，$v_{ic}$ 是经各自的 $R_S$ 加到两个栅极的共模输入）以及共模抑制比（CMRR）$\mathrm{CMRR} = |A_{dm}/A_{cm}|$ 随频率变化的表达式。用对数频率坐标，画出这些量的幅值（以分贝表示）在 $f = 10$ kHz 到 $f = 20$ MHz 范围内的草图。
+
+NMOS 参数（两管相同）：$W = 100\ \mu$m，$L_{\text{eff}} = 1.6\ \mu$m，$k_n' = 60\ \mu\mathrm{A/V^2}$，$\lambda = 0$，$\gamma = 0$，$C_{gs} = \tfrac23WL_{\text{eff}}C_{ox}$，其中 $C_{ox} = 0.7\ \mathrm{fF/\mu m^2}$，$C_{gd} = 14$ fF，$C_{sb} = C_{db} = 0$。采用平方律模型。

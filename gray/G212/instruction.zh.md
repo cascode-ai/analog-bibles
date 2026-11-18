@@ -1,0 +1,1 @@
+[图 1] 所示为一个达林顿级（Darlington stage）的交流电路图（ac schematic），其中 $Q_1$ 和 $Q_2$ 的集电极连在一起作为输出，$Q_1$ 的发射极驱动 $Q_2$ 的基极；$R_L = 3\ \mathrm{k\Omega}$。现在输入改为直接加在 $Q_1$ 基极的信号电流源 $i_i$（它取代了电压源 $v_i$ 和 $R_S$，即源电阻为无穷大）。求低频小信号跨阻（transresistance）$v_o/i_i$。参数：$\beta = 100$，$r_b = 0$，$r_o = \infty$，$I_{C1} = 10\ \mu$A，$I_{C2} = 1$ mA，$V_T = 26$ mV。

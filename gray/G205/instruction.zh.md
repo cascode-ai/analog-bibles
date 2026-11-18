@@ -1,0 +1,1 @@
+[图 1] 所示为一个共集–共射级（common-collector–common-emitter stage）的交流电路图（ac schematic），其中 $Q_1$ 的集电极接交流地，其发射极驱动 $Q_2$ 的基极，$Q_2$ 的集电极为输出；$R_S = 100\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$。求低频小信号电压增益 $v_o/v_i$。参数：$\beta = 100$，$r_b = 0$，$r_o = \infty$，$I_{C1} = 10\ \mu$A，$I_{C2} = 1$ mA，$V_T = 26$ mV。
