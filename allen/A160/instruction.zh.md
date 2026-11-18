@@ -1,0 +1,1 @@
+对于 [图 1] 所示折叠电流镜差分放大器（folded-current-mirror differential amplifier）（所有 W/L = 100 µm/1 µm，$V_{DD} = 1.5$ V，所有晶体管均饱和），用小信号模型参数和各晶体管各自的等效输入噪声电压 $\overline{v_{ni}^2}$（i = 1 至 7）求等效输入噪声电压（equivalent input noise voltage）$\overline{v_{eq}^2}$ 的表达式。假设 M1 与 M2、M3 与 M4、M6 与 M7 分别匹配。偏置电路（M8、M9、M10 和 100 µA 电流源）的噪声可以忽略。
