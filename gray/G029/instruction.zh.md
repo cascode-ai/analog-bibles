@@ -1,0 +1,1 @@
+假设某 $n$ 沟道 MOSFET 工作在亚阈值（subthreshold）区，即弱反型（weak inversion）区，斜率因子 $n = 1.5$，计算其在 $I_D = 10$ nA、$V_{DS} = 1$ V 时的跨导（transconductance）。假设 $(C_{gs} + C_{gd} + C_{gb}) = 10$ fF，计算相应的器件 $f_T$。取 $kT/q = 26$ mV。

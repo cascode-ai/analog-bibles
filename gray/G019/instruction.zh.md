@@ -1,0 +1,1 @@
+某 NMOS 晶体管的参数为 $W = 10\ \mu$m，$L = 1\ \mu$m（有效值），$k' = \mu_nC_{ox} = 194\ \mu\mathrm{A/V^2}$，$\lambda = 0.024\ \mathrm{V^{-1}}$，$V_{t0} = 0.6$ V。忽略速度饱和（velocity saturation）效应和亚阈值导电（subthreshold conduction），采用平方律（square law）模型。画出 $V_{DS}$ 从 0 到 3 V、$V_{GS}$ = 0.5 V、1.5 V 和 3 V 时的 $I_D$–$V_{DS}$ 特性曲线草图。假设 $V_{SB} = 0$。

@@ -1,0 +1,1 @@
+某横向 $pnp$ 晶体管（lateral pnp transistor）的有效基区宽度（均匀掺杂）为 10 µm。若发射结耗尽层电容（depletion capacitance）在正向偏置区为 2 pF 且保持不变，计算器件在 $I_C = -0.5$ mA 时的 $f_T$（忽略 $C_\mu$）。并计算该电流下晶体管基区中存储的少数载流子（minority carrier）电荷。数据：硅中空穴扩散系数（hole diffusion constant）$D_p = 13$ cm²/s；$V_T = 26$ mV。

@@ -1,0 +1,1 @@
+某 NMOS 晶体管的参数为 $W = 10\ \mu$m，$L = 1\ \mu$m（有效值），$k' = \mu_nC_{ox} = 194\ \mu\mathrm{A/V^2}$，$\lambda = 0.024\ \mathrm{V^{-1}}$，$t_{ox} = 80$ Å（$\epsilon_{ox} = 3.45\times10^{-13}$ F/cm），$V_{t0} = 0.6$ V。栅-源和栅-漏交叠电容（overlap capacitance）各为 2 fF，栅-衬底电容为 $C_{gb} = 5$ fF。忽略速度饱和（velocity saturation）效应。计算该晶体管在 $V_{DS} = 3$ V、$V_{SB} = 0$ V、$V_{GS}$ = 1 V、1.5 V 和 2 V 时的单位电流增益频率（$f_T$）。

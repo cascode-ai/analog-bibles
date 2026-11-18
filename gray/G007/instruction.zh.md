@@ -1,0 +1,1 @@
+某双极晶体管（bipolar transistor）的集电区掺杂浓度（doping density）为 $10^{15}$ atoms/cm³，远低于基区掺杂。对于 $\beta_F = 400$、$n = 4$，求 $BV_{CEO}$，其中 $n$ 为雪崩倍增因子（avalanche multiplication factor）$M = 1/[1-(V_{CB}/BV_{CBO})^n]$ 中的指数。取 $BV_{CBO}$ 为集电结的平面结击穿电压（breakdown voltage），临界电场（critical field）$\mathcal{E}_{crit} = 3\times10^5$ V/cm。取 $\epsilon_{Si} = 1.04\times10^{-12}$ F/cm，$q = 1.6\times10^{-19}$ C。

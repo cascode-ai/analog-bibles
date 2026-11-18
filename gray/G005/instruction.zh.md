@@ -1,0 +1,1 @@
+若结弯曲（junction curvature）使实际结的最大电场为理论值（平面结）的 1.5 倍，计算硅突变 $pn$ 结（abrupt junction）获得 150 V 击穿电压（breakdown voltage）所需的掺杂浓度（doping density）。假设结的一侧掺杂远重于另一侧，临界电场（critical field）为 $\mathcal{E}_{crit} = 3\times10^5$ V/cm。取 $\epsilon_{Si} = 1.04\times10^{-12}$ F/cm，$q = 1.6\times10^{-19}$ C。
