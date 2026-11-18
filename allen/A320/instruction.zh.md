@@ -1,0 +1,1 @@
+某两级运算放大器采用带调零电阻（nulling resistor）的密勒补偿（Miller compensation）。除主极点（dominant pole）外，它在 $-10\times10^6$ rad/s 处有第二个极点，另有两个更高的极点，均位于 $-100\times10^6$ rad/s。利用补偿网络的零点（不加调零电阻时为右半平面零点）来抵消第二个极点，且负载电容保持不变。求获得 60° 相位裕度（phase margin）所需的 GB。若输入跨导为 500 µA/V，$C_c$ 的值是多少？

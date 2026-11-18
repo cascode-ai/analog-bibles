@@ -1,0 +1,1 @@
+对于第二个极点比所有更高极点至少小 10 倍的运算放大器，把第二个极点置于 2.2 GB 处可获得 60° 相位裕度（phase margin）。某折叠式共源共栅（folded cascode）运放除主极点外还有次极点（non-dominant pole）$p_A = p_B = -0.702\times10^9$ rad/s、$p_6 = -1.652\times10^9$ rad/s、$p_9 = -4.176\times10^9$ rad/s 和 $p_8 = -555\times10^9$ rad/s，因此其次极点之间并没有这样的间隔倍数。利用这些极点位置，求使相位裕度为 60° 的 $|p_6| = k\cdot GB$ 中的常数 $k$。

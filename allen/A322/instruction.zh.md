@@ -1,0 +1,1 @@
+某折叠式共源共栅（folded cascode）运算放大器的低频差模增益为 $A_{vd}(0) = 3678$ V/V，输出电阻为 $R_{out} = 7.44$ MΩ；其主极点（dominant pole）由输出端的负载电容决定，$|p_d| = 1/(R_{out}C_L)$。其次极点与 $C_L$ 无关，为 $p_A = p_B = -0.702\times10^9$ rad/s、$p_6 = -1.652\times10^9$ rad/s、$p_9 = -4.176\times10^9$ rad/s 和 $p_8 = -555\times10^9$ rad/s。若 $C_L = 1$ pF，相位裕度（phase margin）是多少？
