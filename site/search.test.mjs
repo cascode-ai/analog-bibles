@@ -220,6 +220,11 @@ test("refilter preserves book order, random order and the current question", () 
   const { state, refilter } = app();
   state.all = index;
   state.shuffled = index.slice().reverse();
+  assert.equal(state.scope, "all");
+  refilter("A168");
+  assert.equal(state.cards[state.index].id, "A168");
+  assert.equal(state.cards[0].id, index[0].id);
+  state.scope = "random";
   refilter("A168");
   assert.equal(state.cards[state.index].id, "A168");
   assert.equal(state.cards[0].id, state.shuffled[0].id);

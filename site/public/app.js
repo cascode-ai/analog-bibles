@@ -27,6 +27,7 @@ const STRINGS = {
     loadFailed: "Failed to load.",
     indexFailed: "Could not load the questions. Please refresh.",
     noMatch: "No questions match these filters.",
+    bookAll: "All, in order",
     bookRandom: "Random",
     all: "All",
     easy: "Easy",
@@ -120,6 +121,7 @@ const STRINGS = {
     loadFailed: "加载失败。",
     indexFailed: "题库加载失败，请刷新重试。",
     noMatch: "没有符合条件的题目。",
+    bookAll: "全部（按顺序）",
     bookRandom: "随机",
     all: "全部",
     easy: "简单",
@@ -192,7 +194,10 @@ const STRINGS = {
   },
 };
 
+// "all" walks the three books in their order (→ is the next question);
+// "random" is the same questions shuffled.
 const BOOKS = [
+  { key: "all", label: "bookAll" },
   { key: "random", label: "bookRandom" },
   { key: "razavi" },
   { key: "gray" },
@@ -249,7 +254,7 @@ const state = {
   shuffled: [],
   summary: {},
   mine: {},
-  scope: BOOKS.some((b) => b.key === params.get("scope")) ? params.get("scope") : "random",
+  scope: BOOKS.some((b) => b.key === params.get("scope")) ? params.get("scope") : "all",
   level: LEVELS.includes(params.get("level")) ? params.get("level") : "all",
   status: mode === "review" && STATUSES.some((s) => s.key === params.get("status")) ? params.get("status") : "all",
   search: "",
@@ -364,7 +369,7 @@ function shuffle(list) {
 }
 
 function matches(q, { scope = state.scope, level = state.level, status = state.status } = {}) {
-  if (scope !== "random" && q.book !== scope) return false;
+  if (scope !== "random" && scope !== "all" && q.book !== scope) return false;
   if (level !== "all" && q.level !== level) return false;
   const s = state.summary[q.id];
   if (status === "unseen" && state.mine[q.id]) return false;
@@ -1381,7 +1386,7 @@ function updatePosition() {
   $("total").textContent = `/ ${num(total)}`;
   const q = state.cards[state.index];
   const byChapter = state.scope !== "random";
-  $("chapter").textContent = q && byChapter ? t("chapter", q.ch) : "";
+  $("chapter").textContent = q && byChapter ? (state.scope === "all" ? `${bookName(q.book)} · ` : "") + t("chapter", q.ch) : "";
   for (const id of ["prev-ch", "next-ch"]) {
     $(id).disabled = !byChapter || !total;
     $(id).title = byChapter ? t(id === "prev-ch" ? "prevCh" : "nextCh") : t("chapterNeedsBook");
@@ -1393,18 +1398,19 @@ function updatePosition() {
 function jumpChapter(dir) {
   if (state.scope === "random" || !state.cards.length) return;
   const cards = state.cards;
-  const here = cards[state.index].ch;
+  const chapterOf = (q) => `${q.book}:${q.ch}`;
+  const here = chapterOf(cards[state.index]);
   let at = state.index;
   if (dir > 0) {
-    while (at < cards.length && cards[at].ch === here) at++;
+    while (at < cards.length && chapterOf(cards[at]) === here) at++;
     if (at >= cards.length) return;
   } else {
-    while (at > 0 && cards[at - 1].ch === here) at--;
+    while (at > 0 && chapterOf(cards[at - 1]) === here) at--;
     if (at === state.index) {
       if (at === 0) return;
-      const prev = cards[at - 1].ch;
+      const prev = chapterOf(cards[at - 1]);
       at--;
-      while (at > 0 && cards[at - 1].ch === prev) at--;
+      while (at > 0 && chapterOf(cards[at - 1]) === prev) at--;
     }
   }
   go(at);
