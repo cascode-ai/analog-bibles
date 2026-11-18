@@ -1,0 +1,2 @@
+(a) [图 1] 所示为一个积分器：输入 $v_i$ 经 $R$ 驱动反相节点，积分电容 $C$ 接在该节点与输出之间，放大器用其输入电容 $C_{\text{in}}$（跨接在 $v_x$ 两端，$v_x$ 以接地的同相输入端为正）和一个戴维南输出 $a_vv_x$ 串联 $R_o$ 来模拟。用零值时间常数（zero-value time constant）估算该电路的主极点（dominant pole），用短路时间常数（short-circuit time constant）估算次极点（non-dominant pole）。取 $R = 20\ \mathrm{k\Omega}$，$C = 50$ pF，$C_{\text{in}} = 0.2$ pF，$a_v = 1000$，$R_o = 5\ \mathrm{k\Omega}$。
+(b) 将你的结果与 SPICE 仿真进行比较。

@@ -1,0 +1,3 @@
+对于 [图 1] 所示的 CMOS 运算放大器（电源为 ±5 V，偏置电流 20 μA，宽长比以 μm/μm 为单位如图所示，补偿电容 5 pF），计算其开环电压增益、单位增益带宽和压摆率（slew rate）。假设 $M_9$ 的栅极接正电源，并且已选择 $M_9$ 的 $W/L$ 以抵消右半平面零点（right-half-plane zero）。将你的结果与 SPICE 仿真进行比较。
+
+工艺参数：$t_{ox}$ = 40 nm（$C_{ox}$ = 0.863 fF/μm²），$\mu_n$ = 700 cm²/V·s，$\mu_p$ = 350 cm²/V·s（$k'_n = 60.4$ μA/V²，$k'_p = 30.2$ μA/V²），$V_{tn} = 0.7$ V，$V_{tp} = -0.7$ V，横向扩散 $L_d = 0.3$ μm，$X_d = 1$ μm（$L_{\text{eff}} = L_{\text{drwn}} - 2L_d - X_d$），沟道长度调制（channel-length modulation）$dX_d/dV_{DS}$ = 0.2 μm/V（n）和 0.1 μm/V（p），且 $\lambda = (dX_d/dV_{DS})/L_{\text{eff}}$，衬底掺杂 $N_A = 10^{15}$ cm⁻³（NMOS 衬底），n 阱掺杂 $N_D = 10^{16}$ cm⁻³，交叠电容 0.35 fF/μm，零偏结电容 0.08 fF/μm²（n⁺）和 0.20 fF/μm²（p⁺），侧壁电容 0.5 fF/μm（n⁺）和 1.5 fF/μm（p⁺），缓变系数 0.5，内建电势 0.65 V。

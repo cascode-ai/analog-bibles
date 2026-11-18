@@ -1,0 +1,1 @@
+[图 1] 所示为一个 CMOS 反馈放大器。若直流输入电压为零，计算总增益 $v_o/v_i$ 和输出电阻。将你的结果与 SPICE 仿真进行比较。取 $\mu_nC_{ox} = 60\times10^{-6}\ \mathrm{A/V^2}$，$\mu_pC_{ox} = 30\times10^{-6}\ \mathrm{A/V^2}$，$V_{tn} = 0.8$ V，$V_{tp} = -0.8$ V，$\lambda_n = |\lambda_p| = 0.03\ \mathrm{V^{-1}}$，$\gamma_n = \gamma_p = 0$；$W/L$ 如图中所标。

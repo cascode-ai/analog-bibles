@@ -1,0 +1,2 @@
+(a) 对于交流电路图（ac schematic）如 [图 1] 所示的共射放大器（common-emitter amplifier），取 $R_S = 5\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$，$r_b = 300\ \Omega$，$I_C = 0.5$ mA，$\beta = 200$，$f_T = 500$ MHz（$I_C = 0.5$ mA 时），$C_\mu = 0.3$ pF，$C_{cs} = 0$，$V_A = \infty$，$V_T = 26$ mV，用零值时间常数（zero-value time constant）估算主极点（dominant pole），用短路时间常数（short-circuit time constant）估算次极点（non-dominant pole）。
+(b) 将你的估算值与 SPICE 仿真进行比较。

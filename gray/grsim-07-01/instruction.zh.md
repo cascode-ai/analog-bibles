@@ -1,0 +1,2 @@
+(a) 用密勒近似（Miller approximation）计算交流电路图（ac schematic）如 [图 1] 所示的共射级（common-emitter stage）小信号电压增益的 −3-dB 频率，取 $R_S = 5\ \mathrm{k\Omega}$，$R_L = 3\ \mathrm{k\Omega}$，晶体管参数如下：$r_b = 300\ \Omega$，$I_C = 0.5$ mA，$\beta = 200$，$f_T = 500$ MHz（$I_C = 0.5$ mA 时），$C_\mu = 0.3$ pF，$C_{cs} = 0$，$V_A = \infty$；$V_T = 26$ mV。
+(b) 计算 (a) 中电路次极点（non-dominant pole）的幅值。将你的结果与 SPICE 仿真进行比较（例如对由 $r_b$、$r_\pi$、$C_\pi$、$C_\mu$、$g_m$ 构成的线性混合 π 等效电路做交流分析；或者采用 BF = 200、RB = 300 Ω、CJC = 0.3 pF 且缓变系数为零的双极型模型，并选择 TF 使 $C_\pi$ 与由 $f_T$ 推出的值一致）。
