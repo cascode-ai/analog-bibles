@@ -1,0 +1,1 @@
+[图 1] 中的交流电路图（ac schematic）是一个 MOS 共源级（common-source stage，$g_m = 1$ mA/V，负载 10 kΩ）。忽略电容效应（取 $C_{gs} = 0$）和栅极电流噪声，假设 MOS 管漏极电流中闪烁噪声（flicker noise）的谱密度在 100 kHz 处等于热噪声（thermal noise）的谱密度（$4kT\frac{2}{3}g_m$），计算该电路的等效输入噪声电压源和噪声电流源。假设后级把带宽限制在 1 Hz–20 kHz（锐截止），计算总等效输入噪声电压的大小。取 $4kT = 1.66\times10^{-20}$ V·C。

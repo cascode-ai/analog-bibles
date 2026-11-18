@@ -1,0 +1,1 @@
+一个锁相环（phase-locked loop）的中心频率为 $10^5$ rad/s，VCO 增益 $K_O = 10^3$ rad/(V·s)，鉴相器（phase detector）增益 $K_D = 1$ V/rad。环路中没有其他增益。求一阶环路结构（无环路滤波器）下的环路带宽（loop bandwidth）。然后，对于单极点环路滤波器 $F(s) = 1/(1 + s/\omega_1)$，求使闭环极点位于从原点出发的 45° 射线上（与负实轴成 ±45°）的极点位置 $\omega_1$。

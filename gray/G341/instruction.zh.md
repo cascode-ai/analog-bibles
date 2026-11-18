@@ -1,0 +1,3 @@
+一个锁相环（phase-locked loop）的中心（自由振荡）频率为 $10^5$ rad/s，VCO 增益 $K_O = 10^3$ rad/(V·s)，鉴相器（phase detector）增益 $K_D = 1$ V/rad，环路中没有其他增益。鉴相器的输出与相位误差成线性关系，斜率为 $K_D$，最大值限制在 $\pm(\pi/2)K_D$。环路滤波器（loop filter）为无源滞后-超前网络（lag-lead network）$F(s) = (1 + s/\omega_2)/(1 + s/\omega_1)$，其中 $\omega_1 = 7.61$ rad/s，$\omega_2 = 116.5$ rad/s，它使环路增益在 100 rad/s 处穿越单位增益，此时相位为 −135°。
+
+假设捕获范围不受 VCO 频率范围的人为限制，估算该 PLL 的捕获范围（capture range）。采用如下粗略估计：在 VCO 控制输入端断开环路，并施加频率为 $\omega_i$ 的输入，则鉴相器输出中含有一个频率为 $\omega_i - \omega_{osc}$、幅值为 $(\pi/2)K_D$ 的差频正弦分量；若该分量经过环路滤波器后，其幅值不小于把 VCO 调到输入频率所需的控制电压 $|\omega_i - \omega_{osc}|/K_O$，则认为发生捕获。

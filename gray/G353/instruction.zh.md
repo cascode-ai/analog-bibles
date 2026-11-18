@@ -1,0 +1,1 @@
+[图 1] 中的交流电路图（ac schematic）是一个具有极高输入电阻的 MOS 共源级（common-source stage，$g_m = 1$ mA/V，负载 10 kΩ）。电路由图中的理想电压源 $v_s$ 驱动，后级把带宽限制在 dc–20 kHz（锐截止）。忽略闪烁噪声（flicker noise）和电容效应，计算总等效输入噪声电压的大小。然后评述该电路作为低阻抗信号源的低噪声放大器是否合适。沟道热噪声（channel thermal noise）按 $\overline{i_d^2} = 4kT\frac{2}{3}g_m\Delta f$ 建模，并取 $4kT = 1.66\times10^{-20}$ V·C。

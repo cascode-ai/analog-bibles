@@ -1,0 +1,1 @@
+[图 1] 中的交流电路图（ac schematic）采用 MOS 共源级（common-source stage，$g_m = 1$ mA/V，负载 10 kΩ）以获得非常高的输入电阻。忽略闪烁噪声（flicker noise）、栅极漏电流和电容效应，推导该电路的等效输入噪声电压源和噪声电流源的表达式，并计算其数值。沟道热噪声（channel thermal noise）按 $\overline{i_d^2} = 4kT\frac{2}{3}g_m\Delta f$ 建模，并取 $4kT = 1.66\times10^{-20}$ V·C。

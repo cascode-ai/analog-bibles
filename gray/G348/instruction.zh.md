@@ -1,0 +1,1 @@
+[图 1] 中的交流电路图（ac schematic）采用工作在小集电极电流下的共射级（common-emitter stage），获得约 100 kΩ 的输入电阻（$I_C = 13\ \mu$A，$\beta = 50$，$r_b = 100\ \Omega$，负载 10 kΩ）。忽略闪烁噪声（flicker noise）和电容效应，推导该电路的等效输入噪声电压源和噪声电流源的表达式，并计算其数值。取 $4kT = 1.66\times10^{-20}$ V·C，$q = 1.6\times10^{-19}$ C，$kT/q = 26$ mV。

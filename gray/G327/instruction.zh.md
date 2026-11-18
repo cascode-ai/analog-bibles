@@ -1,0 +1,1 @@
+[图 2] 中的反馈电路在某一时钟相期间是一个开关电容积分器（switched-capacitor integrator，开关为理想开关）。假设运放为 [图 1] 的套筒式共源共栅运放。取 $C_L = 1.5$ pF，$C_I = 4$ pF，$C_S = 0.4$ pF，$C_{ip} = 0.1$ pF（$C_{ip}$ 表示运放输入端的总寄生电容）。若 $I_{\text{TAIL}} = 0.2$ mA，输出压摆率（slew rate）是多少？
