@@ -1,0 +1,3 @@
+画出 [图 1] 所示两级 CMOS 运放（$V_{DD} = 2.5$ V，$V_{SS} = -2.5$ V，$C_c = 3$ pF，$C_L = 10$ pF；晶体管尺寸和偏置电流如图所标）的 PSRR⁺ 和 PSRR⁻ 的渐近频率响应（asymptotic frequency response）草图（幅值 dB 随频率的变化）。PSRR 是差模电压增益与从电源上的小纹波（PSRR⁺ 对应 $V_{DD}$，PSRR⁻ 对应 $V_{SS}$）到输出的增益之比，此时差模输入置零。给出低频值以及所有转折点的频率。
+
+器件参数（所有 $L = 1\ \mu$m）：NMOS $K'_N = 110\ \mu\mathrm{A/V^2}$，$V_{TN} = 0.7$ V，$\lambda_N = 0.04\ \mathrm{V^{-1}}$；PMOS $K'_P = 50\ \mu\mathrm{A/V^2}$，$V_{TP} = -0.7$ V，$\lambda_P = 0.05\ \mathrm{V^{-1}}$；饱和区中 $i_D = \frac{K'W}{2L}(v_{GS}-V_T)^2(1+\lambda v_{DS})$。30 µA 偏置电流来自理想电流源，因此 M5、M7 和 M8 的栅源电压不随电源电压变化。忽略第一级输出处的寄生电容，输出节点电容取为 $C_L$，M7 的栅漏电容取为 $C_{gd7} = 10$ fF。
