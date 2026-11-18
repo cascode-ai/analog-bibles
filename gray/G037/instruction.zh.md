@@ -1,0 +1,3 @@
+[图 1] 所示的衬底 $pnp$ 晶体管（substrate pnp transistor）用作监测外延层（epitaxial layer）厚度的测试器件。其 $p$ 型发射极由基区型扩散形成，结深（junction depth）为 3 μm，发射极（底面）面积为 5100 μm²；基区是发射极底部与作为集电极的 $p$ 衬底之间的 $n$ 型外延层。假设少数载流子（minority carrier）在基区中垂直流动，且发射结和集电结耗尽层的宽度可以忽略。假设通过独立测量已知外延层电阻率（resistivity）为 2 Ω-cm。在集电极电流为 10 μA 时，观察到不同晶圆上的基极-发射极电压在 525 mV 到 560 mV 之间变化。这意味着外延层厚度的范围是多少？在外延夹断电阻（epitaxial pinch resistor，即同一外延层被夹在 3 μm 深的 $p$ 型基区扩散覆盖层与衬底之间）中将观察到的相应方块电阻（sheet resistance）范围是多少？假设外延层中空穴扩散系数（diffusivity）为 10 cm²/s，电子迁移率为 800 cm²/V-s（用此迁移率和电阻率求出外延层的施主浓度）。
+
+取 $n_i = 1.5\times10^{10}\ \mathrm{cm^{-3}}$、$q = 1.6\times10^{-19}$ C，$kT/q = 26$ mV。

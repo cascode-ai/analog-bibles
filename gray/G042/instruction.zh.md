@@ -1,0 +1,3 @@
+计算某硅栅 $n$ 阱 CMOS 工艺中 $p$ 沟道晶体管的阈值电压（threshold voltage），其 $p$ 沟道参数如下：$n$ 阱（衬底）掺杂 $N_D = 10^{16}\ \mathrm{cm^{-3}}$，栅氧化层厚度 $t_{ox} = 400$ Å，金属-硅功函数差（work function）$\phi_{ms} = -0.1$ V，表面态密度（surface-state density）$Q_{ss}/q = 10^{11}\ \mathrm{cm^{-2}}$；阈值调整注入（threshold-adjust implant）：$p$ 型，矩形分布，有效深度 0.3 μm，有效浓度 $0.9\times10^{16}\ \mathrm{cm^{-3}}$。先对未注入的晶体管进行计算，再对器件接受上述沟道注入的情况进行计算。注意这是 $p$ 型注入，因此有效表面浓度是衬底本底浓度与注入层有效浓度之差。
+
+取 $n_i = 1.5\times10^{10}\ \mathrm{cm^{-3}}$、$kT/q = 26$ mV、$\epsilon_{ox} = 3.9\epsilon_0$、$\epsilon_{Si} = 11.6\epsilon_0$、$\epsilon_0 = 8.86\times10^{-14}$ F/cm，$q = 1.6\times10^{-19}$ C。

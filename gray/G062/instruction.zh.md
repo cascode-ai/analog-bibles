@@ -1,0 +1,1 @@
+对于 [图 1] 所示的共漏放大器（common-drain amplifier，n 沟道晶体管，其衬底接地），假设 $W/L = 10$，$\lambda = 0$。晶体管参数：$\mu_n C_{ox} = 90\ \mu\mathrm{A/V^2}$（$\mu_n = 650\ \mathrm{cm^2/V\cdot s}$，$t_{ox} = 25$ nm），阈值电压 $V_{t0} = 0.7$ V，平方律 $I_D = \frac{\mu_n C_{ox}}{2}\frac{W}{L}(V_{GS} - V_t)^2$。忽略体效应并取 $R \to \infty$，求直流输出电压 $V_O$ 和小信号增益 $v_o/v_i$。

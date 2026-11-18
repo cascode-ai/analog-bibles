@@ -1,0 +1,1 @@
+对于 [图 1] 所示的 CS-CG（cascode）电路，若 $I_{D1} = I_{D2} = 250\ \mu$A，求其输入电阻（input resistance）、跨导（transconductance）、输出电阻 $R_o$（从 $M_2$ 的漏极看进去，不含 $R$），以及最大开路电压增益（负载为无穷大电阻时的增益）。假设两个晶体管均有 $W/L = 100$，$\lambda = 0.1\ \mathrm{V^{-1}}$，$M_2$ 的 $\chi = g_{mb}/g_m = 0.1$（两个晶体管的衬底都接地）。$\mu_n C_{ox} = 90\ \mu\mathrm{A/V^2}$；器件遵循平方律。
