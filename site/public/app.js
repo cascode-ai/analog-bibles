@@ -25,6 +25,25 @@ const STRINGS = {
     namePh: "Your name (optional)",
     hintReview: "Keys: ← → step · R random · P pass · 1–6 pick a reason · Enter submit",
     hintBrowse: "Keys: ← → step · R random · / search",
+    navigationButton: "Contents",
+    navigationTitle: "Contents & search",
+    closeNavigation: "Close contents",
+    backToReading: "Back to reading",
+    randomQuestion: "Random question",
+    shortcutsButton: "Shortcuts",
+    shortcuts: "Keyboard shortcuts",
+    closeShortcuts: "Close keyboard shortcuts",
+    shortcutTyping: "Question navigation and random selection stay off while typing.",
+    shortcutQuestion: "Previous / next question",
+    shortcutChapter: "Previous / next chapter",
+    shortcutSearch: "Focus search",
+    shortcutHelp: "Open this help",
+    shortcutEscape: "Close a dialog or image",
+    reviewShortcuts: "Review mode",
+    shortcutPass: "Pass this question",
+    shortcutReasons: "Select issue reasons",
+    shortcutSubmit: "Submit comment or selected issues",
+    shortcutNewline: "New line in a comment",
     prev: "Previous (←)",
     next: "Next (→)",
     random: "Random",
@@ -89,6 +108,15 @@ const STRINGS = {
     focus: "Focus reading",
     listView: "Scrolling list",
     solution: "Solution",
+    expandSteps: "Expand all steps",
+    collapseStep: "Collapse step",
+    expandStep: "Expand step",
+    collapseResult: "Collapse result",
+    expandResult: "Expand result",
+    moreStepActions: "More step actions",
+    collapseSteps: "Collapse all steps",
+    stepPosition: (n, total) => `Step ${n} / ${total}`,
+    resultPosition: "Result",
     hideSidebar: "Collapse sidebar",
     showSidebar: "Expand sidebar",
     showOriginal: "English original",
@@ -125,6 +153,25 @@ const STRINGS = {
     namePh: "你的名字（可选）",
     hintReview: "快捷键：← → 翻题 · R 随机 · P 通过 · 1–6 选报错原因 · Enter 提交",
     hintBrowse: "快捷键：← → 翻题 · R 随机 · / 搜索",
+    navigationButton: "目录 / 搜索",
+    navigationTitle: "目录与搜索",
+    closeNavigation: "关闭目录",
+    backToReading: "返回阅读",
+    randomQuestion: "随机一道题",
+    shortcutsButton: "快捷键",
+    shortcuts: "键盘快捷键",
+    closeShortcuts: "关闭快捷键说明",
+    shortcutTyping: "输入文字时，不会触发翻题或随机跳题。",
+    shortcutQuestion: "上一题 / 下一题",
+    shortcutChapter: "上一章 / 下一章",
+    shortcutSearch: "聚焦搜索框",
+    shortcutHelp: "打开快捷键说明",
+    shortcutEscape: "关闭弹窗或图片",
+    reviewShortcuts: "审阅模式",
+    shortcutPass: "通过当前题目",
+    shortcutReasons: "选择报错原因",
+    shortcutSubmit: "提交评论或已选问题",
+    shortcutNewline: "在评论中换行",
     prev: "上一题 (←)",
     next: "下一题 (→)",
     random: "随机",
@@ -189,6 +236,15 @@ const STRINGS = {
     focus: "专注阅读",
     listView: "连续浏览",
     solution: "解答",
+    expandSteps: "全部展开",
+    collapseStep: "收起这一步",
+    expandStep: "展开这一步",
+    collapseResult: "收起结论",
+    expandResult: "展开结论",
+    moreStepActions: "更多步骤操作",
+    collapseSteps: "全部收起",
+    stepPosition: (n, total) => `第 ${n} / ${total} 步`,
+    resultPosition: "结论",
     hideSidebar: "收起侧边栏",
     showSidebar: "展开侧边栏",
     showOriginal: "查看英文原文",
@@ -300,7 +356,7 @@ function applyLanguage() {
 }
 
 function applySidebar() {
-  $("side").hidden = state.sidebarClosed;
+  $("side").hidden = state.sidebarClosed && !navigationDialog.open;
   document.body.classList.toggle("sidebar-collapsed", state.sidebarClosed);
   const button = $("sidebar-toggle");
   const label = t(state.sidebarClosed ? "showSidebar" : "hideSidebar");
@@ -351,6 +407,83 @@ $("side-resizer").addEventListener("keydown", (event) => {
   event.stopPropagation();
   setSideWidth(to);
 });
+
+// Reuse the one real sidebar in the narrow-screen left drawer. Moving it keeps
+// input listeners, filters and search text intact without duplicate controls.
+const compactNavigation = window.matchMedia?.("(max-width: 900px)");
+const navigationDialog = $("navigation-dialog");
+const shortcutsDialog = $("shortcuts-dialog");
+
+function updateOverlayState() {
+  document.body.classList.toggle("overlay-open", Boolean(navigationDialog.open || shortcutsDialog.open));
+}
+
+function restoreNavigation() {
+  const side = $("side");
+  if (side.parentElement === $("navigation-content")) document.querySelector(".sidebar-shell").append(side);
+  $("navigation-trigger").setAttribute("aria-expanded", "false");
+  applySidebar();
+  updateOverlayState();
+}
+
+function closeNavigation() {
+  if (navigationDialog.open) navigationDialog.close();
+  restoreNavigation();
+}
+
+function openNavigation(focusSearch = false) {
+  if (!compactNavigation?.matches) {
+    setSidebar(false);
+    if (focusSearch) $("search").focus();
+    return;
+  }
+  if (!navigationDialog.open) {
+    $("navigation-content").append($("side"));
+    $("side").hidden = false;
+    navigationDialog.showModal();
+    $("navigation-trigger").setAttribute("aria-expanded", "true");
+    updateOverlayState();
+  }
+  (focusSearch ? $("search") : $("navigation-title")).focus({ preventScroll: true });
+}
+
+function keepDialogFocus(event, dialog) {
+  const controls = [...dialog.querySelectorAll("button, input, textarea, select, a[href], [tabindex]")]
+    .filter((node) => node.tabIndex >= 0 && !node.disabled && node.getClientRects().length);
+  const first = controls[0], last = controls.at(-1);
+  if (!first) return;
+  const active = document.activeElement;
+  if (!controls.includes(active) || (!event.shiftKey && active === last) || (event.shiftKey && active === first)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus();
+  }
+}
+
+function openShortcuts() {
+  if (!shortcutsDialog.open) shortcutsDialog.showModal();
+  updateOverlayState();
+}
+
+$("navigation-trigger").addEventListener("click", () => openNavigation());
+$("navigation-close").addEventListener("click", closeNavigation);
+$("navigation-done").addEventListener("click", closeNavigation);
+navigationDialog.addEventListener("close", restoreNavigation);
+$("keyboard-help").addEventListener("click", openShortcuts);
+$("shortcuts-close").addEventListener("click", () => shortcutsDialog.close());
+shortcutsDialog.addEventListener("close", updateOverlayState);
+for (const dialog of [navigationDialog, shortcutsDialog]) {
+  dialog.addEventListener("click", (event) => {
+    const rect = dialog.getBoundingClientRect();
+    if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
+  });
+}
+compactNavigation?.addEventListener("change", () => {
+  if (!compactNavigation.matches && navigationDialog.open) {
+    closeNavigation();
+    $("sidebar-toggle").focus({ preventScroll: true });
+  }
+});
+
 
 // ---------- visitor analytics, as on Analog Canvas ----------
 // The bottom bar shows the public totals to every visitor. Only the
@@ -617,6 +750,7 @@ let shownId = null;
 // keepFlags: a re-render of the same question (a language switch) keeps
 // the reasons picked and the note typed.
 async function renderItem(keepFlags = false) {
+  disposeSolutionNavigation($("item"));
   disposeImageViews($("item"));
   cardSizes.disconnect();
   pin.el = null;
@@ -673,13 +807,26 @@ function cardBody(q, reviewing = false) {
       <div class="pane-resizer" role="separator" tabindex="0" aria-label="${esc(t("solution"))}" aria-orientation="vertical" aria-valuemin="25" aria-valuemax="70" aria-valuenow="40"></div>
       <section class="panel solution-panel" tabindex="-1" role="region" aria-label="${esc(t("solution"))}">
         <div class="solution-tabs" role="tablist" aria-label="${esc(t("solution"))}">
-          ${["answer", "detailed", "grading"].map((key) => `<button type="button" role="tab" id="${q.id}-tab-${key}" aria-controls="${q.id}-panel-${key}" aria-selected="${key === "answer"}" tabindex="${key === "answer" ? 0 : -1}" data-solution-tab="${key}"${key !== "answer" ? " hidden" : ""}>${t(key)}</button>`).join("")}
+          ${["answer", "detailed", "grading"].map((key) => `<button type="button" role="tab" id="${q.id}-tab-${key}" aria-controls="${q.id}-panel-${key}" aria-selected="${key === "answer"}" tabindex="${key === "answer" ? 0 : -1}" data-solution-tab="${key}"${key !== "answer" ? " hidden" : ""}><span class="tab-label">${t(key)}</span></button>`).join("")}
         </div>
         <div class="solution-content" role="tabpanel" id="${q.id}-panel-answer" aria-labelledby="${q.id}-tab-answer" tabindex="-1" data-solution-content="answer">
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
         <div class="pics">${q.refs.map((f) => picture(q, f, t("refFig"))).join("")}</div>
         </div>
         ${q.sol ? `<div class="solution-content steps-sol" role="tabpanel" id="${q.id}-panel-detailed" aria-labelledby="${q.id}-tab-detailed" tabindex="-1" data-solution-content="detailed" hidden>
+          <div class="solution-tools" hidden>
+            <span class="step-position"></span>
+            <span class="step-actions">
+              <button type="button" data-current-step-toggle></button>
+              <details class="step-menu">
+                <summary aria-label="${t("moreStepActions")}" title="${t("moreStepActions")}">⋯</summary>
+                <div class="step-menu-items">
+                  <button type="button" data-steps-open="true">${t("expandSteps")}</button>
+                  <button type="button" data-steps-open="false">${t("collapseSteps")}</button>
+                </div>
+              </details>
+            </span>
+          </div>
           <div class="md q-steps"><p class="empty">${t("loading")}</p></div>
         </div>` : ""}
         <div class="solution-content grading" role="tabpanel" id="${q.id}-panel-grading" aria-labelledby="${q.id}-tab-grading" tabindex="-1" data-solution-content="grading" hidden><div class="md"></div></div>
@@ -700,7 +847,12 @@ async function fillCard(el, q) {
     ? (name in files ? Promise.resolve(files[name]) : Promise.reject(404))
     : fetch(`/q/${q.id}/${name}`).then((r) => (r.ok ? r.text() : Promise.reject(r.status))));
   // A Chinese file that fails falls back to its English original, alone.
-  const pick = (base) => (zh ? get(`${base}.zh.md`).catch(() => get(`${base}.md`)) : get(`${base}.md`));
+  const contentLang = {};
+  const read = (base, locale) => get(locale === "zh" ? `${base}.zh.md` : `${base}.md`).then((text) => {
+    contentLang[base] = locale;
+    return text;
+  });
+  const pick = (base) => (zh ? read(base, "zh").catch(() => read(base, "en")) : read(base, "en"));
   const [question, solution, answerZh, steps] = await Promise.all([
     pick("instruction"),
     get("golden_solution.md"),
@@ -708,14 +860,18 @@ async function fillCard(el, q) {
     q.sol ? pick("detailed_solution") : "",
   ]).catch(() => [t("loadFailed"), t("loadFailed"), "", q.sol ? t("loadFailed") : ""]);
   if (!el.isConnected || el.dataset.qid !== q.id) return false;
+  disposeSolutionNavigation(el);
   disposeImageViews(el);
+  el.querySelector(".q-question").lang = contentLang.instruction || lang;
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
+  el.querySelector(".q-answer").lang = zh && answerZh ? "zh" : "en";
   el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? answerZh : body);
   const toggle = el.querySelector(".orig-toggle");
   if (toggle) toggle.textContent = zh ? t("showOriginal") : t("showTranslation");
   if (q.sol) {
     const box = el.querySelector(".q-steps");
+    box.lang = contentLang.detailed_solution || lang;
     box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
     foldSteps(box);
     el.querySelector('[data-solution-tab="detailed"]').hidden = !steps.trim();
@@ -723,9 +879,11 @@ async function fillCard(el, q) {
   // Keep the existing availability rule: only notes supplied in the answer
   // and actually nonempty are exposed. Review API authorization is unchanged.
   el.querySelector('[data-solution-tab="grading"]').hidden = !grading.trim();
+  el.querySelector(".grading .md").lang = "en";
   el.querySelector(".grading .md").innerHTML = renderMarkdown(grading);
   const selected = el.querySelector('[role="tab"][aria-selected="true"]');
   if (selected.hidden) selectSolutionTab(el.querySelector('[data-solution-tab="answer"]'));
+  prepareSolutionNavigation(el);
   prepareImageViews(el);
   return true;
 }
@@ -743,6 +901,7 @@ function selectSolutionTab(tab) {
     content.hidden = content.dataset.solutionContent !== tab.dataset.solutionTab;
   }
   panel.scrollTop = 0;
+  scheduleSolutionNavigation();
 }
 
 // "<!-- diagram: diagram-01.cir -->" marks where a drawing of the solution
@@ -756,18 +915,40 @@ function withDiagrams(q, text) {
   });
 }
 
-// Each "### Step" heading and what follows it, up to the next one, becomes
-// its own fold (open), so a reader can close the steps they have followed.
+// Keep the existing per-section folds, while distinguishing numbered steps
+// from explicitly labelled conclusions. Source Markdown is never rewritten.
 function foldSteps(box) {
   for (const heading of [...box.querySelectorAll(":scope > h3")]) {
+    const text = readingText(heading);
+    const number = text.match(/^(?:Step\s+(\d+)\b|第\s*(\d+)\s*步)/i);
+    const result = /^(?:Results?|Final (?:answer|result)|Conclusion|Summary|结论|结果|最终(?:结果|答案)|小结)\s*[:：]?$/i.test(text);
     const fold = document.createElement("details");
     fold.className = "step";
+    fold.classList.toggle("result-section", result);
     fold.open = true;
     const summary = document.createElement("summary");
-    summary.innerHTML = heading.innerHTML;
+    const title = document.createElement("span");
+    title.className = "step-title";
+    title.innerHTML = heading.innerHTML;
+    if (number) {
+      fold.dataset.stepNumber = number[1] || number[2];
+      const badge = document.createElement("span");
+      badge.className = "step-number";
+      badge.textContent = fold.dataset.stepNumber;
+      badge.setAttribute("aria-hidden", "true");
+      summary.append(badge);
+      // Preserve the accessible heading, including its original step number.
+      // Only remove the redundant plain-text prefix from the visual title.
+      summary.setAttribute("aria-label", text);
+      if (title.firstChild?.nodeType === 3) {
+        title.firstChild.textContent = title.firstChild.textContent.replace(/^(?:Step\s+\d+\b|第\s*\d+\s*步)\s*[—–:：.-]?\s*/i, "");
+      }
+    }
+    summary.append(title);
     fold.append(summary);
     let next = heading.nextSibling;
-    while (next && !(next.nodeType === 1 && next.tagName === "H3")) {
+    // A parent-level heading must not accidentally become part of this fold.
+    while (next && !(next.nodeType === 1 && /^H[1-3]$/.test(next.tagName))) {
       const move = next;
       next = next.nextSibling;
       fold.append(move);
@@ -775,6 +956,116 @@ function foldSteps(box) {
     heading.replaceWith(fold);
   }
 }
+
+function readingText(element) {
+  const copy = element.cloneNode(true);
+  // KaTeX supplies both MathML and visual text. Count the visual text once.
+  copy.querySelectorAll(".katex-mathml, .image-controls, .image-selection").forEach((node) => node.remove());
+  return copy.textContent.replace(/\s+/g, " ").trim();
+}
+
+const solutionNavigation = new Map();
+let solutionNavigationFrame = null;
+const solutionNavigationSizes = new ResizeObserver(() => scheduleSolutionNavigation());
+
+function disposeSolutionNavigation(root) {
+  for (const [panel, navigation] of solutionNavigation) {
+    if (!root.contains(panel)) continue;
+    for (const node of [panel, navigation.tabs, navigation.tools, navigation.box]) solutionNavigationSizes.unobserve(node);
+    solutionNavigation.delete(panel);
+  }
+}
+
+function prepareSolutionNavigation(card) {
+  const panel = card.querySelector(".solution-panel");
+  const box = panel.querySelector(".q-steps");
+  if (!box) return;
+  const tools = panel.querySelector(".solution-tools");
+  const steps = [...box.querySelectorAll(":scope > [data-step-number]")];
+  tools.hidden = !steps.length;
+  if (!steps.length) return;
+  const navigation = { box, tools, steps, tabs: panel.querySelector(".solution-tabs"), sections: [...box.querySelectorAll(":scope > [data-step-number], :scope > .result-section")] };
+  navigation.sections.forEach((section, index) => { section.id = `${card.dataset.qid}-solution-section-${index + 1}`; });
+  solutionNavigation.set(panel, navigation);
+  for (const node of [panel, navigation.tabs, tools, box]) solutionNavigationSizes.observe(node);
+  scheduleSolutionNavigation();
+}
+
+function scheduleSolutionNavigation() {
+  if (solutionNavigationFrame !== null || !solutionNavigation.size) return;
+  solutionNavigationFrame = requestAnimationFrame(() => {
+    solutionNavigationFrame = null;
+    for (const [panel, navigation] of solutionNavigation) updateSolutionPosition(panel, navigation);
+  });
+}
+
+function updateSolutionPosition(panel, navigation) {
+  const { box, tools, tabs, steps, sections } = navigation;
+  if (!panel.isConnected || box.closest("[role=tabpanel]").hidden) return;
+  const rect = panel.getBoundingClientRect();
+  if (rect.bottom < 0 || rect.top > innerHeight) return;
+  const bounded = ["auto", "scroll"].includes(getComputedStyle(panel).overflowY);
+  const top = bounded ? tabs.getBoundingClientRect().height : headerBottom();
+  panel.style.setProperty("--solution-nav-top", `${top}px`);
+  const line = (bounded ? rect.top : 0) + top + tools.getBoundingClientRect().height + 8;
+  let current = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top > line) break;
+    current = section;
+  }
+  // A toolbar fold pins this section until the reader actually scrolls again.
+  // Layout changes caused by folding must not retarget the same button.
+  const scroller = bounded ? panel : document.scrollingElement;
+  if (navigation.pinned && Math.abs(scroller.scrollTop - navigation.pinnedScroll) < 1) current = navigation.pinned;
+  else navigation.pinned = null;
+  navigation.current = current;
+  const result = current.classList.contains("result-section");
+  const position = result ? t("resultPosition") : t("stepPosition", steps.indexOf(current) + 1, steps.length);
+  const label = tools.querySelector(".step-position");
+  if (label.textContent !== position) label.textContent = position;
+  tools.dataset.currentStep = result ? "result" : current.dataset.stepNumber;
+  const toggle = tools.querySelector("[data-current-step-toggle]");
+  toggle.textContent = t(current.open ? (result ? "collapseResult" : "collapseStep") : (result ? "expandResult" : "expandStep"));
+  toggle.setAttribute("aria-expanded", String(current.open));
+  toggle.setAttribute("aria-controls", current.id);
+  for (const section of sections) {
+    const summary = section.querySelector("summary");
+    if (section === current) summary.setAttribute("aria-current", "step");
+    else summary.removeAttribute("aria-current");
+  }
+}
+
+function toggleCurrentStep(button) {
+  const panel = button.closest(".solution-panel");
+  const navigation = solutionNavigation.get(panel);
+  if (!navigation) return;
+  updateSolutionPosition(panel, navigation);
+  const current = navigation.current;
+  if (!current) return;
+  const bounded = ["auto", "scroll"].includes(getComputedStyle(panel).overflowY);
+  const scroller = bounded ? panel : document.scrollingElement;
+  current.open = !current.open;
+  // Return to this section's title, keeping both it and the inverse action in
+  // view even when collapsing a long step clamps the scroll container.
+  const top = (bounded ? panel.getBoundingClientRect().top + navigation.tabs.getBoundingClientRect().height : headerBottom()) + navigation.tools.getBoundingClientRect().height + 8;
+  scroller.scrollTop += current.getBoundingClientRect().top - top;
+  navigation.pinned = current;
+  navigation.pinnedScroll = scroller.scrollTop;
+  updateSolutionPosition(panel, navigation);
+  scheduleSolutionNavigation();
+}
+
+document.addEventListener("scroll", scheduleSolutionNavigation, { capture: true, passive: true });
+document.addEventListener("toggle", (event) => {
+  const navigation = solutionNavigation.get(event.target.closest?.(".solution-panel"));
+  if (navigation && event.target.matches("details.step") && navigation.pinned !== event.target) navigation.pinned = null;
+  scheduleSolutionNavigation();
+}, true);
+document.addEventListener("click", (event) => {
+  for (const menu of document.querySelectorAll(".step-menu[open]")) if (!menu.contains(event.target)) menu.open = false;
+});
+window.addEventListener("resize", scheduleSolutionNavigation, { passive: true });
+
 
 // ---------- browse: every question in one scrolling list ----------
 
@@ -796,6 +1087,7 @@ function readingLine() {
 
 // Lays the list out again from the card at `from` (an index into cards).
 function renderFeed(from = 0) {
+  disposeSolutionNavigation($("item"));
   disposeImageViews($("item"));
   document.body.classList.remove("single-reading");
   cardSizes.disconnect();
@@ -1587,7 +1879,18 @@ document.addEventListener("pointerdown", (event) => {
 document.addEventListener("click", async (event) => {
   const target = event.target.closest("button, a");
   if (!target || !state.ready) return;
-  if (target.dataset.solutionTab) {
+  if (target.hasAttribute("data-current-step-toggle")) {
+    toggleCurrentStep(target);
+  } else if (target.dataset.stepsOpen !== undefined) {
+    const content = target.closest('[data-solution-content="detailed"]');
+    const navigation = solutionNavigation.get(target.closest(".solution-panel"));
+    if (navigation) navigation.pinned = null;
+    const menu = target.closest(".step-menu");
+    menu.open = false;
+    menu.querySelector("summary").focus({ preventScroll: true });
+    for (const step of content.querySelectorAll("[data-step-number]")) step.open = target.dataset.stepsOpen === "true";
+    scheduleSolutionNavigation();
+  } else if (target.dataset.solutionTab) {
     selectSolutionTab(target);
   } else if (target.classList.contains("row")) {
     const keep = state.cards[state.index]?.id;
@@ -1623,8 +1926,9 @@ document.addEventListener("click", async (event) => {
     go(state.index - 1);
   } else if (target.id === "next") {
     go(state.index + 1);
-  } else if (target.id === "random") {
+  } else if (target.id === "random" || target.id === "mobile-random") {
     jumpRandom();
+    if (target.id === "mobile-random") closeNavigation();
   } else if (target.dataset.zoom) {
     event.preventDefault();
     $("zoom").querySelector("img").src = target.dataset.zoom;
@@ -1644,7 +1948,24 @@ document.addEventListener("click", async (event) => {
 $("zoom").addEventListener("click", () => { $("zoom").hidden = true; });
 
 document.addEventListener("keydown", (event) => {
-  if (event.metaKey || event.ctrlKey || event.altKey || !state.ready) return;
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  // Dialog controls work while loading, and own Escape before reader shortcuts.
+  const activeDialog = navigationDialog.open ? navigationDialog : shortcutsDialog.open ? shortcutsDialog : null;
+  if (activeDialog) {
+    if (event.key === "Tab") keepDialogFocus(event, activeDialog);
+    else if (event.key === "Escape") {
+      event.preventDefault();
+      if (activeDialog === navigationDialog) closeNavigation();
+      else shortcutsDialog.close();
+    }
+    return;
+  }
+  if (!state.ready) return;
+  if (event.key === "?" && !event.target.closest("input, textarea")) {
+    event.preventDefault();
+    openShortcuts();
+    return;
+  }
   if (event.target.matches(".pane-resizer") && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
     event.preventDefault();
     resizePanes(event.target, event.key === "Home" ? 25 : event.key === "End" ? 70 : Number(event.target.getAttribute("aria-valuenow")) + (event.key === "ArrowRight" ? 2 : -2));
@@ -1662,6 +1983,14 @@ document.addEventListener("keydown", (event) => {
   }
   // Let native Enter/Space activate tabs without triggering review shortcuts.
   if (tab) return;
+  const stepMenu = event.target.closest(".step-menu[open]");
+  if (stepMenu && event.key === "Escape") {
+    event.preventDefault();
+    stepMenu.open = false;
+    stepMenu.querySelector("summary").focus({ preventScroll: true });
+    return;
+  }
+  if (event.target.closest(".solution-tools") && ["Enter", " "].includes(event.key)) return;
   if (event.target.closest(".image-view") && ["Enter", " "].includes(event.key)) return;
   const inNote = event.target.id === "note";
   if (inNote && event.key === "Enter" && !event.shiftKey) {
@@ -1685,7 +2014,7 @@ document.addEventListener("keydown", (event) => {
   else if (event.key === "r" || event.key === "R") jumpRandom();
   else if (reviewing && (event.key === "p" || event.key === "P")) submit("pass");
   else if (reviewing && event.key === "Enter" && state.flags.length) submit("issue");
-  else if (event.key === "/") { event.preventDefault(); setSidebar(false); $("search").focus(); }
+  else if (event.key === "/") { event.preventDefault(); openNavigation(true); }
   else return;
   event.preventDefault();
 });
