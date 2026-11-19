@@ -2,11 +2,54 @@
 
 ## Reference answer
 
-Reverse body bias (more negative $V_{BS}$) shifts the curve to the right through the body effect: $V_{TH} = 0.7 + 0.45\left(\sqrt{0.9 - V_{BS}} - \sqrt{0.9}\right)$ V, giving $V_{TH}$ ≈ 0.70, 0.89, 1.04, 1.16 V for $V_{BS}$ = 0, −1, −2, −3 V.
-- Each curve is zero up to its own $V_{TH}(V_{BS})$ (first break point), then follows the same square-law parabola $\tfrac12\mu_nC_{ox}(W/L)(V_{GS}-V_{TH})^2$, only shifted by $\Delta V_{TH}$ (the shape and the factor $\mu_nC_{ox}W/L$ do not change).
-- For the fixed $V_{DS}$, each curve has a second break point at $V_{GS} = V_{TH}(V_{BS}) + V_{DS}$, above which it is a straight triode line; with large $V_{DS}$ this lies off the plot and all curves stay saturated.
-- Equal steps of $V_{BS}$ give shrinking shifts (square-root dependence). Positive $V_{BS}$ lowers $V_{TH}$ a little, but only up to a few hundred mV before the source–bulk junction conducts.
+Body effect changes the transfer curve through threshold, not $\beta=\mu_nC_{ox}W/L$. The general body-effect model is
+
+$$
+V_{TH}(V_{BS})=V_{TH0}+\gamma
+\left[\sqrt{2|\phi_F|-V_{BS}}-\sqrt{2|\phi_F|}\right],
+\qquad V_{SB}=-V_{BS}.
+$$
+
+Here $V_{TH0}$ is the zero-body-bias threshold ($V_{SB}=0$), $\gamma$ is the body-effect coefficient, and $|\phi_F|$ is the Fermi-potential magnitude. The model uses the depletion approximation and assumes negligible forward junction conduction; the plotted reverse-bias range is $V_{BS}\le0$.
+
+Insert $V_{TH0}=0.7$ V, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9$ V, and define the numerical helper
+
+$$
+T(s)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+\left[\sqrt{0.9\ \mathrm V+s}-\sqrt{0.9\ \mathrm V}\right].
+$$
+
+$$
+V_{TH}(V_{BS})=T(-V_{BS}),\qquad V_{SB}=-V_{BS}.
+$$
+
+$$
+\frac{I_D}{\beta}=\begin{cases}
+0,&u\le0,\\
+u^2/2,&0<u\le V_{DS},\\
+uV_{DS}-V_{DS}^2/2,&u>V_{DS},
+\end{cases}\qquad u=V_{GS}-V_{TH}(V_{BS}).
+$$
+
+Thus the break points are $V_{GS}=V_{TH}(V_{BS})$ (cutoff → saturation) and $V_{GS}=V_{TH}(V_{BS})+V_{DS}$ (saturation → triode). For example:
+
+| $V_{BS}$ (V) | $V_{TH}$ (V) | $V_{TH}+0.5\ \mathrm V$ (V) |
+|---|---|---|
+| 0 | 0.700 | 1.200 |
+| −1 | 0.893 | 1.393 |
+| −2 | 1.039 | 1.539 |
+| −3 | 1.162 | 1.662 |
+
+More negative $V_{BS}$ translates each curve to the right; equal 1-V body-bias steps give shrinking shifts of about 0.193, 0.146 and 0.122 V. Above the second boundary the slope of the actual current $I_D$ is $\beta V_{DS}$. The plots choose fixed $V_{DS}=3$ V and 0.5 V; the former has no triode segment over the plotted gate range. Positive $V_{BS}$ lowers threshold but forward-biases the source–bulk junction, limiting this model.
+
+![Solution curves with axes, regions, boundaries and key values](/q/R005/solution-curves.svg)
 
 ## Grading notes
 
-+2: curves shift right as $V_{BS}$ becomes more negative, break points at $V_{TH}(V_{BS})$ with approximately correct values (±0.03 V) or an explicit statement of the sub-linear (square-root) spacing, and the triode break at $V_{TH}(V_{BS}) + V_{DS}$ if a finite $V_{DS}$ is considered. A notational slip that the answer's own values contradict (e.g., $V_{TH}(V_{DS})$ written for $V_{TH}(V_{BS})$ in one formula while the tabulated break points are right) is trivial and does not cost a point. +1: correct right shift and break points without values and without the sub-linear spacing. 0: shift direction right but break points not identified. -2 (asserted as fact): left shift for reverse bias, body effect changing the slope/gain factor instead of $V_{TH}$, or wrong $V_{TH}$ formula giving clearly wrong values.
++2: curves translate right as $V_{BS}$ becomes more negative, with turn-on at $V_{TH}(V_{BS})$. Give approximately correct thresholds (±0.03 V: 0.700, 0.893, 1.039, 1.162 V for $V_{BS}=0,-1,-2,-3$ V), or explicitly identify the shrinking square-root spacing. Identify the second boundary symbolically as $V_{GS}=V_{TH}(V_{BS})+V_{DS}$, or mark it when it falls inside the chosen gate-voltage sweep. A finite $V_{DS}$ alone does not guarantee that the second boundary is visible. A large fixed $V_{DS}$ may leave only saturated conducting segments in the plotted interval. An isolated threshold-argument typo contradicted by correct values is trivial.
+
++1: correct right shift and boundaries, but neither numerical thresholds nor the sublinear spacing are supplied.
+
+0: correct shift direction, but no boundaries identified.
+
+-2 (asserted as fact): reverse body bias shifting curves left, body effect changing the square-law gain factor instead of threshold, or a wrong threshold formula giving clearly wrong values.

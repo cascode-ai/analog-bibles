@@ -1,109 +1,69 @@
 # Detailed solution - R005
 
-**Approach.** $V_{BS}$ enters the square-law model only through the threshold voltage (body effect). So compute $V_{TH}$ for several values of $V_{BS}$, draw the same square-law curve shifted horizontally to each threshold, and locate the break points (turn-on and, for a finite $V_{DS}$, the saturation-to-triode transition).
+Find the threshold for each body bias, then translate the piecewise transfer curve and locate its region boundaries.
 
-### Step 1 — The body-effect equation
+### Step 1 — Body-effect model
 
-With $V_{SB} = -V_{BS}$,
-
-$$
-\begin{aligned}
-V_{TH} &= V_{TH0} + \gamma\left(\sqrt{2|\phi_F| + V_{SB}} - \sqrt{2|\phi_F|}\right)\\
-&= 0.7\ \mathrm{V} + 0.45\ \mathrm{V^{1/2}}\left(\sqrt{0.9\ \mathrm{V} - V_{BS}} - \sqrt{0.9\ \mathrm{V}}\right),
-\end{aligned}
-$$
-
-with $\sqrt{0.9} = 0.9487\ \mathrm{V^{1/2}}$ in every evaluation below. A more negative $V_{BS}$ (reverse body bias) widens the depletion region under the gate, so $V_{TH}$ rises.
-
-### Step 2 — Threshold for each value of $V_{BS}$
-
-**$V_{BS} = 0$:**
-
-$$V_{TH} = 0.7 + 0.45\,(0.9487 - 0.9487) = 0.700\ \mathrm{V}.$$
-
-**$V_{BS} = -1$ V:**
-
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{1.9} - 0.9487\right) = 0.7 + 0.45\,(1.3784 - 0.9487) = 0.7 + 0.45\times0.4297 = 0.7 + 0.1934 = 0.893\ \mathrm{V}.$$
-
-**$V_{BS} = -2$ V:**
-
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{2.9} - 0.9487\right) = 0.7 + 0.45\,(1.7029 - 0.9487) = 0.7 + 0.45\times0.7543 = 0.7 + 0.3394 = 1.039\ \mathrm{V}.$$
-
-**$V_{BS} = -3$ V:**
-
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{3.9} - 0.9487\right) = 0.7 + 0.45\,(1.9748 - 0.9487) = 0.7 + 0.45\times1.0262 = 0.7 + 0.4618 = 1.162\ \mathrm{V}.$$
-
-**Shrinking steps.** The successive shifts are
+Determine the threshold dependence from the general model before inserting the device data. For an NMOS, the body-effect relation is
 
 $$
-\begin{aligned}
-0 \to -1\ \mathrm{V}:&\quad 0.893 - 0.700 = 0.193\ \mathrm{V},\\
--1 \to -2\ \mathrm{V}:&\quad 1.039 - 0.893 = 0.146\ \mathrm{V},\\
--2 \to -3\ \mathrm{V}:&\quad 1.162 - 1.039 = 0.122\ \mathrm{V}.
-\end{aligned}
+V_{TH}(V_{SB})=V_{TH0}+\gamma
+\left[\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right].
+$$
+$$
+V_{TH}(V_{BS})=V_{TH0}+\gamma
+\left[\sqrt{2|\phi_F|-V_{BS}}-\sqrt{2|\phi_F|}\right].
 $$
 
-$V_{TH}$ grows only as the **square root** of $0.9\ \mathrm{V} - V_{BS}$: the sensitivity $\partial V_{TH}/\partial V_{SB} = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$ falls from $0.45/(2\times0.9487) = 0.237$ at $V_{SB} = 0$ to $0.45/(2\times1.9748) = 0.114$ at $V_{SB} = 3$ V.
+Here $V_{TH0}$ is the zero-body-bias threshold ($V_{SB}=0$), $\gamma$ is the body-effect coefficient, and $|\phi_F|$ is the Fermi-potential magnitude. The model uses the depletion approximation and assumes negligible forward junction conduction; the plotted reverse-bias range is $V_{BS}\le0$.
 
-### Step 3 — The current for each curve
+The question sweeps $V_{BS}=V_B-V_S$, whereas the usual model uses $V_{SB}=V_S-V_B=-V_{BS}$; the second form therefore gives the requested parameter dependence. Reverse bias increases depletion charge, requiring a higher gate voltage to form the inversion layer and raising threshold. Ignore CLM and subthreshold conduction.
 
-With $\beta = \mu_nC_{ox}W/L$ and $V_{DS}$ fixed, each curve follows the square law with its own threshold:
+Insert $V_{TH0}=0.7$ V, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9$ V, and define the numerical helper
 
-- **Off**, $V_{GS} < V_{TH}(V_{BS})$: $I_D = 0$.
-- **Saturation**, $V_{TH}(V_{BS}) < V_{GS} < V_{TH}(V_{BS}) + V_{DS}$: $I_D = \tfrac12\beta\,[V_{GS} - V_{TH}(V_{BS})]^2$.
-- **Triode**, $V_{GS} > V_{TH}(V_{BS}) + V_{DS}$: $I_D = \beta\left\{[V_{GS} - V_{TH}(V_{BS})]V_{DS} - \tfrac12V_{DS}^2\right\}$.
+$$
+T(s)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+\left[\sqrt{0.9\ \mathrm V+s}-\sqrt{0.9\ \mathrm V}\right].
+$$
 
-$V_{BS}$ appears **only inside $V_{TH}$**; $\beta$, the parabolic shape and the triode slope $\beta V_{DS}$ are the same for every curve. Each curve is therefore the $V_{BS} = 0$ curve **translated to the right** by $\Delta V_{TH} = V_{TH}(V_{BS}) - 0.7$ V.
+$$
+V_{TH}(V_{BS})=T(-V_{BS}),\qquad V_{SB}=-V_{BS}.
+$$
 
-### Step 4 — Break points
+$$
+V_{TH}(-1\ \mathrm V)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+[\sqrt{1.9\ \mathrm V}-\sqrt{0.9\ \mathrm V}]=0.893\ \mathrm V.
+$$
 
-**First break point (turn-on):** $V_{GS} = V_{TH}(V_{BS})$, i.e. 0.70, 0.89, 1.04 and 1.16 V for $V_{BS} = 0$, $-1$, $-2$, $-3$ V.
+| $V_{BS}$ (V) | $V_{TH}$ (V) | $V_{TH}+0.5\ \mathrm V$ (V) |
+|---|---|---|
+| 0 | 0.700 | 1.200 |
+| −1 | 0.893 | 1.393 |
+| −2 | 1.039 | 1.539 |
+| −3 | 1.162 | 1.662 |
 
-**Second break point (saturation → triode):** $V_{GS} = V_{TH}(V_{BS}) + V_{DS}$, which depends on the chosen $V_{DS}$:
+### Step 2 — Regions and boundary coordinates
 
-- With $V_{DS} = 0.5$ V it falls at 1.20, 1.39, 1.54 and 1.66 V. Above it each curve becomes a straight line of slope $\beta V_{DS}$, tangent to its parabola.
-- With a large $V_{DS}$ (say $V_{DS} = 3$ V with $V_{GS}$ swept to 3 V), $V_{GS} - V_{TH} \le 2.3\ \mathrm{V} < V_{DS}$ for every curve, so the second break point lies off the plot and every curve is a pure parabola.
+At fixed positive $V_{DS}$, the saturation condition is $V_{DS}\ge V_{GS}-V_{TH}$. Solving the equality for $V_{GS}$ gives the second boundary. The square-law branches are
 
-### Step 5 — Numerical family (large $V_{DS}$, all curves saturated)
+$$
+\frac{I_D}{\beta}=\begin{cases}
+0,&u\le0,\\
+u^2/2,&0<u\le V_{DS},\\
+uV_{DS}-V_{DS}^2/2,&u>V_{DS},
+\end{cases}\qquad u=V_{GS}-V_{TH}(V_{BS}).
+$$
 
-$I_D/\beta$ in V², from $I_D/\beta = \tfrac12[V_{GS} - V_{TH}(V_{BS})]^2$:
+At $u=V_{DS}$ both branches give $I_D/\beta=V_{DS}^2/2$. The normalized slopes $d(I_D/\beta)/dV_{GS}$ both equal $V_{DS}$; the actual-current slopes $dI_D/dV_{GS}$ equal $\beta V_{DS}$. Thus the two segments join tangentially.
 
-| $V_{GS}$ (V) | $V_{BS} = 0$ ($V_{TH} = 0.70$) | $V_{BS} = -1$ V ($0.89$) | $V_{BS} = -2$ V ($1.04$) | $V_{BS} = -3$ V ($1.16$) |
-|---|---|---|---|---|
-| 1.0 | 0.045 | 0.006 | 0 | 0 |
-| 1.5 | 0.320 | 0.184 | 0.106 | 0.057 |
-| 2.0 | 0.845 | 0.612 | 0.461 | 0.351 |
-| 2.5 | 1.620 | 1.291 | 1.067 | 0.895 |
-| 3.0 | 2.645 | 2.219 | 1.922 | 1.690 |
+### Step 3 — Spacing and plotted examples
 
-For example, for $V_{BS} = -2$ V at $V_{GS} = 2.0$ V:
+$$
+\frac{dV_{TH}}{dV_{SB}}=\frac{\gamma}{2\sqrt{2|\phi_F|+V_{SB}}}>0.
+$$
 
-$$\frac{I_D}{\beta} = \tfrac12\,(2.0 - 1.039)^2\ \mathrm{V^2} = \tfrac12\,(0.961)^2\ \mathrm{V^2} = \tfrac12\times0.923\ \mathrm{V^2} = 0.461\ \mathrm{V^2}.$$
+This sensitivity decreases with reverse bias, explaining the shrinking threshold spacings. Since body bias appears only in $V_{TH}$, all curves are horizontal translations. At equal overdrive they have equal current and slope.
 
-**Sketch.** Four parabolas of identical shape start from the axis at 0.70, 0.89, 1.04 and 1.16 V; a more negative $V_{BS}$ puts the curve further **right**, with less current at any given $V_{GS}$. The gaps between neighbouring curves shrink (0.19, 0.15, 0.12 V). At equal current the curves have equal slope (translated copies); at equal $V_{GS}$ the reverse-biased curves are flatter, since their overdrive is smaller.
+For $V_{DS}=3$ V and $V_{GS}\le3$ V, the maximum overdrive is 2.3 V, so all conducting segments are saturated. For $V_{DS}=0.5$ V, the second-boundary coordinates are listed above. For example at $V_{BS}=-2$ V and $V_{GS}=2$ V, the 3-V curve gives $I_D/\beta=\tfrac12(2-1.039)^2\ \mathrm{V^2}=0.461\ \mathrm{V^2}$.
 
-### Step 6 — Positive $V_{BS}$
-
-A positive $V_{BS}$ *lowers* the threshold, shifting the curve slightly left. For example, at $V_{BS} = +0.3$ V:
-
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{0.6} - 0.9487\right) = 0.7 + 0.45\,(0.7746 - 0.9487) = 0.7 - 0.0783 = 0.622\ \mathrm{V}.$$
-
-This only works for a few hundred millivolts: $V_{BS} > 0$ forward-biases the bulk–source junction, which beyond about 0.4–0.6 V conducts substantial current that the MOS model does not describe.
-
-### Result
-
-$V_{BS}$ shifts the curves **horizontally** through the body effect:
-
-$$V_{TH}(V_{BS}) = 0.7 + 0.45\left(\sqrt{0.9 - V_{BS}} - \sqrt{0.9}\right)\ \mathrm{V},$$
-
-giving $V_{TH} \approx 0.70$, 0.89, 1.04 and 1.16 V for $V_{BS} = 0$, $-1$, $-2$, $-3$ V.
-
-- **First break point** at $V_{GS} = V_{TH}(V_{BS})$: each curve is zero up to its own threshold and then follows the *same* square-law parabola $\tfrac12\mu_nC_{ox}(W/L)(V_{GS} - V_{TH})^2$, shifted right by $\Delta V_{TH}$. The factor $\mu_nC_{ox}W/L$ and the shape are unchanged.
-- **Second break point** at $V_{GS} = V_{TH}(V_{BS}) + V_{DS}$ for the fixed $V_{DS}$, above which the curve is a straight triode line. With a large $V_{DS}$ it lies off the plot and all curves stay saturated.
-- Equal steps of $V_{BS}$ give **shrinking** shifts (0.19, 0.15, 0.12 V), a consequence of the square-root dependence. A positive $V_{BS}$ lowers $V_{TH}$ slightly, but only by a few hundred millivolts at most, before the source–bulk junction conducts.
-
-**Common mistake.** Shifting the curves to the *left* for negative $V_{BS}$. Reverse body bias adds depletion charge that the gate must overcome, so the threshold *increases* and the curve moves right.
-
-**Common mistake.** Changing the slope or the factor $\mu_nC_{ox}W/L$ with $V_{BS}$. In the square-law model $V_{BS}$ enters only through $V_{TH}$, so the curves are rigid translations of one another.
-
-**Common mistake.** Spacing the curves equally, as if $V_{TH}$ were linear in $V_{BS}$, or dropping the $\sqrt{2|\phi_F|}$ term, which gives $V_{TH} = 0.7 + 0.45\sqrt{1.9} = 1.32$ V at $V_{BS} = -1$ V instead of 0.89 V.
+![Solution curves with axes, regions, boundaries and key values](/q/R005/solution-curves.svg)

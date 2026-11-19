@@ -6,6 +6,8 @@
 
 每道题一个文件夹：`instruction.md` 为题目，`golden_solution.md` 为参考答案，`figure-*.png` 为配图。难度见各书 README 中的列表，或 `difficulty.json`。困难 = 原仓库的最终评测集（`tasks/`，模型得分最低的题）加上答案过长的 12 题（`hard-questions/`）。
 
+解答生成、校准和审核统一遵循 [解答内容规范](SOLUTION_STYLE.md)：参考答案便于核对，详细步骤保留完整关键推导，作图题提供实际静态图形。
+
 | 书 | 简单 | 中等 | 困难 | 仿真 | 合计 |
 |---|---|---|---|---|---|
 | [Razavi — Design of Analog CMOS Integrated Circuits](razavi/) | 338 | 300 | 85 | 0 | 723 |

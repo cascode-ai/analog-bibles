@@ -2,12 +2,34 @@
 
 ## Reference answer
 
-For each fixed $V_{DS}$ the curve has two break points: $V_{GS} = V_{TH} = 0.7$ V (turn-on) and $V_{GS} = V_{TH} + V_{DS}$ (saturation → triode).
-- $V_{GS} < V_{TH}$: $I_D \approx 0$.
-- $V_{TH} < V_{GS} < V_{TH} + V_{DS}$: saturation, $I_D = \tfrac12\mu_nC_{ox}\frac{W}{L}(V_{GS}-V_{TH})^2$, the same parabola for every $V_{DS}$ (raised slightly by $1+\lambda V_{DS}$ if CLM is included).
-- $V_{GS} > V_{TH} + V_{DS}$: triode, $I_D = \mu_nC_{ox}\frac{W}{L}[(V_{GS}-V_{TH})V_{DS} - V_{DS}^2/2]$, a straight line in $V_{GS}$ with slope $\mu_nC_{ox}(W/L)V_{DS}$. The slope is continuous at the break point (the line is tangent to the parabola).
-- Family: a larger $V_{DS}$ extends the parabolic part further and gives a steeper triode line; a small $V_{DS}$ gives an almost straight line from $V_{TH}$ (deep triode, $I_D \approx \mu_nC_{ox}(W/L)V_{DS}(V_{GS}-V_{TH})$). For example, $V_{DS}$ = 0.2, 0.5, 1 V put the second break point at 0.9, 1.2, 1.7 V.
+For fixed $V_{DS}>0$, define $V_{ov}=V_{GS}-V_{TH}$ and $\beta=\mu_nC_{ox}(W/L)$, with $V_{TH}=0.7$ V. The square-law model without CLM gives
+$$
+I_D=\begin{cases}
+0,&V_{GS}\le V_{TH},\\
+\tfrac12\beta(V_{GS}-V_{TH})^2,&V_{TH}<V_{GS}\le V_{TH}+V_{DS},\\
+\beta[(V_{GS}-V_{TH})V_{DS}-\tfrac12V_{DS}^2],&V_{GS}>V_{TH}+V_{DS}.
+\end{cases}
+$$
+The region order as $V_{GS}$ increases is cutoff → saturation → triode. Turn-on occurs at $V_{GS}=0.7$ V. The saturation condition $V_{DS}\ge V_{GS}-V_{TH}$ places the second boundary at $V_{GS}=0.7\ \mathrm V+V_{DS}$.
+
+All curves follow the same saturation parabola, then leave it along straight triode lines with slopes $\beta V_{DS}$. At the second boundary, both branches give $I_D=\beta V_{DS}^2/2$ and slope $\beta V_{DS}$, so the join is tangent, not a kink. Larger $V_{DS}$ extends the parabolic segment and gives a steeper line; its curve is never lower than a smaller-$V_{DS}$ curve.
+
+| $V_{DS}$ (V) | Second boundary $V_{GS}$ (V) | Boundary $I_D/\beta$ (V²) |
+|---|---|---|
+| 0.2 | 0.9 | 0.020 |
+| 0.5 | 1.2 | 0.125 |
+| 1.0 | 1.7 | 0.500 |
+
+![Transfer curve family with turn-on and saturation-to-triode boundaries](/q/R004/solution-curves.svg)
+
+The vertical axis is normalized because $\beta$ is not specified. For $V_{DS}\ge2.3$ V, the conducting part of the plotted 0–3 V sweep is entirely saturated. For $V_{DS}=0$, $I_D=0$ for every gate voltage.
 
 ## Grading notes
 
-+2: both break points ($V_{TH}$ and $V_{TH}+V_{DS}$), parabolic segment followed by a linear (triode) segment, and the family ordered correctly (curves coincide in saturation and split off, larger $V_{DS}$ higher). Mentioning slope continuity is a plus, not required. +1: break points and segment shapes right but the ordering of the family unclear, or a minor slip. 0: only the $V_{TH}$ break point identified, rest sound but incomplete. -2 (asserted as fact): regions inverted (triode just above $V_{TH}$, saturation at large $V_{GS}$ for fixed $V_{DS}$), linear-then-quadratic shapes, or the second break point placed at a wrong expression.
++2: both boundaries at $V_{GS}=V_{TH}=0.7$ V and $V_{GS}=V_{TH}+V_{DS}$, with a parabolic saturation segment followed by a straight triode segment and the correct family ordering. In the no-CLM square-law model, curves coincide in saturation and separate at their own second boundaries; larger $V_{DS}$ never gives a lower curve. A clearly stated, internally consistent CLM extension may make the saturation curves fan out slightly without changing the region-boundary voltages. Slope continuity in the no-CLM model is welcome, not required for full credit.
+
++1: correct boundaries and segment shapes, but family ordering is unclear or there is a minor slip.
+
+0: only the threshold boundary is identified, with the rest otherwise sound but incomplete.
+
+-2 (asserted as fact): regions inverted, linear-then-quadratic segments, or a wrong expression for the second boundary.

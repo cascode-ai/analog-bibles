@@ -2,14 +2,34 @@
 
 ## Reference answer
 
-Both curves are zero below threshold and square-law parabolas above it; both devices stay saturated over the whole sweep. At $|V_{GS}| = 3$ V: NFET ≈ 35.4 mA (≈ 46.1 mA if the factor $1+\lambda|V_{DS}| = 1.3$ is included), PFET ≈ 9.3 mA (≈ 14.9 mA with $1+\lambda|V_{DS}| = 1.6$). At full gate drive the NFET carries about 3.8 times (3.1 times with CLM) the PFET current.
+With $W/L=100$ and $V_{SB}=0$, the thresholds are 0.7 V (NFET) and $-0.8$ V (PFET). The largest overdrives are 2.3 V and 2.2 V, both below $|V_{DS}|=3$ V. Thus each device is cut off below threshold and saturated wherever conducting.
 
-Derivation (square law, $L$ = effective length, $V_{SB} = 0$ so no body effect):
-- Saturation: $|V_{DS}| = 3\ \mathrm{V} > |V_{GS}| - |V_{TH}|$ for every $|V_{GS}| \le 3$ V.
-- NFET: $I_D = \tfrac12(134\ \mu\mathrm{A/V^2})(100)(V_{GS}-0.7)^2 = 6.70\ \mathrm{mA/V^2}\,(V_{GS}-0.7)^2$ for $V_{GS} > 0.7$ V, zero below. At $V_{GS}$ = 1, 1.5, 2, 2.5, 3 V: 0.60, 4.29, 11.3, 21.7, 35.4 mA (with CLM ×1.3: 0.78, 5.57, 14.7, 28.2, 46.1 mA).
-- PFET: $|I_D| = \tfrac12(38.4\ \mu\mathrm{A/V^2})(100)(|V_{GS}|-0.8)^2 = 1.92\ \mathrm{mA/V^2}\,(|V_{GS}|-0.8)^2$ for $|V_{GS}| > 0.8$ V. At $|V_{GS}|$ = 1, 1.5, 2, 2.5, 3 V: 0.077, 0.94, 2.76, 5.55, 9.29 mA (with CLM ×1.6: 0.12, 1.51, 4.42, 8.88, 14.9 mA).
-- (A small subthreshold current flows just below threshold in reality; the square law sets it to zero.)
+The square-law saturation model gives
+$$
+|I_D|=\tfrac12\mu C_{ox}(W/L)(|V_{GS}|-|V_{TH}|)^2(1+\lambda|V_{DS}|).
+$$
+Let $x=|V_{GS}|$ and $[z]_+=\max(z,0)$. Without channel-length modulation (CLM),
+$$
+I_{D,n}=(6.70\ \mathrm{mA/V^2})[x-0.7\ \mathrm V]_+^2,\qquad
+|I_{D,p}|=(1.92\ \mathrm{mA/V^2})[x-0.8\ \mathrm V]_+^2,
+$$
+where the coefficients are $\tfrac12(134\ \mu\mathrm{A/V^2})(100)$ and $\tfrac12(38.4\ \mu\mathrm{A/V^2})(100)$. With CLM, multiply by $1+0.1(3)=1.3$ and $1+0.2(3)=1.6$, respectively.
+
+Both curves start from zero with zero slope at their respective thresholds and rise parabolically. At $x=3$ V:
+
+| Model | NFET | PFET magnitude |
+|---|---|---|
+| Without CLM | $6.70(3-0.7)^2=35.4$ mA | $1.92(3-0.8)^2=9.29$ mA |
+| With CLM | $1.3(35.443)=46.1$ mA | $1.6(9.2928)=14.9$ mA |
+
+![Drain current magnitudes, thresholds and endpoints, with and without CLM](/q/R001/solution-curves.svg)
 
 ## Grading notes
 
-+2: both curves start at the correct thresholds (0.7 V and 0.8 V), rise parabolically (saturation throughout), and the values at $|V_{GS}| = 3$ V are within ±5% of either convention: 35.4 mA and 9.3 mA without the $(1+\lambda|V_{DS}|)$ factor, or 46.1 mA and 14.9 mA with it. Either convention is fine if used consistently or stated. +1: correct shapes and thresholds with one numerical slip, or only the endpoint values given with the shape described in words. 0: only one of the two devices right, or correct shapes with no numbers at all. -2 (asserted as fact): devices treated as in triode or curves drawn linear, wrong thresholds, the PFET current larger than the NFET current, or values off by a formula error (missing the 1/2, $\mu_nC_{ox}$ used for the PFET, λ applied as a divisor).
++2: actual curves start at the correct gate-voltage magnitudes ($|V_{GS}|=0.7$ V for NFET and 0.8 V for PFET), rise parabolically and remain saturated wherever conducting. Endpoint current magnitudes at $|V_{GS}|=3$ V are within ±5% of either consistent convention: 35.4 mA and 9.29 mA without CLM, or 46.1 mA and 14.9 mA with the factor $(1+\lambda|V_{DS}|)$. State which convention is used.
+
++1: correct shapes and thresholds with one numerical slip, or correct endpoint values with only a verbal shape description instead of the required curves.
+
+0: only one device is correct, or correct shapes with no numerical values.
+
+-2 (asserted as fact): conducting devices treated as in triode, linear curves, wrong threshold magnitudes, PFET current magnitude exceeding NFET current, or formula errors such as a missing $1/2$, NMOS mobility used for PFET, or CLM applied as a divisor.
