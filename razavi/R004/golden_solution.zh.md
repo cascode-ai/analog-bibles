@@ -1,5 +1,21 @@
-对每个固定的 $V_{DS}$，曲线都有两个转折点：$V_{GS} = V_{TH} = 0.7$ V 为导通点；$V_{GS} = V_{TH} + V_{DS}$ 为饱和区（saturation region）→ 线性区（triode region）的分界点。
-- $V_{GS} < V_{TH}$：$I_D \approx 0$。
-- $V_{TH} < V_{GS} < V_{TH} + V_{DS}$：饱和区，$I_D = \tfrac12\mu_nC_{ox}\frac{W}{L}(V_{GS}-V_{TH})^2$，对所有 $V_{DS}$ 都是同一条抛物线；若计入沟道长度调制（channel-length modulation，CLM），则乘以 $1+\lambda V_{DS}$ 而略有抬高。
-- $V_{GS} > V_{TH} + V_{DS}$：线性区，$I_D = \mu_nC_{ox}\frac{W}{L}[(V_{GS}-V_{TH})V_{DS} - V_{DS}^2/2]$，它是关于 $V_{GS}$ 的直线，斜率为 $\mu_nC_{ox}(W/L)V_{DS}$。斜率在转折点处连续（直线与抛物线相切）。
-- 曲线族：$V_{DS}$ 越大，抛物线段延伸得越远，线性区直线也越陡；$V_{DS}$ 很小时，曲线几乎是一条从 $V_{TH}$ 出发的直线（深线性区，$I_D \approx \mu_nC_{ox}(W/L)V_{DS}(V_{GS}-V_{TH})$）。例如，$V_{DS}$ = 0.2、0.5、1 V 时，第二个转折点分别位于 0.9、1.2、1.7 V。
+固定 $V_{DS}>0$，令 $V_{ov}=V_{GS}-V_{TH}$、$\beta=\mu_nC_{ox}(W/L)$，其中 $V_{TH}=0.7$ V。忽略 CLM 的平方律模型给出
+$$
+I_D=\begin{cases}
+0,&V_{GS}\le V_{TH},\\
+\tfrac12\beta(V_{GS}-V_{TH})^2,&V_{TH}<V_{GS}\le V_{TH}+V_{DS},\\
+\beta[(V_{GS}-V_{TH})V_{DS}-\tfrac12V_{DS}^2],&V_{GS}>V_{TH}+V_{DS}.
+\end{cases}
+$$
+随 $V_{GS}$ 增大，工作区依次为截止 → 饱和 → 线性。导通点为 $V_{GS}=0.7$ V；由饱和条件 $V_{DS}\ge V_{GS}-V_{TH}$，第二个分界点为 $V_{GS}=0.7\ \mathrm V+V_{DS}$。
+
+所有曲线先沿同一条饱和区抛物线上升，再转为斜率为 $\beta V_{DS}$ 的线性区直线。在第二个分界点，两段电流均为 $I_D=\beta V_{DS}^2/2$，斜率均为 $\beta V_{DS}$，故连接处相切而无尖角。$V_{DS}$ 越大，抛物线段越长，后续直线越陡；对应曲线不会低于较小 $V_{DS}$ 的曲线。
+
+| $V_{DS}$ (V) | 第二个分界点 $V_{GS}$ (V) | 分界处 $I_D/\beta$ (V²) |
+|---|---|---|
+| 0.2 | 0.9 | 0.020 |
+| 0.5 | 1.2 | 0.125 |
+| 1.0 | 1.7 | 0.500 |
+
+![标出导通点及饱和区至线性区分界点的转移特性曲线族](/q/R004/solution-curves.zh.svg)
+
+题目未给出 $\beta$，故纵轴归一化为 $I_D/\beta$。当 $V_{DS}\ge2.3$ V 时，图示 0–3 V 扫描范围内的导通部分均处于饱和区；$V_{DS}=0$ 时，所有栅压下电流均为零。

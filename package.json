@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs",
+    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs site/solution-content.test.mjs",
     "review:check": "node site/check-reviews.mjs",
     "build": "node site/build.mjs",
     "dev": "node site/build.mjs && wrangler dev",

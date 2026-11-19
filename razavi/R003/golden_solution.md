@@ -2,14 +2,37 @@
 
 ## Reference answer
 
-$g_m r_O = \dfrac{\sqrt{2\mu_nC_{ox}(W/L)I_D}}{\lambda I_D} = \dfrac{1}{\lambda}\sqrt{\dfrac{2\mu_nC_{ox}(W/L)}{I_D}}$ (equivalently $2/[\lambda(V_{GS}-V_{TH})]$). With $\lambda = \lambda_0 L_0/L$: $g_m r_O = \dfrac{\sqrt{2\mu_nC_{ox}WL/I_D}}{\lambda_0 L_0}$.
+For strong-inversion saturation, let $I=|I_D|>0$ and $\beta=\mu C_{ox}(W/L)$. Using $g_m\approx\sqrt{2\beta I}$ and $r_O\approx1/(\lambda I)$ gives
+$$
+g_mr_O\approx\frac{\sqrt{2\beta I}}{\lambda I}
+=\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}
+=\frac2{\lambda V_{ov}}.
+$$
+This uses the leading square-law bias current and first-order CLM output conductance. Substituting $\lambda=\lambda_0L_0/L$,
+$$
+g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
+=\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
+$$
+Each curve decreases as $I^{-1/2}$. At a given current, a longer $L$ gives a higher curve: doubling $L$ multiplies the gain by $\sqrt2$ at fixed $W$, or by 2 at fixed $W/L$.
 
-Plot: for each L, a curve falling as $1/\sqrt{I_D}$ (very large at small current, flattening at large current). Longer L gives a higher curve: $g_m r_O \propto \sqrt{L}$ at fixed W (doubling L raises it by √2) and $\propto L$ at fixed W/L (doubling L doubles it).
+The plotted example fixes $W=50\ \mu\mathrm m$, $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$, and $\lambda_0=0.1\ \mathrm{V^{-1}}$ at $L_0=0.5\ \mu\mathrm m$:
 
-Example (W = 50 µm, λ = 0.1 V⁻¹ × 0.5 µm / L): L = 0.5 µm: 164, 73, 52 at $I_D$ = 0.1, 0.5, 1 mA; L = 1 µm: 232, 104, 73; L = 2 µm: 327, 146, 104.
+| $L$ (µm) | $\lambda$ (V⁻¹) | Gain at 0.1 mA | At 0.5 mA | At 1 mA |
+|---|---|---|---|---|
+| 0.5 | 0.100 | 164 | 73.2 | 51.8 |
+| 1 | 0.050 | 232 | 104 | 73.2 |
+| 2 | 0.025 | 327 | 146 | 104 |
 
-(Optional remark: the $1/\sqrt{I_D}$ rise stops at very low current, where the device enters subthreshold and $g_m r_O \to 1/(\lambda\zeta V_T)$ becomes constant.)
+![Intrinsic gain versus drain current for three channel lengths at fixed width](/q/R003/solution-curves.svg)
+
+The strong-inversion model must not be extrapolated to zero current; it does not describe subthreshold operation.
 
 ## Grading notes
 
-+2: correct expression ($g_m r_O \propto \sqrt{(W/L)/I_D}/\lambda$ or an equivalent form), curves decreasing as $1/\sqrt{I_D}$, longer L giving higher curves, with the L scaling consistent with the stated assumption (√L at fixed W, L at fixed W/L). A numerical example is not required, and plotting code is not graded: a bug in an optional script that does not change the stated expression, trends or numbers is trivial and does not cost a point. +1: expression and trends right but the L scaling not quantified or the fixed-W vs fixed-W/L assumption left unclear. 0: correct expression but the plot wrong in one respect (e.g., wrong L scaling stated as fact). -2 (asserted as fact): $g_m r_O$ increasing with $I_D$, decreasing with L, or claimed independent of L.
++2: the complete first-order expression $g_mr_O\approx(1/\lambda)\sqrt{2\mu C_{ox}(W/L)/|I_D|}$ or an equivalent form, together with curves decreasing as $|I_D|^{-1/2}$. Longer $L$ gives higher curves, with the fixed quantity stated: scaling is $\sqrt L$ at fixed $W$, or $L$ at fixed $W/L$. The numerical example uses NMOS $\mu_nC_{ox}$; a numerical example itself is optional. A bare proportionality that omits the coefficient is not the full requested expression. Plotting-code details are not graded if they do not change the displayed curves, trends or values.
+
++1: expression and trends correct, but length scaling is not quantified or the fixed-$W$ versus fixed-$W/L$ assumption is unclear; also applies to correct trends with only a proportionality instead of the complete expression.
+
+0: correct expression but one nonfundamental aspect of the plotted family is wrong, such as the length scaling under the stated width constraint.
+
+-2 (asserted as fact): gain increasing with current, decreasing with length, or independent of length under either stated geometry constraint.

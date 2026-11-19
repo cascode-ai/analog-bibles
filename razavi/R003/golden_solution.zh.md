@@ -1,7 +1,24 @@
-$g_m r_O = \dfrac{\sqrt{2\mu_nC_{ox}(W/L)I_D}}{\lambda I_D} = \dfrac{1}{\lambda}\sqrt{\dfrac{2\mu_nC_{ox}(W/L)}{I_D}}$（等价地，$2/[\lambda(V_{GS}-V_{TH})]$）。代入 $\lambda = \lambda_0 L_0/L$ 得：$g_m r_O = \dfrac{\sqrt{2\mu_nC_{ox}WL/I_D}}{\lambda_0 L_0}$。
+在强反型饱和区，令 $I=|I_D|>0$、$\beta=\mu C_{ox}(W/L)$。由 $g_m\approx\sqrt{2\beta I}$、$r_O\approx1/(\lambda I)$ 得
+$$
+g_mr_O\approx\frac{\sqrt{2\beta I}}{\lambda I}
+=\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}
+=\frac2{\lambda V_{ov}}.
+$$
+这里采用平方律偏置电流主项和一阶 CLM 输出电导。代入 $\lambda=\lambda_0L_0/L$，
+$$
+g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
+=\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
+$$
+各曲线按 $I^{-1/2}$ 下降。同一电流下，$L$ 越大，曲线越高：固定 $W$ 时，$L$ 加倍使增益增大到 $\sqrt2$ 倍；固定 $W/L$ 时则增大到 2 倍。
 
-曲线：对每个 L，曲线都按 $1/\sqrt{I_D}$ 下降（小电流时很大，大电流时趋于平坦）。L 越长，曲线越高：W 固定时 $g_m r_O \propto \sqrt{L}$（L 加倍使其增大到 √2 倍），W/L 固定时 $\propto L$（L 加倍使其加倍）。
+下图示例固定 $W=50\ \mu\mathrm m$，取 $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$，在 $L_0=0.5\ \mu\mathrm m$ 时 $\lambda_0=0.1\ \mathrm{V^{-1}}$：
 
-示例（W = 50 µm，λ = 0.1 V⁻¹ × 0.5 µm / L）：L = 0.5 µm 时，$I_D$ = 0.1、0.5、1 mA 对应 164、73、52；L = 1 µm 时为 232、104、73；L = 2 µm 时为 327、146、104。
+| $L$ (µm) | $\lambda$ (V⁻¹) | 0.1 mA 处增益 | 0.5 mA 处 | 1 mA 处 |
+|---|---|---|---|---|
+| 0.5 | 0.100 | 164 | 73.2 | 51.8 |
+| 1 | 0.050 | 232 | 104 | 73.2 |
+| 2 | 0.025 | 327 | 146 | 104 |
 
-可选说明：电流很小时，$1/\sqrt{I_D}$ 的上升会停止，因为此时器件进入亚阈值区（subthreshold），$g_m r_O \to 1/(\lambda\zeta V_T)$ 变为常数。
+![固定宽度下三种沟道长度的本征增益与漏极电流曲线](/q/R003/solution-curves.zh.svg)
+
+强反型模型不能外推至零电流，也不适用于亚阈值工作区。

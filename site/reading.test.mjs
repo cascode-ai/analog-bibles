@@ -605,7 +605,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   await t.test("tabs stay quiet and current-step actions preserve other folds and review drafts", async () => {
     for (const language of ["en","zh"]) {
       await b.viewport(1440,960);
-      await b.open('/review?scope=razavi&id=R005&lang=' + language);
+      await b.open('/review?scope=razavi&id=R006&lang=' + language);
       await b.waitFor('!document.querySelector("[data-solution-tab=detailed]").hidden');
       const contentRequests = () => b.requests.filter(({path}) => /^(?:\/b\/|\/q\/.*\.md$)/.test(path)).length;
       const requests = contentRequests();
