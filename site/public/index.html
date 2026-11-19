@@ -50,7 +50,9 @@
   <main class="main">
     <div class="toolbar">
       <div class="progress review-only" id="progress"></div>
+      <button type="button" id="navigation-trigger" class="btn mobile-nav-trigger" aria-controls="navigation-dialog" aria-expanded="false" data-i18n="navigationButton" data-i18n-title="navigationTitle">Contents</button>
       <button type="button" id="reading-view" class="btn browse-only" aria-pressed="false">Focus reading</button>
+      <button type="button" id="keyboard-help" class="btn keyboard-help" aria-haspopup="dialog" aria-controls="shortcuts-dialog" data-i18n="shortcutsButton" data-i18n-title="shortcuts">Shortcuts</button>
       <span class="steps">
         <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
         <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
@@ -78,5 +80,43 @@
   <a id="visit-stats" href="/analytics" data-i18n-title="analyticsTitle" title="Open visitor analytics" hidden></a>
 </footer>
 <div class="zoom" id="zoom" hidden><img alt=""></div>
+<dialog id="navigation-dialog" class="navigation-dialog" aria-labelledby="navigation-title">
+  <div class="dialog-head">
+    <h2 id="navigation-title" tabindex="-1" data-i18n="navigationTitle">Contents &amp; search</h2>
+    <button type="button" id="navigation-close" class="dialog-close" data-i18n-aria="closeNavigation" aria-label="Close contents">×</button>
+  </div>
+  <div id="navigation-content" class="navigation-content"></div>
+  <div class="navigation-quick-actions">
+    <button type="button" id="mobile-random" class="btn" data-i18n="randomQuestion">Random question</button>
+  </div>
+  <div class="dialog-foot"><button type="button" id="navigation-done" class="btn" data-i18n="backToReading">Back to reading</button></div>
+</dialog>
+<dialog id="shortcuts-dialog" class="shortcuts-dialog" aria-labelledby="shortcuts-title">
+  <div class="dialog-head">
+    <h2 id="shortcuts-title" data-i18n="shortcuts">Keyboard shortcuts</h2>
+    <button type="button" id="shortcuts-close" class="dialog-close" data-i18n-aria="closeShortcuts" aria-label="Close keyboard shortcuts" autofocus>×</button>
+  </div>
+  <div class="shortcuts-content">
+    <p class="shortcut-note" data-i18n="shortcutTyping">Navigation shortcuts stay off while typing.</p>
+    <dl class="shortcut-list">
+      <div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd data-i18n="shortcutQuestion">Previous / next question</dd></div>
+      <div><dt><kbd>Shift</kbd> + <kbd>←</kbd> <kbd>→</kbd></dt><dd data-i18n="shortcutChapter">Previous / next chapter</dd></div>
+      <div><dt><kbd>R</kbd></dt><dd data-i18n="randomQuestion">Random question</dd></div>
+      <div><dt><kbd>/</kbd></dt><dd data-i18n="shortcutSearch">Focus search</dd></div>
+      <div><dt><kbd>?</kbd></dt><dd data-i18n="shortcutHelp">Open this help</dd></div>
+      <div><dt><kbd>Esc</kbd></dt><dd data-i18n="shortcutEscape">Close a dialog or image</dd></div>
+    </dl>
+    <div class="review-only">
+      <h3 data-i18n="reviewShortcuts">Review mode</h3>
+      <dl class="shortcut-list">
+        <div><dt><kbd>P</kbd></dt><dd data-i18n="shortcutPass">Pass this question</dd></div>
+        <div><dt><kbd>1</kbd>–<kbd>6</kbd></dt><dd data-i18n="shortcutReasons">Select issue reasons</dd></div>
+        <div><dt><kbd>Enter</kbd></dt><dd data-i18n="shortcutSubmit">Submit comment or selected issues</dd></div>
+        <div><dt><kbd>Shift</kbd> + <kbd>Enter</kbd></dt><dd data-i18n="shortcutNewline">New line in a comment</dd></div>
+      </dl>
+    </div>
+  </div>
+</dialog>
+
 </body>
 </html>

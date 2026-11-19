@@ -376,24 +376,36 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
 .solution-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
 .solution-tabs button[hidden], .solution-content[hidden] { display: none; }
 .solution-tabs button:focus-visible, .solution-content:focus-visible, .solution-content summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 3px; }
-.solution-content { min-width: 0; padding-bottom: 12px; font-size: 15px; line-height: 1.85; }
-.solution-content .md p { margin: 0 0 1.1em; }
-.solution-content .md h2 { font-size: 19px; line-height: 1.45; margin: 1.8em 0 .8em; font-weight: 650; }
-.solution-content .md h3 { font-size: 16px; line-height: 1.5; margin: 1.5em 0 .7em; }
-.solution-content .md h4 { color: var(--text); font-size: 15px; margin: 1.3em 0 .6em; }
+.solution-content { min-width: 0; padding-bottom: 12px; font-size: 16px; line-height: 1.75; }
+/* Bound the reading material, not the resizable pane or its tabs. Language is
+   attached to the actual Markdown, so English originals and grading stay English. */
+.solution-content .md {
+  max-width: 68ch; margin-inline: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+.solution-content .md:lang(zh) { max-width: 38em; line-height: 1.9; }
+.solution-content .md p { margin: 0 0 1em; }
+.solution-content .md h2 { font-size: 1.25em; line-height: 1.45; margin: 1.8em 0 .8em; font-weight: 650; }
+.solution-content .md h3 { font-size: 1.0625em; line-height: 1.5; margin: 1.5em 0 .7em; }
+.solution-content .md h4 { color: var(--text); font-size: 1em; margin: 1.3em 0 .6em; }
 .solution-content .md > :first-child { margin-top: 0; }
 .solution-content .md ul, .solution-content .md ol { padding-left: 1.7em; margin: .6em 0 1.2em; }
 .solution-content .md li { padding-left: .15em; margin: .45em 0; }
 .solution-content .md li > ul, .solution-content .md li > ol { margin: .4em 0 .8em; }
-.solution-content .md .katex-display { margin: 1.4em 0; padding: .35em 0; text-align: left; }
+/* Keep KaTeX's own baseline metrics; a small gap separates inline math from CJK.
+   Wide display math and tables continue to scroll inside the reading measure. */
+.solution-content .md .katex { font-size: 1.1em; }
+.solution-content .md:lang(zh) :not(.katex-display) > .katex { margin-inline: .08em; }
+.solution-content .md .katex-display { max-width: 100%; margin: 1.4em 0; padding: .35em 0; text-align: left; }
 .solution-content .md .katex-display > .katex { text-align: left; }
-.solution-content .md table { margin: 1.2em 0; line-height: 1.65; }
+.solution-content .md table { max-width: 100%; margin: 1.2em 0; line-height: 1.65; }
 .solution-content .md td, .solution-content .md th { padding: 7px 12px; }
+.solution-content .md code { font-size: .875em; }
 .solution-content .md blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 2px solid var(--border); color: var(--muted); }
 .solution-content .md hr { border: 0; border-top: 1px solid var(--border); margin: 1.8em 0; }
 .solution-content.steps-sol { margin: 0; padding-top: 0; border: 0; }
 .solution-content details.step { margin: 1.3em 0; padding: 1em 0 0; border-top: 1px solid var(--border); }
-.solution-content details.step > summary { font-size: 16px; line-height: 1.6; margin: 0 0 .8em; padding: 3px 0; }
+.solution-content details.step > summary { font-size: 1.0625em; line-height: 1.6; margin: 0 0 .8em; padding: 3px 0; }
 .solution-content details.step > summary:hover { color: var(--accent); }
 .solution-content details.step > :not(summary) { margin-left: 1.25em; }
 .pane-resizer { display: none; }
@@ -469,3 +481,121 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
 .foot-links { grid-column: 2; display: flex; gap: 14px; }
 .foot-links a + a::before { content: "·"; margin-right: 14px; color: var(--border-strong, var(--border)); }
 .site-foot #visit-stats { grid-column: 3; justify-self: end; white-space: nowrap; }
+
+/* Local solution navigation; its sticky offset follows the actual tab/header
+   height, including wrapped toolbars and ordinary document scrolling. */
+.solution-tools {
+  position: sticky; top: var(--solution-nav-top, var(--top-h)); z-index: 1;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  padding: 8px 0; margin-bottom: 16px; border-bottom: 1px solid var(--border);
+  background: var(--surface); color: var(--muted); font-size: 12px; line-height: 1.5;
+}
+.solution-tools[hidden] { display: none; }
+.step-position { flex: 1 1 auto; font-variant-numeric: tabular-nums; }
+.step-actions { display: flex; align-items: center; gap: 6px; }
+.solution-tools button {
+  border: 1px solid var(--border); border-radius: 5px; padding: 3px 7px;
+  background: var(--surface); color: var(--text); cursor: pointer; font-size: 12px;
+}
+.solution-tools button:hover { border-color: var(--accent); color: var(--accent); }
+.solution-tools button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.solution-content details.step > summary { align-items: baseline; }
+.step-title { min-width: 0; }
+.step-number {
+  flex: none; display: inline-flex; justify-content: center; min-width: 1.7em;
+  padding: 0 4px; border-radius: 4px; background: var(--accent-soft); color: var(--accent);
+  font-size: .8em; font-variant-numeric: tabular-nums;
+}
+.solution-content details.result-section {
+  padding: 14px 12px 4px; border: 1px solid var(--border); border-inline-start: 3px solid var(--accent);
+  border-radius: var(--radius); background: var(--surface-muted);
+}
+.solution-content details.result-section > summary { color: var(--accent); }
+@media (min-width: 1000px) and (min-height: 600px) {
+  .single-reading .solution-tools { top: var(--solution-nav-top, 60px); }
+}
+
+.solution-content details.step[data-step-number]:not([open]) { margin-block: .6em; padding-top: .6em; }
+
+.step-position { min-width: 6em; }
+.step-menu { position: relative; }
+.step-menu > summary {
+  display: flex; align-items: center; justify-content: center; width: 26px; height: 26px;
+  border-radius: 4px; list-style: none; cursor: pointer; color: var(--muted); font-size: 18px;
+}
+.step-menu > summary::-webkit-details-marker { display: none; }
+.step-menu > summary:hover, .step-menu[open] > summary { background: var(--surface-muted); color: var(--text); }
+.step-menu > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.step-menu-items {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 4px); z-index: 3;
+  display: grid; gap: 4px; min-width: 10em; padding: 6px;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+  box-shadow: 0 4px 14px rgb(0 0 0 / .1);
+}
+.step-menu-items button { text-align: start; white-space: nowrap; }
+
+/* Navigation stays beside the reading area: a rail on desktop, a left drawer
+   on narrow screens. The question itself retains ordinary page scrolling. */
+.mobile-nav-trigger { display: none; }
+.keyboard-help { color: var(--muted); font-size: 12px; }
+.overlay-open { overflow: hidden; }
+.navigation-dialog, .shortcuts-dialog {
+  color: var(--text); background: var(--surface); border: 1px solid var(--border);
+  padding: 0; overflow: hidden; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
+}
+.navigation-dialog::backdrop, .shortcuts-dialog::backdrop { background: rgb(0 0 0 / .4); }
+.dialog-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.dialog-head h2 { margin: 0; font-size: 17px; line-height: 1.4; }
+.dialog-close {
+  flex: none; margin-inline-start: auto; width: 40px; height: 40px; border: 0;
+  border-radius: 6px; color: var(--muted); background: transparent; font-size: 26px; cursor: pointer;
+}
+.dialog-close:hover { color: var(--text); background: var(--surface-muted); }
+.dialog-foot { flex: none; padding: 12px 16px; border-top: 1px solid var(--border); }
+.dialog-foot .btn { width: 100%; justify-content: center; min-height: 44px; color: var(--accent); }
+.navigation-dialog {
+  position: fixed; inset: 0 auto 0 0; margin: 0; width: min(22rem, calc(100% - 40px));
+  max-width: none; height: 100vh; height: 100dvh; max-height: 100vh; max-height: 100dvh;
+  border-block: 0; border-inline-start: 0; border-radius: 0 12px 12px 0;
+}
+.navigation-dialog[open], .shortcuts-dialog[open] { display: flex; flex-direction: column; }
+.navigation-content { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16px; }
+.navigation-dialog .side { position: static; max-height: none; overflow: visible; }
+.navigation-dialog .search { min-height: 44px; font-size: 16px; }
+.navigation-dialog .row { min-height: 44px; align-items: center; }
+.navigation-dialog .hint { display: none; }
+.navigation-quick-actions { display: none; padding: 0 16px 12px; }
+.navigation-quick-actions .btn { min-height: 44px; }
+.shortcuts-dialog { width: min(32rem, calc(100% - 24px)); border-radius: 12px; }
+.shortcuts-content { min-height: 0; overflow-y: auto; padding: 16px 20px 24px; overscroll-behavior: contain; }
+.shortcut-note { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+.shortcut-list { margin: 0; display: grid; gap: 14px; }
+.shortcut-list > div { display: grid; grid-template-columns: minmax(110px, 1fr) minmax(0, 1.5fr); align-items: baseline; gap: 12px; }
+.shortcut-list dt, .shortcut-list dd { margin: 0; }
+.shortcut-list dt { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.shortcuts-content h3 { margin: 24px 0 14px; font-size: 14px; }
+.navigation-dialog :focus-visible, .shortcuts-dialog :focus-visible, .keyboard-help:focus-visible, .mobile-nav-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 900px) {
+  html { scrollbar-gutter: stable; }
+  .sidebar-shell { display: none; }
+  .sidebar-collapsed .layout { grid-template-columns: minmax(0, 1fr); }
+  .mobile-nav-trigger { display: inline-flex; }
+}
+@media (max-width: 600px) {
+  .toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; }
+  .toolbar > .progress { grid-column: 1 / -1; }
+  .toolbar > .mobile-nav-trigger { grid-column: 1; justify-self: start; }
+  .toolbar > #reading-view { grid-column: 2; }
+  .toolbar > #keyboard-help { grid-column: 3; }
+  .toolbar > .btn { min-width: 0; min-height: 40px; padding-inline: 8px; font-size: 12px; }
+  .toolbar .steps { grid-column: 1 / -1; display: grid; grid-template-columns: 44px 44px minmax(0, 1fr) 44px 44px; gap: 4px; width: 100%; margin: 0; }
+  .toolbar .steps button { width: 44px; height: 44px; min-width: 0; padding: 0; justify-content: center; }
+  .steps .position { justify-content: center; padding: 0; gap: 2px; }
+  .steps #goto { min-width: 0; height: 40px; font-size: 16px; }
+  .steps .chapter, .steps #random { display: none; }
+  .navigation-quick-actions { display: block; }
+  .dialog-head { padding: 8px 12px; }
+  .dialog-close { width: 44px; height: 44px; }
+  .shortcuts-content { padding: 16px; }
+  .shortcut-list > div { grid-template-columns: minmax(90px, 1fr) minmax(0, 1.3fr); gap: 8px; }
+}
