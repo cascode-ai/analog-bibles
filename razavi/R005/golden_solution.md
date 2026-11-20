@@ -2,25 +2,12 @@
 
 ## Reference answer
 
-Body effect changes the transfer curve through threshold, not $\beta=\mu_nC_{ox}W/L$. The general body-effect model is
+Body effect changes the transfer curve through threshold, not $\beta=\mu_nC_{ox}W/L$. Substituting the given parameters gives
 
 $$
-V_{TH}(V_{BS})=V_{TH0}+\gamma
-\left[\sqrt{2|\phi_F|-V_{BS}}-\sqrt{2|\phi_F|}\right],
+V_{TH}(V_{BS})=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+\left[\sqrt{0.9\ \mathrm V-V_{BS}}-\sqrt{0.9\ \mathrm V}\right],
 \qquad V_{SB}=-V_{BS}.
-$$
-
-Here $V_{TH0}$ is the zero-body-bias threshold ($V_{SB}=0$), $\gamma$ is the body-effect coefficient, and $|\phi_F|$ is the Fermi-potential magnitude. The model uses the depletion approximation and assumes negligible forward junction conduction; the plotted reverse-bias range is $V_{BS}\le0$.
-
-Insert $V_{TH0}=0.7$ V, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9$ V, and define the numerical helper
-
-$$
-T(s)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
-\left[\sqrt{0.9\ \mathrm V+s}-\sqrt{0.9\ \mathrm V}\right].
-$$
-
-$$
-V_{TH}(V_{BS})=T(-V_{BS}),\qquad V_{SB}=-V_{BS}.
 $$
 
 $$

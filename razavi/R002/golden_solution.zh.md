@@ -1,24 +1,14 @@
-题设两器件均工作于饱和区。取 $W/L=100$、$I=|I_D|=0.5$ mA，采用一阶平方律关系
-$$
-I\approx\tfrac12\beta V_{ov}^2,\qquad
-g_m\approx\beta V_{ov}=\sqrt{2\beta I},\qquad
-r_O\approx\frac1{\lambda I},\qquad
-\beta=\mu C_{ox}(W/L).
-$$
-两器件系数为 $\beta_n=13.4\ \mathrm{mA/V^2}$、$\beta_p=3.84\ \mathrm{mA/V^2}$，代入得
-$$
-\begin{aligned}
-g_{m,n}&=\sqrt{2(13.4\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})}=3.66\ \mathrm{mS},\\
-g_{m,p}&=\sqrt{2(3.84\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})}=1.96\ \mathrm{mS},\\
-r_{O,n}&\approx\frac1{(0.1\ \mathrm{V^{-1}})(0.5\ \mathrm{mA})}=20\ \mathrm{k\Omega},\\
-r_{O,p}&\approx\frac1{(0.2\ \mathrm{V^{-1}})(0.5\ \mathrm{mA})}=10\ \mathrm{k\Omega}.
-\end{aligned}
-$$
-本征增益为二者的乘积，无量纲：
+对饱和器件，偏置电流取平方律主项，输出电导保留一阶 CLM：
+$$g_m\approx\sqrt{2\mu C_{ox}(W/L)|I_D|},\qquad r_O\approx\frac1{\lambda|I_D|}.$$
+代入 $W/L=100$、$|I_D|=0.5$ mA：
 
 | 器件 | $g_m$ | $r_O$ | $g_mr_O$ |
 |---|---|---|---|
-| NMOS | 3.66 mS | 20 kΩ | $3.66\times20=73.2$ |
-| PMOS | 1.96 mS | 10 kΩ | $1.96\times10=19.6$ |
+| NMOS | 3.66 mS | 20 kΩ | 73.2 |
+| PMOS | 1.96 mS | 10 kΩ | 19.6 |
 
-这里在偏置电流中忽略 CLM，在 $r_O$ 中保留其一阶效应。题目未给出 $V_{DS}$，无法计算与其有关的修正。NMOS 的本征增益约为 PMOS 的 3.7 倍。
+NMOS 本征增益约为 PMOS 的 3.74 倍。题目未给出 $V_{DS}$，不能求有限漏压修正；表中为通常的 $\lambda|V_{DS}|\ll1$ 近似。
+
+## 评分说明
+
++2：NMOS 三个值为 3.66 mS、20 kΩ、73.2，PMOS 为 1.96 mS、10 kΩ、19.6，容差 ±3%；若明确假设漏压并一致计入 CLM，可接受有依据的修正。+1：一项算术错误、其余正确。0：只对一种器件或多项算术错误。−2：基本公式、λ 对应器件或增益数量级错误。

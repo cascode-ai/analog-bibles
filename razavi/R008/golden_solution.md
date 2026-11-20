@@ -2,10 +2,32 @@
 
 ## Reference answer
 
-$M_1$ (gate at 1 V) conducts only for $V_X \lesssim 0.25$ V, with the $V_X$ node as its source, so $I_X$ is a small negative (reverse) saturated current there and zero for all larger $V_X$.
-- For $V_X$ above about 0.25 V both channel terminals are at or above $V_X$ or 1.9 V with the gate at 1 V, so $V_{GS} < V_{TH}$ and $M_1$ is off: $I_X = 0$, $g_m = 0$.
-- For small $V_X$ the $V_X$ node is the source ($V_{GS} = 1 - V_X$, $V_{SB} = V_X$) and the 1.9-V node the drain; $M_1$ is on when $1 - V_X > V_{TH}(V_X)$, i.e. $V_X < 0.245$ V (0.3 V without body effect), and saturated ($V_{DS} = 1.9 - V_X$ ≫ overdrive). Current flows from the 1.9-V source into the $V_X$ source: $I_X = -\tfrac12\beta(1 - V_X - V_{TH})^2$: −0.045β at $V_X = 0$, −0.016β at 0.1 V, −0.0015β at 0.2 V, 0 at 0.245 V.
-- $g_m = \beta(1 - V_X - V_{TH})$: 0.3β at $V_X = 0$ falling to 0 at ≈ 0.245 V, zero beyond.
+Use $\beta=\mu_nC_{ox}W/L$ and neglect CLM. The general body-effect threshold and saturation relations are:
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).$$
+$$I_D=\frac12\beta(V_{GS}-V_{TH})^2,\qquad g_m=\left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS},V_{SB}}=\beta(V_{GS}-V_{TH}).$$
+
+While on, the $V_X$ terminal is the source and current opposes the arrow, so $I_X=-I_D$. Substituting the given parameters gives:
+
+Numerical expressions use voltages in V:
+$$V_{TH}=0.7+0.45(\sqrt{0.9+V_X}-\sqrt{0.9}).$$
+The cutoff boundary solves $1-V_X=V_{TH}$: $V_X=0.2453$ V. For $0\le V_X<0.2453$ V the device is saturated because $V_{DS}=1.9-V_X$ exceeds the overdrive:
+$$I_X=-\tfrac12\beta(1-V_X-V_{TH})^2,\qquad g_m=\beta(1-V_X-V_{TH}).$$
+The current is negative because it flows out of the $V_X$ terminal, opposite the arrow. Both quantities are zero beyond cutoff in the square-law model.
+
+Zero beyond cutoff neglects subthreshold current; $g_m$ denotes the positive device magnitude.
+
+| $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
+|---|---|---|
+| 0 | −0.0450 | 0.300 |
+| 0.1 | −0.0157 | 0.177 |
+| 0.2 | −0.00149 | 0.0549 |
+| 0.2453 | 0 | 0 |
+
+$I_X$ rises to zero while $g_m$ decreases to zero. Ignoring body effect would move cutoff to 0.3 V.
+
+
+![R008 model curves; beta_p for R009; high-bias R010 unresolved](/q/R008/review-curves.svg)
 
 ## Grading notes
 

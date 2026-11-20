@@ -19,15 +19,12 @@ Here $V_{TH0}$ is the zero-body-bias threshold ($V_{SB}=0$), $\gamma$ is the bod
 
 The question sweeps $V_{BS}=V_B-V_S$, whereas the usual model uses $V_{SB}=V_S-V_B=-V_{BS}$; the second form therefore gives the requested parameter dependence. Reverse bias increases depletion charge, requiring a higher gate voltage to form the inversion layer and raising threshold. Ignore CLM and subthreshold conduction.
 
-Insert $V_{TH0}=0.7$ V, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9$ V, and define the numerical helper
+Insert $V_{TH0}=0.7$ V, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9$ V, to write the threshold directly
 
 $$
-T(s)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
-\left[\sqrt{0.9\ \mathrm V+s}-\sqrt{0.9\ \mathrm V}\right].
-$$
-
-$$
-V_{TH}(V_{BS})=T(-V_{BS}),\qquad V_{SB}=-V_{BS}.
+V_{TH}(V_{BS})=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+\left[\sqrt{0.9\ \mathrm V-V_{BS}}-\sqrt{0.9\ \mathrm V}\right],
+\qquad V_{SB}=-V_{BS}.
 $$
 
 $$

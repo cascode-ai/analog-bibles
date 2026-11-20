@@ -2,16 +2,39 @@
 
 ## Reference answer
 
-$V_{GS} = 0.9$ V and $V_{DS} = 0.5$ V are fixed; raising the bulk voltage $V_X$ lowers $V_{SB} = 1 - V_X$ and thus $V_{TH}$, so $I_X$ and $g_m$ grow from essentially zero at $V_X = 0$ to $0.02\beta$ and $0.2\beta$ at $V_X = 1$ V, and keep rising through the mildly forward-biased range up to about 1.5 V. Above about 1.5–1.7 V the junctions, not the square law, set the behaviour; the exact curves there depend on junction and substrate data that are not given, but $I_X$ stays positive (see the last bullet).
-- $V_{TH} = 0.7 + 0.45(\sqrt{1.9 - V_X} - \sqrt{0.9})$: 0.893 V at $V_X = 0$, 0.806 V at 0.5 V, 0.70 V at 1 V, 0.64 V at 1.25 V, 0.56 V at 1.5 V.
-- $M_1$ is saturated (overdrive < 0.5 V): $I_X = \tfrac12\beta(0.9 - V_{TH})^2$ ≈ 2×10⁻⁵β (barely on), 0.0045β, 0.020β, 0.035β, 0.059β at the same points. The rise is faster than quadratic in $V_X$ because $dV_{TH}/dV_X$ grows as $V_{SB}$ shrinks.
-- $g_m = \partial I_X/\partial V_{GS} = \beta(0.9 - V_{TH})$: ≈ 0 at $V_X = 0$, 0.2β at 1 V, 0.34β at 1.5 V. If "transconductance" is read as the bulk transconductance $g_{mb} = \partial I_X/\partial V_X = g_m\gamma/(2\sqrt{1.9 - V_X})$: ≈ 0.001β at 0, 0.047β at 1 V, 0.12β at 1.5 V, also rising.
-- $V_X > 1$ V: $V_{SB} < 0$. For a forward bias of a few hundred mV the junction current is small and the formula above is the usual forward-body-bias estimate (formally the triode edge $V_{TH} = 0.4$ V would come at $V_X$ ≈ 1.82 V, and the square root vanishes at 1.9 V). From about 1.5–1.7 V the source–bulk junction conducts heavily (that current flows from the $V_X$ source into the 1-V source, not through $I_X$, but it injects carriers and turns on the lateral npn); Assuming, as in any real device, a nonzero bulk (substrate) resistance between the $V_X$ terminal and the junctions, the conducting source–bulk diode clamps the internal bulk about one diode drop above the source (≈ 1.6–1.7 V), so the bulk–drain junction (drain at 1.5 V) is only slightly forward-biased and its reverse current is negligible. $I_X$ then stays positive and levels off near its 1.6–1.7 V value (≈ 0.06β); the lateral npn (source = emitter, bulk = base, drain = collector, $V_{CE} = 0.5$ V fixed, so forward-active) can only add current *into* the drain, raising $I_X$ further. The bulk–drain diode current opposes $I_X$, but at equal internal bias it is $e^{0.5/V_T} \approx 10^8$ times smaller than the npn current, so it cannot reverse $I_X$. (A negative $I_X$ appears only in an idealized model with zero bulk resistance and no bipolar action, where the source–bulk diode would have to carry hundreds of amperes at 2 V.) The level above ≈ 1.6 V depends on junction and substrate data that are not given; the device should not be operated there.
+The fixed terminals give $V_{GS}=0.9$ V and $V_{DS}=0.5$ V. The bulk is swept, so $V_{SB}=V_S-V_X$. Use $\beta=\mu_nC_{ox}W/L$; within the body-effect approximation, neglect CLM and junction current:
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).$$
+$$I_D=\frac12\beta(V_{GS}-V_{TH})^2,\qquad g_m=\left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS},V_{SB}}=\beta(V_{GS}-V_{TH}).$$
+
+Substituting the given parameters gives (voltages in V in numerical expressions):
+
+$$V_{TH}=0.7+0.45(\sqrt{1.9-V_X}-\sqrt{0.9}),$$
+$$\frac{I_X}{\beta}=\frac12(0.9-V_{TH})^2,\qquad\frac{g_m}{\beta}=0.9-V_{TH}.$$
+
+The modeled device is on, and is saturated while $V_{TH}\ge0.4$ V. No junction is forward biased over $0\le V_X\le1$ V; extension toward 1.5 V is conditional on negligible junction current.
+
+| $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
+|---|---|---|
+| 0 | $2.195\times10^{-5}$ | 0.006625 |
+| 0.5 | 0.004461 | 0.09446 |
+| 1 | 0.02000 | 0.2000 |
+| 1.5, conditional extension | 0.05859 | 0.3423 |
+
+Both modeled curves increase. Gate transconductance $g_m$ differs from the sweep slope. At fixed source, drain and gate potentials:
+
+$$g_{mb}=\frac{\partial I_X}{\partial V_X}=g_m\frac{\gamma}{2\sqrt{2|\phi_F|+V_S-V_X}}.$$
+
+The source–bulk junction is forward biased for $V_X>1$ V, and the drain–bulk junction also for $V_X>1.5$ V. These voltage relations are not universal high-current thresholds. Strong injection invalidates the square law; the total-current curve, plateau or sign over the remaining sweep to 3 V cannot be determined uniquely without junction, substrate and bipolar transport models. Near-zero-overdrive values are also only formal square-law results.
+
+![R010: normalized current and gate transconductance](/q/R010/review-curves.svg)
 
 ## Grading notes
 
-Gate transconductance $g_m$ is the expected reading; $g_{mb} = \partial I_X/\partial V_X$, computed correctly, is equally acceptable, and giving both is fine.
-+2: $I_X$ increasing with $V_X$ because $V_{TH}$ falls as $V_{SB} = 1 - V_X$ shrinks; ≈ 0 at $V_X = 0$ (M1 barely on), ≈ 0.02β at 1 V, saturation; transconductance rising from ≈ 0; and the forward-biased junctions above $V_X = 1$ V identified as taking the behaviour beyond what the given data determine toward the top of the range. Either of these is +2: (a) the curves drawn to 1 V, with the range above stated to depend on junction conduction the data do not specify (calling 1 V the limit of the square-law description is a conservative choice, not an error); (b) the MOS curves extended through the mildly forward-biased range (rising, about 0.059β and 0.34β at 1.5 V) and stopped or flagged around 1.5–1.8 V. Physically sound qualitative remarks about the upper range (the source–bulk diode clamping the internal bulk, $I_X$ staying positive and levelling off, lateral npn action adding current into the drain, the bulk–drain diode current opposing $I_X$ but being far smaller) are welcome but not required. Asserting that $I_X$ turns negative above ≈ 2.1 V is not penalized if it is presented as the idealized zero-bulk-resistance, no-bipolar-action limit, but it is not the physical behaviour.
-+1: MOS part correct and junction conduction noted, but the answer commits to a definite curve over the upper range that the data do not support (e.g. a MOS-only plateau or triode branch carried to 3 V, a clamp level from an assumed bulk resistance, $g_m$ asserted to drop to zero), even if labelled as approximate; or the forward-bias problem mentioned only vaguely.
-0: MOS part correct but the body-effect formula extrapolated to 3 V with no mention of junction conduction; or a MOS-only extension over 1–1.5 V that makes $I_X$ flat or decreasing there.
--2 (asserted as fact): $I_X$ decreasing with $V_X$ over 0–1 V, $V_X$ treated as a gate or drain voltage, or a large current at $V_X = 0$.
++2: correct fixed terminal voltages, body-effect threshold, saturated channel-current and transconductance curves in the supported range; identify forward junction bias and explicitly mark the upper range as underdetermined. Conditional extension toward 1.5 V is acceptable when flagged. Do not require an unsupported current sign, plateau or sharp universal diode threshold. Numerical tolerance: ±5% for nonzero modeled values; near-zero values may be reported as approximately zero with the model stated.
+
++1: low-bias MOS analysis correct but junction/model limits unclear, or one arithmetic slip.
+
+0: extends the depletion/square-law model to 3 V without addressing forward junction injection.
+
+-2 (asserted as fact): sweeps gate or drain instead of bulk; gives decreasing current over 0–1 V; or invents device parameters to claim a unique high-bias curve. Gate transconductance is the expected output; correctly identified bulk transconductance is also acceptable under the existing grading convention.

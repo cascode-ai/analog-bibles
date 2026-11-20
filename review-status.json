@@ -1,4 +1,249 @@
 {
   "schemaVersion": 1,
-  "records": {}
+  "records": {
+    "R001": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "3ddcbbd288df32da092648e5a90deca165172735b9617f5c47f20b84c9715b09",
+        "detailed_solution.zh.md": "8b844c2d10ae9cd3696446e0d99644dc27d24e4bdd9dd79f1c3032444df6f209",
+        "golden_solution.md": "011d9fb2a55b2b536aea9958f12c65cb3aab9d46d278eb746b4e4f7565be32b6",
+        "golden_solution.zh.md": "862232ebc018d2d17242f9f6919768af8dffd941529705de96d7231a8d0c374a",
+        "instruction.md": "439dd31bb575419e500f966c6bf526e24af97c30ee9bef6136243392b6660eb0",
+        "instruction.zh.md": "eda11466256de7459467e68524fae62c519d054da95f2d4061f16507dc1e0c99",
+        "solution-curves.svg": "2d48b4994355e6366c5dd7ac87048e26a961ab8e44a39e9f2743cfcbe22d0f17",
+        "solution-curves.zh.svg": "fc29d2c11c3bbce9e328e80cb862134c9ee36c22990072f369f5910ade165b6d"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T07:57:23.954Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r001-v3",
+      "approvalEvidenceSha256": "37656143e527b16bed8d17f0c71e5cf783b86333a5ade3fe225c3f1ece3a6e5c"
+    },
+    "R002": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "41276e0d5ea336771ffe14b0b602352a9220b05b9c7bdd0913a593610bfe99a5",
+        "detailed_solution.zh.md": "7cd7aa0b85ebb2efe68fce22c6b63f1b1d4fe77068cf5fd4a7b759e94e39ee56",
+        "diagram-01.cir": "bf294f91487a4181bdd16595fbc005270e4908d4162e01c29867ac56dcb8ab63",
+        "diagram-01.svg": "5f50f141d5b2e74049b9993b68cbf52b92d4ac3bee5839350af79753cf2bf92a",
+        "golden_solution.md": "d5fe475f1135d6237a4e06a37e21cf0c1cd951ef899696b90074bbd8c37624b9",
+        "golden_solution.zh.md": "5f3495cd8fce458e25bc71c2857e717cbfe733697a23e1e6fe24570a11ed940b",
+        "instruction.md": "4adcac0d6417d3846f134c16c93aedfb5cc275e11031e13095ce8be188db6451",
+        "instruction.zh.md": "6c9749bc22e989bc9af1f9ed4d3845b7f81ca6cb7262d5444402a2f017d29b3f"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T08:29:26.593Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-v1",
+      "approvalEvidenceSha256": "132b8354a7b6b662db1acb2d5cb26901c59a6cdb65c608dda0302580b0415dc8"
+    },
+    "R003": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "5ed4dee87bce51d550298aacfb2bf609047bc8c3763e459a2e32e85c7b219184",
+        "detailed_solution.zh.md": "9d42eea6c8bcbe14196bb2dfd510758d757236db91818b45768c88072a6d164d",
+        "golden_solution.md": "de9c51e56705b7ab5d0be8a4baf338152555c2c03848a1cf86a565ab7003ac47",
+        "golden_solution.zh.md": "f8ab1f9ab441a1fab544a5c8e535194b012af923eba0f7fea4ff6f08cbcf2404",
+        "instruction.md": "9a0b4ca508730457675e50cbcf95cc192b674e62dc4f26c216d8852a7001687e",
+        "instruction.zh.md": "854a7311617d6d9cafe5c719b1ac6b1a6729e0521354212234a68fd09392e5b5",
+        "solution-curves.svg": "fd926aeb1880a93a423f826701ad9239207503119eca54fef083f97bc994a96b",
+        "solution-curves.zh.svg": "fe95aceb2b05879806cbeb71ac4364607d6957c077078527d349f6a1f921410d"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T10:06:24.314Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r003-v2",
+      "approvalEvidenceSha256": "2b04304464ceec62bdf193857cf951f7bcbe4a8f1d0e5b2388ca8f3a09814dde"
+    },
+    "R004": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "228efa685feb303d76bcdc97d16f8b9b17b3c66d943540e8f6af28caa4a3cac8",
+        "detailed_solution.zh.md": "95acbebff5c9fc10320292b051df968dea7d5b77117caec36c0e17dde597ae73",
+        "golden_solution.md": "8e7bdf227810431faf8d2f8691430ef2ab6880e34ee163816d259f7501ce91b3",
+        "golden_solution.zh.md": "75e251fcdc78e113390625d450965605543528815381d0258f8bdffcbe664677",
+        "instruction.md": "07867422bf3738d697fa41214ef64fe7e6cfd15d08c3c4f297db98666e0133eb",
+        "instruction.zh.md": "3a2e428c026e7b420b6a15e01fa433d541d2f9a218d0af0abffd44f61022a857",
+        "solution-curves.svg": "b12a37d61fbc42562ec0d4aab14365b502eecf4446f3fe9837b1f5d615cf844e",
+        "solution-curves.zh.svg": "11a5e329ba6aa7e5661c8699077eac6b322d9e53adab65fa7edc8fb7f50b4264"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T10:36:46.260Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-v1",
+      "approvalEvidenceSha256": "5ccb5fea3e2491305237911cb3aebf4e29e164aff390baf27109db881da7f388"
+    },
+    "R005": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "c6c44d40730310ca64415bc456715fc1cd6a4a73501eaf8cac02e38183105e5d",
+        "detailed_solution.zh.md": "1d46ed696a30218ec8a0ebb08ec390862b7470a62c248397abc3f2bb5e0dcc1c",
+        "golden_solution.md": "e4260aee8a5893ea7cede5acd34fbc1891bbeecdb58290d61bb252627858d195",
+        "golden_solution.zh.md": "bb9c29bae86029bb2472418e0ed1937bf52fa14f9ae54ec5f4406ea146981e83",
+        "instruction.md": "ddac0e2e97d97827b82856e172493b41d4e7607374b26d939e0bba6d226fca40",
+        "instruction.zh.md": "ae51e65198a694f6c1ac1be17f33e5992941638b47a1f8eed2cb0c34d295633f",
+        "solution-curves.svg": "55286b2f22c43abf6278bbf5cf145162cd4fe9b0247562b5840146ceb8a5fd44",
+        "solution-curves.zh.svg": "d3c05d3e50e2321c4dc7f37be4f43fed6d59cdc6df9bd9dc58950180dd0985e0"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T10:42:26.620Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r005-v2",
+      "approvalEvidenceSha256": "d1d5e0789016d91c393285d252ae581ea7584bb88943794db7669346cbd1f906"
+    },
+    "R006": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "44809b0af10a393e361a00e7a3e5ef5e5beac4d5923383d6c92d59e1458ca602",
+        "detailed_solution.zh.md": "a151ad9ea14d523723c8ebb32c7af257552b4fd5ded3cee16ab3018ad41525ac",
+        "figure-01.png": "e60acb74f2fc3ffd46d4af05e69958466313676089459c83291b47db5fb96a10",
+        "golden_solution.md": "44d49b7079f2f02b6cf4c1db3c10c07e37ae3e843049561c2ca178abefac67f8",
+        "golden_solution.zh.md": "b69b6eb26d7d7c7b964454dd2f09fedf8acb6f5a0c26138d8ac4033c11d06db8",
+        "instruction.md": "180a6cdfe60ce3fd04826875484aecaf0ad3890546f8eca1007dae4bd4d47584",
+        "instruction.zh.md": "9a0abbe6a947a6871eeb8d6dff69e15ef1e192e2bbb188009d3efd94adf8c9c9",
+        "review-curves.svg": "d77fe24b03c1b1dd0eb6fd96e91535d6671732fae6775477bc0c24fc3ea98865"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T14:56:37.404Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r006-r010-v3",
+      "approvalEvidenceSha256": "0546d6af24aee136e55b593ef58501b846186ae1695c9770d26bcb1100c7559f"
+    },
+    "R007": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "85fb2714428e19c7f0155a268cae8522c9e1e8652731d467639ca4560a9b35b0",
+        "detailed_solution.zh.md": "0aebd61d1e1917da900d421f8e05646bb84e431ab5148e2618bb262f0b19c753",
+        "figure-01.png": "ceeebd15c2e37864b387f169189f4e1007a1db2d7142f905483e158f359dff2a",
+        "golden_solution.md": "f713ab2dfe5f8e41844197a6d48174977102d00e4e03b10f7f2ce5cc090967fe",
+        "golden_solution.zh.md": "7ebb2304f0e2e61d032c3e0070db0e612e4ff8ac077703c7cc1e7b2a6f9e3962",
+        "instruction.md": "d7a7f4b096a8d577fa32aea23354f20a0d1ff61c7ddcd98be613e3579da9b5bd",
+        "instruction.zh.md": "ca0979cf3732f9e2c6fe91752f5fd8330834d4cb71871a372ba3946a6c1c3b87",
+        "review-curves.svg": "5fe1e002f39f177c40b1338b4d424ba590189ec9cc69fcab52523a5c5f08b383"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T14:56:37.404Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r006-r010-v3",
+      "approvalEvidenceSha256": "f5fceb6f6ec42ac17ba14fc77a9dbf09d1eac0bd4b3e4f45a98db28967c2dffa"
+    },
+    "R008": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "94740b599251705108fe21c9e9c15ba88829f99e7ea18b8f463807ca114d305a",
+        "detailed_solution.zh.md": "038562c1e809113455b6687a26da7581caac43df5ec88e7c8ec33e8ef0c96f56",
+        "figure-01.png": "acb15d464cdbe22835f91aa736fb2fde5855598274fc60b6fbc921ecb9676ba5",
+        "golden_solution.md": "fdde6d97004a10d71de012b9767c45fe6c5f25b3602dd474942f8baf406f2a67",
+        "golden_solution.zh.md": "56fa36be7dd86ea93e0d8bf49841ef93c4fda4b03d5b070e469eec2add627090",
+        "instruction.md": "d7a7f4b096a8d577fa32aea23354f20a0d1ff61c7ddcd98be613e3579da9b5bd",
+        "instruction.zh.md": "ca0979cf3732f9e2c6fe91752f5fd8330834d4cb71871a372ba3946a6c1c3b87",
+        "review-curves.svg": "1dfd3341eead8d97286bf159272613896dcb244e00ac334cfd8c5685a2316048"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T14:56:37.404Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r006-r010-v3",
+      "approvalEvidenceSha256": "37adc98c40f6b30e11d104cba98a339e182aaa7e695bceb671b5c321468c2ab4"
+    },
+    "R009": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "6caa22625058200ee187a5fd1776590e7e31044f726a7c7758e11a14a91c3f1b",
+        "detailed_solution.zh.md": "766d44c4b520e7e07ddcf405007f278fd522907fb9bc3d40f5f7d24a6356f969",
+        "figure-01.png": "333f0e4bd8ed5d63dc68e76e70221b164d6c119bbec8e116c5c83a59fe400f6b",
+        "golden_solution.md": "afc2d31036f2321f97290d9e6eedaf1740489e5fb9c738311c36e85863189c82",
+        "golden_solution.zh.md": "b4f764b98030d775f8a07a2e954a411ffad1d6e60549e43eff150704d55d2a53",
+        "instruction.md": "d1eb8e6e109c253776f979ec8edd7187d0ac59245f9090f8d2b02771920ce4bc",
+        "instruction.zh.md": "a005988353ba4819fe92629e651bdcca6ccc82f1c62d65da6ae800c8c6099323",
+        "review-curves.svg": "cbb71963dbade5af88771c0529f9a235b0671ba11c21799a1f5c2f207dbb7080"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T15:10:16.023Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r009-v4",
+      "approvalEvidenceSha256": "58df5c0f56cd2e56c704fee68e1a547b6e1a193b148d8457a0ca35366f675854"
+    },
+    "R010": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "hashes": {
+        "detailed_solution.md": "92c187c86be0693c77409ccc7dc6242109e455167c4ab008eb0fb8bd63960ffd",
+        "detailed_solution.zh.md": "625a37934e6aa898fa1c2b134d22900e020fc1e02a207ac0ab02459a51a398ab",
+        "figure-01.png": "f91ea62691af0640260728828ae81b6fd7621e30c373f9508634a9924a181787",
+        "golden_solution.md": "6d283f21c0a84ef64eb0f2edaec736af48bfa6fbca913cfb15a7eb04a8266b77",
+        "golden_solution.zh.md": "68a437d76cb472ba5e0671e56d529670e2a767317ef5be8d1f12fb972c35a9cb",
+        "instruction.md": "084824c5f81929c4c0181823a236a0d3f21800028c58e3e8a4a1adaec47ca0e8",
+        "instruction.zh.md": "657e1655e649f8f25aee00610cfb728eb40a649961bdbd905351edd97b6759e1",
+        "review-curves.svg": "cd9b7700077f86f9d4cae3a772055184750bd824aa8f122d1c3b3c5e9ae1d91d"
+      },
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-audit-human-reviewer",
+        "approvedAt": "2026-11-20T14:56:37.404Z"
+      },
+      "sourceCommit": "aa812ba7d6af8f9a3fd9ec6ce73d8a4aac853a06",
+      "publishBaseCommit": "890eb8c1b5974bb61e590470162cb40d270b8ff0",
+      "candidateVersion": "candidates/razavi-001-010-review-20261120-r006-r010-v3",
+      "approvalEvidenceSha256": "fb525ab1403a9db35aa2ed30e0526fe4e0c7363ffbfa56bee0bdd5eabd127772",
+      "modelLimitations": [
+        "High-forward-bias total current is underdetermined by the supplied parameters; the approved answer leaves that region unspecified."
+      ],
+      "technicalScope": "Approved bounded answer with an explicit model limitation; no high-injection model resolution or Gemini pass is inferred."
+    }
+  }
 }

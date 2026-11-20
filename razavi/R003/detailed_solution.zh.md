@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 从饱和区模型推导增益
 
-在强反型、$V_{ov}>0$ 且 $|V_{DS}|\ge V_{ov}$ 时，电流的平方律主项为
+在强反型、$V_{ov}=|V_{GS}|-|V_{TH}|>0$ 且 $|V_{DS}|\ge V_{ov}$ 时，电流的平方律主项为
 
 $$
 I=\tfrac12\beta V_{ov}^2,\quad \beta=\mu C_{ox}(W/L),\quad
@@ -35,9 +35,9 @@ g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
 =\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
 $$
 
-$W$ 固定时，$g_mr_O\propto\sqrt{L/I}$，$L$ 加倍使增益增大到 $\sqrt2$ 倍。若固定宽长比 $a=W/L$，则
+$W$ 固定时，$g_mr_O\propto\sqrt{L/I}$，$L$ 加倍使增益增大到 $\sqrt2$ 倍。若固定宽长比 $W/L$，则
 $$
-g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}a}{I}}\propto\frac L{\sqrt I},
+g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}\propto\frac L{\sqrt I},
 $$
 $L$ 加倍使增益加倍。两类曲线均随电流下降，但宽度的变化方式不同，导致长度标度不同。
 

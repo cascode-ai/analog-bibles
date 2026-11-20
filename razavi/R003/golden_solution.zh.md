@@ -1,17 +1,8 @@
-在强反型饱和区，令 $I=|I_D|>0$、$\beta=\mu C_{ox}(W/L)$。由 $g_m\approx\sqrt{2\beta I}$、$r_O\approx1/(\lambda I)$ 得
-$$
-g_mr_O\approx\frac{\sqrt{2\beta I}}{\lambda I}
-=\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}
-=\frac2{\lambda V_{ov}}.
-$$
-这里采用平方律偏置电流主项和一阶 CLM 输出电导。代入 $\lambda=\lambda_0L_0/L$，
-$$
-g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
-=\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
-$$
-各曲线按 $I^{-1/2}$ 下降。同一电流下，$L$ 越大，曲线越高：固定 $W$ 时，$L$ 加倍使增益增大到 $\sqrt2$ 倍；固定 $W/L$ 时则增大到 2 倍。
+在强反型饱和区，采用平方律偏置电流主项和一阶 CLM 输出电导，本征增益为
+$$g_mr_O\approx\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{|I_D|}}.$$
+各曲线随 $|I_D|$ 按逆平方根下降。由 $\lambda\propto1/L$，固定 $W$ 时增益正比于 $\sqrt{L/|I_D|}$；固定 $W/L$ 时正比于 $L/\sqrt{|I_D|}$。因此 $L$ 加倍分别使曲线升高至 $\sqrt2$ 倍、2 倍。
 
-下图示例固定 $W=50\ \mu\mathrm m$，取 $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$，在 $L_0=0.5\ \mu\mathrm m$ 时 $\lambda_0=0.1\ \mathrm{V^{-1}}$：
+下图示例选取固定宽度 $W=50\ \mu\mathrm m$，取 $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$，在 $L_0=0.5\ \mu\mathrm m$ 时 $\lambda_0=0.1\ \mathrm{V^{-1}}$：
 
 | $L$ (µm) | $\lambda$ (V⁻¹) | 0.1 mA 处增益 | 0.5 mA 处 | 1 mA 处 |
 |---|---|---|---|---|
@@ -22,3 +13,7 @@ $$
 ![固定宽度下三种沟道长度的本征增益与漏极电流曲线](/q/R003/solution-curves.zh.svg)
 
 强反型模型不能外推至零电流，也不适用于亚阈值工作区。
+
+## 评分说明
+
++2：完整的一阶本征增益表达式，曲线随电流按逆平方根下降；说明固定 W 或固定 W/L，长度缩放分别为 √L 或 L。数值示例可选，单独比例关系不能替代完整表达式。+1：公式趋势正确，但长度约束或缩放不清，或只有比例关系。0：公式正确而某项非根本的曲线族特征错误。−2：声称增益随电流增大、随长度减小或与长度无关。

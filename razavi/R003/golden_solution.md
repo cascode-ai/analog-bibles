@@ -2,20 +2,11 @@
 
 ## Reference answer
 
-For strong-inversion saturation, let $I=|I_D|>0$ and $\beta=\mu C_{ox}(W/L)$. Using $g_m\approx\sqrt{2\beta I}$ and $r_O\approx1/(\lambda I)$ gives
-$$
-g_mr_O\approx\frac{\sqrt{2\beta I}}{\lambda I}
-=\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}
-=\frac2{\lambda V_{ov}}.
-$$
-This uses the leading square-law bias current and first-order CLM output conductance. Substituting $\lambda=\lambda_0L_0/L$,
-$$
-g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
-=\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
-$$
-Each curve decreases as $I^{-1/2}$. At a given current, a longer $L$ gives a higher curve: doubling $L$ multiplies the gain by $\sqrt2$ at fixed $W$, or by 2 at fixed $W/L$.
+In strong-inversion saturation, using the leading square-law bias current and first-order CLM output conductance,
+$$g_mr_O\approx\frac1\lambda\sqrt{\frac{2\mu C_{ox}(W/L)}{|I_D|}}.$$
+Each curve decreases as $|I_D|^{-1/2}$. Since $\lambda\propto1/L$, the gain scales as $\sqrt{L/|I_D|}$ at fixed $W$, or $L/\sqrt{|I_D|}$ at fixed $W/L$. Doubling $L$ therefore raises the curve by $\sqrt2$ or 2, respectively.
 
-The plotted example fixes $W=50\ \mu\mathrm m$, $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$, and $\lambda_0=0.1\ \mathrm{V^{-1}}$ at $L_0=0.5\ \mu\mathrm m$:
+The plotted example chooses a fixed width $W=50\ \mu\mathrm m$, $\mu_nC_{ox}=134\ \mu\mathrm{A/V^2}$, and $\lambda_0=0.1\ \mathrm{V^{-1}}$ at $L_0=0.5\ \mu\mathrm m$:
 
 | $L$ (µm) | $\lambda$ (V⁻¹) | Gain at 0.1 mA | At 0.5 mA | At 1 mA |
 |---|---|---|---|---|

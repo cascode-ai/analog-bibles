@@ -53,3 +53,6 @@ $$
 \frac{I_D}{\beta}=(1.3\ \mathrm V)(0.5\ \mathrm V)-\frac{(0.5\ \mathrm V)^2}{2}=0.525\ \mathrm{V^2}.
 $$
 For $V_{DS}\ge2.3$ V the entire conducting part of the 0–3 V sweep is saturated, giving the dashed parabolic envelope. The $V_{DS}=2.3$ V boundary is at the right endpoint. At $V_{DS}=0$, all currents are zero; for $0<V_{DS}\ll u$, neglecting $V_{DS}^2/2$ gives the deep-triode approximation $I_D\approx\beta uV_{DS}$.
+
+
+**Model note:** If channel-length modulation is added, state the chosen piecewise extension explicitly. Multiplying both branches by the same fixed factor preserves the tangent join in this approximation; multiplying only the saturation branch creates a discontinuity.

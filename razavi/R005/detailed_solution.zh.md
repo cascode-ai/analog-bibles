@@ -19,15 +19,12 @@ $$
 
 本题以 $V_{BS}=V_B-V_S$ 为参量，而模型常用 $V_{SB}=V_S-V_B=-V_{BS}$，因此第二式直接给出题目所需的参数关系。反偏增大耗尽电荷，栅极需更高电压才能形成反型层，故阈值升高。忽略 CLM 和亚阈值电流。
 
-代入 $V_{TH0}=0.7$ V、$\gamma=0.45\ \mathrm{V^{1/2}}$、$2|\phi_F|=0.9$ V，定义数值辅助函数
+代入 $V_{TH0}=0.7$ V、$\gamma=0.45\ \mathrm{V^{1/2}}$、$2|\phi_F|=0.9$ V，阈值电压可直接写为
 
 $$
-T(s)=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
-\left[\sqrt{0.9\ \mathrm V+s}-\sqrt{0.9\ \mathrm V}\right].
-$$
-
-$$
-V_{TH}(V_{BS})=T(-V_{BS}),\qquad V_{SB}=-V_{BS}.
+V_{TH}(V_{BS})=0.7\ \mathrm V+(0.45\ \mathrm{V^{1/2}})
+\left[\sqrt{0.9\ \mathrm V-V_{BS}}-\sqrt{0.9\ \mathrm V}\right],
+\qquad V_{SB}=-V_{BS}.
 $$
 
 $$

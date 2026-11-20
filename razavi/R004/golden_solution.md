@@ -2,7 +2,7 @@
 
 ## Reference answer
 
-For fixed $V_{DS}>0$, define $V_{ov}=V_{GS}-V_{TH}$ and $\beta=\mu_nC_{ox}(W/L)$, with $V_{TH}=0.7$ V. The square-law model without CLM gives
+For fixed $V_{DS}>0$, define $\beta=\mu_nC_{ox}(W/L)$, with $V_{TH}=0.7$ V. The square-law model without CLM gives
 $$
 I_D=\begin{cases}
 0,&V_{GS}\le V_{TH},\\
