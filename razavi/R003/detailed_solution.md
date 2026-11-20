@@ -4,7 +4,7 @@ Express $g_m$ and $r_O$ in terms of current, then substitute the length dependen
 
 ### Step 1 — Derive the gain from the saturation model
 
-In strong inversion, with $V_{ov}>0$ and $|V_{DS}|\ge V_{ov}$, the leading square-law current is
+In strong inversion, with $V_{ov}=|V_{GS}|-|V_{TH}|>0$ and $|V_{DS}|\ge V_{ov}$, the leading square-law current is
 
 $$
 I=\tfrac12\beta V_{ov}^2,\quad \beta=\mu C_{ox}(W/L),\quad
@@ -35,9 +35,9 @@ g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}W}{LI}}
 =\frac{\sqrt{2\mu C_{ox}WL/I}}{\lambda_0L_0}.
 $$
 
-At fixed $W$, this gives $g_mr_O\propto\sqrt{L/I}$: doubling $L$ multiplies the gain by $\sqrt2$. At fixed aspect ratio $a=W/L$, instead,
+At fixed $W$, this gives $g_mr_O\propto\sqrt{L/I}$: doubling $L$ multiplies the gain by $\sqrt2$. At fixed aspect ratio $W/L$, instead,
 $$
-g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}a}{I}}\propto\frac L{\sqrt I},
+g_mr_O\approx\frac{L}{\lambda_0L_0}\sqrt{\frac{2\mu C_{ox}(W/L)}{I}}\propto\frac L{\sqrt I},
 $$
 so doubling $L$ doubles the gain. Both families decrease with current; their length scaling differs because their widths differ.
 

@@ -2,10 +2,34 @@
 
 ## Reference answer
 
-$I_X$ is negative for $V_X < 1$ V (the $V_X$ terminal acts as the source, triode), crosses zero at $V_X = 1$ V, and for $V_X > 1$ V is essentially zero because, with body effect, $M_1$ is only at the edge of conduction.
-- $0 \le V_X < 1$ V: the $V_X$ node is the source ($V_{GS} = 1.9 - V_X$, $V_{SB} = V_X$, $V_{DS} = 1 - V_X$). Since $V_{TH}(V_X) < 0.9$ V, $V_{DS} < V_{GS} - V_{TH}$ and $M_1$ is in triode throughout. Current flows from the 1-V source into the $V_X$ source: $I_X = -\beta[(1.9 - V_X - V_{TH})(1 - V_X) - (1 - V_X)^2/2]$: −0.70β at $V_X = 0$, −0.39β at 0.25 V, −0.17β at 0.5 V, −0.044β at 0.75 V, 0 at 1 V. $g_m = \beta V_{DS} = \beta(1 - V_X)$, falling linearly from β·(1 V) to 0.
-- $V_X > 1$ V: the 1-V node is the source, $V_{GS} = 0.9$ V, $V_{SB} = 1$ V, $V_{TH} = 0.7 + 0.45(\sqrt{1.9} - \sqrt{0.9}) = 0.893$ V, overdrive only ≈ 7 mV. $M_1$ saturates within a few mV of 1 V and carries $I_X \approx \tfrac12\beta(0.0066)^2 \approx 2\times10^{-5}\beta$, i.e. practically zero (in reality a small subthreshold current), constant up to 3 V; $g_m \approx 0$.
-- For comparison, without body effect $M_1$ would saturate at $V_X$ = 1.2 V with $I_X = 0.02\beta$ and $g_m = 0.2\beta$.
+Use $\beta=\mu_nC_{ox}W/L$ and neglect CLM. Here $g_m$ is the positive magnitude of device gate transconductance. The general threshold and conducting-region relations are:
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).$$
+$$\begin{aligned}
+\text{Triode:}\quad &I_D=\beta\left[(V_{GS}-V_{TH})V_{DS}-\frac12V_{DS}^2\right],\qquad g_m=\beta V_{DS},\\
+\text{Saturation:}\quad &I_D=\frac12\beta(V_{GS}-V_{TH})^2,\qquad g_m=\beta(V_{GS}-V_{TH}).
+\end{aligned}$$
+
+For $V_X<1$ V the $V_X$ terminal is the source and $I_X=-I_D$; for $V_X>1$ V the 1-V terminal is the source and $I_X=I_D$. Substituting the given parameters gives (voltages in V in numerical expressions):
+
+$$V_{TH}(V_X)=0.7+0.45\left(\sqrt{0.9+V_X}-\sqrt{0.9}\right),\qquad 0\le V_X\le1,$$
+$$I_X=-\beta[(1.9-V_X-V_{TH})(1-V_X)-\tfrac12(1-V_X)^2],\qquad g_m=\beta(1-V_X),\quad V_X<1.$$
+
+| $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
+|---|---|---|
+| 0 | −0.70000 | 1.00 |
+| 0.25 | −0.38950 | 0.75 |
+| 0.5 | −0.17223 | 0.50 |
+| 0.75 | −0.04347 | 0.25 |
+| 1 | 0 | 0 |
+
+Current crosses zero at 1 V, where source and drain exchange roles. Above this point $V_{TH}=0.893375$ V and the fixed overdrive is about 0.006625 V. In the short triode interval:
+
+$$I_X=\beta[0.006625(V_X-1)-\tfrac12(V_X-1)^2],\quad g_m=\beta(V_X-1),\quad1<V_X<1.006625.$$
+
+The subsequent saturation plateau is $I_X/\beta\approx2.195\times10^{-5}$ V² and $g_m/\beta\approx0.006625$ V. These tiny numbers are formal strong-inversion square-law results, with limited near-threshold accuracy. Without body effect the plateau starts at 1.2 V, with $I_X/\beta=0.020$ V² and $g_m/\beta=0.200$ V.
+
+![R007: normalized current and gate transconductance](/q/R007/review-curves.svg)
 
 ## Grading notes
 

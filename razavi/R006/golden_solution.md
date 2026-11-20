@@ -2,11 +2,28 @@
 
 ## Reference answer
 
-$M_1$ (gate and drain at $V_{DD}$, source at $V_X$) is saturated throughout; $I_X$ falls monotonically, roughly quadratically, and $g_m$ falls almost linearly.
-- $I_X = \tfrac12\beta(3 - V_X - V_{TH})^2$ with $V_{SB} = V_X$, $V_{TH} = 0.7 + 0.45(\sqrt{0.9+V_X} - \sqrt{0.9})$.
-- Values (β in A/V², $I_X$ in A): $V_X$ = 0: $V_{TH}$ = 0.70 V, $I_X$ = 2.65β (overdrive 2.3 V); 0.5 V: 0.81 V, 1.44β; 1.0 V: 0.89 V, 0.61β; 1.5 V: 0.97 V, 0.14β (overdrive 0.53 V).
-- $g_m = \beta(3 - V_X - V_{TH})$: from 2.3β at $V_X = 0$ to 0.53β at 1.5 V, slope magnitude $\beta(1 + dV_{TH}/dV_X)$ ≈ 1.24β → 1.15β, i.e. it falls faster than without body effect.
-- $M_1$ would turn off only at $V_X$ ≈ 1.97 V (2.3 V without body effect), outside the range.
+Gate and drain are at 3 V, the source is at $V_X$, and the bulk is grounded. Thus $V_{GS}=V_{DS}=3-V_X$ and $V_{SB}=V_X$. Use $\beta=\mu_nC_{ox}W/L$ and neglect unspecified CLM. The body-effect threshold and saturation relations are:
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).$$
+$$I_D=\frac12\beta(V_{GS}-V_{TH})^2,\qquad g_m=\left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS},V_{SB}}=\beta(V_{GS}-V_{TH}).$$
+
+Substituting the given parameters gives (voltages in V in numerical expressions):
+
+$$V_{TH}(V_X)=0.7+0.45\left(\sqrt{0.9+V_X}-\sqrt{0.9}\right),$$
+$$\frac{I_X}{\beta}=\frac12[3-V_X-V_{TH}(V_X)]^2,\qquad \frac{g_m}{\beta}=3-V_X-V_{TH}(V_X).$$
+
+The device remains on and saturated over $0\le V_X\le1.5$ V; the minimum overdrive is about 0.530 V.
+
+| $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
+|---|---|---|
+| 0 | 2.645 | 2.300 |
+| 0.5 | 1.436 | 1.694 |
+| 1 | 0.612 | 1.107 |
+| 1.5 | 0.140 | 0.530 |
+
+Both curves decrease; $I_X$ is convex and $g_m$ is nearly linear. Body effect makes the decrease steeper than without it. Gate transconductance $g_m$ differs from the source-sweep slope $dI_X/dV_X$. Keep normalized results because device dimensions are unspecified.
+
+![R006: normalized current and gate transconductance](/q/R006/review-curves.svg)
 
 ## Grading notes
 

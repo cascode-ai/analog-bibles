@@ -2,30 +2,16 @@
 
 ## Reference answer
 
-Both devices are specified to operate in saturation. With $W/L=100$, $I=|I_D|=0.5$ mA, use the first-order square-law relations
-$$
-I\approx\tfrac12\beta V_{ov}^2,\qquad
-g_m\approx\beta V_{ov}=\sqrt{2\beta I},\qquad
-r_O\approx\frac1{\lambda I},\qquad
-\beta=\mu C_{ox}(W/L).
-$$
-The device coefficients are $\beta_n=13.4\ \mathrm{mA/V^2}$ and $\beta_p=3.84\ \mathrm{mA/V^2}$, giving
-$$
-\begin{aligned}
-g_{m,n}&=\sqrt{2(13.4\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})}=3.66\ \mathrm{mS},\\
-g_{m,p}&=\sqrt{2(3.84\ \mathrm{mA/V^2})(0.5\ \mathrm{mA})}=1.96\ \mathrm{mS},\\
-r_{O,n}&\approx\frac1{(0.1\ \mathrm{V^{-1}})(0.5\ \mathrm{mA})}=20\ \mathrm{k\Omega},\\
-r_{O,p}&\approx\frac1{(0.2\ \mathrm{V^{-1}})(0.5\ \mathrm{mA})}=10\ \mathrm{k\Omega}.
-\end{aligned}
-$$
-The intrinsic gain is their dimensionless product:
+For saturated devices, use the leading square-law bias current and first-order CLM output conductance:
+$$g_m\approx\sqrt{2\mu C_{ox}(W/L)|I_D|},\qquad r_O\approx\frac1{\lambda|I_D|}.$$
+With $W/L=100$ and $|I_D|=0.5$ mA:
 
 | Device | $g_m$ | $r_O$ | $g_mr_O$ |
 |---|---|---|---|
-| NMOS | 3.66 mS | 20 kΩ | $3.66\times20=73.2$ |
-| PMOS | 1.96 mS | 10 kΩ | $1.96\times10=19.6$ |
+| NMOS | 3.66 mS | 20 kΩ | 73.2 |
+| PMOS | 1.96 mS | 10 kΩ | 19.6 |
 
-Here CLM is neglected in the bias-current expression but retained to first order in $r_O$. The correction depending on $V_{DS}$ cannot be evaluated because $V_{DS}$ is not given. The NMOS has about 3.7 times the intrinsic gain of the PMOS.
+The NMOS intrinsic gain is about 3.74 times the PMOS value. The finite-$V_{DS}$ correction cannot be evaluated because $V_{DS}$ is unspecified; these are the usual $\lambda|V_{DS}|\ll1$ estimates.
 
 ## Grading notes
 
