@@ -724,11 +724,11 @@ function renderMarkdown(text) {
 
 // The answer file: its title, the answer, then the grading notes.
 function splitSolution(text) {
-  const at = text.search(/^## Grading notes\s*$/m);
-  const body = (at >= 0 ? text.slice(0, at) : text)
-    .replace(/^# .*\n/, "")
+  const heading = /^##[ \t]+(?:Grading notes|评分说明)[ \t]*(?:\r?\n|$)/m.exec(text);
+  const body = (heading ? text.slice(0, heading.index) : text)
+    .replace(/^#[ \t]+[^\r\n]*(?:\r?\n|$)/, "")
     .replace(/^## Reference answer\s*\n/m, "");
-  return { body, grading: at >= 0 ? text.slice(at).replace(/^## Grading notes\s*\n/, "") : "" };
+  return { body, grading: heading ? text.slice(heading.index + heading[0].length) : "" };
 }
 
 // ---------- sidebar ----------
@@ -900,7 +900,7 @@ async function fillCard(el, q) {
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const { body, grading } = splitSolution(solution);
   el.querySelector(".q-answer").lang = zh && answerZh ? "zh" : "en";
-  el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? answerZh : body);
+  el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? splitSolution(answerZh).body : body);
   const toggle = el.querySelector(".orig-toggle");
   if (toggle) toggle.textContent = zh ? t("showOriginal") : t("showTranslation");
   if (q.sol) {
