@@ -27,6 +27,34 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   }
   await b.viewport(1440, 960);
 
+  await t.test("theme choice persists and keeps question and answer typography aligned", async () => {
+    await b.open("/browse?scope=razavi&id=R002&view=focus&lang=en");
+    await b.evaluate('localStorage.removeItem("ab.theme")');
+    await b.open("/browse?scope=razavi&id=R002&view=focus&lang=en");
+    await b.waitFor('document.querySelector(".question-panel .md") && document.querySelector(".solution-panel .md")');
+    const before = await b.evaluate(`(() => {
+      const q = getComputedStyle(document.querySelector('.question-panel .md'));
+      const a = getComputedStyle(document.querySelector('.solution-panel .md'));
+      return { font: q.fontSize, line: q.lineHeight, answerFont: a.fontSize, answerLine: a.lineHeight,
+        active: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' };
+    })()`);
+    assert.equal(before.font, before.answerFont);
+    assert.equal(before.line, before.answerLine);
+    await b.evaluate('const select=document.getElementById("theme-select");select.value="dark";select.dispatchEvent(new Event("change",{bubbles:true}))');
+    const after = await b.evaluate(`({theme:document.documentElement.dataset.theme, scheme:getComputedStyle(document.documentElement).colorScheme,
+      stored:localStorage.getItem('ab.theme'), value:document.getElementById('theme-select').value})`);
+    assert.equal(after.theme, "dark");
+    assert.equal(after.stored, "dark");
+    assert.equal(after.value, "dark");
+    assert.equal(after.scheme, "dark");
+    await b.open("/browse?scope=razavi&id=R002&view=focus&lang=en");
+    assert.equal(await b.evaluate("document.documentElement.dataset.theme"), "dark");
+    await b.evaluate('const select=document.getElementById("theme-select");select.value="system";select.dispatchEvent(new Event("change",{bubbles:true}))');
+    assert.equal(await b.evaluate("localStorage.getItem('ab.theme')"), "system");
+    assert.equal(await b.evaluate("document.documentElement.hasAttribute('data-theme')"), false);
+    await b.evaluate('localStorage.removeItem("ab.theme")');
+  });
+
   await t.test("The sidebar's edge drags wider, the width is kept, double-click resets it", async () => {
     await b.viewport(1440, 960);
     await b.open("/browse?scope=razavi&id=R001&lang=zh");
