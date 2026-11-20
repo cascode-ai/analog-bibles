@@ -1,8 +1,86 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { test } from 'node:test';
 import { startBrowser } from './test-browser.mjs';
+
+function solutionSplitter() {
+  const source = fs.readFileSync(new URL('./public/app.js', import.meta.url), 'utf8');
+  const functionText = source.match(/function splitSolution\(text\) \{[\s\S]*?\n\}/)?.[0];
+  assert.ok(functionText, 'the production section splitter exists');
+  return vm.runInNewContext(`(${functionText})`);
+}
+
+test('solution sections split English and Chinese grading with LF and CRLF', () => {
+  const split = solutionSplitter();
+  for (const newline of ['\n', '\r\n']) {
+    for (const heading of ['Grading notes', '评分说明']) {
+      const input = ['# Golden Solution', '', '## Reference answer', '', 'Answer body.', '', `## ${heading}`, '', '+2: grading only.'].join(newline);
+      const result = split(input);
+      assert.equal(result.body.trim(), 'Answer body.');
+      assert.equal(result.grading.trim(), '+2: grading only.');
+    }
+  }
+  const noNotes = split('Answer mentions 评分说明 inline but has no grading section.');
+  assert.equal(noNotes.grading, '');
+  assert.match(noNotes.body, /评分说明 inline/);
+  assert.equal(split('Answer\n\n## 评分说明').body.trim(), 'Answer');
+  assert.equal(split('Answer\n\n## 评分说明').grading, '');
+});
+
+test('actual Chinese answer sources expose separate grading sections for R001-R010', () => {
+  const split = solutionSplitter();
+  for (let n = 1; n <= 10; n++) {
+    const id = `R${String(n).padStart(3, '0')}`;
+    const text = fs.readFileSync(new URL(`../razavi/${id}/golden_solution.zh.md`, import.meta.url), 'utf8');
+    const result = split(text);
+    assert.doesNotMatch(result.body, /^##\s*评分说明\s*$/m, `${id} grading heading leaked into answer`);
+    assert.doesNotMatch(result.body, /(?:\+2\s*[:：]|满分\s*[:：])/u, `${id} grading criteria leaked into answer`);
+    assert.match(result.grading, /(?:\+2\s*[:：]|满分\s*[:：])/u, `${id} grading criteria were lost`);
+  }
+});
+
+test('localized answers exclude grading while the grading tab preserves its English source', { timeout: 180000 }, async t => {
+  const b = await startBrowser();
+  t.after(() => b.close());
+  for (const width of [1440, 390]) for (let n = 1; n <= 10; n++) {
+    const id = `R${String(n).padStart(3, '0')}`;
+    await t.test(`${id} Chinese -> English, ${width}px`, async () => {
+      await b.viewport(width, 960);
+      await b.open(`/browse?scope=razavi&id=${id}&view=focus&lang=zh`);
+      const card = `[data-qid="${id}"]`;
+      const source = fs.readFileSync(new URL(`../razavi/${id}/golden_solution.md`, import.meta.url), 'utf8');
+      const grading = source.slice(source.indexOf('## Grading notes') + '## Grading notes'.length).trim();
+      const verify = async language => {
+        await b.waitFor(`document.querySelector('${card} .q-answer')?.lang === '${language}'`);
+        const answer = await b.evaluate(`document.querySelector('${card} .q-answer').textContent`);
+        assert.doesNotMatch(answer, /(?:评分说明|Grading notes|\+2\s*[:：]|满分\s*[:：])/u);
+        await b.evaluate(`document.querySelector('${card} [data-solution-tab="grading"]').click()`);
+        assert.equal(await b.evaluate(`document.querySelector('${card} .grading .md').lang`), 'en');
+        const matchesSource = await b.evaluate(`(() => {
+          const expected = document.createElement('div');
+          expected.innerHTML = renderMarkdown(${JSON.stringify(grading)});
+          const normalize = value => value.replace(/\\s+/g, ' ').trim();
+          return normalize(expected.textContent) === normalize(document.querySelector('${card} .grading .md').textContent);
+        })()`);
+        assert.equal(matchesSource, true, `${id} canonical grading text changed`);
+        assert.equal(await b.evaluate(`document.querySelector('${card}').querySelectorAll('.katex-error').length`), 0);
+        assert.ok(await b.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'));
+        await b.evaluate(`document.querySelector('${card} [data-solution-tab="answer"]').click()`);
+      };
+      await verify('zh');
+      await b.evaluate('document.getElementById("lang-switch").click()');
+      await verify('en');
+    });
+  }
+  for (const [route, view] of [['browse', 'list'], ['review', 'focus']]) {
+    await b.open(`/${route}?scope=razavi&id=R001&view=${view}&lang=zh`);
+    const text = await b.evaluate('document.querySelector(\'[data-qid="R001"] .q-answer\').textContent');
+    assert.doesNotMatch(text, /(?:评分说明|\+2\s*[:：])/u);
+  }
+  assert.deepEqual(b.errors, []);
+});
 
 test('R001–R005 actual bilingual answers and plots', { timeout: 300000 }, async t => {
   const b = await startBrowser();
