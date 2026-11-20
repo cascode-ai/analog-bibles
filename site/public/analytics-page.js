@@ -347,7 +347,7 @@
     if (target.id === "analytics-theme") {
       const next = document.documentElement.classList.contains("light") ? "dark" : "light";
       document.documentElement.classList.toggle("light", next === "light");
-      try { localStorage.setItem("ab.analyticsTheme", next); } catch {}
+      try { localStorage.setItem("ab.analyticsTheme", next); localStorage.setItem("ab.theme", next); } catch {}
       render();
     } else if (target.id === "analytics-reset") {
       defaultRange();

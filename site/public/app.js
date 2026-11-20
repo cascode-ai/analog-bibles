@@ -16,6 +16,10 @@ const STRINGS = {
     analytics: "Analytics",
     analyticsTitle: "Open visitor analytics",
     privacy: "Privacy",
+    themeLabel: "Theme",
+    themeSystem: "System",
+    themeDark: "Dark",
+    themeLight: "Light",
     visits: (uv, pv) => `${uv} visitors · ${pv} views`,
     sideWidthTitle: "Drag to resize; double-click to reset",
     book: "Book",
@@ -144,6 +148,10 @@ const STRINGS = {
     analytics: "访问统计",
     analyticsTitle: "打开访问统计",
     privacy: "隐私",
+    themeLabel: "主题",
+    themeSystem: "跟随系统",
+    themeDark: "深色",
+    themeLight: "浅色",
     visits: (uv, pv) => `${uv} 位访客 · ${pv} 次浏览`,
     sideWidthTitle: "拖动调整宽度，双击恢复默认",
     book: "教材",
@@ -340,6 +348,31 @@ const state = {
 
 // ---------- language ----------
 
+function systemTheme() {
+  return typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyTheme() {
+  const root = document.documentElement;
+  const saved = ["system", "light", "dark"].includes(store.get("ab.theme")) ? store.get("ab.theme") : "system";
+  if (root.dataset) {
+    if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+    else delete root.dataset.theme;
+  }
+  const select = $("theme-select");
+  select.value = saved;
+  select.setAttribute("aria-label", t("themeLabel"));
+}
+
+$("theme-select").addEventListener("change", (event) => {
+  store.set("ab.theme", event.target.value);
+  applyTheme();
+});
+if (typeof matchMedia === "function") {
+  const media = matchMedia("(prefers-color-scheme: dark)");
+  media.addEventListener?.("change", () => { if (!["light", "dark"].includes(store.get("ab.theme"))) applyTheme(); });
+}
+
 function applyLanguage() {
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
@@ -351,6 +384,7 @@ function applyLanguage() {
   const button = $("lang-switch");
   button.title = t("switchLang");
   button.setAttribute("aria-label", t("switchLang"));
+  applyTheme();
   applySidebar();
   showVisitStats();
 }

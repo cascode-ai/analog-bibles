@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Analog Bibles</title>
 <meta name="description" content="End-of-chapter problems from Razavi, Gray and Allen: the question, its figures and a reference answer.">
+<script>
+  try {
+    const theme = localStorage.getItem("ab.theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch {}
+</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <link rel="stylesheet" href="/style.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
@@ -20,6 +26,11 @@
     <a id="mode-review" href="/review" data-i18n="review" data-i18n-title="reviewTitle" title="For maintainers: pass, report issues, comment">Review</a>
   </nav>
   <a class="gh" href="https://github.com/cascode-ai/analog-bibles" target="_blank" rel="noopener">GitHub ↗</a>
+  <label class="theme-control"><span class="sr-only">Theme</span><select id="theme-select" aria-label="Theme">
+    <option value="system" data-i18n="themeSystem">System</option>
+    <option value="light" data-i18n="themeLight">Light</option>
+    <option value="dark" data-i18n="themeDark">Dark</option>
+  </select></label>
   <!-- Languages icon (A / 文), as on tokenzhang.com -->
   <button type="button" class="lang-switch" id="lang-switch" aria-label="切换到中文" title="切换到中文">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>

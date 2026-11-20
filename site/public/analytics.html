@@ -6,8 +6,13 @@
 <meta name="robots" content="noindex, follow">
 <title>Analytics — Analog Bibles</title>
 <script>
-  // The dashboard is dark unless this browser chose light, as on Analog Canvas.
-  try { if (localStorage.getItem("ab.analyticsTheme") === "light") document.documentElement.classList.add("light"); } catch {}
+  // Follow the main reader's choice; keep the legacy analytics key as a
+  // fallback for returning dashboard users.
+  try {
+    const theme = localStorage.getItem("ab.theme") || localStorage.getItem("ab.analyticsTheme");
+    const light = theme === "light" || (theme !== "dark" && !matchMedia("(prefers-color-scheme: dark)").matches);
+    if (light) document.documentElement.classList.add("light");
+  } catch {}
 </script>
 <link rel="stylesheet" href="/analytics.css">
 </head>

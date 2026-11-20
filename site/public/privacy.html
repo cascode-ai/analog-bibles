@@ -4,9 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy — Analog Bibles</title>
+<script>
+  try {
+    const theme = localStorage.getItem("ab.theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch {}
+</script>
 <style>
   :root { --bg: #fff; --text: #1d2330; --muted: #5b6577; --border: #d9dee7; --accent: #2457c5; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #10161f; --text: #e8edf5; --muted: #aeb8ca; --border: #3a465a; --accent: #a8c2ff; } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #10161f; --text: #e8edf5; --muted: #aeb8ca; --border: #3a465a; --accent: #a8c2ff; } }
+  :root[data-theme="dark"] { --bg: #10161f; --text: #e8edf5; --muted: #aeb8ca; --border: #3a465a; --accent: #a8c2ff; }
+  :root { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.65 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
   main { max-width: 44rem; margin: 0 auto; padding: 32px 16px 64px; }
   h1 { font-size: 1.6rem; margin: 0 0 4px; }
@@ -18,12 +27,15 @@
   .choice { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; }
   .choice button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
   .choice button:hover { background: var(--accent); color: var(--bg); }
-  .lang { float: right; }
+  .page-tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .theme-control { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
+  .theme-control select { padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+  .theme-control select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 </head>
 <body>
 <main>
-  <a class="lang" href="/">← Analog Bibles</a>
+  <div class="page-tools"><a href="/">← Analog Bibles</a><label class="theme-control"><span>主题 / Theme</span><select id="theme-select" aria-label="主题 / Theme"><option value="system">跟随系统 / System</option><option value="light">浅色 / Light</option><option value="dark">深色 / Dark</option></select></label></div>
   <h1>隐私说明 · Privacy</h1>
   <p class="muted">本站只做第一方的访问统计，规则与 Analog Canvas 相同。</p>
 
@@ -48,6 +60,19 @@
 <script>
   const state = document.getElementById("state");
   const toggle = document.getElementById("toggle");
+  const theme = document.getElementById("theme-select");
+  const getTheme = () => { try { return localStorage.getItem("ab.theme"); } catch { return null; } };
+  const setTheme = (value) => { try { localStorage.setItem("ab.theme", value); } catch {} };
+  const applyTheme = () => {
+    const saved = getTheme();
+    const mode = ["system", "light", "dark"].includes(saved) ? saved : "system";
+    if (mode === "system") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.dataset.theme = mode;
+    theme.value = mode;
+  };
+  applyTheme();
+  theme.addEventListener("change", () => { setTheme(theme.value); applyTheme(); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { if (!["light", "dark"].includes(getTheme())) applyTheme(); });
   const show = (optedOut) => {
     state.textContent = optedOut ? "本浏览器目前不被统计。 · This browser is not counted." : "本浏览器目前会被统计。 · This browser is counted.";
     toggle.textContent = optedOut ? "恢复统计 · Count me again" : "不要统计我 · Stop counting me";
