@@ -1,0 +1,11 @@
+* Small-signal equivalent circuit used at all three currents (rex not given, taken as zero; substrate at ac ground)
+Rb B Bp 100
+Rpi Bp E {r_pi}
+Cpi Bp E {C_pi}
+Rmu Bp Cp {r_mu}
+Cmu Bp Cp 0.305p
+G1 Cp E Bp E {g_m}
+Ro Cp E {r_o}
+Rc Cp C 100
+Ccs Cp 0 0.824p
+.end

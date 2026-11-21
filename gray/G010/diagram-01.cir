@@ -1,0 +1,12 @@
+* Complete hybrid-pi model of the integrated npn transistor (internal nodes B', E', C'; substrate at ac ground)
+Rb B Bp 200
+Rpi Bp Ep 13k
+Cpi Bp Ep 0.155p
+Rmu Bp Cp 65Meg
+Cmu Bp Cp 3.9f
+G1 Cp Ep Bp Ep 7.69m
+Ro Cp Ep 130k
+Rex Ep E 4
+Rc Cp C 100
+Ccs Cp 0 7.0f
+.end
