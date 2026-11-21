@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">A492：数字字 10101（LSB 先输入）的输出波形</title><desc id="desc">vk = vk−1/2 ± VREF，v0 = 0；各周期开始时更新</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">A492：数字字 10101（LSB 先输入）的输出波形</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">vk = vk−1/2 ± VREF，v0 = 0；各周期开始时更新</text>
+<path d="M 90 110 L 90 450" fill="none" stroke="#cbd5e1" />
+<text x="90" y="475" fill="#475569" text-anchor="middle" font-size="14">0</text>
+<path d="M 193.63636363636363 110 L 193.63636363636363 450" fill="none" stroke="#cbd5e1" />
+<text x="193.63636363636363" y="475" fill="#475569" text-anchor="middle" font-size="14">1</text>
+<path d="M 297.27272727272725 110 L 297.27272727272725 450" fill="none" stroke="#cbd5e1" />
+<text x="297.27272727272725" y="475" fill="#475569" text-anchor="middle" font-size="14">2</text>
+<path d="M 400.90909090909093 110 L 400.90909090909093 450" fill="none" stroke="#cbd5e1" />
+<text x="400.90909090909093" y="475" fill="#475569" text-anchor="middle" font-size="14">3</text>
+<path d="M 504.54545454545456 110 L 504.54545454545456 450" fill="none" stroke="#cbd5e1" />
+<text x="504.54545454545456" y="475" fill="#475569" text-anchor="middle" font-size="14">4</text>
+<path d="M 608.1818181818181 110 L 608.1818181818181 450" fill="none" stroke="#cbd5e1" />
+<text x="608.1818181818181" y="475" fill="#475569" text-anchor="middle" font-size="14">5</text>
+<path d="M 90 450 L 660 450" fill="none" stroke="#cbd5e1" />
+<text x="78" y="455" fill="#475569" text-anchor="end" font-size="14">-1</text>
+<path d="M 90 374.44444444444446 L 660 374.44444444444446" fill="none" stroke="#cbd5e1" />
+<text x="78" y="379.44444444444446" fill="#475569" text-anchor="end" font-size="14">-0.5</text>
+<path d="M 90 298.8888888888889 L 660 298.8888888888889" fill="none" stroke="#cbd5e1" />
+<text x="78" y="303.8888888888889" fill="#475569" text-anchor="end" font-size="14">0</text>
+<path d="M 90 223.33333333333334 L 660 223.33333333333334" fill="none" stroke="#cbd5e1" />
+<text x="78" y="228.33333333333334" fill="#475569" text-anchor="end" font-size="14">0.5</text>
+<path d="M 90 147.77777777777777 L 660 147.77777777777777" fill="none" stroke="#cbd5e1" />
+<text x="78" y="152.77777777777777" fill="#475569" text-anchor="end" font-size="14">1</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">t/T</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">vOUT/VREF</text>
+<path d="M 90 298.8888888888889 L 660 298.8888888888889" fill="none" stroke="#253047" />
+<path d="M 90 298.8888888888889 L 90 147.77777777777777" fill="none" stroke="#1565c0" />
+<path d="M 90 147.77777777777777 L 193.63636363636363 147.77777777777777" fill="none" stroke="#1565c0" />
+<path d="M 193.63636363636363 147.77777777777777 L 193.63636363636363 374.44444444444446" fill="none" stroke="#1565c0" />
+<path d="M 193.63636363636363 374.44444444444446 L 297.27272727272725 374.44444444444446" fill="none" stroke="#1565c0" />
+<path d="M 297.27272727272725 374.44444444444446 L 297.27272727272725 185.55555555555554" fill="none" stroke="#1565c0" />
+<path d="M 297.27272727272725 185.55555555555554 L 400.90909090909093 185.55555555555554" fill="none" stroke="#1565c0" />
+<path d="M 400.90909090909093 185.55555555555554 L 400.90909090909093 393.3333333333333" fill="none" stroke="#1565c0" />
+<path d="M 400.90909090909093 393.3333333333333 L 504.54545454545456 393.3333333333333" fill="none" stroke="#1565c0" />
+<path d="M 504.54545454545456 393.3333333333333 L 504.54545454545456 195" fill="none" stroke="#1565c0" />
+<path d="M 504.54545454545456 195 L 608.1818181818181 195" fill="none" stroke="#1565c0" />
+<path d="M 608.1818181818181 195 L 660 195" fill="none" stroke="#1565c0" stroke-dasharray="6 4"/>
+<text x="141.8181818181818" y="137.77777777777777" fill="#172033" text-anchor="middle" font-size="15">1</text>
+<text x="141.8181818181818" y="434.8888888888889" fill="#475569" text-anchor="middle" font-size="13">位 1</text>
+<text x="245.45454545454547" y="396.44444444444446" fill="#172033" text-anchor="middle" font-size="15">−1/2</text>
+<text x="245.45454545454547" y="434.8888888888889" fill="#475569" text-anchor="middle" font-size="13">位 0</text>
+<text x="349.09090909090907" y="175.55555555555554" fill="#172033" text-anchor="middle" font-size="15">3/4</text>
+<text x="349.09090909090907" y="434.8888888888889" fill="#475569" text-anchor="middle" font-size="13">位 1</text>
+<text x="452.72727272727275" y="415.3333333333333" fill="#172033" text-anchor="middle" font-size="15">−5/8</text>
+<text x="452.72727272727275" y="434.8888888888889" fill="#475569" text-anchor="middle" font-size="13">位 0</text>
+<text x="556.3636363636364" y="185" fill="#172033" text-anchor="middle" font-size="15">11/16</text>
+<text x="556.3636363636364" y="434.8888888888889" fill="#475569" text-anchor="middle" font-size="13">位 1</text>
+<text x="141.8181818181818" y="416.7555555555556" fill="#475569" text-anchor="middle" font-size="13">LSB</text>
+<text x="556.3636363636364" y="416.7555555555556" fill="#475569" text-anchor="middle" font-size="13">MSB</text>
+<text x="613.3636363636364" y="185" fill="#ad3c00" text-anchor="start" font-size="13">终值</text></g></svg>

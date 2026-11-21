@@ -1,0 +1,33 @@
+* Six-pair folder: reference taps t1-t6, cross-connected NMOS differential pairs, load RL and current source IC at the single-ended output out
+VDD vdd 0 {VDD}
+VREF ref 0 {VREF}
+VIN in 0 {Vin}
+R0 ref t6 {R/2}
+R1 t6 t5 {R}
+R2 t5 t4 {R}
+R3 t4 t3 {R}
+R4 t3 t2 {R}
+R5 t2 t1 {R}
+R6 t1 0 {R/2}
+RL vdd out {RL}
+IC vdd out {IC}
+Ma1 vdd in s1 s1 NMOS
+Mb1 out t1 s1 s1 NMOS
+I1 s1 vss {I}
+Ma2 out in s2 s2 NMOS
+Mb2 vdd t2 s2 s2 NMOS
+I2 s2 vss {I}
+Ma3 vdd in s3 s3 NMOS
+Mb3 out t3 s3 s3 NMOS
+I3 s3 vss {I}
+Ma4 out in s4 s4 NMOS
+Mb4 vdd t4 s4 s4 NMOS
+I4 s4 vss {I}
+Ma5 vdd in s5 s5 NMOS
+Mb5 out t5 s5 s5 NMOS
+I5 s5 vss {I}
+Ma6 out in s6 s6 NMOS
+Mb6 vdd t6 s6 s6 NMOS
+I6 s6 vss {I}
+VSS vss 0 {VSS}
+.end
