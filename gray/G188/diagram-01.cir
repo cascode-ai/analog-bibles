@@ -1,0 +1,5 @@
+* Equivalent circuit of the output impedance Zo seen at the drain node c: C_inf in parallel with the series branch R_x, C_x
+Cinf c 0 {C_inf}
+Rx c x {R_x}
+Cx x 0 {C_x}
+.end

@@ -1,0 +1,34 @@
+* Folded-cascode op amp with two n-channel and two p-channel cascode layers, high-swing mirror and bias diodes
+VDD vdd 0 {VDD}
+VSS 0 vss {VSS}
+VINP inp 0 {VIC}
+VINM inm 0 {VIC}
+M5 s bias1 vdd vdd pmos
+M1 f1 inp s vdd pmos
+M2 f2 inm s vdd pmos
+M11 f1 bias3 vss vss nmos
+M12 f2 bias3 vss vss nmos
+M1A n1 cn1 f1 vss nmos
+M2A n2 cn1 f2 vss nmos
+M1B x cn2 n1 vss nmos
+M2B out cn2 n2 vss nmos
+M3 p1 x vdd vdd pmos
+M3A p2 cp1 p1 vdd pmos
+M3B x cp2 p2 vdd pmos
+M4 q1 x vdd vdd pmos
+M4A q2 cp1 q1 vdd pmos
+M4B out cp2 q2 vdd pmos
+MB1 bias1 bias1 vdd vdd pmos
+IB1 bias1 vss {I}
+MP1 cp1 cp1 vdd vdd pmos
+IP1 cp1 vss {I}
+MP2 cp2 cp2 vdd vdd pmos
+IP2 cp2 vss {I}
+MB3 bias3 bias3 vss vss nmos
+IB3 vdd bias3 {I}
+MN1 cn1 cn1 vss vss nmos
+IN1 vdd cn1 {I}
+MN2 cn2 cn2 vss vss nmos
+IN2 vdd cn2 {I}
+CL out 0 {C_L}
+.end

@@ -1,0 +1,5 @@
+* Input-impedance equivalent circuit at the emitter e: R_2 in parallel with R_1 in series with L
+R2 e 0 {R_2}
+R1 e x {R_1}
+L1 x 0 {L}
+.end
