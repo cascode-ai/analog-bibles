@@ -1,0 +1,9 @@
+* V_BIAS implementation: diode-connected M13 fed by current source M14, referred to the common source node S of M1-M2
+M1 D1 IN1 S VSS nmos W=W1 L=L1
+M2 D2 IN2 S VSS nmos W=W1 L=L1
+M3 D3 G34 D1 VSS nmos W=W3 L=L3
+M4 VOUT G34 D2 VSS nmos W=W3 L=L3
+M13 G34 G34 S VSS nmos W={W3/4} L=L3
+M14 G34 VBP VDD VDD pmos W=W14 L=L14
+M9 S VB9 VSS VSS nmos W=W9 L=L9
+.end
