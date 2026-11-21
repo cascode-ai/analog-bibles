@@ -1,0 +1,8 @@
+* Small-signal model of the CS stage with depletion load (VDD node at ac ground)
+VI i 0 AC 1
+Gm1 o 0 i 0 {gm1}
+Ro1 o 0 {ro1}
+Ro2 o 0 {ro2}
+Gm2 0 o o o {gm2}
+Gmb2 0 o 0 o {gmb2}
+.end
