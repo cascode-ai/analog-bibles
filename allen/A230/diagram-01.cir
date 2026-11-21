@@ -1,0 +1,13 @@
+* Push-pull output stage with resistor-sensed short-circuit protection (clamps M4 and M5)
+VDD vdd 0 {VDD}
+Vin in 0 {vIN}
+R1 vdd g3 {R1}
+VBIAS g3 g2 {VBIAS}
+M1 g2 in 0 0 NMOS
+RS3 vdd s3 {RS3}
+M3 out g3 s3 vdd PMOS
+M5 g3 s3 vdd vdd PMOS
+M2 out g2 s2 0 NMOS
+RS2 s2 0 {RS2}
+M4 g2 s2 0 0 NMOS
+.end
