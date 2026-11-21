@@ -1,0 +1,5 @@
+* Reduced loop: dependent part of the source shorted, R1 scaled by (1+A_v), independent source A_v*v_in left in series
+R1s a 0 {(1+A_v)*R_1}
+Vx a out {A_v*v_in}
+R2 out 0 {R_2}
+.end
