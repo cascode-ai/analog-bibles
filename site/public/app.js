@@ -444,7 +444,7 @@ $("side-resizer").addEventListener("keydown", (event) => {
 
 // Reuse the one real sidebar in the narrow-screen left drawer. Moving it keeps
 // input listeners, filters and search text intact without duplicate controls.
-const compactNavigation = window.matchMedia?.("(max-width: 900px)");
+const compactNavigation = window.matchMedia?.("(max-width: 1199px)");
 const navigationDialog = $("navigation-dialog");
 const shortcutsDialog = $("shortcuts-dialog");
 
@@ -784,6 +784,8 @@ let shownId = null;
 // keepFlags: a re-render of the same question (a language switch) keeps
 // the reasons picked and the note typed.
 async function renderItem(keepFlags = false) {
+  saveReaderPosition();
+  document.querySelector('.question-peek[open]')?.close();
   disposeSolutionNavigation($("item"));
   disposeImageViews($("item"));
   cardSizes.disconnect();
@@ -919,6 +921,7 @@ async function fillCard(el, q) {
   if (selected.hidden) selectSolutionTab(el.querySelector('[data-solution-tab="answer"]'));
   prepareSolutionNavigation(el);
   prepareImageViews(el);
+  prepareReaderExperience(el, q);
   return true;
 }
 
@@ -1039,7 +1042,7 @@ function updateSolutionPosition(panel, navigation) {
   const rect = panel.getBoundingClientRect();
   if (rect.bottom < 0 || rect.top > innerHeight) return;
   const bounded = ["auto", "scroll"].includes(getComputedStyle(panel).overflowY);
-  const top = bounded ? tabs.getBoundingClientRect().height : headerBottom();
+  const top = bounded ? tabs.getBoundingClientRect().height : readerContentTop(panel);
   panel.style.setProperty("--solution-nav-top", `${top}px`);
   const line = (bounded ? rect.top : 0) + top + tools.getBoundingClientRect().height + 8;
   let current = sections[0];
@@ -1081,7 +1084,7 @@ function toggleCurrentStep(button) {
   current.open = !current.open;
   // Return to this section's title, keeping both it and the inverse action in
   // view even when collapsing a long step clamps the scroll container.
-  const top = (bounded ? panel.getBoundingClientRect().top + navigation.tabs.getBoundingClientRect().height : headerBottom()) + navigation.tools.getBoundingClientRect().height + 8;
+  const top = (bounded ? panel.getBoundingClientRect().top + navigation.tabs.getBoundingClientRect().height : readerContentTop(panel)) + navigation.tools.getBoundingClientRect().height + 8;
   scroller.scrollTop += current.getBoundingClientRect().top - top;
   navigation.pinned = current;
   navigation.pinnedScroll = scroller.scrollTop;
@@ -1121,6 +1124,7 @@ function readingLine() {
 
 // Lays the list out again from the card at `from` (an index into cards).
 function renderFeed(from = 0) {
+  saveReaderPosition();
   disposeSolutionNavigation($("item"));
   disposeImageViews($("item"));
   document.body.classList.remove("single-reading");
@@ -1890,6 +1894,7 @@ function resizePanes(handle, percent) {
   const value = Math.max(25, Math.min(70, Math.round(percent)));
   handle.closest(".cols").style.setProperty("--question-width", `${value}%`);
   handle.setAttribute("aria-valuenow", String(value));
+  if (mode === 'browse') store.set('ab.questionWidth', String(value));
 }
 
 document.addEventListener("pointerdown", (event) => {
@@ -1984,13 +1989,14 @@ $("zoom").addEventListener("click", () => { $("zoom").hidden = true; });
 document.addEventListener("keydown", (event) => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
   // Dialog controls work while loading, and own Escape before reader shortcuts.
-  const activeDialog = navigationDialog.open ? navigationDialog : shortcutsDialog.open ? shortcutsDialog : null;
+  const activeDialog = document.querySelector('.question-peek[open]') || (navigationDialog.open ? navigationDialog : shortcutsDialog.open ? shortcutsDialog : null);
   if (activeDialog) {
     if (event.key === "Tab") keepDialogFocus(event, activeDialog);
     else if (event.key === "Escape") {
       event.preventDefault();
+      if (!$("zoom").hidden) { $("zoom").hidden = true; return; }
       if (activeDialog === navigationDialog) closeNavigation();
-      else shortcutsDialog.close();
+      else activeDialog.close();
     }
     return;
   }
@@ -2037,7 +2043,13 @@ document.addEventListener("keydown", (event) => {
     if (event.target.blur) event.target.blur();
     return;
   }
-  if (event.target.closest("input, textarea")) return;
+  const overflow = event.target.closest('[data-reader-overflow]');
+  if (overflow && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+    event.preventDefault();
+    overflow.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? overflow.scrollWidth : overflow.scrollLeft + (event.key === 'ArrowRight' ? 48 : -48);
+    return;
+  }
+  if (event.target.closest("input, textarea, select, [data-reader-overflow]")) return;
   const reviewing = mode === "review" && $("pass");
   const flag = reviewing ? FLAGS.find((f) => f.hotkey === event.key) : null;
   if (flag) toggleFlag(flag.key);
@@ -2068,6 +2080,159 @@ $("search").addEventListener("input", (event) => {
 
 $("author").value = store.get("ab.author") || "";
 $("author").addEventListener("change", (event) => store.set("ab.author", event.target.value.trim()));
+
+// ---------- reading context and session bookmarks ----------
+// Bookmarks belong to this tab, content version and language. They never
+// contain review drafts, and are bounded so reading does not fill storage.
+let activeReader = null;
+let readerFrame = null;
+const readerText = (en, zh) => lang === 'zh' ? zh : en;
+const readerBounded = panel => ['auto', 'scroll'].includes(getComputedStyle(panel).overflowY);
+function readerContentTop(panel) {
+  return headerBottom() + (panel.closest('.reader') && mode === 'browse' ? panel.querySelector('.solution-tabs').getBoundingClientRect().height : 0);
+}
+function readerBookmarks() {
+  try {
+    const value = JSON.parse(sessionStorage.getItem('ab.reader.positions') || '{}');
+    return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  } catch { return {}; }
+}
+function saveReaderPosition() {
+  const r = activeReader;
+  if (!r || !r.panel.isConnected || !r.ready || r.dialog.open) return;
+  const bounded = readerBounded(r.panel);
+  const value = {
+    tab: r.panel.querySelector('[aria-selected=true]').dataset.solutionTab,
+    left: r.question.scrollTop, right: r.panel.scrollTop, page: scrollY, bounded,
+    folds: [...r.card.querySelectorAll('.q-steps > details.step')].map(el => el.open),
+  };
+  const all = readerBookmarks();
+  delete all[r.key];
+  all[r.key] = value;
+  try { sessionStorage.setItem('ab.reader.positions', JSON.stringify(Object.fromEntries(Object.entries(all).slice(-50)))); } catch {}
+}
+function refreshReaderExperience() {
+  if (readerFrame !== null) return;
+  readerFrame = requestAnimationFrame(() => {
+    readerFrame = null;
+    const r = activeReader;
+    if (!r?.panel.isConnected) return;
+    r.card.style.setProperty('--reader-top', `${Math.max(0, headerBottom())}px`);
+    if (readerBounded(r.panel) && r.dialog.open) r.dialog.close();
+    r.context.hidden = readerBounded(r.panel) || r.panel.getBoundingClientRect().top > headerBottom() + 80;
+    for (const box of r.card.querySelectorAll('.md .katex-display, .md table')) {
+      if (!box.clientWidth) continue;
+      const wide = box.scrollWidth > box.clientWidth + 2;
+      box.toggleAttribute('data-reader-overflow', wide);
+      if (wide) {
+        box.tabIndex = 0;
+        box.setAttribute('aria-label', readerText('Scroll horizontally to read the full formula or table', '左右滚动查看完整公式或表格'));
+      } else {
+        box.removeAttribute('tabindex');
+        box.removeAttribute('aria-label');
+      }
+    }
+  });
+}
+function prepareReaderExperience(card, q) {
+  if (mode !== 'browse' || !card.classList.contains('reader')) return;
+  card.querySelectorAll('.reader-context, .question-peek').forEach(el => el.remove());
+  const panel = card.querySelector('.solution-panel');
+  const question = card.querySelector('.question-panel');
+  const context = document.createElement('div');
+  context.className = 'reader-context';
+  context.hidden = true;
+  const excerpt = readingText(question.querySelector('.q-question'));
+  context.innerHTML = `<span><strong>${esc(q.id)}</strong> <span class="question-excerpt">${esc(excerpt)}</span></span><button type="button" class="btn" aria-haspopup="dialog">${readerText('Question & figures', '回看题目与题图')}</button>`;
+  const dialog = document.createElement('dialog');
+  dialog.className = 'question-peek';
+  dialog.setAttribute('aria-label', `${q.id} ${t('question')}`);
+  dialog.innerHTML = `<div class="dialog-head"><h2>${q.id} ${t('question')}</h2><button type="button" class="btn">${t('backToReading')}</button></div><div class="question-peek-content"></div>`;
+  panel.prepend(context);
+  card.append(dialog);
+  const marker = document.createComment('question position');
+  let peekTop = 0;
+  context.querySelector('button').onclick = () => {
+    peekTop = scrollY;
+    question.before(marker);
+    dialog.querySelector('.question-peek-content').append(question);
+    dialog.append($("zoom"));
+    dialog.showModal();
+    document.body.classList.add('overlay-open');
+    dialog.querySelector('button').focus({ preventScroll: true });
+  };
+  dialog.querySelector('button').onclick = () => dialog.close();
+  dialog.addEventListener('close', () => {
+    $("zoom").hidden = true;
+    document.body.append($("zoom"));
+    if (marker.isConnected) marker.replaceWith(question);
+    updateOverlayState();
+    window.scrollTo(0, peekTop);
+    context.querySelector('button').focus({ preventScroll: true });
+    refreshReaderExperience();
+  });
+  const navigation = solutionNavigation.get(panel);
+  if (navigation) {
+    const menu = navigation.tools.querySelector('.step-menu-items');
+    const label = document.createElement('label');
+    label.className = 'step-jump-label';
+    label.textContent = readerText('Jump to step', '跳转步骤');
+    const select = document.createElement('select');
+    select.className = 'step-jump';
+    select.setAttribute('aria-label', label.textContent);
+    select.append(new Option(readerText('Choose a section', '选择步骤或结论'), ''));
+    navigation.sections.forEach((section, i) => select.append(new Option(readingText(section.querySelector('summary')), String(i))));
+    label.append(select);
+    menu.querySelector('.step-jump-label')?.remove();
+    menu.append(label);
+    select.onchange = () => {
+      if (select.value === '') return;
+      const section = navigation.sections[Number(select.value)];
+      section.open = true;
+      select.closest('details').open = false;
+      const bounded = readerBounded(panel);
+      const top = (bounded ? panel.getBoundingClientRect().top + navigation.tabs.offsetHeight : readerContentTop(panel)) + navigation.tools.offsetHeight + 8;
+      const scroller = bounded ? panel : document.scrollingElement;
+      scroller.scrollTop += section.getBoundingClientRect().top - top;
+      navigation.pinned = section;
+      navigation.pinnedScroll = scroller.scrollTop;
+      navigation.tools.querySelector('[data-current-step-toggle]').focus({ preventScroll: true });
+      select.value = '';
+      scheduleSolutionNavigation();
+    };
+  }
+  const handle = card.querySelector('.pane-resizer');
+  const width = Number(store.get('ab.questionWidth'));
+  if (Number.isFinite(width) && width >= 25 && width <= 70) resizePanes(handle, width);
+  const key = `${q.id}:${q.v || ''}:${lang}:${card.dataset.orig || ''}`;
+  const saved = readerBookmarks()[key];
+  const r = activeReader = { card, panel, question, context, dialog, key, ready: false };
+  if (saved && ['answer', 'detailed', 'grading'].includes(saved.tab)) {
+    const tab = panel.querySelector(`[data-solution-tab="${saved.tab}"]`);
+    if (tab && !tab.hidden) selectSolutionTab(tab);
+    if (Array.isArray(saved.folds)) card.querySelectorAll('.q-steps > details.step').forEach((fold, i) => {
+      if (typeof saved.folds[i] === 'boolean') fold.open = saved.folds[i];
+    });
+  }
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (activeReader !== r || !card.isConnected) return;
+    if (saved && saved.bounded === readerBounded(panel)) {
+      const position = n => Number.isFinite(n) && n >= 0 ? n : 0;
+      question.scrollTop = position(saved.left);
+      panel.scrollTop = position(saved.right);
+      if (!saved.bounded) window.scrollTo(0, position(saved.page));
+    }
+    r.ready = true;
+    refreshReaderExperience();
+    scheduleSolutionNavigation();
+  }));
+}
+document.addEventListener('scroll', refreshReaderExperience, { capture: true, passive: true });
+document.addEventListener('load', refreshReaderExperience, true);
+document.addEventListener('toggle', refreshReaderExperience, true);
+document.addEventListener('click', refreshReaderExperience);
+window.addEventListener('resize', refreshReaderExperience, { passive: true });
+window.addEventListener('pagehide', saveReaderPosition);
 
 // ---------- start ----------
 
