@@ -1,0 +1,11 @@
+* Low-frequency small-signal model of the MOS output stage (body effect neglected)
+Vin in 0 {v_in}
+G1 x 0 in 0 {gm1}
+R1 x 0 {1/gds1}
+G2 0 x out x {gm2}
+R2 x 0 {1/gds2}
+G3 out 0 out 0 {gm3}
+R3 out 0 {1/gds3}
+G4 out 0 x 0 {gm4}
+R4 out 0 {1/gds4}
+.end
