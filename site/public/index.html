@@ -25,6 +25,7 @@
     <a id="mode-browse" href="/browse" data-i18n="browse">Browse</a>
     <a id="mode-review" href="/review" data-i18n="review" data-i18n-title="reviewTitle" title="For maintainers: pass, report issues, comment">Review</a>
   </nav>
+  <button type="button" id="keyboard-help" class="keyboard-help" aria-haspopup="dialog" aria-controls="shortcuts-dialog" data-i18n-title="shortcuts" data-i18n-aria="shortcuts" title="Keyboard shortcuts" aria-label="Keyboard shortcuts"><span class="keyboard-help-icon" aria-hidden="true">?</span><span class="keyboard-help-label" data-i18n="shortcutsButton">Shortcuts</span></button>
   <a class="gh" href="https://github.com/cascode-ai/analog-bibles" target="_blank" rel="noopener">GitHub ↗</a>
   <label class="theme-control"><span class="sr-only">Theme</span><select id="theme-select" aria-label="Theme">
     <option value="system" data-i18n="themeSystem">System</option>
@@ -63,7 +64,6 @@
       <div class="progress review-only" id="progress"></div>
       <button type="button" id="navigation-trigger" class="btn mobile-nav-trigger" aria-controls="navigation-dialog" aria-expanded="false" data-i18n="navigationButton" data-i18n-title="navigationTitle">Contents</button>
       <button type="button" id="reading-view" class="btn browse-only" aria-pressed="false">Focus reading</button>
-      <button type="button" id="keyboard-help" class="btn keyboard-help" aria-haspopup="dialog" aria-controls="shortcuts-dialog" data-i18n="shortcutsButton" data-i18n-title="shortcuts">Shortcuts</button>
       <span class="steps">
         <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
         <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
