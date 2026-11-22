@@ -1,0 +1,5 @@
+* Slew rate and transient response: op amp (E1) as a unity-gain follower with its load, driven by a pulse source
+VIN inp 0 PULSE({V1} {V2} 0 {tr} {tr} {PW} {T})
+E1 out 0 inp out {A_v}
+CL out 0 {C_L}
+RL out 0 {R_L}

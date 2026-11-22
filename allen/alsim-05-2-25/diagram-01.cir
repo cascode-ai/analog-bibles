@@ -1,0 +1,15 @@
+* Differential gain block: NMOS pair M1-M2 with PMOS mirror load M3-M4, diode load M6 and sink M7 at the output, PMOS-diode-string bias into M8 (W/L in um/um)
+VDD vdd 0 5
+VSS vss 0 -5
+MB1 b1 b1 vdd vdd PMOS W=1u L=1u
+MB2 b2 b2 b1 b1 PMOS W=1u L=1u
+MB3 b3 b3 b2 b2 PMOS W=1u L=1u
+MB4 nb nb b3 b3 PMOS W=1u L=1u
+M8 nb nb vss vss NMOS W=5u L=1u
+M1 x inp t vss NMOS W=100u L=1u
+M2 out inn t vss NMOS W=100u L=1u
+M5 t nb vss vss NMOS W=20u L=1u
+M3 x x vdd vdd PMOS W=50u L=1u
+M4 out x vdd vdd PMOS W=50u L=1u
+M6 out out vdd vdd PMOS W=2.34u L=1u
+M7 out nb vss vss NMOS W=10u L=1u

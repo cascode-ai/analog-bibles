@@ -1,0 +1,5 @@
+* ICMR: unity-gain follower with its load and a dc source vIN swept from VSS to VDD
+VIN inp 0 {v_IN}
+E1 out 0 inp out {A_v}
+CL out 0 {C_L}
+RL out 0 {R_L}
