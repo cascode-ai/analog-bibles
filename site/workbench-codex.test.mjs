@@ -1,0 +1,61 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {workbench} from './workbench.mjs';
+import {database,assets,request,completeFixture} from './test-workbench-db.mjs';
+import {localOrigin} from './codex-work.mjs';
+const actor=async()=>({email:'codex@example.invalid',sub:'codex-test'});
+test('Codex inbox stages, filters, previews and applies only after browser confirmation',async t=>{
+  const db=database(':memory:');t.after(()=>db.close());const env={DB:db,ASSETS:assets()};
+  const call=(route,value)=>workbench(request('/api/workbench'+route,value),env,actor,async()=>Response.json({sha:(await (await assets().fetch(request('/workbench-source/R011.json'))).json()).commit}));
+  await call('/pilots',{});const packet=await(await call('/gemini/packet',{batchId:'pilot-razavi-11',mode:'revision',qid:'R011'})).json();const q=packet.questions[0];
+  const files=completeFixture({id:q.qid,files:q.sourceFiles,hashes:q.sourceHashes},q.files),result={schemaVersion:1,kind:'analog-bibles-gemini-result',packetId:packet.packetId,questions:[{qid:q.qid,baseVersion:q.baseVersion,sourceHashes:q.sourceHashes,files,findings:'Codex fixture'}]},raw=JSON.stringify(result);
+  const inbox=await call('/codex/inbox',{raw,label:'Codex R011 fixture'});assert.equal(inbox.status,201);const inboxData=await inbox.json();assert.equal(inboxData.status,'PENDING');
+  const list=await(await call('/codex/inbox')).json();assert.ok(list.some(x=>x.id===inboxData.id&&x.status==='PENDING'));
+  const preview=await call('/codex/preview',{raw,inboxId:inboxData.id});assert.equal(preview.status,200);const previewData=await preview.json();
+  assert.equal((await call('/questions/R011')).status,200);assert.equal((await (await call('/questions/R011')).json()).revision,null);
+  const applied=await call('/codex/apply',{raw,inboxId:inboxData.id,fingerprint:previewData.fingerprint,confirm:'APPLY CANDIDATES ONLY'});assert.equal(applied.status,201);
+  const saved=await(await call('/questions/R011')).json();assert.equal(saved.revision.payload.provenance.kind,'codex');assert.equal((await (await call('/codex/inbox')).json()).find(x=>x.id===inboxData.id).status,'APPLIED');
+  assert.equal((await call('/codex/apply',{raw,inboxId:inboxData.id,fingerprint:previewData.fingerprint,confirm:'APPLY CANDIDATES ONLY'})).status,409);
+});
+test('Codex inbox requires authentication, same-origin JSON, valid packet and safe SVG',async t=>{
+  const db=database(':memory:');t.after(()=>db.close());const env={DB:db,ASSETS:assets()};
+  const call=(route,value,identity=actor,headers={})=>workbench(request('/api/workbench'+route,value,headers),env,identity);
+  assert.equal((await call('/codex/inbox',undefined,async()=>null)).status,401);
+  assert.equal((await call('/codex/inbox',{raw:'{}'},async()=>null)).status,401);
+  assert.equal((await call('/codex/inbox',{raw:'{}'},actor,{origin:'https://evil.test'})).status,403);
+  assert.equal((await call('/codex/inbox',{raw:'{}'})).status,400);
+  await call('/pilots',{});const p=await(await call('/codex/packet',{batchId:'pilot-razavi-11',qid:'R011'})).json();assert.equal(p.provider,'codex');const q=p.questions[0];
+  const files=completeFixture({id:q.qid,files:q.sourceFiles,hashes:q.sourceHashes},q.files);files['solution-fixture.svg']=files['solution-fixture.svg'].replace('<path','<script>alert(1)</script><path');
+  const raw=JSON.stringify({schemaVersion:1,kind:'analog-bibles-gemini-result',packetId:p.packetId,questions:[{qid:q.qid,baseVersion:0,sourceHashes:q.sourceHashes,files,findings:'test'}]});
+  assert.equal((await call('/codex/inbox',{raw})).status,400);
+  assert.equal((await(await call('/codex/inbox')).json()).length,0);
+});
+test('Codex result is idempotent, remains pending on stale version, and inbox metadata excludes raw text',async t=>{
+  const db=database(':memory:');t.after(()=>db.close());const env={DB:db,ASSETS:assets()};
+  const call=(route,value)=>workbench(request('/api/workbench'+route,value),env,actor);
+  await call('/pilots',{});const p=await(await call('/codex/packet',{batchId:'pilot-razavi-11',qid:'R011'})).json(),q=p.questions[0];
+  const result={schemaVersion:1,kind:'analog-bibles-gemini-result',packetId:p.packetId,questions:[{qid:q.qid,baseVersion:0,sourceHashes:q.sourceHashes,files:q.files,findings:'test fixture'}]},raw=JSON.stringify(result);
+  const first=await(await call('/codex/inbox',{raw})).json(),second=await(await call('/codex/inbox',{raw})).json();assert.equal(first.id,second.id);assert.equal(second.replayed,true);
+  const preview=await(await call('/codex/preview',{raw})).json();
+  const changed={...q.files,'golden_solution.md':q.files['golden_solution.md']+'\nNew human edit'};
+  assert.equal((await call('/questions/R011',{version:0,requestId:crypto.randomUUID(),sourceHashes:q.sourceHashes,files:changed,note:'New edit',action:'save'})).status,201);
+  assert.equal((await call('/codex/apply',{raw,inboxId:first.id,fingerprint:preview.fingerprint,confirm:'APPLY CANDIDATES ONLY'})).status,409);
+  const rows=await(await call('/codex/inbox')).json();assert.equal(rows[0].status,'PENDING');assert.equal('raw' in rows[0],false);
+  assert.equal((await(await call('/questions/R011')).json()).revision.version,1);
+});
+test('Codex diagnosis is staged without editing answers and is applied at most once',async t=>{
+  const db=database(':memory:');t.after(()=>db.close());const env={DB:db,ASSETS:assets()};
+  const call=(route,value)=>workbench(request('/api/workbench'+route,value),env,actor);
+  await call('/pilots',{});const p=await(await call('/codex/packet',{batchId:'pilot-razavi-11',qid:'R011',mode:'diagnosis'})).json(),q=p.questions[0];
+  const raw=JSON.stringify({schemaVersion:1,kind:'analog-bibles-gemini-diagnosis',mode:'diagnosis',packetId:p.packetId,questions:[{qid:q.qid,baseVersion:0,sourceHashes:q.sourceHashes,diagnosis:{risk:'BLOCKED',disposition:'BLOCK',confidence:0,claimsChanged:false,missingSteps:[],focus:['missing plot'],checks:['software fixture'],summary:'Test diagnosis only'}}]});
+  const inbox=await(await call('/codex/inbox',{raw})).json(),preview=await(await call('/codex/diagnosis/preview',{raw})).json();
+  assert.equal((await(await call('/questions/R011')).json()).revision,null);
+  const attempts=await Promise.all([1,2].map(()=>call('/codex/diagnosis/apply',{raw,inboxId:inbox.id,fingerprint:preview.fingerprint,confirm:'APPLY DIAGNOSIS ONLY'})));
+  assert.deepEqual(attempts.map(r=>r.status).sort(),[201,409]);
+  assert.equal((await db.prepare('SELECT * FROM wb_diagnostics').all()).results.length,1);
+  assert.equal((await(await call('/questions/R011')).json()).revision,null);
+});
+test('Codex local credential client refuses remote targets and URL credentials',()=>{
+  assert.equal(localOrigin('http://127.0.0.1:8790'),'http://127.0.0.1:8790');
+  for(const url of ['https://example.com','http://127.0.0.1.evil.test','http://user:pass@127.0.0.1','http://127.0.0.1/path','http://127.0.0.1?redirect=1'])assert.throws(()=>localOrigin(url));
+});

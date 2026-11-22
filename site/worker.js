@@ -1,6 +1,8 @@
 // API for reviews and visitor analytics; everything else is the static page
 // and question files.
 import { routeAnalyticsRequest } from "./analytics.js";
+import { workbench } from "./workbench.mjs";
+import { authenticate, validMutation } from "./workbench-auth.mjs";
 
 export { AnalyticsDO } from "./analytics.js";
 
@@ -14,6 +16,8 @@ const clean = (value, max) => (typeof value === "string" ? value.trim().slice(0,
 
 export default {
   async fetch(request, env) {
+    const response = await workbench(request, env);
+    if (response) return response;
     const url = new URL(request.url);
     const { pathname } = url;
     if (!pathname.startsWith("/api/")) {
@@ -27,10 +31,9 @@ export default {
     // Visitor counting is public; only the reviews below need the review key.
     const analyticsResponse = await routeAnalyticsRequest(request, env);
     if (analyticsResponse) return analyticsResponse;
-    // Every review call is the maintainers': the review key comes as a
-    // header from the page, or as ?key= for opening /api/export directly.
-    const key = request.headers.get("x-review-key") || url.searchParams.get("key");
-    if (!env.REVIEW_KEY || key !== env.REVIEW_KEY) return json({ error: "unauthorized" }, 401);
+    // Legacy review endpoints also require a verified, allowlisted Access identity.
+    if (!await authenticate(request, env)) return json({ error: "unauthorized" }, 401);
+    if (request.method !== 'GET' && !validMutation(request)) return json({ error: 'Same-origin JSON request required' }, 403);
     try {
       if (pathname === "/api/summary" && request.method === "GET") {
         const { results } = await env.DB.prepare(

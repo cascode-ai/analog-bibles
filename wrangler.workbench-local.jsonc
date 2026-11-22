@@ -1,0 +1,8 @@
+{
+  "name": "analog-bibles-workbench-local",
+  "main": "site/worker.local.mjs",
+  "compatibility_date": "2025-06-01",
+  "workers_dev": false,
+  "assets": { "directory": "dist", "binding": "ASSETS", "run_worker_first": ["/review", "/review/*", "/api/*", "/workbench-source/*"] },
+  "d1_databases": [{ "binding": "DB", "database_name": "workbench-local", "database_id": "00000000-0000-0000-0000-000000000001" }]
+}

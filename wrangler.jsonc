@@ -6,7 +6,7 @@
   "workers_dev": true,
   "routes": [{ "pattern": "analog-bibles.tokenzhang.com", "custom_domain": true }],
   // dist/ is written by `node site/build.mjs`: the page plus every question's files.
-  "assets": { "directory": "./dist", "binding": "ASSETS" },
+  "assets": { "directory": "./dist", "binding": "ASSETS", "run_worker_first": ["/review", "/review/*", "/api/*", "/workbench-source/*"] },
   // Visitor analytics, as on Analog Canvas: one SQLite Durable Object.
   "durable_objects": {
     "bindings": [{ "name": "ANALYTICS", "class_name": "AnalyticsDO" }]

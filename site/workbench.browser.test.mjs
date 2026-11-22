@@ -1,0 +1,125 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { setTimeout as delay } from 'node:timers/promises';
+import { startBrowser } from './test-browser.mjs';
+import { database, assets, completeFixture } from './test-workbench-db.mjs';
+
+test('Pilot workflow: Gemini preview/import, independent bilingual edits, recovery, full review and export', {timeout:240000},async t=>{
+  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'ab-wb-browser-'));const db=database(path.join(dir,'test.sqlite'));
+  const b=await startBrowser({workbench:{DB:db,ASSETS:assets()}});
+  t.after(async()=>{await b.close();db.close();fs.rmSync(dir,{recursive:true,force:true});});
+  const el=id=>`document.getElementById(${JSON.stringify(id)})`;
+  const click=async id=>{return b.evaluate(`${el(id)}.click()`);};
+  const call=async(route,data)=>b.evaluate(`fetch('/api/workbench'+${JSON.stringify(route)},${data===undefined?"{}":JSON.stringify({method:'POST',headers:{'content-type':'application/json','x-workbench-request':'1'},body:JSON.stringify(data)})}).then(async r=>({status:r.status,data:await r.json()}))`);
+  await b.cdp('Page.addScriptToEvaluateOnNewDocument',{source:'window.confirm=()=>true'});
+  await b.viewport(1600,1000);await b.open('/browse?id=R007');
+  const origin=await b.evaluate('location.origin');
+  const open=async()=>{await b.cdp('Page.navigate',{url:origin+'/review'});await b.waitFor(`${el('identity')}.textContent.includes('browser@')`);};
+  await open();await click('pilots');await b.waitFor(`${el('qid')}.textContent==='R011' && ${el('editor')}.value.length>100`);
+  assert.equal(await b.evaluate(`${el('question-lang')}.value`),'zh');
+  const zhQuestion=await b.evaluate(`${el('question')}.textContent`);await b.evaluate(`${el('question-lang')}.value='en';${el('question-lang')}.dispatchEvent(new Event('change'))`);await b.waitFor(`${el('question-lang')}.value==='en'`);assert.notEqual(await b.evaluate(`${el('question')}.textContent`),zhQuestion);await b.evaluate(`${el('question-lang')}.value='zh';${el('question-lang')}.dispatchEvent(new Event('change'))`);
+  const toolbarOriginal=await b.evaluate(`${el('editor')}.value`);await b.evaluate(`${el('editor')}.focus();${el('editor')}.setSelectionRange(0,4)`);await b.evaluate(`[...document.querySelectorAll('.format-toolbar[data-editor="editor"] button')].find(x=>x.dataset.format==='bold').click()`);assert.match(await b.evaluate(`${el('editor')}.value`),/^\*\*/);await b.evaluate(`${el('editor')}.value=${JSON.stringify(toolbarOriginal)};${el('editor')}.dispatchEvent(new Event('input'))`);
+  await click('save');await b.waitFor(`${el('saved')}.textContent.includes('已保存')`);
+  assert.equal(await b.evaluate(`${el('queue-count')}.textContent`),'10');
+  assert.match(await b.evaluate(`${el('batches')}.textContent`),/R021–R030/);
+  // Errors remain beside the clicked button even when the main notice is off screen.
+  await click('gemini-preview');await b.waitFor(`${el('import-feedback')}.textContent.includes('请先粘贴')`);
+  assert.equal(await b.evaluate(`${el('gemini-preview')}.disabled`),false);
+  await b.evaluate(`${el('gemini-result')}.value='{"questions":[]}'`);await click('gemini-preview');
+  await b.waitFor(`${el('import-feedback')}.textContent.includes('schemaVersion、kind、packetId')`);
+  assert.equal(await b.evaluate(`${el('import-preview')}.hidden`),true);
+  await b.waitFor(`${el('editor')}.value.length>100 && !${el('editor')}.readOnly`);
+  await b.cdp('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:dir});
+  await click('packet');
+  const tarPath=path.join(dir,'gemini-revision-R011-R020.tar');
+  for(let i=0;i<100&&!fs.existsSync(tarPath);i++)await delay(100);
+  assert.ok(fs.existsSync(tarPath),'Gemini task archive downloads');
+  const tar=fs.readFileSync(tarPath),entries={};
+  for(let offset=0;offset+512<=tar.length;){const name=tar.subarray(offset,offset+100).toString().replace(/\0.*$/s,'');if(!name)break;const size=parseInt(tar.subarray(offset+124,offset+135).toString(),8);entries[name]=tar.subarray(offset+512,offset+512+size);offset+=512+Math.ceil(size/512)*512;}
+  assert.ok(entries['PROMPT.md']);assert.ok(entries['result-template.json']);
+  const downloaded=JSON.parse(entries['task.json']);assert.equal(downloaded.questions.length,10);
+  for(const q of downloaded.questions)for(const name of q.assets)assert.equal(createHash('sha256').update(entries[`${q.qid}/source/${name}`]).digest('hex'),q.sourceHashes[name]);
+  const packet=(await call('/gemini/packet',{batchId:'pilot-razavi-11'})).data;
+  const q=packet.questions[0];
+  const data={schemaVersion:1,kind:'analog-bibles-gemini-result',packetId:packet.packetId,questions:[{qid:q.qid,baseVersion:q.baseVersion,sourceHashes:q.sourceHashes,files:completeFixture({id:q.qid,files:q.sourceFiles,hashes:q.sourceHashes},{...q.files,'golden_solution.md':q.files['golden_solution.md']+'\nGemini candidate fixture $I_D=1$\n'}),findings:'Test fixture only, human verification required'}]};
+  await b.evaluate(`${el('gemini-result')}.value=${JSON.stringify(JSON.stringify({...data,packetId:'unknown-task'}))}`);await click('gemini-preview');
+  await b.waitFor(`${el('import-feedback')}.textContent.includes('找不到对应修订任务包')`);
+  assert.equal(await b.evaluate(`${el('gemini-preview')}.disabled`),false);
+  assert.equal(await b.evaluate(`${el('import-preview')}.hidden`),true);
+  await b.evaluate(`${el('gemini-result')}.value=${JSON.stringify('```json\n'+JSON.stringify(data)+'\n```')}`);await click('gemini-preview');
+  await b.waitFor(`!${el('import-preview')}.hidden && ${el('import-diffs')}.textContent.includes('Gemini candidate fixture')`);
+  assert.match(await b.evaluate(`${el('import-feedback')}.textContent`),/校验通过/);
+  await b.waitFor(`${el('import-diffs')}.querySelector('.diff-after img.answer-plot')?.naturalWidth>0`);
+  assert.ok(await b.evaluate(`[...${el('import-diffs')}.querySelectorAll('.diff-after .katex')].some(x=>x.checkVisibility())`));
+  assert.equal(await b.evaluate(`[...${el('import-diffs')}.querySelectorAll('.diff-source pre')].some(x=>x.checkVisibility())`),false);
+  fs.mkdirSync('.wrangler/workbench-qa',{recursive:true});await b.screenshot('.wrangler/workbench-qa/readable-import.png');
+  await b.evaluate('window.confirm=()=>true');await click('gemini-apply');
+  await b.waitFor(`${el('saved')}.textContent.includes('v1') && ${el('notice')}.textContent.includes('原子导入')`);
+  assert.equal((await call('/questions/R011')).data.revision.payload.approval,null);
+  const originalEn=await b.evaluate(`${el('editor')}.value`);
+  await b.evaluate(`${el('editor-zh')}.value+='\\n中文独立修改 $I_D=1$';${el('editor-zh')}.dispatchEvent(new Event('input'))`);
+  assert.equal(await b.evaluate(`${el('editor')}.value`),originalEn,'Chinese edits must not corrupt English');
+  await b.evaluate(`${el('editor')}.value+='\\n<img src=x onerror="window.wbXss=1"><script>window.wbXss=1</script>';${el('editor')}.dispatchEvent(new Event('input'))`);
+  await b.waitFor(`${el('preview')}.querySelector('.katex')`);assert.equal(await b.evaluate('window.wbXss'),undefined);
+  await click('save');await b.waitFor(`${el('saved')}.textContent.includes('已保存')`);
+  await open();await b.waitFor(`${el('editor-zh')}.value.includes('中文独立修改')`);
+  await click('diff-toggle');assert.equal(await b.evaluate(`${el('diff')}.hidden`),false);assert.ok(await b.evaluate(`${el('diff')}.querySelector('.diff-columns .md .katex')`));assert.equal(await b.evaluate(`${el('diff')}.querySelector('.diff-source').open`),false);assert.equal(await b.evaluate(`${el('diff')}.querySelector('.diff-source pre').checkVisibility()`),false);
+  const diff=await b.evaluate(`${el('diff')}.textContent`);assert.match(diff,/English/);assert.match(diff,/中文独立修改/);
+  const saved=(await call('/questions/R011')).data;
+  await b.evaluate(`localStorage.setItem('wb.draft.browser-admin.R011',JSON.stringify({qid:'R011',baseVersion:${saved.revision.version},sourceHashes:${JSON.stringify(saved.source.hashes)},files:${JSON.stringify({...saved.revision.payload.files,'detailed_solution.zh.md':saved.revision.payload.files['detailed_solution.zh.md']+'\n恢复测试'})},note:'Recovered note',at:new Date().toISOString()}))`);
+  // Use the actor supplied by the browser harness rather than assuming its subject.
+  const actor=(await call('/session')).data;
+  await b.evaluate(`localStorage.setItem('wb.draft.'+${JSON.stringify(actor.sub)}+'.R011.'+sessionStorage.getItem('wb.tab'),localStorage.getItem('wb.draft.browser-admin.R011'))`);
+  await open();await b.waitFor(`!${el('recovery')}.hidden`);assert.equal(await b.evaluate(`${el('editor-zh')}.readOnly`),true);
+  await click('recover');await click('save');await b.waitFor(`${el('saved')}.textContent.includes('已保存')`);
+  assert.match((await call('/questions/R011')).data.revision.payload.files['detailed_solution.zh.md'],/恢复测试/);
+  await b.evaluate(`document.querySelector('[data-action=ready]').click()`);await b.waitFor(`${el('status')}.textContent==='READY_FOR_APPROVAL'`);
+  await click('approve');await b.waitFor(`${el('notice')}.textContent.includes('Every candidate file')`);
+  const questionState=(await call('/questions/R011')).data;const source=questionState.source;
+  await b.evaluate(`document.querySelector('.scope-card').open=true`);
+  for(const name of Object.keys(questionState.scope.hashes)){
+    await b.evaluate(`[...document.querySelectorAll('#scope button')].find(x=>x.dataset.file===${JSON.stringify(name)}).click()`);
+    await b.waitFor(`!${el('scope-view')}.hidden && ${el('scope-title')}.textContent.endsWith(${JSON.stringify(name)})`);
+    // decode()/hash validation happens asynchronously for the original figure.
+    if(/\.(png|svg|jpg)$/.test(name))await b.waitFor(`${el('scope-content')}.querySelector('img')?.complete`);
+    await b.waitFor(`!${el('record-review')}.disabled`);
+    await b.evaluate(`${el('scope-confirm')}.checked=true`);await click('record-review');
+    await b.waitFor(`${el('scope-view')}.hidden`);
+  }
+  await click('approve');await b.waitFor(`${el('status')}.textContent==='APPROVED_PENDING_PUBLISH'`);
+  const exported=await call('/export',{ids:['R011']});assert.equal(exported.status,200);assert.ok(exported.data.files['razavi/R011/golden_solution.md']);
+  await b.evaluate(`${el('editor')}.value+='\\nChange after approval';${el('editor')}.dispatchEvent(new Event('input'))`);await click('save');
+  await b.waitFor(`${el('status')}.textContent==='STALE'`);assert.match(await b.evaluate(`${el('review-state')}.textContent`),/0\//);
+  await click('next-pending');await b.waitFor(`${el('qid')}.textContent==='R012'`);
+  await b.waitFor(`${el('editor')}.readOnly===false`);
+  // Diagnose without writing candidates; then review only the changed bilingual pair.
+  const diagnosticPacket=(await call('/gemini/packet',{batchId:'pilot-razavi-11',qid:'R012',mode:'diagnosis'})).data;
+  const dq=diagnosticPacket.questions[0];
+  const diagnosis={schemaVersion:1,kind:'analog-bibles-gemini-diagnosis',mode:'diagnosis',packetId:diagnosticPacket.packetId,questions:[{qid:'R012',baseVersion:0,sourceHashes:dq.sourceHashes,diagnosis:{risk:'MEDIUM',disposition:'PATCH',confidence:.8,claimsChanged:false,missingSteps:['test missing step'],focus:['test dependency'],checks:['fixture only'],summary:'Browser diagnostic fixture'}}]};
+  await b.evaluate(`${el('gemini-result')}.value=${JSON.stringify(JSON.stringify(diagnosis))}`);await click('gemini-preview');
+  await b.waitFor(`${el('import-diffs')}.textContent.includes('Browser diagnostic fixture')`);await click('gemini-apply');
+  await b.waitFor(`${el('notice')}.textContent.includes('答案未改变') && ${el('triage-list')}.textContent.includes('Browser diagnostic fixture')`);
+  assert.equal((await call('/questions/R012')).data.revision,null);
+  await b.evaluate(`${el('section')}.value='detailed';${el('section')}.dispatchEvent(new Event('change'));${el('editor')}.value+='\\nBrowser incremental step';${el('editor')}.dispatchEvent(new Event('input'));${el('note')}.value='Checked added step against reference answer and original problem';${el('note')}.dispatchEvent(new Event('input'))`);
+  await click('save');await b.waitFor(`${el('saved')}.textContent.includes('已保存')`);
+  let r12=(await call('/questions/R012')).data;
+  const fixed12=completeFixture(r12.source,r12.revision.payload.files);
+  assert.equal((await call('/questions/R012',{version:r12.revision.version,sourceHashes:r12.source.hashes,files:fixed12,note:'TEST ONLY: checked dependencies',action:'save',requestId:crypto.randomUUID()})).status,201);
+  await open();await b.waitFor(`${el('qid')}.textContent==='R012' && !${el('editor')}.readOnly`);
+  assert.match(await b.evaluate(`${el('change-diffs')}.textContent`),/Browser incremental step/);
+  await b.evaluate(`document.querySelector('[data-action=ready]').click()`);await b.waitFor(`${el('status')}.textContent==='READY_FOR_APPROVAL'`);
+  for(const name of (await call('/questions/R012')).data.scope.requiredFiles){
+    await b.evaluate(`[...document.querySelectorAll('#scope button')].find(x=>x.dataset.file===${JSON.stringify(name)}).click()`);
+    await b.waitFor(`!${el('record-review')}.disabled && !${el('scope-view')}.hidden`);
+    await b.evaluate(`${el('scope-confirm')}.checked=true`);await click('record-review');await b.waitFor(`${el('scope-view')}.hidden`);
+  }
+  await click('approve-revision');await b.waitFor(`${el('notice')}.textContent.includes('请先确认')`);
+  await b.evaluate(`${el('dependency-confirm')}.checked=true`);await click('approve-revision');await b.waitFor(`${el('status')}.textContent==='APPROVED_REVISION_PENDING_PUBLISH'`);
+  const partial=await call('/export',{ids:['R012']});assert.equal(partial.status,200);assert.deepEqual(partial.data.records,{});assert.equal(partial.data.revisionApprovals.R012.status,'APPROVED_REVISION');
+  await b.viewport(390,900);assert.equal(await b.evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
+  assert.deepEqual(b.errors,[]);
+});

@@ -7,8 +7,9 @@ import crypto from "node:crypto";
 import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
+import { workbench } from './workbench.mjs';
 
-export async function startBrowser() {
+export async function startBrowser(options = {}) {
   const executable = [process.env.BROWSER_PATH,
     "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -25,6 +26,16 @@ export async function startBrowser() {
   const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, "http://localhost");
     requests.push({ method: req.method, path: url.pathname });
+    if (options.workbench && (url.pathname.startsWith('/api/workbench') || url.pathname === '/review')) {
+      const chunks=[];for await (const chunk of req) chunks.push(chunk);
+      const request=new Request(`http://${req.headers.host}${req.url}`,{method:req.method,headers:req.headers,
+        body:['GET','HEAD'].includes(req.method)?undefined:Buffer.concat(chunks)});
+      const response=await workbench(request,options.workbench,async()=>({sub:'browser-admin',email:'browser@example.invalid'}),async()=>Response.json({sha:JSON.parse(fs.readFileSync(path.join(root,'workbench-source/R007.json'),'utf8')).commit}));
+      res.writeHead(response.status,Object.fromEntries(response.headers));
+      let content=Buffer.from(await response.arrayBuffer());
+      if(url.pathname==='/review')content=Buffer.from(content.toString().replaceAll('https://cdnjs.cloudflare.com/','/__cdn/'));
+      res.end(content);return;
+    }
     if (url.pathname.startsWith("/api/")) {
       res.setHeader("content-type", "application/json");
       if (req.method === "POST" && url.pathname === "/api/reviews") {

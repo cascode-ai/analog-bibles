@@ -3,14 +3,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs site/solution-content.test.mjs",
+    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs site/solution-content.test.mjs site/workbench.test.mjs site/workbench-codex.test.mjs site/workbench-quality.test.mjs site/workbench-exchange.test.mjs site/workbench.browser.test.mjs",
+    "workbench:db": "node site/workbench-local.mjs db",
+    "workbench:dev": "node site/workbench-local.mjs dev",
     "review:check": "node site/check-reviews.mjs",
     "build": "node site/build.mjs",
     "dev": "node site/build.mjs && wrangler dev",
     "db:init": "wrangler d1 execute analog-bibles --remote --file site/schema.sql",
-    "deploy": "node site/build.mjs && wrangler deploy"
+    "deploy": "node site/build.mjs && wrangler deploy",
+    "workbench:backup": "node site/workbench-local.mjs backup",
+    "workbench:codex": "node site/codex-work.mjs"
   },
   "devDependencies": {
+    "dompurify": "3.4.18",
+    "katex": "0.19.1",
+    "marked": "12.0.2",
+    "saxes": "6.0.0",
     "wrangler": "4.163.0"
   }
 }

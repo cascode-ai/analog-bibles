@@ -6,10 +6,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from "node:url";
-import { scanReviews } from "./review-status.mjs";
+import { scanReviews, hashQuestion } from "./review-status.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const dist = path.join(root, "dist");
 const books = ["razavi", "gray", "allen"];
 const difficulty = JSON.parse(fs.readFileSync(path.join(root, "difficulty.json"), "utf8"));
@@ -20,6 +22,13 @@ for (const error of reviews.errors) console.warn(`Review invalidated: ${error}`)
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.cpSync(path.join(root, "site/public"), dist, { recursive: true });
+// Workbench renderers are pinned in package-lock and served locally (no CDN dependency).
+const vendor = path.join(dist, 'workbench-vendor');
+fs.mkdirSync(vendor, { recursive: true });
+fs.copyFileSync(path.join(root,'node_modules/marked/lib/marked.umd.js'),path.join(vendor,'marked.js'));
+fs.copyFileSync(path.join(root,'node_modules/dompurify/dist/purify.min.js'),path.join(vendor,'purify.js'));
+fs.cpSync(path.join(root,'node_modules/katex/dist'),path.join(vendor,'katex'),{recursive:true});
+for (const [pkg,license] of [['marked','LICENSE.md'],['dompurify','LICENSE'],['katex','LICENSE']]) fs.copyFileSync(path.join(root,'node_modules',pkg,license),path.join(vendor,`${pkg}-LICENSE`));
 
 const diagrams = (dir, files) => {
   const out = {};
@@ -35,6 +44,7 @@ const diagrams = (dir, files) => {
 
 const hash = (data) => crypto.createHash("sha256").update(data).digest("hex").slice(0, 10);
 fs.mkdirSync(path.join(dist, "b"), { recursive: true });
+fs.mkdirSync(path.join(dist, "workbench-source"), { recursive: true });
 
 const index = [];
 for (const book of books) {
@@ -51,6 +61,9 @@ for (const book of books) {
       const md = {};
       for (const f of files) if (f.endsWith(".md")) md[f] = fs.readFileSync(path.join(dir, f), "utf8");
       fs.writeFileSync(path.join(dist, "b", `${id}.${v}.json`), JSON.stringify(md));
+      const reviewFiles={...md};
+      for(const file of files)if(/^solution-[a-z0-9][a-z0-9-]*(?:\.zh)?\.svg$/.test(file))reviewFiles[file]=fs.readFileSync(path.join(dir,file),'utf8');
+      fs.writeFileSync(path.join(dist, 'workbench-source', `${id}.json`), JSON.stringify({ id, book, commit: sourceCommit, reviewStatus: reviews.questions.get(id)?.status, hashes: hashQuestion(dir), files: reviewFiles }));
       index.push({
         v,
         id,
