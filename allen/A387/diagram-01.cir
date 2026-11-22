@@ -1,0 +1,13 @@
+* Designed two-stage comparator: NMOS input pair, PMOS mirror load, PMOS common-source output with NMOS sink
+VDD vdd 0 3
+IREF vdd b 20u
+M8 b b 0 0 NMOS W=4u L=1u
+M5 tail b 0 0 NMOS W=4u L=1u
+M1 n3 inm tail 0 NMOS W=4u L=1u
+M2 o1 inp tail 0 NMOS W=4u L=1u
+M3 n3 n3 vdd vdd PMOS W=2u L=1u
+M4 o1 n3 vdd vdd PMOS W=2u L=1u
+M6 out o1 vdd vdd PMOS W=20u L=1u
+M7 out b 0 0 NMOS W=20u L=1u
+CL out 0 3p
+.end

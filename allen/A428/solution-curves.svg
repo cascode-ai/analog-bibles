@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="en">
+<title id="title">A428: 4-bit DAC with bit weights 8, 3, 2.5, 1 LSB</title><desc id="desc">Output magnitude |vout| in LSB = VREF/16 (vout is negative); blue: actual, grey dashed: ideal</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">A428: 4-bit DAC with bit weights 8, 3, 2.5, 1 LSB</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">Output magnitude |vout| in LSB = VREF/16 (vout is negative); blue: actual, grey dashed: ideal</text>
+<path d="M 90 450 L 660 450" fill="none" stroke="#cbd5e1" />
+<text x="78" y="455" fill="#475569" text-anchor="end" font-size="14">0</text>
+<path d="M 90 407.5 L 660 407.5" fill="none" stroke="#cbd5e1" />
+<text x="78" y="412.5" fill="#475569" text-anchor="end" font-size="14">2</text>
+<path d="M 90 365 L 660 365" fill="none" stroke="#cbd5e1" />
+<text x="78" y="370" fill="#475569" text-anchor="end" font-size="14">4</text>
+<path d="M 90 322.5 L 660 322.5" fill="none" stroke="#cbd5e1" />
+<text x="78" y="327.5" fill="#475569" text-anchor="end" font-size="14">6</text>
+<path d="M 90 280 L 660 280" fill="none" stroke="#cbd5e1" />
+<text x="78" y="285" fill="#475569" text-anchor="end" font-size="14">8</text>
+<path d="M 90 237.5 L 660 237.5" fill="none" stroke="#cbd5e1" />
+<text x="78" y="242.5" fill="#475569" text-anchor="end" font-size="14">10</text>
+<path d="M 90 195 L 660 195" fill="none" stroke="#cbd5e1" />
+<text x="78" y="200" fill="#475569" text-anchor="end" font-size="14">12</text>
+<path d="M 90 152.5 L 660 152.5" fill="none" stroke="#cbd5e1" />
+<text x="78" y="157.5" fill="#475569" text-anchor="end" font-size="14">14</text>
+<path d="M 90 110 L 660 110" fill="none" stroke="#cbd5e1" />
+<text x="78" y="115" fill="#475569" text-anchor="end" font-size="14">16</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">digital input code</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">|vout| (LSB)</text>
+<path d="M 90 110 L 90 450" fill="none" stroke="#cbd5e1" />
+<text x="90" y="475" fill="#475569" text-anchor="middle" font-size="13">0000</text>
+<path d="M 232.5 110 L 232.5 450" fill="none" stroke="#cbd5e1" />
+<text x="232.5" y="475" fill="#475569" text-anchor="middle" font-size="13">0100</text>
+<path d="M 375 110 L 375 450" fill="none" stroke="#cbd5e1" />
+<text x="375" y="475" fill="#475569" text-anchor="middle" font-size="13">1000</text>
+<path d="M 517.5 110 L 517.5 450" fill="none" stroke="#cbd5e1" />
+<text x="517.5" y="475" fill="#475569" text-anchor="middle" font-size="13">1100</text>
+<path d="M 624.375 110 L 624.375 450" fill="none" stroke="#cbd5e1" />
+<text x="624.375" y="475" fill="#475569" text-anchor="middle" font-size="13">1111</text>
+<path d="M 90 450 L 125.625 450" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 125.625 450 L 125.625 428.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 125.625 428.75 L 161.25 428.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 161.25 428.75 L 161.25 407.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 161.25 407.5 L 196.875 407.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 196.875 407.5 L 196.875 386.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 196.875 386.25 L 232.5 386.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 232.5 386.25 L 232.5 365" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 232.5 365 L 268.125 365" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 268.125 365 L 268.125 343.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 268.125 343.75 L 303.75 343.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 303.75 343.75 L 303.75 322.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 303.75 322.5 L 339.375 322.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 339.375 322.5 L 339.375 301.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 339.375 301.25 L 375 301.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 375 301.25 L 375 280" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 375 280 L 410.625 280" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 410.625 280 L 410.625 258.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 410.625 258.75 L 446.25 258.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 446.25 258.75 L 446.25 237.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 446.25 237.5 L 481.875 237.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 481.875 237.5 L 481.875 216.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 481.875 216.25 L 517.5 216.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 517.5 216.25 L 517.5 195" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 517.5 195 L 553.125 195" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 553.125 195 L 553.125 173.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 553.125 173.75 L 588.75 173.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 588.75 173.75 L 588.75 152.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 588.75 152.5 L 624.375 152.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 624.375 152.5 L 624.375 131.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 624.375 131.25 L 660 131.25" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 90 449 L 125.625 449" fill="none" stroke="#1565c0" />
+<path d="M 90 450 L 125.625 450" fill="none" stroke="#1565c0" />
+<path d="M 90 451 L 125.625 451" fill="none" stroke="#1565c0" />
+<path d="M 125.625 450 L 125.625 428.75" fill="none" stroke="#1565c0" />
+<path d="M 125.625 427.75 L 161.25 427.75" fill="none" stroke="#1565c0" />
+<path d="M 125.625 428.75 L 161.25 428.75" fill="none" stroke="#1565c0" />
+<path d="M 125.625 429.75 L 161.25 429.75" fill="none" stroke="#1565c0" />
+<path d="M 161.25 428.75 L 161.25 396.875" fill="none" stroke="#1565c0" />
+<path d="M 161.25 395.875 L 196.875 395.875" fill="none" stroke="#1565c0" />
+<path d="M 161.25 396.875 L 196.875 396.875" fill="none" stroke="#1565c0" />
+<path d="M 161.25 397.875 L 196.875 397.875" fill="none" stroke="#1565c0" />
+<path d="M 196.875 396.875 L 196.875 375.625" fill="none" stroke="#1565c0" />
+<path d="M 196.875 374.625 L 232.5 374.625" fill="none" stroke="#1565c0" />
+<path d="M 196.875 375.625 L 232.5 375.625" fill="none" stroke="#1565c0" />
+<path d="M 196.875 376.625 L 232.5 376.625" fill="none" stroke="#1565c0" />
+<path d="M 232.5 375.625 L 232.5 386.25" fill="none" stroke="#1565c0" />
+<path d="M 232.5 385.25 L 268.125 385.25" fill="none" stroke="#1565c0" />
+<path d="M 232.5 386.25 L 268.125 386.25" fill="none" stroke="#1565c0" />
+<path d="M 232.5 387.25 L 268.125 387.25" fill="none" stroke="#1565c0" />
+<path d="M 268.125 386.25 L 268.125 365" fill="none" stroke="#1565c0" />
+<path d="M 268.125 364 L 303.75 364" fill="none" stroke="#1565c0" />
+<path d="M 268.125 365 L 303.75 365" fill="none" stroke="#1565c0" />
+<path d="M 268.125 366 L 303.75 366" fill="none" stroke="#1565c0" />
+<path d="M 303.75 365 L 303.75 333.125" fill="none" stroke="#1565c0" />
+<path d="M 303.75 332.125 L 339.375 332.125" fill="none" stroke="#1565c0" />
+<path d="M 303.75 333.125 L 339.375 333.125" fill="none" stroke="#1565c0" />
+<path d="M 303.75 334.125 L 339.375 334.125" fill="none" stroke="#1565c0" />
+<path d="M 339.375 333.125 L 339.375 311.875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 310.875 L 375 310.875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 311.875 L 375 311.875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 312.875 L 375 312.875" fill="none" stroke="#1565c0" />
+<path d="M 375 311.875 L 375 280" fill="none" stroke="#1565c0" />
+<path d="M 375 279 L 410.625 279" fill="none" stroke="#1565c0" />
+<path d="M 375 280 L 410.625 280" fill="none" stroke="#1565c0" />
+<path d="M 375 281 L 410.625 281" fill="none" stroke="#1565c0" />
+<path d="M 410.625 280 L 410.625 258.75" fill="none" stroke="#1565c0" />
+<path d="M 410.625 257.75 L 446.25 257.75" fill="none" stroke="#1565c0" />
+<path d="M 410.625 258.75 L 446.25 258.75" fill="none" stroke="#1565c0" />
+<path d="M 410.625 259.75 L 446.25 259.75" fill="none" stroke="#1565c0" />
+<path d="M 446.25 258.75 L 446.25 226.875" fill="none" stroke="#1565c0" />
+<path d="M 446.25 225.875 L 481.875 225.875" fill="none" stroke="#1565c0" />
+<path d="M 446.25 226.875 L 481.875 226.875" fill="none" stroke="#1565c0" />
+<path d="M 446.25 227.875 L 481.875 227.875" fill="none" stroke="#1565c0" />
+<path d="M 481.875 226.875 L 481.875 205.625" fill="none" stroke="#1565c0" />
+<path d="M 481.875 204.625 L 517.5 204.625" fill="none" stroke="#1565c0" />
+<path d="M 481.875 205.625 L 517.5 205.625" fill="none" stroke="#1565c0" />
+<path d="M 481.875 206.625 L 517.5 206.625" fill="none" stroke="#1565c0" />
+<path d="M 517.5 205.625 L 517.5 216.25" fill="none" stroke="#1565c0" />
+<path d="M 517.5 215.25 L 553.125 215.25" fill="none" stroke="#1565c0" />
+<path d="M 517.5 216.25 L 553.125 216.25" fill="none" stroke="#1565c0" />
+<path d="M 517.5 217.25 L 553.125 217.25" fill="none" stroke="#1565c0" />
+<path d="M 553.125 216.25 L 553.125 195" fill="none" stroke="#1565c0" />
+<path d="M 553.125 194 L 588.75 194" fill="none" stroke="#1565c0" />
+<path d="M 553.125 195 L 588.75 195" fill="none" stroke="#1565c0" />
+<path d="M 553.125 196 L 588.75 196" fill="none" stroke="#1565c0" />
+<path d="M 588.75 195 L 588.75 163.125" fill="none" stroke="#1565c0" />
+<path d="M 588.75 162.125 L 624.375 162.125" fill="none" stroke="#1565c0" />
+<path d="M 588.75 163.125 L 624.375 163.125" fill="none" stroke="#1565c0" />
+<path d="M 588.75 164.125 L 624.375 164.125" fill="none" stroke="#1565c0" />
+<path d="M 624.375 163.125 L 624.375 141.875" fill="none" stroke="#1565c0" />
+<path d="M 624.375 140.875 L 660 140.875" fill="none" stroke="#1565c0" />
+<path d="M 624.375 141.875 L 660 141.875" fill="none" stroke="#1565c0" />
+<path d="M 624.375 142.875 L 660 142.875" fill="none" stroke="#1565c0" />
+<circle cx="232.5" cy="386.25" r="4" fill="white" stroke="#ad3c00" stroke-width="2"/>
+<circle cx="517.5" cy="216.25" r="4" fill="white" stroke="#ad3c00" stroke-width="2"/>
+<text x="253.875" y="416" fill="#ad3c00" text-anchor="start" font-size="13">0011→0100: 3.5 → 3 (falls, DNL = −1.5)</text>
+<text x="489" y="309.75" fill="#ad3c00" text-anchor="start" font-size="13">1011→1100: 11.5 → 11</text>
+<text x="489" y="326.75" fill="#ad3c00" text-anchor="start" font-size="13">(falls, DNL = −1.5)</text>
+<text x="107.8125" y="141.875" fill="#1565c0" text-anchor="start" font-size="14">INL: +0.5 / −1.0 LSB</text>
+<text x="107.8125" y="165.25" fill="#1565c0" text-anchor="start" font-size="14">DNL: +0.5 / −1.5 LSB; non-monotonic</text></g></svg>

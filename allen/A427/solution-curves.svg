@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="en">
+<title id="title">A427: 4-bit DAC transfer curve with VOS = 0.0645 VREF</title><desc id="desc">Blue: actual vout/VREF; grey dashed: ideal (VOS = 0); 1 LSB = VREF/16</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">A427: 4-bit DAC transfer curve with VOS = 0.0645 VREF</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">Blue: actual vout/VREF; grey dashed: ideal (VOS = 0); 1 LSB = VREF/16</text>
+<path d="M 90 450 L 660 450" fill="none" stroke="#cbd5e1" />
+<text x="78" y="455" fill="#475569" text-anchor="end" font-size="14">-1</text>
+<path d="M 90 379.16666666666663 L 660 379.16666666666663" fill="none" stroke="#cbd5e1" />
+<text x="78" y="384.16666666666663" fill="#475569" text-anchor="end" font-size="14">-0.75</text>
+<path d="M 90 308.3333333333333 L 660 308.3333333333333" fill="none" stroke="#cbd5e1" />
+<text x="78" y="313.3333333333333" fill="#475569" text-anchor="end" font-size="14">-0.5</text>
+<path d="M 90 237.5 L 660 237.5" fill="none" stroke="#cbd5e1" />
+<text x="78" y="242.5" fill="#475569" text-anchor="end" font-size="14">-0.25</text>
+<path d="M 90 166.66666666666663 L 660 166.66666666666663" fill="none" stroke="#cbd5e1" />
+<text x="78" y="171.66666666666663" fill="#475569" text-anchor="end" font-size="14">0</text>
+<path d="M 90 110 L 660 110" fill="none" stroke="#cbd5e1" />
+<text x="78" y="115" fill="#475569" text-anchor="end" font-size="14">0.2</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">digital input code</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">vout / VREF</text>
+<path d="M 90 110 L 90 450" fill="none" stroke="#cbd5e1" />
+<text x="90" y="475" fill="#475569" text-anchor="middle" font-size="13">0000</text>
+<path d="M 232.5 110 L 232.5 450" fill="none" stroke="#cbd5e1" />
+<text x="232.5" y="475" fill="#475569" text-anchor="middle" font-size="13">0100</text>
+<path d="M 375 110 L 375 450" fill="none" stroke="#cbd5e1" />
+<text x="375" y="475" fill="#475569" text-anchor="middle" font-size="13">1000</text>
+<path d="M 517.5 110 L 517.5 450" fill="none" stroke="#cbd5e1" />
+<text x="517.5" y="475" fill="#475569" text-anchor="middle" font-size="13">1100</text>
+<path d="M 624.375 110 L 624.375 450" fill="none" stroke="#cbd5e1" />
+<text x="624.375" y="475" fill="#475569" text-anchor="middle" font-size="13">1111</text>
+<path d="M 90 166.66666666666663 L 660 166.66666666666663" fill="none" stroke="#475569" />
+<path d="M 90 166.66666666666663 L 125.625 166.66666666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 125.625 166.66666666666663 L 125.625 184.375" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 125.625 184.375 L 161.25 184.375" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 161.25 184.375 L 161.25 202.08333333333331" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 161.25 202.08333333333331 L 196.875 202.08333333333331" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 196.875 202.08333333333331 L 196.875 219.79166666666666" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 196.875 219.79166666666666 L 232.5 219.79166666666666" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 232.5 219.79166666666666 L 232.5 237.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 232.5 237.5 L 268.125 237.5" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 268.125 237.5 L 268.125 255.20833333333331" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 268.125 255.20833333333331 L 303.75 255.20833333333331" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 303.75 255.20833333333331 L 303.75 272.91666666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 303.75 272.91666666666663 L 339.375 272.91666666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 339.375 272.91666666666663 L 339.375 290.625" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 339.375 290.625 L 375 290.625" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 375 290.625 L 375 308.3333333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 375 308.3333333333333 L 410.625 308.3333333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 410.625 308.3333333333333 L 410.625 326.04166666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 410.625 326.04166666666663 L 446.25 326.04166666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 446.25 326.04166666666663 L 446.25 343.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 446.25 343.75 L 481.875 343.75" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 481.875 343.75 L 481.875 361.4583333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 481.875 361.4583333333333 L 517.5 361.4583333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 517.5 361.4583333333333 L 517.5 379.16666666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 517.5 379.16666666666663 L 553.125 379.16666666666663" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 553.125 379.16666666666663 L 553.125 396.875" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 553.125 396.875 L 588.75 396.875" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 588.75 396.875 L 588.75 414.5833333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 588.75 414.5833333333333 L 624.375 414.5833333333333" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 624.375 414.5833333333333 L 624.375 432.2916666666667" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 624.375 432.2916666666667 L 660 432.2916666666667" fill="none" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<path d="M 90 147.39166666666665 L 125.625 147.39166666666665" fill="none" stroke="#1565c0" />
+<path d="M 90 148.39166666666665 L 125.625 148.39166666666665" fill="none" stroke="#1565c0" />
+<path d="M 90 149.39166666666665 L 125.625 149.39166666666665" fill="none" stroke="#1565c0" />
+<path d="M 125.625 148.39166666666665 L 125.625 164.9578125" fill="none" stroke="#1565c0" />
+<path d="M 125.625 163.9578125 L 161.25 163.9578125" fill="none" stroke="#1565c0" />
+<path d="M 125.625 164.9578125 L 161.25 164.9578125" fill="none" stroke="#1565c0" />
+<path d="M 125.625 165.9578125 L 161.25 165.9578125" fill="none" stroke="#1565c0" />
+<path d="M 161.25 164.9578125 L 161.25 181.52395833333333" fill="none" stroke="#1565c0" />
+<path d="M 161.25 180.52395833333333 L 196.875 180.52395833333333" fill="none" stroke="#1565c0" />
+<path d="M 161.25 181.52395833333333 L 196.875 181.52395833333333" fill="none" stroke="#1565c0" />
+<path d="M 161.25 182.52395833333333 L 196.875 182.52395833333333" fill="none" stroke="#1565c0" />
+<path d="M 196.875 181.52395833333333 L 196.875 198.09010416666666" fill="none" stroke="#1565c0" />
+<path d="M 196.875 197.09010416666666 L 232.5 197.09010416666666" fill="none" stroke="#1565c0" />
+<path d="M 196.875 198.09010416666666 L 232.5 198.09010416666666" fill="none" stroke="#1565c0" />
+<path d="M 196.875 199.09010416666666 L 232.5 199.09010416666666" fill="none" stroke="#1565c0" />
+<path d="M 232.5 198.09010416666666 L 232.5 214.65625000000003" fill="none" stroke="#1565c0" />
+<path d="M 232.5 213.65625000000003 L 268.125 213.65625000000003" fill="none" stroke="#1565c0" />
+<path d="M 232.5 214.65625000000003 L 268.125 214.65625000000003" fill="none" stroke="#1565c0" />
+<path d="M 232.5 215.65625000000003 L 268.125 215.65625000000003" fill="none" stroke="#1565c0" />
+<path d="M 268.125 214.65625000000003 L 268.125 231.22239583333334" fill="none" stroke="#1565c0" />
+<path d="M 268.125 230.22239583333334 L 303.75 230.22239583333334" fill="none" stroke="#1565c0" />
+<path d="M 268.125 231.22239583333334 L 303.75 231.22239583333334" fill="none" stroke="#1565c0" />
+<path d="M 268.125 232.22239583333334 L 303.75 232.22239583333334" fill="none" stroke="#1565c0" />
+<path d="M 303.75 231.22239583333334 L 303.75 247.78854166666665" fill="none" stroke="#1565c0" />
+<path d="M 303.75 246.78854166666665 L 339.375 246.78854166666665" fill="none" stroke="#1565c0" />
+<path d="M 303.75 247.78854166666665 L 339.375 247.78854166666665" fill="none" stroke="#1565c0" />
+<path d="M 303.75 248.78854166666665 L 339.375 248.78854166666665" fill="none" stroke="#1565c0" />
+<path d="M 339.375 247.78854166666665 L 339.375 264.3546875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 263.3546875 L 375 263.3546875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 264.3546875 L 375 264.3546875" fill="none" stroke="#1565c0" />
+<path d="M 339.375 265.3546875 L 375 265.3546875" fill="none" stroke="#1565c0" />
+<path d="M 375 264.3546875 L 375 280.92083333333335" fill="none" stroke="#1565c0" />
+<path d="M 375 279.92083333333335 L 410.625 279.92083333333335" fill="none" stroke="#1565c0" />
+<path d="M 375 280.92083333333335 L 410.625 280.92083333333335" fill="none" stroke="#1565c0" />
+<path d="M 375 281.92083333333335 L 410.625 281.92083333333335" fill="none" stroke="#1565c0" />
+<path d="M 410.625 280.92083333333335 L 410.625 297.48697916666663" fill="none" stroke="#1565c0" />
+<path d="M 410.625 296.48697916666663 L 446.25 296.48697916666663" fill="none" stroke="#1565c0" />
+<path d="M 410.625 297.48697916666663 L 446.25 297.48697916666663" fill="none" stroke="#1565c0" />
+<path d="M 410.625 298.48697916666663 L 446.25 298.48697916666663" fill="none" stroke="#1565c0" />
+<path d="M 446.25 297.48697916666663 L 446.25 314.053125" fill="none" stroke="#1565c0" />
+<path d="M 446.25 313.053125 L 481.875 313.053125" fill="none" stroke="#1565c0" />
+<path d="M 446.25 314.053125 L 481.875 314.053125" fill="none" stroke="#1565c0" />
+<path d="M 446.25 315.053125 L 481.875 315.053125" fill="none" stroke="#1565c0" />
+<path d="M 481.875 314.053125 L 481.875 330.6192708333333" fill="none" stroke="#1565c0" />
+<path d="M 481.875 329.6192708333333 L 517.5 329.6192708333333" fill="none" stroke="#1565c0" />
+<path d="M 481.875 330.6192708333333 L 517.5 330.6192708333333" fill="none" stroke="#1565c0" />
+<path d="M 481.875 331.6192708333333 L 517.5 331.6192708333333" fill="none" stroke="#1565c0" />
+<path d="M 517.5 330.6192708333333 L 517.5 347.18541666666664" fill="none" stroke="#1565c0" />
+<path d="M 517.5 346.18541666666664 L 553.125 346.18541666666664" fill="none" stroke="#1565c0" />
+<path d="M 517.5 347.18541666666664 L 553.125 347.18541666666664" fill="none" stroke="#1565c0" />
+<path d="M 517.5 348.18541666666664 L 553.125 348.18541666666664" fill="none" stroke="#1565c0" />
+<path d="M 553.125 347.18541666666664 L 553.125 363.7515625" fill="none" stroke="#1565c0" />
+<path d="M 553.125 362.7515625 L 588.75 362.7515625" fill="none" stroke="#1565c0" />
+<path d="M 553.125 363.7515625 L 588.75 363.7515625" fill="none" stroke="#1565c0" />
+<path d="M 553.125 364.7515625 L 588.75 364.7515625" fill="none" stroke="#1565c0" />
+<path d="M 588.75 363.7515625 L 588.75 380.3177083333333" fill="none" stroke="#1565c0" />
+<path d="M 588.75 379.3177083333333 L 624.375 379.3177083333333" fill="none" stroke="#1565c0" />
+<path d="M 588.75 380.3177083333333 L 624.375 380.3177083333333" fill="none" stroke="#1565c0" />
+<path d="M 588.75 381.3177083333333 L 624.375 381.3177083333333" fill="none" stroke="#1565c0" />
+<path d="M 624.375 380.3177083333333 L 624.375 396.88385416666665" fill="none" stroke="#1565c0" />
+<path d="M 624.375 395.88385416666665 L 660 395.88385416666665" fill="none" stroke="#1565c0" />
+<path d="M 624.375 396.88385416666665 L 660 396.88385416666665" fill="none" stroke="#1565c0" />
+<path d="M 624.375 397.88385416666665 L 660 397.88385416666665" fill="none" stroke="#1565c0" />
+<circle cx="90" cy="148.39166666666665" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="624.375" cy="396.88385416666665" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="624.375" cy="432.2916666666667" r="4" fill="white" stroke="#94a3b8" stroke-width="2"/>
+<text x="100.6875" y="138.39166666666665" fill="#ad3c00" text-anchor="start" font-size="13">0000: +0.0645 (+1.03 LSB offset)</text>
+<text x="627.9375" y="388.88385416666665" fill="#1565c0" text-anchor="start" font-size="13">actual −0.8125</text>
+<text x="627.9375" y="424.2916666666667" fill="#64748b" text-anchor="start" font-size="13">ideal −0.9375</text>
+<text x="125.625" y="370.66666666666663" fill="#1565c0" text-anchor="start" font-size="14">steps 0.9355 LSB (gain × 0.9355)</text>
+<text x="125.625" y="390.5" fill="#ad3c00" text-anchor="start" font-size="14">error grows from 1.03 LSB (0000) to 2 LSB (1111)</text></g></svg>
