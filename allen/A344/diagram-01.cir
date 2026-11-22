@@ -1,0 +1,21 @@
+* Op amp of Fig. 1 with the Fig. 2 sensing circuit connected: MS1, MS2 gates at ground (Vocm = 0), MS3, MS4 gates at vo1, vo2, node X driving the tail M5
+VDD vdd 0 2.5
+VSS vss 0 -2.5
+VBP vbp 0 1.3
+VBN vbn 0 -1.3
+M1 d1 vi1 t vss NMOS W=7.3u L=1u
+M2 d2 vi2 t vss NMOS W=7.3u L=1u
+M5 t x vss vss NMOS W=14.6u L=1u
+M3 d1 vbp vdd vdd PMOS W=16u L=1u
+M4 d2 vbp vdd vdd PMOS W=16u L=1u
+M7 vo1 d1 vdd vdd PMOS W=16u L=1u
+M6 vo2 d2 vdd vdd PMOS W=16u L=1u
+M9 vo1 vbn vss vss NMOS W=7.3u L=1u
+M8 vo2 vbn vss vss NMOS W=7.3u L=1u
+MS1 a 0 vdd vdd PMOS W=1u L=4u
+MS2 a 0 vdd vdd PMOS W=1u L=4u
+MS5 a a vss vss NMOS W=5u L=1u
+MS3 x vo1 vdd vdd PMOS W=1u L=4u
+MS4 x vo2 vdd vdd PMOS W=1u L=4u
+MS6 x a vss vss NMOS W=5u L=1u
+.end

@@ -1,0 +1,9 @@
+* Small-signal model of the source follower with current-sink load M2
+Vin in 0 AC 1
+C1 in out {C1}
+Gm1 0 out in out {gm1}
+Gmbs1 0 out 0 out {gmbs1}
+Rds1 out 0 {1/gds1}
+Rds2 out 0 {1/gds2}
+C2 out 0 {C2}
+.end

@@ -1,0 +1,10 @@
+* Small-signal model of the NMOS at VGS = 1 V, VDS = 2 V, VSB = 1 V (gate G, drain D, source S, body B)
+Cgs G S 30.8f
+Cgd G D 2f
+Cgb G B 5f
+Gm D S G S 0.719m
+Gmb D S B S 26.9u
+Ro D S 343k
+Csb S B 12.8f
+Cdb D B 8.7f
+.end

@@ -1,0 +1,16 @@
+* Two-stage CMOS op amp with p-channel input pair (complement of the n-input circuit)
+VDD vdd 0 {VDD}
+VSS vss 0 {VSS}
+Vbp vbp 0 {VBP}
+Vm vm 0 {vminus}
+Vp vp 0 {vplus}
+M5 s vbp vdd vdd PMOS
+M1 a vm s s PMOS
+M2 b vp s s PMOS
+M3 a a vss vss NMOS
+M4 b a vss vss NMOS
+M6 out b vss vss NMOS
+M7 out vbp vdd vdd PMOS
+Cc b out {Cc}
+CL out 0 {CL}
+.end

@@ -1,0 +1,4 @@
+* Equivalent circuit of the charge-scaling array during phi2: capacitive divider
+VREF vref 0 {V_REF}
+Ceq vref vout {C_eq}
+Crest vout 0 {2C-C_eq}

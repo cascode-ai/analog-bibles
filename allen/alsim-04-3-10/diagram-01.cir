@@ -1,0 +1,19 @@
+* Current sink: beta-multiplier reference with a VT-tracking triode resistor, start-up circuit and output mirror (W/L in um/um)
+VDD vdd 0 5
+MP4 vp vp vdd vdd PMOS W=2u L=1u
+MP3 n vp vdd vdd PMOS W=2u L=1u
+MN1 n n 0 0 NMOS W=20u L=1u
+MN2 vp n s 0 NMOS W=80u L=1u
+MR s g 0 0 NMOS W=1u L=1u
+MP6 g vp vdd vdd PMOS W=4.6u L=1u
+MG1 g g g2 0 NMOS W=1u L=1u
+MG2 g2 g2 0 0 NMOS W=1u L=1u
+MS5 x2 x2 vdd vdd PMOS W=1u L=1u
+MS4 x1 x1 x2 x2 PMOS W=1u L=1u
+MS2 st st x1 x1 PMOS W=1u L=1u
+MS3 st n 0 0 NMOS W=100u L=1u
+MS1 vp st n 0 NMOS W=1u L=1u
+MP5 d vp vdd vdd PMOS W=45.4u L=1u
+MD d d 0 0 NMOS W=100u L=1u
+MO out d 0 0 NMOS W=100u L=1u
+VOUT out 0 2.5

@@ -1,0 +1,17 @@
+* Two-stage OTA: p-channel pair M1-M2 with n-channel mirror M3-M4, tail M5, output M6-M7, MOS-only bias M8 and MB1-MB3, nulling transistor MZ with CC (W in um, L = 1 um)
+VDD 4 0 2.5
+VSS 5 0 -2.5
+M8 nb nb 4 4 PMOS W=10u L=1u
+MB1 x1 x1 nb nb PMOS W=1u L=1u
+MB2 x2 x2 x1 x1 PMOS W=1u L=1u
+MB3 x2 x2 5 5 NMOS W=1u L=1u
+M5 t nb 4 4 PMOS W=25u L=1u
+M1 d1 2 t 4 PMOS W=100u L=1u
+M2 a 1 t 4 PMOS W=100u L=1u
+M3 d1 d1 5 5 NMOS W=14u L=1u
+M4 a d1 5 5 NMOS W=14u L=1u
+M6 3 a 5 5 NMOS W=100u L=1u
+M7 3 nb 4 4 PMOS W=95u L=1u
+MZ a 4 c 5 NMOS W=1u L=1u
+CC c 3 2.5p
+CL 3 0 10p

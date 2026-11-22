@@ -1,0 +1,22 @@
+* Common-mode feedback added to the cascoded differential amplifier: buffered sensing of X and VOUT, error pair MC1-MC2, diode MC3 drives the gates of M7-M8
+M7 S5 VBP VDD VDD pmos W=W7 L=L7
+M8 S6 VBP VDD VDD pmos W=W7 L=L7
+M5 X VBP2 S5 VDD pmos W=W5 L=L5
+M6 VOUT VBP2 S6 VDD pmos W=W5 L=L5
+M3 X VBN2 D1 VSS nmos W=W3 L=L3
+M4 VOUT VBN2 D2 VSS nmos W=W3 L=L3
+M1 D1 IN1 S VSS nmos W=W1 L=L1
+M2 D2 IN2 S VSS nmos W=W1 L=L1
+M9 S VB9 VSS VSS nmos W=W9 L=L9
+MS1 VDD X F1 VSS nmos W=WS L=LS
+MS2 VDD VOUT F2 VSS nmos W=WS L=LS
+IS1 F1 VSS {IS}
+IS2 F2 VSS {IS}
+RCM1 F1 CM {R_CM}
+RCM2 F2 CM {R_CM}
+MC1 VBP VREF SC VSS nmos W=WC1 L=LC1
+MC2 DC2 CM SC VSS nmos W=WC1 L=LC1
+MC3 VBP VBP VDD VDD pmos W=WC3 L=LC3
+MC4 DC2 DC2 VDD VDD pmos W=WC3 L=LC3
+MC5 SC VB9 VSS VSS nmos W=WC5 L=LC5
+.end

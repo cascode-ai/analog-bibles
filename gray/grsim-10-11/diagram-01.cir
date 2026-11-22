@@ -1,0 +1,15 @@
+* Translinear circuit for Io = Ii^(3/2)/sqrt(IB): input stack Q1-Q3, follower Q4 with sink IB, output Q5 over diode Q6
+VCC vcc 0 5
+Ii vcc x 100u
+Q1 x x n2 qn
+Q2 n2 n2 n3 qn
+Q3 n3 n3 0 qn
+Q4 vcc x w qn
+Q5 o w n6 qn
+Q6 n6 n6 0 qn
+Q8 w g7 0 qn
+Q7 g7 g7 0 qn
+RB vcc g7 43.95k
+Vo o 0 {2*VBE}
+.model qn npn is=1e-17 bf=100
+.end

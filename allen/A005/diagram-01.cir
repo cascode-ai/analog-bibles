@@ -1,0 +1,8 @@
+* Circuit after converting gm*v1 || R4 to its Thevenin form, with mesh currents ia and ib
+Vin in 0 {v_in}
+R1 in v1 {R_1}
+R3 v1 0 {R_3}
+R2 v1 vout {R_2}
+R4 vout x {R_4}
+E1 x 0 v1 0 {-gm*R_4}
+.end

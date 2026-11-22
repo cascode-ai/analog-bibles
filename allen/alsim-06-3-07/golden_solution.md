@@ -9,7 +9,7 @@ Hand analysis (simple model, body effect ignored except where stated):
 - Gain: $A_v = \dfrac{g_{m1}g_{m6}}{(g_{ds2} + g_{ds4})(g_{ds6} + g_{ds7})} \approx 2.49\times10^3$ V/V (68 dB).
 - Output resistance: $R_{out} = 1/(g_{ds6} + g_{ds7}) = 185$ kΩ.
 - Power: $P_{diss} = 5\ \mathrm V \times (36.1 + 36.1 + 60.1)\ \mu\mathrm A = 0.66$ mW.
-- PSRR at dc (linearized small-signal analysis of the whole circuit including the $R_S$/M8 bias branch): PSRR⁺ ≈ 4.9 × 10³ (≈ 74 dB), PSRR⁻ ≈ 7.7 × 10⁴ (≈ 98 dB).
+- PSRR at dc (linearized small-signal analysis of the whole circuit including the $R_S$/M8 bias branch): PSRR⁺ ≈ 3.3 × 10³ (≈ 70 dB), PSRR⁻ ≈ 1.3 × 10⁴ (≈ 82 dB).
 - ICMR: $V_{in}(\max) = V_{DD} - V_{SD5}(\mathrm{sat}) - V_{SG1} = 2.5 - 0.693 - 1.30 = 0.51$ V; $V_{in}(\min) = V_{SS} + V_{GS3} - |V_{TP}| = -2.5 + 0.986 - 0.7 = -2.21$ V.
 - Output swing: $V_{out}(\max) = V_{DD} - V_{SD7}(\mathrm{sat}) = 2.5 - 0.69 = 1.81$ V; $V_{out}(\min) = V_{SS} + V_{DS6}(\mathrm{sat}) = -2.5 + 0.33 = -2.17$ V.
 - Slew rate: $I_5/C_c = 36.1\ \mu\mathrm A/6\ \mathrm{pF} = 6.0$ V/µs (falling edges). With 20 pF the rising edge is limited by M7: ≈ $(I_7 - I_5)/C_L$ = 1.2 V/µs at first, ≈ $I_7/(C_L + C_c)$ = 2.3 V/µs once the first-stage output bottoms out.

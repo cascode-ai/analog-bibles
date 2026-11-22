@@ -1,0 +1,12 @@
+* Class-A output amplifier: PMOS source follower MP driving the substrate NPN emitter follower Q1, NMOS current sink M2 and MOS-only bias (W/L in um/um; M = parallel devices)
+VDD vdd 0 2
+VSS vss 0 -2
+MPB nb nb vdd vdd PMOS W=3u L=1u
+MNB nb nb vss vss NMOS W=4u L=1u
+M2 out nb vss vss NMOS W=100u L=1u M=4
+MNX pb nb vss vss NMOS W=1u L=1u
+MPD pb pb vdd vdd PMOS W=40u L=1u
+MPS b pb vdd vdd PMOS W=100u L=1u M=4
+MP vss in b b PMOS W=100u L=1u M=4
+Q1 vdd b out NPN
+RL out 0 100

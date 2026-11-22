@@ -1,0 +1,17 @@
+* Differential-input current amplifier built from two high-swing cascode mirrors with a shared cascode-bias branch (M4B)
+I1 VDD A {I}
+I2 VDD B {2I}
+I3 VDD OUT {I}
+Ii2 0 A {i2}
+Ii1 0 B {i1}
+IB VDD NB {I}
+M4B NB NB 0 0 nmos W={W/4} L=L
+M5A A NB XA 0 nmos W=W L=L
+M3A XA A 0 0 nmos W=W L=L
+M1A YA A 0 0 nmos W=W L=L
+M2A B NB YA 0 nmos W=W L=L
+M5B B NB XB 0 nmos W=W L=L
+M3B XB B 0 0 nmos W=W L=L
+M1B YB B 0 0 nmos W=W L=L
+M2B OUT NB YB 0 nmos W=W L=L
+.end

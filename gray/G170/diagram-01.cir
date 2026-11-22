@@ -1,0 +1,19 @@
+* Telescopic cascode stage with n-channel input pair, n-channel cascodes biased by M9, and a high-swing p-channel cascode mirror load
+VDD vdd 0 {VDD}
+VSS 0 vss {VSS}
+VIN1 in1 0 {VIC}
+VIN2 in2 0 {VIC}
+VB5 nb5 vss {VB5}
+VBP vdd bp {VBP}
+M5 s nb5 vss vss nmos
+M1 d1 in1 s vss nmos
+M2 d2 in2 s vss nmos
+M9 ga ga s vss nmos
+IC vdd ga {I_C}
+M1A x ga d1 vss nmos
+M2A out ga d2 vss nmos
+M3 y x vdd vdd pmos
+M3A x bp y vdd pmos
+M4 z x vdd vdd pmos
+M4A out bp z vdd pmos
+.end

@@ -1,0 +1,7 @@
+* Output swing: inverting amplifier with gain -10 (R1 and R2 = 10 R1, R1 larger than R_L) with a dc sweep of vin and the real load
+VIN in 0 {v_IN}
+R1 in inn {R_1}
+R2 inn out {R_2}
+E1 out 0 0 inn {A_v}
+RL out 0 {R_L}
+CL out 0 {C_L}

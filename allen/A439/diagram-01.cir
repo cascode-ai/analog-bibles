@@ -1,0 +1,5 @@
+* Low-frequency equivalent at the summing node: ladder Norton source and finite-gain op amp
+Isig vm 0 {i_Sigma}
+RS vm 0 {2R}
+RF vm vout {R}
+E1 vout 0 0 vm {A0}

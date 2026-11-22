@@ -1,0 +1,18 @@
+* Folded-cascode op amp with the I-to-I stage replaced by current mirrors (M4->M7 to the output, M5->M6 into the PMOS cascode mirror)
+VDD vdd 0 {VDD}
+VSS vss 0 {VSS}
+Vp vp 0 {vplus}
+Vm vm 0 {vminus}
+Vb vbias 0 {VBIAS}
+M3 s vbias vdd vdd PMOS
+M1 d1 vp s vdd PMOS
+M2 d2 vm s vdd PMOS
+M4 d1 d1 vss vss NMOS
+M5 d2 d2 vss vss NMOS
+M7 out d1 vss vss NMOS
+M6 x d2 vss vss NMOS
+M10 g10 g10 vdd vdd PMOS
+M8 x x g10 vdd PMOS
+M11 y g10 vdd vdd PMOS
+M9 out x y vdd PMOS
+.end

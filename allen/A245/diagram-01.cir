@@ -1,0 +1,16 @@
+* Current-mirror OTA: separate mirrors for M1 and M2 recombined in a push-pull output (M6 sources, M7 sinks)
+VDD vdd 0 {VDD}
+VSS vss 0 {VSS}
+Vm vm 0 {vminus}
+Vp vp 0 {vplus}
+Vb vbias 0 {VBIAS}
+M1 a vm t vss NMOS
+M2 b vp t vss NMOS
+M5 t vbias vss vss NMOS
+M3 a a vdd vdd PMOS
+M4 b b vdd vdd PMOS
+M8 c a vdd vdd PMOS
+M9 c c vss vss NMOS
+M6 out b vdd vdd PMOS
+M7 out c vss vss NMOS
+.end

@@ -1,0 +1,11 @@
+* Two cascaded inverters with common-gate feedback transistor M5 from out to X
+VDD vdd 0 {VDD}
+Vin in 0 {vin}
+M2 x in vdd vdd PMOS
+M1 x in 0 0 NMOS
+M4 out x vdd vdd PMOS
+M3 out x 0 0 NMOS
+IB vdd x {IB}
+VB gb 0 {VB}
+M5 x gb out 0 NMOS
+.end

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">A488：流水线 DAC 的输入-输出特性</title><desc id="desc">实际（k0 = 7/16，k1 = 5/7，k2 = 3/5）与理想（所有 k = 1/2）；1 LSB = VREF/8</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">A488：流水线 DAC 的输入-输出特性</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">实际（k0 = 7/16，k1 = 5/7，k2 = 3/5）与理想（所有 k = 1/2）；1 LSB = VREF/8</text>
+<path d="M 90 450 L 660 450" fill="none" stroke="#cbd5e1" />
+<text x="78" y="455" fill="#475569" text-anchor="end" font-size="14">0</text>
+<path d="M 90 365 L 660 365" fill="none" stroke="#cbd5e1" />
+<text x="78" y="370" fill="#475569" text-anchor="end" font-size="14">0.25</text>
+<path d="M 90 280 L 660 280" fill="none" stroke="#cbd5e1" />
+<text x="78" y="285" fill="#475569" text-anchor="end" font-size="14">0.5</text>
+<path d="M 90 195 L 660 195" fill="none" stroke="#cbd5e1" />
+<text x="78" y="200" fill="#475569" text-anchor="end" font-size="14">0.75</text>
+<path d="M 90 110 L 660 110" fill="none" stroke="#cbd5e1" />
+<text x="78" y="115" fill="#475569" text-anchor="end" font-size="14">1</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">输入码 b0b1b2</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">vOUT / VREF</text>
+<path d="M 125.625 110 L 125.625 450" fill="none" stroke="#cbd5e1" />
+<text x="125.625" y="475" fill="#475569" text-anchor="middle" font-size="14">000</text>
+<path d="M 196.875 110 L 196.875 450" fill="none" stroke="#cbd5e1" />
+<text x="196.875" y="475" fill="#475569" text-anchor="middle" font-size="14">001</text>
+<path d="M 268.125 110 L 268.125 450" fill="none" stroke="#cbd5e1" />
+<text x="268.125" y="475" fill="#475569" text-anchor="middle" font-size="14">010</text>
+<path d="M 339.375 110 L 339.375 450" fill="none" stroke="#cbd5e1" />
+<text x="339.375" y="475" fill="#475569" text-anchor="middle" font-size="14">011</text>
+<path d="M 410.625 110 L 410.625 450" fill="none" stroke="#cbd5e1" />
+<text x="410.625" y="475" fill="#475569" text-anchor="middle" font-size="14">100</text>
+<path d="M 481.875 110 L 481.875 450" fill="none" stroke="#cbd5e1" />
+<text x="481.875" y="475" fill="#475569" text-anchor="middle" font-size="14">101</text>
+<path d="M 553.125 110 L 553.125 450" fill="none" stroke="#cbd5e1" />
+<text x="553.125" y="475" fill="#475569" text-anchor="middle" font-size="14">110</text>
+<path d="M 624.375 110 L 624.375 450" fill="none" stroke="#cbd5e1" />
+<text x="624.375" y="475" fill="#475569" text-anchor="middle" font-size="14">111</text>
+<path d="M 90 450 L 161.25 450" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 90 450 L 161.25 450" fill="none" stroke="#1565c0" />
+<path d="M 161.25 450 L 161.25 386.25" fill="none" stroke="#1565c0" />
+<path d="M 161.25 450 L 161.25 407.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 161.25 407.5 L 232.5 407.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 161.25 386.25 L 232.5 386.25" fill="none" stroke="#1565c0" />
+<path d="M 232.5 386.25 L 232.5 343.75" fill="none" stroke="#1565c0" />
+<path d="M 232.5 407.5 L 232.5 365" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 232.5 365 L 303.75 365" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 232.5 343.75 L 303.75 343.75" fill="none" stroke="#1565c0" />
+<path d="M 303.75 343.75 L 303.75 280" fill="none" stroke="#1565c0" />
+<path d="M 303.75 365 L 303.75 322.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 303.75 322.5 L 375 322.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 303.75 280 L 375 280" fill="none" stroke="#1565c0" />
+<path d="M 375 280 L 375 301.25" fill="none" stroke="#1565c0" />
+<path d="M 375 322.5 L 375 280" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 375 280 L 446.25 280" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 375 301.25 L 446.25 301.25" fill="none" stroke="#1565c0" />
+<path d="M 446.25 301.25 L 446.25 237.5" fill="none" stroke="#1565c0" />
+<path d="M 446.25 280 L 446.25 237.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 446.25 237.5 L 517.5 237.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 446.25 237.5 L 517.5 237.5" fill="none" stroke="#1565c0" />
+<path d="M 517.5 237.5 L 517.5 195" fill="none" stroke="#1565c0" />
+<path d="M 517.5 237.5 L 517.5 195" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 517.5 195 L 588.75 195" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 517.5 195 L 588.75 195" fill="none" stroke="#1565c0" />
+<path d="M 588.75 195 L 588.75 131.25" fill="none" stroke="#1565c0" />
+<path d="M 588.75 195 L 588.75 152.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 588.75 152.5 L 660 152.5" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 588.75 131.25 L 660 131.25" fill="none" stroke="#1565c0" />
+<circle cx="125.625" cy="450" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="196.875" cy="386.25" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="268.125" cy="343.75" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="339.375" cy="280" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="410.625" cy="301.25" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="481.875" cy="237.5" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="553.125" cy="195" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="624.375" cy="131.25" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="125.625" cy="450" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="196.875" cy="407.5" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="268.125" cy="365" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="339.375" cy="322.5" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="410.625" cy="280" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="481.875" cy="237.5" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="553.125" cy="195" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<circle cx="624.375" cy="152.5" r="4" fill="white" stroke="#64748b" stroke-width="2"/>
+<text x="119.625" y="440" fill="#1565c0" text-anchor="end" font-size="13">0/16</text>
+<text x="190.875" y="376.25" fill="#1565c0" text-anchor="end" font-size="13">3/16</text>
+<text x="262.125" y="333.75" fill="#1565c0" text-anchor="end" font-size="13">5/16</text>
+<text x="333.375" y="270" fill="#1565c0" text-anchor="end" font-size="13">8/16</text>
+<text x="404.625" y="291.25" fill="#1565c0" text-anchor="end" font-size="13">7/16</text>
+<text x="475.875" y="227.5" fill="#1565c0" text-anchor="end" font-size="13">10/16</text>
+<text x="547.125" y="185" fill="#1565c0" text-anchor="end" font-size="13">12/16</text>
+<text x="618.375" y="121.25" fill="#1565c0" text-anchor="end" font-size="13">15/16</text>
+<text x="417.75" y="334.4" fill="#ad3c00" text-anchor="start" font-size="14">011→100：下降 0.5 LSB</text>
+<text x="339.375" y="252" fill="#ad3c00" text-anchor="middle" font-size="14">INL = +1 LSB</text>
+<path d="M 453.375 140 L 489 140" fill="none" stroke="#1565c0" />
+<text x="496.125" y="145" fill="#1565c0" text-anchor="start" font-size="14">实际</text>
+<path d="M 453.375 165 L 489 165" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="496.125" y="170" fill="#64748b" text-anchor="start" font-size="14">理想（k = 1/2）</text></g></svg>

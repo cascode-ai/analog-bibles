@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">G305：根轨迹（全部在负实轴上），f 从 0 到 1</title><desc id="desc">横轴为 −σ/2π 的对数坐标（越往左越负）；× 开环极点，○ 零点 −100 kHz</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">G305：根轨迹（全部在负实轴上），f 从 0 到 1</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">横轴为 −σ/2π 的对数坐标（越往左越负）；× 开环极点，○ 零点 −100 kHz</text>
+<path d="M 90 110 L 90 450" fill="none" stroke="#cbd5e1" />
+<text x="90" y="475" fill="#475569" text-anchor="middle" font-size="14">−100M</text>
+<path d="M 171.42857142857144 110 L 171.42857142857144 450" fill="none" stroke="#cbd5e1" />
+<text x="171.42857142857144" y="475" fill="#475569" text-anchor="middle" font-size="14">−10M</text>
+<path d="M 252.85714285714286 110 L 252.85714285714286 450" fill="none" stroke="#cbd5e1" />
+<text x="252.85714285714286" y="475" fill="#475569" text-anchor="middle" font-size="14">−1M</text>
+<path d="M 334.2857142857143 110 L 334.2857142857143 450" fill="none" stroke="#cbd5e1" />
+<text x="334.2857142857143" y="475" fill="#475569" text-anchor="middle" font-size="14">−100k</text>
+<path d="M 415.7142857142857 110 L 415.7142857142857 450" fill="none" stroke="#cbd5e1" />
+<text x="415.7142857142857" y="475" fill="#475569" text-anchor="middle" font-size="14">−10k</text>
+<path d="M 497.14285714285717 110 L 497.14285714285717 450" fill="none" stroke="#cbd5e1" />
+<text x="497.14285714285717" y="475" fill="#475569" text-anchor="middle" font-size="14">−1k</text>
+<path d="M 578.5714285714286 110 L 578.5714285714286 450" fill="none" stroke="#cbd5e1" />
+<text x="578.5714285714286" y="475" fill="#475569" text-anchor="middle" font-size="14">−100</text>
+<path d="M 660 110 L 660 450" fill="none" stroke="#cbd5e1" />
+<text x="660" y="475" fill="#475569" text-anchor="middle" font-size="14">−10</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">实轴位置 s/2π（Hz，对数刻度）</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16"></text>
+<path d="M 578.57 273.20 L 334.29 273.20" fill="none" stroke="#1565c0" stroke-width="4" />
+<path d="M 327.84 273.20 L 90.00 273.20" fill="none" stroke="#ad3c00" stroke-width="4" />
+<path d="M 90 280 L 660 280" fill="none" stroke="#253047" />
+<path d="M 571.5714285714286 273 L 585.5714285714286 287" fill="none" stroke="#172033" />
+<path d="M 571.5714285714286 287 L 585.5714285714286 273" fill="none" stroke="#172033" />
+<path d="M 320.83809853612195 273 L 334.83809853612195 287" fill="none" stroke="#172033" />
+<path d="M 320.83809853612195 287 L 334.83809853612195 273" fill="none" stroke="#172033" />
+<circle cx="334.2857142857143" cy="280" r="4" fill="white" stroke="#172033" stroke-width="2"/>
+<text x="578.5714285714286" y="264" fill="#172033" text-anchor="middle" font-size="13">−100 Hz</text>
+<text x="323.83809853612195" y="264" fill="#172033" text-anchor="end" font-size="13">−120 kHz</text>
+<text x="338.2857142857143" y="264" fill="#172033" text-anchor="start" font-size="13">−100 kHz</text>
+<text x="458.29155497282744" y="203.5" fill="#1565c0" text-anchor="middle" font-size="13">支路 1：−100 Hz → 零点 −100 kHz</text>
+<text x="214.00584068711316" y="203.5" fill="#ad3c00" text-anchor="middle" font-size="13">支路 2：−120 kHz → −∞</text>
+<circle cx="415.99833526744544" cy="280" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="327.1956303761821" cy="280" r="4" fill="white" stroke="#ad3c00" stroke-width="2"/>
+<circle cx="334.3458842093619" cy="280" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="164.9220647757099" cy="280" r="4" fill="white" stroke="#ad3c00" stroke-width="2"/>
+<text x="415.99833526744544" y="306" fill="#1565c0" text-anchor="middle" font-size="12">f = 10⁻³: −9.92 kHz</text>
+<text x="321.1956303761821" y="306" fill="#ad3c00" text-anchor="end" font-size="12">f = 10⁻³: −122 kHz</text>
+<text x="340.3458842093619" y="326" fill="#1565c0" text-anchor="start" font-size="12">f = 1: −99.83 kHz</text>
+<text x="164.9220647757099" y="306" fill="#ad3c00" text-anchor="middle" font-size="12">f = 1: −12.0 MHz</text></g></svg>

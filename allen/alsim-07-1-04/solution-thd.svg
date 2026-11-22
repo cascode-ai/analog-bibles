@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="en">
+<title id="title">alsim-07-1-04: THD versus rms output voltage at 1 kHz</title><desc id="desc">ngspice level 1; unity-gain follower, RL = 100 Ω, 20 µA input-stage tail current; log–log axes</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">alsim-07-1-04: THD versus rms output voltage at 1 kHz</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">ngspice level 1; unity-gain follower, RL = 100 Ω, 20 µA input-stage tail current; log–log axes</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">output rms (V)</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">THD (%)</text>
+<path d="M 146.99999999999997 110 L 146.99999999999997 450" fill="none" stroke="#cbd5e1" />
+<text x="146.99999999999997" y="475" fill="#475569" text-anchor="middle" font-size="14">0.01</text>
+<path d="M 237.6530383967358 110 L 237.6530383967358 450" fill="none" stroke="#cbd5e1" />
+<text x="237.6530383967358" y="475" fill="#475569" text-anchor="middle" font-size="14">0.03</text>
+<path d="M 337 110 L 337 450" fill="none" stroke="#cbd5e1" />
+<text x="337" y="475" fill="#475569" text-anchor="middle" font-size="14">0.1</text>
+<path d="M 427.6530383967358 110 L 427.6530383967358 450" fill="none" stroke="#cbd5e1" />
+<text x="427.6530383967358" y="475" fill="#475569" text-anchor="middle" font-size="14">0.3</text>
+<path d="M 527 110 L 527 450" fill="none" stroke="#cbd5e1" />
+<text x="527" y="475" fill="#475569" text-anchor="middle" font-size="14">1</text>
+<path d="M 617.6530383967358 110 L 617.6530383967358 450" fill="none" stroke="#cbd5e1" />
+<text x="617.6530383967358" y="475" fill="#475569" text-anchor="middle" font-size="14">3</text>
+<path d="M 90 453.11150935812594 L 660 453.11150935812594" fill="none" stroke="#cbd5e1" />
+<text x="78" y="458.11150935812594" fill="#475569" text-anchor="end" font-size="14">0.03</text>
+<path d="M 90 382 L 660 382" fill="none" stroke="#cbd5e1" />
+<text x="78" y="387" fill="#475569" text-anchor="end" font-size="14">0.1</text>
+<path d="M 90 317.1115093581259 L 660 317.1115093581259" fill="none" stroke="#cbd5e1" />
+<text x="78" y="322.1115093581259" fill="#475569" text-anchor="end" font-size="14">0.3</text>
+<path d="M 90 246 L 660 246" fill="none" stroke="#cbd5e1" />
+<text x="78" y="251" fill="#475569" text-anchor="end" font-size="14">1</text>
+<path d="M 90 181.11150935812594 L 660 181.11150935812594" fill="none" stroke="#cbd5e1" />
+<text x="78" y="186.11150935812594" fill="#475569" text-anchor="end" font-size="14">3</text>
+<path d="M 90 110 L 660 110" fill="none" stroke="#cbd5e1" />
+<text x="78" y="115" fill="#475569" text-anchor="end" font-size="14">10</text>
+<path d="M 117.56862760270879 182.8172613630524 L 175.35163140452215 212.8793621508396" fill="none" stroke="#1565c0" />
+<path d="M 175.35163140452215 212.8793621508396 L 251.07719402368625 251.65480818485753" fill="none" stroke="#1565c0" />
+<path d="M 251.07719402368625 251.65480818485753 L 308.38968862141087 278.5312936182224" fill="none" stroke="#1565c0" />
+<path d="M 308.38968862141087 278.5312936182224 L 365.5853877975673 304.31097232380955" fill="none" stroke="#1565c0" />
+<path d="M 365.5853877975673 304.31097232380955 L 441.19398944525443 339.91925729417295" fill="none" stroke="#1565c0" />
+<path d="M 441.19398944525443 339.91925729417295 L 498.38968862141087 368.34960586401144" fill="none" stroke="#1565c0" />
+<path d="M 498.38968862141087 368.34960586401144 L 555.5853877975671 396.3730154749164" fill="none" stroke="#1565c0" />
+<path d="M 555.5853877975671 396.3730154749164 L 589.0427270181467 412.36863897757615" fill="none" stroke="#1565c0" />
+<path d="M 589.0427270181467 412.36863897757615 L 601.7659516320925 418.7234971448604" fill="none" stroke="#1565c0" />
+<path d="M 601.7659516320925 418.7234971448604 L 608.5516433109916 422.23552970978733" fill="none" stroke="#1565c0" />
+<path d="M 608.5516433109916 422.23552970978733 L 612.7840047422062 424.0129170712763" fill="none" stroke="#1565c0" />
+<path d="M 612.7840047422062 424.0129170712763 L 616.8098326264777 424.8610308163599" fill="none" stroke="#1565c0" />
+<path d="M 616.8098326264777 424.8610308163599 L 620.6456971537865 424.37490420763135" fill="none" stroke="#1565c0" />
+<path d="M 620.6456971537865 424.37490420763135 L 624.3136766409099 420.96528613922385" fill="none" stroke="#1565c0" />
+<path d="M 624.3136766409099 420.96528613922385 L 627.8255237227725 412.6656926609173" fill="none" stroke="#1565c0" />
+<path d="M 627.8255237227725 412.6656926609173 L 631.1939894452545 394.5920549346563" fill="none" stroke="#1565c0" />
+<path d="M 631.1939894452545 394.5920549346563 L 632.7799498668552 334.41902882184297" fill="none" stroke="#1565c0" />
+<path d="M 632.7799498668552 334.41902882184297 L 634.0478779108554 254.38173474655434" fill="none" stroke="#1565c0" />
+<path d="M 634.0478779108554 254.38173474655434 L 635.1254203430798 217.3275771397572" fill="none" stroke="#1565c0" />
+<path d="M 635.1254203430798 217.3275771397572 L 636.0703416016646 194.17080496015538" fill="none" stroke="#1565c0" />
+<path d="M 636.0703416016646 194.17080496015538 L 637.682713459761 165.0170112656014" fill="none" stroke="#1565c0" />
+<path d="M 637.682713459761 165.0170112656014 L 640.1568470711117 132.86484083607553" fill="none" stroke="#1565c0" />
+<circle cx="117.56862760270879" cy="182.8172613630524" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="175.35163140452215" cy="212.8793621508396" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="251.07719402368625" cy="251.65480818485753" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="308.38968862141087" cy="278.5312936182224" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="365.5853877975673" cy="304.31097232380955" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="441.19398944525443" cy="339.91925729417295" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="498.38968862141087" cy="368.34960586401144" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="555.5853877975671" cy="396.3730154749164" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="589.0427270181467" cy="412.36863897757615" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="601.7659516320925" cy="418.7234971448604" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="608.5516433109916" cy="422.23552970978733" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="612.7840047422062" cy="424.0129170712763" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="616.8098326264777" cy="424.8610308163599" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="620.6456971537865" cy="424.37490420763135" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="624.3136766409099" cy="420.96528613922385" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="627.8255237227725" cy="412.6656926609173" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="631.1939894452545" cy="394.5920549346563" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="632.7799498668552" cy="334.41902882184297" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="634.0478779108554" cy="254.38173474655434" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="635.1254203430798" cy="217.3275771397572" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="636.0703416016646" cy="194.17080496015538" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="637.682713459761" cy="165.0170112656014" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<circle cx="640.1568470711117" cy="132.86484083607553" r="4" fill="white" stroke="#1565c0" stroke-width="2"/>
+<text x="166" y="178" fill="#1565c0" text-anchor="start" font-size="14">crossover distortion: THD falls with amplitude</text>
+<text x="527" y="436.4" fill="#1565c0" text-anchor="middle" font-size="14">minimum 0.048% (2.97 V)</text>
+<text x="627.7" y="144" fill="#ad3c00" text-anchor="end" font-size="14">clipping ≈ 3.6 V</text></g></svg>

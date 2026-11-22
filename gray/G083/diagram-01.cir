@@ -1,0 +1,14 @@
+* Double-cascode current mirror biased by the M6-M8 stack (replica input branch MA-MC, output branch M1-M3)
+IIN vdd in {I_IN}
+VDD vdd 0 {V_DD}
+M8 in in b3 0 NMOS W={W} L={L}
+M7 b3 in b2 0 NMOS W={W/3} L={L}
+M6 b2 in b1 0 NMOS W={W/5} L={L}
+MC b1 b3 xb 0 NMOS W={W} L={L}
+MB xb b2 xa 0 NMOS W={W} L={L}
+MA xa b1 0 0 NMOS W={W} L={L}
+M3 out b3 o2 0 NMOS W={W} L={L}
+M2 o2 b2 o1 0 NMOS W={W} L={L}
+M1 o1 b1 0 0 NMOS W={W} L={L}
+VOUT out 0 {V_OUT}
+.end

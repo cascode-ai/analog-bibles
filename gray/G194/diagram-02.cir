@@ -1,0 +1,4 @@
+* Output-impedance equivalent circuit at the collector c: C_mu in series with r_b
+Cmu c b {C_mu}
+Rb b 0 {r_b}
+.end

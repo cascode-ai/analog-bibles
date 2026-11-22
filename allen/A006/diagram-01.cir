@@ -1,0 +1,9 @@
+* After source rearrangement: r_m*i moved through node B into series with R2 and with R3; node B is now tied to ground
+Iin 0 A {i_in}
+R1 A 0 {R_1}
+Vi A A2 0
+R2 A2 B2 {R_2}
+H1 0 B2 Vi {r_m}
+H2 0 B3 Vi {r_m}
+R3 B3 0 {R_3}
+.end

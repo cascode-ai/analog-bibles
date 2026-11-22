@@ -7,6 +7,9 @@ import { startBrowser } from "./test-browser.mjs";
 test("reading layout and existing browser behavior", { timeout: 180000 }, async (t) => {
   const b = await startBrowser();
   t.after(() => b.close());
+  // These independent scenarios start without a previous reading session;
+  // reader-experience.test.mjs covers persistence across navigation/reloads.
+  await b.cdp('Page.addScriptToEvaluateOnNewDocument', { source: 'sessionStorage.removeItem("ab.reader.positions");localStorage.removeItem("ab.questionWidth");' });
   const screenshotDir = process.env.AB_SCREENSHOTS_DIR;
   if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
   const click = (selector) => b.evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);
@@ -208,7 +211,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   });
 
   await t.test("unavailable tabs stay hidden and a new question starts with its reference answer", async () => {
-    await b.open("/browse?scope=gray&id=G001&view=focus&lang=en");
+    await b.open("/browse?scope=allen&id=alsim-09-5-06&view=focus&lang=en");
     assert.equal(await b.evaluate('document.querySelector("[data-solution-tab=detailed]").hidden'), true);
     await b.open("/review?scope=razavi&id=R050&lang=en");
     await click('[data-solution-tab="grading"]');
@@ -580,14 +583,14 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
           const tabs=panel.querySelector('.solution-tabs'),tools=panel.querySelector('.solution-tools');
           const step=card.querySelector('[data-step-number="3"]');
           const bounded=getComputedStyle(panel).overflowY === 'auto';
-          const top=bounded ? panel.getBoundingClientRect().top+tabs.getBoundingClientRect().height : headerBottom();
+          const top=bounded ? panel.getBoundingClientRect().top+tabs.getBoundingClientRect().height : headerBottom() + (mode === "browse" && panel.closest(".reader") ? tabs.getBoundingClientRect().height : 0);
           const delta=step.getBoundingClientRect().top-top-tools.getBoundingClientRect().height-4;
           if (bounded) panel.scrollTop+=delta; else window.scrollBy(0,delta);
         })()`);
         await b.waitFor(`document.querySelector('${card} .solution-tools').dataset.currentStep === '3'`);
         const position = await b.evaluate(`(() => {
           const p=document.querySelector('${card} .solution-panel'),tools=p.querySelector('.solution-tools');
-          const top=getComputedStyle(p).overflowY === 'auto' ? p.getBoundingClientRect().top+p.querySelector('.solution-tabs').getBoundingClientRect().height : headerBottom();
+          const top=getComputedStyle(p).overflowY === 'auto' ? p.getBoundingClientRect().top+p.querySelector('.solution-tabs').getBoundingClientRect().height : headerBottom() + (mode === "browse" && p.closest(".reader") ? p.querySelector(".solution-tabs").getBoundingClientRect().height : 0);
           return {actual:tools.getBoundingClientRect().top,expected:top,overflow:document.documentElement.scrollWidth>innerWidth};
         })()`);
         assert.ok(Math.abs(position.actual-position.expected)<2,`${width}/${mode}: ${JSON.stringify(position)}`);
@@ -624,7 +627,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await click('#next');
     await b.waitFor('document.getElementById("item").dataset.qid === "R006" && solutionNavigation.size === 1');
     assert.equal(await b.evaluate('[...solutionNavigation.keys()].every(p=>p.isConnected)'),true);
-    await b.open('/browse?scope=gray&id=G001&lang=zh');
+    await b.open('/browse?scope=allen&id=alsim-09-5-06&lang=zh');
     assert.equal(await b.evaluate('solutionNavigation.size'),0);
     assert.equal(await b.evaluate('document.querySelector("[data-solution-tab=detailed]").hidden'),true);
     assert.deepEqual(b.errors,[]);
@@ -691,7 +694,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
         const tools=panel.querySelector('.solution-tools'),tabs=panel.querySelector('.solution-tabs');
         const step=card.querySelector('[data-step-number="2"]');
         const bounded=getComputedStyle(panel).overflowY === 'auto';
-        const top=bounded ? panel.getBoundingClientRect().top+tabs.getBoundingClientRect().height : headerBottom();
+        const top=bounded ? panel.getBoundingClientRect().top+tabs.getBoundingClientRect().height : headerBottom() + (mode === "browse" && panel.closest(".reader") ? tabs.getBoundingClientRect().height : 0);
         const delta=step.getBoundingClientRect().top-top-tools.getBoundingClientRect().height+80;
         if (bounded) panel.scrollTop+=delta; else window.scrollBy(0,delta);
       })()`);

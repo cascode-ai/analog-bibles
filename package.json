@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs site/solution-content.test.mjs site/workbench.test.mjs site/workbench-codex.test.mjs site/workbench-quality.test.mjs site/workbench-exchange.test.mjs site/workbench.browser.test.mjs",
+    "test": "npm run build && node --test site/analytics.test.mjs site/search.test.mjs site/reading.test.mjs site/images.test.mjs site/review-status.test.mjs site/review-status.browser.test.mjs site/solution-content.test.mjs site/reader-experience.test.mjs site/workbench.test.mjs site/workbench-codex.test.mjs site/workbench-quality.test.mjs site/workbench-exchange.test.mjs site/workbench.browser.test.mjs",
     "workbench:db": "node site/workbench-local.mjs db",
     "workbench:dev": "node site/workbench-local.mjs dev",
     "review:check": "node site/check-reviews.mjs",

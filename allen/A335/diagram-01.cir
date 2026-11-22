@@ -1,0 +1,19 @@
+* Differential-output op amp with inverter output stages, each compensated by Cc-Rz from its output back to its own input (d1 to vout+, d2 to vout-)
+VDD vdd 0 {V_DD}
+VSS vss 0 {V_SS}
+M3 d1 vbp vdd vdd PMOS W={W3} L={L}
+M4 d2 vbp vdd vdd PMOS W={W3} L={L}
+M1 d1 vinp tail vss NMOS W={W1} L={L}
+M2 d2 vinn tail vss NMOS W={W1} L={L}
+M5 tail vbn vss vss NMOS W={W5} L={L}
+MP1 voutp d1 vdd vdd PMOS W={WP} L={L}
+MN1 voutp d1 vss vss NMOS W={WN} L={L}
+MP2 voutn d2 vdd vdd PMOS W={WP} L={L}
+MN2 voutn d2 vss vss NMOS W={WN} L={L}
+Rz1 d1 x1 {R_z}
+Cc1 x1 voutp {C_c}
+Rz2 d2 x2 {R_z}
+Cc2 x2 voutn {C_c}
+CL1 voutp 0 {C_L}
+CL2 voutn 0 {C_L}
+.end

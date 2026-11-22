@@ -1,0 +1,10 @@
+* Small-signal equivalent circuit at IC = 2 mA (r_mu omitted as open, r_ex = 0, substrate at ac ground)
+Rb B Bp 150
+Rpi Bp E 1.3k
+Cpi Bp E 22.6p
+Cmu Bp Cp 0.6p
+G1 Cp E Bp E 76.9m
+Ro Cp E 20k
+Rc Cp C 150
+Ccs Cp 0 2p
+.end

@@ -4,7 +4,7 @@
 
 Hand-analysis results (what the simulation should approximately reproduce):
 (a) The pnp pair runs at 10 μA per side, $g_{m1} = 10\text{ μA}/26\text{ mV} = 0.385$ mA/V; with the mirror load the stage transconductance is $g_{m1}$. With the 10-pF Miller capacitor, $\omega_u = g_{m1}/C = 3.85 \times 10^7$ rad/s, $f_u ≈ 6.1$ MHz. Slew rate $= I_{EE}/C = 20\text{ μA}/10\text{ pF} = 2$ V/μs.
-(b) In the follower, the 10-V input step saturates the input stage; $V_o$ ramps linearly at 2 V/μs from −5 V, reaching ≈ +5 V at ≈ 5 μs, then settles exponentially with $\tau = 1/\omega_u ≈ 26$ ns (the linear region begins when the error is ≈ SR/$\omega_u$ ≈ 52 mV); it stays at +5 V up to 20 μs.
+(b) In the follower, the 10-V input step saturates the input stage; $V_o$ ramps linearly at 2 V/μs from −5 V, reaching ≈ +5 V at ≈ 5 μs, then settles exponentially with $\tau = 1/\omega_u ≈ 26$ ns (the linear region begins when the error is ≈ SR/$\omega_u$ ≈ 52 mV); it stays at +5 V up to 20 μs. (Polarity: raising $Q_1$'s base lowers $V_o$, so despite the marks in [Fig. 1] $Q_1$'s base is the inverting input; the follower returns $V_o$ to $Q_1$'s base and drives $Q_2$'s base. Following the marks literally gives positive feedback.)
 (c) Expected simulation with the given models (which contain no junction or diffusion capacitances, so the 10-pF capacitor is the only capacitance): open-loop dc gain of order $10^6$ (≈ 120 dB: first stage ≈ $g_{m1} \times 0.8$ MΩ, second stage ≈ 5000), a single dominant pole of a few Hz, unity-gain frequency ≈ 6 MHz; step response slewing at ≈ ±2 V/μs with ≈ 5-μs transition. Finite β causes only percent-level differences (mirror error ≈ $2/\beta$, base current of $Q_5$).
 
 ## Grading notes
