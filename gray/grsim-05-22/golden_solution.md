@@ -2,13 +2,13 @@
 
 ## Reference answer
 
-One design (all $L = 1$ µm, hand analysis with λ neglected): $(W/L)_1 \approx 58$, $(W/L)_2 \approx 846$, $(W/L)_3 = 50$, $(W/L)_4 \approx 16$, $(W/L)_5 \approx 19.5$, $(W/L)_6 = 25$; total gate area ≈ 1015 µm².
+One design (all $L = 1$ µm, hand analysis with λ neglected): $(W/L)_1 \approx 58$, $(W/L)_2 \approx 805$, $(W/L)_3 = 50$, $(W/L)_4 \approx 16$, $(W/L)_5 \approx 19.5$, $(W/L)_6 = 25$; total gate area ≈ 975 µm².
 - Clipping criteria: positive output limited when $M_3$ leaves the active region, $V_o^+ = V_{DD} - |V_{ov3}| - V_{gs1}$; negative when $M_6$ (carrying the fixed 10 µA) leaves the active region, $V_o^- = -V_{SS} + V_{ov6} + |V_{gs2}|$. $|V_{ov3}| = \sqrt{20\ \mu/(57.5\ \mu\times50)} = 0.083$ V, $V_{ov6} = \sqrt{20\ \mu/(127\ \mu\times25)} = 0.079$ V.
 - $M_1$ at $V_o = +1$ V ($I_{d1} = 1$ mA, $M_2$ off, $V_{SB1} = 3.5$ V): $V_{t1} = 0.7 + 0.16(\sqrt{4.15} - \sqrt{0.65}) = 0.895$ V; allowed $V_{gs1} = 2.5 - 0.083 - 1 = 1.417$ V → $V_{ov1} = 0.522$ V → $(W/L)_1 = 2(1\ \mathrm{mA})/(127\ \mu \times 0.522^2) \approx 58$.
-- $M_2$ at $V_o = -1$ V ($|I_{d2}| \approx 1$ mA, $V_{BS2} = 3.5$ V): $|V_{t2}| = 0.7 + 0.43(\sqrt{4.26} - \sqrt{0.76}) = 1.217$ V; allowed $V_{sg2} = 2.5 - 0.079 - 1 = 1.421$ V → $V_{ov2} = 0.203$ V → $(W/L)_2 \approx 842$, ≈ 846 to cover the few µA $M_1$ still conducts at −1 V.
+- $M_2$ at $V_o = -1$ V ($|I_{d2}| \approx 1$ mA, $V_{BS2} = 3.5$ V): $|V_{t2}| = 0.7 + 0.43(\sqrt{4.26} - \sqrt{0.76}) = 1.213$ V; allowed $V_{sg2} = 2.5 - 0.079 - 1 = 1.421$ V → $V_{ov2} = 0.208$ V → $(W/L)_2 \approx 801$, ≈ 805 to cover the few µA $M_1$ still conducts at −1 V.
 - Quiescent ($V_o = 0$, 100 µA): $V_{gs1} = 0.853 + 0.165 = 1.018$ V, $V_{sg2} = 1.105 + 0.065 = 1.169$ V, so $V_{GS4} + V_{SG5} = 2.188$ V at 10 µA. Minimizing $(W/L)_4 + (W/L)_5$ under this constraint (Lagrange: $(W/L)_5/(W/L)_4 \approx (k_n'/k_p')^{1/3}$, corrected for the body effect of $M_4$/$M_5$ whose common source sits at ≈ +0.06 V) gives $(W/L)_4 \approx 15.7$, $(W/L)_5 \approx 19.5$ (sum ≈ 35), versus ≈ 90 for the simple scaled choice $(W/L)_{4,5} = (W/L)_{1,2}/10$.
 - Checks: at $V_o = +1$ V, $M_2$'s $V_{sg2}$ is 0.33 V below its threshold (off); at $V_o = -1$ V, $M_1$ carries only ≈ 4 µA.
-Expected simulation: $V_o$ vs $V_i$ is inverting ($M_6$ is a common-source driver), steep (gain set by $M_6$ with the high impedance of $M_3$ and $M_6$, a few tens with λ included) around the $V_i$ that gives $V_o = 0$ (≈ $-2.5 + V_{GS6}$ at 10 µA ≈ −1.72 V), smooth through $V_o = 0$ (class AB), and flattening at ≈ +1 V and ≈ −1 V, where $M_3$ or $M_6$ leaves the active region; channel-length modulation shifts the limits and the idling current by some percent.
+Expected simulation: $V_o$ vs $V_i$ is inverting ($M_6$ is a common-source driver), steep (gain set by $M_6$ with the high impedance of $M_3$ and $M_6$, ≈ −180 with λ included) around the $V_i$ that gives $V_o = 0$ (≈ $-2.5 + V_{GS6}$ at 10 µA ≈ −1.72 V), smooth through $V_o = 0$ (class AB), and flattening at ≈ +1 V and ≈ −1 V, where $M_3$ or $M_6$ leaves the active region; channel-length modulation shifts the limits and the idling current by some percent.
 
 ## Grading notes
 

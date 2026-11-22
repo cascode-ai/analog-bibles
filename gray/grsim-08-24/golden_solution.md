@@ -10,4 +10,4 @@
 
 ## Grading notes
 
-A correct result shows: gain ≈ 16–16.5 (simulation may differ by a few percent through λ-dependent bias currents), output resistance ≈ 200–230 Ω, loop gain ≈ 3–4 if reported, dc output within tens of mV of zero. A gain claimed equal to 21 (infinite loop gain) or an output resistance near $1/g_{m8}$ ≈ 1 kΩ indicates a missing step.
+A correct result shows: gain ≈ 16–16.5 (simulation may differ by a few percent through λ-dependent bias currents), output resistance ≈ 200–230 Ω (≈ 170 Ω from a simulation with the stated λ, which raises the mirror output currents and $g_{m8}$, is also correct), loop gain ≈ 3–4 if reported, dc output near zero (≈ 0.2 V in a simulation with λ = 0.03 V⁻¹, from the $V_{DS}$ mismatch of $M_1$ and $M_2$ amplified by the feedback divider, is acceptable). A gain claimed equal to 21 (infinite loop gain) or an output resistance near $1/g_{m8}$ ≈ 1 kΩ indicates a missing step.

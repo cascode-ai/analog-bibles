@@ -14,7 +14,7 @@ Equations: diode current $I_D = I_Q - I_{c1}/\beta_F$; KVL around the loop (equa
 
 - $V_o = 0$: $I_{c1} = |I_{c2}| = I_D = I_Q/(1 + 1/150) = 99.3$ µA; $V_{BE} = 26\ \mathrm{mV}\ln(9.93\times10^{10}) = 0.658$ V.
 - Positive outputs: $Q_1$ supplies the load; its base current is taken from $I_Q$, so the diode current drops (to 34 µA at +10 V) and $Q_2$ is almost off ($|I_{c2}| = I_D^2/I_{c1}$ ≈ 0.90 µA and 0.11 µA; $V_{EB2}$ = 0.54 V and 0.48 V). Negative outputs: $Q_2$ sinks the load current, $I_D \approx I_Q$, $Q_1$ nearly off.
-- Transfer characteristic: almost a straight line of slope ≈ 1 offset by ≈ −0.66 V at the origin ($V_i - V_o$ = −0.48, −0.54, −0.66, −0.76, −0.78 V at $V_o$ = +10, +5, 0, −5, −10 V); incremental slope ≈ 0.98 near crossover and ≈ 0.99–1.0 at the ends; no deadband.
+- Transfer characteristic: almost a straight line of slope ≈ 1 offset by ≈ −0.66 V at the origin ($V_i - V_o$ = −0.48, −0.54, −0.66, −0.76, −0.78 V at $V_o$ = +10, +5, 0, −5, −10 V); incremental slope ≈ 0.88 at the origin (both devices conducting, $R_o = (V_T/I_c)/2 = 131\ \Omega$, slope $R_L/(R_L+R_o)$), rising to ≈ 0.97 at ±1 V and ≈ 0.99–1.0 at the ends (chord slope ≈ 0.98 over ±5 V); no deadband.
 
 ## Grading notes
 

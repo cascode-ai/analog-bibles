@@ -10,7 +10,7 @@ Percentage change for ΔV = 5 V: $5\ \mathrm{V}/(10.9\ \mathrm{M\Omega}\times0.9
 
 $\beta_F$ sensitivity: the gain error $-2/(\beta^2 + 2\beta + 2)$ goes from −0.005 % (β = 200) to −0.020 % (β = 100): $I_{OUT}$ drops by only ≈ 0.015 %.
 
-$I_{OUT}$–$V_{OUT}$: rises from zero, knee at about $V_{BE} + V_{CE(\text{sat})}$ ≈ 0.9 V, then flat at ≈ 1.0 mA with a slope of ≈ 0.09 µA/V up to 15 V.
+$I_{OUT}$–$V_{OUT}$: $I_{OUT} \approx -1.0$ mA at $V_{OUT} = 0$ (with $V_{OUT}$ below ≈ 0.6 V, $Q_2$'s base–collector junction is forward biased and the $R$ current, ≈ (15 − 0.6) V/13.7 kΩ, flows out through it into the output), crossing zero near 0.65 V, knee at about $V_{BE} + V_{CE(\text{sat})}$ ≈ 0.9 V, then flat at ≈ 1.0 mA with a slope of ≈ 0.09 µA/V up to 15 V.
 
 ## Grading notes
 

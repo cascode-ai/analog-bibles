@@ -5,7 +5,7 @@
 - 增益：$A_v = \dfrac{g_{m1}g_{m6}}{(g_{ds2} + g_{ds4})(g_{ds6} + g_{ds7})} \approx 2.49\times10^3$ V/V（68 dB）。
 - 输出电阻：$R_{out} = 1/(g_{ds6} + g_{ds7}) = 185$ kΩ。
 - 功耗：$P_{diss} = 5\ \mathrm V \times (36.1 + 36.1 + 60.1)\ \mu\mathrm A = 0.66$ mW。
-- 直流 PSRR（对包括 $R_S$/M8 偏置支路在内的整个电路做线性化小信号分析）：PSRR⁺ ≈ 4.9 × 10³（约 74 dB），PSRR⁻ ≈ 7.7 × 10⁴（约 98 dB）。
+- 直流 PSRR（对包括 $R_S$/M8 偏置支路在内的整个电路做线性化小信号分析）：PSRR⁺ ≈ 3.3 × 10³（约 70 dB），PSRR⁻ ≈ 1.3 × 10⁴（约 82 dB）。
 - ICMR：$V_{in}(\max) = V_{DD} - V_{SD5}(\mathrm{sat}) - V_{SG1} = 2.5 - 0.693 - 1.30 = 0.51$ V；$V_{in}(\min) = V_{SS} + V_{GS3} - |V_{TP}| = -2.5 + 0.986 - 0.7 = -2.21$ V。
 - 输出摆幅：$V_{out}(\max) = V_{DD} - V_{SD7}(\mathrm{sat}) = 2.5 - 0.69 = 1.81$ V；$V_{out}(\min) = V_{SS} + V_{DS6}(\mathrm{sat}) = -2.5 + 0.33 = -2.17$ V。
 - 压摆率：$I_5/C_c = 36.1\ \mu\mathrm A/6\ \mathrm{pF} = 6.0$ V/µs（下降沿）。接 20 pF 负载时，上升沿受 M7 限制：起初约为 $(I_7 - I_5)/C_L$ = 1.2 V/µs，第一级输出到底后约为 $I_7/(C_L + C_c)$ = 2.3 V/µs。

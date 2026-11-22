@@ -27,7 +27,7 @@ Gain estimate:
 - $A_v \approx 1.33\ \mathrm{mS}\times5\ \mathrm{G\Omega} \approx 7\times10^6$, versus ≈ $4\times10^4$ without the active cascodes. The simulated value will be lower (order $10^6$), limited by second-order effects.
 
 Caveat at the A1 input pair:
-- The $A_1$ inputs sit at $V_{BIAS2} = V_{DD} - 0.25$ V and its output (gate of $M_{4A}$) at $V_{DD} - 1.1$ V. The gate-drain voltage of $M_{22}$ is therefore $|V_{tp}| + |V_{ovp}| = 0.85$ V. $M_{22}$ stays active only because body effect raises its threshold to ≈ 0.92 V ($V_{SB} \approx 2.2$ V, $2\phi_F \approx 0.66$ V), leaving a margin of ≈ 70 mV. Without body effect the hand analysis would put it at the triode edge.
+- The $A_1$ inputs sit at $V_{BIAS2} = V_{DD} - 0.25$ V and its output (gate of $M_{4A}$) at $V_{DD} - 1.1$ V. The gate-drain voltage of $M_{22}$ is therefore $|V_{tp}| + |V_{ovp}| = 0.85$ V. $M_{22}$ stays active only because body effect raises its threshold to ≈ 0.92 V ($V_{SB} \approx 2.2$ V, $2\phi_F \approx 0.66$ V), leaving ≈ 70 mV by this estimate; the body effect of $M_{3A}$/$M_{4A}$ lowers the $A_1$ output by a further ≈ 30 mV, so in simulation $M_{22}$ is saturated by only ≈ 25 mV. Without body effect the hand analysis would put it at the triode edge. With equal overdrives the required 100-mV margin therefore cannot be met for $M_{22}$ (or $M_{32}$); the specification is not fully consistent.
 - The $A_2$ pair $M_{31}$/$M_{32}$ is in the same situation with p-channel devices.
 
 With $V_{t0} = 0.6$ V / −0.8 V:
@@ -37,6 +37,6 @@ With $V_{t0} = 0.6$ V / −0.8 V:
 ## Grading notes
 
 A correct simulation shows:
-- with $V_{t0} = \pm0.7$ V and γ = 0.25, all transistors except $M_{106}$/$M_{114}$ saturated with the 100-mV margins (after tuning $W_{106}$, $W_{114}$ to about 1/6 of $W_{105}$, $W_{113}$), an output swing ≥ 2.5 V p-p and a very high dc gain (≳ $10^6$);
+- with $V_{t0} = \pm0.7$ V and γ = 0.25, all transistors except $M_{106}$/$M_{114}$ saturated, with the 100-mV margins everywhere except at $M_{22}$/$M_{32}$, which with equal overdrives are saturated by only ≈ 20–30 mV (an answer that reports this is correct) (after tuning $W_{106}$, $W_{114}$ to about 1/6 of $W_{105}$, $W_{113}$), an output swing ≥ 2.5 V p-p and a very high dc gain (≳ $10^6$);
 - with $V_{t0} = 0.6/-0.8$ V, a large gain drop (one to two orders of magnitude), traced to the $A_1$ input pair leaving saturation.
 +2: sizes consistent with $|V_{ov}| = 0.15$ V and the given currents, triode-device sizing, gain estimate of the right order, and the correct explanation of the threshold change. +1: design right but the threshold-change explanation vague (e.g. "headroom is reduced") without identifying the $A_1$ input pair. 0: design with a wrong overdrive (e.g. 0.2 V, violating the swing with margins) but otherwise consistent. -2: sizes that contradict the currents/overdrives by large factors, or the claim that the gain increases with the new thresholds.
