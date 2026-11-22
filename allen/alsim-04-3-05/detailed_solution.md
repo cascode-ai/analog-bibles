@@ -84,4 +84,4 @@ The curve flattens above about 0.4 V, as Step 2 predicts, but its level is well 
 - KAPPA (channel-length modulation) adds a smaller deficit. With ETA set to 0 the same deck gives 9.56 µA.
 - The LEVEL-1 run with the hand parameters shows the square-law version of the same effect. There, $V_{DS1}=0.177$ V lies below $V_{ON}$, so M1 is slightly in triode, and the λ term favours the diode M3; together they give 9.48 µA.
 
-The simulated small-signal output resistance at 2 V is 7.6 MΩ, again limited by the LEVEL-3 output conductance (about 4 µS per device) rather than by λ = 0.04 V⁻¹. The high-swing connection trades current accuracy for swing, which is the motivation for the modified circuit of the next problem.
+The simulated small-signal output resistance at 2 V is 7.6 MΩ, again limited by the LEVEL-3 output conductance (about 4 µS per device) rather than by λ = 0.04 V⁻¹. The high-swing connection trades current accuracy for swing, which motivates modifying the circuit to recover the accuracy.

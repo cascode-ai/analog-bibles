@@ -4,7 +4,7 @@
 
 ### 第 1 步 — 仿真设置
 
-模型采用 level 1，参数为题给的 $k'$、$V_t$、$t_{ox}$、交叠电容和结电容数据。所有器件的有效沟长为 $L_{\text{eff}}=8-0.6-1=6.4\ \mu$m，因此 $\lambda_n=0.2/6.4=0.031\ \mathrm{V^{-1}}$，$\lambda_p=0.1/6.4=0.0156\ \mathrm{V^{-1}}$。体效应取 $\gamma_n=0.21$、$\gamma_p=0.67\ \mathrm{V^{1/2}}$。漏区和源区宽 2 µm：$A_D=A_S=W\cdot2\ \mu$m，$P_D=P_S=2(W+2\ \mu\mathrm{m})$。20 µA 偏置下，$I_{D1}=I_{D2}\approx10$ µA，$I_{D6}=I_{D7}\approx21$ µA。与 grsim-09-21 一样，相对于 $v_o$，$M_1$ 的栅极是反相输入端，这正是反馈分压器接回该端的原因。
+模型采用 level 1，参数为题给的 $k'$、$V_t$、$t_{ox}$、交叠电容和结电容数据。所有器件的有效沟长为 $L_{\text{eff}}=8-0.6-1=6.4\ \mu$m，因此 $\lambda_n=0.2/6.4=0.031\ \mathrm{V^{-1}}$，$\lambda_p=0.1/6.4=0.0156\ \mathrm{V^{-1}}$。体效应取 $\gamma_n=0.21$、$\gamma_p=0.67\ \mathrm{V^{1/2}}$。漏区和源区宽 2 µm：$A_D=A_S=W\cdot2\ \mu$m，$P_D=P_S=2(W+2\ \mu\mathrm{m})$。20 µA 偏置下，$I_{D1}=I_{D2}\approx10$ µA，$I_{D6}=I_{D7}\approx21$ µA。相对于 $v_o$，$M_1$ 的栅极是反相输入端，这正是反馈分压器接回该端的原因。
 
 ```spice
 * grsim-09-27 uncompensated op amp (effective L = 6.4 um, 2-um diffusions)

@@ -46,10 +46,10 @@ $$
 
 ### 第 5 步 — SPICE 检验
 
-采用 grsim-09-21 的运放网表（level-1 模型，有效尺寸，$\lambda_n=0.031$、$\lambda_p=0.0156\ \mathrm{V^{-1}}$，$\gamma_n=0.21\ \mathrm{V^{1/2}}$，$2\phi_f=0.58$ V，NMOS 衬底接 −5 V），加入复制偏置电路，$M_9$ 按有效尺寸 $W=115.6\ \mu$m、$L=7.4\ \mu$m 输入。开环交流分析时，输出经 1 GH 电感接回 $M_1$ 的栅极（相对 $v_o$ 的反相输入端）。
+采用 [图 1] 运放的网表（level-1 模型，有效尺寸，$\lambda_n=0.031$、$\lambda_p=0.0156\ \mathrm{V^{-1}}$，$\gamma_n=0.21\ \mathrm{V^{1/2}}$，$2\phi_f=0.58$ V，NMOS 衬底接 −5 V），加入复制偏置电路，$M_9$ 按有效尺寸 $W=115.6\ \mu$m、$L=7.4\ \mu$m 输入。开环交流分析时，输出经 1 GH 电感接回 $M_1$ 的栅极（相对 $v_o$ 的反相输入端）。
 
 ```spice
-* grsim-09-23 replica bias for M9 (added to the grsim-09-21 op amp)
+* grsim-09-23 replica bias for M9 (added to the op amp of Fig. 1)
 M10 g9 g8 vdd vdd pm w=100u l=6.4u
 M11 g9 g9 s12 vss nm w=100u l=6.4u
 M12 s12 s12 vss vss nm w=100u l=6.4u

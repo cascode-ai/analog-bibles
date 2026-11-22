@@ -46,7 +46,7 @@ about half the MSB's single-sink tolerance, applied to every sink.
 
 | Allocation | MSB sink | LSB sink |
 |---|---|---|
-| Single sink in error (previous problem) | ±0.098 % | ±50 % |
+| Only one sink in error, all others exact | ±0.098 % | ±50 % |
 | Equal share of the budget | ±0.0098 % | ±5 % |
 | Common tolerance | ±0.049 % | ±0.049 % |
 

@@ -39,7 +39,7 @@ within about 0.01 V of [Fig. 2].
 
 ### Step 4 — Re-simulation
 
-The circuit was re-simulated with LEVEL-1 models ($K'$, $V_T$, γ and λ as given, with typical capacitances) and $i_5=20\ \mu$A. The deck is that of alsim-08-4-06 with `IB` set to 20 µA, and $v_{in}$ is a slow triangle between −0.5 V and +0.5 V.
+The circuit was re-simulated with LEVEL-1 models ($K'$, $V_T$, γ and λ as given, with typical capacitances) and $i_5=20\ \mu$A. The deck models the comparator of [Fig. 1] with its tail current mirrored from a bias source `IB`, here set to 20 µA, and $v_{in}$ is a slow triangle between −0.5 V and +0.5 V.
 
 ![Simulated hysteresis loop of vo2 versus vin for i5 = 20 µA, with the corrected hand trip points of ±0.096 V dotted](/q/alsim-08-4-07/solution-hysteresis.svg)
 

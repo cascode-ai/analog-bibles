@@ -1,10 +1,10 @@
 # Detailed solution - grsim-09-43
 
-In the unity-gain follower the whole loop passes through the wire from the output to the gate of $M_1$. Breaking it there, the output is the return side and $M_1$'s gate the driven side. Two ac simulations of the closed circuit then give $\mathscr{R}'_i$ (test current into the junction) and $\mathscr{R}'_v$ (test voltage in series). Neither changes the dc operating point. Combined as complex numbers, they give the return ratio $\mathscr{R}(j\omega)$, from which the unity-gain frequency and the stability margins follow. Hand estimates for the op amp (from grsim-09-21) provide the check.
+In the unity-gain follower the whole loop passes through the wire from the output to the gate of $M_1$. Breaking it there, the output is the return side and $M_1$'s gate the driven side. Two ac simulations of the closed circuit then give $\mathscr{R}'_i$ (test current into the junction) and $\mathscr{R}'_v$ (test voltage in series). Neither changes the dc operating point. Combined as complex numbers, they give the return ratio $\mathscr{R}(j\omega)$, from which the unity-gain frequency and the stability margins follow. Hand estimates for the op amp provide the check.
 
 ### Step 1 — Expected return ratio
 
-The return ratio of the follower equals the op amp's open-loop gain, because the feedback factor is 1. With the device values of grsim-09-21 ($L_{\text{eff}}=6.4\ \mu$m, $g_{m1}=97\ \mu$A/V, $g_{m6}=194\ \mu$A/V, $R_1=2.13\ \mathrm{M\Omega}$, $R_2=1.07\ \mathrm{M\Omega}$):
+The return ratio of the follower equals the op amp's open-loop gain, because the feedback factor is 1. With the device values of the op amp ($L_{\text{eff}}=6.4\ \mu$m, $g_{m1}=97\ \mu$A/V, $g_{m6}=194\ \mu$A/V, $R_1=2.13\ \mathrm{M\Omega}$, $R_2=1.07\ \mathrm{M\Omega}$):
 
 $$
 \mathscr{R}_0=g_{m1}R_1\,g_{m6}R_2\approx4.3\times10^{4},\qquad f_{p1}\approx\frac{1}{2\pi g_{m6}R_2R_1C_c}\approx72\ \mathrm{Hz},\qquad f_u\approx\frac{g_{m1}}{2\pi C_c}=3.1\ \mathrm{MHz}.
@@ -14,7 +14,7 @@ Between $f_{p1}$ and $f_u$ the magnitude falls as $f_u/f$: about 3100 at 1 kHz a
 
 ### Step 2 — The two injections
 
-The op-amp deck of grsim-09-21 is used unchanged (level-1 models with effective dimensions, $\lambda_n=0.031$, $\lambda_p=0.0156\ \mathrm{V^{-1}}$, body effect, overlap capacitances; no junction areas are specified, so only gate and overlap capacitances are present). $M_9$ is 4/10.3 µm (effective) with its gate at +5 V, giving 5.13 kΩ. The input (gate of $M_2$) is grounded for ac.
+A deck of the op amp of [Fig. 1] is used (level-1 models with effective dimensions, $\lambda_n=0.031$, $\lambda_p=0.0156\ \mathrm{V^{-1}}$, body effect, overlap capacitances; no junction areas are specified, so only gate and overlap capacitances are present). $M_9$ is 4/10.3 µm (effective) with its gate at +5 V, giving 5.13 kΩ. The input (gate of $M_2$) is grounded for ac.
 
 ```spice
 * grsim-09-43 injections at X (return side o, driven side inp = gate of M1)
@@ -63,4 +63,4 @@ At 1 kHz and 100 kHz, $|\mathscr{R}'_i|\gg|\mathscr{R}'_v|$, so $\mathscr{R}\app
 | Frequency of −180° | tens of MHz | 120 MHz |
 | Gain margin | a few tens of dB | 36.5 dB |
 
-The return ratio behaves like a single-pole system up to and well beyond its unity-gain frequency. The phase stays within 6° of −90° from 1 kHz to 3 MHz, which gives a large phase margin. The somewhat higher simulated gain and $f_u$ come from the level-1 currents, which exceed nominal by a few percent (see grsim-09-21). The phase lag at 10 MHz is modest (−106°) for two reasons: without junction areas the non-dominant poles lie well above 10 MHz (the phase reaches −180° only at 120 MHz), and $M_9$'s resistance (5.13 kΩ) slightly exceeds $1/g_{m6}$ (4.65 kΩ in the simulation), which moves the compensation zero into the left half-plane, where it adds a little phase lead. Including drain junction capacitances would lower the non-dominant poles and reduce both margins somewhat.
+The return ratio behaves like a single-pole system up to and well beyond its unity-gain frequency. The phase stays within 6° of −90° from 1 kHz to 3 MHz, which gives a large phase margin. The somewhat higher simulated gain and $f_u$ come from the level-1 currents, which exceed nominal by a few percent. The phase lag at 10 MHz is modest (−106°) for two reasons: without junction areas the non-dominant poles lie well above 10 MHz (the phase reaches −180° only at 120 MHz), and $M_9$'s resistance (5.13 kΩ) slightly exceeds $1/g_{m6}$ (4.65 kΩ in the simulation), which moves the compensation zero into the left half-plane, where it adds a little phase lead. Including drain junction capacitances would lower the non-dominant poles and reduce both margins somewhat.

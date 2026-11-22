@@ -46,10 +46,10 @@ Because the overdrive is copied from $M_6$, $R_9$ tracks $1/g_{m6}$ over process
 
 ### Step 5 — SPICE check
 
-The op-amp deck of grsim-09-21 (level-1 models with effective dimensions, $\lambda_n=0.031$, $\lambda_p=0.0156\ \mathrm{V^{-1}}$, $\gamma_n=0.21\ \mathrm{V^{1/2}}$, $2\phi_f=0.58$ V, NMOS bodies at −5 V) is used with the replica-bias circuit added and $M_9$ entered with its effective dimensions $W=115.6\ \mu$m, $L=7.4\ \mu$m. The output is returned to $M_1$'s gate (the inverting input with respect to $v_o$) through a 1-GH inductor for the open-loop ac analysis.
+The deck of the op amp of [Fig. 1] (level-1 models with effective dimensions, $\lambda_n=0.031$, $\lambda_p=0.0156\ \mathrm{V^{-1}}$, $\gamma_n=0.21\ \mathrm{V^{1/2}}$, $2\phi_f=0.58$ V, NMOS bodies at −5 V) is used with the replica-bias circuit added and $M_9$ entered with its effective dimensions $W=115.6\ \mu$m, $L=7.4\ \mu$m. The output is returned to $M_1$'s gate (the inverting input with respect to $v_o$) through a 1-GH inductor for the open-loop ac analysis.
 
 ```spice
-* grsim-09-23 replica bias for M9 (added to the grsim-09-21 op amp)
+* grsim-09-23 replica bias for M9 (added to the op amp of Fig. 1)
 M10 g9 g8 vdd vdd pm w=100u l=6.4u
 M11 g9 g9 s12 vss nm w=100u l=6.4u
 M12 s12 s12 vss vss nm w=100u l=6.4u

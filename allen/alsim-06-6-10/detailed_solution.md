@@ -48,9 +48,9 @@ $$
 
 ### Step 4 — Check by simulation
 
-The two-stage op amp of alsim-06-3-07 was simulated three ways at 10 Hz:
+A two-stage op amp was simulated three ways at 10 Hz:
 - in the circuit of [Fig. 1], with ±2.5-V sources stacked on $V_{cm}$ and the follower's non-inverting input grounded;
-- with quiet supplies, to obtain $A_v$ and $A_c$ by the method of alsim-06-6-06;
+- with quiet supplies, to obtain $A_v$ and $A_c$ by the two-op-amp ratio method (one copy amplifying differentially, an identical copy in common mode);
 - in the direct configuration, with $V_{cm}$ in series with both inputs.
 
 | Quantity | Value |

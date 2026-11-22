@@ -4,7 +4,7 @@ Without $C_c$ the two-stage op amp has two widely spaced but uncompensated poles
 
 ### Step 1 — Simulation setup
 
-The models are level 1 with the given $k'$, $V_t$, $t_{ox}$, overlap and junction data. Effective channel length is $L_{\text{eff}}=8-0.6-1=6.4\ \mu$m for all devices, giving $\lambda_n=0.2/6.4=0.031\ \mathrm{V^{-1}}$ and $\lambda_p=0.1/6.4=0.0156\ \mathrm{V^{-1}}$. Body effect uses $\gamma_n=0.21$, $\gamma_p=0.67\ \mathrm{V^{1/2}}$. Drain and source regions are 2 µm wide: $A_D=A_S=W\cdot2\ \mu$m and $P_D=P_S=2(W+2\ \mu\mathrm{m})$. With 20 µA of bias, the devices carry $I_{D1}=I_{D2}\approx10$ µA and $I_{D6}=I_{D7}\approx21$ µA. As in grsim-09-21, $M_1$'s gate is the inverting input with respect to $v_o$, which is why the feedback divider returns to it.
+The models are level 1 with the given $k'$, $V_t$, $t_{ox}$, overlap and junction data. Effective channel length is $L_{\text{eff}}=8-0.6-1=6.4\ \mu$m for all devices, giving $\lambda_n=0.2/6.4=0.031\ \mathrm{V^{-1}}$ and $\lambda_p=0.1/6.4=0.0156\ \mathrm{V^{-1}}$. Body effect uses $\gamma_n=0.21$, $\gamma_p=0.67\ \mathrm{V^{1/2}}$. Drain and source regions are 2 µm wide: $A_D=A_S=W\cdot2\ \mu$m and $P_D=P_S=2(W+2\ \mu\mathrm{m})$. With 20 µA of bias, the devices carry $I_{D1}=I_{D2}\approx10$ µA and $I_{D6}=I_{D7}\approx21$ µA. $M_1$'s gate is the inverting input with respect to $v_o$, which is why the feedback divider returns to it.
 
 ```spice
 * grsim-09-27 uncompensated op amp (effective L = 6.4 um, 2-um diffusions)

@@ -22,7 +22,7 @@ So a balanced input stage puts $v_{in}'$ right at the crossover point. The sign 
 
 ### Step 2 — Operating point
 
-At rest the loop settles at $v_{in}'=V_{SS}+0.935$ V, inside the dead band found in alsim-07-1-03. Both crossover outputs leave M5 and M6 at the edge of conduction ($I_{D5}\approx0$, $I_{D6}=0.2\ \mu$A), so the output stage is effectively class B with essentially no quiescent current. The supply current is 301 µA, almost all of it in the bias and crossover branches. At this rest point $g_{m5}$ and $g_{m6}$ are nearly zero, so the small-signal loop gain is low: about 17 dB at 1 kHz. As soon as the output carries current, M5 or M6 turns on and the loop gain rises. This is why the distortion is concentrated near the zero crossings.
+At rest the loop settles at $v_{in}'=V_{SS}+0.935$ V, inside the dead band of the crossover stage (the window of only about 1 mV in which M5 and M6 are both off). Both crossover outputs leave M5 and M6 at the edge of conduction ($I_{D5}\approx0$, $I_{D6}=0.2\ \mu$A), so the output stage is effectively class B with essentially no quiescent current. The supply current is 301 µA, almost all of it in the bias and crossover branches. At this rest point $g_{m5}$ and $g_{m6}$ are nearly zero, so the small-signal loop gain is low: about 17 dB at 1 kHz. As soon as the output carries current, M5 or M6 turns on and the loop gain rises. This is why the distortion is concentrated near the zero crossings.
 
 The input stage's 20 µA charges the Miller capacitors $C_1+C_2=13$ pF at about 1.5 V/µs. A 5-V-peak, 1-kHz sine needs only $2\pi(1\ \mathrm{kHz})(5\ \mathrm V)=0.03$ V/µs, so slewing plays no part.
 

@@ -1,6 +1,6 @@
 # Detailed solution - alsim-06-6-07
 
-PSRR is the ratio of the differential gain to the gain from a supply to the output, $\mathrm{PSRR}^+=A_v/A_{dd}$ and $\mathrm{PSRR}^-=A_v/A_{ss}$. Two identical op amps, driven by the same ac source, produce the numerator and the denominator as two node voltages, and postprocessing takes their ratio. Both op amps are held at their linear operating point by the same dc-only feedback network. The method is demonstrated on the two-stage op amp of alsim-06-3-07 with a 20-pF load.
+PSRR is the ratio of the differential gain to the gain from a supply to the output, $\mathrm{PSRR}^+=A_v/A_{dd}$ and $\mathrm{PSRR}^-=A_v/A_{ss}$. Two identical op amps, driven by the same ac source, produce the numerator and the denominator as two node voltages, and postprocessing takes their ratio. Both op amps are held at their linear operating point by the same dc-only feedback network. The method is demonstrated on a two-stage op amp with a 20-pF load.
 
 ### Step 1 — Op amp 1: differential gain
 
@@ -66,7 +66,7 @@ let dirm = -db(v(o5))
 .END
 ```
 
-`opamp.sub` defines the op amp of alsim-06-3-07 as subcircuit `OPAMP` (pins: non-inverting input, inverting input, output, $V_{DD}$, $V_{SS}$). In this deck the ac sources VS, VR2 and VR3 all have amplitude 1. Each op amp sees only its own source, so the ratios are formed from a single analysis.
+`opamp.sub` defines this two-stage op amp as subcircuit `OPAMP` (pins: non-inverting input, inverting input, output, $V_{DD}$, $V_{SS}$). In this deck the ac sources VS, VR2 and VR3 all have amplitude 1. Each op amp sees only its own source, so the ratios are formed from a single analysis.
 
 ### Step 4 — Results
 
@@ -79,6 +79,6 @@ let dirm = -db(v(o5))
 | PSRR⁻, ratio (dB) | 81.4 | 64.7 | 44.8 | 24.8 | 4.8 | −15.1 |
 | PSRR⁻, 1/direct (dB) | 81.4 | 64.7 | 44.8 | 24.8 | 5.0 | 10.5 |
 
-The ratio method reproduces the reciprocal of the direct measurement to within 0.2 dB up to about 1 MHz. The dc values, 69.9 dB and 81.4 dB, agree with the PSRR found in alsim-06-3-07. Above the op amp's GB (≈ 1.5 MHz) the direct follower result is no longer $1/\mathrm{PSRR}$, because it assumes $|A_v|\gg1$, and it turns upward. The ratio method stays valid.
+The ratio method reproduces the reciprocal of the direct measurement to within 0.2 dB up to about 1 MHz. The dc values, 69.9 dB and 81.4 dB, agree with the hand-calculated dc PSRR of this op amp (about 70 dB and 82 dB). Above the op amp's GB (≈ 1.5 MHz) the direct follower result is no longer $1/\mathrm{PSRR}$, because it assumes $|A_v|\gg1$, and it turns upward. The ratio method stays valid.
 
 The frequency dependence follows from the circuit. This op amp has an n-channel second stage referenced to $V_{SS}$. Once $C_c$ becomes effective, above the dominant pole of a few hundred hertz, it ties the gate of M6 to its drain, so M6 behaves like a diode to $V_{SS}$ and the output follows $V_{SS}$. PSRR⁻ therefore starts falling at about 160 Hz and drops by 20 dB/decade. PSRR⁺ stays flat to about 12 kHz. These roles are the mirror image of the usual n-channel-input op amp with a p-channel second stage, where PSRR⁺ is the one that degrades early.

@@ -1,6 +1,6 @@
 # Detailed solution - alsim-06-6-06
 
-CMRR is the ratio $A_v/A_c$. Instead of measuring its reciprocal, let one op amp amplify an ac signal differentially and an identical op amp amplify the same signal in common mode. The ratio of their outputs is then the CMRR itself. Both op amps need a defined dc operating point, provided by a feedback path that is closed at dc and open at the analysis frequencies. Postprocessing forms the ratio. The method is checked here with the two-stage op amp of alsim-06-3-07 (load 20 pF).
+CMRR is the ratio $A_v/A_c$. Instead of measuring its reciprocal, let one op amp amplify an ac signal differentially and an identical op amp amplify the same signal in common mode. The ratio of their outputs is then the CMRR itself. Both op amps need a defined dc operating point, provided by a feedback path that is closed at dc and open at the analysis frequencies. Postprocessing forms the ratio. The method is checked here with a two-stage op amp (load 20 pF).
 
 ### Step 1 — Op amp 1: differential gain
 
@@ -60,7 +60,7 @@ let direct = -db(v(o3))
 .END
 ```
 
-`opamp.sub` holds the op amp of alsim-06-3-07 as subcircuit `OPAMP` (pins: non-inverting input, inverting input, output, $V_{DD}$, $V_{SS}$). The third op amp is the usual direct configuration, kept for comparison.
+`opamp.sub` holds this two-stage op amp as subcircuit `OPAMP` (pins: non-inverting input, inverting input, output, $V_{DD}$, $V_{SS}$). The third op amp is the usual direct configuration, kept for comparison.
 
 ### Step 5 — Results
 
@@ -70,7 +70,7 @@ $$
 \mathrm{CMRR}=70.47\ \mathrm{dB}-(-13.32\ \mathrm{dB})=83.8\ \mathrm{dB}\;(1.55\times10^4).
 $$
 
-![CMRR versus frequency from the ratio method and from the reciprocal of the direct configuration, for the op amp of alsim-06-3-07 with 20 pF load](/q/alsim-06-6-06/solution-cmrr.svg)
+![CMRR versus frequency from the ratio method and from the reciprocal of the direct configuration, for the two-stage op amp with 20 pF load](/q/alsim-06-6-06/solution-cmrr.svg)
 
 | Frequency | 10 Hz | 10 kHz | 100 kHz | 1 MHz | 10 MHz |
 |---|---|---|---|---|---|
