@@ -1,0 +1,10 @@
+* Modified circuit for the low-temperature side: M1 fed by I_PTAT, sink K1' I_VBE at the drain of M2, mirror M3-M4 delivering K3' I_NL1
+VDD vdd 0 {V_DD}
+M1 g1 g1 vdd vdd PMOS W={W1} L={L}
+M2 x g1 vdd vdd PMOS W={K2p*W1} L={L}
+IPTAT g1 0 {I_PTAT}
+IVBE x 0 {K1p*I_VBE}
+M3 x x vdd vdd PMOS W={W3} L={L}
+M4 out x vdd vdd PMOS W={K3p*W3} L={L}
+VOUT out 0 {V_OUT}
+.end

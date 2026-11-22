@@ -1,0 +1,11 @@
+* Regulated-cascode boosting mirror (one of four): error amplifier EA drives the gate of cascode M16 so that the drain y of the boosting transistor M12 follows the setpoint i1*R
+VSS vss 0 {V_SS}
+I1 vdd d6 {i_1}
+M6 d6 d6 vss vss NMOS W={W6} L={L}
+M12 y d6 vss vss NMOS W={W12} L={L}
+M16 vo2 g16 y vss NMOS W={W16} L={L}
+IR vdd r {i_1}
+R r vss {R}
+EA g16 0 r y {A}
+VDD vdd 0 {V_DD}
+.end

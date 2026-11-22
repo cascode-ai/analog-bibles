@@ -1,0 +1,18 @@
+* Rail-to-rail input stage: regular pair M1-M2 and depletion pair MD1-MD2 with drains tied at folding nodes A and B, tail M5 shared through the steering transistor MB (gate VREF), folded cascode M3-M11 giving the single-ended output vo1
+VDD vdd 0 2
+VREF vref 0 0.9
+M5 s1 vbn 0 0 NMOS W=57u L=1u
+M1 a vin1 s1 0 NMOS W=28u L=1u
+M2 b vin2 s1 0 NMOS W=28u L=1u
+MB s2 vref s1 0 NMOS W=57u L=1u
+MD1 a vin1 s2 0 NMOSD W=28u L=1u
+MD2 b vin2 s2 0 NMOSD W=28u L=1u
+M3 a vbp vdd vdd PMOS W=125u L=1u
+M4 b vbp vdd vdd PMOS W=125u L=1u
+M6 c vpc a vdd PMOS W={W6} L=1u
+M7 vo1 vpc b vdd PMOS W={W6} L=1u
+M8 c vnc d 0 NMOS W={W8} L=1u
+M9 vo1 vnc e 0 NMOS W={W8} L=1u
+M10 d c 0 0 NMOS W={W10} L=1u
+M11 e c 0 0 NMOS W={W10} L=1u
+.end

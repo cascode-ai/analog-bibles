@@ -1,0 +1,8 @@
+* Amplifier-driven simple mirror: amplifier A senses the drains of M1 (input) and M2 (output) and drives the common gate g, forcing V_D1 = V_D2
+IIN vdd d1 {i_in}
+M1 d1 g 0 0 NMOS W={W1} L={L}
+M2 d2 g 0 0 NMOS W={W2} L={L}
+EA g 0 d1 d2 {A}
+VOUT d2 0 {V_OUT}
+VDD vdd 0 {V_DD}
+.end
