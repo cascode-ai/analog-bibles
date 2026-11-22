@@ -1,0 +1,7 @@
+* Small-signal model of the stacked pair for R_out (v_IN = 0, V_GS2 shorted)
+RA out g2 {R}
+RB g2 0 {R}
+G2 out x g2 x {gm2}
+RDS2 out x {rds2}
+RDS1 x 0 {rds1}
+.end

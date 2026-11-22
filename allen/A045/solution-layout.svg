@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc" xml:lang="en">
+<title id="title">A045: common-centroid, photolithographic-invariant layout</title><desc id="desc">Four 4 µm/0.5 µm units per device; every unit drawn S left, D right; dummy gates (dum) at row ends</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#253047"/></marker><marker id="back" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#253047"/></marker></defs>
+<rect width="800" height="620" fill="white"/><g font-family="Arial, Microsoft YaHei, sans-serif"><text x="35" y="32" fill="#172033" text-anchor="start" font-size="22">A045: common-centroid, photolithographic-invariant layout</text>
+<text x="35" y="59" fill="#475569" text-anchor="start" font-size="15">Four 4 µm/0.5 µm units per device; every unit drawn S left, D right; dummy gates (dum) at row ends</text>
+<path d="M 90 95 V 450 H 690" fill="none" stroke="#253047" stroke-width="2" marker-start="url(#back)" marker-end="url(#arrow)"/>
+<text x="690" y="502" fill="#253047" text-anchor="end" font-size="16">x (column)</text>
+<text x="92" y="88" fill="#253047" text-anchor="start" font-size="16">y (row)</text>
+<path d="M 112.265625 248.3050847457627 L 192.421875 248.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 192.421875 248.3050847457627 L 192.421875 156.1016949152542" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 192.421875 156.1016949152542 L 112.265625 156.1016949152542" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 112.265625 156.1016949152542 L 112.265625 248.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 147 257.5254237288136 L 157.6875 257.5254237288136" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 157.6875 257.5254237288136 L 157.6875 146.88135593220335" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 157.6875 146.88135593220335 L 147 146.88135593220335" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 147 146.88135593220335 L 147 257.5254237288136" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="130.078125" y="188.45762711864404" fill="#64748b" text-anchor="middle" font-size="14">dum</text>
+<path d="M 201.328125 248.3050847457627 L 281.484375 248.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 281.484375 248.3050847457627 L 281.484375 156.1016949152542" fill="none" stroke="#1565c0" />
+<path d="M 281.484375 156.1016949152542 L 201.328125 156.1016949152542" fill="none" stroke="#1565c0" />
+<path d="M 201.328125 156.1016949152542 L 201.328125 248.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 236.06249999999997 257.5254237288136 L 246.75 257.5254237288136" fill="none" stroke="#1565c0" />
+<path d="M 246.75 257.5254237288136 L 246.75 146.88135593220335" fill="none" stroke="#1565c0" />
+<path d="M 246.75 146.88135593220335 L 236.06249999999997 146.88135593220335" fill="none" stroke="#1565c0" />
+<path d="M 236.06249999999997 146.88135593220335 L 236.06249999999997 257.5254237288136" fill="none" stroke="#1565c0" />
+<text x="219.140625" y="188.45762711864404" fill="#1565c0" text-anchor="middle" font-size="20">A</text>
+<text x="219.140625" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="263.671875" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 290.390625 248.3050847457627 L 370.546875 248.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 370.546875 248.3050847457627 L 370.546875 156.1016949152542" fill="none" stroke="#ad3c00" />
+<path d="M 370.546875 156.1016949152542 L 290.390625 156.1016949152542" fill="none" stroke="#ad3c00" />
+<path d="M 290.390625 156.1016949152542 L 290.390625 248.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 325.125 257.5254237288136 L 335.8125 257.5254237288136" fill="none" stroke="#ad3c00" />
+<path d="M 335.8125 257.5254237288136 L 335.8125 146.88135593220335" fill="none" stroke="#ad3c00" />
+<path d="M 335.8125 146.88135593220335 L 325.125 146.88135593220335" fill="none" stroke="#ad3c00" />
+<path d="M 325.125 146.88135593220335 L 325.125 257.5254237288136" fill="none" stroke="#ad3c00" />
+<text x="308.203125" y="188.45762711864404" fill="#ad3c00" text-anchor="middle" font-size="20">B</text>
+<text x="308.203125" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="352.734375" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 379.453125 248.3050847457627 L 459.609375 248.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 459.609375 248.3050847457627 L 459.609375 156.1016949152542" fill="none" stroke="#ad3c00" />
+<path d="M 459.609375 156.1016949152542 L 379.453125 156.1016949152542" fill="none" stroke="#ad3c00" />
+<path d="M 379.453125 156.1016949152542 L 379.453125 248.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 414.1875 257.5254237288136 L 424.875 257.5254237288136" fill="none" stroke="#ad3c00" />
+<path d="M 424.875 257.5254237288136 L 424.875 146.88135593220335" fill="none" stroke="#ad3c00" />
+<path d="M 424.875 146.88135593220335 L 414.1875 146.88135593220335" fill="none" stroke="#ad3c00" />
+<path d="M 414.1875 146.88135593220335 L 414.1875 257.5254237288136" fill="none" stroke="#ad3c00" />
+<text x="397.265625" y="188.45762711864404" fill="#ad3c00" text-anchor="middle" font-size="20">B</text>
+<text x="397.265625" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="441.796875" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 468.515625 248.3050847457627 L 548.671875 248.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 548.671875 248.3050847457627 L 548.671875 156.1016949152542" fill="none" stroke="#1565c0" />
+<path d="M 548.671875 156.1016949152542 L 468.515625 156.1016949152542" fill="none" stroke="#1565c0" />
+<path d="M 468.515625 156.1016949152542 L 468.515625 248.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 503.25 257.5254237288136 L 513.9375 257.5254237288136" fill="none" stroke="#1565c0" />
+<path d="M 513.9375 257.5254237288136 L 513.9375 146.88135593220335" fill="none" stroke="#1565c0" />
+<path d="M 513.9375 146.88135593220335 L 503.25 146.88135593220335" fill="none" stroke="#1565c0" />
+<path d="M 503.25 146.88135593220335 L 503.25 257.5254237288136" fill="none" stroke="#1565c0" />
+<text x="486.328125" y="188.45762711864404" fill="#1565c0" text-anchor="middle" font-size="20">A</text>
+<text x="486.328125" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="530.859375" y="230.25423728813556" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 557.578125 248.3050847457627 L 637.734375 248.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 637.734375 248.3050847457627 L 637.734375 156.1016949152542" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 637.734375 156.1016949152542 L 557.578125 156.1016949152542" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 557.578125 156.1016949152542 L 557.578125 248.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 592.3125 257.5254237288136 L 602.9999999999999 257.5254237288136" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 602.9999999999999 257.5254237288136 L 602.9999999999999 146.88135593220335" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 602.9999999999999 146.88135593220335 L 592.3125 146.88135593220335" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 592.3125 146.88135593220335 L 592.3125 257.5254237288136" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="575.390625" y="188.45762711864404" fill="#64748b" text-anchor="middle" font-size="14">dum</text>
+<path d="M 112.265625 375.08474576271186 L 192.421875 375.08474576271186" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 192.421875 375.08474576271186 L 192.421875 282.8813559322034" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 192.421875 282.8813559322034 L 112.265625 282.8813559322034" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 112.265625 282.8813559322034 L 112.265625 375.08474576271186" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 147 384.3050847457627 L 157.6875 384.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 157.6875 384.3050847457627 L 157.6875 273.66101694915255" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 157.6875 273.66101694915255 L 147 273.66101694915255" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 147 273.66101694915255 L 147 384.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="130.078125" y="315.23728813559325" fill="#64748b" text-anchor="middle" font-size="14">dum</text>
+<path d="M 201.328125 375.08474576271186 L 281.484375 375.08474576271186" fill="none" stroke="#ad3c00" />
+<path d="M 281.484375 375.08474576271186 L 281.484375 282.8813559322034" fill="none" stroke="#ad3c00" />
+<path d="M 281.484375 282.8813559322034 L 201.328125 282.8813559322034" fill="none" stroke="#ad3c00" />
+<path d="M 201.328125 282.8813559322034 L 201.328125 375.08474576271186" fill="none" stroke="#ad3c00" />
+<path d="M 236.06249999999997 384.3050847457627 L 246.75 384.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 246.75 384.3050847457627 L 246.75 273.66101694915255" fill="none" stroke="#ad3c00" />
+<path d="M 246.75 273.66101694915255 L 236.06249999999997 273.66101694915255" fill="none" stroke="#ad3c00" />
+<path d="M 236.06249999999997 273.66101694915255 L 236.06249999999997 384.3050847457627" fill="none" stroke="#ad3c00" />
+<text x="219.140625" y="315.23728813559325" fill="#ad3c00" text-anchor="middle" font-size="20">B</text>
+<text x="219.140625" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="263.671875" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 290.390625 375.08474576271186 L 370.546875 375.08474576271186" fill="none" stroke="#1565c0" />
+<path d="M 370.546875 375.08474576271186 L 370.546875 282.8813559322034" fill="none" stroke="#1565c0" />
+<path d="M 370.546875 282.8813559322034 L 290.390625 282.8813559322034" fill="none" stroke="#1565c0" />
+<path d="M 290.390625 282.8813559322034 L 290.390625 375.08474576271186" fill="none" stroke="#1565c0" />
+<path d="M 325.125 384.3050847457627 L 335.8125 384.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 335.8125 384.3050847457627 L 335.8125 273.66101694915255" fill="none" stroke="#1565c0" />
+<path d="M 335.8125 273.66101694915255 L 325.125 273.66101694915255" fill="none" stroke="#1565c0" />
+<path d="M 325.125 273.66101694915255 L 325.125 384.3050847457627" fill="none" stroke="#1565c0" />
+<text x="308.203125" y="315.23728813559325" fill="#1565c0" text-anchor="middle" font-size="20">A</text>
+<text x="308.203125" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="352.734375" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 379.453125 375.08474576271186 L 459.609375 375.08474576271186" fill="none" stroke="#1565c0" />
+<path d="M 459.609375 375.08474576271186 L 459.609375 282.8813559322034" fill="none" stroke="#1565c0" />
+<path d="M 459.609375 282.8813559322034 L 379.453125 282.8813559322034" fill="none" stroke="#1565c0" />
+<path d="M 379.453125 282.8813559322034 L 379.453125 375.08474576271186" fill="none" stroke="#1565c0" />
+<path d="M 414.1875 384.3050847457627 L 424.875 384.3050847457627" fill="none" stroke="#1565c0" />
+<path d="M 424.875 384.3050847457627 L 424.875 273.66101694915255" fill="none" stroke="#1565c0" />
+<path d="M 424.875 273.66101694915255 L 414.1875 273.66101694915255" fill="none" stroke="#1565c0" />
+<path d="M 414.1875 273.66101694915255 L 414.1875 384.3050847457627" fill="none" stroke="#1565c0" />
+<text x="397.265625" y="315.23728813559325" fill="#1565c0" text-anchor="middle" font-size="20">A</text>
+<text x="397.265625" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="441.796875" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 468.515625 375.08474576271186 L 548.671875 375.08474576271186" fill="none" stroke="#ad3c00" />
+<path d="M 548.671875 375.08474576271186 L 548.671875 282.8813559322034" fill="none" stroke="#ad3c00" />
+<path d="M 548.671875 282.8813559322034 L 468.515625 282.8813559322034" fill="none" stroke="#ad3c00" />
+<path d="M 468.515625 282.8813559322034 L 468.515625 375.08474576271186" fill="none" stroke="#ad3c00" />
+<path d="M 503.25 384.3050847457627 L 513.9375 384.3050847457627" fill="none" stroke="#ad3c00" />
+<path d="M 513.9375 384.3050847457627 L 513.9375 273.66101694915255" fill="none" stroke="#ad3c00" />
+<path d="M 513.9375 273.66101694915255 L 503.25 273.66101694915255" fill="none" stroke="#ad3c00" />
+<path d="M 503.25 273.66101694915255 L 503.25 384.3050847457627" fill="none" stroke="#ad3c00" />
+<text x="486.328125" y="315.23728813559325" fill="#ad3c00" text-anchor="middle" font-size="20">B</text>
+<text x="486.328125" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">S</text>
+<text x="530.859375" y="357.0338983050848" fill="#475569" text-anchor="middle" font-size="13">D</text>
+<path d="M 557.578125 375.08474576271186 L 637.734375 375.08474576271186" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 637.734375 375.08474576271186 L 637.734375 282.8813559322034" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 637.734375 282.8813559322034 L 557.578125 282.8813559322034" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 557.578125 282.8813559322034 L 557.578125 375.08474576271186" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 592.3125 384.3050847457627 L 602.9999999999999 384.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 602.9999999999999 384.3050847457627 L 602.9999999999999 273.66101694915255" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 602.9999999999999 273.66101694915255 L 592.3125 273.66101694915255" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<path d="M 592.3125 273.66101694915255 L 592.3125 384.3050847457627" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="575.390625" y="315.23728813559325" fill="#64748b" text-anchor="middle" font-size="14">dum</text>
+<text x="375" y="115.76271186440681" fill="#253047" text-anchor="middle" font-size="15">Row 1: dum | A B B A | dum</text>
+<text x="375" y="426.9491525423729" fill="#253047" text-anchor="middle" font-size="15">Row 2: dum | B A A B | dum</text>
+<text x="375" y="270.5932203389831" fill="#087f5b" text-anchor="middle" font-size="14">+ common centroid of A and B</text></g></svg>
