@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy — Analog Bibles</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <script>
   try {
     const theme = localStorage.getItem("ab.theme");
@@ -28,6 +31,9 @@
   .choice button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
   .choice button:hover { background: var(--accent); color: var(--bg); }
   .page-tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .privacy-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-weight: 650; text-decoration: none; letter-spacing: -.01em; }
+  .privacy-brand img { display: block; width: 28px; height: 28px; }
+  .privacy-brand:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
   .theme-control { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
   .theme-control select { padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
   .theme-control select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -35,7 +41,7 @@
 </head>
 <body>
 <main>
-  <div class="page-tools"><a href="/">← Analog Bibles</a><label class="theme-control"><span>主题 / Theme</span><select id="theme-select" aria-label="主题 / Theme"><option value="system">跟随系统 / System</option><option value="light">浅色 / Light</option><option value="dark">深色 / Dark</option></select></label></div>
+  <div class="page-tools"><a class="privacy-brand" href="/" aria-label="Analog Bibles"><img id="privacy-brand-mark" src="/brand/mark.svg" data-light-src="/brand/mark.svg" data-dark-src="/brand/mark-dark.svg" width="28" height="28" alt="" aria-hidden="true"><span>Analog Bibles</span></a><label class="theme-control"><span>主题 / Theme</span><select id="theme-select" aria-label="主题 / Theme"><option value="system">跟随系统 / System</option><option value="light">浅色 / Light</option><option value="dark">深色 / Dark</option></select></label></div>
   <h1>隐私说明 · Privacy</h1>
   <p class="muted">本站只做第一方的访问统计，规则与 Analog Canvas 相同。</p>
 
@@ -69,6 +75,11 @@
     if (mode === "system") document.documentElement.removeAttribute("data-theme");
     else document.documentElement.dataset.theme = mode;
     theme.value = mode;
+    const mark = document.getElementById("privacy-brand-mark");
+    if (mark) {
+      const dark = mode === "dark" || (mode === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+      mark.src = mark.dataset[dark ? "darkSrc" : "lightSrc"];
+    }
   };
   applyTheme();
   theme.addEventListener("change", () => { setTheme(theme.value); applyTheme(); });

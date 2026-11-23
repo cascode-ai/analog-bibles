@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" role="img" aria-label="Analog Bibles">
+  <title>Analog Bibles</title>
+  <path fill="#91b5c7" d="M7 16c9-3 17-1 25 5v29c-8-5-16-6-25-3V16Zm50 0c-9-3-17-1-25 5v29c8-5 16-6 25-3V16Z"/>
+  <path d="M32 21v29" fill="none" stroke="#53636d" stroke-width="2" stroke-linecap="round"/>
+  <path d="M13 40C18 28 24 24 36 24H50" fill="none" stroke="#d88969" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="76" y="41" fill="#e1e8eb" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="650" letter-spacing="-.7">Analog Bibles</text>
+</svg>
