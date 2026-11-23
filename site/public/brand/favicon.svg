@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Analog Bibles">
-  <title>Analog Bibles</title>
-  <style>:root{color:#365c72;--wave:#b65d45}@media(prefers-color-scheme:dark){:root{color:#91b5c7;--wave:#d88969}}</style>
-  <path fill="currentColor" d="M7 16c9-3 17-1 25 5v29c-8-5-16-6-25-3V16Zm50 0c-9-3-17-1-25 5v29c8-5 16-6 25-3V16Z"/>
-  <path d="M32 21v29" fill="none" stroke="#aeb8bf" stroke-width="2" stroke-linecap="round"/>
-  <path d="M13 40C18 28 24 24 36 24H50" fill="none" stroke="var(--wave)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc"><title id="title">Analog Bibles</title><desc id="desc">Open book with an operational amplifier.</desc>
+  <style>
+    .ab-book { fill: #2F5568; }
+    .ab-accent { fill: #C05A3B; }
+    .ab-circuit { fill: #FFFFFF; }
+    @media (prefers-color-scheme: dark) {
+      .ab-book { fill: #4E829B; }
+      .ab-accent { fill: #E06D4B; }
+      .ab-circuit { fill: #F8FAFC; }
+    }
+  </style>
+  <path class="ab-book" fill="#2F5568" d="M4 13.1Q4 12.5 4.6 12.3C11.8 8.9 22.6 9.1 31 14.8L31 23.5L33 24.6L33 14.8C41.4 9.1 52.2 8.9 59.4 12.3Q60 12.5 60 13.1L60 48.3Q60 49 59.3 48.7C52 45.5 41.4 45.4 33 51L33 37L31 38.1L31 51C22.6 45.4 12 45.5 4.7 48.7Q4 49 4 48.3Z"/>
+  <path class="ab-accent" fill="#C05A3B" d="M4.9 50.7C12.2 47.3 22.8 47.2 32 52.9C41.2 47.2 51.8 47.3 59.1 50.7A1.35 1.35 0 0 1 58.05 53.2C51.1 50.1 41 50 32 55.9C23 50 12.9 50.1 5.95 53.2A1.35 1.35 0 0 1 4.9 50.7Z"/>
+  <path class="ab-circuit" fill="#FFFFFF" fill-rule="evenodd" d="M22 16.8L43.95 29.5L48.01 29.5A2.91 2.91 0 1 1 48.01 32.1L43.95 32.1L22 44.8L22 37.9L16.3 37.9A1.3 1.3 0 0 1 16.3 35.3L22 35.3L22 26.3L16.3 26.3A1.3 1.3 0 0 1 16.3 23.7L22 23.7ZM24.6 21.3L41 30.8L24.6 40.3ZM49.4 30.8A1.2 1.2 0 1 0 51.8 30.8A1.2 1.2 0 1 0 49.4 30.8Z"/>
 </svg>
