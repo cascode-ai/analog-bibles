@@ -279,6 +279,10 @@
     document.getElementById("root").innerHTML = `<div class="analytics-shell">
       <header class="analytics-top-bar" aria-label="Page controls">
         <div class="analytics-top-bar-left">
+          <a class="analytics-brand" href="/" aria-label="Analog Bibles">
+            <img src="/brand/${light ? "mark.svg" : "mark-dark.svg"}" width="30" height="30" alt="" aria-hidden="true">
+            <span>Analog Bibles</span>
+          </a>
           <button type="button" class="analytics-theme-switch" id="analytics-theme" aria-label="${themeLabel}" title="${themeLabel}">${light ? MOON : SUN}</button>
         </div>
         <div class="analytics-top-bar-right">

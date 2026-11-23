@@ -848,3 +848,173 @@ body[data-mode="browse"] #mode-browse, body[data-mode="review"] #mode-review {
 .question-peek .orig-toggle { display: none; }
 @media (max-width: 600px) {
   .reader-context { padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+}
+
+/* Motion Prompt inspired reading controls: a compact specimen toolbar and a
+   persistent context tray. The content stays still; motion only clarifies state. */
+.single-reading .solution-tabs {
+  gap: 2px;
+  padding: 4px 6px 0;
+  border: 1px solid var(--border);
+  border-bottom-color: var(--border-strong);
+  border-radius: 10px 10px 0 0;
+}
+.solution-tabs button {
+  padding-inline: 12px;
+  border-radius: 7px 7px 0 0;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease;
+}
+.solution-tabs button[aria-selected="true"] {
+  background: var(--surface-raised);
+  box-shadow: 0 -2px 0 var(--oxide) inset;
+}
+.solution-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  box-shadow: var(--shadow-sm);
+}
+.solution-tools::before {
+  content: "";
+  width: 3px;
+  height: 18px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--oxide);
+}
+.step-position { color: var(--text); font-weight: 600; }
+.solution-content details.step:not(.result-section) { border-inline-start-color: transparent; }
+.solution-content details.step:has(> summary[aria-current="step"]) { border-inline-start-color: var(--oxide); }
+.solution-content details.step:not(:has(> summary[aria-current="step"])) .step-number { background: var(--surface-inset); color: var(--muted); }
+.solution-tools button { transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease; }
+.solution-tools button:hover { transform: translateY(-1px); }
+
+.reader-context {
+  inset: auto 16px 16px;
+  width: min(52rem, calc(100% - 32px));
+  margin-inline: auto;
+  padding: 10px 12px 10px 14px;
+  border: 1px solid var(--border-strong);
+  border-inline-start: 3px solid var(--oxide);
+  border-radius: 12px;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-reader);
+}
+.reader-context > span { line-height: 1.45; }
+.reader-context > span > strong { color: var(--oxide); font-variant-numeric: tabular-nums; }
+.reader-context .btn {
+  border-color: var(--oxide);
+  background: var(--oxide-soft);
+  color: var(--oxide);
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.reader-context .btn:hover { background: var(--surface-raised); transform: translateY(-1px); }
+
+@media (max-width: 600px) {
+  .single-reading .solution-tabs { padding-inline: 3px; }
+  .solution-tabs button { padding-inline: 8px; }
+  .solution-tools { border-radius: 8px; }
+  .reader-context { inset-inline: 8px; width: auto; margin: 0; padding-inline-start: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-tabs button, .solution-tools button, .reader-context .btn { transition: none; }
+}
+
+/* Reader refinement: a quieter chrome and a stronger question identity. */
+.brand { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
+.brand-mark { display: block; width: 26px; height: 26px; flex: none; object-fit: contain; }
+.brand-name { font-weight: 700; font-size: 16px; letter-spacing: -.015em; }
+.top { gap: 10px; }
+.top .sub { flex: 0 1 auto; }
+.toolbar { gap: 4px 10px; padding-block: 9px 7px; border-bottom: 1px solid var(--border); }
+.toolbar .steps { gap: 3px; }
+.toolbar .steps button { min-width: 36px; height: 32px; padding-inline: 9px; border-color: transparent; background: transparent; }
+.toolbar .steps button:hover { background: var(--surface-inset); border-color: var(--border); }
+.toolbar .steps .position { padding-inline: 6px; }
+.toolbar .steps #goto { height: 28px; background: var(--surface-raised); }
+.toolbar > .btn { border-color: transparent; background: transparent; }
+.toolbar > .btn:hover { border-color: var(--border); background: var(--surface-inset); }
+
+.single-reading .reader > .head { padding-block: 18px 16px; }
+.single-reading .reader .head .id { font-size: 20px; letter-spacing: -.02em; }
+.single-reading .reader .head .review-status { margin-inline-start: 2px; padding: 2px 6px; font-size: 11px; }
+.single-reading .reader .head .tag { font-size: 12px; }
+.single-reading .reader .head .tag + .tag { padding-left: 12px; }
+.single-reading .reader .question-panel { border-inline-end: 1px solid var(--border); }
+.solution-content details.step { border-top-color: transparent; }
+.solution-content details.step + details.step { margin-top: 1.65em; }
+.solution-content details.result-section { margin-top: 1.8em; }
+
+/* Distraction-free reading is an explicit action, distinct from opening a
+   single question. It does not change saved directory or split preferences. */
+#reader-focus[hidden] { display: none; }
+#reader-focus[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); }
+body.distraction-free { --top-h: 0px; --foot-h: 0px; }
+.distraction-free .top, .distraction-free .site-foot, .distraction-free .sidebar-shell { display: none; }
+body.distraction-free .layout { grid-template-columns: minmax(0, 1fr); max-width: 90rem; }
+.distraction-free .mobile-nav-trigger { display: inline-flex; }
+.distraction-free #reading-view { display: none; }
+.distraction-free .toolbar { top: 0; }
+.distraction-free .reader-context { bottom: max(8px, env(safe-area-inset-bottom)); }
+.solution-tools { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
+.solution-tools::before { content: none; }
+.single-reading .solution-tabs { border: 0; border-bottom: 1px solid var(--border-strong); border-radius: 0; }
+.solution-content .md .katex-display, .question-panel .md .katex-display { border-inline-start-width: 1px; border-radius: 4px; }
+figure.diagram .pic { box-shadow: none; }
+
+/* A small, spring-like arrival makes the image viewer feel connected to the
+   image that was opened. It is intentionally short and disappears for users
+   who request reduced motion. */
+.zoom:not([hidden]) img { animation: zoom-arrive .3s ease-out both; }
+@keyframes zoom-arrive {
+  0% { opacity: .65; transform: translateY(8px) scale(.96); }
+  70% { opacity: 1; transform: translateY(-1px) scale(1.006); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom:not([hidden]) img { animation: none; }
+}
+
+@media (max-width: 600px) {
+  .brand-mark { width: 24px; height: 24px; }
+  .brand-name { font-size: 14px; }
+  .top .sub { display: none; }
+  .toolbar { border-bottom: 0; }
+  .top { gap: 6px; }
+  .toolbar { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .toolbar > #reader-focus { grid-column: 3; }
+  .toolbar .steps button { width: 44px; height: 44px; padding: 0; }
+  .toolbar .steps #goto { height: 40px; }
+  .distraction-free .toolbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .distraction-free .toolbar > #reader-focus { grid-column: 2; }
+  .distraction-free .toolbar .steps { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .distraction-free #prev-ch, .distraction-free #next-ch { display: none; }
+}
+@media (max-width: 360px) {
+  .brand-name { display: none; }
+  .brand { min-width: 30px; }
+}
+
+/* Motion Prompt #051: the existing accessible question dialog opens as a
+   phone sheet; its content, focus restoration and scroll position stay intact. */
+@media (max-width: 600px) {
+  .question-peek {
+    position: fixed; inset: auto 0 0; margin: 0 auto;
+    width: 100%; max-height: 78dvh; border-bottom: 0;
+    border-radius: 18px 18px 0 0; background: var(--surface-raised);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .question-peek[open] { animation: question-sheet-enter .4s cubic-bezier(.22, 1, .36, 1); }
+  .question-peek .dialog-head { padding-top: 16px; }
+}
+@keyframes question-sheet-enter {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .question-peek[open] { animation: none; }
+}

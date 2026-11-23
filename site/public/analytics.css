@@ -136,6 +136,23 @@ html.light .analytics-shell {
   align-items: center;
 }
 
+.analytics-top-bar-left { gap: 0.45rem; }
+
+.analytics-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--analytics-ink);
+  font-size: 0.92rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.analytics-brand img { display: block; width: 30px; height: 30px; }
+
+.analytics-brand:focus-visible { outline: 2px solid var(--analytics-accent); outline-offset: 3px; border-radius: 4px; }
+
 .analytics-top-bar-right {
   gap: 0.8rem;
 }
@@ -610,6 +627,8 @@ html.light .analytics-map-land path {
 }
 
 @media (max-width: 28rem) {
+  .analytics-brand span { display: none; }
+
   .analytics-metrics {
     grid-template-columns: 1fr 1fr;
     gap: 0.85rem 1rem;

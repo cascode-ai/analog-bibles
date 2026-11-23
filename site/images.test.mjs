@@ -298,8 +298,9 @@ test("inline image viewer in a real browser", { timeout: 180000 }, async (t) => 
     await fit();
     await b.evaluate('document.querySelector("[data-solution-tab=detailed]").click()');
     const diagram = ".q-steps .image-viewport";
-    await b.waitFor(`document.querySelector('${diagram} img')?.naturalWidth > 0`);
+    await b.waitFor(`document.querySelector('${diagram} img')`);
     await b.evaluate(`document.querySelector('${diagram}').scrollIntoView({block:'center'})`);
+    await b.waitFor(`document.querySelector('${diagram} img')?.naturalWidth > 0`);
     await wheel(-120, diagram);
     assert.ok(await scale(diagram) > 1);
     await fit(diagram);

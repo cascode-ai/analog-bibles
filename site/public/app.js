@@ -42,6 +42,10 @@ const STRINGS = {
     shortcutChapter: "Previous / next chapter",
     shortcutSearch: "Focus search",
     shortcutHelp: "Open this help",
+    shortcutFocus: "Toggle distraction-free reading",
+    readerFocus: "Distraction-free",
+    readerFocusExit: "Exit distraction-free",
+    readerFocusTitle: "Toggle distraction-free reading (F)",
     shortcutEscape: "Close a dialog or image",
     reviewShortcuts: "Review mode",
     shortcutPass: "Pass this question",
@@ -174,6 +178,10 @@ const STRINGS = {
     shortcutChapter: "上一章 / 下一章",
     shortcutSearch: "聚焦搜索框",
     shortcutHelp: "打开快捷键说明",
+    shortcutFocus: "切换无干扰阅读",
+    readerFocus: "无干扰",
+    readerFocusExit: "退出无干扰",
+    readerFocusTitle: "切换专注阅读 (F)",
     shortcutEscape: "关闭弹窗或图片",
     reviewShortcuts: "审阅模式",
     shortcutPass: "通过当前题目",
@@ -337,6 +345,7 @@ const state = {
   // Browse opens one question at a time (question left, answer right); the
   // scrolling list of cards is the alternative, ?view=list.
   focus: mode === "browse" && params.get("view") !== "list",
+  distractionFree: false,
   sidebarClosed: store.get("ab.sidebarClosed") === "1",
   cards: [],
   index: 0,
@@ -362,6 +371,11 @@ function applyTheme() {
   const select = $("theme-select");
   select.value = saved;
   select.setAttribute("aria-label", t("themeLabel"));
+  const mark = document.querySelector(".brand-mark[data-light-src]");
+  if (mark) {
+    const dark = saved === "dark" || (saved === "system" && systemTheme() === "dark");
+    mark.src = mark.dataset[dark ? "darkSrc" : "lightSrc"];
+  }
 }
 
 $("theme-select").addEventListener("change", (event) => {
@@ -466,7 +480,7 @@ function closeNavigation() {
 }
 
 function openNavigation(focusSearch = false) {
-  if (!compactNavigation?.matches) {
+  if (!compactNavigation?.matches && !state.distractionFree) {
     setSidebar(false);
     if (focusSearch) $("search").focus();
     return;
@@ -512,7 +526,7 @@ for (const dialog of [navigationDialog, shortcutsDialog]) {
   });
 }
 compactNavigation?.addEventListener("change", () => {
-  if (!compactNavigation.matches && navigationDialog.open) {
+  if (!compactNavigation.matches && !state.distractionFree && navigationDialog.open) {
     closeNavigation();
     $("sidebar-toggle").focus({ preventScroll: true });
   }
@@ -772,10 +786,42 @@ function syncUrl() {
   history.replaceState(null, "", `/${mode}?${parts.join("&")}${focusPart}`);
   $("reading-view").textContent = t(state.focus ? "listView" : "focus");
   $("reading-view").setAttribute("aria-pressed", String(state.focus));
+  updateReaderFocus();
   // The mode switch keeps the question, filters and language (status is review's own).
   $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}${mode === "review" ? "" : focusPart}`;
   $("mode-review").href = `/review?${parts.join("&")}`;
 }
+
+function updateReaderFocus() {
+  if (!state.focus || mode !== 'browse') state.distractionFree = false;
+  document.body.classList.toggle('distraction-free', state.distractionFree);
+  const button = $('reader-focus');
+  button.hidden = mode !== 'browse' || !state.focus;
+  button.textContent = t(state.distractionFree ? 'readerFocusExit' : 'readerFocus');
+  button.title = t('readerFocusTitle');
+  button.setAttribute('aria-pressed', String(state.distractionFree));
+}
+
+function toggleReaderFocus() {
+  if (mode !== 'browse' || !state.focus) return;
+  const question = document.querySelector('.question-panel');
+  const answer = document.querySelector('.solution-panel');
+  if (!question || !answer) return;
+  const left = question.scrollTop, right = answer.scrollTop;
+  const offset = answer.getBoundingClientRect().top - headerBottom();
+  const bounded = readerBounded(answer);
+  state.distractionFree = !state.distractionFree;
+  updateReaderFocus();
+  requestAnimationFrame(() => {
+    question.scrollTop = left;
+    answer.scrollTop = right;
+    if (!bounded) window.scrollBy(0, answer.getBoundingClientRect().top - headerBottom() - offset);
+    refreshReaderExperience();
+    scheduleSolutionNavigation();
+  });
+}
+
+$('reader-focus').addEventListener('click', toggleReaderFocus);
 
 // ---------- the question ----------
 
@@ -1101,6 +1147,7 @@ document.addEventListener("toggle", (event) => {
 document.addEventListener("click", (event) => {
   for (const menu of document.querySelectorAll(".step-menu[open]")) if (!menu.contains(event.target)) menu.open = false;
 });
+
 window.addEventListener("resize", scheduleSolutionNavigation, { passive: true });
 
 
@@ -1409,6 +1456,12 @@ function paintImage(view) {
   controls.querySelector(".image-scale").textContent = `${Math.round(scale * 100)}%`;
 }
 
+function openZoom(src) {
+  const overlay = $("zoom");
+  overlay.querySelector("img").src = src;
+  overlay.hidden = false;
+}
+
 function fitImage(view, keepTouch = false) {
   if (imageScrollMotion?.view === view) stopImageScroll();
   if (imageGesture?.view === view) cancelImageGesture();
@@ -1583,8 +1636,7 @@ document.addEventListener("touchend", (event) => {
   if (remaining.length) beginImageTouch(view, remaining);
   else {
     if (gesture.mode === "scroll" && !gesture.moved && !gesture.hadMultiple) {
-      $("zoom").querySelector("img").src = view.img.currentSrc || view.img.src;
-      $("zoom").hidden = false;
+      openZoom(view.img.currentSrc || view.img.src);
     }
     cancelImageTouchGesture();
     if (gesture.mode === "scroll" && gesture.moved) coastImageScroll(gesture);
@@ -1704,8 +1756,7 @@ document.addEventListener("click", (event) => {
   event.stopImmediatePropagation();
   if (fit) { fitImage(view); frame.focus({ preventScroll: true }); }
   else if (view.scale === 1 && performance.now() >= view.suppressUntil && !event.shiftKey) {
-    $("zoom").querySelector("img").src = view.img.currentSrc || view.img.src;
-    $("zoom").hidden = false;
+    openZoom(view.img.currentSrc || view.img.src);
   }
 }, true);
 
@@ -1970,8 +2021,7 @@ document.addEventListener("click", async (event) => {
     if (target.id === "mobile-random") closeNavigation();
   } else if (target.dataset.zoom) {
     event.preventDefault();
-    $("zoom").querySelector("img").src = target.dataset.zoom;
-    $("zoom").hidden = false;
+    openZoom(target.dataset.zoom);
   } else if (target.dataset.del) {
     const id = Number(target.dataset.del);
     const r = await fetch(`/api/reviews/${id}?client=${encodeURIComponent(client)}`, { method: "DELETE", headers: apiHeaders() });
@@ -2050,6 +2100,12 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   if (event.target.closest("input, textarea, select, [data-reader-overflow]")) return;
+  if (event.target.isContentEditable) return;
+  if (event.key.toLowerCase() === 'f' && mode === 'browse' && state.focus) {
+    event.preventDefault();
+    toggleReaderFocus();
+    return;
+  }
   const reviewing = mode === "review" && $("pass");
   const flag = reviewing ? FLAGS.find((f) => f.hotkey === event.key) : null;
   if (flag) toggleFlag(flag.key);

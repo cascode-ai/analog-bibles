@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Analog Bibles</title>
 <meta name="description" content="End-of-chapter problems from Razavi, Gray and Allen: the question, its figures and a reference answer.">
+<meta property="og:title" content="Analog Bibles">
+<meta property="og:description" content="Bilingual analog integrated circuit textbook problems with reference answers and worked derivations.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://analog-bibles.tokenzhang.com/brand/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <script>
   try {
     const theme = localStorage.getItem("ab.theme");
@@ -19,7 +29,10 @@
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="/">Analog Bibles</a>
+  <a class="brand" href="/" aria-label="Analog Bibles">
+    <img class="brand-mark" src="/brand/mark.svg" data-light-src="/brand/mark.svg" data-dark-src="/brand/mark-dark.svg" width="28" height="28" alt="" aria-hidden="true">
+    <span class="brand-name">Analog Bibles</span>
+  </a>
   <span class="sub" data-i18n="sub">Razavi · Gray · Allen textbook problems</span>
   <nav class="modes" data-i18n-aria="modes" aria-label="Mode">
     <a id="mode-browse" href="/browse" data-i18n="browse">Browse</a>
@@ -64,6 +77,7 @@
       <div class="progress review-only" id="progress"></div>
       <button type="button" id="navigation-trigger" class="btn mobile-nav-trigger" aria-controls="navigation-dialog" aria-expanded="false" data-i18n="navigationButton" data-i18n-title="navigationTitle">Contents</button>
       <button type="button" id="reading-view" class="btn browse-only" aria-pressed="false">Focus reading</button>
+      <button type="button" id="reader-focus" class="btn browse-only" aria-pressed="false" aria-keyshortcuts="F" title="Focus reading (F)" hidden>Focus</button>
       <span class="steps">
         <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
         <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
@@ -115,6 +129,7 @@
       <div><dt><kbd>R</kbd></dt><dd data-i18n="randomQuestion">Random question</dd></div>
       <div><dt><kbd>/</kbd></dt><dd data-i18n="shortcutSearch">Focus search</dd></div>
       <div><dt><kbd>?</kbd></dt><dd data-i18n="shortcutHelp">Open this help</dd></div>
+      <div class="browse-only"><dt><kbd>F</kbd></dt><dd data-i18n="shortcutFocus">Toggle distraction-free reading</dd></div>
       <div><dt><kbd>Esc</kbd></dt><dd data-i18n="shortcutEscape">Close a dialog or image</dd></div>
     </dl>
     <div class="review-only">
