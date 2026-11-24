@@ -2,13 +2,24 @@
 
 ## Reference answer
 
-$R_1$ is connected across drain and source of $M_1$ and the pair carries $I_1$ in total, so $I_X = I_1 - V_{DS}/R_1$. At small $V_X$, $M_1$ is in triode and carries most of $I_1$: $I_X(0) \approx I_1R_1/(R_1 + R_{on})$ with $R_{on} \approx 1/[\beta(V_{GS} - V_{TH})]$, close to $I_1$ only when $\beta R_1(V_{GS} - V_{TH}) \gg 1$. $I_X$ decreases as $V_X$ rises (M1 goes into saturation and $R_1$ takes more of $I_1$), and is zero once $M_1$ cuts off at $V_X \approx 1.09\ \mathrm{V} + I_1R_1$. $g_m$ rises, peaks near the triode/saturation boundary, then falls to zero.
-- Let $V_S$ be the source node: $V_{GS} = 2 - V_S$, $V_{SB} = V_S$, $V_{DS} = V_X - V_S = (I_1 - I_X)R_1$.
-- Saturation requires $V_X - V_S > 2 - V_S - V_{TH}$, i.e. $V_X > 2 - V_{TH}(V_S)$ (≈ 1.1–1.3 V when $V_S \ge 0$ there, somewhat higher if $V_S$ is still negative because $V_{TH}$ then drops below 0.7 V). Below that $M_1$ is in triode; at $V_X = 0$, $V_S = -(I_1 - I_X)R_1$ is negative (typically a few tenths of a volt) and $V_{GS} > 2$ V, so $M_1$ shares $I_1$ with $R_1$ as a triode resistor $R_{on}$ in parallel with $R_1$. Examples (body effect included, $I_1 = 1$ mA): β = 1 mA/V², $R_1$ = 1 kΩ gives $I_X(0) \approx 0.61I_1$; β = 0.2 mA/V², $R_1$ = 1 kΩ gives 0.28$I_1$; β = 1 mA/V², $R_1$ = 10 kΩ gives 0.95$I_1$.
-- As $V_X$ rises, $V_{GS}$ falls, $V_{DS}$ must grow, more of $I_1$ flows through $R_1$ and $I_X$ decreases; in saturation $I_X = \tfrac12\beta(2 - V_S - V_{TH})^2$ with $V_S = V_X - (I_1 - I_X)R_1$.
-- Cutoff when $2 - V_S = V_{TH}(V_S)$, i.e. $V_S \approx 1.09$ V (1.3 V without body effect); then $I_X = 0$ and $V_X = V_S + I_1R_1$, so $I_X = 0$ for $V_X \gtrsim 1.09\ \mathrm{V} + I_1R_1$ (if this is below 3 V).
-- $g_m$: in triode $g_m = \beta V_{DS}$, small at $V_X = 0$ and growing with $V_X$; at the edge of saturation $g_m = \beta(V_{GS} - V_{TH})$; in saturation $g_m = \sqrt{2\beta I_X}$, falling to zero at cutoff.
+Use the square-law model ($\lambda=0$), an ideal sink, and negligible junction currents. Let $\beta=\mu_nC_{ox}W/L$, $V_{ov}=2\,\mathrm V-V_S-V_{TH}(V_S)$, with the stated body-effect law and $V_{SB}=V_S$.
+
+$$I_X=I_1-\frac{V_{DS}}{R_1},\qquad V_{DS}=V_X-V_S.$$
+
+| Region | Current and intrinsic transconductance |
+|---|---|
+| Triode: $0\le V_{DS}<V_{ov}$ | $I_X=\beta(V_{ov}V_{DS}-V_{DS}^2/2)$ decreases; $g_m=\beta V_{DS}$ rises. |
+| Saturation: $V_{DS}\ge V_{ov}>0$ | $I_X=\beta V_{ov}^2/2$ decreases; $g_m=\sqrt{2\beta I_X}$ falls. |
+| Cutoff: $V_{ov}\le0$ | $I_X=g_m=0$. |
+
+At $V_X=0$ the channel-only model gives triode operation and $0<I_X<I_1$, not necessarily $I_X\approx I_1$. The $g_m$ maximum occurs at $V_X=2\,\mathrm V-V_{TH}(V_S)$; its value depends on $R_1,I_1,\beta$.
+
+$$2\,\mathrm V-V_{S,off}=V_{TH}(V_{S,off}),\quad V_{X,off}=1.0918\,\mathrm V+I_1R_1.$$
+
+Cutoff is reached only if this is at most 3 V. $I_X$ reaches zero with zero slope. At low input $V_S<0$: junction current and sink compliance require verification. Dashed curves are conditional continuations; plot parameters are illustrative.
+
+![Model curves and validity limits](/q/R013/solution-r013.svg)
 
 ## Grading notes
 
-+2: KCL $I_X = I_1 - V_{DS}/R_1$ (or equivalent), $M_1$ in triode at low $V_X$ carrying a large, parameter-dependent part of $I_1$ ("$I_X \approx I_1$" for large $\beta R_1$, or a finite $I_X(0) < I_1$ fixed by KCL; both are correct), decreasing $I_X$ as $V_X$ rises, cutoff when the source reaches ≈ $2\ \mathrm{V} - V_{TH}$ (≈ 1.09 V with body effect, 1.3 V without, both acceptable if stated) i.e. $V_X \approx V_{S,off} + I_1R_1$, and $g_m$ rising then falling. Qualitative curves with clearly stated assumptions about β, $I_1$, $R_1$ are fine. +1: correct $I_X$ curve but $g_m$ incomplete (e.g., only the falling part). 0: regions partly wrong (e.g., saturation claimed at $V_X = 0$) while the overall decrease of $I_X$ is right; this includes an overdrive written without the source voltage (e.g., $V_G - V_{TH}$ instead of $2 - V_S - V_{TH}$) that misplaces the break points or misses the cutoff at ≈ 1.09 V + $I_1R_1$ while the qualitative $I_X$ and $g_m$ trends stay right. -2 (asserted as fact): $I_X$ increasing with $V_X$, $I_X = I_1$ for all $V_X$, $R_1$ read as connected elsewhere, or gate/drain misidentified.
++2: Correct drain–source shunt KCL, parameter-dependent initial current, triode-to-saturation boundary, decreasing current, rising then falling intrinsic transconductance, and conditional cutoff within 0–3 V. State the model and low-input validity limit. Numerical plot parameters are not mandatory data; a clearly identified no-body-effect approximation gives $V_{S,off}=1.3\,\mathrm V$. +1: Correct current and region reasoning but incomplete transconductance or validity discussion. 0: Substantial region or source-voltage error despite a decreasing-current trend. -2 (asserted as fact): increasing current, $I_X=I_1$ throughout, or misidentified circuit connections. Do not require a unique physical curve in the forward-biased interval without junction and sink data.

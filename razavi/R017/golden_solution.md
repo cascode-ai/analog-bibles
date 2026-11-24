@@ -2,12 +2,30 @@
 
 ## Reference answer
 
-For small $V_{in}$, $M_1$ (gate at 2 V) is a closed switch in triode and $V_{out} \approx V_{in}$ (slightly less, divider of $R_{on}$ and $R_1$); once $V_{in}$ exceeds about $2\ \mathrm{V} - V_{TH} \approx 1.1$ V, $M_1$ saturates with $V_{out}$ as its source and $V_{out}$ stays constant at a value a little below 1.09 V.
-- Current flows from the $V_{in}$ source through $M_1$ into $R_1$, so $V_{out} \le V_{in}$: the $V_{out}$ node is the source ($V_{GS} = 2 - V_{out}$, $V_{SB} = V_{out}$), the $V_{in}$ node the drain.
-- Triode while $V_{in} - V_{out} < 2 - V_{out} - V_{TH}$, i.e. $V_{in} < 2 - V_{TH}(V_{out})$: $V_{out} = V_{in}R_1/(R_1 + R_{on})$ with $R_{on} \approx 1/[\beta(2 - V_{out} - V_{TH})]$, close to $V_{in}$ if $R_1 \gg R_{on}$; the slope drops as $V_{GS}$ shrinks.
-- Saturation for larger $V_{in}$: $V_{out}$ is fixed by $\tfrac12\beta(2 - V_{out} - V_{TH}(V_{out}))^2 = V_{out}/R_1$, independent of $V_{in}$ (λ = 0). Its upper bound (β$R_1$ → ∞) is the solution of $2 - V_{out} = V_{TH}(V_{out})$: 1.09 V with body effect (1.3 V without).
-- Flat from there to $V_{in} = 3$ V.
+The output is the electrical source and the input is the drain. The curve rises from the origin and levels off in saturation when $\lambda=0$.
+
+$$V_{GS}=2\,\mathrm{V}-V_{out},\qquad V_{DS}=V_{in}-V_{out},\qquad V_{SB}=V_{out}.$$
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{out}}-\sqrt{2|\phi_F|}\right).$$
+
+### Triode
+
+In triode, $V_{in}<2\,\mathrm{V}-V_{TH}(V_{out})$ and the load equation is
+
+$$\frac{V_{out}}{R_1}=\beta\left[(V_{GS}-V_{TH})V_{DS}-\frac{V_{DS}^2}{2}\right].$$
+
+At small $V_{DS}$, close tracking requires $\beta R_1(V_{GS}-V_{TH})\gg1$.
+
+### Saturation plateau
+
+The plateau satisfies
+
+$$2\,\mathrm{V}-V_{out,s}-V_{TH}(V_{out,s})=\sqrt{\frac{2V_{out,s}}{\beta R_1}}>0.$$
+
+The plateau begins at $V_{in,s}=2\,\mathrm{V}-V_{TH}(V_{out,s})$ and extends to 3 V. For finite $\beta R_1$, the plateau is below 1.0918 V and the transition is between 1.0918 V and 1.3 V. The upper bound equals the gate voltage minus the threshold evaluated at that bound.
+
+![Output versus input voltage](/q/R017/solution-transfer.svg)
 
 ## Grading notes
 
-+2: $V_{out} \approx V_{in}$ at low $V_{in}$ (triode), then a flat level just below $2\ \mathrm{V} - V_{TH}(V_{out}) \approx 1.09$ V (body effect) for larger $V_{in}$, with the correct reason (source at $V_{out}$, $V_{GS} \to V_{TH}$). +1: clamp value given as ≈ 1.3 V (body effect ignored) or slightly misplaced break point, otherwise right. 0: right shape but no clamp value or reason. -2 (asserted as fact): $V_{in}$ node treated as the source with an inverting or increasing-without-limit output, $V_{out} = 0$ throughout, or a clamp at 2 V.
++2: identify the electrical source at $V_{out}$; correct triode load equation at low input and transition $V_{in}=2\ \mathrm{V}-V_{TH}(V_{out})$; saturation plateau set by the load equation, flat only under $\lambda=0$; body-effect upper bound approximately 1.092 V. Do not require near-unity initial gain or a plateau close to 1.09 V without a strong-device/light-load assumption. A plateau much lower than 1.09 V is correct for small $\beta R_1$. +1: correct model and shape with body effect omitted (upper bound 1.3 V), or a minor boundary error. 0: rising-then-flat shape without the plateau-setting relation or body-effect bound. -2 (asserted as fact): wrong source leading to an inverting curve, zero output throughout, unbounded tracking, or a plateau of 2 V. Do not penalize source/drain names alone if the voltage polarity, reverse operation, body bias, and channel model are consistent.

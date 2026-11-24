@@ -1,107 +1,62 @@
 # Detailed solution - R028
 
-**Approach.** The current source $I_1$ takes charge from node X and deposits it on $C_2$, the gate capacitor of $M_1$, so the gate voltage rises linearly from 0 and $M_1$ stays off until it reaches $V_{TH}$. Before that, only $I_1$ discharges $C_1$ (a linear ramp); afterwards $M_1$ adds a growing drain current, $C_1$ discharges faster, $M_1$ enters triode, and the current peaks and then collapses as $V_X$ approaches zero. Write KCL at X and at the gate, and follow these phases.
+**Approach:** Write the two capacitor KCL equations first. The given circuit leaves the floating two-node ideal model incomplete, so the waveform is conditional on an explicit junction and parasitic-capacitance model.
 
-### Step 1 — The basic equations
+### Ideal KCL and the missing path
 
-Call the gate node G. $I_X$ is the total current leaving X, into $M_1$ and $I_1$; with $I_{D1}$ the drain current of $M_1$ (no body effect, $V_{TH} = 0.7$ V),
+Let $i_C=C_1\,d(V_X-V_S)/dt$ flow from X to S. A channel-only model gives
+$$I_X+i_C=0\quad\text{at X},\qquad I_X+i_C=I_1\quad\text{at S}.$$
+For $I_1\ne0$ these equations conflict. Grounded-body junctions, ground parasitic capacitors, or current-source compliance must supply the missing path. Their parameters are not specified, so the question does not determine one unique pair of waveforms.
 
-$$I_X = I_1 + I_{D1} = -C_1\frac{dV_X}{dt}.$$
+### One explicit physical completion
 
-The gate draws no current, so all of $I_1$ charges $C_2$:
-
-$$C_2\frac{dV_G}{dt} = I_1 \quad\Longrightarrow\quad V_G(t) = \frac{I_1}{C_2}\,t ,$$
-
-a **linear ramp** from 0, independent of everything else (with an ideal current source).
-
-### Step 2 — Phase 1: $M_1$ off, linear ramp of $V_X$
-
-At $t = 0$, $V_G = 0 < V_{TH}$, so $M_1$ is off and
-
-$$I_X = I_1, \qquad V_X(t) = 3\ \mathrm{V} - \frac{I_1}{C_1}\,t ,$$
-
-until the gate reaches the threshold:
-
-$$\frac{I_1}{C_2}\,t_1 = V_{TH} \quad\Longrightarrow\quad t_1 = \frac{V_{TH}C_2}{I_1} ,$$
-
-$$V_X(t_1) = 3 - \frac{I_1}{C_1}\cdot\frac{V_{TH}C_2}{I_1} = 3 - V_{TH}\frac{C_2}{C_1} .$$
-
-Assume $V_X(t_1) > 0$, i.e. $3C_1 > V_{TH}C_2$ (the other case is treated in Step 5).
-
-### Step 3 — Phase 2: $M_1$ turns on, saturation, accelerating discharge
-
-For $t > t_1$ the overdrive grows linearly in time,
-
-$$V_G - V_{TH} = \frac{I_1}{C_2}\,(t - t_1),$$
-
-and with $V_X$ still well above $V_G - V_{TH}$, $M_1$ is saturated:
-
-$$I_{D1} = \tfrac12\beta\,(V_G - V_{TH})^2 = \tfrac12\beta\left(\frac{I_1}{C_2}\right)^2(t - t_1)^2 .$$
-
-$I_{D1}$ starts from **zero** at $t_1$ and grows **quadratically** in time, so $I_X = I_1 + I_{D1}$ rises smoothly above $I_1$ (no jump), and $V_X$ falls **faster than linearly**.
-
-### Step 4 — Phase 3: triode, peak of $I_X$, and the end
-
-$V_X$ is falling and $V_G - V_{TH}$ rising, so they soon cross and **$M_1$ enters triode**:
-
-$$I_{D1} = \beta\left[(V_G - V_{TH})V_X - \tfrac12V_X^2\right].$$
-
-The factor $V_X$ now shrinks quickly, so **$I_X$ peaks** around the saturation/triode transition and then **falls**, as $C_1$ is discharged toward 0 V.
-
-**What happens at $V_X = 0$.** There $I_{D1} = 0$, but the ideal current source still pulls $I_1$ out of X, so $I_X = I_1 > 0$ and $V_X$ **overshoots slightly below zero**. With the drain below the grounded source, X becomes the source of $M_1$, which conducts in reverse, from ground into X. A quasi-equilibrium is reached when this reverse current balances $I_1$; in deep triode $M_1$ is a resistor $R_{on} \approx 1/[\beta(V_G - V_{TH})]$, so
-
-$$V_X \approx -I_1R_{on} = -\frac{I_1}{\beta\,(V_G - V_{TH})} .$$
-
-Since $V_G = I_1t/C_2$ keeps rising, $R_{on}$ keeps falling and $V_X$ creeps back toward $0^-$, while $I_X = -C_1\,dV_X/dt$ is a small **negative** tail tending to $0^-$.
-
-- With an ideal $I_1$ there is no true DC steady state, since the gate keeps charging. The size of the negative dip depends on $I_1/\beta$; for a weak device it may be limited by the drain–bulk junction (about $-0.6$ V).
-- A real floating current source, which needs some voltage across it, would stop conducting once $V_X$ fell to about $V_G$; the gate would then stay put, and $M_1$ alone would finish discharging $C_1$ to 0 V, without the dip. The end state is the same: $V_X \approx 0$, $I_X \to 0$.
-
-### Step 5 — The other ordering ($3C_1 < V_{TH}C_2$)
-
-If $C_2$ is large, $V_X$ reaches 0 at $t = 3C_1/I_1$, *before* the gate reaches $V_{TH}$, and $I_X$ stays equal to $I_1$ with no peak above it. Once $V_X$ goes below zero, the fall is stopped by $M_1$ conducting in reverse (as soon as $V_G - V_X$ exceeds $V_{TH}$) or by the drain–bulk junction. The end state is the same.
-
-### Step 6 — Numerical example
-
-Take $C_1 = C_2 = 1$ pF, $I_1 = 100\ \mu$A, $\beta = 1\ \mathrm{mA/V^2}$.
-
+For a reproducible illustration, let $I_{ch}$ be channel current from X to S, and let $j_X,j_S$ be body-junction currents injected into X and S. With $C_{px}$ and $C_{ps}$ to ground,
 $$
-\begin{aligned}
-\frac{I_1}{C_1} &= \frac{100\ \mu\mathrm{A}}{1\ \mathrm{pF}} = 0.1\ \mathrm{V/ns} \quad(\text{same for } V_G),\\
-t_1 &= \frac{(0.7\ \mathrm{V})(1\ \mathrm{pF})}{100\ \mu\mathrm{A}} = 7\ \mathrm{ns},\\
-V_X(t_1) &= 3 - 0.7 = 2.3\ \mathrm{V}.
-\end{aligned}
+\begin{pmatrix}C_1+C_{px}&-C_1\\-C_1&C_1+C_{ps}\end{pmatrix}
+\begin{pmatrix}\dot V_X\\\dot V_S\end{pmatrix}
+=
+\begin{pmatrix}j_X-I_{ch}\\j_S+I_{ch}-I_1\end{pmatrix}.
 $$
+Use, for this example only,
+$$j_X=I_S(e^{-V_X/V_T}-1),\qquad j_S=I_S(e^{-V_S/V_T}-1),$$
+a constant threshold $V_{TH}=0.7\,\mathrm V$, $\lambda=0$, $\beta=1\,\mathrm{mA/V^2}$, $V_b=1.5\,\mathrm V$, $I_1=0.1\,\mathrm{mA}$, $C_1=1\,\mathrm{pF}$, $C_{px}=C_{ps}=20\,\mathrm{fF}$, $I_S=10^{-14}\,\mathrm A$, and $V_T=25.85\,\mathrm{mV}$. The current $I_X$ in the plots is the conductive current entering the drain terminal,
+$$I_X=I_{ch}-j_X.$$
+If a drain-body capacitance $C_{DB}$ is included at the measurement port, its displacement term $C_{DB}\dot V_X$ must be added with the chosen sign. The plotted definition excludes that unprovided element.
 
-After $t_1$: $I_{D1} = \tfrac12(1\ \mathrm{mA/V^2})(0.1\ \mathrm{V/ns})^2(t - t_1)^2 = 0.005\ \mathrm{mA}\times[(t - t_1)/\mathrm{ns}]^2$. For example, at $t = 12$ ns, $V_G = 1.2$ V and $I_{D1} = 0.005\times25 = 0.125$ mA, so $I_X = 0.225$ mA.
+### Three physical stages in the example
 
-Integrating the equations step by step gives:
+Before turn-on, $I_{ch}\approx0$ and the current source is supplied mainly by the parasitic capacitors. The common-mode slope is approximately
+$$\dot V_X\approx\dot V_S\approx-\frac{I_1}{C_{px}+C_{ps}},$$
+until the source-body path begins to conduct. This is an approximation for the fast initial movement.
 
-| $t$ (ns) | $V_G$ (V) | $V_X$ (V) | $I_X$ (mA) | $M_1$ |
-|---|---|---|---|---|
-| 0 | 0 | 3.00 | 0.100 | off |
-| 7 | 0.70 | 2.30 | 0.100 | turning on |
-| 10 | 1.00 | 1.96 | 0.145 | sat. |
-| 12 | 1.20 | 1.59 | 0.225 | sat. |
-| 14 | 1.40 | 1.03 | 0.345 | sat. (triode from ≈ 14.6 ns) |
-| 15 | 1.50 | 0.65 | 0.41 (peak) | triode |
-| 16 | 1.60 | 0.27 | 0.31 | triode |
-| 17 | 1.70 | 0.05 | 0.15 | triode |
-| 20 | 2.00 | −0.076 (minimum) | ≈ 0 | reverse |
-| 100 | 10.0 | −0.011 | ≈ −0.0001 | reverse |
+When $V_S$ is still positive and the channel is saturated, the source estimate is
+$$V_S\approx V_b-V_{TH}-\sqrt{\frac{2I_1}{\beta}}=0.3528\,\mathrm V.$$
+The channel current then gives the X-node slope
+$$\dot V_X\approx-\frac{I_{ch}}{C_1},$$
+while the small parasitic capacitances carry the common-mode adjustment. As $V_S$ falls, $I_{ch}$ grows and the waveform develops a current pulse.
 
-With a much weaker device ($\beta = 50\ \mu\mathrm{A/V^2}$), $I_X$ peaks at only about 0.14 mA and the dip below zero reaches about $-0.55$ V, close to the junction limit.
+After triode entry, use
+$$I_{ch}=\beta(Ud-d^2/2),\qquad U=V_b-\min(V_X,V_S)-V_{TH},\quad d=|V_X-V_S|,$$
+with the sign set by the lower-potential source terminal. The characteristic local time scale is
+$$\tau_{\mathrm{tri}}\sim R_{\mathrm{on}}C_1,\qquad R_{\mathrm{on}}\approx[\beta U]^{-1},$$
+but its value changes as $V_S$, $U$ and the junction currents change.
 
-### Result
+For the stated example, numerical integration gives $V_X=2.203\,\mathrm V$, $V_S=-0.589\,\mathrm V$, and $I_X=0.964\,\mathrm{mA}$ at $0.45\,\mathrm{ns}$. In the DC solution,
+$$V_X=-0.564\,\mathrm V,\quad V_S=-0.586\,\mathrm V,\quad I_X=0,\quad I_{ch}=j_X\approx0.0300\,\mathrm{mA},$$
+so $C_1$ retains about $21.85\,\mathrm{mV}$. A zero terminal current can coexist with nonzero internal channel current because the drain-body junction supplies it.
 
-- $I_X$ is the total current leaving node X: $I_X = I_1 + I_{D1} = -C_1\,dV_X/dt$, while $I_1$ charges the gate: $V_G = I_1t/C_2$.
-- **$t < t_1 = V_{TH}C_2/I_1$:** $M_1$ off, $I_X = I_1$, $V_X = 3 - I_1t/C_1$ (a linear ramp; this sequence assumes $3C_1 > V_{TH}C_2$, so $V_X$ is still positive at $t_1$).
-- **$t > t_1$:** $I_{D1} = \tfrac12\beta(V_G - 0.7)^2$ grows quadratically from zero (no jump) while $M_1$ is saturated ($V_X > V_G - V_{TH}$), and $V_X$ falls faster than linearly. Once $V_X < V_G - V_{TH}$, $M_1$ is in triode, $I_X$ **peaks** and then falls.
-- **End:** $C_1$ is discharged to about 0 V. $V_X$ dips slightly below 0 (reverse conduction of $M_1$ balancing $I_1$, $V_X \approx -I_1/[\beta(V_G - V_{TH})]$) and creeps back toward $0^-$, while $I_X$ crosses zero and decays to zero from below. With an ideal $I_1$ there is no true DC steady state, since the gate keeps charging.
-- If $3C_1 < V_{TH}C_2$, $V_X$ reaches 0 before $M_1$ turns on, $I_X$ stays at $I_1$ without a peak, and the end state is the same.
+### Low-gate and current-source limits
 
-**Common mistake.** Assuming $M_1$ is on from $t = 0$. Its gate starts at 0 V and must first be charged to $V_{TH}$ by $I_1$; until then only $I_1$ discharges $C_1$.
+If $3C_1\le V_{TH}C_2$, X reaches $V_X=0$ before or at channel turn-on. The initial trace is then the source-current ramp
+$$V_X=3\,\mathrm V-\frac{I_1}{C_1}t,\qquad I_X\approx I_1,$$
+with no positive-drain saturation plateau. Turn-on and body-junction conduction can occur after the zero crossing, and the later pulse depends on the added model.
 
-**Common mistake.** Drawing a jump in $I_X$ when $M_1$ turns on. The gate voltage rises continuously, so the drain current starts from zero and grows as $(t - t_1)^2$.
+If the current source loses compliance while $V_S$ is near 0 V, it can stop the downward motion earlier. A positive final capacitor voltage is then possible. Neither this endpoint nor a universal diode clamp follows from the supplied data.
 
-**Common mistake.** Letting $V_X$ settle at a high value, or fall without limit. Once $M_1$ is on with a rising gate voltage, it pulls X to ground, and it even conducts in reverse to stop $V_X$ from going much below zero.
+![V_X and V_S versus time](/q/R028/solution-voltage.svg)
+
+![I_X versus time](/q/R028/solution-current.svg)
+
+![Negative-extension current tail](/q/R028/solution-current-tail.svg)
+
+The figures are one explicit model completion. They are conditional examples rather than unique waveforms implied by the problem statement.

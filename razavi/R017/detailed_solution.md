@@ -1,115 +1,73 @@
 # Detailed solution - R017
 
-**Approach.** $V_{out}$ is the source of $M_1$. With the gate fixed at 2 V, $M_1$ is a closed switch (triode) while $V_{in}$ is low, and then saturates, after which $V_{out}$ no longer depends on $V_{in}$. Find the boundary, the behaviour in each region and the final constant level, including the body effect.
+**Approach:** Use the lower-potential output terminal as the electrical source. Apply the triode channel equation and load KCL at low input, then solve the saturation load equation for the constant output. Keep the load-dependent plateau distinct from its threshold-limited upper bound.
 
-### Step 1 — Terminal voltages
+### 1. Terminal polarity and model
 
-The current in $R_1$ can only come from $V_{in}$ through $M_1$, so $V_{out} \le V_{in}$: the lower-potential terminal, $V_{out}$, is the source, and the $V_{in}$ terminal (drawn with the arrow) is the drain.
+The input supplies the resistor through the channel, so $0\le V_{out}\le V_{in}$. In the symmetric long-channel model, the electrical source is the output even though the source-arrow symbol is drawn at the input. Both diffusion-to-bulk junctions are non-forward-biased because the bulk is grounded and both terminal voltages are nonnegative.
 
-$$
-\begin{aligned}
-V_{GS} &= 2 - V_{out},\\
-V_{DS} &= V_{in} - V_{out},\\
-V_{SB} &= V_{out}.
-\end{aligned}
-$$
+$$V_{GS}=2\ \mathrm{V}-V_{out},\qquad V_{DS}=V_{in}-V_{out},\qquad V_{SB}=V_{out}.$$
 
-At $V_{in} = 0$ nothing drives current, so $V_{out} = 0$. With the body effect,
+Use the body-effect law before substituting the data:
 
-$$V_{TH}(V_{out}) = 0.7 + 0.45\left(\sqrt{0.9 + V_{out}} - 0.9487\right)\ \mathrm{V}.$$
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{out}}-\sqrt{2|\phi_F|}\right),$$
 
-### Step 2 — Region boundary
+with $V_{TH0}=0.7\ \mathrm{V}$, $\gamma=0.45\ \mathrm{V^{1/2}}$, and $2|\phi_F|=0.9\ \mathrm{V}$. Neglect channel-length modulation and gate current. Load KCL is $I_D=V_{out}/R_1$.
 
-$M_1$ is in triode when $V_{DS} < V_{GS} - V_{TH}$:
+### 2. Low-input triode segment
 
-$$
-\begin{aligned}
-V_{in} - V_{out} &< 2 - V_{out} - V_{TH}\\
-V_{in} &< 2 - V_{TH}(V_{out}).
-\end{aligned}
-$$
+The triode square law and output-node KCL give
 
-So for $V_{in}$ below roughly $2 - 0.8 \approx 1.1$–$1.2$ V the device is in **triode**, and above that it is **saturated**.
+$$\frac{V_{out}}{R_1}=I_D=\beta\left[(V_{GS}-V_{TH})V_{DS}-\frac{V_{DS}^2}{2}\right].$$
 
-### Step 3 — Low $V_{in}$: $M_1$ as a closed switch
+The condition $V_{DS}<V_{GS}-V_{TH}$ becomes $V_{in}<2\ \mathrm{V}-V_{TH}(V_{out})$. Thus
 
-In triode, KCL at the output gives
+$$\frac{V_{out}}{R_1}=\beta\left[(2\ \mathrm{V}-V_{out}-V_{TH})(V_{in}-V_{out})-\frac{(V_{in}-V_{out})^2}{2}\right].$$
 
-$$\frac{V_{out}}{R_1} = \beta\left[(2 - V_{out} - V_{TH})(V_{in} - V_{out}) - \tfrac12(V_{in} - V_{out})^2\right].$$
+It starts at $V_{out}=0$ for $V_{in}=0$. When the drain-to-source voltage is small compared with overdrive, the channel is approximately $R_{on}=1/[\beta(2\ \mathrm{V}-V_{out}-V_{TH})]$, giving $V_{out}\approx V_{in}R_1/(R_1+R_{on})$. At the origin $V_{DS}=0$, so the differential terms multiplied by $V_{DS}$ vanish and
 
-For small $V_{DS} = V_{in} - V_{out}$ the quadratic term is negligible, and the channel is a resistor
+$$\frac{dV_{out}}{R_1}=\beta(2\,\mathrm V-V_{TH0})(dV_{in}-dV_{out}).$$
 
-$$R_{on} \approx \frac{1}{\beta\,(2 - V_{out} - V_{TH})}$$
+Rearrange to obtain the initial slope.
 
-in series with $R_1$, forming a divider:
+$$\left.\frac{dV_{out}}{dV_{in}}\right|_0=\frac{\beta R_1(2\ \mathrm{V}-V_{TH0})}{1+\beta R_1(2\ \mathrm{V}-V_{TH0})}.$$
 
-$$V_{out} \approx V_{in}\,\frac{R_1}{R_1 + R_{on}} .$$
+This slope is below one and may be small. As output rises, the gate overdrive decreases and the threshold increases; the curve bends toward the plateau. Near the triode/saturation boundary the approximation by a linear channel resistor is insufficient, so use the full load equation.
 
-If $R_1 \gg R_{on}$, **$V_{out} \approx V_{in}$** (slope close to 1). As $V_{in}$ and $V_{out}$ rise, $V_{GS} = 2 - V_{out}$ shrinks and $V_{TH}$ grows, so $R_{on}$ increases and the slope gradually decreases.
+### 3. Saturation plateau and transition
 
-### Step 4 — High $V_{in}$: saturation and a constant output
+For $V_{in}\ge2\ \mathrm{V}-V_{TH}(V_{out})$, the saturation equation is
 
-In saturation (with $\lambda = 0$):
+$$\frac{V_{out,s}}{R_1}=\frac{\beta}{2}[2\ \mathrm{V}-V_{out,s}-V_{TH}(V_{out,s})]^2.$$
 
-$$\frac{V_{out}}{R_1} = \tfrac12\beta\,\left(2 - V_{out} - V_{TH}(V_{out})\right)^2 .$$
+Use the positive overdrive root,
 
-$V_{in}$ does **not appear**: once saturated, $V_{out}$ is constant at the solution $V_{out,s}$ of this equation for all larger $V_{in}$. $M_1$ is now a source follower driven by the fixed 2-V gate, and raising its drain does nothing.
+$$2\ \mathrm{V}-V_{out,s}-V_{TH}(V_{out,s})=\sqrt{\frac{2V_{out,s}}{\beta R_1}}>0.$$
 
-**Upper bound of the plateau.** Written as $V_{out} = 2 - V_{TH}(V_{out}) - \sqrt{2V_{out}/(\beta R_1)}$, the last term vanishes only for $\beta R_1 \to \infty$, so the highest possible plateau satisfies $V_{GS} = V_{TH}$:
+The right side is the overdrive needed to carry the load current. The equation contains no input voltage; the output is therefore constant under $\lambda=0$, beginning at
 
-$$2 - V_{out} = 0.7 + 0.45\left(\sqrt{0.9 + V_{out}} - 0.9487\right).$$
+$$V_{in,s}=2\ \mathrm{V}-V_{TH}(V_{out,s}).$$
 
-With $u = \sqrt{0.9 + V_{out}}$ ($V_{out} = u^2 - 0.9$) and $0.7 - 0.45\times0.9487 = 0.2731$:
+The two current expressions agree at the boundary. Their slope with respect to $V_{in}$ also goes to zero there, so the rising segment joins the plateau smoothly.
 
-$$
-\begin{aligned}
-2 - u^2 + 0.9 &= 0.2731 + 0.45u\\
-u^2 + 0.45u - 2.6269 &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 10.5076}}{2} = \frac{-0.45 + 3.2726}{2} = 1.4113\\
-V_{out} &= 1.4113^2 - 0.9 = 1.9918 - 0.9 = 1.09\ \mathrm{V}.
-\end{aligned}
-$$
+At the upper bound $2\,\mathrm V-V_{out}=V_{TH}(V_{out})$. Substitute $u=\sqrt{2|\phi_F|+V_{out}}$ to obtain
 
-At this point $V_{TH} = 2 - 1.09 = 0.91$ V; without the body effect the bound would be $2 - 0.7 = 1.3$ V. **The plateau always lies a little below 1.09 V.**
+$$u^2+\gamma u=2\,\mathrm V+2|\phi_F|-V_{TH0}+\gamma\sqrt{2|\phi_F|},\qquad V_{out}=u^2-2|\phi_F|.$$
 
-### Step 5 — Numerical examples
+The positive root gives $V_{out}=1.0918\ \mathrm{V}$. This bound is approached only as $\beta R_1\to\infty$. For finite positive load and size, the plateau is lower, potentially much lower; as $\beta R_1\to0$, $V_{out,s}\to0$ and $V_{in,s}\to1.3\ \mathrm{V}$. Without body effect the upper bound would be 1.3 V.
 
-**Plateau for $\beta R_1 = 10\ \mathrm{V^{-1}}$.** Solving $V_{out} = 5\,(2 - V_{out} - V_{TH})^2$ by trial, try $V_{out} = 0.758$ V:
+### 4. Computed examples and transfer curves
 
-$$
-\begin{aligned}
-V_{TH} &= 0.7 + 0.45\left(\sqrt{1.658} - 0.9487\right) = 0.7 + 0.45\times0.3389 = 0.8525\ \mathrm{V},\\
-V_{ov} &= 2 - 0.758 - 0.8525 = 0.3895\ \mathrm{V},\\
-5\,V_{ov}^2 &= 5\times0.1517\ \mathrm{V} = 0.758\ \mathrm{V}. \ \checkmark
-\end{aligned}
-$$
+The numerical solutions use the unrounded square-root threshold law:
 
-The break point is at $V_{in} = 2 - V_{TH}(V_{out,s}) = 2 - 0.8525 = 1.15$ V.
+| $\beta R_1$ (V⁻¹) | $V_{out,s}$ (V) | $V_{in,s}$ (V) |
+|---|---|---|
+| 1 | 0.3656 | 1.2207 |
+| 10 | 0.7581 | 1.1475 |
+| 100 | 0.9718 | 1.1112 |
 
-**A triode point, $\beta R_1 = 10\ \mathrm{V^{-1}}$, $V_{in} = 0.5$ V.** With $V_{out} = 0.440$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.34} - 0.9487) = 0.794$ V, $V_{ov} = 2 - 0.440 - 0.794 = 0.766$ V, and $R_{on}/R_1 = 1/(\beta R_1V_{ov}) = 1/7.66 = 0.131$. The divider gives $V_{out} \approx 0.5/1.131 = 0.442$ V, consistent.
+For $\beta R_1=10\ \mathrm{V^{-1}}$, substituting $V_{out,s}=0.7581\ \mathrm{V}$ gives $V_{TH}=0.8525\ \mathrm{V}$ and overdrive $0.3894\ \mathrm{V}$. The normalized load equation then yields $\tfrac12(10\ \mathrm{V^{-1}})(0.3894\ \mathrm{V})^2\approx 0.7581\ \mathrm{V}$, confirming the plateau and its units.
 
-| $V_{in}$ (V) | $V_{out}$, $\beta R_1 = 10\ \mathrm{V^{-1}}$ | $V_{out}$, $\beta R_1 = 100\ \mathrm{V^{-1}}$ | $V_{out}$, $\beta R_1 \to \infty$ |
-|---|---|---|---|
-| 0 | 0 | 0 | 0 |
-| 0.25 | 0.228 | 0.248 | 0.25 |
-| 0.5 | 0.440 | 0.493 | 0.50 |
-| 0.75 | 0.622 | 0.732 | 0.75 |
-| 1.0 | 0.738 | 0.937 | 1.00 |
-| break | 1.15 V | 1.11 V | 1.09 V |
-| 1.25 – 3 | 0.758 (flat) | 0.972 (flat) | 1.09 (flat) |
+![Output versus input voltage](/q/R017/solution-transfer.svg)
 
-(For $\beta R_1 = 1\ \mathrm{V^{-1}}$ the plateau is only 0.37 V, reached at $V_{in} \approx 1.22$ V.)
-
-**Shape.** A line rising from the origin with slope close to 1 (lower for small $\beta R_1$), bending over as $V_{GS}$ shrinks, and joining a **horizontal plateau** at $V_{out,s} < 1.09$ V for $V_{in} \gtrsim 1.1$–$1.2$ V, flat all the way to 3 V.
-
-### Result
-
-- The $V_{out}$ node is the source of $M_1$ ($V_{GS} = 2 - V_{out}$, $V_{SB} = V_{out}$) and the $V_{in}$ node is the drain, because current flows from $V_{in}$ through $M_1$ into $R_1$ and $V_{out} \le V_{in}$.
-- **$V_{in} < 2 - V_{TH}(V_{out})$:** triode. $M_1$ is a closed switch and $V_{out} = V_{in}R_1/(R_1 + R_{on}) \approx V_{in}$ for $R_1 \gg R_{on}$, with $R_{on} \approx 1/[\beta(2 - V_{out} - V_{TH})]$. The slope falls as $V_{GS}$ shrinks.
-- **Larger $V_{in}$ (from about 1.1–1.2 V):** saturation. $V_{out}$ is fixed by $\tfrac12\beta(2 - V_{out} - V_{TH}(V_{out}))^2 = V_{out}/R_1$, independent of $V_{in}$, and stays **flat up to 3 V**. Its upper bound ($\beta R_1 \to \infty$) is the solution of $2 - V_{out} = V_{TH}(V_{out})$: **1.09 V** with body effect (1.3 V without). Examples: 0.76 V for $\beta R_1 = 10\ \mathrm{V^{-1}}$, 0.97 V for $\beta R_1 = 100\ \mathrm{V^{-1}}$.
-
-**Common mistake.** Taking the $V_{in}$ terminal (the one with the arrow) as the source, which makes $V_{GS} = 2 - V_{in}$ and gives an inverting or ever-increasing output. The source is the lower-potential terminal, $V_{out}$.
-
-**Common mistake.** Letting $V_{out}$ follow $V_{in}$ up to 2 V or 3 V. With the gate at 2 V the source can rise only until $V_{GS}$ just exceeds $V_{TH}$; beyond the break point the output is clamped.
-
-**Common mistake.** Using $V_{TH} = 0.7$ V for the clamp, which gives 1.3 V. The source sits about 1 V above the grounded bulk, raising $V_{TH}$ to about 0.91 V, so the clamp is at most 1.09 V.
+Finite curves use the full triode/saturation equations. The dashed limiting curve is $V_{out}=\min(V_{in},1.0918\ \mathrm{V})$ for $\beta R_1\to\infty$, not an additional finite device. Nonzero channel-length modulation would give the plateau a slope; its value cannot be computed from the supplied data.

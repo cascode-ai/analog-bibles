@@ -2,10 +2,20 @@
 
 ## Reference answer
 
-The diode-connected $M_1$ is always saturated and discharges $C_1$ ever more slowly: $V_X$ decays hyperbolically from 3 V toward $V_{TH} = 0.7$ V without reaching it (square law), and $I_X$ decays from $\tfrac12\beta(2.3)^2 = 2.65\beta$ toward zero.
-- $C_1\,dV_X/dt = -\tfrac12\beta(V_X - 0.7)^2$. With $u = V_X - 0.7$: $1/u = 1/u_0 + \beta t/(2C_1)$, so $V_X(t) = 0.7 + \dfrac{2.3}{1 + 2.3\beta t/(2C_1)}$ V and $I_X(t) = \tfrac12\beta(V_X - 0.7)^2 = \dfrac{2.65\beta}{[1 + 2.3\beta t/(2C_1)]^2}$.
-- The approach is slower than exponential ($\propto 1/t$); in reality subthreshold conduction continues to lower $V_X$ slowly below 0.7 V.
+With the source and gate tied to $V_X$, $V_{GS}=V_{DS}=V_X$; the device is saturated whenever it conducts. Taking $\lambda=0$ and $V_{TH}=0.7\,\mathrm V$,
+
+$$C_1\dot V_X=-\frac{\beta}{2}(V_X-0.7\,\mathrm V)^2.$$
+
+Let $T=2C_1/[\beta(2.3\,\mathrm V)]$. Then
+
+$$V_X=0.7\,\mathrm V+\frac{2.3\,\mathrm V}{1+t/T},\qquad I_X=\frac{(2.645\,\mathrm V^2)\beta}{(1+t/T)^2}.$$
+
+Thus $V_X$ approaches 0.7 V as $1/t$ and $I_X\to0$ as $1/t^2$, slower than an RC exponential. The 0.7-V endpoint is an ideal strong-inversion result; subthreshold and leakage currents are outside the supplied model.
+
+![Answer plot: voltage](/q/R024/solution-voltage.svg)
+
+![Answer plot: current](/q/R024/solution-current.svg)
 
 ## Grading notes
 
-+2: saturation throughout, $V_X$ decaying toward $V_{TH}$ (0.7 V), not to 0, with a slowing (hyperbolic, not exponential) approach; $I_X$ starting at $\tfrac12\beta(2.3\ \mathrm{V})^2$ and decaying to 0. The closed-form solution is a plus, not required. +1: correct final value and shapes but the approach called exponential; or a slip confined to the optional closed form (e.g. the time constant written as $2C_1\Delta V_0/\beta$ instead of $2C_1/(\beta\Delta V_0)$) while the shapes, the initial current $\tfrac12\beta(2.3\ \mathrm{V})^2$, the final values (0.7 V, 0) and the slower-than-exponential approach are right. 0: correct mechanism with a wrong initial current. -2 (asserted as fact): $V_X$ decaying to 0 V, $M_1$ in triode, or a final value other than ≈ $V_{TH}$.
++2: diode-connected saturation, correct hyperbolic VX and IX curves with units, initial current and ideal-model endpoint. +1: correct shapes but misses the slower-than-exponential condition or a requested quantity. −2: asserts triode behavior or VX→0 in the ideal square-law model.

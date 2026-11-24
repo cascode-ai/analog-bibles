@@ -1,5 +1,20 @@
-$V_{in} \le 0.7$ V 时 $V_{out} = 0$；$V_{in}$ 更大时，$M_1$ 作为源极跟随器（source follower）工作，以 $V_{out}$ 为源极、1 V 节点为漏极，因此 $V_{out}$ 以小于 1 的斜率上升；大约在 $V_{in} \approx 1.9$ V 以上，$M_1$ 进入线性区（triode region），$V_{out}$ 变得平坦，逐渐接近但永远不会超过 1 V。
-- 流过 $R_1$ 的电流必须来自 1 V 电源并经过 $M_1$，因此 $0 \le V_{out} < 1$ V：$V_{out}$ 节点是源极，1 V 节点是漏极；$V_{GS} = V_{in} - V_{out}$，$V_{SB} = V_{out}$。
-- 当 $V_{in} > V_{out} + V_{TH}(V_{out})$ 时导通；在 $V_{out} = 0$ 时，该值为 0.7 V。
-- 当 $1 - V_{out} > V_{in} - V_{out} - V_{TH}$，即 $V_{in} < 1 + V_{TH}(V_{out})$ 时，器件处于饱和区（saturation region）：$V_{out} = \tfrac12\beta R_1(V_{in} - V_{out} - V_{TH})^2$，即 $V_{out} = V_{in} - V_{TH}(V_{out}) - \sqrt{2V_{out}/(\beta R_1)}$。斜率小于 1，原因是 $\beta R_1$ 有限以及存在体效应（body effect）：当 $V_{out}$ → 1 V 时，$V_{TH}$ 从 0.7 V 上升到接近 0.89 V。
-- 当 $V_{in} \gtrsim 1 + V_{TH} \approx 1.8$–1.9 V 时：线性区，随着 $V_{in}$ 增大，$V_{out} \to 1$ V（渐近趋近，接近的程度取决于 $\beta R_1$）。
+当 $V_{in}\le0.7\,\mathrm{V}$ 时，输出为零。此后输出以小于 1 的斜率上升。对有限正 $\beta R_1$，输出低于 $1\,\mathrm{V}$。输出端是电学源极，$1\,\mathrm{V}$ 端为负载供电。
+
+$$V_{GS}=V_{in}-V_{out},\quad V_{DS}=1\,\mathrm{V}-V_{out},\quad V_{SB}=V_{out}.$$
+
+按题给体效应参数计算阈值。令过驱动 $V_{ov}=V_{GS}-V_{TH}(V_{out})$。忽略沟道长度调制，由 KCL 得
+
+| 工作区 | 条件 | 输出方程 |
+|---|---|---|
+| 截止区 | $V_{ov}\le0$ | $V_{out}=0$ |
+| 饱和区 | $0<V_{ov}\le V_{DS}$ | $V_{out}=\beta R_1 V_{ov}^2/2$ |
+| 线性区 | $V_{ov}>V_{DS}$ | $V_{out}=\beta R_1(V_{ov}V_{DS}-V_{DS}^2/2)$ |
+
+在工作区交界处，$V_{ov}=V_{DS}$。记该点的输入和输出为 $V_{in,k}$ 和 $V_{out,k}$。
+
+$$V_{out,k}=V_D\left(1-\frac{2}{1+\sqrt{1+2\beta R_1 V_D}}\right),\qquad
+V_{in,k}=V_D+V_{TH}(V_{out,k}),\quad V_D=1\,\mathrm{V}.$$
+
+转折输入的两个极限为 $1.700$ 和 $1.893\,\mathrm{V}$。曲线以零斜率离开零输出，在进入线性区后继续向 $1\,\mathrm{V}$ 上限上升。$V_{in}=3\,\mathrm{V}$ 时接近上限的程度取决于 $\beta R_1$。
+
+![三组器件与负载参数下的输出电压随输入电压变化曲线](/q/R016/solution-r016.zh.svg)

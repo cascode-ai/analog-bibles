@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 525">
+<title>R020 · Gate–source voltage versus bulk voltage</title>
+<desc>The solid trace uses the square law with body effect. The shaded interval requires a junction model.</desc>
+<rect width="900" height="525" fill="white"/>
+<text x="34" y="40" font-size="23" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">R020 · Gate–source voltage versus bulk voltage</text>
+<text x="34" y="70" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">Example with V_ov = √(2I₁/β) = 0.20 V, V_DD = 3 V, λ = 0.</text>
+<rect x="638.9000000000001" y="105" width="203.0999999999999" height="266" fill="#eef1f4"/>
+<line x1="165" y1="105" x2="165" y2="371" stroke="#41566a"/>
+<line x1="165" y1="371" x2="842" y2="371" stroke="#41566a"/>
+<path d="M 165 371 L 165 377" fill="none" stroke="#41566a"/>
+<text x="165" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0</text>
+<path d="M 277.8333333333333 371 L 277.8333333333333 377" fill="none" stroke="#41566a"/>
+<text x="277.8333333333333" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.5</text>
+<path d="M 390.66666666666663 371 L 390.66666666666663 377" fill="none" stroke="#41566a"/>
+<text x="390.66666666666663" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1</text>
+<path d="M 503.5 371 L 503.5 377" fill="none" stroke="#41566a"/>
+<text x="503.5" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1.5</text>
+<path d="M 616.3333333333333 371 L 616.3333333333333 377" fill="none" stroke="#41566a"/>
+<text x="616.3333333333333" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">2</text>
+<path d="M 729.1666666666666 371 L 729.1666666666666 377" fill="none" stroke="#41566a"/>
+<text x="729.1666666666666" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">2.5</text>
+<path d="M 842 371 L 842 377" fill="none" stroke="#41566a"/>
+<text x="842" y="396" font-size="14" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">3</text>
+<path d="M 159 371 L 165 371" fill="none" stroke="#41566a"/>
+<text x="150" y="376" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.5</text>
+<path d="M 159 339.70588235294116 L 165 339.70588235294116" fill="none" stroke="#41566a"/>
+<text x="150" y="344.70588235294116" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.6</text>
+<path d="M 159 308.4117647058824 L 165 308.4117647058824" fill="none" stroke="#41566a"/>
+<text x="150" y="313.4117647058824" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.7</text>
+<path d="M 159 277.11764705882354 L 165 277.11764705882354" fill="none" stroke="#41566a"/>
+<text x="150" y="282.11764705882354" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.8</text>
+<path d="M 159 245.8235294117647 L 165 245.8235294117647" fill="none" stroke="#41566a"/>
+<text x="150" y="250.8235294117647" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">0.9</text>
+<path d="M 159 214.52941176470588 L 165 214.52941176470588" fill="none" stroke="#41566a"/>
+<text x="150" y="219.52941176470588" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1.0</text>
+<path d="M 159 183.23529411764702 L 165 183.23529411764702" fill="none" stroke="#41566a"/>
+<text x="150" y="188.23529411764702" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1.1</text>
+<path d="M 159 151.94117647058823 L 165 151.94117647058823" fill="none" stroke="#41566a"/>
+<text x="150" y="156.94117647058823" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1.2</text>
+<path d="M 159 120.64705882352939 L 165 120.64705882352939" fill="none" stroke="#41566a"/>
+<text x="150" y="125.64705882352939" font-size="14" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">1.3</text>
+<text x="34" y="239" font-size="17" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">V_out (V)</text>
+<text x="503.5" y="427" font-size="17" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">V_in (V)</text>
+<path d="M 638.9000000000001 105 L 638.9000000000001 371" fill="none" stroke="#788b9a" stroke-dasharray="5 6"/>
+<path d="M 165 245.8235294117647 L 638.9000000000001 245.8235294117647" fill="none" stroke="#aeb9c2" stroke-dasharray="4 6"/>
+<polyline points="165.000,148.496 167.257,148.874 169.513,149.252 171.770,149.631 174.027,150.011 176.283,150.391 178.540,150.771 180.797,151.153 183.053,151.534 185.310,151.917 187.567,152.299 189.823,152.683 192.080,153.067 194.337,153.451 196.593,153.836 198.850,154.222 201.107,154.608 203.363,154.995 205.620,155.383 207.877,155.771 210.133,156.159 212.390,156.549 214.647,156.938 216.903,157.329 219.160,157.720 221.417,158.112 223.673,158.504 225.930,158.897 228.187,159.290 230.443,159.684 232.700,160.079 234.957,160.474 237.213,160.870 239.470,161.267 241.727,161.664 243.983,162.062 246.240,162.460 248.497,162.859 250.753,163.259 253.010,163.659 255.267,164.060 257.523,164.462 259.780,164.865 262.037,165.268 264.293,165.671 266.550,166.076 268.807,166.481 271.063,166.886 273.320,167.293 275.577,167.700 277.833,168.107 280.090,168.516 282.347,168.925 284.603,169.335 286.860,169.745 289.117,170.156 291.373,170.568 293.630,170.981 295.887,171.394 298.143,171.808 300.400,172.223 302.657,172.638 304.913,173.054 307.170,173.471 309.427,173.889 311.683,174.307 313.940,174.726 316.197,175.146 318.453,175.567 320.710,175.988 322.967,176.410 325.223,176.833 327.480,177.257 329.737,177.681 331.993,178.106 334.250,178.532 336.507,178.959 338.763,179.387 341.020,179.815 343.277,180.244 345.533,180.674 347.790,181.105 350.047,181.536 352.303,181.968 354.560,182.402 356.817,182.836 359.073,183.270 361.330,183.706 363.587,184.142 365.843,184.580 368.100,185.018 370.357,185.457 372.613,185.897 374.870,186.337 377.127,186.779 379.383,187.221 381.640,187.665 383.897,188.109 386.153,188.554 388.410,189.000 390.667,189.447 392.923,189.895 395.180,190.343 397.437,190.793 399.693,191.244 401.950,191.695 404.207,192.147 406.463,192.601 408.720,193.055 410.977,193.510 413.233,193.966 415.490,194.424 417.747,194.882 420.003,195.341 422.260,195.801 424.517,196.262 426.773,196.724 429.030,197.187 431.287,197.651 433.543,198.116 435.800,198.582 438.057,199.049 440.313,199.517 442.570,199.986 444.827,200.457 447.083,200.928 449.340,201.400 451.597,201.873 453.853,202.348 456.110,202.823 458.367,203.300 460.623,203.778 462.880,204.257 465.137,204.736 467.393,205.217 469.650,205.700 471.907,206.183 474.163,206.667 476.420,207.153 478.677,207.640 480.933,208.128 483.190,208.617 485.447,209.107 487.703,209.599 489.960,210.091 492.217,210.585 494.473,211.080 496.730,211.577 498.987,212.074 501.243,212.573 503.500,213.073 505.757,213.574 508.013,214.077 510.270,214.581 512.527,215.086 514.783,215.593 517.040,216.100 519.297,216.610 521.553,217.120 523.810,217.632 526.067,218.145 528.323,218.660 530.580,219.176 532.837,219.693 535.093,220.212 537.350,220.732 539.607,221.253 541.863,221.776 544.120,222.301 546.377,222.827 548.633,223.354 550.890,223.883 553.147,224.413 555.403,224.945 557.660,225.479 559.917,226.013 562.173,226.550 564.430,227.088 566.687,227.628 568.943,228.169 571.200,228.712 573.457,229.256 575.713,229.802 577.970,230.350 580.227,230.899 582.483,231.450 584.740,232.003 586.997,232.558 589.253,233.114 591.510,233.672 593.767,234.232 596.023,234.793 598.280,235.356 600.537,235.921 602.793,236.488 605.050,237.057 607.307,237.628 609.563,238.200 611.820,238.775 614.077,239.351 616.333,239.929 618.590,240.510 620.847,241.092 623.103,241.676 625.360,242.262 627.617,242.851 629.873,243.441 632.130,244.033 634.387,244.628 636.643,245.225 638.900,245.824" fill="none" stroke="#105e98" stroke-width="3"/>
+<circle cx="165" cy="148.49601825386387" r="4" fill="#105e98"/>
+<circle cx="638.9000000000001" cy="245.8235294117647" r="4.7" fill="#105e98" stroke="white"/>
+<text x="311" y="144" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">Zero or reverse source–bulk bias</text>
+<text x="741" y="159" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">Source–bulk forward bias</text>
+<text x="741" y="183" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">Junction model required</text>
+<text x="34" y="465" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">At V_in = 0 V, V_out ≈ 1.211 V.</text>
+<text x="34" y="492" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#193042">At V_SB = 0 V, V_in = 2.100 V and V_out = 0.900 V.</text>
+</svg>
