@@ -1,6 +1,6 @@
 # Allen & Holberg — CMOS Analog Circuit Design
 
-## 简单 Easy（266）
+## Easy (266)
 
 - [A001](A001/instruction.md)
 - [A004](A004/instruction.md)
@@ -269,7 +269,7 @@
 - [A553](A553/instruction.md)
 - [A557](A557/instruction.md)
 
-## 中等 Medium（228）
+## Medium (228)
 
 - [A002](A002/instruction.md)
 - [A003](A003/instruction.md)
@@ -500,7 +500,7 @@
 - [A555](A555/instruction.md)
 - [A556](A556/instruction.md)
 
-## 困难 Hard（63）
+## Hard (63)
 
 - [A046](A046/instruction.md)
 - [A090](A090/instruction.md)
@@ -566,7 +566,7 @@
 - [A391](A391/instruction.md)
 - [A524](A524/instruction.md)
 
-## 仿真 Simulation（27）
+## Simulation (27)
 
 - [alsim-03-6-01](alsim-03-6-01/instruction.md)
 - [alsim-03-6-02](alsim-03-6-02/instruction.md)

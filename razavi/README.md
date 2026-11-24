@@ -1,6 +1,6 @@
 # Razavi — Design of Analog CMOS Integrated Circuits
 
-## 简单 Easy（338）
+## Easy (338)
 
 - [R001](R001/instruction.md)
 - [R002](R002/instruction.md)
@@ -341,7 +341,7 @@
 - [R722](R722/instruction.md)
 - [R723](R723/instruction.md)
 
-## 中等 Medium（300）
+## Medium (300)
 
 - [R008](R008/instruction.md)
 - [R009](R009/instruction.md)
@@ -644,7 +644,7 @@
 - [R717](R717/instruction.md)
 - [R719](R719/instruction.md)
 
-## 困难 Hard（85）
+## Hard (85)
 
 - [R010](R010/instruction.md)
 - [R027](R027/instruction.md)

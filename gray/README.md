@@ -1,6 +1,6 @@
 # Gray — Analysis and Design of Analog Integrated Circuits
 
-## 简单 Easy（216）
+## Easy (216)
 
 - [G001](G001/instruction.md)
 - [G002](G002/instruction.md)
@@ -219,7 +219,7 @@
 - [G427](G427/instruction.md)
 - [G429](G429/instruction.md)
 
-## 中等 Medium（190）
+## Medium (190)
 
 - [G010](G010/instruction.md)
 - [G013](G013/instruction.md)
@@ -412,7 +412,7 @@
 - [G431](G431/instruction.md)
 - [G432](G432/instruction.md)
 
-## 困难 Hard（26）
+## Hard (26)
 
 - [G011](G011/instruction.md)
 - [G083](G083/instruction.md)
@@ -441,7 +441,7 @@
 - [G374](G374/instruction.md)
 - [G380](G380/instruction.md)
 
-## 仿真 Simulation（85）
+## Simulation (85)
 
 - [grsim-03-04](grsim-03-04/instruction.md)
 - [grsim-03-10](grsim-03-10/instruction.md)
