@@ -1,4 +1,17 @@
-假设 $V_b > V_{TH}$（且 $V_b - V_{TH} < 3$ V）：$M_1$ 首先在饱和区（saturation region）以恒定电流 $I_X = \tfrac12\beta(V_b - 0.7)^2$ 对 $C_1$ 放电，因此 $V_X$ 线性下降；当 $V_X$ 降到 $V_b - 0.7$ V 时，$M_1$ 进入线性区（triode region），$I_X$ 衰减，$V_X$ 近似按指数规律衰减到 0。
-- 阶段 1（饱和区，$V_X > V_b - V_{TH}$）：$dV_X/dt = -I_X/C_1$，斜率恒定；该阶段持续 $t_1 = C_1[3 - (V_b - 0.7)]/I_X$。
-- 阶段 2（线性区）：$I_X = \beta[(V_b - 0.7)V_X - V_X^2/2]$ 逐渐降到零；接近结束时，$M_1$ 相当于电阻 $R_{on} = 1/[\beta(V_b - 0.7)]$，$V_X \propto e^{-t/(R_{on}C_1)}$。最终 $V_X = 0$，$I_X = 0$。
-- $I_X(t)$：先平坦地保持在 $\tfrac12\beta(V_b-0.7)^2$，然后衰减到零。（若 $V_b \le 0.7$ V，则什么都不会发生：$V_X$ 保持 3 V，$I_X = 0$。）
+令 $U=V_b-V_{TH}$，其中 $V_{TH}=0.7\,\mathrm V$、$\beta=\mu_nC_{ox}W/L$，取 $\lambda=0$。KCL 为 $I_X=-C_1\,dV_X/dt$。
+
+| 偏置 | 电压与电流 |
+|---|---|
+| $U\le0$ | $V_X=3\,\mathrm V$、$I_X=0$。 |
+| $0<U<3\,\mathrm V$ | 初始饱和：$I_X=\beta U^2/2$、$V_X=3\,\mathrm V-I_Xt/C_1$。在 $t_1=2C_1(3\,\mathrm V-U)/(\beta U^2)$ 时 $V_X=U$，其后在线性区衰减。 |
+| $U\ge3\,\mathrm V$ | 从 $t=0$ 起即在线性区，无持续恒流阶段。 |
+
+线性区内，
+
+$$I_X=\beta(UV_X-V_X^2/2),\qquad V_X\to0,\quad I_X\to0.$$
+
+当 $U>0$ 时，晚期时间常数为 $C_1/(\beta U)$；整个线性区过程并非纯指数。饱和转线性区时，电压、电流和电压斜率连续。因题中未指定 $V_b$、$C_1$ 和 $\beta$，图使用明确标注的示例参数。
+
+![答案曲线：voltage](/q/R023/solution-voltage.zh.svg)
+
+![答案曲线：current](/q/R023/solution-current.zh.svg)

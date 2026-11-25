@@ -1,1 +1,6 @@
-什么都不会发生：对所有 $t$，$V_X$ 都保持 3 V，$I_X = 0$。$M_1$ 的源极起始电位为 $V_X = 3\ \mathrm{V} = V_{DD}$，因此 $V_{DS} = 0$，无论 $V_b$ 为何值，都不可能有漏极电流流过（当 $V_b \le V_{DD}$ 时，由于 $V_{GS} = V_b - 3 \le 0$，器件本身也是截止的）。
+在题给初始条件下，$V_X=V_{DD}=3\,\mathrm{V}$，所以 $V_{DS}=0$。截止时电流为零；即使形成沟道，线性区方程 $I_D=\beta[(V_{GS}-V_{TH})V_{DS}-V_{DS}^2/2]$ 仍为零。因此 $V_X(t)=3\,\mathrm{V}$、$I_X(t)=0\,\mathrm{A}$。
+
+![答案曲线：电压](/q/R025/solution-voltage.zh.svg)
+
+![答案曲线：电流](/q/R025/solution-current.zh.svg)
+

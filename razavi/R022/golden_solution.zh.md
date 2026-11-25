@@ -1,5 +1,11 @@
-$M_1$ 作为源极跟随器（source follower）导通，$V_{out}$ 通过体效应（body effect）随 $V_{in}$ 升高。$R_1$ 把上端子拉向地，因此该端子（$V_{out}$）是电位较低的一端，充当源极；+2 V 端是漏极。（+2 V 端画的箭头并不能确定对称 MOSFET 的源极；若把该端当作源极，会得到 $V_{GS} = 0$，沟道永不导通，这是错误的。）$V_{out}$ 从 $2\ \mathrm{V} - V_{TH}$ 附近开始：轻载（light load）时 ≈ 1.09 V，$\beta R_1$ 有限时更低。随后它以远小于 1 的斜率上升，并随 $V_{SB} \to 0$ 而变陡；一旦 $V_{in}$ 比 $V_{out}$ 高出约 0.6–0.7 V，源-衬底结（source–bulk junction）就会导通，在范围顶端附近 $V_{out} \approx V_{in} - 0.7$ V。
-- $V_{GS} = V_{DS} = 2 - V_{out}$，因此 $M_1$ 只要导通就处于饱和区（saturation region）：$V_{out}/R_1 = \tfrac12\beta(2 - V_{out} - V_{TH})^2$（$\beta = \mu_nC_{ox}W/L$），即 $V_{out} = 2 - V_{TH} - \sqrt{2V_{out}/(\beta R_1)}$，其中 $V_{SB} = V_{out} - V_{in}$，$V_{TH} = 0.7 + 0.45(\sqrt{0.9 + V_{out} - V_{in}} - \sqrt{0.9})$。
-- 升高 $V_{in}$ 会降低 $V_{SB}$，从而降低 $V_{TH}$，因此 $V_{out}$ 上升；$dV_{TH}/dV_{SB}$ 随 $V_{SB}$ 减小而增大，因此曲线向上凹（concave up）。
-- 轻载极限（$\beta R_1 \to \infty$，$V_{out} + V_{TH} = 2$ V）：$V_{in} = 0$ 时 $V_{out}$ ≈ 1.09 V，0.5 V 时为 1.16 V，1 V 时为 1.25 V，$V_{in} = 1.3$ V 时为 1.30 V（此时 $V_{SB} = 0$），2 V 时为 1.46 V。有限的 $\beta R_1$ 会使曲线下移：$\beta R_1 = 10\ \mathrm{V^{-1}}$ 时，$V_{in} = 0$ 处为 0.76 V，1 V 处为 0.90 V；100 V⁻¹ 时分别为 0.97 V 和 1.12 V。
-- 当 $V_{in} > V_{out}$ 时，源-衬底结正向偏置（forward-biased）。一旦正向偏压达到约 0.6–0.7 V（轻载时约在 $V_{in} \approx 2.1$ V 处，$\beta R_1$ 较小时更早），该结就会向 $R_1$ 导通，$V_{out} \approx V_{in} - 0.7$ V，并且随着 $V_{GS} = 2 - V_{out}$ 减小，沟道电流逐渐消失。在 $V_{in} \approx 2.6$ V 以上，衬底与 2 V 节点之间的结也会导通，并可能伴有横向双极晶体管效应（lateral bipolar action）；平方律（square law）/体效应模型已无法描述这一上端区域。
+对称 NMOS 的输出端被电阻拉到 2 V 以下，因此输出端是源极，栅极和漏极均为 2 V。取 $\lambda=0$，且忽略结电流时，
+
+$$\frac{V_{out}}{R_1}=\frac{\beta}{2}[2\,\mathrm V-V_{out}-V_{TH}(V_{out}-V_{in})]^2,$$
+
+$$V_{TH}(V_{SB})=0.7\,\mathrm V+\gamma[\sqrt{0.9\,\mathrm V+V_{SB}}-\sqrt{0.9\,\mathrm V}],\quad\beta=\mu_n C_{ox}W/L.$$
+
+取过驱动为正的根；因 $V_{DS}=V_{GS}$，该导通分支处于饱和区。抬高衬底降低阈值，使 $V_{out}$ 上升，斜率为 $g_{mb}/(g_m+g_{mb}+1/R_1)$，介于 0 与 1 之间。初始输出取决于 $\beta R_1$：$10\,\mathrm{V^{-1}}$ 时为 0.758 V，$100\,\mathrm{V^{-1}}$ 时为 0.972 V，轻载极限为 1.092 V。
+
+当 $V_{in}>V_{out}$ 时源体结正偏。该结及随后衬底与 2 V 端之间的结电流需要额外参数；题给数据不能唯一确定到 $V_{in}=3$ V 的后续曲线，也不能推出固定 0.7 V 钳位。
+
+![答案曲线：transfer](/q/R022/solution-transfer.zh.svg)

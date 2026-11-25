@@ -2,11 +2,24 @@
 
 ## Reference answer
 
-Assuming $V_b > V_{TH}$ (and $V_b - V_{TH} < 3$ V): $M_1$ first discharges $C_1$ with a constant current $I_X = \tfrac12\beta(V_b - 0.7)^2$ (saturation), so $V_X$ ramps down linearly; when $V_X$ reaches $V_b - 0.7$ V, $M_1$ enters triode, $I_X$ decays and $V_X$ decays approximately exponentially to 0.
-- Phase 1 (saturation, $V_X > V_b - V_{TH}$): $dV_X/dt = -I_X/C_1$, constant slope; it lasts $t_1 = C_1[3 - (V_b - 0.7)]/I_X$.
-- Phase 2 (triode): $I_X = \beta[(V_b - 0.7)V_X - V_X^2/2]$ falls toward zero; near the end $M_1$ is a resistor $R_{on} = 1/[\beta(V_b - 0.7)]$ and $V_X \propto e^{-t/(R_{on}C_1)}$. Final $V_X = 0$, $I_X = 0$.
-- $I_X(t)$: flat at $\tfrac12\beta(V_b-0.7)^2$, then decaying to zero. (If $V_b \le 0.7$ V nothing happens: $V_X$ stays at 3 V, $I_X = 0$.)
+Let $U=V_b-V_{TH}$, with $V_{TH}=0.7\,\mathrm V$, $\beta=\mu_nC_{ox}W/L$ and $\lambda=0$. KCL is $I_X=-C_1\,dV_X/dt$.
+
+| Bias | Voltage and current |
+|---|---|
+| $U\le0$ | $V_X=3\,\mathrm V$, $I_X=0$. |
+| $0<U<3\,\mathrm V$ | Initially saturated: $I_X=\beta U^2/2$, $V_X=3\,\mathrm V-I_Xt/C_1$. At $t_1=2C_1(3\,\mathrm V-U)/(\beta U^2)$, $V_X=U$ and triode decay begins. |
+| $U\ge3\,\mathrm V$ | Triode from $t=0$; no finite constant-current interval. |
+
+In triode,
+
+$$I_X=\beta(UV_X-V_X^2/2),\qquad V_X\to0,\quad I_X\to0.$$
+
+For $U>0$, the late-time constant is $C_1/(\beta U)$; the full triode decay is not a pure exponential. Both quantities and the voltage slope are continuous at the saturation/triode boundary. The graphs use explicitly chosen parameters because $V_b$, $C_1$ and $\beta$ are unspecified.
+
+![Answer plot: voltage](/q/R023/solution-voltage.svg)
+
+![Answer plot: current](/q/R023/solution-current.svg)
 
 ## Grading notes
 
-+2: constant-current (saturation) linear ramp-down of $V_X$, transition to triode at $V_X = V_b - V_{TH}$, exponential-like tail to 0 V; $I_X$ flat then decaying to 0. +1: correct phases without the transition condition, or one curve ($V_X$ or $I_X$) only partly described. 0: only an RC-like exponential from the start (saturation phase missed) with otherwise sound reasoning. -2 (asserted as fact): $V_X$ settling at a nonzero value such as $V_b - V_{TH}$, $V_X$ rising, or $I_X$ growing with time.
++2: correct KCL and voltage/current sketches for clearly stated gate-bias conditions, including the applicable initial region and final values. A parameterized answer covers cutoff, initial saturation followed by triode, and initial triode; a correctly stated particular bias case is acceptable as a conditional sketch. At V_b=3.7 V the saturation interval has zero duration. +1: correct discharge mechanism but one requested quantity or the region condition is missing. 0: an unconditional waveform despite unspecified V_b, or an incorrect tail with otherwise sound KCL. −2: asserts a nonzero stopping voltage for an on channel, rising discharge voltage, or increasing current in this fixed-gate discharge. Do not require a constant-current stage when V_b≥3.7 V or any discharge when V_b≤0.7 V.

@@ -2,12 +2,18 @@
 
 ## Reference answer
 
-$M_1$ conducts as a source follower and $V_{out}$ rises with $V_{in}$ through the body effect. $R_1$ pulls the upper terminal toward ground, so that terminal ($V_{out}$) is the lower-potential one and acts as the source; the +2-V terminal is the drain. (The arrow drawn at the +2-V terminal does not fix the source of a symmetric MOSFET; taking that terminal as the source would give $V_{GS} = 0$ and a channel that never conducts, which is wrong.) $V_{out}$ starts near $2\ \mathrm{V} - V_{TH}$ (≈ 1.09 V at light load, lower for finite $\beta R_1$) and rises with a slope well below 1 that steepens as $V_{SB} \to 0$; once $V_{in}$ exceeds $V_{out}$ by about 0.6–0.7 V the source–bulk junction conducts and $V_{out} \approx V_{in} - 0.7$ V near the top of the range.
-- $V_{GS} = V_{DS} = 2 - V_{out}$, so $M_1$ is saturated whenever it is on: $V_{out}/R_1 = \tfrac12\beta(2 - V_{out} - V_{TH})^2$ ($\beta = \mu_nC_{ox}W/L$), i.e. $V_{out} = 2 - V_{TH} - \sqrt{2V_{out}/(\beta R_1)}$, with $V_{SB} = V_{out} - V_{in}$ and $V_{TH} = 0.7 + 0.45(\sqrt{0.9 + V_{out} - V_{in}} - \sqrt{0.9})$.
-- Raising $V_{in}$ lowers $V_{SB}$ and hence $V_{TH}$, so $V_{out}$ rises; $dV_{TH}/dV_{SB}$ grows as $V_{SB}$ shrinks, so the curve is concave up.
-- Light-load limit ($\beta R_1 \to \infty$, $V_{out} + V_{TH} = 2$ V): $V_{out}$ ≈ 1.09 V at $V_{in} = 0$, 1.16 V at 0.5 V, 1.25 V at 1 V, 1.30 V at $V_{in} = 1.3$ V (where $V_{SB} = 0$), 1.46 V at 2 V. A finite $\beta R_1$ lowers the curve: for $\beta R_1 = 10\ \mathrm{V^{-1}}$, 0.76 V at $V_{in} = 0$ and 0.90 V at 1 V; for 100 V⁻¹, 0.97 V and 1.12 V.
-- For $V_{in} > V_{out}$ the source–bulk junction is forward biased. Once the forward bias reaches about 0.6–0.7 V (around $V_{in} \approx 2.1$ V at light load, earlier for smaller $\beta R_1$) the junction conducts into $R_1$, $V_{out} \approx V_{in} - 0.7$ V, and the channel current fades as $V_{GS} = 2 - V_{out}$ shrinks. Above $V_{in} \approx 2.6$ V the junction to the 2-V node also conducts (with possible lateral bipolar action); the square-law/body-effect model no longer describes this upper end.
+For the symmetric NMOS, the resistor pulls the output below 2 V: the output terminal is the source, and the gate and drain are both at 2 V. With $\lambda=0$ and negligible junction currents,
+
+$$\frac{V_{out}}{R_1}=\frac{\beta}{2}[2\,\mathrm V-V_{out}-V_{TH}(V_{out}-V_{in})]^2,$$
+
+$$V_{TH}(V_{SB})=0.7\,\mathrm V+\gamma[\sqrt{0.9\,\mathrm V+V_{SB}}-\sqrt{0.9\,\mathrm V}],\quad \beta=\mu_n C_{ox}W/L.$$
+
+The positive-overdrive root is saturated because $V_{DS}=V_{GS}$. Raising the body lowers the threshold, so $V_{out}$ rises with slope $g_{mb}/(g_m+g_{mb}+1/R_1)$ between 0 and 1. The starting output depends on $\beta R_1$: 0.758 V for $10\,\mathrm{V^{-1}}$, 0.972 V for $100\,\mathrm{V^{-1}}$, and 1.092 V in the light-load limit.
+
+For $V_{in}>V_{out}$ the source–body junction is forward biased. Its current, and eventually that of the junction to the 2-V terminal, require additional data; no unique continuation to $V_{in}=3$ V or fixed 0.7-V clamp follows from the question.
+
+![Answer plot: transfer](/q/R022/solution-transfer.svg)
 
 ## Grading notes
 
-+2: the $V_{out}$ node recognized as the source so that the channel conducts (source follower with gate and drain at 2 V, always saturated), $V_{out}$ rising with $V_{in}$ because the body effect lowers $V_{TH}$ (slope below 1), a starting level near $2\ \mathrm{V} - V_{TH}$ (≈ 1.09 V at light load, lower for finite $\beta R_1$; any level consistent with a stated $\beta R_1$ is fine), and forward bias of the source–bulk junction noted once $V_{in}$ exceeds $V_{out}$ (junction conduction with $V_{out} \approx V_{in} - 0.7$ V near the top is a plus). +1: rising follower curve with correct reasoning but without the forward-bias remark or without any level. 0: the follower reading and the "channel off" reading both offered without choosing between them. -2 (asserted as fact): the +2-V terminal taken as the source so that $V_{GS} = 0$ and the channel stays off ($V_{out} = 0$ until a junction conducts), $V_{out}$ decreasing with $V_{in}$, or $V_{out}$ above 2 V through MOS conduction.
++2: correct source identification, saturated MOS KCL with stated assumptions, rising output with load-dependent level, the requested sketch, and the source–body forward-bias limitation. A clearly stated load example or light-load limit is acceptable; no particular junction-region voltage is required. +1: correct rising MOS response but an essential level, equation, sketch or limitation is missing. 0: internally inconsistent model or an unexplained mixture of the channel-off and follower interpretations. −2: asserts that the channel never conducts solely because the marked source is at 2 V, or predicts a decreasing MOS response. Do not penalize an explicit statement that the junction-dominated continuation is undetermined.

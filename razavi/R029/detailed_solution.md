@@ -1,109 +1,104 @@
 # Detailed solution - R029
 
-**Approach.** $M_1$ (gate fixed at 2 V) connects $C_1$, charged to 3 V, to the empty $C_2$. Current flows from $C_1$ through $M_1$ into $C_2$, so $V_X$ falls and the source voltage $V_S$ rises, with total charge conserved. The transfer stops either when $M_1$ cuts off because $V_S$ has risen to $2\ \mathrm{V} - V_{TH}$, or when $V_X$ and $V_S$ become equal first. Find the initial current, the condition that separates the two cases and the final voltages, including the body effect.
+**Approach:** $M_1$ (gate fixed at 2 V) connects $C_1$, charged to 3 V, to the empty $C_2$. Current flows from $C_1$ through $M_1$ into $C_2$, so $V_X$ falls and the source voltage $V_S$ rises, with total charge conserved. The transfer stops either when $M_1$ cuts off because $V_S$ reaches $2\ \mathrm{V}-V_{TH}$, or when $V_X$ and $V_S$ become equal first. We use the long-channel square-law model and neglect channel-length modulation ($\lambda=0$).
 
 ### Step 1 — Charge conservation
 
-Call the source node (top plate of $C_2$) S; with the bulk grounded, $V_{SB} = V_S$. The current leaving $C_1$ passes through $M_1$ and arrives on $C_2$:
+Call the source node (the top plate of $C_2$) S; the bulk is grounded, so $V_{SB}=V_S$. The current leaving $C_1$ enters $C_2$:
 
-$$I_X = -C_1\frac{dV_X}{dt} = C_2\frac{dV_S}{dt} .$$
+$$I_X=-C_1\frac{dV_X}{dt}=C_2\frac{dV_S}{dt}.$$ 
 
-Integrating from $t = 0$, the charge removed from $C_1$ equals the charge added to $C_2$:
+Integrating from $t=0$ gives
 
-$$C_1\,(3 - V_X) = C_2\,V_S \quad\Longrightarrow\quad V_X = 3 - \frac{C_2}{C_1}V_S .$$
+$$C_1(3-V_X)=C_2V_S\quad\Longrightarrow\quad V_X=3-\frac{C_2}{C_1}V_S.$$ 
 
-With $r = C_2/C_1$ and the body effect,
+With $r=C_2/C_1$, the body-effect threshold is
 
-$$V_{TH}(V_S) = 0.7 + 0.45\left(\sqrt{0.9 + V_S} - 0.9487\right)\ \mathrm{V}.$$
+$$V_{TH}(V_S)=0.7+0.45\left(\sqrt{0.9+V_S}-0.9487\right)\ \mathrm{V}.$$ 
 
 ### Step 2 — Initial current
 
-At $t = 0^+$: $V_X = 3$ V, $V_S = 0$, $V_{GS} = 2$ V, $V_{DS} = 3$ V and $V_{TH} = 0.7$ V. $V_{DS} = 3\ \mathrm{V} > V_{ov} = 1.3$ V, so $M_1$ is **saturated** and the current jumps from zero to
+At $t=0^+$, $V_X=3$ V, $V_S=0$, $V_{GS}=2$ V, $V_{DS}=3$ V and $V_{TH}=0.7$ V. Since $V_{DS}=3\ \mathrm{V}>V_{GS}-V_{TH}=1.3\ \mathrm{V}$, $M_1$ is saturated:
 
-$$I_X(0^+) = \tfrac12\beta\,(2 - 0.7)^2 = \tfrac12\beta\,(1.3\ \mathrm{V})^2 = 0.845\,\beta\ \mathrm{V^2}.$$
+$$I_X(0^+)=\tfrac12\beta(2-0.7)^2=\tfrac12\beta(1.3\ \mathrm{V})^2=(0.845\ \mathrm{V^2})\beta.$$ 
 
-### Step 3 — How the current evolves
+### Step 3 — Operating regions and current evolution
 
-As charge moves, $V_{GS} = 2 - V_S$ falls, $V_{TH}(V_S)$ rises (the source climbs above the grounded bulk), and in triode $V_{DS} = V_X - V_S$ also shrinks. So **$I_X$ decreases monotonically from $0.845\beta$ to zero**, faster than with a constant threshold. $M_1$ is saturated while
+As charge moves, $V_{GS}=2-V_S$ falls, $V_{TH}(V_S)$ rises, and $V_{DS}=V_X-V_S$ shrinks. With $\lambda=0$,
 
-$$V_X - V_S \ge 2 - V_S - V_{TH} \quad\Longleftrightarrow\quad V_X \ge 2 - V_{TH}(V_S).$$
+$$I_X=\begin{cases}\tfrac12\beta(V_{GS}-V_{TH})^2,&V_{DS}\ge V_{GS}-V_{TH},\\[2pt]\beta\left[(V_{GS}-V_{TH})V_{DS}-\tfrac12V_{DS}^2\right],&0\le V_{DS}<V_{GS}-V_{TH},\end{cases}$$
 
-### Step 4 — The cut-off level of the source
+for positive overdrive; the current is zero when $V_{GS}\le V_{TH}$. Thus $I_X$ decreases monotonically from $(0.845\ \mathrm{V^2})\beta$ to zero. The saturation boundary is
 
-If $M_1$ stays saturated, it conducts until $V_{GS}$ drops to $V_{TH}$:
+$$V_X-V_S\ge 2-V_S-V_{TH}\quad\Longleftrightarrow\quad V_X\ge2-V_{TH}(V_S).$$
 
-$$2 - V_S = V_{TH}(V_S) = 0.7 + 0.45\sqrt{0.9 + V_S} - 0.4269 .$$
+### Step 4 — Cut-off source voltage
 
-With $u = \sqrt{0.9 + V_S}$:
+If $M_1$ remains saturated, cut-off occurs when $V_{GS}=V_{TH}$:
 
-$$
-\begin{aligned}
-2 - (u^2 - 0.9) &= 0.2731 + 0.45u\\
-u^2 + 0.45u - 2.6269 &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 10.5076}}{2} = \frac{-0.45 + 3.2726}{2} = 1.4113\\
-V_{S,\mathrm{off}} &= u^2 - 0.9 = 1.9918 - 0.9 = 1.09\ \mathrm{V}.
-\end{aligned}
-$$
+$$2-V_S=0.7+0.45\sqrt{0.9+V_S}-0.4269.$$ 
 
-There $V_{TH} = 0.91$ V (without body effect, $2 - 0.7 = 1.3$ V). In saturation the current vanishes as the *square* of the shrinking overdrive, so this level is approached **asymptotically**, with a slow (hyperbolic, $\propto 1/t$) tail, like a source follower charging a capacitor.
-
-### Step 5 — Which way it ends: the capacitor ratio
-
-**Case 1: $M_1$ cuts off while saturated.** At cut-off $V_S = 1.09$ V, and charge conservation gives
-
-$$V_{X,\mathrm{final}} = 3 - 1.09\,r\ \mathrm{V}.$$
-
-For consistency $M_1$ must still be saturated there, $V_X \ge 2 - V_{TH}(1.09) = 1.09$ V:
+Let $u=\sqrt{0.9+V_S}$. Then
 
 $$
 \begin{aligned}
-3 - 1.09\,r &\ge 1.09\\
-r &\le \frac{3 - 1.09}{1.09} = 1.75 .
+2-(u^2-0.9)&=0.2731+0.45u\\
+u^2+0.45u-2.6269&=0\\
+u&=\frac{-0.45+\sqrt{0.2025+10.5076}}{2}\approx1.411\\
+V_{S,\mathrm{off}}&=u^2-0.9\approx1.092\ \mathrm{V}.
 \end{aligned}
 $$
 
-(Checking the end point suffices: $V_X - [2 - V_{TH}(V_S)]$ is a concave function of $V_S$, so if it is positive at $V_S = 0$ and at $V_S = 1.09$ V it is positive in between.) So for **$C_2 < 1.75\,C_1$**, $V_S \to 1.09$ V and $V_X \to 3 - 1.09\,C_2/C_1$, with $M_1$ just cut off and $V_X$ still above $V_S$.
+At this point $V_{TH}\approx0.91$ V. The square-law current approaches zero asymptotically; the $1.092$ V value is therefore a limiting level.
 
-**Case 2: the two nodes equalize.** For **$C_2 > 1.75\,C_1$**, $V_X$ meets $V_S$ before $V_S$ reaches 1.09 V. $M_1$ enters triode and conducts until $V_{DS} = 0$, i.e. $V_X = V_S = V_f$, which is ordinary charge sharing:
+### Step 5 — Capacitor-ratio condition
 
-$$
-\begin{aligned}
-C_1\,(3 - V_f) &= C_2V_f\\
-V_f &= \frac{3C_1}{C_1 + C_2} .
-\end{aligned}
-$$
+Case 1: $M_1$ cuts off while saturated. At the limiting voltage, charge conservation gives
 
-Check: $V_f < 1.09$ V exactly when $3/(1 + r) < 1.09$, i.e. $r > 1.75$, so $M_1$ is still on ($V_{GS} = 2 - V_f > V_{TH}(V_f)$) when the nodes meet. The approach is an exponential-like triode tail.
+$$V_{X,\mathrm{final}}=3-V_{S,\mathrm{off}}r.$$ 
 
-### Step 6 — Two examples
+At the boundary between the two cases, $V_X=V_S=V_{S,\mathrm{off}}$, so
 
-Take $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF, so the initial current is 0.845 mA and the natural time scale is $C_1/(\beta\cdot1\ \mathrm{V}) = 1$ ns.
+$$3-rV_{S,\mathrm{off}}=V_{S,\mathrm{off}}\quad\Longrightarrow\quad r_{\mathrm{crit}}=\frac{3-V_{S,\mathrm{off}}}{V_{S,\mathrm{off}}}\approx1.748.$$ 
 
-**$C_2 = C_1$ ($r = 1$, Case 1).** Final $V_S = 1.09$ V and $V_X = 3 - 1.09 = 1.91$ V.
+For $r<r_{\mathrm{crit}}$, $V_S\to1.092$ V and $V_X\to3-1.092(C_2/C_1)$ V; $V_X$ remains above $V_S$ and $M_1$ cuts off.
+
+Case 2: For $r>r_{\mathrm{crit}}$, the nodes equalize first. $M_1$ enters triode and conducts until $V_{DS}=0$, so $V_X=V_S=V_f$. Charge conservation gives
+
+$$C_1(3-V_f)=C_2V_f\quad\Longrightarrow\quad V_f=\frac{3C_1}{C_1+C_2}.$$ 
+
+This value is below $1.092$ V exactly when $r>1.748$, so the transistor is still on when the nodes meet. At $r=r_{\mathrm{crit}}$, the two stopping conditions coincide at $V_X=V_S=V_{S,\mathrm{off}}$.
+
+### Step 6 — Numerical examples
+
+Take $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1$ pF, giving a 1 ns scale. For $C_2=C_1$ ($r=1$), $V_S\to1.092$ V and $V_X\to1.91$ V:
 
 | $t$ (ns) | $V_X$ (V) | $V_S$ (V) | $I_X$ (mA) |
-|---|---|---|---|
-| 0⁺ | 3.00 | 0 | 0.845 |
+|---|---:|---:|---:|
+| $0^+$ | 3.00 | 0 | 0.845 |
 | 0.5 | 2.70 | 0.30 | 0.43 |
 | 1 | 2.53 | 0.47 | 0.27 |
 | 2 | 2.34 | 0.66 | 0.13 |
 | 5 | 2.14 | 0.86 | 0.036 |
 | 20 | 1.98 | 1.02 | 0.003 |
-| ∞ | 1.91 | 1.09 | 0 |
+| $\infty$ | 1.91 | 1.092 | 0 |
 
-**$C_2 = 3C_1$ ($r = 3$, Case 2).** $V_f = 3/(1 + 3) = 0.75$ V. $M_1$ leaves saturation after about 4.7 ns ($V_X \approx 1.2$ V, $V_S \approx 0.6$ V), and both nodes settle at 0.75 V within about 20 ns while $I_X$ decays to zero.
+For $C_2=3C_1$ ($r=3$), $V_f=0.75$ V. The numerical trajectory leaves saturation at about 5.0 ns ($V_X\approx1.17$ V, $V_S\approx0.61$ V) and approaches 0.75 V in triode.
 
-### Result
+## Result
 
-$M_1$ transfers charge from $C_1$ to $C_2$, with $C_1(3 - V_X) = C_2V_S$.
+### Answer figures
 
-- $I_X$ jumps to $\tfrac12\beta(2 - 0.7)^2 = 0.845\beta$ at $t = 0^+$ (saturation, $V_{GS} = 2$ V, $V_{TH} = 0.7$ V at $V_S = 0$) and **decreases monotonically to zero**. The body effect ($V_{SB} = V_S$) speeds up the decay.
-- $V_X$ falls from 3 V while $V_S$ rises from 0.
-- **Case 1, $C_2 < 1.75\,C_1$:** $M_1$ stays saturated and turns off as $V_S \to 2 - V_{TH}(V_S) = 1.09$ V (asymptotically, with a square-law tail; 1.3 V without body effect). Final $V_X = 3 - 1.09\,C_2/C_1$ V.
-- **Case 2, $C_2 > 1.75\,C_1$:** $V_X$ drops to $V_S$ first; $M_1$ ends in triode with $V_{DS} \to 0$, and both nodes settle at $3C_1/(C_1 + C_2)$ (simple charge sharing).
+![V_X versus time](/q/R029/solution-vx.svg)
 
-**Common mistake.** Letting $C_1$ discharge to 0 V, as if the source of $M_1$ were grounded. The source is node S on $C_2$, which charges up, and charge conservation fixes the final voltages.
+![I_X versus time](/q/R029/solution-ix.svg)
 
-**Common mistake.** Always predicting charge sharing, or always predicting cut-off at 1.09 V. Which mechanism stops the transfer depends on $C_2/C_1$ compared with 1.75.
+The curves use the stated MOS model with $\lambda=0$; the normalized examples use $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1$ pF.
 
-**Common mistake.** Drawing $I_X$ growing with time. $V_{GS}$ falling, $V_{TH}$ rising and $V_{DS}$ shrinking all reduce the current, so its maximum is at $t = 0^+$.
+$M_1$ transfers charge from $C_1$ to $C_2$, with $C_1(3-V_X)=C_2V_S$. $I_X$ starts at $(0.845\ \mathrm{V^2})\beta$ and decreases to zero while $V_X$ falls and $V_S$ rises. For $C_2/C_1<1.748$, cut-off occurs at $V_S\to1.092$ V; for $C_2/C_1>1.748$, the nodes settle at $3C_1/(C_1+C_2)$.
+
+**Common mistake:** Treating the source as grounded and setting $V_X$ to 0 V. Node S is charged through $C_2$, so charge conservation fixes both final voltages.
+
+**Common mistake:** Assuming only one stopping mechanism. The result depends on $C_2/C_1$ relative to $r_{\mathrm{crit}}\approx1.748$.
+
+**Common mistake:** Drawing $I_X$ as increasing. Falling $V_{GS}$, rising $V_{TH}$ and shrinking $V_{DS}$ all reduce the current.

@@ -2,11 +2,20 @@
 
 ## Reference answer
 
-$M_1$ passes the current $I_1$, so $I_X = I_1$ and $V_X$ falls linearly at $I_1/C_1$. The ramp continues while the current source can still sink $I_1$; with a real current source $V_X$ then levels off near 0 V (where the source node reaches the bottom of its range) and $I_X$ drops to zero.
-- Phase 1, $V_X > V_b - V_{TH}$: $M_1$ saturated, $V_S = V_b - V_{TH} - \sqrt{2I_1/\beta}$ constant (assumed ≥ 0), $I_X = I_1$, $dV_X/dt = -I_1/C_1$.
-- Phase 2, $V_X < V_b - V_{TH}$: $M_1$ in triode; it still carries $I_1$ because $V_S$ drops along with $V_X$ ($V_{GS}$ grows, $V_{DS}$ shrinks), so the linear ramp continues.
-- End: an ideal current source would keep pulling both nodes down indefinitely; physically $I_1$ stops when its own voltage $V_S$ hits its minimum (≈ 0 V, or ≈ −0.7 V where the source–substrate junction starts supplying the current), after which $I_X \to 0$ and $V_X$ settles at about the same level as $V_S$ (≈ 0 V).
+While the series source can sink $I_1>0$ and body-junction currents are negligible, source-node KCL forces
+
+$$I_X=I_1,\qquad V_X(t)=3\,\mathrm V-\frac{I_1}{C_1}t.$$
+
+The ramp does not change slope merely because $M_1$ enters triode. The source voltage adjusts to carry $I_1$. With $\lambda=0$, $\beta=\mu_nC_{ox}W/L$, initial saturation, and a feasible bias,
+
+$$V_S+V_{TH}(V_S)=V_b-\sqrt{2I_1/\beta},\qquad V_X\ge V_b-V_{TH}(V_S).$$
+
+For an explicitly constant threshold, the transition is at $V_X=V_b-V_{TH}$; a larger gate bias can put the device in triode from the start. Body-effect parameters, source compliance and junction parameters are unspecified. Consequently a universal ending at 0 V or −0.7 V, and the late-time $I_X$, cannot be determined. The illustrated constant-threshold example ends conservatively at $V_S=0$; it is not a predicted physical stopping point.
+
+![Answer plot: voltage](/q/R026/solution-voltage.svg)
+
+![Answer plot: current](/q/R026/solution-current.svg)
 
 ## Grading notes
 
-+2: $I_X = I_1$ constant and $V_X$ falling linearly with slope $-I_1/C_1$ across the saturation-to-triode transition, with a sensible statement of how it ends (ideal source: ramp continues; real source: $V_X$ settles near 0 V, $I_X \to 0$). +1: correct ramp with the end behaviour missing or only asserted. 0: linear ramp right, but $I_X$ claimed to start decaying as soon as $M_1$ leaves saturation although the current source still has headroom. -2 (asserted as fact): exponential RC discharge from the start, $I_X$ determined by $V_b$ through the square law instead of $I_1$, or $V_X$ settling at $V_b - V_{TH}$.
++2: conditional KCL IX=I1, linear VX with slope −I1/C1 while the series path is feasible, a sketch of both requested quantities, and a clear distinction between channel-region transition and loss of source regulation or onset of body-junction current. A stated parameter example is acceptable; unspecified endpoint behavior may be explicitly left undetermined. +1: correct ramp but missing a requested quantity, feasibility condition or endpoint limitation. 0: claims that current must decay immediately upon M1 entering triode while I1 still regulates. −2: asserts an initial RC exponential for a feasible constant-current interval or a universal stopping level Vb−VTH. Do not require a 0-V or −0.7-V endpoint without an additional model.
