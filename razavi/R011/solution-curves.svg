@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 770">
+<title>R011 · Drain current and intrinsic transconductance</title>
+<desc>Example with R₁ = R₂, βₚ = 1 mA/V², V_DD = 3 V, λ = 0. I_X is the transistor channel current only.</desc>
+<rect width="900" height="770" fill="#ffffff"/>
+<text x="34" y="36" font-size="22" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">R011 · Drain current and intrinsic transconductance</text>
+<text x="34" y="64" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">Example with R₁ = R₂, βₚ = 1 mA/V², V_DD = 3 V, λ = 0</text>
+<text x="34" y="88" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">I_X is the transistor channel current only.</text>
+<rect x="170" y="145" width="317.3333333333333" height="197" fill="#ecf5fc"/>
+<line x1="170" y1="145" x2="170" y2="342" stroke="#334c60"/>
+<line x1="170" y1="342" x2="850" y2="342" stroke="#334c60"/>
+<path d="M 170 342 L 170 348" stroke="#334c60" fill="none"/>
+<text x="170" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0</text>
+<path d="M 283.3333333333333 342 L 283.3333333333333 348" stroke="#334c60" fill="none"/>
+<text x="283.3333333333333" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.5</text>
+<path d="M 396.66666666666663 342 L 396.66666666666663 348" stroke="#334c60" fill="none"/>
+<text x="396.66666666666663" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1</text>
+<path d="M 510 342 L 510 348" stroke="#334c60" fill="none"/>
+<text x="510" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1.5</text>
+<path d="M 623.3333333333333 342 L 623.3333333333333 348" stroke="#334c60" fill="none"/>
+<text x="623.3333333333333" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">2</text>
+<path d="M 736.6666666666666 342 L 736.6666666666666 348" stroke="#334c60" fill="none"/>
+<text x="736.6666666666666" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">2.5</text>
+<path d="M 850 342 L 850 348" stroke="#334c60" fill="none"/>
+<text x="850" y="368" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">3</text>
+<path d="M 164 342 L 170 342" stroke="#334c60" fill="none"/>
+<text x="155" y="347" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0</text>
+<path d="M 164 309.16666666666663 L 170 309.16666666666663" stroke="#334c60" fill="none"/>
+<text x="155" y="314.16666666666663" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.05</text>
+<path d="M 164 276.3333333333333 L 170 276.3333333333333" stroke="#334c60" fill="none"/>
+<text x="155" y="281.3333333333333" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.1</text>
+<path d="M 164 243.5 L 170 243.5" stroke="#334c60" fill="none"/>
+<text x="155" y="248.5" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.15</text>
+<path d="M 164 210.66666666666663 L 170 210.66666666666663" stroke="#334c60" fill="none"/>
+<text x="155" y="215.66666666666663" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.2</text>
+<path d="M 164 177.83333333333331 L 170 177.83333333333331" stroke="#334c60" fill="none"/>
+<text x="155" y="182.83333333333331" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.25</text>
+<text x="34" y="240" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">I_X (mA)</text>
+<text x="510" y="399" font-size="17" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">V_X (V)</text>
+<path d="M 487.3333333333333 145 L 487.3333333333333 342" stroke="#8b9bab" fill="none" stroke-dasharray="4 5"/>
+<text x="487.3333333333333" y="131" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1.4 V</text>
+<polyline points="170.000,181.117 172.116,183.255 174.231,185.378 176.347,187.488 178.462,189.583 180.578,191.663 182.693,193.730 184.809,195.782 186.924,197.820 189.040,199.843 191.156,201.853 193.271,203.848 195.387,205.828 197.502,207.795 199.618,209.747 201.733,211.685 203.849,213.608 205.964,215.517 208.080,217.412 210.196,219.292 212.311,221.159 214.427,223.011 216.542,224.848 218.658,226.672 220.773,228.481 222.889,230.275 225.004,232.056 227.120,233.822 229.236,235.574 231.351,237.311 233.467,239.035 235.582,240.744 237.698,242.438 239.813,244.119 241.929,245.785 244.044,247.436 246.160,249.074 248.276,250.697 250.391,252.306 252.507,253.900 254.622,255.481 256.738,257.046 258.853,258.598 260.969,260.135 263.084,261.658 265.200,263.167 267.316,264.662 269.431,266.142 271.547,267.608 273.662,269.059 275.778,270.496 277.893,271.919 280.009,273.328 282.124,274.722 284.240,276.102 286.356,277.468 288.471,278.819 290.587,280.156 292.702,281.479 294.818,282.788 296.933,284.082 299.049,285.362 301.164,286.628 303.280,287.879 305.396,289.116 307.511,290.339 309.627,291.547 311.742,292.741 313.858,293.921 315.973,295.086 318.089,296.238 320.204,297.375 322.320,298.497 324.436,299.605 326.551,300.699 328.667,301.779 330.782,302.845 332.898,303.896 335.013,304.932 337.129,305.955 339.244,306.963 341.360,307.957 343.476,308.937 345.591,309.902 347.707,310.853 349.822,311.790 351.938,312.712 354.053,313.620 356.169,314.514 358.284,315.393 360.400,316.259 362.516,317.110 364.631,317.946 366.747,318.768 368.862,319.576 370.978,320.370 373.093,321.150 375.209,321.915 377.324,322.665 379.440,323.402 381.556,324.124 383.671,324.832 385.787,325.526 387.902,326.205 390.018,326.870 392.133,327.521 394.249,328.157 396.364,328.779 398.480,329.387 400.596,329.980 402.711,330.559 404.827,331.124 406.942,331.675 409.058,332.211 411.173,332.733 413.289,333.241 415.404,333.734 417.520,334.213 419.636,334.678 421.751,335.128 423.867,335.565 425.982,335.987 428.098,336.394 430.213,336.787 432.329,337.166 434.444,337.531 436.560,337.881 438.676,338.217 440.791,338.539 442.907,338.847 445.022,339.140 447.138,339.419 449.253,339.683 451.369,339.934 453.484,340.170 455.600,340.391 457.716,340.599 459.831,340.792 461.947,340.970 464.062,341.135 466.178,341.285 468.293,341.421 470.409,341.542 472.524,341.650 474.640,341.743 476.756,341.821 478.871,341.886 480.987,341.936 483.102,341.971 485.218,341.993 487.333,342.000 850.000,342.000" fill="none" stroke="#1162a0" stroke-width="2.8"/>
+<text x="270" y="175" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">Saturation</text>
+<text x="690" y="175" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">Cutoff</text>
+<rect x="170" y="465" width="317.3333333333333" height="197" fill="#ecf5fc"/>
+<line x1="170" y1="465" x2="170" y2="662" stroke="#334c60"/>
+<line x1="170" y1="662" x2="850" y2="662" stroke="#334c60"/>
+<path d="M 170 662 L 170 668" stroke="#334c60" fill="none"/>
+<text x="170" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0</text>
+<path d="M 283.3333333333333 662 L 283.3333333333333 668" stroke="#334c60" fill="none"/>
+<text x="283.3333333333333" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.5</text>
+<path d="M 396.66666666666663 662 L 396.66666666666663 668" stroke="#334c60" fill="none"/>
+<text x="396.66666666666663" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1</text>
+<path d="M 510 662 L 510 668" stroke="#334c60" fill="none"/>
+<text x="510" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1.5</text>
+<path d="M 623.3333333333333 662 L 623.3333333333333 668" stroke="#334c60" fill="none"/>
+<text x="623.3333333333333" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">2</text>
+<path d="M 736.6666666666666 662 L 736.6666666666666 668" stroke="#334c60" fill="none"/>
+<text x="736.6666666666666" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">2.5</text>
+<path d="M 850 662 L 850 668" stroke="#334c60" fill="none"/>
+<text x="850" y="688" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">3</text>
+<path d="M 164 662 L 170 662" stroke="#334c60" fill="none"/>
+<text x="155" y="667" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0</text>
+<path d="M 164 615.6470588235294 L 170 615.6470588235294" stroke="#334c60" fill="none"/>
+<text x="155" y="620.6470588235294" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.2</text>
+<path d="M 164 569.2941176470588 L 170 569.2941176470588" stroke="#334c60" fill="none"/>
+<text x="155" y="574.2941176470588" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.4</text>
+<path d="M 164 522.9411764705883 L 170 522.9411764705883" stroke="#334c60" fill="none"/>
+<text x="155" y="527.9411764705883" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.6</text>
+<path d="M 164 476.5882352941176 L 170 476.5882352941176" stroke="#334c60" fill="none"/>
+<text x="155" y="481.5882352941176" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">0.8</text>
+<text x="34" y="560" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">g_m (mS)</text>
+<text x="510" y="719" font-size="17" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">V_X (V)</text>
+<path d="M 487.3333333333333 465 L 487.3333333333333 662" stroke="#8b9bab" fill="none" stroke-dasharray="4 5"/>
+<text x="487.3333333333333" y="451" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">1.4 V</text>
+<polyline points="170.000,499.765 172.116,500.846 174.231,501.928 176.347,503.009 178.462,504.091 180.578,505.173 182.693,506.254 184.809,507.336 186.924,508.417 189.040,509.499 191.156,510.580 193.271,511.662 195.387,512.744 197.502,513.825 199.618,514.907 201.733,515.988 203.849,517.070 205.964,518.151 208.080,519.233 210.196,520.315 212.311,521.396 214.427,522.478 216.542,523.559 218.658,524.641 220.773,525.722 222.889,526.804 225.004,527.885 227.120,528.967 229.236,530.049 231.351,531.130 233.467,532.212 235.582,533.293 237.698,534.375 239.813,535.456 241.929,536.538 244.044,537.620 246.160,538.701 248.276,539.783 250.391,540.864 252.507,541.946 254.622,543.027 256.738,544.109 258.853,545.191 260.969,546.272 263.084,547.354 265.200,548.435 267.316,549.517 269.431,550.598 271.547,551.680 273.662,552.762 275.778,553.843 277.893,554.925 280.009,556.006 282.124,557.088 284.240,558.169 286.356,559.251 288.471,560.333 290.587,561.414 292.702,562.496 294.818,563.577 296.933,564.659 299.049,565.740 301.164,566.822 303.280,567.904 305.396,568.985 307.511,570.067 309.627,571.148 311.742,572.230 313.858,573.311 315.973,574.393 318.089,575.475 320.204,576.556 322.320,577.638 324.436,578.719 326.551,579.801 328.667,580.882 330.782,581.964 332.898,583.045 335.013,584.127 337.129,585.209 339.244,586.290 341.360,587.372 343.476,588.453 345.591,589.535 347.707,590.616 349.822,591.698 351.938,592.780 354.053,593.861 356.169,594.943 358.284,596.024 360.400,597.106 362.516,598.187 364.631,599.269 366.747,600.351 368.862,601.432 370.978,602.514 373.093,603.595 375.209,604.677 377.324,605.758 379.440,606.840 381.556,607.922 383.671,609.003 385.787,610.085 387.902,611.166 390.018,612.248 392.133,613.329 394.249,614.411 396.364,615.493 398.480,616.574 400.596,617.656 402.711,618.737 404.827,619.819 406.942,620.900 409.058,621.982 411.173,623.064 413.289,624.145 415.404,625.227 417.520,626.308 419.636,627.390 421.751,628.471 423.867,629.553 425.982,630.635 428.098,631.716 430.213,632.798 432.329,633.879 434.444,634.961 436.560,636.042 438.676,637.124 440.791,638.205 442.907,639.287 445.022,640.369 447.138,641.450 449.253,642.532 451.369,643.613 453.484,644.695 455.600,645.776 457.716,646.858 459.831,647.940 461.947,649.021 464.062,650.103 466.178,651.184 468.293,652.266 470.409,653.347 472.524,654.429 474.640,655.511 476.756,656.592 478.871,657.674 480.987,658.755 483.102,659.837 485.218,660.918 487.333,662.000 850.000,662.000" fill="none" stroke="#1162a0" stroke-width="2.8"/>
+<text x="270" y="495" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">Saturation</text>
+<text x="690" y="495" font-size="15" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#182d40">Cutoff</text>
+</svg>

@@ -1,5 +1,22 @@
-除体效应（body effect）的影响外，$I_X$ 几乎恒定：$M_1$ 是一个源极跟随器（source follower），其 $V_{GS}$（即 $R_1$ 两端的电压）由 $I_1$ 和 $R_1$ 决定，与 $V_X$ 无关。体效应使 $I_X$ 和 $g_m$ 随 $V_X$ 升高而下降：当 $I_1R_1 \gg V_{TH}$ 时下降很少；当 $I_1R_1$ 接近 $V_{TH}$ 时下降很多（甚至在扫描范围内降到截止）。$I_X = I_1 - V_{GS}/R_1$，其中 $V_{GS}$ 由 $\tfrac12\beta(V_{GS} - V_{TH})^2 + V_{GS}/R_1 = I_1$ 决定。$M_1$ 导通的条件是 $I_1R_1 > V_{TH}(V_S)$。由于 $V_{TH}$ 随 $V_S$ 升高，若 $0.7\ \mathrm{V} < I_1R_1 \lesssim 1.04$ V，体效应会在扫描范围内使 $M_1$ 在 $V_X = V_{S,off} + I_1R_1$ 处截止，其中 $V_{TH}(V_{S,off}) = I_1R_1$；例如 $I_1R_1 = 0.9$ V 时 $V_X \approx 1.94$ V，1.0 V 时 ≈ 2.71 V。若 $I_1R_1$ 在低端就已低于阈值电压（threshold voltage），则始终有 $I_X = 0$。
-- 在源极节点列基尔霍夫电流定律（KCL）方程：$I_1 = I_X + V_{GS}/R_1$，因为 $R_1$ 中的电流为 $(V_X - V_S)/R_1 = V_{GS}/R_1$。
-- 体效应（$V_{SB} = V_S = V_X - V_{GS}$）：$V_X$ 升高时 $V_{TH}$ 升高，因此 $V_{GS}$ 升高，$I_X$ 减小；$g_m = \sqrt{2\beta I_X}$ 随之变化。当过驱动电压（overdrive voltage）较大时（$I_1R_1 \gg V_{TH}$，$\beta R_1$ 较大），下降很少；但当 $I_1R_1$ 比 $V_{TH}$ 高得不多时，下降可能很大：例如 β = 2 mA/V²、$I_1$ = 1 mA、$R_1$ = 1.5 kΩ 时，$V_S = 0$ 处 $I_X$ ≈ 0.22 mA，而在 $V_S$ ≈ 1.67 V 处（扫描终点）≈ 0.11 mA。
-- 只要 $V_{DS} = 2 - V_S > V_{GS} - V_{TH}$，即 $V_X < 2\ \mathrm{V} + V_{TH}(V_S)$（≳ 2.7–3 V），器件就保持在饱和区（saturation region）：这几乎是整个范围。若 $M_1$ 在 $V_X = 3$ V 附近进入线性区（triode region），$V_{GS}$ 必须升高才能承载该电流，因此 $I_X$ 再略微下降，$g_m$ 也下降（$g_m = \beta V_{DS}$）。
-- 注：$V_X$ 较小时，源极电位低于地，$V_S = V_X - V_{GS}$；理想分析忽略了由此导致的源-衬底结（source–bulk junction）正向偏置（forward bias）。
+在仅考虑沟道的模型中，$M_1$ 导通时，$I_X$ 与本征跨导 $g_m$ 随 $V_X$ 升高而下降。$R_1$ 跨接栅源，源极节点方程与端电压为
+
+$$I_X=I_1-\frac{V_{GS}}{R_1},\quad V_{GS}=V_X-V_S,\quad V_{DS}=2\,\mathrm V-V_S,\quad V_{SB}=V_S.$$
+
+阈值 $V_{TH}(V_S)$ 随源极电压变化。定义过驱动 $V_{ov}=V_{GS}-V_{TH}$。在 $V_{ov}>0$、$V_{DS}>0$ 且 $\lambda=0$ 的平方律模型下，有
+
+| 工作区 | $I_X$ | $g_m$ |
+|---|---|---|
+| 饱和区，$V_X\le2\,\mathrm V+V_{TH}$ | $\beta V_{ov}^2/2$ | $\beta V_{ov}$ |
+| 线性区，$V_X>2\,\mathrm V+V_{TH}$ | $\beta(V_{ov}V_{DS}-V_{DS}^2/2)$ | $\beta V_{DS}$ |
+
+阈值固定时，饱和段为水平线。过驱动的相对变化很小时，饱和段近似水平。只有在工作区边界仍导通时，沟道才会进入线性区。
+
+若 $I_1R_1\le V_{TH0}$，则在 $V_S\ge0$ 的区段内均截止。否则，当扫到下式给出的边界时，沟道在该区段内截止。
+
+$$V_{TH}(V_{S,\mathrm{off}})=I_1R_1,\qquad V_{X,\mathrm{off}}=V_{S,\mathrm{off}}+I_1R_1.$$
+
+截止后，两条曲线均保持为零。低输入灰区需要源衬底结特性和电流源顺从电压数据。
+
+![两组示例的漏极电流随输入电压变化](/q/R014/solution-r014.zh.svg)
+
+![同两组示例的本征跨导随输入电压变化](/q/R014/solution-r014-gm.zh.svg)

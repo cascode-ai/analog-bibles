@@ -1,4 +1,23 @@
-$V_{in}$ 较小时，$M_1$（栅极接 3 V）处于线性区（triode region），$V_{out}$ 跟随 $V_{in}$（略小一些）；一旦 $V_{in}$ 超过 $3 - V_{TH}(V_{out,s})$（介于 1.965 V 与 2.3 V 之间），$M_1$ 就进入饱和区（saturation region），$V_{out}$ 保持在恒定值 $V_{out,s}$，它是 $V_{out,s} = \tfrac12\beta R_1[3 - V_{out,s} - V_{TH}(V_{out,s})]^2$ 的解。$V_{out,s} < 1.965$ V，并且只有当 $\beta R_1$ 较大时才接近这一上限（此时在约 1.97 V 的转折点以下 $V_{out} \approx V_{in}$）；例如 $\beta R_1$ = 1、10、100 V⁻¹ 时，$V_{out,s}$ ≈ 0.84、1.49、1.80 V，转折点分别位于 $V_{in}$ ≈ 2.13、2.03、1.99 V。
-- 电流从 $V_{in}$ 经 $M_1$ 流入 $R_1$：$V_{out}$ 节点是源极（$V_{GS} = 3 - V_{out}$，$V_{SB} = V_{out}$），$V_{in}$ 节点是漏极。
-- $V_{in} < 3 - V_{TH}(V_{out})$ 时处于线性区：$V_{out} = V_{in}R_1/(R_1 + R_{on})$，当 $R_1 \gg R_{on}$ 时接近 $V_{in}$；随着 $V_{GS}$ 减小，斜率下降。
-- $V_{in}$ 更大时处于饱和区：$V_{out}$ 由 $\tfrac12\beta(3 - V_{out} - V_{TH}(V_{out}))^2 = V_{out}/R_1$ 决定，其上限是 $3 - V_{out} = V_{TH}(V_{out})$ 的解：计入体效应（body effect）时为 1.97 V（此时 $V_{TH}$ ≈ 1.03 V；不计体效应时为 2.3 V）。直到 $V_{in} = 3$ V 都保持平坦。
+输出端为电学源极，输入端为漏极。曲线从原点上升，随后在 $\lambda=0$ 模型下进入水平平台。
+
+$$V_{GS}=3\,\mathrm{V}-V_{out},\qquad V_{DS}=V_{in}-V_{out},\qquad V_{SB}=V_{out}.$$
+
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{out}}-\sqrt{2|\phi_F|}\right).$$
+
+### 线性区
+
+线性区满足 $V_{in}<3\,\mathrm{V}-V_{TH}(V_{out})$，输出由负载方程确定。
+
+$$\frac{V_{out}}{R_1}=\beta\left[(V_{GS}-V_{TH})V_{DS}-\frac{V_{DS}^2}{2}\right].$$
+
+当 $V_{DS}$ 远小于过驱动时，只有 $\beta R_1(V_{GS}-V_{TH})\gg1$ 才能近似跟随输入。
+
+### 饱和平台
+
+饱和平台满足
+
+$$3\,\mathrm{V}-V_{out,s}-V_{TH}(V_{out,s})=\sqrt{\frac{2V_{out,s}}{\beta R_1}}>0.$$
+
+平台始于 $V_{in,s}=3\,\mathrm{V}-V_{TH}(V_{out,s})$，延伸至 3 V。有限 $\beta R_1$ 下，平台低于 1.9652 V，转折输入介于 1.9652 V 和 2.3 V 之间。平台上界等于栅压减去该上界处的阈值电压。
+
+![随输入电压变化的传输曲线](/q/R018/solution-transfer.zh.svg)

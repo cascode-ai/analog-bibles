@@ -1,5 +1,11 @@
-$V_{out} = V_{GS} = V_{TH}(V_{SB}) + \sqrt{2I_1/\beta}$ 随 $V_{in}$ 升高而下降，因为升高衬底电压会减小 $V_{SB}$，从而降低 $V_{TH}$；$V_{SB}$ 越接近零，下降越陡。当 $V_{in}$ 等于源极电压时，$V_{out}$ 达到 $V_{TH0} + \sqrt{2I_1/\beta}$；超过该点后，源-衬底结（source–bulk junction）正向偏置（forward-biased），并在接近范围顶端时大量导通，MOS 模型不再适用。
-- $M_1$ 为二极管连接（diode-connected），因而始终处于饱和区（saturation region），并流过 $I_1$，因此 $V_{GS} = V_{TH} + \sqrt{2I_1/\beta}$，其中 $V_{SB} = V_S - V_{in} = (3 - V_{out}) - V_{in}$。
-- $dV_{TH}/dV_{SB} = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$ 随 $V_{SB}$ 减小而增大，因此曲线向下凹（concave down），越来越陡。
-- 示例，取 $\sqrt{2I_1/\beta} = 0.2$ V：$V_{in} = 0$ 时 $V_{out}$ = 1.21 V（$V_{SB}$ ≈ 1.79 V），1 V 时为 1.08 V，1.5 V 时为 1.00 V，2.1 V 时为 0.90 V（$V_{SB} = 0$，$V_{in} = V_S$），2.5 V 时 ≈ 0.82 V（正向偏压 ≈ 0.3 V）。
-- 当 $V_{in} > V_S$ 时，该结正向偏置；当正向偏压接近 0.6–0.7 V 时（$V_{in}$ 趋近 3 V），该结会从沟道分走 $I_1$ 的很大一部分，体效应（body effect）公式不再有意义。漏-衬底结（drain–bulk junction）保持截止（漏极为 3 V ≥ $V_{in}$）。
+在结电流可忽略且电流源满足顺从条件时，二极管连接的 NMOS 导通于饱和区，过驱动 $V_{ov}=\sqrt{2I_1/\beta}$ 固定。在源衬底结未正偏的区段，衬底电压升高使 $V_{out}=V_{GS}$ 下降，斜率越来越负。
+
+$$V_{out}=V_{TH}(V_{SB})+V_{ov},\qquad V_{SB}=V_{DD}-V_{out}-V_{in}.$$
+
+斜率为 $-\eta/(1+\eta)$，其中 $\eta=dV_{TH}/dV_{SB}=\gamma/(2\sqrt{2|\phi_F|+V_{SB}})$。源衬底零偏点的输入和输出为
+
+$$V_{out,0}=V_{TH0}+V_{ov},\qquad V_{in,0}=V_{DD}-V_{TH0}-V_{ov}.$$
+
+超过 $V_{in,0}$ 后，源衬底结正偏，结电流可能承担部分 $I_1$，该区段的曲线需要结合结模型确定。漏衬底结在题给扫描范围内始终未正偏。
+
+![栅源电压随衬底电压变化的曲线，标出零偏点与正偏区](/q/R020/solution-r020.zh.svg)

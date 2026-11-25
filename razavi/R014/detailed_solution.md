@@ -1,152 +1,56 @@
 # Detailed solution - R014
 
-**Approach.** $R_1$ is connected between gate and source, so the voltage across it *is* $V_{GS}$. KCL at the source then gives $I_X = I_1 - V_{GS}/R_1$, and the square law a second relation between $I_X$ and $V_{GS}$. Together they fix $V_{GS}$ and $I_X$ independently of $V_X$: $M_1$ is a source follower whose source tracks $V_X$, and $V_X$ enters only through the body effect. Then check conduction, the region of operation and the transconductance.
+**Approach:** Solve the source-node current balance with the body-dependent threshold. Use the result to select the operating region and compute the transistor's intrinsic transconductance.
 
-### Step 1 — Terminal voltages and KCL
+### Source-node equation and model
 
-Call the source voltage $V_S$. Then
+Let $V_S$ be the source-node voltage. An ideal sink draws $I_1>0$, and the gate current is neglected. With junction currents neglected, KCL gives
 
-$$
-\begin{aligned}
-V_{GS} &= V_X - V_S \quad(\text{this is also the voltage across } R_1),\\
-V_{DS} &= 2 - V_S,\\
-V_{SB} &= V_S .
-\end{aligned}
-$$
+$$I_X+\frac{V_G-V_S}{R_1}=I_1.$$
 
-At the source node, $I_X$ and the $R_1$ current $V_{GS}/R_1$ (supplied by $V_X$; the MOS gate draws none) arrive and $I_1$ leaves:
+The figure has $V_G=V_X$, drain at $2\,\mathrm V$, and bulk at ground. Thus $V_{GS}=V_X-V_S$, $V_{DS}=2\,\mathrm V-V_S$ and $V_{SB}=V_S$. Use the long-channel square law with $\lambda=0$. For nonnegative $V_{SB}$ the threshold is
 
-$$I_X + \frac{V_{GS}}{R_1} = I_1 \quad\Longrightarrow\quad I_X = I_1 - \frac{V_{GS}}{R_1}.$$
+$$V_{TH}(V_S)=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_S}-\sqrt{2|\phi_F|}\right),$$
 
-With the body effect,
+where $V_{TH0}=0.7\,\mathrm V$, $\gamma=0.45\,\mathrm{V}^{1/2}$ and $2|\phi_F|=0.9\,\mathrm V$. Define $V_{ov}=V_{GS}-V_{TH}$ and $g_m=\partial I_X/\partial V_{GS}$ at fixed $V_{DS}$ and $V_{SB}$.
 
-$$V_{TH}(V_S) = 0.7 + 0.45\left(\sqrt{0.9 + V_S} - 0.9487\right)\ \mathrm{V}.$$
+### Saturation and triode
 
-### Step 2 — Solving for $V_{GS}$ and $I_X$ (saturation)
+When $V_{DS}\ge V_{ov}>0$, the square law gives $I_X=\beta V_{ov}^2/2$ and $g_m=\beta V_{ov}$. Inserting the saturation current into KCL gives
 
-Assuming saturation (checked in Step 5), $I_X = \tfrac12\beta(V_{GS} - V_{TH})^2$, so
+$$\frac{\beta R_1}{2}V_{ov}^2+V_{ov}=I_1R_1-V_{TH}(V_S).$$
 
-$$\tfrac12\beta\,(V_{GS} - V_{TH})^2 + \frac{V_{GS}}{R_1} = I_1 .$$
+For a trial $V_S$ with $I_1R_1>V_{TH}(V_S)$, take the positive root.
 
-With $V_{GS} = V_{ov} + V_{TH}$ this is a quadratic in $V_{ov}$:
+$$V_{ov}=\frac{\sqrt{1+2\beta R_1[I_1R_1-V_{TH}(V_S)]}-1}{\beta R_1}.$$
 
-$$
-\begin{aligned}
-\tfrac12\beta V_{ov}^2 + \frac{V_{ov} + V_{TH}}{R_1} &= I_1\\
-\tfrac12\beta V_{ov}^2 + \frac{V_{ov}}{R_1} - \left(I_1 - \frac{V_{TH}}{R_1}\right) &= 0 ,
-\end{aligned}
-$$
+Use $V_X=V_S+V_{TH}+V_{ov}$ to recover the input. If $V_{TH}$ is held fixed, the equation fixes $V_{ov}$ and both curves are flat while saturation holds.
 
-whose positive root is
+The saturation boundary follows from $V_{DS}=V_{ov}$, or $V_X=2\,\mathrm V+V_{TH}(V_S)$. If $0<V_{DS}<V_{ov}$, solve KCL using the triode law and its gate derivative
 
-$$V_{ov} = \frac{-1/R_1 + \sqrt{1/R_1^2 + 2\beta\,(I_1 - V_{TH}/R_1)}}{\beta} = \frac{1}{\beta R_1}\left[\sqrt{1 + 2\beta R_1\,(I_1R_1 - V_{TH})} - 1\right],$$
+$$I_X=\beta\left(V_{ov}V_{DS}-\frac{V_{DS}^2}{2}\right),\qquad g_m=\beta V_{DS}.$$
 
-and then
+The current and $g_m$ are continuous at this boundary. With the specified body effect, a node voltage above the fixed $2\,\mathrm V$ terminal cannot support reverse channel conduction. The lower terminal would then be at $2\,\mathrm V$, where the threshold is about $1.039\,\mathrm V$, and its gate overdrive is negative even at $V_X=3\,\mathrm V$.
 
-$$I_X = \tfrac12\beta V_{ov}^2 = I_1 - \frac{V_{ov} + V_{TH}}{R_1}, \qquad g_m = \beta V_{ov} = \sqrt{2\beta I_X}.$$
+### Sweep slopes and cutoff
 
-$V_X$ appears only through $V_{TH}(V_S)$. **Without body effect, $V_{GS}$, $I_X$ and $g_m$ are constant**: as $V_X$ rises, the source simply follows it, $V_S = V_X - V_{GS}$, with a fixed offset.
+Define $\eta=dV_{TH}/dV_S>0$ and $g_{ds}=\partial I_X/\partial V_{DS}$ at fixed $V_{GS},V_{SB}$. Here $g_{ds}=0$ in saturation and $g_{ds}=\beta(V_{ov}-V_{DS})$ in triode. Differentiate KCL using $dV_{GS}=dV_X-dV_S$ and $dV_{DS}=-dV_S$.
 
-### Step 3 — Conduction condition
+$$\frac{dV_S}{dV_X}=\frac{1+R_1g_m}{1+R_1[g_m(1+\eta)+g_{ds}]},\qquad
+\frac{dI_X}{dV_X}=-\frac{\eta g_m+g_{ds}}{1+R_1[g_m(1+\eta)+g_{ds}]}.$$
 
-$M_1$ conducts only if $I_1 - V_{TH}/R_1 > 0$, i.e.
+The source rises and the current decreases in both conducting regions. In saturation, $g_m=\sqrt{2\beta I_X}$ also decreases. In triode it decreases because $V_{DS}$ falls. The current can change appreciably when $I_1R_1$ is close to the threshold.
 
-$$I_1R_1 > V_{TH}(V_S):$$
+At cutoff $I_X=g_m=0$, so $V_{GS}=I_1R_1$. If the resulting $V_S=V_X-I_1R_1$ is nonnegative and $I_1R_1\le V_{TH}(V_S)$, the off solution applies. Since $V_{TH}$ increases with $V_S$, an initially conducting channel cuts off within the nonnegative-source portion of the sweep if it reaches equality there. For a positive $V_S$ at cutoff within the sweep, this means $0.7\,\mathrm V<I_1R_1\le 1.0348\,\mathrm V$ (upper endpoint rounded), where the upper endpoint solves $I_1R_1=V_{TH}(3\,\mathrm V-I_1R_1)$. If $I_1R_1\le0.7\,\mathrm V$, the channel is off throughout the portion with $V_S\ge0$.
 
-with $M_1$ off, all of $I_1$ would flow through $R_1$ and give $V_{GS} = I_1R_1$.
+### Computed curves and model limits
 
-Because $V_{TH}$ grows as the source rises, a design with $I_1R_1$ only slightly above 0.7 V can be **cut off by the body effect within the sweep**. When $M_1$ is off, $V_S = V_X - I_1R_1$, so cut-off happens at $V_X = V_{S,\mathrm{off}} + I_1R_1$, where $V_{TH}(V_{S,\mathrm{off}}) = I_1R_1$. For example, with $I_1R_1 = 0.9$ V:
+For the cutoff example use $I_1=0.1\,\mathrm{mA}$, $R_1=9\,\mathrm{k\Omega}$ and $\beta=2\,\mathrm{mA/V^2}$. With $V_S=0$, the saturation equation gives $V_{ov}=0.1035\,\mathrm V$, so $V_X=0.8035\,\mathrm V$, $I_X=0.01072\,\mathrm{mA}$ and $g_m=0.2071\,\mathrm{mS}$. At cutoff, $V_{TH}(V_S)=0.9\,\mathrm V$ gives $V_S=1.0408\,\mathrm V$ and $V_X=1.9408\,\mathrm V$.
 
-$$
-\begin{aligned}
-0.45\left(\sqrt{0.9 + V_{S,\mathrm{off}}} - 0.9487\right) &= 0.9 - 0.7 = 0.2\\
-\sqrt{0.9 + V_{S,\mathrm{off}}} &= 0.9487 + 0.4444 = 1.3931\\
-V_{S,\mathrm{off}} &= 1.9408 - 0.9 = 1.04\ \mathrm{V},\\
-V_{X,\mathrm{off}} &= 1.04 + 0.9 = 1.94\ \mathrm{V}.
-\end{aligned}
-$$
+For the triode example use $I_1=1\,\mathrm{mA}$, $R_1=2.5\,\mathrm{k\Omega}$ and $\beta=0.4\,\mathrm{mA/V^2}$. Solving the same KCL equation with $V_{DS}=V_{ov}$ gives entry into triode at $V_X=2.8840\,\mathrm V$. At 3 V, the triode solution gives $V_S=1.0477\,\mathrm V$, $I_X=0.2191\,\mathrm{mA}$ and $g_m=0.3809\,\mathrm{mS}$.
 
-For $I_1R_1 = 1.0$ V the same steps give $V_{X,\mathrm{off}} \approx 2.71$ V; for $I_1R_1 \gtrsim 1.04$ V the device stays on up to $V_X = 3$ V. If $I_1R_1$ is below the threshold even at the low end, $I_X = 0$ throughout.
+![Drain current versus input voltage for two parameter sets](/q/R014/solution-r014.svg)
 
-### Step 4 — Effect of the body effect on $I_X$
+![Intrinsic transconductance versus input voltage for the same parameter sets](/q/R014/solution-r014-gm.svg)
 
-As $V_X$ rises, $V_S = V_X - V_{GS}$ rises almost one-for-one, and so does $V_{TH}$. Differentiating the KCL equation $\tfrac12\beta V_{ov}^2 + (V_{ov} + V_{TH})/R_1 = I_1$:
-
-$$
-\begin{aligned}
-\beta V_{ov}\,dV_{ov} + \frac{dV_{ov} + dV_{TH}}{R_1} &= 0\\
-dV_{ov}\left(g_m + \frac{1}{R_1}\right) &= -\frac{dV_{TH}}{R_1}\\
-dV_{ov} &= -\frac{dV_{TH}}{1 + g_mR_1},
-\end{aligned}
-$$
-
-$$dI_X = g_m\,dV_{ov} = -\frac{g_m}{1 + g_mR_1}\,dV_{TH} \;\approx\; -\frac{dV_{TH}}{R_1} \quad (g_mR_1 \gg 1).$$
-
-A higher threshold forces $V_{GS}$ up by about the same amount, diverting an extra $\Delta V_{TH}/R_1$ of the fixed $I_1$ into $R_1$. So if $I_1R_1 \gg V_{TH}$ (large $R_1$, large overdrive) the decrease is only a small fraction of $I_X$, while if $I_1R_1$ is not far above $V_{TH}$, $I_X$ can fall substantially, or even to zero (Step 3).
-
-### Step 5 — Region of operation
-
-Saturation requires $V_{DS} \ge V_{GS} - V_{TH}$:
-
-$$
-\begin{aligned}
-2 - V_S &\ge V_{GS} - V_{TH}\\
-2 - (V_X - V_{GS}) &\ge V_{GS} - V_{TH}\\
-V_X &\le 2\ \mathrm{V} + V_{TH}(V_S).
-\end{aligned}
-$$
-
-Since $V_{TH} \ge 0.7$ V and has risen to about 0.9–1.0 V by the time $V_X$ approaches 3 V, $M_1$ is **saturated over practically the whole range**. It can enter triode only in the last ≈ 0.1–0.3 V of the sweep, where $V_{GS}$ must rise further to carry the current, so $I_X$ drops a little more and $g_m = \beta V_{DS}$ becomes smaller.
-
-### Step 6 — Numerical example
-
-Take $\beta = 2\ \mathrm{mA/V^2}$, $I_1 = 1$ mA, $R_1 = 1.5\ \mathrm{k\Omega}$ ($I_1R_1 = 1.5$ V, moderately above threshold).
-
-**At $V_S = 0$** ($V_{TH} = 0.7$ V):
-
-$$
-\begin{aligned}
-\beta R_1 &= (2\ \mathrm{mA/V^2})(1.5\ \mathrm{k\Omega}) = 3\ \mathrm{V^{-1}},\\
-2\beta R_1(I_1R_1 - V_{TH}) &= 2(3\ \mathrm{V^{-1}})(1.5 - 0.7)\ \mathrm{V} = 4.8,\\
-V_{ov} &= \frac{1}{3\ \mathrm{V^{-1}}}\left(\sqrt{1 + 4.8} - 1\right) = \frac{2.408 - 1}{3}\ \mathrm{V} = 0.469\ \mathrm{V},\\
-V_{GS} &= 0.469 + 0.7 = 1.169\ \mathrm{V} \quad(\text{so } V_X = V_S + V_{GS} = 1.17\ \mathrm{V}),\\
-I_X &= \tfrac12(2\ \mathrm{mA/V^2})(0.469\ \mathrm{V})^2 = 0.220\ \mathrm{mA},\\
-g_m &= (2\ \mathrm{mA/V^2})(0.469\ \mathrm{V}) = 0.94\ \mathrm{mS}.
-\end{aligned}
-$$
-
-Check with KCL: $I_X + V_{GS}/R_1 = 0.220 + 1.169/1.5 = 0.220 + 0.779 = 0.999\ \mathrm{mA} \approx I_1$. ✓
-
-**Across the sweep** (each row solves the same equations with $V_{TH}(V_S)$, $V_S = V_X - V_{GS}$):
-
-| $V_X$ (V) | $V_S$ (V) | $V_{TH}$ (V) | $V_{GS}$ (V) | $I_X$ (mA) | $g_m$ (mS) |
-|---|---|---|---|---|---|
-| 0.7 | −0.40 | 0.590 | 1.104 | 0.264 | 1.03 |
-| 1.17 | 0.00 | 0.700 | 1.169 | 0.220 | 0.94 |
-| 1.5 | 0.29 | 0.765 | 1.207 | 0.196 | 0.88 |
-| 2.0 | 0.75 | 0.850 | 1.255 | 0.164 | 0.81 |
-| 2.5 | 1.20 | 0.926 | 1.295 | 0.137 | 0.74 |
-| 3.0 | 1.67 | 0.994 | 1.330 | 0.113 | ≈ 0.67 |
-
-$V_{GS}$ changes by only 0.16 V while $V_X$ changes by 1.8 V, so $V_S$ follows $V_X$ with a slope of about 0.9 (source-follower action). Yet $I_X$ halves, because each 0.1 V of extra threshold costs roughly $0.1\ \mathrm{V}/R_1 \times g_mR_1/(1 + g_mR_1) \approx 0.036$ mA. At $V_X = 3$ V, $V_{DS} = 2 - 1.67 = 0.33$ V ≈ $V_{ov} = 0.34$ V, so the device just reaches the edge of triode.
-
-With $R_1 = 5\ \mathrm{k\Omega}$ instead ($I_1R_1 = 5$ V ≫ $V_{TH}$), the same calculation gives $I_X \approx 0.69$ mA at $V_X = 1.5$ V and 0.65 mA at 3 V: only a 6 % decrease.
-
-**Small $V_X$.** For $V_X < V_{GS}$ the source sits below ground ($V_S = V_X - V_{GS} < 0$), slightly forward-biasing the source–bulk junction; in the ideal analysis this only lowers $V_{TH}$ a little (first row). If $V_S$ fell more than about 0.5 V below ground, the real junction would start conducting and supply part of $I_1$, which is outside the square-law model and ignored here.
-
-### Result
-
-$M_1$ is a **source follower whose $V_{GS}$ (the voltage across $R_1$) is set by $I_1$, $R_1$ and $\beta$, not by $V_X$**:
-
-$$I_X = I_1 - \frac{V_{GS}}{R_1}, \qquad \tfrac12\beta\,(V_{GS} - V_{TH})^2 + \frac{V_{GS}}{R_1} = I_1, \qquad g_m = \beta\,(V_{GS} - V_{TH}) = \sqrt{2\beta I_X}.$$
-
-- **Without body effect**, $I_X$ and $g_m$ are constant over the sweep.
-- **With body effect** ($V_{SB} = V_S = V_X - V_{GS}$), raising $V_X$ raises $V_{TH}$, so $V_{GS}$ rises and $I_X$ and $g_m$ **decrease**, at a rate $dI_X \approx -dV_{TH}/R_1$ for large $g_mR_1$. The decrease is slight when $I_1R_1 \gg V_{TH}$ (e.g. 6 % for $\beta = 2\ \mathrm{mA/V^2}$, $I_1 = 1$ mA, $R_1 = 5\ \mathrm{k\Omega}$). It is substantial when $I_1R_1$ is close to $V_{TH}$: for $R_1 = 1.5\ \mathrm{k\Omega}$, from 0.22 mA at $V_S = 0$ to 0.11 mA at $V_X = 3$ V.
-- $M_1$ conducts only while $I_1R_1 > V_{TH}(V_S)$. If $0.7\ \mathrm{V} < I_1R_1 \lesssim 1.04$ V, the body effect cuts it off within the sweep at $V_X = V_{S,\mathrm{off}} + I_1R_1$ (≈ 1.94 V for $I_1R_1 = 0.9$ V, ≈ 2.71 V for 1.0 V).
-- $M_1$ is saturated while $V_X < 2\ \mathrm{V} + V_{TH}(V_S)$, i.e. practically the whole range. Near $V_X = 3$ V it may enter triode, where $I_X$ drops a little more and $g_m = \beta V_{DS}$ falls.
-
-**Common mistake.** Treating the source as grounded, so that $V_{GS} = V_X$ and $I_X = \tfrac12\beta(V_X - V_{TH})^2$ grows as a square law. The source is the node fed by $I_1$ and follows $V_X$; $V_{GS}$ is the voltage across $R_1$, fixed by KCL.
-
-**Common mistake.** Writing $I_X = I_1$. Part of $I_1$, namely $V_{GS}/R_1$, is supplied by $V_X$ through $R_1$, so $I_X$ is smaller, and much smaller when $I_1R_1$ is close to $V_{TH}$.
-
-**Common mistake.** Ignoring the body effect and stating that nothing changes with $V_X$. The source rises by almost the full sweep above the grounded bulk, raising $V_{TH}$ by up to about 0.3 V, which through $R_1$ directly reduces $I_X$ and can even cut $M_1$ off.
+The shaded sections show where the ideal current balance would require negative $V_S$. The source–bulk junction is then forward biased. Its current depends on diode parameters, and the real sink also requires compliance voltage. The plotted branches assume negligible junction current and an ideal sink for $V_S\ge0$. A real sink may require additional headroom even there.

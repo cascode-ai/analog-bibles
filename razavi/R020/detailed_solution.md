@@ -1,105 +1,51 @@
 # Detailed solution - R020
 
-**Approach.** $M_1$ is diode-connected, so it is always saturated and carries the fixed current $I_1$; its gate–source voltage $V_{out}$ is the threshold plus a fixed overdrive. $V_{in}$ drives the bulk, so it changes $V_{out}$ only through the body effect. Find $V_{SB}$ in terms of $V_{in}$ and $V_{out}$, solve the resulting equation, describe the slope, and note where the source–bulk junction becomes forward-biased.
+**Approach:** Solve the source-node current balance together with the body-effect law. Use the source–bulk bias to determine where the resulting transfer curve applies.
 
-### Step 1 — $V_{out}$ = threshold + overdrive
+### Source-node equation and saturation
 
-With gate and drain at $V_{DD} = 3$ V,
+Let $V_S$ be the source voltage, $I_D$ the channel current and $I_{BS}$ the source–bulk junction current flowing from the bulk into the source. Neglect gate current. The source-node current balance is
 
-$$
-\begin{aligned}
-V_S &= V_{DD} - V_{GS} = 3 - V_{out},\\
-V_{SB} &= V_S - V_{in} = 3 - V_{out} - V_{in}.
-\end{aligned}
-$$
+$$I_D+I_{BS}=I_1.$$
 
-$V_{DS} = V_{GS}$, so $M_1$ is saturated whenever it conducts, and the channel carries $I_1$:
+The gate and drain are at $V_{DD}$, so $V_{DS}=V_{GS}$. The body is driven by $V_{in}$, giving
 
-$$I_1 = \tfrac12\beta\,(V_{GS} - V_{TH})^2 \quad\Longrightarrow\quad V_{GS} - V_{TH} = \sqrt{\frac{2I_1}{\beta}} .$$
+$$V_{out}=V_{GS}=V_{DD}-V_S,\qquad V_{SB}=V_{DD}-V_{out}-V_{in}.$$
 
-The overdrive is **constant**, so
+For $V_{SB}\ge0$, neglect junction leakage. If the sink can maintain $I_1$ at the computed $V_S$, the conducting channel is saturated since $V_{DS}=V_{GS}\ge V_{GS}-V_{TH}$. The long-channel square law with $\lambda=0$ gives
 
-$$V_{out} = V_{GS} = V_{TH}(V_{SB}) + \sqrt{\frac{2I_1}{\beta}} ,$$
+$$I_1=\frac{\beta}{2}(V_{GS}-V_{TH})^2,\qquad
+V_{ov}=\sqrt{\frac{2I_1}{\beta}},\qquad V_{out}=V_{TH}(V_{SB})+V_{ov},$$
 
-and all of the dependence on $V_{in}$ comes through
+where $V_{ov}=V_{GS}-V_{TH}$ is the positive overdrive. Use the body-effect law
 
-$$V_{TH} = 0.7 + 0.45\left(\sqrt{0.9 + V_{SB}} - 0.9487\right),\qquad V_{SB} = 3 - V_{out} - V_{in}.$$
+$$V_{TH}(V_{SB})=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).$$
 
-### Step 2 — Direction of the change
+with $V_{TH0}=0.7\,\mathrm{V}$, $\gamma=0.45\,\mathrm{V}^{1/2}$ and $2|\phi_F|=0.9\,\mathrm{V}$. An assumed physical sink requires $V_S$ above its minimum compliance voltage, which the problem does not specify.
 
-Raising $V_{in}$ raises the bulk toward the source, which reduces $V_{SB}$ and hence $V_{TH}$, so **$V_{out}$ falls** as $V_{in}$ rises. (As $V_{out}$ falls, the source $V_S = 3 - V_{out}$ rises slightly, partly counteracting the reduction of $V_{SB}$; that is why the change is modest.)
+### Slope and the zero-bias point
 
-**Slope.** With $\eta = \partial V_{TH}/\partial V_{SB} = \gamma/(2\sqrt{0.9 + V_{SB}})$, constant overdrive gives $dV_{out} = dV_{TH} = \eta\,dV_{SB}$, and $dV_{SB} = -dV_{out} - dV_{in}$:
+With $V_{ov}$ fixed, $dV_{out}=\eta\,dV_{SB}$ for $\eta=dV_{TH}/dV_{SB}=\gamma/(2\sqrt{2|\phi_F|+V_{SB}})$. Combining this relation with $dV_{SB}=-dV_{out}-dV_{in}$ gives
 
-$$
-\begin{aligned}
-dV_{out} &= \eta\,(-dV_{out} - dV_{in})\\
-dV_{out}\,(1 + \eta) &= -\eta\,dV_{in}\\
-\frac{dV_{out}}{dV_{in}} &= -\frac{\eta}{1 + \eta}.
-\end{aligned}
-$$
+$$\frac{dV_{out}}{dV_{in}}=-\frac{\eta}{1+\eta},\qquad
+\frac{dV_{SB}}{dV_{in}}=-\frac{1}{1+\eta}.$$
 
-The slope is negative and small in magnitude ($\eta \approx 0.14$–$0.3$), and it **steepens** as $V_{SB}$ shrinks, because $\eta \propto 1/\sqrt{0.9 + V_{SB}}$ grows. So the curve is **falling and concave down**.
+As $V_{in}$ increases, $V_{SB}$ decreases, $\eta$ increases, and $d^2V_{out}/dV_{in}^2<0$. This branch falls with a progressively steeper slope. At $V_{SB}=0$ the body and source are at the same potential, so the output and input at this point are
 
-### Step 3 — Numerical example
+$$V_{out,0}=V_{TH0}+V_{ov},\qquad V_{in,0}=V_{DD}-V_{TH0}-V_{ov}.$$
 
-Take $\sqrt{2I_1/\beta} = 0.2$ V (any value just shifts the whole curve vertically). Then $V_{out} = V_{TH} + 0.2$ V and $V_{SB} = 2.8 - V_{TH} - V_{in}$. With $u = \sqrt{0.9 + V_{SB}}$, so that $V_{TH} = 3.7 - V_{in} - u^2$, the body-effect equation becomes ($0.7 - 0.45\times0.9487 = 0.2731$)
+For fixed $I_1$ and $\beta$, this branch applies up to that input when it lies in the sweep and the sink remains compliant.
 
-$$
-\begin{aligned}
-3.7 - V_{in} - u^2 &= 0.2731 + 0.45u\\
-u^2 + 0.45u - (3.4269 - V_{in}) &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 4\,(3.4269 - V_{in})}}{2} .
-\end{aligned}
-$$
+### Source–bulk forward bias
 
-**$V_{in} = 0$:**
+Above the zero-bias input, the source–bulk junction is forward biased on the branch connected to the zero-bias point. Once $I_{BS}$ matters, the channel carries $I_D=I_1-I_{BS}$, so its overdrive is no longer fixed by $I_1$. There is no specified junction current law from which to compute the high-input curve or the magnitude of current diversion. The drain–bulk junction remains at zero or reverse bias because $V_{in}\le V_{DD}$.
 
-$$
-\begin{aligned}
-u &= \frac{-0.45 + \sqrt{0.2025 + 13.7076}}{2} = \frac{-0.45 + 3.7296}{2} = 1.6398,\\
-V_{SB} &= u^2 - 0.9 = 2.6890 - 0.9 = 1.789\ \mathrm{V},\\
-V_{TH} &= 0.7 + 0.45\,(1.6398 - 0.9487) = 1.011\ \mathrm{V},\\
-V_{out} &= 1.011 + 0.2 = 1.21\ \mathrm{V}.
-\end{aligned}
-$$
+If the junction supplies nearly all of a fixed $I_1$, the source can track the bulk with an approximately constant drop $V_F=V_{in}-V_S$ set by the junction at that current. In that limit, $V_{out}\approx V_{DD}-V_{in}+V_F$ and the slope is near $-1$. The location and extent of this regime depend on device and bias data.
 
-Check: $V_S = 3 - 1.211 = 1.789$ V, and $V_{SB} = 1.789 - 0 = 1.789$ V. ✓
+### Computed curve
 
-**$V_{in} = 2.1$ V:** $u = (-0.45 + \sqrt{0.2025 + 5.3076})/2 = (-0.45 + 2.3474)/2 = 0.9487$, so $V_{SB} = 0.9 - 0.9 = 0$, $V_{TH} = V_{TH0} = 0.7$ V and $V_{out} = 0.90$ V. Here the bulk is exactly at the source potential ($V_S = 3 - 0.9 = 2.1\ \mathrm{V} = V_{in}$), so $V_{out} = V_{TH0} + \sqrt{2I_1/\beta}$.
+Take $V_{ov}=0.2\,\mathrm{V}$ for illustration. At $V_{in}=0$, solve $V_{SB}+V_{TH}(V_{SB})=V_{DD}-V_{ov}$ to obtain $V_{SB}\approx1.7890\,\mathrm{V}$ and $V_{out}\approx1.2110\,\mathrm{V}$. At the zero-bias point, $V_{in,0}=2.100\,\mathrm{V}$ and $V_{out,0}=0.900\,\mathrm{V}$. The plot solves the same equation with $V_{DD}-V_{ov}-V_{in}$ on the right for each point on the non-forward-biased branch.
 
-The same steps give:
+![Gate–source voltage versus bulk voltage with the zero-bias point and the forward-bias region](/q/R020/solution-r020.svg)
 
-| $V_{in}$ (V) | $V_{SB}$ (V) | $V_{TH}$ (V) | $V_{out}$ (V) | slope $dV_{out}/dV_{in}$ |
-|---|---|---|---|---|
-| 0 | 1.79 | 1.011 | 1.21 | −0.12 |
-| 0.5 | 1.35 | 0.948 | 1.15 | −0.13 |
-| 1.0 | 0.92 | 0.880 | 1.08 | −0.14 |
-| 1.5 | 0.50 | 0.805 | 1.00 | −0.16 |
-| 2.1 | 0 | 0.700 | 0.90 | −0.19 |
-| 2.5 | −0.32 | 0.617 | ≈ 0.82 | −0.23 |
-
-### Step 4 — The upper range: forward-biased source–bulk junction
-
-For $V_{in} > V_S$ (beyond about 2.1 V in the example) the p-type bulk is above the n+ source, so the source–bulk junction is **forward biased** ($V_{SB} < 0$).
-
-- Up to a few hundred millivolts of forward bias (about 0.3 V at $V_{in} = 2.5$ V) the junction current is negligible and the formula above remains a reasonable estimate: the threshold keeps dropping and $V_{out}$ keeps falling, ever more steeply.
-- As the forward bias approaches 0.6–0.7 V (toward $V_{in} = 3$ V; the formula would give about 0.68 V there) the junction conducts heavily and supplies a large part of $I_1$ directly from $V_{in}$, diverting it from the channel. The source is pulled up toward roughly $V_{in}$ minus a diode drop, $V_{out}$ drops further, and the body-effect formula is no longer meaningful.
-- The drain–bulk junction stays off, since the drain is at 3 V $\ge V_{in}$.
-
-### Result
-
-$M_1$ is diode-connected (always saturated) and carries $I_1$, so
-
-$$V_{out} = V_{GS} = V_{TH}(V_{SB}) + \sqrt{\frac{2I_1}{\beta}}, \qquad V_{SB} = V_S - V_{in} = (3 - V_{out}) - V_{in}.$$
-
-- $V_{out}$ **falls** as $V_{in}$ rises, because raising the bulk reduces $V_{SB}$ and hence $V_{TH}$.
-- The slope is $-\eta/(1 + \eta)$ with $\eta = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$, so the fall gets steeper as $V_{SB}$ approaches zero (concave down).
-- $V_{out}$ reaches $V_{TH0} + \sqrt{2I_1/\beta}$ when $V_{in}$ equals the source voltage ($V_{SB} = 0$). Example with $\sqrt{2I_1/\beta} = 0.2$ V: 1.21 V at $V_{in} = 0$ ($V_{SB} \approx 1.79$ V), 1.08 V at 1 V, 1.00 V at 1.5 V, 0.90 V at 2.1 V ($V_{SB} = 0$), ≈ 0.82 V at 2.5 V (forward bias ≈ 0.3 V).
-- Beyond that the source–bulk junction is forward biased. Near the top of the range it conducts heavily, diverting $I_1$ from the channel, and the MOS model no longer applies.
-
-**Common mistake.** Concluding that $V_{out}$ is constant because the diode-connected device carries a fixed current. The overdrive is fixed, but $V_{TH}$ depends on $V_{SB}$, which $V_{in}$ changes directly through the bulk.
-
-**Common mistake.** Getting the sign wrong. Raising the bulk of an NMOS toward its source *lowers* the threshold, so $V_{out}$ decreases with $V_{in}$.
-
-**Common mistake.** Extending the body-effect formula all the way to $V_{in} = 3$ V. Once the bulk is more than about 0.5–0.6 V above the source, the source–bulk junction conducts and the square-law/body-effect description breaks down.
+For this example, formally continuing the fixed-channel-current equation to $V_{in}=3\,\mathrm{V}$ gives $V_{SB}\approx-0.683\,\mathrm{V}$. The magnitude $0.683\,\mathrm{V}$ is the implied forward voltage $V_{in}-V_S$ in that extrapolation. Since $V_{in}=V_{DD}$ at the endpoint, it also equals the extrapolated $V_{out}$. The shaded interval indicates where the forward-bias model is needed.
