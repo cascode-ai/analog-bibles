@@ -2,12 +2,35 @@
 
 ## Reference answer
 
-$I_X$ is nearly constant apart from the body effect: $M_1$ is a source follower whose $V_{GS}$ (the voltage across $R_1$) is fixed by $I_1$ and $R_1$, independent of $V_X$. The body effect makes $I_X$ and $g_m$ fall as $V_X$ rises: slightly for $I_1R_1 \gg V_{TH}$, substantially (or down to cutoff within the sweep) when $I_1R_1$ is close to $V_{TH}$. $I_X = I_1 - V_{GS}/R_1$, with $V_{GS}$ set by $\tfrac12\beta(V_{GS} - V_{TH})^2 + V_{GS}/R_1 = I_1$ ($M_1$ conducts while $I_1R_1 > V_{TH}(V_S)$. Because $V_{TH}$ rises with $V_S$, if $0.7\ \mathrm{V} < I_1R_1 \lesssim 1.04$ V the body effect turns $M_1$ off within the sweep at $V_X = V_{S,off} + I_1R_1$, where $V_{TH}(V_{S,off}) = I_1R_1$, e.g. $V_X \approx 1.94$ V for $I_1R_1 = 0.9$ V, ≈ 2.71 V for 1.0 V; if $I_1R_1$ is below the threshold at the low end, $I_X = 0$ throughout.)
-- KCL at the source: $I_1 = I_X + V_{GS}/R_1$, since $R_1$ carries $(V_X - V_S)/R_1 = V_{GS}/R_1$.
-- Body effect ($V_{SB} = V_S = V_X - V_{GS}$): as $V_X$ rises, $V_{TH}$ rises, so $V_{GS}$ rises and $I_X$ decreases; $g_m = \sqrt{2\beta I_X}$ follows. The decrease is slight when the overdrive is large ($I_1R_1 \gg V_{TH}$, large $\beta R_1$) but can be large when $I_1R_1$ is not far above $V_{TH}$: e.g. β = 2 mA/V², $I_1$ = 1 mA, $R_1$ = 1.5 kΩ gives $I_X$ ≈ 0.22 mA at $V_S = 0$ and ≈ 0.11 mA at $V_S$ ≈ 1.67 V (end of the sweep).
-- Saturation holds while $V_{DS} = 2 - V_S > V_{GS} - V_{TH}$, i.e. $V_X < 2\ \mathrm{V} + V_{TH}(V_S)$ (≳ 2.7–3 V): practically the whole range. If $M_1$ enters triode near $V_X = 3$ V, $V_{GS}$ must rise to carry the current, so $I_X$ drops a little more and $g_m$ falls ($g_m = \beta V_{DS}$).
-- (For small $V_X$ the source sits below ground, $V_S = V_X - V_{GS}$; an ideal analysis ignores the resulting forward bias of the source–bulk junction.)
+In the channel model, $I_X$ and intrinsic $g_m$ decrease as $V_X$ rises while $M_1$ conducts. With $R_1$ across gate and source, the source-node equation and terminal voltages are
+
+$$I_X=I_1-\frac{V_{GS}}{R_1},\quad V_{GS}=V_X-V_S,\quad V_{DS}=2\,\mathrm V-V_S,\quad V_{SB}=V_S.$$
+
+Use the body-dependent threshold $V_{TH}(V_S)$ and define $V_{ov}=V_{GS}-V_{TH}$. For $V_{ov}>0$ and $V_{DS}>0$, the square-law model with $\lambda=0$ gives
+
+| Region | $I_X$ | $g_m$ |
+|---|---|---|
+| Saturation, $V_X\le2\,\mathrm V+V_{TH}$ | $\beta V_{ov}^2/2$ | $\beta V_{ov}$ |
+| Triode, $V_X>2\,\mathrm V+V_{TH}$ | $\beta(V_{ov}V_{DS}-V_{DS}^2/2)$ | $\beta V_{DS}$ |
+
+The saturation segment is flat at fixed threshold and nearly flat when the overdrive changes little relative to its value. Entry into triode requires the channel still to be on at the region boundary.
+
+If $I_1R_1\le V_{TH0}$, the channel is off throughout the portion with $V_S\ge0$. Otherwise, cutoff in that portion occurs if the sweep reaches
+
+$$V_{TH}(V_{S,\mathrm{off}})=I_1R_1,\qquad V_{X,\mathrm{off}}=V_{S,\mathrm{off}}+I_1R_1.$$
+
+Both curves stay zero after cutoff. The gray low-input ranges require junction and current-sink compliance data.
+
+![Drain current versus input voltage for two parameter sets](/q/R014/solution-r014.svg)
+
+![Intrinsic transconductance versus input voltage for the same parameter sets](/q/R014/solution-r014-gm.svg)
 
 ## Grading notes
 
-+2: $I_X \approx$ constant $= I_1 - V_{GS}/R_1$ with $V_{GS}$ independent of $V_X$ (follower), a slight decrease from the body effect, possible triode entry only near the top of the range ($V_X > 2\ \mathrm{V} + V_{TH}$), and $g_m \approx$ constant. A larger body-effect decrease, or cutoff within the sweep, is also correct when stated as depending on $I_1R_1$ relative to $V_{TH}(V_S)$. +1: constant $I_X$ and $g_m$ without the body-effect slope or without the triode remark; or a complete answer with a numerical slip in the body-effect constants (e.g., $2|\phi_F|$ taken as 0.45 V) that changes only the values, or a wrong side remark on a correct result. 0: constant-current conclusion reached with a wrong $I_X$ expression (e.g., $I_X = I_1$). -2 (asserted as fact): $I_X$ following a square law in $V_X$ (source treated as grounded), $I_X$ increasing strongly with $V_X$, or $R_1$ read as connected to ground.
++2: Correct source-node KCL including the resistor current, the body-effect decrease of $I_X$ and $g_m$, and the saturation and triode boundary and formulas. Credit a nearly flat saturation segment under a stated approximation, a substantial decrease, or cutoff when supported by the parameters. A qualitative sketch should identify the validity limit at low input and indicate that the upper branch depends on the parameters.
+
++1: Correct saturation trend with incomplete region reasoning, or a fixed-threshold approximation with the main circuit relations and operating-region caveat. Minor numerical slips may also receive partial credit.
+
+0: A correct qualitative trend from an incorrect current balance, such as $I_X=I_1$.
+
+-2: A rising square-law curve from grounding the source, a strong increase in $I_X$ asserted for the channel model, or identifying $R_1$ as connected from the gate to ground.

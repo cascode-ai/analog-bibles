@@ -2,13 +2,38 @@
 
 ## Reference answer
 
-$M_1$ is saturated whenever it is on; $I_X$ falls quadratically and $g_m$ linearly to zero at $V_X = V_{DD} - 0.8\,\mathrm{V}\cdot(R_1+R_2)/R_1$, and both stay zero above.
-- The divider sits between $V_{DD}$ and $V_X$, so $V_{SG} = (V_{DD} - V_X)\dfrac{R_1}{R_1+R_2}$ (source at $V_{DD}$, no body effect since bulk = source).
-- $V_{SD} = V_{DD} - V_X \ge V_{SG}$ > $V_{SG} - |V_{TH}|$, so $M_1$ is saturated whenever on: $I_X = \tfrac12\beta_p\left[(3 - V_X)\dfrac{R_1}{R_1+R_2} - 0.8\right]^2$ (assuming $3R_1/(R_1+R_2) > 0.8$ V so it is on at $V_X = 0$).
-- $M_1$ turns off at $V_X = 3 - 0.8(R_1+R_2)/R_1$; $I_X = 0$ above (the parabola touches the axis tangentially).
-- $g_m = \beta_p\left[(3 - V_X)\dfrac{R_1}{R_1+R_2} - 0.8\right]$: a straight line falling with slope $-\beta_pR_1/(R_1+R_2)$ to zero at the same point.
-- ($I_X$ is $M_1$'s current only; the divider current is separate.)
+The PMOS source and bulk are at $V_{DD}=3\,\mathrm{V}$. With negligible gate current, the divider gives
+
+$$
+k=\frac{R_1}{R_1+R_2},\quad V_{SG}=k(V_{DD}-V_X),\quad V_{SD}=V_{DD}-V_X.
+$$
+
+Since $V_{SD}\ge V_{SG}$, $M_1$ is saturated whenever it conducts. For $V_{SG}>|V_{TH}|=0.8\,\mathrm{V}$, the square-law model with $\lambda=0$ gives the transistor current $I_X$ and positive intrinsic transconductance $g_m$.
+
+$$I_X=\frac{\beta_p}{2}(V_{SG}-|V_{TH}|)^2,\qquad
+g_m=\beta_p(V_{SG}-|V_{TH}|).$$
+
+If $kV_{DD}>|V_{TH}|$, the initial values, the conducting $g_m$ slope and the cutoff voltage are
+
+$$
+\begin{aligned}
+I_X(0)&=\frac{\beta_p}{2}\left[(3\,\mathrm{V})\frac{R_1}{R_1+R_2}-0.8\,\mathrm{V}\right]^2,\\
+g_m(0)&=\beta_p\left[(3\,\mathrm{V})\frac{R_1}{R_1+R_2}-0.8\,\mathrm{V}\right],\\
+\frac{dg_m}{dV_X}&=-\beta_p\frac{R_1}{R_1+R_2},\\
+V_{X,\mathrm{off}}&=3\,\mathrm{V}-(0.8\,\mathrm{V})\frac{R_1+R_2}{R_1}.
+\end{aligned}
+$$
+
+The current falls quadratically and reaches zero with zero slope. The transconductance falls linearly. Both remain zero at and above cutoff. If $kV_{DD}\le |V_{TH}|$, both are zero throughout the sweep. $I_X$ excludes the divider current.
+
+![Drain current and intrinsic transconductance versus input voltage](/q/R011/solution-curves.svg)
 
 ## Grading notes
 
-+2: correct $V_{SG}$ (fraction $R_1/(R_1+R_2)$ of $V_{DD} - V_X$), saturation whenever on, quadratic decrease of $I_X$ to zero at $V_X = V_{DD} - |V_{TH}|(R_1+R_2)/R_1$, linear decrease of $g_m$. +1: correct shapes with a slip in the cutoff expression, or the saturation argument missing. 0: shape right only qualitatively, region claims missing. -2 (asserted as fact): $I_X$ increasing with $V_X$, triode operation claimed, the divider ratio inverted so as to change the conclusion, or $M_1$ treated as an NMOS.
++2: correct divider ratio $R_1/(R_1+R_2)$; saturation whenever on; quadratic decrease of transistor current and linear decrease of positive intrinsic $g_m$; correct cutoff and zero continuation. The all-off branch is correct when $(3\ \mathrm{V})R_1/(R_1+R_2)\le0.8\ \mathrm{V}$ is stated. Equivalent normalized plots are acceptable; axes must retain units.
+
++1: correct shapes with a minor cutoff error or missing saturation justification.
+
+0: only qualitative shapes, without the necessary terminal-voltage relations or region argument.
+
+-2 (asserted as fact): increasing $I_X$, triode while on, inverted divider ratio, NMOS interpretation, or divider current included in the transistor $I_X$. Do not confuse $g_m$ with the negative sweep derivative $dI_X/dV_X$.

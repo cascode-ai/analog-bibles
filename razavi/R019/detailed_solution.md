@@ -1,117 +1,51 @@
 # Detailed solution - R019
 
-**Approach.** The $V_{in}$ node is the source of the PMOS $M_1$, whose gate is fixed at 1 V. Compute $|V_{TH}|$ with the body effect (the n-well is at 3 V, above the source), find the turn-on point, then the saturation and triode regions.
+**Approach:** Use the load current balance to compute the transfer curve. Evaluate the threshold at the body bias set by the input.
 
-### Step 1 — Terminal voltages and the body effect
+### Terminal voltages and body effect
 
-The current in $R_1$ can only come from $V_{in}$ through $M_1$, so $0 \le V_{out} \le V_{in}$: the higher-potential terminal, $V_{in}$, is the PMOS source and the $V_{out}$ node is the drain. In positive quantities,
+Let $I_{SD}$ be the positive channel current from source to drain. With gate and junction leakage neglected, the output-node KCL is
 
-$$
-\begin{aligned}
-V_{SG} &= V_{in} - 1,\\
-V_{SD} &= V_{in} - V_{out},\\
-V_{BS} &= 3 - V_{in} \ \ (\ge 0, \text{ reverse bias of the source–well junction}).
-\end{aligned}
-$$
+$$I_{SD}=\frac{V_{out}}{R_1}.$$
 
-With the body effect ($\sqrt{0.8} = 0.8944$):
+For $0\le V_{in}\le V_{DD}$, a negative output would make both the channel and the resistor feed the output node. Above $V_{in}$, neither could feed it. Thus $0\le V_{out}\le V_{in}$. The higher-potential input terminal is the PMOS source. The figure fixes the gate at $1\,\mathrm{V}$ and the problem ties the well to $V_{DD}=3\,\mathrm{V}$.
 
-$$|V_{TH}| = 0.8 + 0.4\left(\sqrt{0.8 + 3 - V_{in}} - 0.8944\right) = 0.8 + 0.4\left(\sqrt{3.8 - V_{in}} - 0.8944\right)\ \mathrm{V}.$$
+$$V_{SG}=V_{in}-1\,\mathrm{V},\qquad V_{SD}=V_{in}-V_{out},\qquad V_{BS}=V_{DD}-V_{in}.$$
 
-As $V_{in}$ rises toward 3 V the source approaches the well potential and $|V_{TH}|$ **falls** toward 0.8 V; at low $V_{in}$ it is larger (for example 0.98 V at $V_{in} = 2$ V).
+The source and drain junctions to the well have zero or reverse bias. Use the long-channel square-law model with $\lambda=0$ and the threshold magnitude
 
-### Step 2 — Turn-on point
+$$|V_{TH}|=|V_{TH0}|+\gamma\left(\sqrt{2|\phi_F|+V_{BS}}-\sqrt{2|\phi_F|}\right).$$
 
-$M_1$ conducts when $V_{SG} > |V_{TH}|$; at the boundary
+Here $|V_{TH0}|=0.8\,\mathrm{V}$, $\gamma=0.4\,\mathrm{V}^{1/2}$ and $2|\phi_F|=0.8\,\mathrm{V}$. As $V_{in}$ rises, $V_{BS}$ falls and $|V_{TH}|$ decreases.
 
-$$V_{in} - 1 = 0.8 + 0.4\sqrt{3.8 - V_{in}} - 0.4\times0.8944 .$$
+### Cutoff and saturation
 
-Substitute $w = \sqrt{3.8 - V_{in}}$, so $V_{in} = 3.8 - w^2$:
+Define the overdrive $V_{ov}=V_{SG}-|V_{TH}|$. The turn-on input $V_{in,on}$ is the unique root of $V_{ov}=0$, since $V_{SG}$ increases and $|V_{TH}|$ decreases with input. Substitution into the threshold law yields $V_{in,on}=1.98162\,\mathrm{V}$ (compared with $1.8\,\mathrm{V}$ at fixed threshold). For $V_{in}\le V_{in,on}$, $I_{SD}=0$ and KCL gives $V_{out}=0$.
 
-$$
-\begin{aligned}
-3.8 - w^2 - 1 &= 0.8 + 0.4w - 0.3578\\
-2.8 - w^2 &= 0.4422 + 0.4w\\
-w^2 + 0.4w - 2.3578 &= 0\\
-w &= \frac{-0.4 + \sqrt{0.16 + 9.4311}}{2} = \frac{-0.4 + 3.0969}{2} = 1.3485\\
-V_{in} &= 3.8 - 1.3485^2 = 3.8 - 1.8184 = 1.98\ \mathrm{V}.
-\end{aligned}
-$$
+Just above turn-on, $V_{SD}\ge V_{ov}>0$, so the channel is saturated. The saturation current and KCL give
 
-Check: $|V_{TH}| = 0.8 + 0.4(1.3485 - 0.8944) = 0.98$ V and $V_{SG} = 1.98 - 1 = 0.98$ V. ✓
+$$V_{out}=\frac{\beta_p R_1}{2}V_{ov}^2,\qquad V_{out}\le 1\,\mathrm{V}+|V_{TH}|.$$
 
-So **$V_{out} = 0$ for $0 \le V_{in} \le 1.98$ V**. Without body effect the device would turn on at $1 + 0.8 = 1.8$ V; the well sitting above the source raises $|V_{TH}|$ and delays turn-on by about 0.18 V.
+The inequality follows by substituting the terminal voltages into $V_{SD}\ge V_{ov}$. Along this branch, $dV_{out}/dV_{in}=\beta_p R_1 V_{ov}\,dV_{ov}/dV_{in}$. The slope is zero at turn-on and increases in saturation, since $V_{ov}$ and its positive derivative increase with input. The square law applies to overdrive, whose input dependence includes the body effect.
 
-### Step 3 — Saturation region
+### Transition and triode
 
-Saturation requires $V_{SD} \ge V_{SG} - |V_{TH}|$:
+The saturation solution increases while the boundary level $1\,\mathrm{V}+|V_{TH}|$ decreases. At $V_{in}=3\,\mathrm{V}$, $V_{BS}=0$, $V_{ov}=1.2\,\mathrm{V}$ and the boundary level is $1.8\,\mathrm{V}$. Therefore a transition occurs before 3 V exactly when
 
-$$
-\begin{aligned}
-V_{in} - V_{out} &\ge V_{in} - 1 - |V_{TH}|\\
-V_{out} &\le 1 + |V_{TH}| ,
-\end{aligned}
-$$
+$$ (0.72\,\mathrm{V}^2)\beta_p R_1>1.8\,\mathrm{V}
+\qquad\Longleftrightarrow\qquad
+\beta_p R_1>2.5\,\mathrm{V}^{-1}.$$
 
-so the drain may rise at most $|V_{TH}|$ above the gate, i.e. to about 1.8–1.98 V. Just after turn-on $V_{out}$ is small and $M_1$ is saturated. KCL at the output:
+At equality the boundary lies at 3 V. For smaller $\beta_p R_1$, the conducting branch remains saturated and $V_{out}(3\,\mathrm{V})=(0.72\,\mathrm{V}^2)\beta_p R_1$.
 
-$$\frac{V_{out}}{R_1} = \tfrac12\beta_p\,(V_{SG} - |V_{TH}|)^2 \quad\Longrightarrow\quad V_{out} = \tfrac12\beta_pR_1\,(V_{in} - 1 - |V_{TH}|)^2 .$$
+In triode, $0<V_{SD}<V_{ov}$ and the current law gives
 
-The right side depends on $V_{in}$ only (source at the input, gate fixed): a **common-gate** configuration, not a follower. $V_{out}$ rises **quadratically** from zero, slightly faster than a pure parabola, because the overdrive grows at the rate $1 + \gamma/(2\sqrt{3.8 - V_{in}}) \approx 1.15$–$1.22$ per volt as $|V_{TH}|$ falls.
+$$\frac{V_{out}}{R_1}=\beta_p\left(V_{ov}V_{SD}-\frac{V_{SD}^2}{2}\right).$$
 
-**At the top of the range** ($V_{in} = 3$ V): $V_{BS} = 0$, so $|V_{TH}| = 0.8$ V and
+At $V_{SD}=V_{ov}$ the current matches the saturation value and its partial derivative with respect to $V_{SD}$ vanishes. The two transfer branches therefore join with continuous slope. At fixed input above turn-on, increasing $\beta_pR_1$ reduces the drop $V_{in}-V_{out}$ on the triode branch. When $V_{SD}\ll V_{ov}$, the channel resistance is approximately $1/(\beta_p V_{ov})$ and the output approaches $V_{in}$ from below as $\beta_p R_1$ grows.
 
-$$V_{ov} = 3 - 1 - 0.8 = 1.2\ \mathrm{V}, \qquad V_{out} = \tfrac12\beta_pR_1(1.2\ \mathrm{V})^2 = 0.72\,\beta_pR_1\ \mathrm{V^2},$$
+### Computed curves
 
-with $\beta_p$ in A/V² and $R_1$ in Ω. This holds only if $0.72\,\beta_pR_1 \le 1 + 0.8 = 1.8$ V, i.e. $\beta_pR_1 \le 2.5\ \mathrm{V^{-1}}$.
+For $\beta_p R_1=1\,\mathrm{V}^{-1}$ the 3 V output is $(0.72\,\mathrm{V}^2)(1\,\mathrm{V}^{-1})=0.720\,\mathrm{V}$ in saturation. For $\beta_p R_1=10\,\mathrm{V}^{-1}$, solving $V_{out}=1\,\mathrm{V}+|V_{TH}|$ on the saturation branch gives the boundary at $V_{in}=2.5120\,\mathrm{V}$ and $V_{out}=1.8962\,\mathrm{V}$. The triode equation gives $V_{out}=2.7440\,\mathrm{V}$ at 3 V. The plot shows both parameter choices over the full input sweep.
 
-### Step 4 — Triode region (large $\beta_pR_1$)
-
-If $V_{out}$ reaches $1 + |V_{TH}|$ before $V_{in} = 3$ V, $M_1$ enters triode:
-
-$$\frac{V_{out}}{R_1} = \beta_p\left[(V_{in} - 1 - |V_{TH}|)(V_{in} - V_{out}) - \tfrac12(V_{in} - V_{out})^2\right].$$
-
-$M_1$ now behaves as a resistor $R_{on} \approx 1/[\beta_p(V_{in} - 1 - |V_{TH}|)]$ between $V_{in}$ and the output, and $V_{out} \approx V_{in}R_1/(R_1 + R_{on})$ **approaches $V_{in}$** from below, more closely as $\beta_pR_1$ grows; it never exceeds $V_{in}$.
-
-### Step 5 — Numerical curves
-
-Thresholds and overdrives at three points:
-
-$$
-\begin{aligned}
-V_{in} = 2.2\ \mathrm{V}:&\quad |V_{TH}| = 0.8 + 0.4(\sqrt{1.6} - 0.8944) = 0.8 + 0.4\times0.3705 = 0.948\ \mathrm{V},\ V_{ov} = 1.2 - 0.948 = 0.252\ \mathrm{V},\\
-V_{in} = 2.5\ \mathrm{V}:&\quad |V_{TH}| = 0.8 + 0.4(\sqrt{1.3} - 0.8944) = 0.8 + 0.4\times0.2458 = 0.898\ \mathrm{V},\ V_{ov} = 1.5 - 0.898 = 0.602\ \mathrm{V},\\
-V_{in} = 3.0\ \mathrm{V}:&\quad |V_{TH}| = 0.800\ \mathrm{V},\ V_{ov} = 1.200\ \mathrm{V}.
-\end{aligned}
-$$
-
-For $\beta_pR_1 = 1\ \mathrm{V^{-1}}$, $V_{out} = \tfrac12V_{ov}^2$: 0.032 V, 0.181 V and 0.72 V at these points, saturated throughout.
-
-For $\beta_pR_1 = 10\ \mathrm{V^{-1}}$, saturation gives $V_{out} = 5V_{ov}^2$: 0.317 V at 2.2 V and 1.81 V at 2.5 V, just below $1 + |V_{TH}| = 1.90$ V. The triode boundary, where $5V_{ov}^2 = 1 + |V_{TH}|$, falls at $V_{in} \approx 2.51$ V; above it the triode equation gives 2.17 V at 2.6 V and 2.74 V at 3 V.
-
-| $V_{in}$ (V) | $V_{out}$, $\beta_pR_1 = 1\ \mathrm{V^{-1}}$ | $V_{out}$, $\beta_pR_1 = 10\ \mathrm{V^{-1}}$ |
-|---|---|---|
-| 0 – 1.98 | 0 | 0 |
-| 2.1 | 0.009 | 0.093 |
-| 2.2 | 0.032 | 0.317 |
-| 2.3 | 0.068 | 0.677 |
-| 2.4 | 0.117 | 1.17 |
-| 2.5 | 0.181 | 1.81 (edge of triode) |
-| 2.6 | 0.259 | 2.17 (triode) |
-| 2.8 | 0.459 | 2.49 (triode) |
-| 3.0 | 0.720 | 2.74 (triode) |
-
-**Shape.** Flat at zero up to 1.98 V, then a parabola-like rise (saturation). For small $\beta_pR_1$ it reaches only $0.72\beta_pR_1$ V at 3 V; for large $\beta_pR_1$ it bends over once $V_{out}$ passes about $1 + |V_{TH}| \approx 1.9$ V and then runs just below the line $V_{out} = V_{in}$.
-
-### Result
-
-- The source of the PMOS is the $V_{in}$ node (higher potential): $V_{SG} = V_{in} - 1$, $V_{BS} = 3 - V_{in}$, and $|V_{TH}| = 0.8 + 0.4(\sqrt{3.8 - V_{in}} - \sqrt{0.8})$.
-- **Turn-on** where $V_{in} - 1 = |V_{TH}|$: **$V_{in} \approx 1.98$ V** ($|V_{TH}| \approx 0.98$ V there; it would be 1.8 V without body effect). $V_{out} = 0$ below.
-- **Saturation** while $V_{out} < 1 + |V_{TH}|$ (drain at most $|V_{TH}|$ above the gate): $V_{out} = \tfrac12\beta_pR_1(V_{in} - 1 - |V_{TH}|)^2$, a quadratic rise. At $V_{in} = 3$ V the overdrive is 1.2 V ($|V_{TH}| = 0.8$ V), so $V_{out} = 0.72\,\beta_pR_1$ (V), unless triode limits it.
-- **Triode** if $\beta_pR_1$ is large enough that $V_{out}$ would exceed $1 + |V_{TH}| \approx 1.8$–$1.9$ V: $V_{out}$ then approaches $V_{in}$. Always $V_{out} \le V_{in}$.
-
-**Common mistake.** Treating $M_1$ as an NMOS, or taking the $V_{out}$ node as the source. For a PMOS the source is the higher terminal, here the input node, so $V_{SG} = V_{in} - 1$.
-
-**Common mistake.** Predicting a nonzero output at small $V_{in}$. With the gate at 1 V, the source must rise above $1 + |V_{TH}|$ before any channel forms, i.e. to $V_{in} \approx 1.98$ V.
-
-**Common mistake.** Ignoring the body effect and placing turn-on at 1.8 V. The well is at 3 V while the source is near 2 V, so $|V_{TH}|$ is raised to about 0.98 V at turn-on.
+![Computed PMOS transfer curves for two values of beta p R1](/q/R019/solution-r019.svg)

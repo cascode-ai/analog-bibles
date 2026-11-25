@@ -1,6 +1,25 @@
-$M_1$ 只要导通就处于饱和区（saturation region）；$I_X$ 按二次函数规律、$g_m$ 按线性规律下降，在 $V_X = V_{DD} - 0.8\,\mathrm{V}\cdot(R_1+R_2)/R_1$ 处降为零，此后两者都保持为零。
-- 分压器接在 $V_{DD}$ 与 $V_X$ 之间，因此 $V_{SG} = (V_{DD} - V_X)\dfrac{R_1}{R_1+R_2}$，其中源极接 $V_{DD}$；由于衬底即源极，没有体效应（body effect）。
-- $V_{SD} = V_{DD} - V_X \ge V_{SG}$ > $V_{SG} - |V_{TH}|$，因此 $M_1$ 只要导通就处于饱和区：$I_X = \tfrac12\beta_p\left[(3 - V_X)\dfrac{R_1}{R_1+R_2} - 0.8\right]^2$（假设 $3R_1/(R_1+R_2) > 0.8$ V，使器件在 $V_X = 0$ 时导通）。
-- $M_1$ 在 $V_X = 3 - 0.8(R_1+R_2)/R_1$ 处截止；高于该值时 $I_X = 0$（抛物线与横轴相切）。
-- $g_m = \beta_p\left[(3 - V_X)\dfrac{R_1}{R_1+R_2} - 0.8\right]$：一条斜率为 $-\beta_pR_1/(R_1+R_2)$ 的下降直线，在同一点降为零。
-- （$I_X$ 只是 $M_1$ 的电流；分压器的电流另计。）
+PMOS 的源极和衬底均接 $V_{DD}=3\,\mathrm{V}$。忽略栅极电流，由分压关系得
+
+$$
+k=\frac{R_1}{R_1+R_2},\quad V_{SG}=k(V_{DD}-V_X),\quad V_{SD}=V_{DD}-V_X.
+$$
+
+由于 $V_{SD}\ge V_{SG}$，$M_1$ 导通时均处于饱和区。当 $V_{SG}>|V_{TH}|=0.8\,\mathrm{V}$ 时，取 $\lambda=0$，平方律给出漏极电流 $I_X$ 和取正值的本征跨导 $g_m$。
+
+$$I_X=\frac{\beta_p}{2}(V_{SG}-|V_{TH}|)^2,\qquad
+g_m=\beta_p(V_{SG}-|V_{TH}|).$$
+
+若 $kV_{DD}>|V_{TH}|$，两条曲线的初值、导通段的跨导斜率和截止电压为
+
+$$
+\begin{aligned}
+I_X(0)&=\frac{\beta_p}{2}\left[(3\,\mathrm{V})\frac{R_1}{R_1+R_2}-0.8\,\mathrm{V}\right]^2,\\
+g_m(0)&=\beta_p\left[(3\,\mathrm{V})\frac{R_1}{R_1+R_2}-0.8\,\mathrm{V}\right],\\
+\frac{dg_m}{dV_X}&=-\beta_p\frac{R_1}{R_1+R_2},\\
+V_{X,\mathrm{off}}&=3\,\mathrm{V}-(0.8\,\mathrm{V})\frac{R_1+R_2}{R_1}.
+\end{aligned}
+$$
+
+电流按二次函数下降，以零斜率达到零。跨导线性下降。在截止点及其后，两者均为零。若 $kV_{DD}\le |V_{TH}|$，则全程截止。$I_X$ 不含分压器电流。
+
+![漏极电流与本征跨导随输入电压的两张曲线](/q/R011/solution-curves.zh.svg)

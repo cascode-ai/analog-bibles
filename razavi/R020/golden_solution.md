@@ -2,12 +2,24 @@
 
 ## Reference answer
 
-$V_{out} = V_{GS} = V_{TH}(V_{SB}) + \sqrt{2I_1/\beta}$ falls as $V_{in}$ rises, because raising the bulk voltage reduces $V_{SB}$ and hence $V_{TH}$; the fall gets steeper as $V_{SB}$ approaches zero. $V_{out}$ reaches $V_{TH0} + \sqrt{2I_1/\beta}$ when $V_{in}$ equals the source voltage; beyond that the source–bulk junction is forward biased and, near the top of the range, it conducts heavily and the MOS model no longer applies.
-- $M_1$ is diode-connected (always saturated) and carries $I_1$, so $V_{GS} = V_{TH} + \sqrt{2I_1/\beta}$, with $V_{SB} = V_S - V_{in} = (3 - V_{out}) - V_{in}$.
-- $dV_{TH}/dV_{SB} = \gamma/(2\sqrt{2|\phi_F| + V_{SB}})$ grows as $V_{SB}$ shrinks, so the curve is concave down (steepening).
-- Example with $\sqrt{2I_1/\beta} = 0.2$ V: $V_{out}$ = 1.21 V at $V_{in} = 0$ ($V_{SB}$ ≈ 1.79 V), 1.08 V at 1 V, 1.00 V at 1.5 V, 0.90 V at 2.1 V ($V_{SB} = 0$, $V_{in} = V_S$), ≈ 0.82 V at 2.5 V (forward bias ≈ 0.3 V).
-- For $V_{in} > V_S$ the junction is forward biased; as the forward bias approaches 0.6–0.7 V (toward $V_{in}$ = 3 V) the junction diverts a large part of $I_1$ from the channel and the body-effect formula is no longer meaningful. The drain–bulk junction stays off (drain at 3 V ≥ $V_{in}$).
+With negligible junction current and a compliant current sink, the diode-connected NMOS conducts in saturation. The overdrive $V_{ov}=\sqrt{2I_1/\beta}$ is fixed. In the non-forward-biased portion, $V_{out}=V_{GS}$ decreases with increasingly negative slope as the bulk voltage rises.
+
+$$V_{out}=V_{TH}(V_{SB})+V_{ov},\qquad V_{SB}=V_{DD}-V_{out}-V_{in}.$$
+
+The slope is $-\eta/(1+\eta)$, where $\eta=dV_{TH}/dV_{SB}=\gamma/(2\sqrt{2|\phi_F|+V_{SB}})$. At the source–bulk zero-bias point, the input and output are
+
+$$V_{out,0}=V_{TH0}+V_{ov},\qquad V_{in,0}=V_{DD}-V_{TH0}-V_{ov}.$$
+
+Above $V_{in,0}$ the source–bulk junction is forward biased. Its current can supply part of $I_1$, so this part of the curve requires a junction model. The drain–bulk junction is never forward biased in the specified sweep.
+
+![Gate–source voltage versus bulk voltage with the zero-bias point and the forward-bias region](/q/R020/solution-r020.svg)
 
 ## Grading notes
 
-+2: decreasing $V_{out}$ (= $V_{GS}$) with $V_{in}$ because $V_{TH}$ drops as $V_{SB}$ shrinks, steepening slope, level $V_{TH0} + \sqrt{2I_1/\beta}$ when $V_{in}$ equals the source voltage, and the forward-biased source–bulk junction noted for the upper range. Numerical examples are optional. +1: decreasing curve with correct reasoning but without the forward-bias remark or without the steepening. 0: correct mechanism but the sign of the slope wrong in part of the range, or only the start value. -2 (asserted as fact): $V_{out}$ constant (body effect ignored), $V_{out}$ increasing with $V_{in}$, or $V_{in}$ treated as a gate input.
++2: Correctly identifies $V_{out}$ as $V_{GS}$ and $V_{in}$ as the bulk voltage. Shows a decreasing curve with increasing slope magnitude on the non-forward-biased branch, gives the zero-bias level, and recognizes the limit imposed by source–bulk forward bias. Specific example values are optional.
+
++1: Correct decreasing branch and explanation with the steepening or the source–bulk bias limit omitted.
+
+0: Identifies the body-effect mechanism but gives an incorrect local slope or only a starting value.
+
+-2 (asserted as fact): Constant or increasing $V_{out}$ on the non-forward-biased branch, or treatment of $V_{in}$ as a gate voltage.

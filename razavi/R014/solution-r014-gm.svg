@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 748">
+<title>R014 · Intrinsic transconductance</title>
+<desc>Long-channel square law with body effect and λ = 0. Gray marks where ideal current balance requires negative source voltage. A junction model and current-sink compliance data are needed there.</desc>
+<rect width="880" height="748" fill="#ffffff"/>
+<text x="32" y="41" font-size="23" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">R014 · Intrinsic transconductance</text>
+<text x="32" y="69" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">Long-channel square law with body effect and λ = 0.</text>
+<text x="32" y="98" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">Cutoff example    I₁ = 0.1 mA, R₁ = 9 kΩ, β = 2 mA/V²</text>
+<text x="32" y="125" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">V_S = 0 at 0.8035 V. Cutoff occurs at V_X = 1.9408 V.</text>
+<rect x="165" y="153" width="175.7055208055899" height="161" fill="#e6ebee"/>
+<line x1="165" y1="153" x2="165" y2="314" stroke="#384e60"/>
+<line x1="165" y1="314" x2="821" y2="314" stroke="#384e60"/>
+<path d="M 160 314 L 165 314" fill="none" stroke="#384e60"/>
+<text x="152" y="319" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0</text>
+<path d="M 160 281.8 L 165 281.8" fill="none" stroke="#384e60"/>
+<text x="152" y="286.8" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.05</text>
+<path d="M 160 249.6 L 165 249.6" fill="none" stroke="#384e60"/>
+<text x="152" y="254.6" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.1</text>
+<path d="M 160 217.4 L 165 217.4" fill="none" stroke="#384e60"/>
+<text x="152" y="222.4" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.15</text>
+<path d="M 160 185.2 L 165 185.2" fill="none" stroke="#384e60"/>
+<text x="152" y="190.2" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.2</text>
+<path d="M 165 314 L 165 320" fill="none" stroke="#384e60"/>
+<text x="165" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">0</text>
+<path d="M 274.3333333333333 314 L 274.3333333333333 320" fill="none" stroke="#384e60"/>
+<text x="274.3333333333333" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">0.5</text>
+<path d="M 383.66666666666663 314 L 383.66666666666663 320" fill="none" stroke="#384e60"/>
+<text x="383.66666666666663" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">1</text>
+<path d="M 493 314 L 493 320" fill="none" stroke="#384e60"/>
+<text x="493" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">1.5</text>
+<path d="M 602.3333333333333 314 L 602.3333333333333 320" fill="none" stroke="#384e60"/>
+<text x="602.3333333333333" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">2</text>
+<path d="M 711.6666666666666 314 L 711.6666666666666 320" fill="none" stroke="#384e60"/>
+<text x="711.6666666666666" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">2.5</text>
+<path d="M 821 314 L 821 320" fill="none" stroke="#384e60"/>
+<text x="821" y="338" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">3</text>
+<text x="32" y="234" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">g_m (mS)</text>
+<text x="493" y="364" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">V_X (V)</text>
+<path d="M 340.7055208055899 153 L 340.7055208055899 314" fill="none" stroke="#788893" stroke-dasharray="4 5"/>
+<path d="M 589.3893396441231 153 L 589.3893396441231 314" fill="none" stroke="#788893" stroke-dasharray="4 5"/>
+<polyline points="340.706,180.652 342.778,181.528 344.850,182.404 346.923,183.282 348.995,184.160 351.067,185.039 353.140,185.918 355.212,186.799 357.284,187.680 359.357,188.562 361.429,189.445 363.502,190.329 365.574,191.214 367.646,192.101 369.719,192.988 371.791,193.877 373.863,194.767 375.936,195.658 378.008,196.551 380.080,197.445 382.153,198.340 384.225,199.237 386.298,200.136 388.370,201.036 390.442,201.938 392.515,202.841 394.587,203.747 396.659,204.654 398.732,205.563 400.804,206.474 402.876,207.387 404.949,208.302 407.021,209.219 409.094,210.139 411.166,211.060 413.238,211.984 415.311,212.910 417.383,213.839 419.455,214.771 421.528,215.704 423.600,216.641 425.672,217.580 427.745,218.522 429.817,219.467 431.890,220.415 433.962,221.366 436.034,222.320 438.107,223.277 440.179,224.237 442.251,225.201 444.324,226.168 446.396,227.139 448.469,228.113 450.541,229.091 452.613,230.073 454.686,231.059 456.758,232.048 458.830,233.042 460.903,234.040 462.975,235.043 465.047,236.050 467.120,237.061 469.192,238.077 471.265,239.098 473.337,240.124 475.409,241.154 477.482,242.190 479.554,243.232 481.626,244.279 483.699,245.331 485.771,246.390 487.843,247.454 489.916,248.524 491.988,249.601 494.061,250.684 496.133,251.774 498.205,252.871 500.278,253.974 502.350,255.085 504.422,256.204 506.495,257.330 508.567,258.465 510.639,259.607 512.712,260.758 514.784,261.918 516.857,263.086 518.929,264.265 521.001,265.452 523.074,266.650 525.146,267.858 527.218,269.077 529.291,270.307 531.363,271.549 533.435,272.802 535.508,274.068 537.580,275.347 539.653,276.639 541.725,277.945 543.797,279.266 545.870,280.602 547.942,281.953 550.014,283.321 552.087,284.707 554.159,286.110 556.231,287.533 558.304,288.975 560.376,290.439 562.449,291.924 564.521,293.433 566.593,294.966 568.666,296.525 570.738,298.112 572.810,299.729 574.883,301.376 576.955,303.057 579.028,304.774 581.100,306.529 583.172,308.325 585.245,310.167 587.317,312.057 589.389,314.000" fill="none" stroke="#155f9e" stroke-width="3"/>
+<polyline points="589.389,314.000 593.250,314.000 597.110,314.000 600.970,314.000 604.830,314.000 608.690,314.000 612.550,314.000 616.411,314.000 620.271,314.000 624.131,314.000 627.991,314.000 631.851,314.000 635.711,314.000 639.572,314.000 643.432,314.000 647.292,314.000 651.152,314.000 655.012,314.000 658.873,314.000 662.733,314.000 666.593,314.000 670.453,314.000 674.313,314.000 678.173,314.000 682.034,314.000 685.894,314.000 689.754,314.000 693.614,314.000 697.474,314.000 701.334,314.000 705.195,314.000 709.055,314.000 712.915,314.000 716.775,314.000 720.635,314.000 724.496,314.000 728.356,314.000 732.216,314.000 736.076,314.000 739.936,314.000 743.796,314.000 747.657,314.000 751.517,314.000 755.377,314.000 759.237,314.000 763.097,314.000 766.958,314.000 770.818,314.000 774.678,314.000 778.538,314.000 782.398,314.000 786.258,314.000 790.119,314.000 793.979,314.000 797.839,314.000 801.699,314.000 805.559,314.000 809.419,314.000 813.280,314.000 817.140,314.000 821.000,314.000" fill="none" stroke="#155f9e" stroke-width="3"/>
+<circle cx="340.7055208055899" cy="180.6516274500006" r="4" fill="#155f9e" stroke="#ffffff"/>
+<circle cx="589.3893396441231" cy="314" r="4" fill="#155f9e" stroke="#ffffff"/>
+<text x="465.0474302248565" y="182" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">Between markers: saturation</text>
+<text x="705.1946698220615" y="182" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">Cutoff</text>
+<text x="32" y="388" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">Triode example    I₁ = 1 mA, R₁ = 2.5 kΩ, β = 0.4 mA/V²</text>
+<text x="32" y="415" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">V_S = 0 at 1.8448 V. Triode starts at V_X = 2.8840 V.</text>
+<rect x="165" y="443" width="403.38775155766166" height="161" fill="#e6ebee"/>
+<line x1="165" y1="443" x2="165" y2="604" stroke="#384e60"/>
+<line x1="165" y1="604" x2="821" y2="604" stroke="#384e60"/>
+<path d="M 160 604 L 165 604" fill="none" stroke="#384e60"/>
+<text x="152" y="609" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0</text>
+<path d="M 160 571.8 L 165 571.8" fill="none" stroke="#384e60"/>
+<text x="152" y="576.8" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.1</text>
+<path d="M 160 539.6 L 165 539.6" fill="none" stroke="#384e60"/>
+<text x="152" y="544.6" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.2</text>
+<path d="M 160 507.4 L 165 507.4" fill="none" stroke="#384e60"/>
+<text x="152" y="512.4" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.3</text>
+<path d="M 160 475.2 L 165 475.2" fill="none" stroke="#384e60"/>
+<text x="152" y="480.2" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.4</text>
+<path d="M 160 443 L 165 443" fill="none" stroke="#384e60"/>
+<text x="152" y="448" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#183048">0.5</text>
+<path d="M 165 604 L 165 610" fill="none" stroke="#384e60"/>
+<text x="165" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">0</text>
+<path d="M 274.3333333333333 604 L 274.3333333333333 610" fill="none" stroke="#384e60"/>
+<text x="274.3333333333333" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">0.5</text>
+<path d="M 383.66666666666663 604 L 383.66666666666663 610" fill="none" stroke="#384e60"/>
+<text x="383.66666666666663" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">1</text>
+<path d="M 493 604 L 493 610" fill="none" stroke="#384e60"/>
+<text x="493" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">1.5</text>
+<path d="M 602.3333333333333 604 L 602.3333333333333 610" fill="none" stroke="#384e60"/>
+<text x="602.3333333333333" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">2</text>
+<path d="M 711.6666666666666 604 L 711.6666666666666 610" fill="none" stroke="#384e60"/>
+<text x="711.6666666666666" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">2.5</text>
+<path d="M 821 604 L 821 610" fill="none" stroke="#384e60"/>
+<text x="821" y="628" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">3</text>
+<text x="32" y="524" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">g_m (mS)</text>
+<text x="493" y="654" font-size="16" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">V_X (V)</text>
+<path d="M 568.3877515576617 443 L 568.3877515576617 604" fill="none" stroke="#788893" stroke-dasharray="4 5"/>
+<path d="M 795.6273829393114 443 L 795.6273829393114 604" fill="none" stroke="#788893" stroke-dasharray="4 5"/>
+<polyline points="568.388,456.555 570.281,456.664 572.175,456.773 574.069,456.882 575.962,456.990 577.856,457.098 579.750,457.205 581.643,457.312 583.537,457.419 585.431,457.526 587.324,457.632 589.218,457.738 591.112,457.843 593.005,457.948 594.899,458.053 596.793,458.158 598.686,458.262 600.580,458.366 602.474,458.470 604.367,458.573 606.261,458.676 608.155,458.779 610.048,458.881 611.942,458.983 613.836,459.085 615.729,459.187 617.623,459.288 619.517,459.389 621.410,459.490 623.304,459.590 625.198,459.691 627.091,459.790 628.985,459.890 630.879,459.990 632.772,460.089 634.666,460.188 636.560,460.286 638.453,460.384 640.347,460.483 642.241,460.580 644.134,460.678 646.028,460.775 647.922,460.872 649.815,460.969 651.709,461.066 653.603,461.162 655.496,461.259 657.390,461.354 659.284,461.450 661.177,461.546 663.071,461.641 664.965,461.736 666.858,461.831 668.752,461.925 670.646,462.019 672.539,462.114 674.433,462.208 676.327,462.301 678.220,462.395 680.114,462.488 682.008,462.581 683.901,462.674 685.795,462.766 687.689,462.859 689.582,462.951 691.476,463.043 693.370,463.135 695.263,463.227 697.157,463.318 699.051,463.409 700.944,463.500 702.838,463.591 704.732,463.682 706.625,463.772 708.519,463.863 710.413,463.953 712.306,464.043 714.200,464.132 716.094,464.222 717.987,464.311 719.881,464.400 721.775,464.489 723.668,464.578 725.562,464.667 727.455,464.755 729.349,464.844 731.243,464.932 733.136,465.020 735.030,465.107 736.924,465.195 738.817,465.282 740.711,465.370 742.605,465.457 744.498,465.544 746.392,465.631 748.286,465.717 750.179,465.804 752.073,465.890 753.967,465.976 755.860,466.062 757.754,466.148 759.648,466.234 761.541,466.319 763.435,466.404 765.329,466.490 767.222,466.575 769.116,466.660 771.010,466.744 772.903,466.829 774.797,466.913 776.691,466.998 778.584,467.082 780.478,467.166 782.372,467.250 784.265,467.333 786.159,467.417 788.053,467.500 789.946,467.584 791.840,467.667 793.734,467.750 795.627,467.833" fill="none" stroke="#236c58" stroke-width="3"/>
+<polyline points="795.627,467.833 796.050,468.062 796.473,468.292 796.896,468.521 797.319,468.750 797.742,468.979 798.165,469.207 798.588,469.436 799.010,469.664 799.433,469.893 799.856,470.121 800.279,470.349 800.702,470.577 801.125,470.804 801.548,471.032 801.971,471.259 802.393,471.487 802.816,471.714 803.239,471.941 803.662,472.168 804.085,472.394 804.508,472.621 804.931,472.847 805.354,473.073 805.776,473.299 806.199,473.525 806.622,473.751 807.045,473.977 807.468,474.202 807.891,474.428 808.314,474.653 808.737,474.878 809.159,475.103 809.582,475.328 810.005,475.552 810.428,475.777 810.851,476.001 811.274,476.225 811.697,476.449 812.120,476.673 812.542,476.897 812.965,477.120 813.388,477.343 813.811,477.567 814.234,477.790 814.657,478.013 815.080,478.235 815.503,478.458 815.925,478.681 816.348,478.903 816.771,479.125 817.194,479.347 817.617,479.569 818.040,479.791 818.463,480.012 818.886,480.234 819.308,480.455 819.731,480.676 820.154,480.897 820.577,481.118 821.000,481.338" fill="none" stroke="#236c58" stroke-width="3" stroke-dasharray="6 3"/>
+<circle cx="568.3877515576617" cy="456.55477560688945" r="4" fill="#236c58" stroke="#ffffff"/>
+<circle cx="795.6273829393114" cy="467.83280342749345" r="4" fill="#236c58" stroke="#ffffff"/>
+<text x="682.0075672484866" y="527" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#183048">Between markers: saturation</text>
+<text x="32" y="706" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">Gray marks where ideal current balance requires negative source voltage.</text>
+<text x="32" y="728" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#183048">A junction model and current-sink compliance data are needed there.</text>
+</svg>

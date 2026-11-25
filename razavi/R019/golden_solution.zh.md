@@ -1,5 +1,16 @@
-在 $V_{in} \approx 1.98$ V 之前 $V_{out} = 0$；高于该值后，PMOS（源极接 $V_{in}$，栅极接 1 V）在饱和区（saturation region）导通，$V_{out} = \tfrac12\beta_pR_1(V_{in} - 1 - |V_{TH}|)^2$ 按二次函数规律上升；若 $\beta_pR_1$ 足够大，使 $V_{out}$ 超过 $1 + |V_{TH}| \approx 1.8$ V，则 $M_1$ 进入线性区（triode region），$V_{out}$ 趋近 $V_{in}$。
-- 源极是 $V_{in}$ 节点（电位较高），$V_{SG} = V_{in} - 1$，$V_{BS} = 3 - V_{in}$，$|V_{TH}| = 0.8 + 0.4(\sqrt{3.8 - V_{in}} - \sqrt{0.8})$。
-- 导通点：由 $V_{in} - 1 = |V_{TH}|$ 得 $V_{in} \approx 1.98$ V，此时 $|V_{TH}| \approx 0.98$ V；若没有体效应（body effect），导通点为 1.8 V。
-- 当 $V_{out} < 1 + |V_{TH}|$ 时（漏极至多比栅极高 $|V_{TH}|$）处于饱和区：$V_{out} = \tfrac12\beta_pR_1(V_{in} - 1 - |V_{TH}|)^2$。在 $V_{in} = 3$ V 时，过驱动电压（overdrive voltage）为 1.2 V（$|V_{TH}| = 0.8$ V），因此 $V_{out} = 0.72\beta_pR_1$（$\beta_p$ 以 A/V²、$R_1$ 以 Ω 为单位时，结果以 V 为单位），除非受到线性区的限制。
-- 始终有 $V_{out} \le V_{in}$。
+PMOS 的源极接 $V_{in}$，栅极固定在 $1\,\mathrm{V}$。计入体效应时，输出在 $V_{in}\approx1.9816\,\mathrm{V}$ 之前及开启点处为零。开启点由 $V_{SG}=|V_{TH}|$ 确定。
+
+$$V_{SG}=V_{in}-1\,\mathrm{V},\qquad V_{SD}=V_{in}-V_{out},\qquad V_{BS}=V_{DD}-V_{in}.$$
+
+按题给体效应公式求阈值，令过驱动 $V_{ov}=V_{SG}-|V_{TH}|$。取 $\lambda=0$，由负载电流 $I_{SD}=V_{out}/R_1$ 得到导通支路。
+
+| 工作区 | 条件 | 输出方程 |
+|---|---|---|
+| 饱和区 | $V_{SD}\ge V_{ov}>0$ | $V_{out}=\beta_p R_1 V_{ov}^2/2$ |
+| 线性区 | $0<V_{SD}<V_{ov}$ | $V_{out}=\beta_p R_1(V_{ov}V_{SD}-V_{SD}^2/2)$ |
+
+曲线以零斜率开启，饱和段按过驱动的平方上升。转折处 $V_{out}=1\,\mathrm{V}+|V_{TH}(V_{in})|$，这一输出电平从扫描终点的 $1.80\,\mathrm{V}$ 随 $\beta_pR_1$ 增大趋向 $1.98\,\mathrm{V}$。
+
+当 $\beta_p R_1\le2.5\,\mathrm{V}^{-1}$ 时，扫描中的导通段保持饱和，等号对应在 3 V 恰好达到工作区边界。此时 $V_{out}(3\,\mathrm{V})=(0.72\,\mathrm{V}^2)\beta_p R_1$。更大的 $\beta_p R_1$ 使器件在 3 V 之前进入线性区。在线性区，增大 $\beta_pR_1$ 使曲线从下方接近 $V_{out}=V_{in}$。
+
+![两组器件与负载参数下计算得到的 PMOS 传输曲线](/q/R019/solution-r019.zh.svg)
