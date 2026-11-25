@@ -12,6 +12,13 @@ const STRINGS = {
     reviewTitle: "For maintainers: pass, report issues, comment",
     switchLang: "切换到中文",
     search: "Search ID, problem no. or text (/)",
+    searchLabel: "Search questions",
+    searchResults: "Search results",
+    searchCount: (n) => `${n} matched`,
+    searchIndexLoading: "Loading question text…",
+    searchIndexFailed: "Could not load question text.",
+    searchMore: "Show more",
+    searchRetry: "Retry search",
     sideWidth: "Sidebar width",
     analytics: "Analytics",
     analyticsTitle: "Open visitor analytics",
@@ -131,7 +138,8 @@ const STRINGS = {
     showTranslation: "中文",
     prevCh: "Previous chapter (Shift+←)",
     nextCh: "Next chapter (Shift+→)",
-    gotoTitle: "Type a question number and press Enter",
+    gotoLabel: "Result position",
+    gotoTitle: "Enter a result position or a textbook problem number",
     chapter: (n) => `Ch. ${n}`,
     exercise: (e) => `Problem ${e}`,
     chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
@@ -148,6 +156,13 @@ const STRINGS = {
     reviewTitle: "给维护者：通过、报错、评论",
     switchLang: "Switch to English",
     search: "搜索 ID、题号或题目（/）",
+    searchLabel: "搜索题目",
+    searchResults: "搜索结果",
+    searchCount: (n) => `找到 ${n} 道题`,
+    searchIndexLoading: "正在加载题干索引…",
+    searchIndexFailed: "题干索引加载失败。",
+    searchMore: "显示更多",
+    searchRetry: "重试搜索",
     sideWidth: "侧边栏宽度",
     analytics: "访问统计",
     analyticsTitle: "打开访问统计",
@@ -267,7 +282,8 @@ const STRINGS = {
     showTranslation: "查看中文译文",
     prevCh: "上一章 (Shift+←)",
     nextCh: "下一章 (Shift+→)",
-    gotoTitle: "输入题号后按回车",
+    gotoLabel: "结果序号",
+    gotoTitle: "输入结果序号或教材题号后按回车",
     chapter: (n) => `第 ${n} 章`,
     exercise: (e) => `习题 ${e}`,
     chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
@@ -618,6 +634,7 @@ $("lang-switch").addEventListener("click", () => {
   lang = lang === "en" ? "zh" : "en";
   store.set("ab.lang", lang);
   applyLanguage();
+  if (state.search && textbookReference(state.search)) loadSearch(lang === "zh");
   if (state.keyPrompt !== null) askForKey(state.keyPrompt);
   else if (!state.ready) syncUrl();
   else if (mode === "review" || state.focus) renderItem(true);
@@ -636,19 +653,51 @@ $("lang-switch").addEventListener("click", () => {
 // searches (the light index the page starts with leaves them out).
 let searchText = null;
 let searchLoad = null;
-function loadSearch() {
-  if (searchText || searchLoad || !window.AB?.search) return searchLoad;
-  searchLoad = fetch(window.AB.search)
-    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-    .then((texts) => {
-      searchText = texts;
-      if (state.ready && state.search) {
-        refilter(state.cards[state.index]?.id);
-        render(0);
-      }
+let searchFailed = false;
+let searchTextZh = null;
+let searchLoadZh = null;
+let searchFailedZh = false;
+const hasHan = (query) => /\p{Script=Han}/u.test(query);
+const textbookReference = (query) => query.toLowerCase()
+  .match(/^(?:(razavi|gray|allen)\s+(?:problems?\s+)?)?((?:\d+(?:[.-]\d+)+|a-\d+)(?:\s*\(.*\))?)$/);
+const usesChineseIndex = (query) => hasHan(query) || (lang === "zh" && Boolean(textbookReference(query)));
+
+function loadSearch(chinese = false) {
+  const url = chinese ? window.AB?.searchZh : window.AB?.search;
+  const loaded = chinese ? searchTextZh : searchText;
+  const loading = chinese ? searchLoadZh : searchLoad;
+  if (loaded || loading || !url) return loading;
+  const pending = fetch(url)
+    .then((response) => {
+      if (!response.ok) throw new Error(`Search index: ${response.status}`);
+      return response.json();
     })
-    .catch(() => { searchLoad = null; });
-  return searchLoad;
+    .then((texts) => {
+      if (chinese) {
+        searchTextZh = texts;
+        searchFailedZh = false;
+      } else {
+        searchText = texts;
+        searchFailed = false;
+      }
+    }, () => {
+      if (chinese) searchFailedZh = true;
+      else searchFailed = true;
+    })
+    .finally(() => {
+      if (chinese) searchLoadZh = null;
+      else searchLoad = null;
+      if (state.ready && state.search && usesChineseIndex(state.search) === chinese) {
+        if (textbookReference(state.search)) renderSearchResults();
+        else {
+          refilter(state.cards[state.index]?.id);
+          render(state.index);
+        }
+      }
+    });
+  if (chinese) searchLoadZh = pending;
+  else searchLoad = pending;
+  return pending;
 }
 
 // All of a question's Markdown files in one cached request (b/<id>.<v>.json),
@@ -692,14 +741,14 @@ function matches(q, { scope = state.scope, level = state.level, status = state.s
     // Textbook references use the light index's metadata, without needing
     // the question texts. Match complete numbers so 7.6 cannot find 7.60;
     // a base number includes its parenthesized subparts.
-    const problem = needle.match(/^(?:(razavi|gray|allen)\s+(?:problems?\s+)?)?((?:\d+(?:[.-]\d+)+|a-\d+)(?:\s*\(.*\))?)$/);
+    const problem = textbookReference(state.search);
     if (problem) {
       if (problem[1] && q.book !== problem[1]) return false;
       const exercise = q.ex.toLowerCase();
       if (exercise !== problem[2] && exercise.replace(/\s*\(.*$/, "") !== problem[2]) return false;
     } else {
-      const text = q.t !== undefined ? q.t.toLowerCase() : searchText?.[q.id] || "";
-      if (!q.id.toLowerCase().includes(needle) && !text.includes(needle)) return false;
+      const text = hasHan(needle) ? searchTextZh?.[q.id]?.toLowerCase() : q.t?.toLowerCase() ?? searchText?.[q.id];
+      if (!q.id.toLowerCase().includes(needle) && !text?.includes(needle)) return false;
     }
   }
   return true;
@@ -747,6 +796,51 @@ function splitSolution(text) {
 
 // ---------- sidebar ----------
 
+const SEARCH_PAGE_SIZE = 12;
+let searchLimit = SEARCH_PAGE_SIZE;
+
+function searchMessage() {
+  const chinese = hasHan(state.search);
+  const usesLazyIndex = chinese ? window.AB?.searchZh : state.all[0]?.t === undefined && window.AB?.search;
+  if (state.search && usesLazyIndex && !textbookReference(state.search)) {
+    if (chinese ? searchLoadZh : searchLoad) return t("searchIndexLoading");
+    if (chinese ? searchFailedZh : searchFailed) return t("searchIndexFailed");
+  }
+  return state.cards.length ? t("searchCount", num(state.cards.length)) : t("noMatch");
+}
+
+function searchExcerpt(q) {
+  const text = (hasHan(state.search) || lang === "zh" ? searchTextZh?.[q.id] : undefined) ?? q.t ?? searchText?.[q.id];
+  if (!text) return "";
+  const line = text.replace(/^#[^\r\n]*[\r\n]+/, "")
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/\s+/g, " ").trim();
+  const at = Math.max(0, line.toLowerCase().indexOf(state.search.toLowerCase()) - 24);
+  const end = at + 100;
+  return `${at ? "…" : ""}${line.slice(at, end)}${line.length > end ? "…" : ""}`;
+}
+
+function renderSearchResults() {
+  $("search-results").hidden = !state.search;
+  if (!state.search) return;
+  const list = $("search-matches");
+  const focused = document.activeElement?.dataset?.searchId;
+  const message = searchMessage();
+  if ($("search-status").textContent !== message) $("search-status").textContent = message;
+  list.innerHTML = state.cards.slice(0, searchLimit).map((q) => {
+    const title = `${bookName(q.book)} · ${t("exercise", q.ex)}`;
+    const excerpt = searchExcerpt(q);
+    return `<li><button type="button" class="search-match" data-search-id="${esc(q.id)}">
+      <strong>${esc(title)}</strong> <span class="search-match-id">${esc(q.id)}</span>
+      ${excerpt ? `<span class="search-excerpt">${esc(excerpt)}</span>` : ""}
+    </button></li>`;
+  }).join("");
+  if (focused) [...list.querySelectorAll("button")].find((button) => button.dataset.searchId === focused)?.focus({ preventScroll: true });
+  $("search-more").hidden = state.cards.length <= searchLimit;
+  $("search-retry").hidden = message !== t("searchIndexFailed");
+}
+
 function renderSide() {
   const row = (key, label, on, count, kind) =>
     `<button type="button" class="row${on ? " on" : ""}" data-kind="${kind}" data-key="${key}">` +
@@ -758,6 +852,7 @@ function renderSide() {
     row(l, t(l), l === state.level, state.all.filter((q) => matches(q, { level: l })).length, "level")).join("");
   $("statuses").innerHTML = STATUSES.map((s) =>
     row(s.key, t(s.label), s.key === state.status, state.all.filter((q) => matches(q, { status: s.key })).length, "status")).join("");
+  renderSearchResults();
 }
 
 function renderProgress() {
@@ -847,7 +942,7 @@ async function renderItem(keepFlags = false) {
   if (!q) {
     shownId = null;
     delete item.dataset.qid;
-    item.innerHTML = `<p class="empty">${t("noMatch")}</p>`;
+    item.innerHTML = `<p class="empty">${searchMessage()}</p>`;
     return;
   }
   const note = keepFlags && $("note") ? $("note").value : "";
@@ -870,9 +965,9 @@ async function renderItem(keepFlags = false) {
 function cardHead(q, extra = "") {
   return `
     <div class="head">
+      <h2 class="problem-title">${esc(bookName(q.book))} · ${esc(t("exercise", q.ex))}</h2>
       <span class="id">${esc(q.id)}</span>
       ${q.reviewStatus !== "APPROVED" ? `<span class="review-status">${t("unreviewed")}</span>` : ""}
-      <span class="tag">${bookName(q.book)} · ${t("exercise", q.ex)}</span>
       <span class="tag lv-${q.level}">${t(q.level)}</span>
       ${extra}
     </div>`;
@@ -1183,7 +1278,7 @@ function renderFeed(from = 0) {
   item.className = "feed";
   delete item.dataset.qid;
   if (!state.cards.length) {
-    item.innerHTML = `<p class="empty">${t("noMatch")}</p>`;
+    item.innerHTML = `<p class="empty">${searchMessage()}</p>`;
     state.index = 0;
     syncUrl();
     renderPosition();
@@ -1929,12 +2024,18 @@ function jumpChapter(dir) {
 }
 
 $("goto").addEventListener("keydown", (event) => {
-  if (event.key !== "Enter") return;
+  if (event.key !== "Enter" || event.isComposing) return;
   event.preventDefault();
-  const n = parseInt(event.target.value.replace(/[^0-9]/g, ""), 10);
+  const value = event.target.value.trim();
   event.target.blur();
-  if (n >= 1 && state.ready) go(n - 1);
-  else updatePosition();
+  if (!value || !state.ready) return;
+  if (/^\d+$/.test(value)) {
+    if (Number(value) >= 1) go(Number(value) - 1);
+    return;
+  }
+  openNavigation(true);
+  $("search").value = value;
+  setSearch(value);
 });
 $("goto").addEventListener("focus", (event) => event.target.select());
 $("goto").addEventListener("blur", () => updatePosition());
@@ -2082,6 +2183,7 @@ document.addEventListener("keydown", (event) => {
   }
   if (event.target.closest(".solution-tools") && ["Enter", " "].includes(event.key)) return;
   if (event.target.closest(".image-view") && ["Enter", " "].includes(event.key)) return;
+  if (event.target.closest("#search-results") && ["Enter", " "].includes(event.key)) return;
   const inNote = event.target.id === "note";
   if (inNote && event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
@@ -2122,16 +2224,43 @@ document.addEventListener("keydown", (event) => {
 });
 
 let searchTimer;
-$("search").addEventListener("focus", loadSearch);
-$("search").addEventListener("input", (event) => {
-  loadSearch();
+function setSearch(value) {
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    if (!state.ready) return;
-    state.search = event.target.value.trim();
-    refilter(state.cards[state.index]?.id);
-    render(0);
-  }, 150);
+  if (!state.ready) return;
+  state.search = value.trim();
+  searchLimit = SEARCH_PAGE_SIZE;
+  if (state.search) loadSearch(usesChineseIndex(state.search));
+  refilter(state.cards[state.index]?.id);
+  render(state.index);
+}
+
+$("search").addEventListener("focus", () => {
+  if (!state.search) loadSearch();
+});
+$("search").addEventListener("input", (event) => {
+  clearTimeout(searchTimer);
+  if (!event.isComposing) searchTimer = setTimeout(() => setSearch(event.target.value), 150);
+});
+$("search").addEventListener("compositionend", (event) => setSearch(event.target.value));
+$("search-matches").addEventListener("click", (event) => {
+  const id = event.target.closest("[data-search-id]")?.dataset.searchId;
+  const at = state.cards.findIndex((q) => q.id === id);
+  if (at < 0) return;
+  if (navigationDialog.open) closeNavigation();
+  go(at);
+  const card = mode === "browse" && !state.focus ? $(`card-${id}`) : $("item");
+  card?.querySelector(".question-panel")?.focus({ preventScroll: true });
+});
+$("search-more").addEventListener("click", () => {
+  const firstNew = searchLimit;
+  searchLimit += SEARCH_PAGE_SIZE;
+  renderSearchResults();
+  $("search-matches").querySelectorAll("button")[firstNew]?.focus();
+});
+$("search-retry").addEventListener("click", () => {
+  loadSearch(hasHan(state.search));
+  $("search").focus();
+  renderSearchResults();
 });
 
 $("author").value = store.get("ab.author") || "";

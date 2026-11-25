@@ -37,6 +37,7 @@ const hash = (data) => crypto.createHash("sha256").update(data).digest("hex").sl
 fs.mkdirSync(path.join(dist, "b"), { recursive: true });
 
 const index = [];
+const chineseQuestionTexts = {};
 for (const book of books) {
   for (const [level, ids] of Object.entries(difficulty[book])) {
     for (const id of ids) {
@@ -50,6 +51,7 @@ for (const book of books) {
       const v = h.digest("hex").slice(0, 10);
       const md = {};
       for (const f of files) if (f.endsWith(".md")) md[f] = fs.readFileSync(path.join(dir, f), "utf8");
+      if (md["instruction.zh.md"]) chineseQuestionTexts[id] = md["instruction.zh.md"];
       fs.writeFileSync(path.join(dist, "b", `${id}.${v}.json`), JSON.stringify(md));
       index.push({
         v,
@@ -98,13 +100,16 @@ fs.writeFileSync(path.join(dist, "index.json"), JSON.stringify(index));
 // bytes) and fetches the texts only when someone searches.
 const light = JSON.stringify(index.map(({ t, ...rest }) => rest));
 const search = JSON.stringify(Object.fromEntries(index.map((q) => [q.id, q.t.toLowerCase()])));
+const searchZh = JSON.stringify(chineseQuestionTexts);
 const files = {
   index: `/assets/index.${hash(light)}.json`,
   search: `/assets/search.${hash(search)}.json`,
+  searchZh: `/assets/searchZh.${hash(searchZh)}.json`,
 };
 fs.mkdirSync(path.join(dist, "assets"), { recursive: true });
 fs.writeFileSync(path.join(dist, files.index.slice(1)), light);
 fs.writeFileSync(path.join(dist, files.search.slice(1)), search);
+fs.writeFileSync(path.join(dist, files.searchZh.slice(1)), searchZh);
 
 // The script and stylesheet under content-hashed names, and the page pointing
 // at them. The page starts fetching the index before its scripts have run.

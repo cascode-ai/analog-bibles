@@ -156,6 +156,21 @@ body[data-mode="browse"] .steps { margin-left: auto; }
 }
 .group-title { margin: 14px 0 4px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .list { display: grid; gap: 2px; }
+.search-results { margin-top: 8px; }
+.search-status { margin: 0 0 4px; color: var(--muted); font-size: 12px; }
+.search-matches { list-style: none; padding: 2px; margin: 0; display: grid; gap: 2px; max-height: 48vh; overflow: auto; }
+.search-match {
+  width: 100%; border: 0; border-radius: 6px; padding: 7px 10px;
+  background: var(--surface); color: var(--text); text-align: start; cursor: pointer;
+}
+.search-match:hover { background: var(--surface-muted); }
+.search-match-id, .search-excerpt { color: var(--muted); font-size: 12px; }
+.search-excerpt {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden; overflow-wrap: anywhere;
+}
+.search-results .btn { margin-top: 6px; }
+.search-results .btn[hidden] { display: none; }
 .row {
   display: flex;
   justify-content: space-between;
@@ -200,7 +215,8 @@ body[data-mode="browse"] .steps { margin-left: auto; }
 }
 .empty { color: var(--muted); }
 .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 8px; }
-.head .id { font: 600 15px ui-monospace, monospace; }
+.head .problem-title { margin: 0; font-size: 16px; font-weight: 650; }
+.head .id { color: var(--muted); font: 500 12px ui-monospace, monospace; }
 .head .tag {
   padding: 0 8px; border-radius: 10px; background: var(--surface-muted); color: var(--muted); font-size: 12px;
 }
@@ -639,6 +655,7 @@ figure.diagram figcaption { margin-top: 4px; color: var(--muted); font-size: 12p
 .navigation-content { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16px; }
 .navigation-dialog .side { position: static; max-height: none; overflow: visible; }
 .navigation-dialog .search { min-height: 44px; font-size: 16px; }
+.navigation-dialog .search-matches { max-height: none; overflow: visible; }
 .navigation-dialog .row { min-height: 44px; align-items: center; }
 .navigation-dialog .hint { display: none; }
 .navigation-quick-actions { display: none; padding: 0 16px 12px; }
@@ -728,7 +745,7 @@ body[data-mode="browse"] #mode-browse, body[data-mode="review"] #mode-review {
   border-bottom: 1px solid var(--border);
   background: var(--surface-raised);
 }
-.single-reading .reader .head .id { color: var(--text); font-size: 17px; }
+.single-reading .reader .head .problem-title { font-size: 17px; }
 .single-reading .reader .head .tag { padding: 0; background: transparent; color: var(--muted); }
 .single-reading .reader .head .tag + .tag { padding-left: 10px; border-left: 1px solid var(--border); border-radius: 0; }
 .single-reading .reader .head .review-status {
@@ -940,7 +957,7 @@ body[data-mode="browse"] #mode-browse, body[data-mode="review"] #mode-review {
 .toolbar > .btn:hover { border-color: var(--border); background: var(--surface-inset); }
 
 .single-reading .reader > .head { padding-block: 18px 16px; }
-.single-reading .reader .head .id { font-size: 20px; letter-spacing: -.02em; }
+.single-reading .reader .head .problem-title { font-size: clamp(16px, 2vw, 20px); letter-spacing: -.02em; }
 .single-reading .reader .head .review-status { margin-inline-start: 2px; padding: 2px 6px; font-size: 11px; }
 .single-reading .reader .head .tag { font-size: 12px; }
 .single-reading .reader .head .tag + .tag { padding-left: 12px; }
