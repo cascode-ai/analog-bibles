@@ -57,7 +57,13 @@
     </button>
     <div class="side-resizer" id="side-resizer" role="separator" tabindex="0" aria-orientation="vertical" aria-controls="side" aria-valuemin="180" aria-valuemax="480" aria-valuenow="260" aria-label="Sidebar width" title="Drag to resize; double-click to reset"></div>
   <aside class="side" id="side">
-    <input id="search" class="search" type="search" data-i18n-ph="search" placeholder="Search ID or question text (/)" autocomplete="off">
+    <input id="search" class="search" type="search" data-i18n-ph="search" data-i18n-aria="searchLabel" aria-label="Search questions" placeholder="Search ID, problem no. or text (/)" autocomplete="off">
+    <section id="search-results" class="search-results" data-i18n-aria="searchResults" aria-label="Search results" hidden>
+      <p id="search-status" class="search-status" role="status"></p>
+      <ul id="search-matches" class="search-matches"></ul>
+      <button type="button" id="search-more" class="btn" data-i18n="searchMore" hidden>Show more</button>
+      <button type="button" id="search-retry" class="btn" data-i18n="searchRetry" hidden>Retry search</button>
+    </section>
     <div class="group-title" data-i18n="book">Book</div>
     <div class="list" id="scopes"></div>
     <div class="group-title" data-i18n="difficulty">Difficulty</div>
@@ -82,7 +88,7 @@
         <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
         <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
         <span class="position">
-          <input id="goto" type="text" inputmode="numeric" autocomplete="off" data-i18n-title="gotoTitle" data-i18n-aria="gotoTitle" title="Type a number and press Enter" aria-label="Question number">
+          <input id="goto" type="text" enterkeyhint="go" autocomplete="off" data-i18n-title="gotoTitle" data-i18n-aria="gotoLabel" title="Enter a result position or a textbook problem number" aria-label="Result position">
           <span id="total">/ –</span>
         </span>
         <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next (→)" aria-label="Next">›</button>

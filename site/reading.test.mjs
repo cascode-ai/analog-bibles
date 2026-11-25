@@ -376,7 +376,7 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await b.waitFor('state.search === "R650" && document.getElementById("item").dataset.qid === "R650"');
     await split();
     await b.evaluate('(() => {const input=document.getElementById("search");input.value="no-such-problem-999999";input.dispatchEvent(new Event("input",{bubbles:true}));})()');
-    await b.waitFor('state.search === "no-such-problem-999999" && state.cards.length === 0');
+    await b.waitFor('state.search === "no-such-problem-999999" && searchText !== null && state.cards.length === 0');
     assert.equal(await b.evaluate('document.querySelector(".cols") === null'), true);
     assert.match(await b.evaluate('document.getElementById("item").textContent'), /没有符合条件/);
   });
@@ -404,6 +404,55 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
       await b.waitFor('searchText !== null');
       assert.equal(await b.evaluate('state.cards.every(q => searchText[q.id].includes("mosfet"))'), true);
     }
+  });
+
+  await t.test("jump accepts a textbook number and readers can choose its exact subpart", async () => {
+    await b.viewport(1440, 960);
+    await b.open("/browse?scope=razavi&id=R002&lang=en");
+    await b.evaluate(`(() => {
+      const box = document.getElementById("goto");
+      box.focus();
+      box.value = "7.6";
+      box.dispatchEvent(new KeyboardEvent("keydown", {key:"Enter",bubbles:true}));
+    })()`);
+    assert.equal(await b.evaluate('document.activeElement.id'), "search");
+    assert.equal(await b.evaluate('state.search'), "7.6");
+    assert.equal(await b.evaluate('state.scope'), "razavi");
+    assert.deepEqual(await b.evaluate('[...document.querySelectorAll("[data-search-id]")].map(el => el.dataset.searchId)'), ["R333", "R334", "R335", "R336", "R337", "R338"]);
+    assert.equal(await b.evaluate('document.getElementById("search-more").getClientRects().length'), 0);
+    await b.waitFor('document.querySelector("[data-search-id=R336] .search-excerpt")?.textContent.length > 10');
+    await click('[data-search-id="R336"]');
+    await b.waitFor('document.getElementById("item").dataset.qid === "R336"');
+    assert.match(await b.evaluate('document.querySelector(".problem-title").textContent'), /Razavi.*7\.6\(d\)/);
+  });
+
+  await t.test("mobile Chinese search loads on demand and can retry an unavailable index", async () => {
+    await b.viewport(390, 844);
+    const before = b.requests.length;
+    await b.open("/browse?scope=razavi&id=R002&lang=zh");
+    await click("#navigation-trigger");
+    assert.ok(!b.requests.slice(before).some(({ path }) => path.includes("/assets/searchZh.")));
+    await b.evaluate(`(() => {
+      const fetchIndex = window.fetch;
+      window.fetch = (url, options) => {
+        if (url !== window.AB.searchZh) return fetchIndex(url, options);
+        window.fetch = fetchIndex;
+        return Promise.resolve(new Response(null, {status:503}));
+      };
+      const input = document.getElementById("search");
+      input.focus();
+      input.value = "跨导";
+      input.dispatchEvent(new CompositionEvent("compositionend", {bubbles:true}));
+    })()`);
+    await b.waitFor('document.querySelector("#search-status").textContent.includes("加载失败")');
+    await click("#search-retry");
+    await b.waitFor('document.querySelector("[data-search-id=R002] .search-excerpt")?.textContent.includes("跨导")');
+    assert.equal(b.requests.slice(before).filter(({ path }) => path.includes("/assets/searchZh.")).length, 1);
+    assert.equal(await b.evaluate('document.getElementById("search-retry").getClientRects().length'), 0);
+    await click('[data-search-id="R002"]');
+    assert.equal(await b.evaluate('document.getElementById("navigation-dialog").open'), false);
+    assert.equal(await b.evaluate('document.getElementById("item").dataset.qid'), "R002");
+    assert.equal(await b.evaluate('document.activeElement.classList.contains("question-panel")'), true);
   });
 
   await t.test("sidebar folding expands reading space, persists, and keeps search accessible", async () => {

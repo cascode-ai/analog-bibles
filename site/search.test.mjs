@@ -10,6 +10,7 @@ const html = distFile("index.html");
 const boot = JSON.parse(html.match(/window\.AB=(\{[^;]+\});/)[1]);
 const index = JSON.parse(distFile(boot.index));
 const texts = JSON.parse(distFile(boot.search));
+const chineseTexts = JSON.parse(distFile(boot.searchZh));
 const fullIndex = JSON.parse(distFile("index.json"));
 const exercises = JSON.parse(fs.readFileSync(new URL("../exercises.json", import.meta.url), "utf8"));
 
@@ -26,9 +27,10 @@ function app(fetchResponse = () => new Promise(() => {})) {
     document: {
       body: { dataset: {}, classList: { toggle() {} } }, documentElement: {},
       getElementById() { return element; },
+      querySelector() { return null; },
       querySelectorAll() { return []; }, addEventListener() {},
     },
-    window: { AB: { search: boot.search, indexP: new Promise(() => {}) }, addEventListener() {} },
+    window: { AB: { ...boot, indexP: new Promise(() => {}) }, addEventListener() {} },
     ResizeObserver: class {},
     fetch: (url) => { requests.push(url); return fetchResponse(url); },
   });
@@ -152,14 +154,29 @@ test("search texts stay lazy, share one request and refilter after loading", asy
 
 test("late search-text responses respect the reader's current textbook query", async () => {
   let deliver;
-  const { state, loadSearch, setRender } = app(() => new Promise((resolve) => { deliver = resolve; }));
-  setRender(() => {});
+  const { state, loadSearch, refilter, setRender } = app(() => new Promise((resolve) => { deliver = resolve; }));
+  setRender(() => assert.fail("a late index must not replace the open textbook result"));
   Object.assign(state, { all: index, shuffled: index, ready: true, search: "MOSFET" });
   const pending = loadSearch();
   state.search = "Allen problems 5.3-3";
+  refilter();
   deliver({ ok: true, json: async () => texts });
   await pending;
   assert.deepEqual(Array.from(state.cards, (q) => q.id), ["A168"]);
+});
+
+test("Chinese text is fetched once on demand and matches the actual translated question", async () => {
+  const { state, matches, loadSearch, requests } = app(async () => ({ ok: true, json: async () => chineseTexts }));
+  const q = index.find(({ id }) => id === "R002");
+  state.search = "跨导";
+  assert.match(chineseTexts[q.id], /跨导/);
+  assert.equal(matches(q), false);
+  assert.deepEqual(requests, []);
+  const pending = loadSearch(true);
+  assert.equal(loadSearch(true), pending);
+  await pending;
+  assert.equal(matches(q), true);
+  assert.deepEqual(requests, [boot.searchZh]);
 });
 
 test("failed search-text fetches can retry and never block metadata searches", async () => {
