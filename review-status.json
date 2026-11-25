@@ -244,6 +244,236 @@
         "High-forward-bias total current is underdetermined by the supplied parameters; the approved answer leaves that region unspecified."
       ],
       "technicalScope": "Approved bounded answer with an explicit model limitation; no high-injection model resolution or Gemini pass is inferred."
+    },
+    "R021": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:05:39.164Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "8bbf0dcbeb5098de20dc88d1ed5bc127bdd59029d8cde5146ccc0e9ec58514ae",
+        "detailed_solution.zh.md": "38a58a2dc6227443d1434f63cc94619cd8394066cd806d88eea33d40fa1d4b98",
+        "figure-01.png": "11bd523d27d4779b116d0037d52832d30caa4be942de9f432a6786d32bbe8fb6",
+        "golden_solution.md": "57d958e2e3c96ecd0c7eeb306dc16fda1ce6e1ae18bb762b218d2c47c6e8a467",
+        "golden_solution.zh.md": "7dafa8914387c30219c6ada53dcbdd9e760918cbb9bd920c0891b9f43bc2be99",
+        "instruction.md": "d74c3c3fdce486ddcf1755f0edeebd8446fa74902b848060c33c3c07a8a3a9b5",
+        "instruction.zh.md": "4f9a15e6a2ce7ef336de13323733ec7e29f333ef5f9d2ebb1cb53b6085b23aa8",
+        "solution-vout.svg": "878adac3939cea43d8afc271e17254363a631b519aa98144fa0e937647ab327e",
+        "solution-vout.zh.svg": "49dbb4c82687f1eb01db09cca11cd41c546a74783fc0b58f8f5321712006592b"
+      }
+    },
+    "R022": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T14:57:41.934Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "0c9d801383cd04972c6e6cec14f55a1be26f77f5807302cc7fc32fb083376625",
+        "detailed_solution.zh.md": "3bc60afb84aeb934bd69ec6cd80771ee2e42a44bde1c19c1e65fadf16a642020",
+        "figure-01.png": "0dd157c1c35c2b27d354b02eef8c9c9ba93c98410dad5d2dd5ce55e00bdd7b61",
+        "golden_solution.md": "b8f803c36dd6f72ecdaf3c703ea9a05193fc5d5fb05268c329c93af638a2fe55",
+        "golden_solution.zh.md": "eb8eb14debf06ed1b6d9e1277c2d3efd9ebab1e909f7c1456199ca8e02f43378",
+        "instruction.md": "76e469e5265a6fdb74ae3e5202bf0d67c65f4a48ce5ae85c103c261e3837ec65",
+        "instruction.zh.md": "cc604bb25cfe1c346a80d442c82743bb8a0ac02181b62ed61380bb397d806eac",
+        "solution-transfer.svg": "47f1542ee90dbf20fd336ce3d28c8d7261e45f0b338e3c8c58e7925848c3b67d",
+        "solution-transfer.zh.svg": "2f5cd8f2a614fd1157053c2512d08b03fece4d3cccc0bd527dd6063f28c4e1d3"
+      }
+    },
+    "R023": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T15:05:50.183Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "40817ec335eff663a4ccd9e6b6ef64b7f32bc41a29bd2b03e733bcada7e1bb92",
+        "detailed_solution.zh.md": "3f973973dda8594ec04e36219abb2393c92e615a7f8a68092d6dd423c0f40a13",
+        "figure-01.png": "cd7d6ddb586f6514baa35c6542ffae8979f3507f303913341e47a9c02a03e602",
+        "golden_solution.md": "c9a30fed6904ea8691155626196950199840c934e9006b4d5c8afe49abe2499f",
+        "golden_solution.zh.md": "8927cf2666510f007d6648bd37b2a0048b4a5498622fd908e7762906d140657f",
+        "instruction.md": "5512da1f5e3562d98f3b59bb772b4c64de331b125739061b948274da5ee7e192",
+        "instruction.zh.md": "6ef67a860a79fab0852627c16bd804b3f4ff430e591c94fe1fb7bed3c0b5797e",
+        "solution-current.svg": "1e687d7976118fe9a30f751e9b0b49653579a1d7d2922dd0c46f18ee1b76f6e9",
+        "solution-current.zh.svg": "13344eaf9aca37db05f695b554d6810c0fdd8649e713ecb17eff29b4fde57cef",
+        "solution-voltage.svg": "59a77f7b14e2f7a1639add9890be63ed4deaca24575cac2ef476b3fa438fb9ec",
+        "solution-voltage.zh.svg": "2b8751a52689850fc53baa1fee374b339501cfc533f1c726c731bf2903da5d24"
+      }
+    },
+    "R024": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T15:57:41.385Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "e5accdec76afda4644b13852a9406e4a8ddb295ab0e15b80650a2db73d7faa09",
+        "detailed_solution.zh.md": "b5b259b9d187850b6aff249c11804d927e7b840e038f5c3362f0fbc62342dbd6",
+        "figure-01.png": "087acdcb4f7ccb7820b142cff15bb3df3c2fd7b2d2e18bdbaf2b824e8ccdc5cf",
+        "golden_solution.md": "76cb607453395299345bce419cd5c334219138ba9497e129c139dfc44e52c1a6",
+        "golden_solution.zh.md": "f3a5e09a4a457d2d03cb14649fc1f72a4006e576a18c6fe72c70c6a70f0d58c5",
+        "instruction.md": "2c6aa095884565b87def53f141b2084538ffd6ee1c8ce47d6d8a9d4c34b84322",
+        "instruction.zh.md": "8446a2e391b0d9b7248b3a227ad2be1970847085be9a023171f71fc1589aa084",
+        "solution-current.svg": "c2eb790834ec6f251140c693acefdd2d9c2fa7e983cd98fa99872a63bffcc7a9",
+        "solution-current.zh.svg": "0d4a08e1d75fe9b8adbe01f936fe2ea2b9639ad6319045d1fed467aea960d5a3",
+        "solution-voltage.svg": "c9ac1b2c5e256922eb8447d32c14ee5a31f34ae1313f8940f93eba2447548bc4",
+        "solution-voltage.zh.svg": "0c0ab92bf3087b22c34abd249e162a46095eac37443cfb1e39fcee7547881ac5"
+      }
+    },
+    "R025": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T15:08:11.455Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "7575163e1179d3cf43d2887edca66f64fb9ab72af9650c7481294f7b7af1785d",
+        "detailed_solution.zh.md": "cf3aff5a4d7d135645c212f0d0c9ae712010a2b00db3da934de7d7e4699d1e8f",
+        "figure-01.png": "d4906332631c2e20daeb5dd5b87eb71e6d37fb9711f6a2c5a3aabd1d570fbcfb",
+        "golden_solution.md": "69d4f04e8fdd49e75af0a4e55ae43de8cffe8b039043fafe88e7f2adbf90fb3c",
+        "golden_solution.zh.md": "7e99c345ebbb06e1c3a868e71d171a3aa4f0be299ad3cb278dbdf20289dd8a93",
+        "instruction.md": "51e333e65d6b4ab3f5602510762d61ef668d9941b51ab793314b59f97d7ecabf",
+        "instruction.zh.md": "367bd6c33345a3b7356a2d4f4938c51b7c0831ceb976f89feda8b696b5baed3e",
+        "solution-current.svg": "e2f30d365db906208fe37bac8659e7237408d28818b6cd49924ba4c03f9b688a",
+        "solution-current.zh.svg": "265c687b27bf66d15cba0dfd8d5f7d1ba2ce552e4b715438e6957cdd9261919b",
+        "solution-voltage.svg": "231de98c4d9f571a7d3ae96f043813e8486d3c55a370fac1b47f92d0e8a124a2",
+        "solution-voltage.zh.svg": "047252d7016eec26fd901c247a5a05b2de33e5c41c57104fb5fe19a07f9775e4"
+      }
+    },
+    "R026": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:10:09.317Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "ee8d8076fb685480d0061ad8aaa03ae1b9182436b03b400203eeac76e43c8742",
+        "detailed_solution.zh.md": "90acc716a3e3880a2149017bf5289612e1011bea9428ef3a1ec336ffb8519c9e",
+        "figure-01.png": "cace779a5459dbdf7f7060cc6975adfcb248a49c095f8e89733ae30014d3439e",
+        "golden_solution.md": "11213efd2071bae0b83cc8caaba11cfffde7c5b547659a57537f8f8afe85dc71",
+        "golden_solution.zh.md": "a098c19bc4a333eae6cb128c7d320052d2b2231fc6d79e15c57c3cf5e2aad977",
+        "instruction.md": "aac18a48859458f9b29819852035fd828f1126f1b7e6bdba618caa7c99e912d8",
+        "instruction.zh.md": "9c2ca9899be6cf035afbb3a9e429b73b1afee5f5c48e7eef15e61cfa894ec063",
+        "solution-current.svg": "a8d53c1fb3fc4831fdec766e41f6483108c39e36eebc418b1a973c968d0da443",
+        "solution-current.zh.svg": "c5c65645c87d62e952c60ecbde327e54800f779ffaae610f4887260fea39504a",
+        "solution-voltage.svg": "3cefeb29f205ec94dc0fef8dd9b81e9f7872b6f9669181fc25e59658a824c5d9",
+        "solution-voltage.zh.svg": "af9a9309cff41593239fcaf682cbd98f40008eefe5e2c23df8ab536d98c53f1d"
+      }
+    },
+    "R027": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:38:44.591Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "b0e1524ae91395742b7c83009fe90f1fed48110c875a1b4da7973674d41e9005",
+        "detailed_solution.zh.md": "6976a126da63ede77eed1debb6cbbc33fb885f3019a6720abc5554c5649824e7",
+        "diagram-01.cir": "455faca4cf67ef1f330ecad09f5eeb5728217973f53e795c49d59f6977756578",
+        "diagram-01.svg": "e2fdd468f5655edeaef7244c2398a2419b92465ac9c4c064524e95e6e01c49d7",
+        "figure-01.png": "df32f0913a02ebbb04493587627ec9959a58be904503427e01edbcea90c92f1a",
+        "golden_solution.md": "ad27dd564bb5979359b8616ff4f6865f97f1be350040752d421e9457b2b6a2bd",
+        "golden_solution.zh.md": "a4c13d7505ed06c6649ab6c1b3034be736c19f66ce72c1c9ca02dc44e163e9a6",
+        "instruction.md": "66e142c5b115527a923a3e72b3de6bbc663c65718fdfd22dd09309c004c8a4ba",
+        "instruction.zh.md": "fdf401922081df626348bfbb8c6b620d49835d0656fb5e61400db297ec4ac85d",
+        "solution-current.svg": "c3ef3dc35e8b36b10cbc1b67a17d56257d9d9bee3bb806efd6a9683928165a86",
+        "solution-current.zh.svg": "5810d6dfdb593774822b545ab01409778e1b7d1a3a3befaae5de2b0ca8f3cd11",
+        "solution-voltage.svg": "7ef23b3e2f6b461ee89232adc20739016495609856e744e28cee9b4a7ad7cef2",
+        "solution-voltage.zh.svg": "59e4cde679c254dff7ccf9afb7da1d6a1c7bd5acc56387a896771e7d4f06a2ef"
+      }
+    },
+    "R028": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:44:29.045Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "059d5581498f29ac624fdccb9a8ce201f780e5a795b3398811d6d44d838a6f45",
+        "detailed_solution.zh.md": "a135ae116b38a219958eb8e0da8130c493e5e43ad9a46b46642bdd1a96e58006",
+        "figure-01.png": "60fdbd3e4b043ddd85f636727132df490a05bec7d2661e13970b1209c381951a",
+        "golden_solution.md": "6386612962215b2889fe4d49b704fcd6e88b44c792161e6213a38dcb1f6c3db0",
+        "golden_solution.zh.md": "4d9d9595dcdeaeb1849b6c071475072e68f54407a81101461f926b120677134d",
+        "instruction.md": "5d68c810b78f554115c3df3e9ec85116fe53d9733d9154791c4e4e4a0f396d6c",
+        "instruction.zh.md": "29434f45644a8900b129b217fa5b3be98a3787292673fc40e7050a8d434ede49",
+        "solution-current-tail.svg": "1c16abf300ba8bb2826ad8063997e63c6bbe938f43c06ea68378f0ce09607eb9",
+        "solution-current-tail.zh.svg": "0bd6e1c8280f7407013597cfe091bc8dcb29c6f1b28ee9f6ba25a62bb48b7610",
+        "solution-current.svg": "bddf62d50859c717399026aeecad99abf607196dbcacc7084ff189efdb905d7c",
+        "solution-current.zh.svg": "cc12964b19e3daee50635cd8b4a00b1e3a01fee30df1745e74763eee75c1da69",
+        "solution-voltage.svg": "014e027a02c8343a68a86d701d53fa4e0f453c7692e78f6a7eaa2c08e7a98d0a",
+        "solution-voltage.zh.svg": "afd5bf98a9c3ec5d12913cee9a5f5d800fb2ed548851597a6265b8cf20f0b578"
+      }
+    },
+    "R029": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:54:48.477Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "d9ec2b1483291b32ba6d14ae4d4cb331e09e5e42536bdf32e6882462f7eb33e7",
+        "detailed_solution.zh.md": "3adc6edf8860ab5889139eb088411b2095b4c4c4e40977925aaad7655e40573c",
+        "figure-01.png": "0558abffbabe10beb8929e0aab5de57c4e1ac10d1c771c84ceb67b852e7527fc",
+        "golden_solution.md": "fde221bca012127d292621a5e7ecb6c9dc325f4eb4b26a3a7ba5453ef89b050b",
+        "golden_solution.zh.md": "db61c0d5034bf96455f3a36f5547aff6b8ab4edc710ed079d60963d5596ff64c",
+        "instruction.md": "800cc3416b729c89f17fa6c08aab7cdfa6d250710d7738e3e9227ac6d0a64d50",
+        "instruction.zh.md": "d4a596dd1d523a379ed99b253b0e1851658af399e4437f7d97df7c17b86f33a7",
+        "solution-ix.svg": "5c1009a14e3b260c9f3249cbdf96d03e6ae8739d27d5371fdcdf207dffdc3bb8",
+        "solution-ix.zh.svg": "207a7e1b4b241f4a1dd9fe25a1b7a10a9825908f441f151ec426a6029cf7a898",
+        "solution-vx.svg": "bd936ad0b6ac3df2706b1b6fe4e578c1d41d5cdbb3046a1c86a335666e10fc8d",
+        "solution-vx.zh.svg": "13589d9f2ab394b12beeb61780e3fc4a4453045bebb7dbbce07a9c18b46a0a6b"
+      }
+    },
+    "R030": {
+      "status": "APPROVED",
+      "scope": "question-directory-v1",
+      "humanApproval": {
+        "kind": "human",
+        "decision": "APPROVED",
+        "reviewer": "local-admin@example.invalid (local-developer)",
+        "approvedAt": "2026-11-24T16:55:56.115Z"
+      },
+      "hashes": {
+        "detailed_solution.md": "d13708a24c0c8e63e2869996448206be3e353e2dae01bcb5ba9534e4fca67173",
+        "detailed_solution.zh.md": "f11e45c00914b067a8ce24c7645e592fb42c91923bfb005b599215c35c28ac39",
+        "figure-01.png": "6e89bb6cd010b664909847fee59f401968046bf63999fd103691cf0b949daea0",
+        "golden_solution.md": "d1dfc87a2fbc6048099ce699f66e107066a70fa7131538654a8a6ebf0fcdd5ef",
+        "golden_solution.zh.md": "902d8e485a927d29cda9bf8687db7d1b7068c4b83c384624b68e9f60c2b4e9ad",
+        "instruction.md": "d2ab531e525afc14383257183361c1d49f1739d6fe03f54af55be675d902829e",
+        "instruction.zh.md": "62c81296af0d17e9da6cd0a081aedb0562975027ab90b2ae1915cb02b4e619e6",
+        "solution-ix.svg": "1adb5309dd8e9d1297c5617d0ee01db1f3000644b11dc2b2ff9a4ada8369fd49",
+        "solution-ix.zh.svg": "68eedf485b42b1df1c6cdbaa7e3d4777899d170ea684e5fe1d6547f5d2c7b55c",
+        "solution-vx.svg": "3dd24796a68a51da0ffc8d3bfe71b4cd6985c340c60deceb990f096729c34d9a",
+        "solution-vx.zh.svg": "a99b6a73c3e59ad797373c87242929fc77addbd42f1d5e5e25e366d4e322828d"
+      }
     }
   }
 }

@@ -1,3 +1,13 @@
-二极管连接（diode-connected）的 $M_1$ 始终处于饱和区（saturation region），对 $C_1$ 的放电越来越慢：由于平方律（square law），$V_X$ 从 3 V 按双曲线规律衰减，趋向 $V_{TH} = 0.7$ V 但永远达不到；$I_X$ 从 $\tfrac12\beta(2.3)^2 = 2.65\beta$ 衰减到零。
-- $C_1\,dV_X/dt = -\tfrac12\beta(V_X - 0.7)^2$。令 $u = V_X - 0.7$，得 $1/u = 1/u_0 + \beta t/(2C_1)$，因此 $V_X(t) = 0.7 + \dfrac{2.3}{1 + 2.3\beta t/(2C_1)}$ V，$I_X(t) = \tfrac12\beta(V_X - 0.7)^2 = \dfrac{2.65\beta}{[1 + 2.3\beta t/(2C_1)]^2}$。
-- 这种趋近比指数衰减慢（$\propto 1/t$）；实际上，亚阈值（subthreshold）导电会继续使 $V_X$ 缓慢降到 0.7 V 以下。
+栅极与漏极均接在 $V_X$，因此 $V_{GS}=V_{DS}=V_X$；器件只要导通就处于饱和区。取 $\lambda=0$、$V_{TH}=0.7\,\mathrm V$，
+
+$$C_1\dot V_X=-\frac{\beta}{2}(V_X-0.7\,\mathrm V)^2.$$
+
+令 $T=2C_1/[\beta(2.3\,\mathrm V)]$，则
+
+$$V_X=0.7\,\mathrm V+\frac{2.3\,\mathrm V}{1+t/T},\qquad I_X=\frac{(2.645\,\mathrm V^2)\beta}{(1+t/T)^2}.$$
+
+所以 $V_X$ 按 $1/t$ 趋近 0.7 V，$I_X$ 按 $1/t^2$ 趋近零，均比 RC 指数慢。0.7 V 终值只属于理想强反型模型；亚阈值和漏电不在题给模型内。
+
+![答案曲线：voltage](/q/R024/solution-voltage.zh.svg)
+
+![答案曲线：current](/q/R024/solution-current.zh.svg)
