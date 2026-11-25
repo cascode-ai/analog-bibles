@@ -1,14 +1,14 @@
-取 $\beta_p=\mu_pC_{ox}W/L$，忽略 CLM。PMOS 的体效应阈值为：
+取 $\beta_p=\mu_pC_{ox}W/L$，忽略沟道长度调制（$\lambda=0$）。PMOS 的体效应阈值为：
 
 $$|V_{TH}|=|V_{TH0}|+\gamma\left(\sqrt{2|\phi_F|+V_{BS}}-\sqrt{2|\phi_F|}\right).$$
 
-导通时，漏电流幅值和栅跨导的通用关系为：
+导通时，漏电流幅值和栅跨导的通用关系为（$g_m=\partial |I_D|/\partial V_{SG}$，保持 $V_{SD}$ 与体偏置不变）：
 
-**饱和区：** $V_{SD}\ge V_{SG}-|V_{TH}|>0$，
+饱和区：
 
 $$|I_D|=\frac12\beta_p(V_{SG}-|V_{TH}|)^2,\qquad g_m=\beta_p(V_{SG}-|V_{TH}|).$$
 
-**线性区：** $0\le V_{SD}<V_{SG}-|V_{TH}|$，
+线性区：
 
 $$|I_D|=\beta_p\left[(V_{SG}-|V_{TH}|)V_{SD}-\frac12V_{SD}^2\right],\qquad g_m=\beta_pV_{SD}.$$
 
@@ -28,11 +28,11 @@ $$|V_{TH}|=0.8+0.4(\sqrt{3.8-V_X}-\sqrt{0.8}),\quad V_{SG}=V_X-1,\quad V_{SD}=V_
 | $1.982<V_X\le2.490$ | $\tfrac12(V_X-1-|V_{TH}|)^2$ | $V_X-1-|V_{TH}|$ |
 | $2.490<V_X\le3$ | $(V_X-1-|V_{TH}|)(V_X-1.9)-\tfrac12(V_X-1.9)^2$ | $V_X-1.9$ |
 
-电流沿箭头为正。在 3 V 处，$I_X/\beta_p=0.715$ V²、$g_m/\beta_p=1.10$ V。无体效应时，1.8 V 以下为反向饱和，1.8–1.9 V 为反向线性区，1.9 V 是电流过零点，其上为正向线性区。
+电流沿箭头为正。在 3 V 处，$I_X/\beta_p=0.715\ \mathrm{V^2}$、$g_m/\beta_p=1.10\ \mathrm{V}$。无体效应时，1.8 V 以下为反向饱和，1.8–1.9 V 为反向线性区，1.9 V 是电流过零点，其上为正向线性区。
 
 
-![R009 model curves; beta_p for R009; high-bias R010 unresolved](/q/R009/review-curves.svg)
+![R009 答案曲线](/q/R009/solution-curves.zh.svg)
 
 ## 评分说明
 
-+2：PMOS 高电位端为源；体效应使约 1.98 V（±0.05 V）才开启，之后正电流先饱和后线性（分界约 2.5 V），终点约 0.7β_p、1.1β_p。+1：忽略体效应但分析自洽，或区域正确而无数值；无体效应的 1.9 V 应称过零。0：开启点正确但以上区域错。−2：误作 NMOS、始终固定源端或声称低电压大电流。
++2：PMOS 高电位端为源；体效应使约 1.98 V（±0.05 V）才开启，之后正电流先饱和后线性（分界约 2.5 V），终点约 $0.7\beta_p$、$1.1\beta_p$。+1：忽略体效应但分析自洽，或区域正确而无数值；无体效应的 1.9 V 应称过零。0：开启点正确但以上区域错。−2：误作 NMOS、始终固定源端或声称低电压大电流。

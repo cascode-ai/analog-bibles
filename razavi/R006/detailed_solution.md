@@ -45,7 +45,7 @@ Both curves decrease. The slope of $g_m$ varies little, so it is nearly linear; 
 
 ### Step 5 — Curves and key points
 
-![R006: normalized current and gate transconductance](/q/R006/review-curves.svg)
+![R006 answer curves](/q/R006/solution-curves.svg)
 
 The vertical axes are $I_X/\beta$ (V²) and $g_m/\beta$ (V); endpoints and decreasing trends agree with the equations above.
 

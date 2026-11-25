@@ -20,14 +20,14 @@ Zero beyond cutoff neglects subthreshold current; $g_m$ denotes the positive dev
 | $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
 |---|---|---|
 | 0 | −0.0450 | 0.300 |
-| 0.1 | −0.0157 | 0.177 |
-| 0.2 | −0.00149 | 0.0549 |
+| 0.1 | −0.01565 | 0.177 |
+| 0.2 | −0.00151 | 0.0549 |
 | 0.2453 | 0 | 0 |
 
 $I_X$ rises to zero while $g_m$ decreases to zero. Ignoring body effect would move cutoff to 0.3 V.
 
 
-![R008 model curves; beta_p for R009; high-bias R010 unresolved](/q/R008/review-curves.svg)
+![R008 answer curves](/q/R008/solution-curves.svg)
 
 ## Grading notes
 

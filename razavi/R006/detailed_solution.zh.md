@@ -45,7 +45,7 @@ $$\frac{dg_m}{dV_X}=-\beta\left(1+\frac{\gamma}{2\sqrt{2|\phi_F|+V_X}}\right)<0.
 
 ### 第 5 步 — 曲线与关键点
 
-![R006：归一化电流与栅跨导曲线](/q/R006/review-curves.svg)
+![R006 答案曲线](/q/R006/solution-curves.zh.svg)
 
 图中纵轴为 $I_X/\beta$（V²）和 $g_m/\beta$（V）；曲线的起点、终点及下降趋势与上述公式一致。
 
