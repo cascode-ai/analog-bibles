@@ -2,8 +2,13 @@
 
 ## Reference answer
 
-Nothing happens: $V_X$ stays at 3 V and $I_X = 0$ for all $t$. The source of $M_1$ starts at $V_X = 3\ \mathrm{V} = V_{DD}$, so $V_{DS} = 0$ and no drain current can flow, whatever $V_b$ is (for $V_b \le V_{DD}$ the device is also off, since $V_{GS} = V_b - 3 \le 0$).
+At the stated initial condition, $V_X=V_{DD}=3\,\mathrm{V}$, so $V_{DS}=0$. The cutoff current is zero; if a channel forms, the triode law $I_D=\beta[(V_{GS}-V_{TH})V_{DS}-V_{DS}^2/2]$ is also zero. Therefore $V_X(t)=3\,\mathrm{V}$ and $I_X(t)=0\,\mathrm{A}$.
+
+![Answer plot: voltage](/q/R025/solution-voltage.svg)
+
+![Answer plot: current](/q/R025/solution-current.svg)
 
 ## Grading notes
 
-+2: $V_X$ constant at 3 V and $I_X = 0$, justified by $V_{DS} = 0$ (and/or $V_{GS} \le 0$). +1: correct result with incomplete reasoning (e.g., only "M1 is off" without noting $V_{DS} = 0$). -2 (asserted as fact): $C_1$ charging or discharging through $M_1$, or $V_X$ settling at $V_b - V_{TH}$.
++2: $V_X=3\,\mathrm{V}$ and $I_X=0\,\mathrm{A}$ justified by $V_{DS}=0$, with cutoff/triode distinction. +1: correct result with incomplete reasoning. -2: asserts charging or discharging through M1 despite $V_{DS}=0$.
+

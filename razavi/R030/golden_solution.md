@@ -2,10 +2,26 @@
 
 ## Reference answer
 
-$C_2$ plays no role: $C_1$ is connected directly between drain and source of $M_1$, so it discharges through $M_1$ in a local loop and no net current enters $C_2$; $V_S$ stays at 0 V. Hence $V_X$ (= voltage of $C_1$) ramps down linearly with constant $I_X = \tfrac12\beta(2 - 0.7)^2 = 0.845\beta$ until $V_X = 1.3$ V, then $M_1$ is in triode and $V_X$ decays roughly exponentially to 0 while $I_X$ decays to 0.
-- KCL at X: $I_X + C_1\,d(V_X - V_S)/dt = 0$; at S: $C_2\,dV_S/dt = I_X + C_1\,d(V_X - V_S)/dt = 0$, so $V_S = 0$ for all $t$.
-- Saturation phase lasts $t_1 = C_1(3 - 1.3)/(0.845\beta)$; afterwards $R_{on} \to 1/(1.3\beta)$, time constant $C_1/(1.3\beta)$.
+$C_2$ plays no role: $C_1$ is connected directly between the drain and source of $M_1$, so it discharges through $M_1$ in a local loop and no net current enters $C_2$. Therefore $V_S=0$ V. With the square-law model and $\lambda=0$, $V_X$ falls linearly from 3 V to 1.3 V with
+
+$$I_X=\frac12\beta(1.3\ \mathrm{V})^2=(0.845\ \mathrm{V^2})\beta,$$
+
+then enters triode and decays toward 0 V. The saturation interval is $t_1=C_1(3-1.3)/[(0.845\ \mathrm{V^2})\beta]$, followed by the characteristic time $\tau=C_1/[\beta(1.3\ \mathrm{V})]$.
+
+## Answer figures
+
+![V_X versus time](/q/R030/solution-vx.svg)
+
+![I_X versus time](/q/R030/solution-ix.svg)
+
+The curves use the stated MOS model with the illustrative values $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1$ pF shown in each figure.
 
 ## Grading notes
 
-+2: $V_S$ stays at 0 (no net current into $C_2$), constant-current linear ramp of $V_X$ from 3 V to 1.3 V with $I_X = \tfrac12\beta(1.3\ \mathrm{V})^2$, then triode decay to 0; $I_X$ flat then decaying. +1: correct conclusion that $C_1$ discharges through $M_1$ to 0 but the saturation phase or the reason $C_2$ is unaffected not stated. 0: correct about $C_2$ but the discharge waveform wrong. -2 (asserted as fact): charge sharing between $C_1$ and $C_2$, $V_S$ rising, or $V_X$ settling at a nonzero value.
++2: $V_S$ stays at 0 V, the $V_X$ waveform has a constant-current linear ramp from 3 V to 1.3 V followed by triode decay to 0 V, and $I_X$ is flat before decaying. Accept $I_X=0.845\beta$ and the correct $t_1$ and $\tau$ expressions.
+
++1: The final discharge and $V_S=0$ are correct, but the saturation interval or the KCL reason for $C_2$ being idle is missing.
+
+0: The waveform or operating-region transition is incorrect.
+
+-2: Treating the event as charge sharing with $V_S$ rising, or claiming that $V_X$ settles at a nonzero value.
