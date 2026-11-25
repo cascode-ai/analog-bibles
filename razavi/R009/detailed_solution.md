@@ -1,6 +1,6 @@
 # Detailed solution - R009
 
-**Approach:** For a PMOS the higher-potential diffusion terminal is the source, so split the sweep at $V_X = 1.9$ V. In each range compute $|V_{TH}|$ with the body effect (the n-well is at $V_{DD} = 3$ V, above both channel terminals), decide whether $M_1$ is on and in which region, and evaluate the square-law current and $g_m$, working with positive quantities $V_{SG}$, $V_{SD}$, $V_{BS} \ge 0$ and $V_{ov} = V_{SG} - |V_{TH}|$.
+**Approach:** For a PMOS the higher-potential diffusion terminal is the source, so split the sweep at $V_X = 1.9$ V. In each range compute $|V_{TH}|$ with the body effect (the n-well is at $V_{DD} = 3$ V, above both channel terminals), decide whether $M_1$ is on and in which region, and evaluate the square-law current and $g_m$, working with positive quantities $V_{SG}$, $V_{SD}$, $V_{BS} \ge 0$ and $V_{ov} = V_{SG} - |V_{TH}|$. The square-law model here neglects channel-length modulation ($\lambda=0$); $g_m$ is defined as $g_m=\partial |I_D|/\partial V_{SG}$ at fixed $V_{SD}$ and body bias.
 
 ### Step 1 — $V_X < 1.9$ V: off because of the body effect
 
@@ -41,11 +41,11 @@ $$
 
 Taking the positive root,
 
-$$w = \frac{-0.4 + \sqrt{0.16 + 4\times2.3578}}{2} = \frac{-0.4 + \sqrt{9.5911}}{2} = \frac{-0.4 + 3.0969}{2} = 1.3485 ,$$
+$$w = \frac{-0.4 + \sqrt{0.16 + 4\times2.3578}}{2} = \frac{-0.4 + \sqrt{9.5912}}{2} = \frac{-0.4 + 3.0969}{2} = 1.3485 ,$$
 
 $$V_X = 3.8 - w^2 = 3.8 - 1.8184 = 1.98\ \mathrm{V}.$$
 
-Check: $V_{SG} = 0.98$ V and $|V_{TH}| = 0.8 + 0.4(1.3485 - 0.8944) = 0.98$ V. ✓ So **$M_1$ stays off up to $V_X \approx 1.98$ V** and conducts above it.
+Check: $V_{SG} = 0.98$ V and $|V_{TH}| = 0.8 + 0.4(1.3485 - 0.8944) = 0.98$ V. ✓ So $M_1$ stays off up to $V_X \approx 1.98$ V and conducts above it.
 
 ### Step 3 — Saturation or triode above turn-on
 
@@ -71,31 +71,31 @@ $$
 
 Hence:
 
-- $1.98\ \mathrm{V} < V_X < 2.49$ V: **saturation**;
-- $2.49\ \mathrm{V} < V_X \le 3$ V: **triode** ($|V_{TH}|$ has fallen below 0.9 V as the source approaches the well potential).
+- $1.98\ \mathrm{V} < V_X < 2.49$ V: saturation;
+- $2.49\ \mathrm{V} < V_X \le 3$ V: triode ($|V_{TH}|$ has fallen below 0.9 V as the source approaches the well potential).
 
 ### Step 4 — Current in each region
 
 After turn-on, current flows from the $V_X$ source through the channel to the 1.9-V drain, along the arrow, so $I_X>0$.
 
-**Saturation:**
+Saturation:
 
 $$I_X=\frac12\beta_p(V_{SG}-|V_{TH}|)^2
 =\frac12\beta_p(V_X-1-|V_{TH}|)^2.$$
 
-**Triode:**
+Triode:
 
 $$I_X=\beta_p\left[(V_{SG}-|V_{TH}|)V_{SD}-\frac12V_{SD}^2\right].$$
 
-Substituting the terminal voltages and threshold from Step 2 gives the key points in the Step 6 table; at the sweep endpoint $I_X/\beta_p=0.715$ V². Both branches give the same current at $V_{SD}=V_{SG}-|V_{TH}|$, so the curve is continuous.
+Substituting the terminal voltages and threshold from Step 2 gives the key points in the Step 6 table; at the sweep endpoint $I_X/\beta_p=0.715\ \mathrm{V^2}. Both branches give the same current at $V_{SD}=V_{SG}-|V_{TH}|$, so the curve is continuous.
 
 ### Step 5 — Transconductance
 
-- **Off** ($V_X < 1.98$ V): $g_m = 0$.
-- **Saturation**: $g_m = \beta_pV_{ov} = \beta_p(V_X - 1 - |V_{TH}|)$, rising from 0 at 1.98 V through $0.136\beta_p$ (2.1 V) and $0.368\beta_p$ (2.3 V) to $0.59\beta_p$ at 2.49 V.
-- **Triode**: $g_m = \beta_pV_{SD} = \beta_p(V_X - 1.9)$, a straight line from $0.59\beta_p$ at 2.49 V to $1.1\beta_p$ at 3 V.
+- Off ($V_X < 1.98$ V): $g_m = 0$.
+- Saturation: $g_m = \beta_pV_{ov} = \beta_p(V_X - 1 - |V_{TH}|)$, rising from 0 at 1.98 V through $g_m/\beta_p=0.136\ \mathrm{V}$ (2.1 V) and $0.368\ \mathrm{V}$ (2.3 V) to $g_m/\beta_p=0.59\ \mathrm{V}$ at 2.49 V.
+- Triode: $g_m = \beta_pV_{SD} = \beta_p(V_X - 1.9)$, a straight line from $g_m/\beta_p=0.59\ \mathrm{V}$ at 2.49 V to $g_m/\beta_p=1.10\ \mathrm{V}$ at 3 V.
 
-At the boundary $V_{ov} = V_{SD}$, so both expressions give $0.59\beta_p$ and $g_m$ is continuous.
+At the boundary $V_{ov} = V_{SD}$, so both expressions give $g_m/\beta_p=0.59\ \mathrm{V}$ and $g_m$ is continuous.
 
 ### Step 6 — Summary of the sketches
 
@@ -109,12 +109,12 @@ At the boundary $V_{ov} = V_{SD}$, so both expressions give $0.59\beta_p$ and $g
 | 2.7 | $V_X$ node | triode | 0.862 | 0.351 | 0.80 |
 | 3.0 | $V_X$ node | triode | 0.800 | 0.715 | 1.10 |
 
-- **$I_X$**: zero up to about 1.98 V, then a rising parabola (saturation) up to about 2.49 V, then a rising, nearly straight triode curve to $0.715\beta_p$ at 3 V.
-- **$g_m$**: zero up to 1.98 V, then rising (slightly faster than linearly, because $|V_{TH}|$ also falls) to $0.59\beta_p$ at 2.49 V, then a straight line of slope $\beta_p$ up to $1.1\beta_p$ at 3 V.
+- $I_X$: zero up to about 1.98 V, then a rising parabola (saturation) up to about 2.49 V, then a rising, nearly straight triode curve to $I_X/\beta_p=0.715\ \mathrm{V^2}$ at 3 V.
+- $g_m$: zero up to 1.98 V, then rising (slightly faster than linearly, because $|V_{TH}|$ also falls) to $g_m/\beta_p=0.59\ \mathrm{V}$ at 2.49 V, then a straight line of slope $\beta_p$ up to $g_m/\beta_p=1.10\ \mathrm{V}$ at 3 V.
 
-**Without body effect** ($|V_{TH}| = 0.8$ V always), for $V_X < 1.8$ V the device would be on and saturated with the 1.9-V node as source, giving a small *reverse* current $I_X = -\tfrac12\beta_p(0.1\ \mathrm{V})^2 = -0.005\beta_p$; it would cross zero at 1.9 V and then conduct in triode with the $V_X$ node as source, reaching the same $0.715\beta_p$ at 3 V (where $V_{BS} = 0$ anyway).
+Without body effect ($|V_{TH}| = 0.8$ V always), for $V_X < 1.8$ V the device would be on and saturated with the 1.9-V node as source, giving a small *reverse* current $I_X = -\tfrac12\beta_p(0.1\ \mathrm{V})^2 = -0.005\,\beta_p\,\mathrm{V^2}$; it would cross zero at 1.9 V and then conduct in triode with the $V_X$ node as source, reaching the same $I_X/\beta_p=0.715\ \mathrm{V^2} at 3 V (where $V_{BS} = 0$ anyway).
 
-Without body effect, the omitted interval $1.8<V_X<1.9$ V is reverse triode; 1.9 V is a current zero crossing, not turn-on.
+Without body effect, the interval $1.8<V_X<1.9$ V is reverse triode; 1.9 V is a current zero crossing, not turn-on.
 
 
-![R009: normalized current and gate transconductance](/q/R009/review-curves.svg)
+![R009 answer curves](/q/R009/solution-curves.svg)

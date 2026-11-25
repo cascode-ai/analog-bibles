@@ -12,14 +12,14 @@ $$I_X=-\tfrac12\beta(1-V_X-V_{TH})^2,\qquad g_m=\beta(1-V_X-V_{TH}).$$
 | $V_X$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
 |---|---|---|
 | 0 | −0.0450 | 0.300 |
-| 0.1 | −0.0157 | 0.177 |
-| 0.2 | −0.00149 | 0.0549 |
+| 0.1 | −0.01565 | 0.177 |
+| 0.2 | −0.00151 | 0.0549 |
 | 0.2453 | 0 | 0 |
 
 $I_X$ 上升至零，$g_m$ 下降至零。忽略体效应时截止点为 0.3 V。
 
 
-![R008 model curves; beta_p for R009; high-bias R010 unresolved](/q/R008/review-curves.svg)
+![R008 答案曲线](/q/R008/solution-curves.zh.svg)
 
 ## 评分说明
 

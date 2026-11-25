@@ -23,8 +23,8 @@ The device remains on and saturated over $0\le V_X\le1.5$ V; the minimum overdri
 
 Both curves decrease; $I_X$ is convex and $g_m$ is nearly linear. Body effect makes the decrease steeper than without it. Gate transconductance $g_m$ differs from the source-sweep slope $dI_X/dV_X$. Keep normalized results because device dimensions are unspecified.
 
-![R006: normalized current and gate transconductance](/q/R006/review-curves.svg)
+![R006 answer curves](/q/R006/solution-curves.svg)
 
 ## Grading notes
 
-+2: saturation throughout, $I_X$ decreasing (square-law) to about 0.14β at 1.5 V, body effect included ($V_{TH}$ rising to ≈ 0.97 V), $g_m$ decreasing nearly linearly from 2.3β to ≈ 0.53β; values within ±10%. +1: body effect neglected (giving $I_X$ ≈ 0.32β and $g_m$ ≈ 0.8β at 1.5 V) with an otherwise correct analysis, or correct shapes without numbers. 0: right method with a slip that changes the curves noticeably. -2 (asserted as fact): $M_1$ claimed to be in triode, $I_X$ increasing with $V_X$, $g_m$ constant, or the source/drain misidentified.
++2: saturation throughout, $I_X$ decreasing (square-law) to about 0.14β at 1.5 V, body effect included ($V_{TH}$ rising to ≈ 0.97 V), $g_m$ decreasing nearly linearly from 2.3β to ≈ 0.53β; values within ±10%. +1: body effect neglected (giving $I_X$ ≈ 0.32β and $g_m$ ≈ 0.8β at 1.5 V) with an otherwise correct analysis, or correct shapes without numbers. 0: right method with a slip that changes the curves noticeably. -2 (asserted as fact): $M_1$ claimed to be in triode, $I_X$ increasing with $V_X$, $g_m$ constant, or the source/drain misidentified. If a response also reports the source-terminal small-signal quantity $g_m+g_{mb}$ (about $2.85\beta$ to $0.61\beta$) and clearly distinguishes it from the requested gate transconductance $g_m$, accept it as a compatible additional result; grade the requested $g_m$ against the values above.

@@ -50,11 +50,11 @@ $$V_X = u^2 - 0.9 = 1.1453 - 0.9 = 0.245\ \mathrm{V}.$$
 
 Check: at $V_X = 0.245$ V, $V_{TH} = 0.7 + 0.45(1.0702 - 0.9487) = 0.755$ V and $V_{GS} = 1 - 0.245 = 0.755$ V. ✓
 
-So **$M_1$ conducts only for $0 \le V_X < 0.245$ V**, and is off ($I_X = 0$, $g_m = 0$) for $0.245\ \mathrm{V} < V_X < 1.9$ V. Without the body effect ($V_{TH} = 0.7$ V fixed) the limit would be $1 - V_X = 0.7$, i.e. $V_X = 0.3$ V; the body effect pulls it in by about 55 mV.
+So $M_1$ conducts only for $0 \le V_X < 0.245$ V, and is off ($I_X = 0$, $g_m = 0$) for $0.245\ \mathrm{V} < V_X < 1.9$ V. Without the body effect ($V_{TH} = 0.7$ V fixed) the limit would be $1 - V_X = 0.7$, i.e. $V_X = 0.3$ V; the body effect pulls it in by about 55 mV.
 
 ### Step 3 — Region of operation while conducting
 
-The largest overdrive is $V_{ov} = 1 - 0 - 0.7 = 0.3$ V (at $V_X = 0$) and the smallest $V_{DS}$ is $1.9 - 0.245 = 1.655$ V (at $V_X = 0.245$ V). Since $1.655\ \mathrm{V} \gg 0.3\ \mathrm{V}$, **$M_1$ is saturated whenever it conducts**.
+The largest overdrive is $V_{ov} = 1 - 0 - 0.7 = 0.3$ V (at $V_X = 0$) and the smallest $V_{DS}$ is $1.9 - 0.245 = 1.655$ V (at $V_X = 0.245$ V). Since $1.655\ \mathrm{V} \gg 0.3\ \mathrm{V}$, $M_1$ is saturated whenever it conducts.
 
 ### Step 4 — The current $I_X$
 
@@ -70,13 +70,13 @@ Point by point (threshold, overdrive, current):
 
 - $V_X = 0$: $V_{TH} = 0.700$ V, $V_{ov} = 1 - 0 - 0.700 = 0.300$ V,
 $$I_X = -\tfrac12\beta\,(0.3\ \mathrm{V})^2 = -0.045\beta\ \mathrm{V^2}.$$
-- $V_X = 0.1$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.0} - 0.9487) = 0.7 + 0.0231 = 0.723$ V, $V_{ov} = 0.9 - 0.723 = 0.177$ V,
-$$I_X = -\tfrac12\beta\,(0.177\ \mathrm{V})^2 = -0.0156\beta\ \mathrm{V^2}.$$
-- $V_X = 0.2$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.1} - 0.9487) = 0.7 + 0.0451 = 0.745$ V, $V_{ov} = 0.8 - 0.745 = 0.055$ V,
-$$I_X = -\tfrac12\beta\,(0.055\ \mathrm{V})^2 = -0.0015\beta\ \mathrm{V^2}.$$
+- $V_X = 0.1$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.0} - 0.9487) = 0.7 + 0.02309 = 0.72309$ V, $V_{ov} = 0.9 - 0.72309 = 0.17691$ V,
+$$I_X = -\tfrac12\beta\,(0.17691\ \mathrm{V})^2 = -0.01565\beta\ \mathrm{V^2}.$$
+- $V_X = 0.2$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.1} - 0.9487) = 0.7 + 0.04506 = 0.74506$ V, $V_{ov} = 0.8 - 0.74506 = 0.05494$ V,
+$$I_X = -\tfrac12\beta\,(0.05494\ \mathrm{V})^2 = -0.00151\beta\ \mathrm{V^2}.$$
 - $V_X = 0.245$ V: $V_{ov} = 0$, so $I_X = 0$.
 
-**Shape:** $dI_X/dV_X = \beta V_{ov}(1 + \eta)$ with $\eta = \gamma/(2\sqrt{0.9 + V_X}) \approx 0.21$–$0.24$: $0.37\beta$ (V) at $V_X = 0$, going to zero at 0.245 V. So $I_X$ is a small concave-down curve that starts at $-0.045\beta$ and **touches zero tangentially** at 0.245 V, then stays at zero up to 3 V (in a real device a small subthreshold current decays exponentially just beyond 0.245 V). With $\beta = 1\ \mathrm{mA/V^2}$ the largest current is $45\ \mu$A, flowing into the $V_X$ source.
+Shape: $dI_X/dV_X = \beta V_{ov}(1 + \eta)$ with $\eta = \gamma/(2\sqrt{0.9 + V_X}) \approx 0.21$–$0.24$: $0.37\beta$ (V) at $V_X = 0$, going to zero at 0.245 V. So $I_X$ is a small concave-down curve that starts at $-0.045\beta$ and touches zero tangentially at 0.245 V, then stays at zero up to 3 V (in a real device a small subthreshold current decays exponentially just beyond 0.245 V). With $\beta = 1\ \mathrm{mA/V^2}$ the largest current is $45\ \mu$A, flowing into the $V_X$ source.
 
 ### Step 5 — Transconductance
 
@@ -86,9 +86,9 @@ $$g_m = \beta\,(V_{GS} - V_{TH}) = \beta\,(1 - V_X - V_{TH}):$$
 
 $$
 \begin{aligned}
-V_X = 0:&\quad g_m = \beta\,(0.300\ \mathrm{V}) = 0.30\beta,\\
-V_X = 0.1\ \mathrm{V}:&\quad g_m = \beta\,(0.177\ \mathrm{V}) = 0.18\beta,\\
-V_X = 0.2\ \mathrm{V}:&\quad g_m = \beta\,(0.055\ \mathrm{V}) = 0.055\beta,\\
+V_X = 0:&\quad g_m = \beta\,(0.300\ \mathrm{V}) = 0.30\beta\ \mathrm{V},\\
+V_X = 0.1\ \mathrm{V}:&\quad g_m = \beta\,(0.177\ \mathrm{V}) = 0.18\beta\ \mathrm{V},\\
+V_X = 0.2\ \mathrm{V}:&\quad g_m = \beta\,(0.055\ \mathrm{V}) = 0.055\beta\ \mathrm{V},\\
 V_X \ge 0.245\ \mathrm{V}:&\quad g_m = 0 .
 \end{aligned}
 $$
@@ -98,10 +98,10 @@ Since $V_{ov}$ falls at the rate $1 + \eta \approx 1.2$ per volt of $V_X$, $g_m$
 | $V_X$ (V) | $V_{TH}$ (V) | $V_{ov}$ (V) | $I_X/\beta$ (V²) | $g_m/\beta$ (V) |
 |---|---|---|---|---|
 | 0 | 0.700 | 0.300 | −0.045 | 0.30 |
-| 0.1 | 0.723 | 0.177 | −0.0156 | 0.18 |
-| 0.2 | 0.745 | 0.055 | −0.0015 | 0.055 |
+| 0.1 | 0.723 | 0.177 | −0.01565 | 0.18 |
+| 0.2 | 0.745 | 0.055 | −0.00151 | 0.055 |
 | 0.245 | 0.755 | 0 | 0 | 0 |
 | 0.245 – 3 | — | off | 0 | 0 |
 
 
-![R008: normalized current and gate transconductance](/q/R008/review-curves.svg)
+![R008 answer curves](/q/R008/solution-curves.svg)
