@@ -424,6 +424,14 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
     await click('[data-search-id="R336"]');
     await b.waitFor('document.getElementById("item").dataset.qid === "R336"');
     assert.match(await b.evaluate('document.querySelector(".problem-title").textContent'), /Razavi.*7\.6\(d\)/);
+    assert.deepEqual(await b.evaluate(`[
+      document.getElementById("position-label").textContent,
+      document.getElementById("goto").value,
+      document.getElementById("total").textContent,
+      document.querySelector("#search-matches [aria-current=true]").dataset.searchId
+    ]`), ["Result", "4", "/ 6", "R336"]);
+    await click("#next");
+    assert.equal(await b.evaluate('document.querySelector("#search-matches [aria-current=true]").dataset.searchId'), "R337");
   });
 
   await t.test("mobile Chinese search loads on demand and can retry an unavailable index", async () => {
@@ -690,7 +698,8 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
       const contentRequests = () => b.requests.filter(({path}) => /^(?:\/b\/|\/q\/.*\.md$)/.test(path)).length;
       const requests = contentRequests();
       assert.equal(await b.evaluate('document.querySelectorAll(".tab-meta").length'),0);
-      assert.deepEqual(await b.evaluate('[...document.querySelectorAll("[role=tab]")].map(tab=>tab.textContent)'),language === "zh" ? ["参考答案","详细步骤","评分说明"] : ["Reference answer","Detailed solution","Grading notes"]);
+      assert.deepEqual(await b.evaluate('[...document.querySelectorAll("[role=tab] .tab-label")].map(label=>label.textContent)'),language === "zh" ? ["参考答案","详细步骤","评分说明"] : ["Reference answer","Detailed solution","Grading notes"]);
+      assert.match(await b.evaluate('document.querySelector(".tab-steps").textContent'), language === "zh" ? /^\d+ 步$/ : /^\d+ steps?$/);
       await click('[data-solution-tab=detailed]');
       await b.waitFor('document.querySelector(".solution-tools").dataset.currentStep === "1"');
       assert.equal(await b.evaluate('document.querySelector(".step-menu").open'),false);
@@ -838,12 +847,22 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
   });
 
   await t.test("shortcut help is discoverable, keyboard accessible and protects review actions", async () => {
+    async function pressEnter() {
+      const key = { key: "Enter", code: "Enter", windowsVirtualKeyCode: 13, nativeVirtualKeyCode: 13 };
+      await b.cdp("Input.dispatchKeyEvent", { ...key, type: "keyDown", text: "\r", unmodifiedText: "\r" });
+      await b.cdp("Input.dispatchKeyEvent", { ...key, type: "keyUp" });
+    }
     for (const width of [320,1440]) for (const language of ["en","zh"]) for (const mode of ["browse","review"]) {
       await b.viewport(width,800);
       await b.open('/'+mode+'?scope=razavi&id=R005&lang='+language);
       if (mode === "review") await b.evaluate('document.getElementById("note").value="keep help draft"');
-      await b.evaluate('document.getElementById("keyboard-help").focus();document.getElementById("keyboard-help").click()');
-      assert.equal(await b.evaluate('document.getElementById("shortcuts-dialog").open'),true);
+      await b.evaluate('document.getElementById("settings-toggle").focus()');
+      await pressEnter();
+      await b.waitFor('document.getElementById("settings-menu").open');
+      assert.ok(await b.evaluate('document.getElementById("theme-select").getClientRects().length > 0 && document.getElementById("lang-switch").getClientRects().length > 0'));
+      await b.evaluate('document.getElementById("keyboard-help").focus()');
+      await pressEnter();
+      await b.waitFor('document.getElementById("shortcuts-dialog").open');
       assert.equal(await b.evaluate('document.activeElement.id'),"shortcuts-close");
       const text=await b.evaluate('document.getElementById("shortcuts-dialog").textContent');
       assert.match(text,/Shift/);
@@ -858,8 +877,11 @@ test("reading layout and existing browser behavior", { timeout: 180000 }, async 
         assert.equal(await b.evaluate('document.getElementById("shortcuts-dialog").contains(document.activeElement)'),true);
       }
       await b.cdp("Input.dispatchKeyEvent",{type:"keyDown",key:"Escape",code:"Escape"});
-      await b.waitFor('!document.getElementById("shortcuts-dialog").open');
+      await b.waitFor('!document.getElementById("shortcuts-dialog").open && document.activeElement.id === "keyboard-help"');
       assert.equal(await b.evaluate('document.activeElement.id'),"keyboard-help");
+      await b.cdp("Input.dispatchKeyEvent",{type:"keyDown",key:"Escape",code:"Escape"});
+      assert.equal(await b.evaluate('document.getElementById("settings-menu").open'),false);
+      assert.equal(await b.evaluate('document.activeElement.id'),"settings-toggle");
       if (mode === "review") assert.equal(await b.evaluate('document.getElementById("note").value'),"keep help draft");
       await b.evaluate('document.activeElement.blur()');
       await b.cdp("Input.dispatchKeyEvent",{type:"keyDown",key:"?",code:"Slash",modifiers:8});

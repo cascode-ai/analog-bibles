@@ -6,6 +6,7 @@
 const STRINGS = {
   en: {
     sub: "Razavi · Gray · Allen textbook problems",
+    settings: "Settings",
     modes: "Mode",
     browse: "Browse",
     review: "Review",
@@ -36,7 +37,7 @@ const STRINGS = {
     namePh: "Your name (optional)",
     hintReview: "Keys: ← → step · R random · P pass · 1–6 pick a reason · Enter submit",
     hintBrowse: "Keys: ← → step · R random · / search",
-    navigationButton: "Contents",
+    navigationButton: "Contents & search",
     navigationTitle: "Contents & search",
     closeNavigation: "Close contents",
     backToReading: "Back to reading",
@@ -50,8 +51,7 @@ const STRINGS = {
     shortcutSearch: "Focus search",
     shortcutHelp: "Open this help",
     shortcutFocus: "Toggle distraction-free reading",
-    readerFocus: "Distraction-free",
-    readerFocusExit: "Exit distraction-free",
+    readerFocus: "Focus mode",
     readerFocusTitle: "Toggle distraction-free reading (F)",
     shortcutEscape: "Close a dialog or image",
     reviewShortcuts: "Review mode",
@@ -59,8 +59,8 @@ const STRINGS = {
     shortcutReasons: "Select issue reasons",
     shortcutSubmit: "Submit comment or selected issues",
     shortcutNewline: "New line in a comment",
-    prev: "Previous (←)",
-    next: "Next (→)",
+    prev: "Previous question (←)",
+    next: "Next question (→)",
     random: "Random",
     randomTitle: "A random question (R)",
     loading: "Loading…",
@@ -120,7 +120,7 @@ const STRINGS = {
     keyGo: "Enter review",
     earlier: "↑ Show earlier questions",
     reviewThis: "Review ↗",
-    focus: "Focus reading",
+    focus: "Single question",
     listView: "Scrolling list",
     solution: "Solution",
     expandSteps: "Expand all steps",
@@ -132,14 +132,20 @@ const STRINGS = {
     collapseSteps: "Collapse all steps",
     stepPosition: (n, total) => `Step ${n} / ${total}`,
     resultPosition: "Result",
+    readingControls: "Reading controls",
+    questionNavigation: "Question navigation",
+    listPositionLabel: "Position",
+    searchPositionLabel: "Result",
+    tabSteps: (n) => n === 1 ? "1 step" : `${num(n)} steps`,
+    prevChapterShort: "Prev chapter",
+    nextChapterShort: "Next chapter",
     hideSidebar: "Collapse sidebar",
     showSidebar: "Expand sidebar",
     showOriginal: "English original",
     showTranslation: "中文",
     prevCh: "Previous chapter (Shift+←)",
     nextCh: "Next chapter (Shift+→)",
-    gotoLabel: "Result position",
-    gotoTitle: "Enter a result position or a textbook problem number",
+    gotoTitle: "Enter a list position or a textbook problem number",
     chapter: (n) => `Ch. ${n}`,
     exercise: (e) => `Problem ${e}`,
     chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
@@ -150,6 +156,7 @@ const STRINGS = {
   },
   zh: {
     sub: "Razavi · Gray · Allen 教材习题",
+    settings: "设置",
     modes: "模式",
     browse: "浏览",
     review: "审阅",
@@ -194,8 +201,7 @@ const STRINGS = {
     shortcutSearch: "聚焦搜索框",
     shortcutHelp: "打开快捷键说明",
     shortcutFocus: "切换无干扰阅读",
-    readerFocus: "无干扰",
-    readerFocusExit: "退出无干扰",
+    readerFocus: "专注模式",
     readerFocusTitle: "切换专注阅读 (F)",
     shortcutEscape: "关闭弹窗或图片",
     reviewShortcuts: "审阅模式",
@@ -264,7 +270,7 @@ const STRINGS = {
     keyGo: "进入审阅",
     earlier: "↑ 显示前面的题",
     reviewThis: "审阅这题 ↗",
-    focus: "专注阅读",
+    focus: "单题阅读",
     listView: "连续浏览",
     solution: "解答",
     expandSteps: "全部展开",
@@ -276,14 +282,20 @@ const STRINGS = {
     collapseSteps: "全部收起",
     stepPosition: (n, total) => `第 ${n} / ${total} 步`,
     resultPosition: "结论",
+    readingControls: "阅读控制",
+    questionNavigation: "题目导航",
+    listPositionLabel: "序号",
+    searchPositionLabel: "结果",
+    tabSteps: (n) => `${num(n)} 步`,
+    prevChapterShort: "上一章",
+    nextChapterShort: "下一章",
     hideSidebar: "收起侧边栏",
     showSidebar: "展开侧边栏",
     showOriginal: "查看英文原文",
     showTranslation: "查看中文译文",
     prevCh: "上一章 (Shift+←)",
     nextCh: "下一章 (Shift+→)",
-    gotoLabel: "结果序号",
-    gotoTitle: "输入结果序号或教材题号后按回车",
+    gotoTitle: "输入列表序号或教材题号后按回车",
     chapter: (n) => `第 ${n} 章`,
     exercise: (e) => `习题 ${e}`,
     chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
@@ -477,6 +489,7 @@ $("side-resizer").addEventListener("keydown", (event) => {
 const compactNavigation = window.matchMedia?.("(max-width: 1199px)");
 const navigationDialog = $("navigation-dialog");
 const shortcutsDialog = $("shortcuts-dialog");
+const settingsMenu = $("settings-menu");
 
 function updateOverlayState() {
   document.body.classList.toggle("overlay-open", Boolean(navigationDialog.open || shortcutsDialog.open));
@@ -535,6 +548,11 @@ navigationDialog.addEventListener("close", restoreNavigation);
 $("keyboard-help").addEventListener("click", openShortcuts);
 $("shortcuts-close").addEventListener("click", () => shortcutsDialog.close());
 shortcutsDialog.addEventListener("close", updateOverlayState);
+document.addEventListener("click", (event) => {
+  if (settingsMenu.open && !settingsMenu.contains(event.target) && !shortcutsDialog.contains(event.target)) {
+    settingsMenu.open = false;
+  }
+});
 for (const dialog of [navigationDialog, shortcutsDialog]) {
   dialog.addEventListener("click", (event) => {
     const rect = dialog.getBoundingClientRect();
@@ -828,10 +846,13 @@ function renderSearchResults() {
   const focused = document.activeElement?.dataset?.searchId;
   const message = searchMessage();
   if ($("search-status").textContent !== message) $("search-status").textContent = message;
-  list.innerHTML = state.cards.slice(0, searchLimit).map((q) => {
+  const results = state.cards.slice(0, searchLimit);
+  const currentId = state.cards[state.index]?.id;
+  if (currentId && state.index >= searchLimit) results.push(state.cards[state.index]);
+  list.innerHTML = results.map((q) => {
     const title = `${bookName(q.book)} · ${t("exercise", q.ex)}`;
     const excerpt = searchExcerpt(q);
-    return `<li><button type="button" class="search-match" data-search-id="${esc(q.id)}">
+    return `<li><button type="button" class="search-match" data-search-id="${esc(q.id)}"${q.id === currentId ? ' aria-current="true"' : ""}>
       <strong>${esc(title)}</strong> <span class="search-match-id">${esc(q.id)}</span>
       ${excerpt ? `<span class="search-excerpt">${esc(excerpt)}</span>` : ""}
     </button></li>`;
@@ -839,6 +860,19 @@ function renderSearchResults() {
   if (focused) [...list.querySelectorAll("button")].find((button) => button.dataset.searchId === focused)?.focus({ preventScroll: true });
   $("search-more").hidden = state.cards.length <= searchLimit;
   $("search-retry").hidden = message !== t("searchIndexFailed");
+}
+
+function updateSearchCurrent() {
+  if (!state.search) return;
+  const currentId = state.cards[state.index]?.id;
+  const results = $("search-matches");
+  if ((state.index >= searchLimit || results.children.length > searchLimit) &&
+      results.querySelector('[aria-current="true"]')?.dataset.searchId !== currentId) {
+    renderSearchResults();
+    return;
+  }
+  results.querySelector('[aria-current="true"]')?.removeAttribute("aria-current");
+  results.querySelector(`[data-search-id="${currentId}"]`)?.setAttribute("aria-current", "true");
 }
 
 function renderSide() {
@@ -872,6 +906,7 @@ function renderProgress() {
 
 function syncUrl() {
   const q = state.cards[state.index];
+  updateSearchCurrent();
   const parts = [`scope=${state.scope}`];
   if (state.level !== "all") parts.push(`level=${state.level}`);
   if (state.status !== "all") parts.push(`status=${state.status}`);
@@ -880,7 +915,6 @@ function syncUrl() {
   const focusPart = mode === "browse" && !state.focus ? "&view=list" : "";
   history.replaceState(null, "", `/${mode}?${parts.join("&")}${focusPart}`);
   $("reading-view").textContent = t(state.focus ? "listView" : "focus");
-  $("reading-view").setAttribute("aria-pressed", String(state.focus));
   updateReaderFocus();
   // The mode switch keeps the question, filters and language (status is review's own).
   $("mode-browse").href = `/browse?${parts.filter((p) => !p.startsWith("status=")).join("&")}${mode === "review" ? "" : focusPart}`;
@@ -892,7 +926,7 @@ function updateReaderFocus() {
   document.body.classList.toggle('distraction-free', state.distractionFree);
   const button = $('reader-focus');
   button.hidden = mode !== 'browse' || !state.focus;
-  button.textContent = t(state.distractionFree ? 'readerFocusExit' : 'readerFocus');
+  button.textContent = t('readerFocus');
   button.title = t('readerFocusTitle');
   button.setAttribute('aria-pressed', String(state.distractionFree));
 }
@@ -984,7 +1018,7 @@ function cardBody(q, reviewing = false) {
       <div class="pane-resizer" role="separator" tabindex="0" aria-label="${esc(t("solution"))}" aria-orientation="vertical" aria-valuemin="25" aria-valuemax="70" aria-valuenow="40"></div>
       <section class="panel solution-panel" tabindex="-1" role="region" aria-label="${esc(t("solution"))}">
         <div class="solution-tabs" role="tablist" aria-label="${esc(t("solution"))}">
-          ${["answer", "detailed", "grading"].map((key) => `<button type="button" role="tab" id="${q.id}-tab-${key}" aria-controls="${q.id}-panel-${key}" aria-selected="${key === "answer"}" tabindex="${key === "answer" ? 0 : -1}" data-solution-tab="${key}"${key !== "answer" ? " hidden" : ""}><span class="tab-label">${t(key)}</span></button>`).join("")}
+          ${["answer", "detailed", "grading"].map((key) => `<button type="button" role="tab" id="${q.id}-tab-${key}" aria-controls="${q.id}-panel-${key}" aria-selected="${key === "answer"}" tabindex="${key === "answer" ? 0 : -1}" data-solution-tab="${key}"${key !== "answer" ? " hidden" : ""}><span class="tab-label">${t(key)}</span>${key === "detailed" ? '<span class="tab-steps"></span>' : ""}</button>`).join("")}
         </div>
         <div class="solution-content" role="tabpanel" id="${q.id}-panel-answer" aria-labelledby="${q.id}-tab-answer" tabindex="-1" data-solution-content="answer">
         <div class="md q-answer"><p class="empty">${t("loading")}</p></div>
@@ -1051,7 +1085,10 @@ async function fillCard(el, q) {
     box.lang = contentLang.detailed_solution || lang;
     box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
     foldSteps(box);
-    el.querySelector('[data-solution-tab="detailed"]').hidden = !steps.trim();
+    const tab = el.querySelector('[data-solution-tab="detailed"]');
+    tab.hidden = !steps.trim();
+    const count = box.querySelectorAll(":scope > [data-step-number]").length;
+    tab.querySelector(".tab-steps").textContent = count ? t("tabSteps", count) : "";
   }
   // Keep the existing availability rule: only notes supplied in the answer
   // and actually nonempty are exposed. Review API authorization is unchanged.
@@ -1990,6 +2027,8 @@ function updatePosition() {
   const box = $("goto");
   if (document.activeElement !== box) box.value = total ? String(state.index + 1) : "0";
   box.style.width = `${Math.max(2, String(total).length) + 1.5}ch`;
+  const label = t(state.search ? "searchPositionLabel" : "listPositionLabel");
+  $("position-label").textContent = label;
   $("total").textContent = `/ ${num(total)}`;
   const q = state.cards[state.index];
   const byChapter = state.scope !== "random";
@@ -2157,6 +2196,13 @@ document.addEventListener("keydown", (event) => {
     openShortcuts();
     return;
   }
+  if (settingsMenu.open && event.key === "Escape") {
+    event.preventDefault();
+    settingsMenu.open = false;
+    $("settings-toggle").focus();
+    return;
+  }
+  if (settingsMenu.contains(event.target)) return;
   if (event.target.matches(".pane-resizer") && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
     event.preventDefault();
     resizePanes(event.target, event.key === "Home" ? 25 : event.key === "End" ? 70 : Number(event.target.getAttribute("aria-valuenow")) + (event.key === "ArrowRight" ? 2 : -2));
