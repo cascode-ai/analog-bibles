@@ -151,6 +151,10 @@ const STRINGS = {
     chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
     detailed: "Detailed solution",
     unreviewed: "Unreviewed",
+    feedback: "Report a problem",
+    feedbackPrompt: "Which part needs attention?",
+    feedbackNotice: "Write up to 500 characters here. On GitHub you can add details and publish publicly under your account.",
+    feedbackContinue: "Continue to GitHub",
     reviewThisTitle: "Review this question: pass it, report an issue or comment (maintainers)",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -301,6 +305,10 @@ const STRINGS = {
     chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
     detailed: "详细步骤",
     unreviewed: "未审核",
+    feedback: "反馈这道题",
+    feedbackPrompt: "哪一步有疑问？",
+    feedbackNotice: "这里可写 500 字。前往 GitHub 后可继续补充，并以你的账号公开发布。",
+    feedbackContinue: "前往 GitHub 提交",
     reviewThisTitle: "进入这道题的审阅：通过、报错、评论（维护者）",
     bookName: { razavi: "Razavi", gray: "Gray", allen: "Allen" },
   },
@@ -1042,6 +1050,7 @@ function cardBody(q, reviewing = false) {
         </div>` : ""}
         <div class="solution-content grading" role="tabpanel" id="${q.id}-panel-grading" aria-labelledby="${q.id}-tab-grading" tabindex="-1" data-solution-content="grading" hidden><div class="md"></div></div>
         ${reviewing ? `<details class="others" id="others"><summary>${t("othersLoading")}</summary></details>` : ""}
+        ${!reviewing && q.reviewStatus === "APPROVED" ? `<button type="button" class="btn feedback-open" aria-haspopup="dialog" aria-controls="feedback-dialog" disabled>${t("feedback")}</button>` : ""}
       </section>
     </div>`;
 }
@@ -1095,6 +1104,8 @@ async function fillCard(el, q) {
   el.querySelector('[data-solution-tab="grading"]').hidden = !grading.trim();
   el.querySelector(".grading .md").lang = "en";
   el.querySelector(".grading .md").innerHTML = renderMarkdown(grading);
+  const feedbackButton = el.querySelector(".feedback-open");
+  if (feedbackButton) feedbackButton.disabled = false;
   const selected = el.querySelector('[role="tab"][aria-selected="true"]');
   if (selected.hidden) selectSolutionTab(el.querySelector('[data-solution-tab="answer"]'));
   prepareSolutionNavigation(el);
@@ -2179,7 +2190,7 @@ $("zoom").addEventListener("click", () => { $("zoom").hidden = true; });
 document.addEventListener("keydown", (event) => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
   // Dialog controls work while loading, and own Escape before reader shortcuts.
-  const activeDialog = document.querySelector('.question-peek[open]') || (navigationDialog.open ? navigationDialog : shortcutsDialog.open ? shortcutsDialog : null);
+  const activeDialog = document.querySelector("dialog[open]");
   if (activeDialog) {
     if (event.key === "Tab") keepDialogFocus(event, activeDialog);
     else if (event.key === "Escape") {
@@ -2466,6 +2477,44 @@ window.addEventListener('resize', refreshReaderExperience, { passive: true });
 window.addEventListener('pagehide', saveReaderPosition);
 
 // ---------- start ----------
+
+const feedbackDialog = $("feedback-dialog");
+const feedbackNote = $("feedback-note");
+const feedbackDrafts = new Map();
+let feedbackContext;
+
+$("item").addEventListener("click", event => {
+  const button = event.target.closest(".feedback-open");
+  if (!button) return;
+  const card = button.closest("[data-qid]");
+  const q = state.all.find(question => question.id === card.dataset.qid);
+  const panel = card.querySelector(".solution-content:not([hidden])");
+  const tab = panel.dataset.solutionContent;
+  const contentLang = panel.querySelector(".md").lang;
+  const label = [bookName(q.book), q.ex, q.id, t(tab), contentLang].join(" · ");
+  const link = new URL("https://analog-bibles.tokenzhang.com/browse");
+  link.search = new URLSearchParams({ scope: q.book, id: q.id, lang: contentLang });
+  feedbackContext = {
+    key: [q.id, q.v, tab, contentLang].join("/"),
+    title: `[${q.id}] ${bookName(q.book)} ${q.ex} · ${t("feedback")}`,
+    header: `[${label}](${link.href}) · ${q.v}`,
+  };
+  $("feedback-context").textContent = label;
+  feedbackNote.value = feedbackDrafts.get(feedbackContext.key) || "";
+  $("feedback-continue").disabled = !feedbackNote.value.trim();
+  feedbackDialog.showModal();
+  feedbackNote.focus();
+});
+$("feedback-close").onclick = () => feedbackDialog.close();
+feedbackNote.addEventListener("input", () => {
+  $("feedback-continue").disabled = !feedbackNote.value.trim();
+  if (feedbackNote.value) feedbackDrafts.set(feedbackContext.key, feedbackNote.value);
+  else feedbackDrafts.delete(feedbackContext.key);
+});
+$("feedback-form").addEventListener("formdata", event => {
+  event.formData.set("title", feedbackContext.title);
+  event.formData.set("body", feedbackContext.header + "\n\n" + feedbackNote.value.trim());
+});
 
 (async () => {
   applyLanguage();
