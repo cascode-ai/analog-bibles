@@ -38,17 +38,22 @@
     <a id="mode-browse" href="/browse" data-i18n="browse">Browse</a>
     <a id="mode-review" href="/review" data-i18n="review" data-i18n-title="reviewTitle" title="For maintainers: pass, report issues, comment">Review</a>
   </nav>
-  <button type="button" id="keyboard-help" class="keyboard-help" aria-haspopup="dialog" aria-controls="shortcuts-dialog" data-i18n-title="shortcuts" data-i18n-aria="shortcuts" title="Keyboard shortcuts" aria-label="Keyboard shortcuts"><span class="keyboard-help-icon" aria-hidden="true">?</span><span class="keyboard-help-label" data-i18n="shortcutsButton">Shortcuts</span></button>
   <a class="gh" href="https://github.com/cascode-ai/analog-bibles" target="_blank" rel="noopener">GitHub ↗</a>
-  <label class="theme-control"><span class="sr-only">Theme</span><select id="theme-select" aria-label="Theme">
-    <option value="system" data-i18n="themeSystem">System</option>
-    <option value="light" data-i18n="themeLight">Light</option>
-    <option value="dark" data-i18n="themeDark">Dark</option>
-  </select></label>
-  <!-- Languages icon (A / 文), as on tokenzhang.com -->
-  <button type="button" class="lang-switch" id="lang-switch" aria-label="切换到中文" title="切换到中文">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
-  </button>
+  <details id="settings-menu" class="settings-menu">
+    <summary id="settings-toggle" data-i18n="settings">Settings</summary>
+    <div class="settings-popover">
+      <label class="theme-control"><span data-i18n="themeLabel">Theme</span><select id="theme-select" aria-label="Theme">
+        <option value="system" data-i18n="themeSystem">System</option>
+        <option value="light" data-i18n="themeLight">Light</option>
+        <option value="dark" data-i18n="themeDark">Dark</option>
+      </select></label>
+      <button type="button" class="lang-switch" id="lang-switch" aria-label="切换到中文" title="切换到中文">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+        <span data-i18n="switchLang">切换到中文</span>
+      </button>
+      <button type="button" id="keyboard-help" class="keyboard-help" aria-haspopup="dialog" aria-controls="shortcuts-dialog" data-i18n-title="shortcuts" data-i18n-aria="shortcuts" title="Keyboard shortcuts" aria-label="Keyboard shortcuts"><span class="keyboard-help-icon" aria-hidden="true">?</span><span data-i18n="shortcutsButton">Shortcuts</span></button>
+    </div>
+  </details>
 </header>
 <div class="layout">
   <div class="sidebar-shell">
@@ -81,21 +86,24 @@
   <main class="main">
     <div class="toolbar">
       <div class="progress review-only" id="progress"></div>
-      <button type="button" id="navigation-trigger" class="btn mobile-nav-trigger" aria-controls="navigation-dialog" aria-expanded="false" data-i18n="navigationButton" data-i18n-title="navigationTitle">Contents</button>
-      <button type="button" id="reading-view" class="btn browse-only" aria-pressed="false">Focus reading</button>
-      <button type="button" id="reader-focus" class="btn browse-only" aria-pressed="false" aria-keyshortcuts="F" title="Focus reading (F)" hidden>Focus</button>
-      <span class="steps">
-        <button type="button" id="prev-ch" data-i18n-title="prevCh" data-i18n-aria="prevCh" title="Previous chapter (Shift+←)" aria-label="Previous chapter">«</button>
-        <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous (←)" aria-label="Previous">‹</button>
+      <div class="toolbar-main" role="group" data-i18n-aria="readingControls" aria-label="Reading controls">
+        <button type="button" id="navigation-trigger" class="btn mobile-nav-trigger" aria-controls="navigation-dialog" aria-expanded="false" data-i18n="navigationButton" data-i18n-title="navigationTitle">Contents &amp; search</button>
+        <button type="button" id="reading-view" class="btn browse-only">Scrolling list</button>
+        <button type="button" id="reader-focus" class="btn browse-only" aria-pressed="false" aria-keyshortcuts="F" title="Toggle distraction-free reading (F)" hidden>Focus mode</button>
+      </div>
+      <div class="steps toolbar-nav" role="group" data-i18n-aria="questionNavigation" aria-label="Question navigation">
+        <button type="button" id="prev-ch" data-i18n-title="prevCh" title="Previous chapter (Shift+←)"><span aria-hidden="true">«</span><span class="nav-label" data-i18n="prevChapterShort">Prev chapter</span></button>
+        <button type="button" id="prev" data-i18n-title="prev" data-i18n-aria="prev" title="Previous question (←)" aria-label="Previous question">‹</button>
         <span class="position">
-          <input id="goto" type="text" enterkeyhint="go" autocomplete="off" data-i18n-title="gotoTitle" data-i18n-aria="gotoLabel" title="Enter a result position or a textbook problem number" aria-label="Result position">
+          <label id="position-label" for="goto" class="position-label">Position</label>
+          <input id="goto" type="text" enterkeyhint="go" autocomplete="off" data-i18n-title="gotoTitle" title="Enter a list position or a textbook problem number" aria-describedby="total">
           <span id="total">/ –</span>
         </span>
-        <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next (→)" aria-label="Next">›</button>
-        <button type="button" id="next-ch" data-i18n-title="nextCh" data-i18n-aria="nextCh" title="Next chapter (Shift+→)" aria-label="Next chapter">»</button>
+        <button type="button" id="next" data-i18n-title="next" data-i18n-aria="next" title="Next question (→)" aria-label="Next question">›</button>
+        <button type="button" id="next-ch" data-i18n-title="nextCh" title="Next chapter (Shift+→)"><span aria-hidden="true">»</span><span class="nav-label" data-i18n="nextChapterShort">Next chapter</span></button>
         <span class="chapter" id="chapter"></span>
         <button type="button" id="random" data-i18n-title="randomTitle" title="A random question (R)"><span data-i18n="random">Random</span> <kbd>R</kbd></button>
-      </span>
+      </div>
     </div>
     <article class="item" id="item"><p class="empty" data-i18n="loading">Loading…</p></article>
   </main>
