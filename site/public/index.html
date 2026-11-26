@@ -119,6 +119,19 @@
   <a id="visit-stats" href="/analytics" data-i18n-title="analyticsTitle" title="Open visitor analytics" hidden></a>
 </footer>
 <div class="zoom" id="zoom" hidden><img alt=""></div>
+<dialog id="feedback-dialog" class="feedback-dialog" aria-labelledby="feedback-title">
+  <div class="dialog-head">
+    <h2 id="feedback-title" data-i18n="feedback">Report a problem</h2>
+    <button type="button" id="feedback-close" class="dialog-close" data-i18n-aria="backToReading" aria-label="Back to reading">×</button>
+  </div>
+  <form id="feedback-form" action="https://github.com/cascode-ai/analog-bibles/issues/new" method="get" target="_blank" rel="noopener noreferrer">
+    <p id="feedback-context"></p>
+    <label for="feedback-note" data-i18n="feedbackPrompt">Which part needs attention?</label>
+    <textarea id="feedback-note" rows="5" maxlength="500" required aria-describedby="feedback-notice"></textarea>
+    <p id="feedback-notice" data-i18n="feedbackNotice">Write up to 500 characters here. On GitHub you can add details and publish publicly under your account.</p>
+    <button class="btn" type="submit" id="feedback-continue" data-i18n="feedbackContinue">Continue to GitHub</button>
+  </form>
+</dialog>
 <dialog id="navigation-dialog" class="navigation-dialog" aria-labelledby="navigation-title">
   <div class="dialog-head">
     <h2 id="navigation-title" tabindex="-1" data-i18n="navigationTitle">Contents &amp; search</h2>

@@ -35,3 +35,49 @@ test("review label in Browse, Review and focused reading, both languages and nar
   }
   assert.deepEqual(b.errors, []);
 });
+
+test("approved questions prefill a GitHub Issue from the selected card and answer", { timeout: 120000 }, async t => {
+  const b = await startBrowser();
+  t.after(() => b.close());
+  await b.viewport(390, 844);
+  await b.open("/browse?scope=razavi&id=R001&view=list&lang=zh");
+  const card = 'document.querySelector("[data-qid=R002]")';
+  await b.waitFor(`${card}?.querySelector('.feedback-open:enabled')`);
+  await b.evaluate(`${card}.querySelector('[data-solution-tab="grading"]').click(); ${card}.querySelector('.feedback-open').click()`);
+  assert.equal(await b.evaluate('document.activeElement.id'), "feedback-note");
+  assert.equal(await b.evaluate('$("feedback-continue").disabled'), true);
+  assert.match(await b.evaluate('$("feedback-context").textContent'), /R002.*en$/);
+  const note = "第二行的 A&B + C？\n#2";
+  await b.evaluate(`feedbackNote.value = ${JSON.stringify(note)}; feedbackNote.dispatchEvent(new Event("input")); $("feedback-close").click(); ${card}.querySelector('.feedback-open').click();`);
+  assert.equal(await b.evaluate("feedbackNote.value"), note);
+  assert.equal(await b.evaluate('$("feedback-form").action'), "https://github.com/cascode-ai/analog-bibles/issues/new");
+  assert.equal(await b.evaluate('$("feedback-form").target'), "_blank");
+  // Exercise native GET encoding against a local frame, without contacting GitHub.
+  const fields = await b.evaluate(`new Promise(resolve => {
+    const frame = document.createElement("iframe");
+    frame.name = "issue-preview";
+    frame.hidden = true;
+    document.body.append(frame);
+    frame.onload = () => {
+      const url = new URL(frame.contentWindow.location.href);
+      if (url.searchParams.has("body")) resolve(Object.fromEntries(url.searchParams));
+    };
+    const form = $("feedback-form");
+    form.rel = "";
+    form.target = frame.name;
+    form.action = "/privacy.html";
+    $("feedback-continue").click();
+  })`);
+  assert.match(fields.title, /R002/);
+  const q = await b.evaluate('state.all.find(q => q.id === "R002")');
+  assert.ok(fields.body.includes(q.ex));
+  assert.ok(fields.body.includes(q.v));
+  assert.ok(fields.body.includes("scope=razavi&id=R002&lang=en"));
+  assert.ok(fields.body.replaceAll("\r\n", "\n").endsWith(note));
+  await b.viewport(1440, 960);
+  await b.open("/browse?id=R050&lang=en");
+  assert.equal(await b.evaluate('document.querySelector("[data-qid=R050] .feedback-open")'), null);
+  await b.open("/browse?id=R001&lang=en");
+  assert.equal(await b.evaluate('document.querySelector(".feedback-open").textContent'), "Report a problem");
+  assert.deepEqual(b.errors, []);
+});
