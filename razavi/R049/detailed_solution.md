@@ -1,6 +1,6 @@
 # Detailed solution - R049
 
-**Approach.** Treat the channel surface as a node coupled to two "gates": the real (front) gate through the oxide capacitance $C_{ox}$, and the bulk (back gate) through the depletion-layer capacitance $C_{dep}$. The threshold shift caused by a change of the bulk voltage is set by the ratio of the two couplings, $C_{dep}/C_{ox}$. Then show how $C_{dep}$ depends on the doping and connect the picture to the formula for $\gamma$.
+**Approach:** Treat the channel surface as a node coupled to two "gates": the real (front) gate through the oxide capacitance $C_{ox}$, and the bulk (back gate) through the depletion-layer capacitance $C_{dep}$. The threshold shift caused by a change of the bulk voltage is set by the ratio of the two couplings, $C_{dep}/C_{ox}$. Then show how $C_{dep}$ depends on the doping and connect the picture to the formula for $\gamma$.
 
 ### Step 1 — The back-gate picture: a capacitive divider
 
@@ -10,7 +10,7 @@ $$\gamma = \frac{\sqrt{2q\,\epsilon_{si}N_{sub}}}{C_{ox}}$$
 
 without just quoting this formula.
 
-Seen from the channel surface of an NMOS, the front gate is separated by the oxide, a capacitance $C_{ox}$ per unit area, and the neutral p-type bulk by the depletion layer of width $x_d$, a capacitance $C_{dep} = \epsilon_{si}/x_d$ per unit area. The surface thus sits in the middle of a capacitive divider between gate and bulk: the bulk acts on the channel like a second gate, the **back gate**, only through a different capacitance.
+Seen from the channel surface of an NMOS, the front gate is separated by the oxide, a capacitance $C_{ox}$ per unit area, and the neutral p-type bulk by the depletion layer of width $x_d$, a capacitance $C_{dep} = \epsilon_{si}/x_d$ per unit area. The surface thus sits in the middle of a capacitive divider between gate and bulk: the bulk acts on the channel like a second gate, the back gate, only through a different capacitance.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -22,7 +22,7 @@ To bring the surface back to inversion the gate must supply an equal and opposit
 
 $$\Delta V_{TH} = \frac{\Delta Q_{dep}}{C_{ox}} \approx \frac{C_{dep}}{C_{ox}}\,\Delta V_{SB} .$$
 
-So the **sensitivity of the threshold to the back-gate voltage is the ratio of the back-gate coupling to the front-gate coupling**:
+So the sensitivity of the threshold to the back-gate voltage is the ratio of the back-gate coupling to the front-gate coupling:
 
 $$\frac{\partial V_{TH}}{\partial V_{SB}} \approx \frac{C_{dep}}{C_{ox}} .$$
 
@@ -63,7 +63,7 @@ $$
 
 This is the textbook expression, obtained from the back-gate picture: numerator from the back-gate coupling ($\propto\sqrt{N_{sub}}$), denominator from the front-gate coupling ($C_{ox}$).
 
-**Numerical illustration.** For $N_{sub} = 10^{17}\ \mathrm{cm^{-3}}$, $\epsilon_{si} = 11.7\times8.854\times10^{-14} = 1.04\times10^{-12}$ F/cm and $C_{ox} = 3.84\ \mathrm{fF/\mu m^2} = 3.84\times10^{-7}\ \mathrm{F/cm^2}$ ($t_{ox} = 9$ nm):
+Numerical illustration. For $N_{sub} = 10^{17}\ \mathrm{cm^{-3}}$, $\epsilon_{si} = 11.7\times8.854\times10^{-14} = 1.04\times10^{-12}$ F/cm and $C_{ox} = 3.84\ \mathrm{fF/\mu m^2} = 3.84\times10^{-7}\ \mathrm{F/cm^2}$ ($t_{ox} = 9$ nm):
 
 $$\gamma = \frac{\sqrt{2(1.6\times10^{-19})(1.04\times10^{-12})(10^{17})}}{3.84\times10^{-7}}\ \mathrm{V^{1/2}} = \frac{1.82\times10^{-7}}{3.84\times10^{-7}}\ \mathrm{V^{1/2}} = 0.47\ \mathrm{V^{1/2}},$$
 
@@ -77,10 +77,10 @@ a typical value. The two dependences then scale as follows:
 
 ### Result
 
-The bulk is a **back gate** coupled to the channel through the depletion capacitance $C_{dep}$, while the real gate couples through $C_{ox}$. A change $\Delta V_{SB}$ uncovers depletion charge $\approx C_{dep}\Delta V_{SB}$ that the gate must cancel, costing $\Delta V_{TH} \approx (C_{dep}/C_{ox})\Delta V_{SB}$. Since $C_{dep} = \epsilon_{si}/x_d \propto \sqrt{N_{sub}}$ (heavier doping gives a thinner depletion layer, i.e. a closer, stronger back gate) and the front gate's strength is $C_{ox}$:
+The bulk is a back gate coupled to the channel through the depletion capacitance $C_{dep}$, while the real gate couples through $C_{ox}$. A change $\Delta V_{SB}$ uncovers depletion charge $\approx C_{dep}\Delta V_{SB}$ that the gate must cancel, costing $\Delta V_{TH} \approx (C_{dep}/C_{ox})\Delta V_{SB}$. Since $C_{dep} = \epsilon_{si}/x_d \propto \sqrt{N_{sub}}$ (heavier doping gives a thinner depletion layer, i.e. a closer, stronger back gate) and the front gate's strength is $C_{ox}$:
 
 $$\gamma = \frac{\sqrt{2q\,\epsilon_{si}N_{sub}}}{C_{ox}} \propto \frac{\sqrt{N_{sub}}}{C_{ox}} .$$
 
-**Common mistake.** Inverting the doping dependence, e.g. arguing that a heavily doped substrate is "stiffer" so the body effect is weaker. Heavier doping makes the depletion layer thinner, which *increases* the coupling between the bulk and the channel, so $\gamma$ grows.
+**Common mistake:** Inverting the doping dependence, e.g. arguing that a heavily doped substrate is "stiffer" so the body effect is weaker. Heavier doping makes the depletion layer thinner, which *increases* the coupling between the bulk and the channel, so $\gamma$ grows.
 
-**Common mistake.** Thinking a thicker oxide reduces the body effect because the gate is "better isolated". A thicker oxide (smaller $C_{ox}$) weakens the *front* gate, so the back gate's relative influence on the threshold grows and $\gamma$ increases.
+**Common mistake:** Thinking a thicker oxide reduces the body effect because the gate is "better isolated". A thicker oxide (smaller $C_{ox}$) weakens the *front* gate, so the back gate's relative influence on the threshold grows and $\gamma$ increases.
