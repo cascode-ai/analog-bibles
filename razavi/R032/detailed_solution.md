@@ -1,84 +1,113 @@
 # Detailed solution - R032
 
-**Approach.** $M_1$ is a grounded-source switch whose gate steps from 0 to 3 V. Before the step it is off and $C_1$ holds 1 V. After the step the drain (1 V) is far below $V_{GS} - V_{TH}$, so $M_1$ is in triode from the start and discharges $C_1$ like a (slightly nonlinear) resistor. Solve the triode discharge equation and compare it with a pure $RC$ exponential.
+### Model and initial condition
 
-### Step 1 — Before the step ($t < 0$)
+**Approach:** Check the operating region before applying the triode current equation to capacitor discharge. The plotted quantity is $V_X(t)$.
 
-$V_{GS} = 0 < V_{TH}$, so **$M_1$ is off** and $V_X$ stays at 1 V.
+The source and bulk are grounded; $C_1$ connects the drain to ground and initially holds 1 V. Before the step $V_{GS}=0$, so the transistor is off. Neglecting parasitic capacitive coupling, a finite channel current cannot change the capacitor voltage instantaneously: $V_X(0^+)=V_X(0^-)=1\ \mathrm{V}$.
 
-### Step 2 — Region of operation after the step
+After the gate steps to 3 V,
 
-At $t = 0^+$ the capacitor voltage is still $V_X = 1$ V, while $V_{GS} = 3$ V and (no body effect) $V_{TH} = 0.7$ V:
+$$
+V_{GS}-V_{TH}=2.3\ \mathrm{V},
+\qquad 0\le V_{DS}=V_X\le1\ \mathrm{V}<2.3\ \mathrm{V}.
+$$
 
-$$V_{GS} - V_{TH} = 3 - 0.7 = 2.3\ \mathrm{V}, \qquad V_{DS} = V_X = 1\ \mathrm{V} < 2.3\ \mathrm{V}.$$
+The transistor is in triode from the start and stays there as the capacitor discharges. The grounded source and bulk imply no body effect. Use the square-law triode model with $\beta=\mu_n C_{ox}W/L$.
 
-So **$M_1$ is in triode immediately**, and stays there as $V_X$ falls; there is no constant-current saturation phase.
+### Capacitor current and node equation
 
-### Step 3 — The discharge equation
+Take both branch currents as positive when they leave X. For the capacitor, $V_X$ is the voltage of its upper plate relative to ground. Its charge is $C_1 V_X$, so the current from X into the capacitor is $C_1\,dV_X/dt$. The drain current $I_D$ also points out of X. With no external current injected into X, Kirchhoff's current law gives
 
-$$I_D = \beta\left[(V_{GS} - V_{TH})V_{DS} - \tfrac12V_{DS}^2\right] = \beta\left[2.3V_X - \tfrac12V_X^2\right],$$
+$$
+C_1\frac{dV_X}{dt}+I_D=0.
+$$
 
-all drawn from $C_1$:
+In triode, the square-law drain current is
 
-$$C_1\frac{dV_X}{dt} = -\beta\left[2.3V_X - \tfrac12V_X^2\right].$$
+$$
+I_D=\beta\left[(V_{GS}-V_{TH})V_{DS}-\frac{V_{DS}^2}{2}\right].
+$$
 
-For small $V_X$ the quadratic term is negligible and $M_1$ is a resistor
+The grounded source gives $V_{DS}=V_X$. Substituting $V_{GS}-V_{TH}=2.3\ \mathrm{V}$ and factoring the result gives
 
-$$R_{on} = \frac{1}{\beta\,(V_{in} - V_{TH})} = \frac{1}{2.3\,\beta},$$
+$$
+\frac{dV_X}{dt}
+=-\frac{\beta}{C_1}V_X\left(2.3\ \mathrm{V}-\frac{V_X}{2}\right).
+$$
 
-so $V_X$ decays exponentially with time constant
+For $0<V_X\le1\ \mathrm{V}$, the bracket is positive. The channel draws positive current and the upper plate loses charge, so $V_X$ decreases.
 
-$$\tau = R_{on}C_1 = \frac{C_1}{2.3\,\beta} .$$
+### Separation of variables and exact solution
 
-### Step 4 — Exact solution
+Move the voltage factors to the left and integrate from $V_X(0^+)=1\ \mathrm{V}$ to $V_X(t)$. Using $v$ as the integration variable,
 
-With $a = 2.3$ V, separate the variables and use partial fractions:
+$$
+\int_{1\ \mathrm{V}}^{V_X(t)}
+\frac{dv}{v(2.3\ \mathrm{V}-v/2)}
+=-\frac{\beta}{C_1}\int_0^t ds,
+$$
 
-$$\frac{dV_X}{V_X\,(a - V_X/2)} = -\frac{\beta}{C_1}\,dt, \qquad \frac{1}{V_X\,(a - V_X/2)} = \frac{1}{a}\left(\frac{1}{V_X} + \frac{1}{2a - V_X}\right).$$
+where $s$ is the time integration variable. Split the voltage integrand into two terms that integrate to logarithms.
 
-Integrating:
+$$
+\frac{1}{v(2.3\ \mathrm{V}-v/2)}
+=\frac{1}{2.3\ \mathrm{V}}
+\left(\frac{1}{v}+\frac{1}{4.6\ \mathrm{V}-v}\right).
+$$
 
-$$\ln\frac{V_X}{2a - V_X} = -\frac{\beta a}{C_1}\,t + K = -\frac{t}{\tau} + K .$$
+The second term contributes a minus sign because $d(4.6\ \mathrm{V}-v)=-dv$. Combining the two logarithms gives the antiderivative $\ln[v/(4.6\ \mathrm{V}-v)]$ for the sum inside the parentheses. Evaluating the limits and defining $\tau=C_1/[\beta(2.3\ \mathrm{V})]$ gives
 
-At $t = 0$, $V_X = 1$ V, so $K = \ln\dfrac{1}{4.6 - 1} = \ln\dfrac{1}{3.6}$. Hence
+$$
+\ln\frac{V_X(t)}{4.6\ \mathrm{V}-V_X(t)}
+-\ln\frac{1\ \mathrm{V}}{4.6\ \mathrm{V}-1\ \mathrm{V}}
+=-\frac{t}{\tau}.
+$$
 
-$$\frac{V_X}{4.6 - V_X} = \frac{e^{-t/\tau}}{3.6} \quad\Longrightarrow\quad V_X(t) = \frac{4.6\,E}{1 + E}, \qquad E = \frac{e^{-t/\tau}}{3.6} .$$
+The initial ratio is $1/3.6$. Exponentiating and rearranging gives
 
-Checks:
+$$
+\frac{V_X(t)}{4.6\ \mathrm{V}-V_X(t)}=\frac{e^{-t/\tau}}{3.6}
+\quad\Longrightarrow\quad
+(1+3.6e^{t/\tau})V_X(t)=4.6\ \mathrm{V}.
+$$
 
-- $t = 0$: $E = 1/3.6 = 0.278$, so $V_X = 4.6\times0.278/1.278 = 1.00$ V. ✓
-- $t \gg \tau$: $E \ll 1$, so $V_X \approx 4.6E = 1.28\,e^{-t/\tau}$, a pure exponential tail to **0 V**.
+Thus the exact solution is
 
-**Initial slope:**
+$$
+V_X(t)=\frac{4.6\ \mathrm{V}}{1+3.6e^{t/\tau}}
+\quad(t\ge0).
+$$
 
-$$\left.\frac{dV_X}{dt}\right|_{0^+} = -\frac{\beta}{C_1}\left[2.3\times1 - \tfrac12\times1^2\right] = -\frac{1.8\,\beta}{C_1}\ (\mathrm{V^2}),$$
+At $t=0$ the denominator is 4.6, giving the required 1 V. At finite positive times the denominator grows and $0<V_X<1\ \mathrm{V}$, which confirms the triode condition throughout discharge. The voltage tends to zero as $t$ grows.
 
-against $-V_X/\tau = -2.3\beta/C_1$ for a pure exponential through the same starting point. The $-\tfrac12V_{DS}^2$ term makes the device conduct a little *less* than $R_{on}$ would at $V_{DS} = 1$ V, so the start is about 22 % slower than the exponential, and the curve becomes exactly exponential as $V_X \to 0$.
+### Initial current and slope
 
-### Step 5 — Numerical example
+Substitute $V_X(0^+)=1\ \mathrm{V}$ into the drain current, then use the node equation to find the initial slope.
 
-With $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF: $R_{on} = 1/(2.3\ \mathrm{mS}) = 435\ \Omega$, $\tau = 0.435$ ns, initial current $1.8$ mA, initial slope $-1.8$ V/ns.
+$$
+I_D(0^+)=\beta\left[(2.3\ \mathrm{V})(1\ \mathrm{V})-\frac{(1\ \mathrm{V})^2}{2}\right]
+=1.8\,\beta\,\mathrm{V^2},
+\qquad
+\left.\frac{dV_X}{dt}\right|_{0^+}=-\frac{I_D(0^+)}{C_1}
+=-\frac{1.8\,\beta\,\mathrm{V^2}}{C_1}.
+$$
 
-| $t$ (ns) | $V_X$ (V), exact | $I_D$ (mA) | $1\ \mathrm{V}\times e^{-t/\tau}$ for comparison |
-|---|---|---|---|
-| $0^-$ | 1.00 | 0 | — |
-| $0^+$ | 1.00 | 1.80 | 1.00 |
-| 0.25 | 0.62 | 1.24 | 0.56 |
-| 0.5 | 0.37 | 0.79 | 0.32 |
-| 1.0 | 0.125 | 0.28 | 0.10 |
-| 2.0 | 0.013 | 0.03 | 0.010 |
+### Approximation and calculated graph
 
-The exact curve lies slightly above the pure exponential (slower start) and then decays at the same rate.
+For $V_X\ll2.3\ \mathrm{V}$, the quadratic term becomes negligible. Then
 
-### Result
+$$
+R_{on}=\frac{1}{\beta(2.3\ \mathrm{V})},
+\qquad
+V_X(t)\simeq(1.2778\ \mathrm{V})e^{-t/\tau}
+\quad(t\gg\tau).
+$$
 
-- **$t < 0$:** $V_X = 1$ V ($M_1$ off).
-- **$t = 0$:** the gate goes to 3 V. Since $V_X = 1\ \mathrm{V} < V_{GS} - V_{TH} = 2.3$ V, **$M_1$ is immediately in triode** and discharges $C_1$.
-- **$t > 0$:** $C_1\,dV_X/dt = -\beta[2.3V_X - V_X^2/2]$. $V_X$ **decays from 1 V to 0**, approximately exponentially with time constant $\tau \approx C_1/(2.3\beta)$, i.e. $R_{on}C_1$ with $R_{on} = 1/[\beta(3 - 0.7)]$. Exactly, $V_X = 4.6E/(1 + E)$ with $E = e^{-t/\tau}/3.6$.
-- The initial slope is $-1.8\beta/C_1$ (V/s), slightly slower than the pure exponential at the start, and the decay becomes exactly exponential as $V_X \to 0$.
+The exact curve initially falls more slowly than $(1\ \mathrm{V})e^{-t/\tau}$: the slope magnitude is $1.8\,\beta\,\mathrm{V^2}/C_1$ rather than $2.3\,\beta\,\mathrm{V^2}/C_1$. Exponential behavior is an asymptotic approximation, not the exact finite-time waveform.
 
-**Common mistake.** Drawing a linear (constant-current) ramp at the start, as in saturation. That would require $V_{DS} > V_{GS} - V_{TH} = 2.3$ V, but the drain starts at only 1 V.
+The graph evaluates the exact solution with example parameters $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1\ \mathrm{pF}$. These give $R_{on}=434.78\ \Omega$, $\tau=0.43478\ \mathrm{ns}$, initial current $1.8\ \mathrm{mA}$, and initial slope $-1.8\ \mathrm{V/ns}$. The calculated voltages are $V_X(0.5\ \mathrm{ns})=0.37188\ \mathrm{V}$ and $V_X(1\ \mathrm{ns})=0.12464\ \mathrm{V}$. Other positive $\beta,C_1$ scale time through $C_1/\beta$.
 
-**Common mistake.** Letting $V_X$ settle at a nonzero value, or jump with the input. The gate stays at 3 V, so the channel drains $C_1$ completely, and $V_X$, a capacitor voltage, changes continuously.
+![R032: exact triode discharge waveform and time constant](/q/R032/solution-waveform.svg)
 
-**Common mistake.** Using $\beta V_{in}$ instead of $\beta(V_{in} - V_{TH})$ for the on-conductance. The deep-triode conductance is set by the overdrive, $\beta(3 - 0.7)\ \mathrm{V} = 2.3\beta$.
+**Common mistake:** A constant-current saturation ramp is inconsistent with the initial $V_{DS}=1\ \mathrm{V}$. The output neither jumps with the gate nor stops at a nonzero voltage: the conducting channel discharges the capacitor toward zero.

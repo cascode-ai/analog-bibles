@@ -1,102 +1,118 @@
 # Detailed solution - R036
 
-**Approach.** $C_1$ connects the input node (the gate of $M_1$) to node X (the source of $M_1$). At the step, X is carried up by the full 3 V. After the step, $M_1$ (drain at $V_{DD}$, gate at 3 V) is a source follower that charges X, with the other plate of $C_1$ held by the input source. Find the jump, the initial current, the final value including the body effect, and the shape of the approach.
+**Approach:** Use capacitor-voltage continuity to find the jump, then use the NMOS current and the node equation at X to find how the voltage rises. Neglect node-X parasitic capacitance and channel-length modulation ($\lambda=0$).
 
-### Step 1 — The state before the step
+### Step 1 — Capacitor voltage and the input step
 
-With the gate side positive, $V_X = V_{in} - V_{C1}$, so just before the step
-
-$$V_X(0^-) = 0 - 3 = -3\ \mathrm{V}.$$
-
-(The problem gives the capacitor voltage at that instant; we take it as the initial condition.)
-
-### Step 2 — The jump at $t = 0$
-
-$M_1$ can supply only a finite current, so the capacitor voltage cannot change instantly:
-
-$$V_X(0^+) = V_{in}(0^+) - V_{C1}(0^+) = 3 - 3 = 0\ \mathrm{V}.$$
-
-**$V_X$ jumps by +3 V, from −3 V to 0 V.**
-
-### Step 3 — After the step: region and initial current
-
-For $t > 0$:
+Define the capacitor voltage as $V_{C1}=V_{in}-V_X$, positive at the gate plate as shown. A finite branch current cannot change the charge on $C_1$ instantaneously, so $V_{C1}(0^+)=V_{C1}(0^-)=3\ \mathrm{V}$. The two values of $V_X$ follow from the change in $V_{in}$.
 
 $$
 \begin{aligned}
-V_{GS} &= 3 - V_X,\\
-V_{DS} &= 3 - V_X = V_{GS},\\
-V_{SB} &= V_X ,
+V_X(0^-)&=V_{in}(0^-)-V_{C1}(0^-)=0\ \mathrm{V}-3\ \mathrm{V}=-3\ \mathrm{V},\\
+V_X(0^+)&=V_{in}(0^+)-V_{C1}(0^+)=3\ \mathrm{V}-3\ \mathrm{V}=0\ \mathrm{V}.
 \end{aligned}
 $$
 
-so **$M_1$ is saturated whenever it conducts**. With the body effect,
+The negative source voltage at $0^-$ forward biases the junction to the grounded bulk. Use the given capacitor voltage as the initial condition at that instant. The channel model below describes the response after the step.
 
-$$V_{TH}(V_X) = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right)\ \mathrm{V}.$$
+### Step 2 — Operating region and the node equation
 
-The drain current flows from $V_{DD}$ into X, whose only other connection is the lower plate of $C_1$; the upper plate is now held at 3 V by $V_{in}$, so the current raises $V_X$:
-
-$$C_1\frac{dV_X}{dt} = \tfrac12\beta\left[3 - V_X - V_{TH}(V_X)\right]^2 .$$
-
-**At $t = 0^+$:** $V_X = 0$, so $V_{SB} = 0$, $V_{TH} = 0.7$ V and the overdrive is $3 - 0 - 0.7 = 2.3$ V:
-
-$$I_D(0^+) = \tfrac12\beta\,(2.3\ \mathrm{V})^2 = 2.65\,\beta\ \mathrm{V^2}, \qquad \left.\frac{dV_X}{dt}\right|_{0^+} = \frac{2.65\,\beta}{C_1}\ (\mathrm{V^2}).$$
-
-### Step 4 — Final value
-
-Charging stops when the overdrive vanishes:
-
-$$3 - V_X = V_{TH}(V_X) = 0.7 + 0.45\sqrt{0.9 + V_X} - 0.4269 .$$
-
-With $u = \sqrt{0.9 + V_X}$:
+The gate and drain are both held at 3 V after the step, the source is at $V_X$, and the bulk is grounded. Thus
 
 $$
-\begin{aligned}
-3 - (u^2 - 0.9) &= 0.2731 + 0.45u\\
-u^2 + 0.45u - 3.6269 &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 14.5076}}{2} = 1.6927\\
-V_{X,\infty} &= 1.6927^2 - 0.9 = 1.965\ \mathrm{V}.
-\end{aligned}
+V_{GS}=V_{DS}=3\ \mathrm{V}-V_X,\qquad V_{SB}=V_X.
 $$
 
-There $V_{TH} = 3 - 1.965 = 1.035$ V. So **$V_X \to$ ≈ 1.97 V** (without body effect, $3 - 0.7 = 2.3$ V), and at the end $C_1$ holds $3 - 1.965 = 1.035$ V.
+Use the body-effect threshold law before substituting the given parameters.
 
-### Step 5 — Shape: hyperbolic approach
+$$
+V_{TH}=V_{TH0}+\gamma
+\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right).
+$$
 
-With the overdrive $u_{ov} = 3 - V_X - V_{TH}(V_X)$ and $\eta = dV_{TH}/dV_X = \gamma/(2\sqrt{0.9 + V_X})$ (between 0.13 and 0.24 here),
+At $0^+$, $V_{SB}=0$, so $V_{TH}=V_{TH0}=0.7\ \mathrm{V}$ and $V_{GS}>V_{TH}$. The saturation condition is $V_{DS}\ge V_{GS}-V_{TH}$. Because $V_{DS}=V_{GS}$ and $V_{TH}>0$ for $V_X\ge0$, this holds whenever the device is on during charging.
 
-$$\frac{du_{ov}}{dt} = -(1 + \eta)\frac{\beta}{2C_1}\,u_{ov}^2 ,$$
+Take $I_D$ as positive into X from the channel and the capacitor current as positive from X toward the gate plate. Kirchhoff's current law equates these two currents. Use the saturated square-law model for $I_D$.
 
-whose solution falls as $1/t$ for large $t$. So $V_X$ rises **fast at first and then ever more slowly**, approaching 1.965 V **asymptotically** (a hyperbolic, not exponential, tail), because the current is proportional to the square of the remaining overdrive; $M_1$ never leaves saturation.
+$$
+C_1\frac{d(V_X-V_{in})}{dt}=I_D,\qquad
+I_D=\frac{\beta}{2}(V_{GS}-V_{TH})^2.
+$$
 
-### Step 6 — Numerical example
+After the step $V_{in}=3\ \mathrm{V}$ is constant. With $V_{TH}(V_X)$ obtained from the threshold law at $V_{SB}=V_X$, the charging equation becomes
 
-With $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF (initial current 2.65 mA, initial slope 2.65 V/ns), integrating the equation gives:
+$$
+C_1\frac{dV_X}{dt}
+=\frac{\beta}{2}\big[3\ \mathrm{V}-V_X-V_{TH}(V_X)\big]^2
+\qquad(V_{GS}>V_{TH}).
+$$
 
-| $t$ (ns) | $V_X$ (V) | overdrive (V) | $I_D$ (mA) | $V_X$ without body effect (V) |
-|---|---|---|---|---|
-| $0^-$ | −3.00 | — | — | −3.00 |
-| $0^+$ | 0 | 2.30 | 2.65 | 0 |
-| 0.25 | 0.49 | 1.71 | 1.46 | 0.51 |
-| 0.5 | 0.78 | 1.36 | 0.93 | 0.84 |
-| 1 | 1.11 | 0.98 | 0.48 | 1.23 |
-| 2 | 1.42 | 0.62 | 0.20 | 1.60 |
-| 5 | 1.70 | 0.30 | 0.046 | 1.96 |
-| 10 | 1.82 | 0.16 | 0.013 | 2.12 |
-| 50 | 1.93 | 0.035 | 0.0006 | 2.26 |
-| ∞ | 1.965 | 0 | 0 | 2.30 |
+At $0^+$, the overdrive is $3\ \mathrm{V}-0.7\ \mathrm{V}=2.3\ \mathrm{V}$. Thus
 
-(The last column is the exact no-body-effect solution $V_X = 2.3 - 2.3/(1 + 2.3\beta t/2C_1)$ V.)
+$$
+I_D(0^+)=\frac{\beta}{2}(2.3\ \mathrm{V})^2
+=(2.645\ \mathrm{V^2})\beta,\qquad
+\left.\frac{dV_X}{dt}\right|_{0^+}=\frac{I_D(0^+)}{C_1}.
+$$
 
-### Result
+### Step 3 — Final voltage with body effect
 
-- **Just before the step** $V_X = 0 - 3 = -3$ V; **at $t = 0$ it jumps by 3 V to 0 V**.
-- **Then** $M_1$ (drain at $V_{DD}$, gate at 3 V, source at X) is **saturated** (because $V_{DS} = 3 - V_X \ge V_{GS}$) and charges X, whose capacitor's other plate is held by $V_{in}$.
-  - Initial current $\tfrac12\beta(3 - 0.7)^2 = 2.65\beta$, initial slope $2.65\beta/C_1$.
-  - $V_X$ rises with decreasing slope toward **≈ 1.97 V**, where $3 - V_X = V_{TH}(V_X)$ (2.3 V without body effect), approaching it asymptotically (hyperbolic tail).
+As $V_X$ rises, $V_{GS}$ falls and $V_{TH}$ rises. The current tends to zero as the overdrive tends to zero. The final voltage $V_{X,\infty}$ therefore satisfies
 
-**Common mistake.** Letting $V_X$ rise all the way to 3 V. A source follower raises its output only until $V_{GS}$ drops to $V_{TH}$; with the body effect raising $V_{TH}$ to about 1.03 V, that is about 1.97 V.
+$$
+V_{DD}-V_{X,\infty}
+=V_{TH0}+\gamma\left(
+\sqrt{2|\phi_F|+V_{X,\infty}}-\sqrt{2|\phi_F|}
+\right).
+$$
 
-**Common mistake.** Missing the jump, or making it go the wrong way. At the instant of the step $C_1$ keeps its 3 V, so X moves exactly with the input: from −3 V up to 0 V.
+Let $u=\sqrt{2|\phi_F|+V_{X,\infty}}$, so $V_{X,\infty}=u^2-2|\phi_F|$. This removes the square root involving the unknown.
 
-**Common mistake.** Letting $V_X$ stay at 0 V after the jump, or fall. Right after the step $V_{GS} = V_{DS} = 3$ V, so $M_1$ conducts strongly *into* X and charges it upward.
+$$
+u^2+\gamma u
+=V_{DD}-V_{TH0}+2|\phi_F|+\gamma\sqrt{2|\phi_F|}.
+$$
+
+Substituting the given parameters yields $u^2+(0.45\ \mathrm{V}^{1/2})u\approx3.6269\ \mathrm{V}$. The square root defines $u\ge0$, so take the nonnegative quadratic root.
+
+$$
+u=\frac{-\gamma+\sqrt{\gamma^2+4\left(V_{DD}-V_{TH0}+2|\phi_F|+\gamma\sqrt{2|\phi_F|}\right)}}{2}
+\approx1.69269\ \mathrm{V}^{1/2}.
+$$
+
+$$
+
+V_{X,\infty}=u^2-2|\phi_F|\approx1.965\ \mathrm{V}.
+$$
+
+At this limit, $V_{GS}=V_{TH}\approx1.035\ \mathrm{V}$. This is also the final voltage across $C_1$, with the gate side positive. Setting $\gamma=0$ instead gives $V_{DD}-V_{TH0}=2.30\ \mathrm{V}$.
+
+### Step 4 — Shape of the rise and waveform
+
+Write the remaining overdrive as $V_{ov}=3\ \mathrm{V}-V_X-V_{TH}(V_X)$. The threshold law gives
+
+$$
+\frac{dV_{TH}}{dV_X}=\frac{\gamma}{2\sqrt{2|\phi_F|+V_X}}>0.
+$$
+
+As $V_X$ rises, $dV_{ov}/dt=-(1+dV_{TH}/dV_X)\,dV_X/dt$. Substituting the node equation and differentiating the reciprocal gives
+
+$$
+\frac{d}{dt}\left(\frac{1}{V_{ov}}\right)
+=\left(1+\frac{dV_{TH}}{dV_X}\right)\frac{\beta}{2C_1}.
+$$
+
+The right-hand side is positive and tends to a finite positive value. The reciprocal overdrive therefore grows approximately linearly at late times. Near the final voltage the overdrive is proportional to $V_{X,\infty}-V_X$, so the remaining voltage error falls as $1/t$. The plotted voltage rises from 0 V with a decreasing slope and approaches 1.965 V.
+
+For the plot, take $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1\ \mathrm{pF}$. The initial slope is $2.645\ \mathrm{mA}/(1\ \mathrm{pF})=2.645\ \mathrm{V/ns}$. Numerical integration of the charging equation gives these representative points.
+
+| $t$ (ns) | $V_X$ (V) |
+|---|---:|
+| $0^+$ | 0 |
+| 0.5 | 0.780 |
+| 1 | 1.113 |
+| 5 | 1.700 |
+| 50 | 1.935 |
+| $\infty$ | 1.965 |
+
+![R036 source-follower waveform](/q/R036/solution-vx.svg)

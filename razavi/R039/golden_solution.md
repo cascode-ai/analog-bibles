@@ -2,12 +2,34 @@
 
 ## Reference answer
 
-Proof (saturated device, small-signal model with $C_{GS}$, $C_{GD}$, and junction capacitances; $C_{GB}$ neglected in saturation):
-- Drive the gate with a small-signal current $I_{in}$ and short source and drain (and bulk) to ac ground. $C_{SB}$ and $C_{DB}$ then connect ac-grounded nodes and carry no signal current, which is why the junction capacitances do not enter $f_T$.
-- All of $I_{in}$ flows into $C_{GS}$ and $C_{GD}$ in parallel: $V_{gs} = I_{in}/[j\omega(C_{GS} + C_{GD})]$.
-- Output (drain) current: $I_{out} = g_mV_{gs}$ (neglecting the feedforward current $j\omega C_{GD}V_{gs}$ through $C_{GD}$, which is small compared with $g_mV_{gs}$ for $C_{GD} \ll C_{GS}$).
-- Current gain $|I_{out}/I_{in}| = g_m/[\omega(C_{GS} + C_{GD})]$, equal to 1 at $\omega_T = g_m/(C_{GS} + C_{GD})$, so $f_T = g_m/[2\pi(C_{GS} + C_{GD})]$.
+### Test circuit
+
+The saturated MOSFET has current drive at G and AC ground at the source, drain and bulk. The junction capacitors carry no signal current because both ends are at AC ground. The model neglects $C_{GB}$ in saturation.
+
+![Small-signal test circuit for the transit-frequency proof](/q/R039/solution-ft-test.svg)
+
+### Current gain
+
+At G, $I_{in}$ charges both gate capacitors. At D, the two blue arrows mark the incoming terms in the drain equation.
+
+$$
+I_{in}=j\omega(C_{GS}+C_{GD})V_{gs},
+\qquad
+I_{out}+j\omega C_{GD}V_{gs}=g_mV_{gs}.
+$$
+
+Near unity gain, the drain feedforward term is small if $C_{GD}\ll C_{GS}$. Taking $I_{out}\approx g_mV_{gs}$ and setting the current gain magnitude to one gives the textbook result.
+
+$$
+\left|\frac{I_{out}}{I_{in}}\right|\approx
+\frac{g_m}{\omega(C_{GS}+C_{GD})},
+\qquad
+f_T\approx\frac{g_m}{2\pi(C_{GS}+C_{GD})}.
+$$
 
 ## Grading notes
 
-+2: current drive at the gate with source and drain at ac ground, $V_{gs} = I_{in}/[j\omega(C_{GS}+C_{GD})]$, $I_{out} = g_mV_{gs}$, unity-gain condition giving the formula; noting why junction capacitances drop out (and that the $C_{GD}$ feedforward is neglected) is a plus. Writing $I_{out} = g_mV_{gs}$ without remarking that the $C_{GD}$ feedforward current is neglected is the standard textbook step and does not cost a point. +1: correct derivation with a loose step (e.g., no justification for ignoring $C_{SB}$/$C_{DB}$). 0: result restated with only a partial argument. -2 (asserted as fact): a different final expression (e.g., including $C_{DB}$ or $C_{SB}$, or only $C_{GS}$ claimed as exact), or a voltage-gain argument presented as the proof.
+- +2 for gate current drive, AC-grounded source and drain, the gate and drain current relations, and the unity-gain condition. The textbook step $I_{out}=g_mV_{gs}$ is acceptable without further justification.
+- +1 for a correct derivation with a missing justification, such as why the junction capacitors carry no signal current.
+- 0 for restating the result with only a partial argument.
+- −2 for asserting a different formula that includes junction capacitance or uses only $C_{GS}$, or for presenting a voltage-gain argument as the proof.

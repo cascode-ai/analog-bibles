@@ -1,107 +1,55 @@
 # Detailed solution - R031
 
-**Approach.** $M_1$ is a source follower (drain at $V_{DD}$, output at the source) driving $C_1$. Before the step it is off; after the step its gate is at 3 V and it charges $C_1$ upward. With gate and drain at the same potential it is always saturated, which gives a nonlinear differential equation. The charging stops when $V_{GS}$ falls to $V_{TH}$, and the body effect sets that final value. Find the initial current, the final value and the shape of the approach.
+### Model and initial condition
 
-### Step 1 — Before the step ($t < 0$)
+**Approach:** Apply capacitor-voltage continuity, write the saturation charging equation including body effect, and find its zero-current limit. The plotted quantity is $V_X(t)$.
 
-$V_{GS} = 0 - 1 = -1\ \mathrm{V} < V_{TH}$, so **$M_1$ is off** and $V_X$ stays at 1 V.
+The figure places $C_1$ between the source and ground; the drain is at $V_{DD}=3\ \mathrm{V}$ and the bulk is grounded. For $t<0$, $V_{GS}=-1\ \mathrm{V}$, so $M_1$ is off and $V_X=1\ \mathrm{V}$. With no parasitic capacitive coupling, finite channel current cannot cause an instantaneous jump: $V_X(0^+)=1\ \mathrm{V}$.
 
-### Step 2 — After the step: the governing equation
-
-For $t > 0$:
+Use the long-channel square-law model with $\beta=\mu_n C_{ox}W/L$, neglecting channel-length modulation and subthreshold current. For $t>0$,
 
 $$
-\begin{aligned}
-V_{GS} &= 3 - V_X,\\
-V_{DS} &= 3 - V_X,\\
-V_{SB} &= V_X .
-\end{aligned}
+V_{GS}=V_{DS}=3\ \mathrm{V}-V_X,\qquad V_{SB}=V_X,
 $$
 
-Since $V_{DS} = V_{GS}$, **$M_1$ is saturated whenever it conducts**. With the body effect,
+so the saturation condition $V_{DS}\ge V_{GS}-V_{TH}$ holds throughout conduction.
 
-$$V_{TH}(V_X) = 0.7 + 0.45\left(\sqrt{0.9 + V_X} - 0.9487\right)\ \mathrm{V},$$
+### Charging equation and key values
 
-and all the drain current charges $C_1$:
-
-$$C_1\frac{dV_X}{dt} = \tfrac12\beta\left[3 - V_X - V_{TH}(V_X)\right]^2 .$$
-
-### Step 3 — Initial current and slope
-
-At $t = 0^+$, $V_X = 1$ V (a capacitor voltage cannot jump):
+The body-effect threshold and capacitor KCL are
 
 $$
-\begin{aligned}
-V_{TH} &= 0.7 + 0.45\left(\sqrt{1.9} - 0.9487\right) = 0.7 + 0.45\times0.4297 = 0.893\ \mathrm{V},\\
-V_{ov} &= V_{GS} - V_{TH} = 2 - 0.893 = 1.107\ \mathrm{V},\\
-I_D(0^+) &= \tfrac12\beta\,(1.107\ \mathrm{V})^2 = 0.61\,\beta\ \mathrm{V^2},\\
-\left.\frac{dV_X}{dt}\right|_{0^+} &= \frac{0.61\,\beta}{C_1}\ (\mathrm{V^2}) .
-\end{aligned}
+V_{TH}(V_X)=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_X}-\sqrt{2|\phi_F|}\right),
 $$
 
-So $V_X$ starts rising from 1 V with a finite slope, without a jump.
-
-### Step 4 — Final value
-
-The charging stops when the overdrive reaches zero:
-
-$$3 - V_X = V_{TH}(V_X) = 0.7 + 0.45\sqrt{0.9 + V_X} - 0.4269 .$$
-
-With $u = \sqrt{0.9 + V_X}$ ($V_X = u^2 - 0.9$):
-
 $$
-\begin{aligned}
-3 - u^2 + 0.9 &= 0.2731 + 0.45u\\
-u^2 + 0.45u - 3.6269 &= 0\\
-u &= \frac{-0.45 + \sqrt{0.2025 + 14.5076}}{2} = \frac{-0.45 + 3.8354}{2} = 1.6927\\
-V_{X,\infty} &= u^2 - 0.9 = 2.8652 - 0.9 = 1.965\ \mathrm{V}.
-\end{aligned}
+C_1\frac{dV_X}{dt}=I_D
+=\frac{\beta}{2}\left[3\ \mathrm{V}-V_X-V_{TH}(V_X)\right]^2 .
 $$
 
-Check: $V_{TH}(1.965\ \mathrm{V}) = 0.7 + 0.45(1.6927 - 0.9487) = 1.035$ V and $3 - 1.965 = 1.035$ V. ✓
+At $V_X=1\ \mathrm{V}$, substitution of $V_{TH0}=0.7\ \mathrm{V}$, $\gamma=0.45\ \mathrm{V^{1/2}}$ and $2|\phi_F|=0.9\ \mathrm{V}$ gives
 
-So $V_X \to$ **≈ 1.97 V**. Without body effect the limit would be $3 - 0.7 = 2.3$ V: raising the source about 2 V above the grounded bulk raises the threshold to about 1.03 V and costs about 0.33 V of output.
+$$
+V_{TH}(1\ \mathrm{V})=0.8934\ \mathrm{V},\quad
+I_D(0^+)=0.6123\,\beta\,\mathrm{V^2},\quad
+\left.\frac{dV_X}{dt}\right|_{0^+}
+=\frac{0.6123\,\beta\,\mathrm{V^2}}{C_1}.
+$$
 
-### Step 5 — Shape of the approach
+The equilibrium overdrive is zero. Solving $3\ \mathrm{V}-V_X=V_{TH}(V_X)$ gives $V_{X,\infty}=1.96520\ \mathrm{V}$ and $V_{TH}=1.03480\ \mathrm{V}$. Body effect lowers the limit from the no-body-effect result of 2.3 V.
 
-With the overdrive $u_{ov} = 3 - V_X - V_{TH}(V_X)$ and $\eta = dV_{TH}/dV_X = \gamma/(2\sqrt{0.9 + V_X})$ (about 0.13–0.16 here),
+### Shape and calculated graph
 
-$$\frac{du_{ov}}{dt} = -(1 + \eta)\frac{dV_X}{dt} = -(1 + \eta)\frac{\beta}{2C_1}\,u_{ov}^2 .$$
+As $V_X$ rises, both $V_{GS}$ and the overdrive decrease, so the charging slope decreases. Near equilibrium, define $\Delta V=V_{X,\infty}-V_X$ and $\eta_\infty=\gamma/[2\sqrt{2|\phi_F|+V_{X,\infty}}]$. Linearizing the overdrive gives
 
-With $\eta$ nearly constant, its solution is
+$$
+\frac{d\Delta V}{dt}\simeq-\frac{\beta(1+\eta_\infty)^2}{2C_1}(\Delta V)^2 .
+$$
 
-$$u_{ov}(t) \approx \frac{u_{ov}(0)}{1 + (1 + \eta)\dfrac{\beta\,u_{ov}(0)}{2C_1}\,t},$$
+Consequently $\Delta V\propto1/t$ asymptotically. This statement concerns the late-time limit; the complete curve follows the nonlinear equation above.
 
-so the remaining distance to the final value falls as **$1/t$ (hyperbolic), not exponentially**: the current is proportional to the *square* of the remaining overdrive, and $M_1$ stays saturated all along. In a real device subthreshold conduction would keep pushing $V_X$ up very slowly beyond this value.
+The graph integrates that equation with example parameters $\beta=1\ \mathrm{mA/V^2}$ and $C_1=1\ \mathrm{pF}$. It gives $V_X(1\ \mathrm{ns})=1.37323\ \mathrm{V}$ and $V_X(10\ \mathrm{ns})=1.83181\ \mathrm{V}$, with initial slope $0.6123\ \mathrm{V/ns}$. Other positive $\beta,C_1$ scale the time axis through $C_1/\beta$.
 
-### Step 6 — Numerical example
+![R031: calculated source-follower charging waveform and asymptote](/q/R031/solution-waveform.svg)
 
-With $\beta = 1\ \mathrm{mA/V^2}$ and $C_1 = 1$ pF (initial current 0.61 mA, initial slope 0.61 V/ns), numerical integration gives:
-
-| $t$ (ns) | $V_X$ (V) | overdrive (V) | $I_D$ (mA) | $V_X$ without body effect (V) |
-|---|---|---|---|---|
-| $0^-$ | 1.00 | — (off) | 0 | 1.00 |
-| $0^+$ | 1.00 | 1.107 | 0.61 | 1.00 |
-| 0.5 | 1.23 | 0.84 | 0.35 | 1.32 |
-| 1 | 1.37 | 0.68 | 0.23 | 1.51 |
-| 2 | 1.54 | 0.49 | 0.12 | 1.74 |
-| 5 | 1.73 | 0.27 | 0.035 | 1.99 |
-| 10 | 1.83 | 0.15 | 0.011 | 2.13 |
-| 50 | 1.94 | 0.034 | 0.0006 | 2.26 |
-| ∞ | 1.965 | 0 | 0 | 2.30 |
-
-(The last column uses the exact no-body-effect solution $V_X = 2.3 - 1.3/(1 + 1.3\beta t/2C_1)$.)
-
-### Result
-
-- **$t < 0$:** $V_X = 1$ V ($M_1$ off, $V_{GS} = -1$ V).
-- **$t > 0$:** the source follower charges $C_1$. $M_1$ is always saturated ($V_{DS} = V_{GS}$), with $C_1\,dV_X/dt = \tfrac12\beta[3 - V_X - V_{TH}(V_X)]^2$.
-  - At $t = 0^+$: $V_{GS} = 2$ V, $V_{TH}(V_{SB} = 1\ \mathrm{V}) = 0.89$ V, initial current $\tfrac12\beta(1.11)^2 = 0.61\beta$ and initial slope $0.61\beta/C_1$.
-  - $V_X$ rises from 1 V, fast at first and then ever more slowly, approaching **≈ 1.97 V** asymptotically. This is where $3 - V_X = V_{TH}(V_X)$, i.e. $V_X + 0.7 + 0.45(\sqrt{0.9 + V_X} - \sqrt{0.9}) = 3$, giving $V_X \approx 1.965$ V with $V_{TH} \approx 1.03$ V. Without body effect the limit would be 2.3 V.
-  - The approach is hyperbolic ($\propto 1/t$), not exponential, because the overdrive shrinks to zero.
-
-**Common mistake.** Letting $V_X$ jump with the input, or settle at 3 V. $V_X$ is a capacitor voltage, and the follower can raise its source only to one threshold below the gate.
-
-**Common mistake.** Using $V_{TH} = 0.7$ V for the final value, which gives 2.3 V. With the source near 2 V above the grounded bulk, the threshold is about 1.03 V, so the output stops near 1.97 V.
-
-**Common mistake.** Drawing an $RC$-like exponential approach. The device never enters triode, and its current falls as the square of the remaining overdrive, so the final value is approached as $1/t$.
+**Common mistake:** A gate step does not directly add 3 V to the voltage of this grounded capacitor. The output has no jump, remains in saturation while charging, and approaches the body-effect limit rather than 3 V. Real subthreshold conduction can continue beyond the square-law cutoff limit.

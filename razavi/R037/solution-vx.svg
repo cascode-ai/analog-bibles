@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" role="img">
+<title>R037 bootstrap step at the ideal gate</title>
+<desc>The output steps from 3 V to 6 V at time zero. It is constant on both sides of the step.</desc>
+<rect width="800" height="460" fill="white"/>
+<text x="26" y="42" font-size="23" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">R037 bootstrap step at the ideal gate</text>
+<text x="26" y="77" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">Gate parasitic capacitances omitted</text>
+<line x1="132.00" y1="356.00" x2="744.00" y2="356.00" stroke="#394859" />
+<line x1="132.00" y1="356.00" x2="132.00" y2="118.00" stroke="#394859" />
+<line x1="132.00" y1="330.00" x2="744.00" y2="330.00" stroke="#d5dee7" />
+<line x1="127.00" y1="330.00" x2="132.00" y2="330.00" stroke="#394859" />
+<text x="117" y="335" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">0</text>
+<line x1="132.00" y1="240.00" x2="744.00" y2="240.00" stroke="#d5dee7" />
+<line x1="127.00" y1="240.00" x2="132.00" y2="240.00" stroke="#394859" />
+<text x="117" y="245" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">3</text>
+<line x1="132.00" y1="150.00" x2="744.00" y2="150.00" stroke="#d5dee7" />
+<line x1="127.00" y1="150.00" x2="132.00" y2="150.00" stroke="#394859" />
+<text x="117" y="155" font-size="15" text-anchor="end" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">6</text>
+<line x1="390.00" y1="118.00" x2="390.00" y2="356.00" stroke="#8c9baa" stroke-dasharray="4 5"/>
+<line x1="390.00" y1="356.00" x2="390.00" y2="362.00" stroke="#394859" />
+<text x="390.0" y="384" font-size="15" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">0</text>
+<text x="26" y="244" font-size="18" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">V_X (V)</text>
+<text x="438" y="423" font-size="18" text-anchor="middle" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">t (s, schematic)</text>
+<line x1="132.00" y1="240.00" x2="390.00" y2="240.00" stroke="#1261a0" stroke-width="3"/>
+<line x1="390.00" y1="150.00" x2="744.00" y2="150.00" stroke="#1261a0" stroke-width="3"/>
+<circle cx="390.00" cy="240.00" r="4.5" fill="white" stroke="#1261a0" stroke-width="2"/>
+<circle cx="390.00" cy="150.00" r="4.5" fill="#1261a0" stroke="#1261a0" stroke-width="2"/>
+<text x="209" y="214" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">3 V before the step</text>
+<text x="461" y="135" font-size="16" text-anchor="start" font-family="Arial, Microsoft YaHei, sans-serif" fill="#263749">6 V after the step</text>
+</svg>

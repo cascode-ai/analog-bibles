@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="title desc">
+<title id="title">Small-signal circuit for the transit-frequency test</title>
+<desc id="desc">Input current enters gate G. The gate-source capacitor returns to AC ground and the gate-drain capacitor connects G to D. Drain D is shorted to AC ground, with output current defined toward D. The controlled current source points from D toward the source.</desc>
+<rect width="760" height="390" fill="#fff"/>
+<g fill="#20333f" font-family="Arial, Microsoft YaHei, sans-serif">
+<text x="36" y="41" font-size="22">Small-signal circuit for the transit-frequency test</text>
+<text x="36" y="69" font-size="15">Source and bulk at AC ground. The drain is AC-shorted.</text>
+</g>
+<g fill="none" stroke="#20333f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 202 V137 H351 M369 137 H623 V296 H120 V248 M258 137 V215 M258 233 V296 M491 137 V199 M491 251 V296"/>
+<path d="M351 124 V150 M369 124 V150 M245 215 H271 M245 233 H271"/>
+<circle cx="120" cy="225" r="23"/>
+<path d="M491 199 L515 225 L491 251 L467 225 Z"/>
+<path d="M364 296 V320 M351 320 H377 M355 326 H373 M360 332 H368"/>
+</g>
+<g fill="#20333f">
+<circle cx="258" cy="137" r="4"/>
+<circle cx="491" cy="137" r="4"/>
+<circle cx="258" cy="296" r="4"/>
+<circle cx="364" cy="296" r="4"/>
+<circle cx="491" cy="296" r="4"/>
+</g>
+<g fill="none" stroke="#20333f" stroke-width="2" stroke-linecap="round">
+<path d="M120 237 V218 M491 213 V232"/>
+</g>
+<g fill="#20333f">
+<path d="M120 211 L115 220 H125 Z M491 239 L486 230 H496 Z"/>
+</g>
+<g fill="none" stroke="#176596" stroke-width="2.2" stroke-linecap="round">
+<path d="M329 112 H387 M600 112 H545"/>
+</g>
+<g fill="#176596">
+<path d="M395 112 L385 107 V117 Z M537 112 L547 107 V117 Z"/>
+</g>
+<g fill="#20333f" font-family="Arial, Microsoft YaHei, sans-serif" font-size="17">
+<text x="247" y="118" font-size="17">G</text>
+<text x="485" y="118" font-size="17">D</text>
+<text x="82" y="230" font-size="17" text-anchor="end">I<tspan dy="4" font-size="12">in</tspan></text>
+<text x="280" y="228" font-size="17">C<tspan dy="4" font-size="12">GS</tspan></text>
+<text x="360" y="175" font-size="17" text-anchor="middle">C<tspan dy="4" font-size="12">GD</tspan></text>
+<text x="526" y="231" font-size="17">g<tspan dy="4" font-size="12">m</tspan><tspan dy="-4">V</tspan><tspan dy="4" font-size="12">gs</tspan></text>
+<text x="637" y="265" font-size="15">AC short</text>
+<text x="364" y="356" font-size="15" text-anchor="middle">Source and bulk AC ground</text>
+</g>
+<g fill="#176596" font-family="Arial, Microsoft YaHei, sans-serif">
+<text x="361" y="98" font-size="15" text-anchor="middle">jωC<tspan dy="4" font-size="11">GD</tspan><tspan dy="-4">V</tspan><tspan dy="4" font-size="11">gs</tspan></text>
+<text x="568" y="98" font-size="16" text-anchor="middle">I<tspan dy="4" font-size="11">out</tspan></text>
+</g>
+</svg>

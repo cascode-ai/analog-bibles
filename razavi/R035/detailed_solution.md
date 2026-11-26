@@ -1,6 +1,8 @@
 # Detailed solution - R035
 
-**Approach.** $C_1$ connects the input node (top) to node X, and $M_1$, with its gate at $V_{DD}$, connects the same two nodes. At the step the capacitor carries X down by the full 3 V, to −3 V. Then X is the source of $M_1$, which is in triode and discharges $C_1$, bringing X back to 0 V.
+First use a fixed threshold and omit body junction current.
+
+Approach: $C_1$ connects the input node (top) to node X, and $M_1$, with its gate at $V_{DD}$, connects the same two nodes. At the step the capacitor carries X down by the full 3 V, to −3 V. Then X is the source of $M_1$, which is in triode and discharges $C_1$, bringing X back to 0 V.
 
 ### Step 1 — The state before the step
 
@@ -16,7 +18,7 @@ When $V_{in}$ falls to 0, the capacitor voltage cannot change instantly (only a 
 
 $$V_X(0^+) = V_{in}(0^+) - V_{C1}(0^+) = 0 - 3 = -3\ \mathrm{V}.$$
 
-**$V_X$ jumps down to −3 V.**
+$V_X$ jumps down to −3 V.
 
 ### Step 3 — Source terminal and region
 
@@ -24,16 +26,16 @@ For $t > 0$ the channel terminals are at 0 V (top node) and $V_X < 0$, so the lo
 
 $$
 \begin{aligned}
-V_{GS} &= 3 - V_X \quad (= 6\ \mathrm{V}\ \text{at}\ t = 0^+),\\
+V_{GS} &= 3\ \mathrm{V} - V_X \quad (= 6\ \mathrm{V}\ \text{at}\ t = 0^+),\\
 V_{DS} &= 0 - V_X = -V_X \quad (= 3\ \mathrm{V}\ \text{at}\ t = 0^+).
 \end{aligned}
 $$
 
-With $V_{TH} = 0.7$ V (no body-effect data given), the overdrive is $2.3 - V_X$, and the triode condition $V_{DS} < V_{GS} - V_{TH}$ reads
+With $V_{TH} = 0.7$ V (no body-effect data given), the overdrive is $2.3\ \mathrm{V} - V_X$, and the triode condition $V_{DS} < V_{GS} - V_{TH}$ reads
 
-$$-V_X < 2.3 - V_X \quad\Longleftrightarrow\quad 0 < 2.3,$$
+$$-V_X < 2.3\ \mathrm{V} - V_X \quad\Longleftrightarrow\quad 0 < 2.3\ \mathrm{V},$$
 
-always true: **$M_1$ is in triode throughout**, its gate always more than one threshold above both channel terminals.
+always true: $M_1$ is in triode throughout, its gate always more than one threshold above both channel terminals.
 
 ### Step 4 — The recovery equation
 
@@ -41,20 +43,20 @@ The channel current flows from the top node to X, whose only other connection is
 
 $$C_1\frac{dV_X}{dt} = I_D = \beta\left[(V_{GS} - V_{TH})V_{DS} - \tfrac12V_{DS}^2\right].$$
 
-With $y = -V_X = V_{DS} > 0$, the remaining capacitor voltage, $V_{GS} - V_{TH} = 2.3 + y$ and
+With $y = -V_X = V_{DS} > 0$, the remaining capacitor voltage, $V_{GS} - V_{TH} = (2.3\ \mathrm{V}) + y$ and
 
 $$
 \begin{aligned}
-I_D &= \beta\left[(2.3 + y)y - \tfrac12y^2\right] = \beta\left[2.3y + \tfrac12y^2\right],\\
-C_1\frac{dy}{dt} &= -\beta\left[2.3y + \tfrac12y^2\right].
+I_D &= \beta\left[((2.3\ \mathrm{V}) + y)y - \tfrac12y^2\right] = \beta\left[(2.3\ \mathrm{V})y + \tfrac12y^2\right],\\
+C_1\frac{dy}{dt} &= -\beta\left[(2.3\ \mathrm{V})y + \tfrac12y^2\right].
 \end{aligned}
 $$
 
-**Initial rate.** At $y = 3$ V:
+Initial rate: At $y = 3$ V:
 
-$$I_D(0^+) = \beta\left[2.3\times3 + \tfrac12\times9\right]\mathrm{V^2} = \beta\,(6.9 + 4.5)\ \mathrm{V^2} = 11.4\,\beta\ \mathrm{V^2},$$
+$$I_D(0^+) = \beta[(2.3\ \mathrm{V})(3\ \mathrm{V}) + (3\ \mathrm{V})^2/2] = 11.4\,\beta\,\mathrm{V^2}.$$
 
-larger than the $6.9\beta$ that a fixed resistor $R_{on} = 1/(2.3\beta)$ would give: the initial $V_{GS}$ of 6 V makes the channel very conductive, so the recovery is **fast at first**.
+larger than the $6.9\,\beta\,\mathrm{V^2}$ that a fixed resistor $R_{on} = 1/((2.3\ \mathrm{V})\beta)$ would give: the initial $V_{GS}$ of 6 V makes the channel very conductive, so the recovery is fast at first.
 
 ### Step 5 — Exact solution
 
@@ -64,15 +66,15 @@ $$\frac{1}{y\,(a + y/2)} = \frac{1}{a}\left(\frac{1}{y} - \frac{1}{2a + y}\right
 
 Integrating $\dfrac{dy}{y(a + y/2)} = -\dfrac{\beta}{C_1}dt$:
 
-$$\ln\frac{y}{2a + y} = -\frac{t}{\tau} + K, \qquad \tau = \frac{C_1}{2.3\,\beta} = R_{on}C_1,\quad R_{on} = \frac{1}{\beta\,(3 - 0.7)} .$$
+$$\ln\frac{y}{2a + y} = -\frac{t}{\tau} + K, \qquad \tau = \frac{C_1}{(2.3\ \mathrm{V})\beta} = R_{on}C_1,\quad R_{on} = \frac{1}{\beta(2.3\ \mathrm{V})} .$$
 
-At $t = 0$, $y = 3$: $K = \ln\dfrac{3}{4.6 + 3} = \ln 0.395$. So, with $F = 0.395\,e^{-t/\tau}$,
+At $t = 0$, $y = 3$: $K = \ln\dfrac{3}{4.6 + 3} = \ln 0.395$. So, with $F = \frac{3}{7.6}e^{-t/\tau}$,
 
-$$\frac{y}{4.6 + y} = F \quad\Longrightarrow\quad y = \frac{4.6F}{1 - F}, \qquad V_X(t) = -\frac{4.6F}{1 - F}\ \mathrm{V}.$$
+$$\frac{y}{4.6\ \mathrm{V} + y} = F \quad\Longrightarrow\quad y = \frac{4.6\ \mathrm{V}\,F}{1 - F}, \qquad V_X(t) = -\frac{4.6F}{1 - F}\ \mathrm{V}.$$
 
-Checks: at $t = 0$, $y = 4.6(0.395)/0.605 = 3.0$ V ✓. For $t \gg \tau$, $y \approx 4.6\times0.395\,e^{-t/\tau} = 1.82\,e^{-t/\tau}$ V: an **exponential tail with time constant $C_1/(2.3\beta)$**, as $V_{GS} \to 3$ V and $M_1$ becomes the resistor $R_{on}$.
+Checks: at $t = 0$, $y = 4.6(0.395)/0.605 = 3.0$ V ✓. For $t \gg \tau$, $y \approx 4.6\times0.395\,e^{-t/\tau} = 1.82\,e^{-t/\tau}$ V: an exponential tail with time constant $C_1/((2.3\ \mathrm{V})\beta)$, as $V_{GS} \to 3$ V and $M_1$ becomes the resistor $R_{on}$.
 
-**Final state:** $V_X = 0$, $C_1$ fully discharged (both plates at 0 V), $I_D = 0$.
+Final state: $V_X = 0$, $C_1$ fully discharged (both plates at 0 V), $I_D = 0$.
 
 | $t/\tau$ | $V_X$ (V) | $I_D/\beta$ (V²) | Pure exponential $-3e^{-t/\tau}$ (V) |
 |---|---|---|---|
@@ -88,18 +90,20 @@ The recovery is faster than a pure exponential at first and then follows the exp
 
 ### Step 6 — Practical caveat: the junction clamp
 
-Node X is an n+ diffusion of $M_1$ in a grounded p-type bulk, so driving it to −3 V forward-biases this junction by 3 V. In a real circuit the junction would conduct heavily as soon as X fell below about −0.6 to −0.7 V, supplying current from the substrate and quickly clamping $V_X$ there (and partly discharging $C_1$ through the junction). The ideal analysis above ignores this; with the junction included, $V_X$ would dip only to about −0.7 V and then recover to 0 V through $M_1$.
+Node X is an n+ diffusion of $M_1$ in a grounded p-type bulk, so driving it to −3 V forward-biases this junction by 3 V. In a real circuit the junction would conduct heavily as soon as X fell below about −0.6 to −0.7 V, supplying current from the substrate and quickly clamping $V_X$ there (and partly discharging $C_1$ through the junction). The ideal analysis above ignores this; with a fast clamp approximation, the excursion is limited near −0.7 V and the node then recovers to 0 V. The actual minimum and recovery depend on junction current and input edge shape.
+
+![Node X voltage waveform](/q/R035/solution-vx.svg)
 
 ### Result
 
-- **Before the step:** $V_X = 3 - 3 = 0$ V.
-- **At $t = 0$:** the top node falls to 0 and **$V_X$ jumps to −3 V**.
-- **Recovery:** $M_1$ (gate at 3 V) now has its source at X ($V_{GS} = 6$ V, $V_{DS} = 3$ V at $t = 0^+$) and is in **triode** throughout ($V_{DS} = -V_X < V_{GS} - V_{TH} = 2.3 - V_X$). It discharges $C_1$, so $V_X$ **rises back toward 0 V**, roughly exponentially. It is fast at first ($R_{on}$ is small because $V_{GS}$ is large), with time constant ≈ $C_1/(2.3\beta)$ near the end.
-- **Final:** $V_X = 0$, $C_1$ fully discharged.
-- **Practical caveat:** a node at −3 V forward-biases the n+/substrate junction of $M_1$ (bulk at 0 V), which would quickly clamp $V_X$ near −0.6 to −0.7 V; the ideal analysis ignores it.
+- Before the step: $V_X = 3 - 3 = 0$ V.
+- At $t = 0$: the top node falls to 0 and $V_X$ jumps to −3 V.
+- Recovery: $M_1$ (gate at 3 V) now has its source at X ($V_{GS} = 6$ V, $V_{DS} = 3$ V at $t = 0^+$) and is in triode throughout ($V_{DS} = -V_X < V_{GS} - V_{TH} = 2.3\ \mathrm{V} - V_X$). It discharges $C_1$, so $V_X$ rises back toward 0 V, roughly exponentially. It is fast at first ($R_{on}$ is small because $V_{GS}$ is large), with time constant ≈ $C_1/((2.3\ \mathrm{V})\beta)$ near the end.
+- Final: $V_X = 0$, $C_1$ fully discharged.
+- Practical caveat: a node at −3 V forward-biases the n+/substrate junction of $M_1$ (bulk at 0 V), which would quickly clamp $V_X$ near −0.6 to −0.7 V; the ideal analysis ignores it.
 
-**Common mistake.** Leaving $V_X$ at −3 V. After the step $M_1$ is strongly on, with its gate 6 V above X, and connects X to the 0-V input node, so the capacitor is discharged.
+**Common mistake:** Leaving $V_X$ at −3 V. After the step $M_1$ is strongly on, with its gate 6 V above X, and connects X to the 0-V input node, so the capacitor is discharged.
 
-**Common mistake.** Letting $V_X$ settle at $V_{DD} - V_{TH} = 2.3$ V by treating $M_1$ as a source follower charging X. The only voltage on the other side of the channel is the input node at 0 V, so X can only be pulled back to 0 V.
+**Common mistake:** Letting $V_X$ settle at $V_{DD} - V_{TH} = 2.3$ V by treating $M_1$ as a source follower charging X. The only voltage on the other side of the channel is the input node at 0 V, so X can only be pulled back to 0 V.
 
-**Common mistake.** Making the jump go upward, or assuming X stays at 0. The capacitor's top plate drops by 3 V, and X must drop by the same amount at that instant.
+**Common mistake:** Making the jump go upward, or assuming X stays at 0. The capacitor's top plate drops by 3 V, and X must drop by the same amount at that instant.
