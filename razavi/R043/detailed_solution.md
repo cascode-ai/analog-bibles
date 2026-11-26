@@ -1,6 +1,6 @@
 # Detailed solution - R043
 
-**Approach.** In saturation, $C_{GS} = \tfrac23WLC_{ox} + WC_{ov}$, $C_{GD} = WC_{ov}$ and $C_{GB} \approx 0$; the junction capacitances follow from the area and perimeter of each source/drain (S/D) region of the folded layout. Then $g_m$ from the square law gives $f_T = g_m/[2\pi(C_{GS} + C_{GD})]$.
+**Approach:** In saturation, $C_{GS} = \tfrac23WLC_{ox} + WC_{ov}$, $C_{GD} = WC_{ov}$ and $C_{GB} \approx 0$; the junction capacitances follow from the area and perimeter of each source/drain (S/D) region of the folded layout. Then $g_m$ from the square law gives $f_T = g_m/[2\pi(C_{GS} + C_{GD})]$.
 
 ### Step 1 — Gate capacitances in saturation
 
@@ -41,7 +41,7 @@ An unfolded device with a drain of $W\times E$ would have $C_{DB} = 50\times1.5\
 
 ### Step 3 — Source–bulk junction capacitance (two outer regions)
 
-There are **two** source regions, each $W/2$ by $E$:
+There are two source regions, each $W/2$ by $E$:
 
 $$A_S = 2\cdot\frac{W}{2}E = WE = (50\ \mu\mathrm{m})(1.5\ \mu\mathrm{m}) = 75\ \mu\mathrm{m^2}, \qquad A_SC_j = 75\times0.56\ \mathrm{fF} = 42.0\ \mathrm{fF},$$
 
@@ -85,8 +85,8 @@ With $g_m = 5.18$ mS at $I_D = 1$ mA:
 
 $$f_T = \frac{g_m}{2\pi(C_{GS} + C_{GD})} \approx 7.9\ \mathrm{GHz}.$$
 
-**Common mistake.** Giving the drain the area of both outer regions (42 fF). In the folded layout the drain is the single central region shared by the two fingers; getting this backwards removes the whole benefit of folding.
+**Common mistake:** Giving the drain the area of both outer regions (42 fF). In the folded layout the drain is the single central region shared by the two fingers; getting this backwards removes the whole benefit of folding.
 
-**Common mistake.** Leaving out the overlap capacitance: then $C_{GD} = 0$, $C_{GS} = 64$ fF and $f_T \approx 12.9$ GHz, more than 60 % too high. Using $C_{GS}$ alone gives 9.8 GHz, but $C_{GD}$ is in parallel with $C_{GS}$ when the drain is at ac ground.
+**Common mistake:** Leaving out the overlap capacitance: then $C_{GD} = 0$, $C_{GS} = 64$ fF and $f_T \approx 12.9$ GHz, more than 60 % too high. Using $C_{GS}$ alone gives 9.8 GHz, but $C_{GD}$ is in parallel with $C_{GS}$ when the drain is at ac ground.
 
-**Common mistake.** Adding $C_{DB}$ or $C_{SB}$ to the denominator of $f_T$. With source and drain at ac ground the junction capacitances carry no signal current.
+**Common mistake:** Adding $C_{DB}$ or $C_{SB}$ to the denominator of $f_T$. With source and drain at ac ground the junction capacitances carry no signal current.

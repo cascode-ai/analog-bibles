@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" role="img">
+<title>R045 恒定漏极电流的尺寸曲线</title>
+<desc>取 ID 为 0.5 mA、mu_n Cox 为 134 微安每伏平方时，W/L 等于 7.46 伏平方除以过驱动电压平方。</desc>
+<rect x="0" y="0" width="760" height="460" fill="white"/>
+<line x1="95" y1="390" x2="620" y2="390" stroke="black" stroke-width="2"/>
+<line x1="95" y1="390" x2="95" y2="55" stroke="black" stroke-width="2"/>
+<path d="M123 78 C145 180 160 255 181 313 C205 346 240 363 270 371 C325 380 390 384 460 386 C520 388 575 389 620 389" fill="none" stroke="#075985" stroke-width="3"/>
+<line x1="206" y1="55" x2="206" y2="390" stroke="#aaa" stroke-width="1" stroke-dasharray="5 5"/>
+<line x1="270" y1="55" x2="270" y2="390" stroke="#aaa" stroke-width="1" stroke-dasharray="5 5"/>
+<line x1="620" y1="55" x2="620" y2="390" stroke="#aaa" stroke-width="1" stroke-dasharray="5 5"/>
+<text x="123" y="410" font-size="14" text-anchor="middle">0.1</text>
+<text x="181" y="410" font-size="14" text-anchor="middle">0.2</text>
+<text x="270" y="410" font-size="14" text-anchor="middle">0.4</text>
+<text x="460" y="410" font-size="14" text-anchor="middle">0.8</text>
+<text x="620" y="410" font-size="14" text-anchor="middle">1.0</text>
+<text x="86" y="394" font-size="14" text-anchor="end">0</text>
+<text x="86" y="352" font-size="14" text-anchor="end">100</text>
+<text x="86" y="310" font-size="14" text-anchor="end">200</text>
+<text x="86" y="226" font-size="14" text-anchor="end">400</text>
+<text x="86" y="142" font-size="14" text-anchor="end">600</text>
+<text x="86" y="64" font-size="14" text-anchor="end">800</text>
+<text x="360" y="445" font-size="16" text-anchor="middle">VGS − VTH（V）</text>
+<text x="25" y="225" font-size="16" text-anchor="middle" transform="rotate(-90 25 225)">W/L</text>
+<text x="395" y="90" font-size="14">ID = 0.5 mA</text>
+<text x="395" y="112" font-size="14">mu_n Cox = 134 微安/V²</text>
+<text x="395" y="134" font-size="14">W/L = 7.46/Vov²</text>
+<text x="395" y="170" font-size="14">平方反比</text>
+</svg>
+

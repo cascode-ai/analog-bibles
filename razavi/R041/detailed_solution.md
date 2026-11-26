@@ -1,6 +1,6 @@
 # Detailed solution - R041
 
-**Approach.** Write $g_m$ from the square law and the gate capacitance as that of the channel area $WL$; $W$ and $C_{ox}$ cancel in $f_T = g_m/[2\pi(C_{GD} + C_{GS})]$, leaving the mobility, the overdrive and $L^2$. Then interpret the result for a fixed bias current and a shrinking voltage headroom.
+Approach: Write $g_m$ from the square law and the gate capacitance as that of the channel area $WL$; $W$ and $C_{ox}$ cancel in $f_T = g_m/[2\pi(C_{GD} + C_{GS})]$, leaving the mobility, the overdrive and $L^2$. Then interpret the result for a fixed bias current and a shrinking voltage headroom.
 
 ### Step 1 — Transconductance and gate capacitance in terms of geometry
 
@@ -38,7 +38,7 @@ With $V_{ov} = V_{GS} - V_{TH}$, saturation requires $V_{DS} \ge V_{ov}$, so
 
 $$V_{DS,min} = V_{ov} .$$
 
-A low supply calls for a small $V_{ov}$. For a **fixed** bias current $I_D$ and a fixed $L$, the square law gives the width
+A low supply calls for a small $V_{ov}$. For a fixed bias current $I_D$ and a fixed $L$, the square law gives the width
 
 $$W = \frac{2\,I_D\,L}{\mu_nC_{ox}\,V_{ov}^2} ,$$
 
@@ -60,7 +60,7 @@ The capacitance grows faster than the transconductance, so $f_T$ falls in direct
 | 0.2 V | 4 | 2 | 4 | 1/2 |
 | 0.1 V | 16 | 4 | 16 | 1/4 |
 
-**Numerical illustration.** With $\mu_n \approx 350\ \mathrm{cm^2/(V\cdot s)} = 0.035\ \mathrm{m^2/(V\cdot s)}$ and $L = 0.5\ \mu\mathrm{m}$:
+Numerical illustration: With $\mu_n \approx 350\ \mathrm{cm^2/(V\cdot s)} = 0.035\ \mathrm{m^2/(V\cdot s)}$ and $L = 0.5\ \mu\mathrm{m}$:
 
 $$f_T = \frac{(0.035\ \mathrm{m^2/(V\,s)})(0.2\ \mathrm{V})}{2\pi\,(0.5\times10^{-6}\ \mathrm{m})^2} = \frac{7\times10^{-3}}{1.571\times10^{-12}}\ \mathrm{Hz} = 4.5\ \mathrm{GHz}$$
 
@@ -72,8 +72,8 @@ $$f_T = \frac{g_m}{2\pi(C_{GD} + C_{GS})} = \frac{\mu_nC_{ox}(W/L)(V_{GS} - V_{T
 
 using the square-law $g_m$ and a total gate capacitance $C_{GS} + C_{GD} \approx WLC_{ox}$ (with $C_{GS} = \tfrac23WLC_{ox}$, $C_{GD} \approx 0$ the constant becomes 3/2, with the same scaling). Since $V_{DS,min} = V_{GS} - V_{TH}$, lowering the headroom at constant current forces $W \propto 1/V_{ov}^2$, and $f_T$ drops in proportion to $V_{GS} - V_{TH}$.
 
-**Common mistake.** Concluding that $f_T \propto 1/L$ by forgetting that the gate capacitance itself is proportional to $L$. Both $g_m \propto 1/L$ and $C \propto L$ act in the same direction, giving $1/L^2$.
+**Common mistake:** Concluding that $f_T \propto 1/L$ by forgetting that the gate capacitance itself is proportional to $L$. Both $g_m \propto 1/L$ and $C \propto L$ act in the same direction, giving $1/L^2$.
 
-**Common mistake.** Arguing that a smaller overdrive raises $f_T$ because $g_m = 2I_D/V_{ov}$ increases. At fixed current the extra $g_m$ comes from a wider device whose capacitance grows as $1/V_{ov}^2$, faster than $g_m$, so $f_T$ falls.
+**Common mistake:** Arguing that a smaller overdrive raises $f_T$ because $g_m = 2I_D/V_{ov}$ increases. At fixed current the extra $g_m$ comes from a wider device whose capacitance grows as $1/V_{ov}^2$, faster than $g_m$, so $f_T$ falls.
 
-**Common mistake.** Leaving the gate capacitance unrelated to $W$ and $L$ (or leaving a stray $W$ or $C_{ox}$). The result rests on $C_{GS} + C_{GD} \propto WLC_{ox}$, so that $W$ and $C_{ox}$ cancel exactly.
+**Common mistake:** Leaving the gate capacitance unrelated to $W$ and $L$ (or leaving a stray $W$ or $C_{ox}$). The result rests on $C_{GS} + C_{GD} \propto WLC_{ox}$, so that $W$ and $C_{ox}$ cancel exactly.

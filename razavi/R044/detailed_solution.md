@@ -1,6 +1,6 @@
 # Detailed solution - R044
 
-**Approach.** Call the node between the two transistors $X$. Write each transistor's square-law current in terms of $V_{GS}$, $V_{DS}$ and $V_X$, decide which region each device is in, and equate the two currents. Eliminating $V_X$ gives $I_D(V_{GS}, V_{DS})$, which is exactly the characteristic of one transistor with aspect ratio $W/(2L)$.
+**Approach:** Call the node between the two transistors $X$. Write each transistor's square-law current in terms of $V_{GS}$, $V_{DS}$ and $V_X$, decide which region each device is in, and equate the two currents. Eliminating $V_X$ gives $I_D(V_{GS}, V_{DS})$, which is exactly the characteristic of one transistor with aspect ratio $W/(2L)$.
 
 ### Step 1 — Terminal voltages and the cut-off case
 
@@ -27,7 +27,7 @@ For current to flow, $M_1$ must be on:
 
 $$V_{GS1} > V_{TH} \;\Longleftrightarrow\; V_{GS} - V_X > V_{TH} \;\Longleftrightarrow\; V_X < V_{ov} .$$
 
-But $V_X = V_{DS2}$ and $V_{ov}$ is the overdrive of $M_2$, so $V_{DS2} < V_{GS2} - V_{TH}$: **$M_2$ is in triode whenever the stack conducts**. Its current, in a convenient form:
+But $V_X = V_{DS2}$ and $V_{ov}$ is the overdrive of $M_2$, so $V_{DS2} < V_{GS2} - V_{TH}$: $M_2$ is in triode whenever the stack conducts. Its current, in a convenient form:
 
 $$I_D = k\left[V_{ov}V_X - \frac{V_X^2}{2}\right] = \frac{k}{2}\left[2V_{ov}V_X - V_X^2\right] = \frac{k}{2}\left[V_{ov}^2 - (V_{ov} - V_X)^2\right],$$
 
@@ -70,7 +70,7 @@ $$2I_D = \frac{k}{2}\left[V_{ov}^2 - (V_{ov} - V_{DS})^2\right] = \frac{k}{2}\le
 
 $$I_D = \frac{k}{2}\left[V_{ov}V_{DS} - \frac{V_{DS}^2}{2}\right] = \mu_nC_{ox}\frac{W}{2L}\left[(V_{GS} - V_{TH})V_{DS} - \frac{V_{DS}^2}{2}\right].$$
 
-**Checks.** At $V_{DS} = V_{ov}$ this gives $\tfrac{k}{2}\cdot\tfrac{V_{ov}^2}{2} = \tfrac{k}{4}V_{ov}^2$, continuous with Case A. From the $M_2$ equation, $(V_{ov} - V_X)^2 = V_{ov}^2 - 2I_D/k = \tfrac12[V_{ov}^2 + (V_{ov} - V_{DS})^2]$, which lies between $(V_{ov} - V_{DS})^2$ and $V_{ov}^2$, so $0 \le V_X \le V_{DS}$, as assumed.
+Checks. At $V_{DS} = V_{ov}$ this gives $\tfrac{k}{2}\cdot\tfrac{V_{ov}^2}{2} = \tfrac{k}{4}V_{ov}^2$, continuous with Case A. From the $M_2$ equation, $(V_{ov} - V_X)^2 = V_{ov}^2 - 2I_D/k = \tfrac12[V_{ov}^2 + (V_{ov} - V_{DS})^2]$, which lies between $(V_{ov} - V_{DS})^2$ and $V_{ov}^2$, so $0 \le V_X \le V_{DS}$, as assumed.
 
 ### Step 6 — Interpretation: one channel of length $2L$
 
@@ -94,8 +94,8 @@ $$
 
 These are the triode and saturation equations of a single transistor with aspect ratio $W/(2L)$, with the same threshold and the same saturation boundary $V_{DS} = V_{GS} - V_{TH}$. The bottom device is always in triode; the top device sets the region of the composite.
 
-**Common mistake.** Assuming both transistors are saturated and splitting $V_{DS}$ between them. For the top device to conduct, $V_X$ must stay below $V_{GS} - V_{TH}$, which keeps the bottom device in triode; equating two saturation currents forces $V_X = 0$, which contradicts a saturated bottom device.
+**Common mistake:** Assuming both transistors are saturated and splitting $V_{DS}$ between them. For the top device to conduct, $V_X$ must stay below $V_{GS} - V_{TH}$, which keeps the bottom device in triode; equating two saturation currents forces $V_X = 0$, which contradicts a saturated bottom device.
 
-**Common mistake.** Taking the equivalent aspect ratio as $W/L$ ("same width, same current") or $2W/L$ (as if in parallel). Devices in **series** add channel length, so the aspect ratio is $W/(2L)$ and the saturation current is half that of one device.
+**Common mistake:** Taking the equivalent aspect ratio as $W/L$ ("same width, same current") or $2W/L$ (as if in parallel). Devices in series add channel length, so the aspect ratio is $W/(2L)$ and the saturation current is half that of one device.
 
-**Common mistake.** Forgetting that the result needs $\gamma = 0$. With body effect the top device's threshold rises with $V_X$, and the stack is no longer exactly one transistor of length $2L$.
+**Common mistake:** Forgetting that the result needs $\gamma = 0$. With body effect the top device's threshold rises with $V_X$, and the stack is no longer exactly one transistor of length $2L$.

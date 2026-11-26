@@ -2,8 +2,17 @@
 
 ## Reference answer
 
-The NMOS is diode-connected (gate = drain = $V_{DD}$) and its source is the output terminal. It is always saturated, but $V_{GS} = V_{DD} - V_{out}$ varies one-for-one with the output voltage: $I_2 = \tfrac12\mu_nC_{ox}(W/L)(V_{DD} - V_{out} - V_{TH})^2$, with $V_{TH}$ also rising with $V_{out}$ (body effect). The output impedance is $\approx 1/(g_m + g_{mb})$, small, so the current depends strongly on the load voltage. A current source requires a fixed $V_{GS}$ with the output at the drain.
+The gate and drain are tied to $V_{DD}$, and the source supplies $I_2$ to the load. Since $V_{DS}=V_{GS}=V_{DD}-V_{out}$, the NMOS is saturated whenever it conducts.
+
+As $V_{out}$ rises, $V_{GS}$ falls by the same amount. With the bulk assumed grounded, body effect also raises $V_{TH}$. The saturation current therefore varies strongly with output voltage:
+
+$$I_2=\tfrac12\mu_nC_{ox}(W/L)(V_{DD}-V_{out}-V_{TH})^2.$$
+
+The output impedance is $[1/(g_m+g_{mb})]\parallel r_O$, typically close to $1/(g_m+g_{mb})$ and much smaller than $r_O$. A conventional single-NMOS current source fixes $V_{GS}$ and takes its output at the drain.
 
 ## Grading notes
 
-+2: diode connection, $V_{GS}$ set by the output voltage, quadratic dependence of $I_2$ on $V_{out}$, low output impedance ≈ $1/g_m$ (with $g_{mb}$ a plus). +1: correct reason without impedance or expression. 0: vague. -2 (asserted as fact): claims it works as a current source, attributes the problem to triode operation, or claims the output impedance is $r_O$.
+- +2: Identify the diode connection, show that the output sets $V_{GS}$ and hence the square-law current, and give a low output impedance of order $1/g_m$. Including $g_{mb}$ is a plus.
+- +1: Give the correct reason with the impedance or current expression omitted.
+- 0: Give only a vague explanation.
+- −2 (asserted as fact): Claim the circuit works as a current source, attribute the failure to triode operation, or give $r_O$ as the output impedance.
