@@ -1,6 +1,6 @@
 # Detailed solution - R040
 
-**Approach.** Model the device as $n$ identical sections linked by gate-resistance segments $R_G/n$, apply the $f_T$ test (current drive at the gate, source and drain at ac ground), and use KCL on the whole gate network. The resistors only redistribute the input current among the sections, and since every section has the same ratio $g_m/C$, the total drain current depends only on the total input current.
+**Approach:** Model the device as $n$ identical sections linked by gate-resistance segments $R_G/n$, apply the $f_T$ test (current drive at the gate, source and drain at ac ground), and use KCL on the whole gate network. The resistors only redistribute the input current among the sections, and since every section has the same ratio $g_m/C$, the total drain current depends only on the total input current.
 
 ### Step 1 — The distributed model
 
@@ -12,7 +12,7 @@ $$C = C_{GS} + C_{GD} .$$
 
 Section $k$ ($k = 1, \dots, n$) has an internal gate voltage $V_k$, a controlled source $(g_m/n)V_k$ from drain to source, and capacitances $C_{GS}/n$ and $C_{GD}/n$. All sources and all drains are tied together, and in the $f_T$ test both are at ac ground, so each section has a capacitance $C/n$ from its gate node to ground; the junction capacitances and $r_O$ carry no signal.
 
-In the natural ladder form the input connects to gate node 1 through $R_G/n$, node 1 to node 2 through $R_G/n$, and so on along the gate finger. The diagram shows this for $n = 3$; $C_k$ is the $C/n$ of section $k$, and the 0-V source `VD` returns the common drain to ground and carries $I_{out}$.
+In the natural ladder form the input connects to gate node 1 through $R_G/n$, node 1 to node 2 through $R_G/n$, and so on along the gate finger. The diagram shows this for $n = 3$; $C_k$ is the $C/n$ of section $k$, and the 0-V source `VD` holds the common drain at ac ground and supplies $I_{out}$ into it. In SPICE, this direction corresponds to $-I(\mathrm{VD})$.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -24,9 +24,9 @@ Draw a closed surface around the input terminal, all gate-resistance segments an
 
 $$I_{in} = \sum_{k=1}^{n} j\omega\,\frac{C}{n}\,V_k = j\omega\,\frac{C}{n}\sum_{k=1}^{n} V_k \quad\Longrightarrow\quad \sum_{k=1}^{n} V_k = \frac{n\,I_{in}}{j\omega C} .$$
 
-The individual $V_k$ depend on $R_G$ (sections far from the contact see smaller, delayed voltages), but their **sum** is fixed by $I_{in}$ alone.
+The individual $V_k$ depend on $R_G$ (sections far from the contact see smaller, delayed voltages), but their sum is fixed by $I_{in}$ alone.
 
-**Check for $n = 2$ (ladder).** KCL at each gate node:
+For the two-section ladder, apply KCL at each gate node.
 
 $$
 \begin{aligned}
@@ -55,7 +55,7 @@ This is the expression without gate resistance; neither $R_G$ nor $n$ appears. S
 
 $$\frac{g_m}{2\pi f_T\,(C_{GS} + C_{GD})} = 1 \quad\Longrightarrow\quad f_T = \frac{g_m}{2\pi\,(C_{GD} + C_{GS})} .$$
 
-**Including the feedforward current.** Each section's drain current is exactly $(g_m/n - j\omega C_{GD}/n)V_k$, so
+With feedforward included, each section's drain current is $(g_m/n - j\omega C_{GD}/n)V_k$, so
 
 $$I_{out} = \frac{g_m - j\omega C_{GD}}{n}\sum_{k}V_k = \frac{(g_m - j\omega C_{GD})\,I_{in}}{j\omega C},$$
 
@@ -67,8 +67,8 @@ Each section's drain current is $(g_m/n)V_k = (g_m/C)\cdot(C/n)V_k$, i.e. $g_m/C
 
 The result relies on two conditions:
 
-- **Current drive.** From a voltage source, $R_G$ and the gate capacitance would form a low-pass filter. That is why $R_G$ limits the power gain ($f_{max}$) and adds thermal noise, even though it leaves $f_T$ unchanged.
-- **Identical $g_m/C$ for every section.** Otherwise the uneven distribution of the $V_k$ would change $I_{out}$.
+- The gate is driven by a current source. From a voltage source, $R_G$ and the gate capacitance would form a low-pass filter. That is why $R_G$ limits the power gain ($f_{max}$) and adds thermal noise, even though it leaves $f_T$ unchanged.
+- All sections have the same $g_m/C$. Otherwise the uneven distribution of the $V_k$ would change $I_{out}$.
 
 ### Result
 
@@ -78,8 +78,8 @@ $$I_{out} = \frac{g_m}{n}\sum_k V_k = \frac{g_mI_{in}}{j\omega(C_{GS} + C_{GD})}
 
 independent of $R_G$ and of $n$.
 
-**Common mistake.** Adding a pole at $1/(R_GC)$ to the current gain. That pole belongs to the *voltage* transfer from a voltage source through $R_G$; with the current drive that defines $f_T$, all of $I_{in}$ still reaches the gate capacitances.
+**Common mistake:** Adding a pole at $1/(R_GC)$ to the current gain. That pole belongs to the *voltage* transfer from a voltage source through $R_G$; with the current drive that defines $f_T$, all of $I_{in}$ still reaches the gate capacitances.
 
-**Common mistake.** Proving the result only for one lumped $R_G$. With several sections the individual gate voltages *do* depend on $R_G$; the key step is that only their sum matters, which needs the closed-surface KCL and the equal $g_m/C$ of every section.
+**Common mistake:** Proving the result only for one lumped $R_G$. With several sections the individual gate voltages *do* depend on $R_G$; the key step is that only their sum matters, which needs the closed-surface KCL and the equal $g_m/C$ of every section.
 
-**Common mistake.** Concluding that $f_T$ depends on $n$. The factor $1/n$ in each section's $g_m$ cancels the factor $n$ in $\sum_k V_k$.
+**Common mistake:** Concluding that $f_T$ depends on $n$. The factor $1/n$ in each section's $g_m$ cancels the factor $n$ in $\sum_k V_k$.

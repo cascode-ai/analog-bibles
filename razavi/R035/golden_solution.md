@@ -2,10 +2,17 @@
 
 ## Reference answer
 
-Just before the step $V_X = 3 - 3 = 0$ V. At $t = 0$ the top node falls to 0 and $V_X$ jumps to −3 V. $M_1$ (gate at 3 V) now has its source at X ($V_{GS} = 6$ V, $V_{DS} = 3$ V, triode) and discharges $C_1$, so $V_X$ rises back toward 0 V, roughly exponentially, fast at first ($R_{on}$ is small because $V_{GS}$ is large) and with time constant ≈ $C_1/(2.3\beta)$ near the end. Final $V_X = 0$, $C_1$ fully discharged.
-- $M_1$ stays in triode throughout ($V_{DS} = -V_X < V_{GS} - V_{TH} = 2.3 - V_X$).
-- Practical caveat: a node at −3 V forward-biases the n+/substrate junction of $M_1$ (bulk at 0 V), which would quickly clamp $V_X$ near −0.6 to −0.7 V; the ideal analysis ignores it.
+In the ideal channel model, the stated capacitor voltage gives $V_X(0^-)=0\ \mathrm{V}$. When the upper plate drops by 3 V, the capacitor voltage is continuous and $V_X(0^+)=-3\ \mathrm{V}$.
+
+Node X is the source during recovery. With fixed $V_{TH}=0.7\ \mathrm{V}$, $V_{DS}=-V_X<V_{GS}-V_{TH}=2.3\ \mathrm{V}-V_X$. The channel stays in triode and discharges $C_1$. The voltage approaches 0 V with a late-time constant $\tau=C_1/[\beta(2.3\ \mathrm{V})]$, used to scale the graph.
+
+The grounded bulk junction conducts if X goes sufficiently negative. A fast clamp approximation limits the excursion near −0.6 to −0.7 V before recovery. The exact minimum depends on the junction and input edge.
+
+![Node X voltage waveform](/q/R035/solution-vx.svg)
 
 ## Grading notes
 
-+2: $V_X$ = 0 before, jump to −3 V at the step, recovery to 0 V through $M_1$ in triode (exponential-like) with $C_1$ fully discharged. Mentioning the junction clamp is a plus. +1: correct jump and final value without identifying the region or the discharge mechanism. 0: correct jump but a wrong final value through a slip, or right final value with the jump missed. -2 (asserted as fact): $V_X$ staying at −3 V, $V_X$ settling at $V_{DD} - V_{TH}$, or a jump in the wrong direction.
+- +2: Give the stated initial value, the ideal step to −3 V and triode recovery to 0 V. A sketch that instead explains the forward-biased bulk junction, approximate clamp and subsequent recovery to 0 V also earns full credit.
+- +1: Correct jump and final value with the region or discharge mechanism omitted.
+- 0: Correct jump with a wrong final value due to a slip, or correct final value with the jump missed.
+- −2 (asserted as fact): X stays at −3 V, settles at $V_{DD}-V_{TH}$, or jumps upward.

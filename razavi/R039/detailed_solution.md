@@ -1,34 +1,42 @@
 # Detailed solution - R039
 
-**Approach.** Drive the gate of the saturated MOSFET's small-signal model with a current $I_{in}$, hold source, drain and bulk at ac ground, compute the drain current $I_{out}$, and find the frequency at which $|I_{out}/I_{in}| = 1$.
+**Approach:** Drive the gate of the saturated MOSFET's small-signal model with a current $I_{in}$, hold source, drain and bulk at ac ground, compute the drain current $I_{out}$, and find the frequency at which $|I_{out}/I_{in}| = 1$.
 
-### Step 1 — The test circuit and the elements that carry signal
+### Step 1 — Read the small-signal test circuit
 
-The gate is driven by a small-signal current $I_{in}$; source, drain and bulk are at ac ground, and the output is the drain current $I_{out}$. The model contains $g_mV_{gs}$, $g_{mb}V_{bs}$, $r_O$, $C_{GS}$, $C_{GD}$, $C_{SB}$ and $C_{DB}$; $C_{GB}$ is neglected, since in saturation the channel shields the bulk from the gate. In the diagram, node 0 is the common ac ground of source and bulk, and the drain node `d` returns to ground through the 0-V source `VD`, whose current is $I_{out}$.
+Drive the gate of the saturated MOSFET with $I_{in}$ and hold the source, drain and bulk at AC ground. The drain short fixes $V_d=0$. The arrow on the upper right defines $I_{out}$ as positive toward D, from the short into the transistor. In the source netlist this direction corresponds to $-I(\mathrm{VD})$.
 
-<!-- diagram: diagram-01.cir -->
+![Reduced small-signal test circuit showing the gate and drain current directions](/q/R039/solution-ft-test.svg)
 
-With $V_s = V_d = V_b = 0$, the elements $C_{SB}$, $C_{DB}$ and $r_O$ have zero voltage across them and $g_{mb}V_{bs} = 0$, so none of them carries signal current. This is why the junction capacitances do not appear in $f_T$. Only $C_{GS}$, $C_{GD}$ and $g_mV_{gs}$ remain, and the gate is the only node with an unknown voltage.
+The junction capacitors $C_{SB}$ and $C_{DB}$ and the output resistance $r_O$ each have zero AC voltage across them. The body-effect current $g_{mb}V_{bs}$ is also zero because $V_{bs}=0$. The reduced diagram omits these branches. In saturation, the channel shields the bulk from the gate, so the model also neglects $C_{GB}$.
 
-### Step 2 — KCL at the gate: find $V_{gs}$
+### Step 2 — Gate current balance
 
-Since $V_s = V_d = 0$, $C_{GD}$ also sees the voltage $V_{gs}$ and acts at the gate like a second capacitor to ground, in parallel with $C_{GS}$. KCL at the gate:
+At G, $I_{in}$ enters the node and the two capacitor currents leave it. Both capacitors see the same voltage from the gate because the source and drain are at AC ground. Applying $I=j\omega C\,\Delta V$ gives
 
-$$I_{in} = j\omega C_{GS}V_{gs} + j\omega C_{GD}V_{gs} = j\omega\,(C_{GS} + C_{GD})\,V_{gs} \quad\Longrightarrow\quad V_{gs} = \frac{I_{in}}{j\omega\,(C_{GS} + C_{GD})} .$$
+$$
+I_{in}=j\omega C_{GS}V_{gs}+j\omega C_{GD}V_{gs},
+\qquad
+V_{gs}=\frac{I_{in}}{j\omega(C_{GS}+C_{GD})}.
+$$
 
-### Step 3 — KCL at the drain: find $I_{out}$
+### Step 3 — Drain current balance
 
-At the drain, $I_{out}$ (from the ac-ground connection) and the $C_{GD}$ current $j\omega C_{GD}V_{gs}$ enter, and $g_mV_{gs}$ leaves toward the source:
+At D, the two blue arrows mark the entering currents. The current through $C_{GD}$ flows from G to D in the indicated reference direction. The diamond-shaped controlled source sends $g_mV_{gs}$ from D toward the grounded source.
 
-$$I_{out} + j\omega C_{GD}V_{gs} = g_mV_{gs} \quad\Longrightarrow\quad I_{out} = (g_m - j\omega C_{GD})\,V_{gs} .$$
+$$
+I_{out}+j\omega C_{GD}V_{gs}=g_mV_{gs},
+\qquad
+I_{out}=(g_m-j\omega C_{GD})V_{gs}.
+$$
 
-The second term is the feedforward current from gate to drain through $C_{GD}$. At $\omega = \omega_T \approx g_m/(C_{GS} + C_{GD})$ its size is
+At the textbook unity-gain frequency derived in Step 4, the ratio of the feedforward current magnitude to the controlled-source current magnitude is
 
-$$\omega_TC_{GD} \approx g_m\,\frac{C_{GD}}{C_{GS} + C_{GD}} \ll g_m \qquad (C_{GD} \ll C_{GS}),$$
+$$
+\frac{\omega_T C_{GD}}{g_m}\approx\frac{C_{GD}}{C_{GS}+C_{GD}}.
+$$
 
-and it is $90^\circ$ out of phase with $g_mV_{gs}$, so it changes $|I_{out}|$ even less. With this standard approximation (checked in Step 5):
-
-$$I_{out} \approx g_mV_{gs} .$$
+When $C_{GD}\ll C_{GS}$, this ratio is small. The two terms also differ in phase by $90^\circ$, so the effect on $|I_{out}|$ is smaller still. The textbook approximation uses $I_{out}\approx g_mV_{gs}$ while keeping both capacitors in the gate equation. Step 5 quantifies the error.
 
 ### Step 4 — Current gain and the unity-gain frequency
 
@@ -36,7 +44,7 @@ Substituting $V_{gs}$ from Step 2:
 
 $$\frac{I_{out}}{I_{in}} = \frac{g_m}{j\omega\,(C_{GS} + C_{GD})}, \qquad \left|\frac{I_{out}}{I_{in}}\right| = \frac{g_m}{\omega\,(C_{GS} + C_{GD})} .$$
 
-The gain falls as $1/\omega$ (−20 dB/decade) and equals 1 at
+In this approximation, the gain falls as $1/\omega$ (−20 dB/decade) and equals 1 at
 
 $$\omega_T = \frac{g_m}{C_{GS} + C_{GD}}, \qquad f_T = \frac{\omega_T}{2\pi} = \frac{g_m}{2\pi\,(C_{GD} + C_{GS})} ,$$
 
@@ -70,10 +78,10 @@ With the gate driven by a current and source, drain and bulk at ac ground, the j
 
 $$\frac{I_{out}}{I_{in}} = \frac{g_m}{j\omega\,(C_{GS} + C_{GD})} \quad\Longrightarrow\quad f_T = \frac{g_m}{2\pi\,(C_{GD} + C_{GS})} .$$
 
-The only approximations are $C_{GB} \approx 0$ in saturation and the neglect of the small feedforward current $j\omega C_{GD}V_{gs}$ (about a 1 % effect).
+The only approximations are $C_{GB} \approx 0$ in saturation and the neglect of the small feedforward current $j\omega C_{GD}V_{gs}$ (about 1.4% in the Step 5 example).
 
-**Common mistake.** Adding $C_{DB}$ or $C_{SB}$ to the denominator. In the $f_T$ test both terminals of each junction capacitance are at ac ground, so no signal current flows in them; they matter only in a real circuit, where the drain moves.
+**Common mistake:** Adding $C_{DB}$ or $C_{SB}$ to the denominator. In the $f_T$ test both terminals of each junction capacitance are at ac ground, so no signal current flows in them; they matter only in a real circuit, where the drain moves.
 
-**Common mistake.** Using $C_{GS}$ alone. With the drain at ac ground, $C_{GD}$ is in parallel with $C_{GS}$ as seen from the gate, and the input current must charge both.
+**Common mistake:** Using $C_{GS}$ alone. With the drain at ac ground, $C_{GD}$ is in parallel with $C_{GS}$ as seen from the gate, and the input current must charge both.
 
-**Common mistake.** "Proving" the result with a voltage gain, for example that of a loaded common-source stage. $f_T$ is defined by the *current* gain with the drain at ac ground; a voltage gain depends on the load and does not give this formula.
+**Common mistake:** "Proving" the result with a voltage gain, for example that of a loaded common-source stage. $f_T$ is defined by the *current* gain with the drain at ac ground; a voltage gain depends on the load and does not give this formula.
