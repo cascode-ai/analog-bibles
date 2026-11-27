@@ -1058,8 +1058,8 @@ function cardBody(q, reviewing = false) {
 // Fetches a card's question and answer into it; false if the card has since
 // been replaced by another question.
 // In Chinese, a translated question shows its .zh.md files, unless the
-// reader asked for the English original on this card. The grading notes are
-// never translated.
+// reader asked for the English original on this card. Use localized grading
+// notes when present, with the original rubric as a fallback.
 async function fillCard(el, q) {
   const zh = lang === "zh" && q.zh && el.dataset.orig !== "en";
   const files = await bundle(q);
@@ -1084,9 +1084,10 @@ async function fillCard(el, q) {
   disposeImageViews(el);
   el.querySelector(".q-question").lang = contentLang.instruction || lang;
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
-  const { body, grading } = splitSolution(solution);
-  el.querySelector(".q-answer").lang = zh && answerZh ? "zh" : "en";
-  el.querySelector(".q-answer").innerHTML = renderMarkdown(zh && answerZh ? splitSolution(answerZh).body : body);
+  const original = splitSolution(solution);
+  const translated = answerZh ? splitSolution(answerZh) : null;
+  el.querySelector(".q-answer").lang = translated ? "zh" : "en";
+  el.querySelector(".q-answer").innerHTML = renderMarkdown((translated || original).body);
   const toggle = el.querySelector(".orig-toggle");
   if (toggle) toggle.textContent = zh ? t("showOriginal") : t("showTranslation");
   if (q.sol) {
@@ -1101,9 +1102,15 @@ async function fillCard(el, q) {
   }
   // Keep the existing availability rule: only notes supplied in the answer
   // and actually nonempty are exposed. Review API authorization is unchanged.
-  el.querySelector('[data-solution-tab="grading"]').hidden = !grading.trim();
-  el.querySelector(".grading .md").lang = "en";
-  el.querySelector(".grading .md").innerHTML = renderMarkdown(grading);
+  const hasChineseGrading = Boolean(translated?.grading.trim());
+  const gradingText = hasChineseGrading ? translated.grading : original.grading;
+  const gradingTab = el.querySelector('[data-solution-tab="grading"]');
+  gradingTab.hidden = !gradingText.trim();
+  gradingTab.querySelector(".tab-label").textContent =
+    zh && !hasChineseGrading && !gradingTab.hidden ? "评分说明（英文）" : t("grading");
+  const gradingBox = el.querySelector(".grading .md");
+  gradingBox.lang = hasChineseGrading ? "zh" : "en";
+  gradingBox.innerHTML = renderMarkdown(gradingText);
   const feedbackButton = el.querySelector(".feedback-open");
   if (feedbackButton) feedbackButton.disabled = false;
   const selected = el.querySelector('[role="tab"][aria-selected="true"]');
