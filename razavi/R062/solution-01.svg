@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 448">
+<title>Three requested relationships for R062</title>
+<desc>A parabola and its square-root inverse both start at zero. At fixed positive current the aspect ratio decreases as the inverse square and diverges at zero overdrive.</desc>
+<rect width="1140" height="448" fill="#fff"/>
+<g fill="#1c2837" font-family="Arial, Microsoft YaHei, sans-serif">
+<text x="217.5" y="47" font-size="21" text-anchor="middle">(a) Fixed W/L</text>
+<path d="M95 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="95" y="347" font-size="16" text-anchor="middle">0</text>
+<path d="M144 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M144 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="144" y="347" font-size="16" text-anchor="middle">0.2</text>
+<path d="M193 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M193 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="193" y="347" font-size="16" text-anchor="middle">0.4</text>
+<path d="M242 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M242 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="242" y="347" font-size="16" text-anchor="middle">0.6</text>
+<path d="M291 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M291 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="291" y="347" font-size="16" text-anchor="middle">0.8</text>
+<path d="M340 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M340 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="340" y="347" font-size="16" text-anchor="middle">1.0</text>
+<path d="M95 323h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="328" font-size="16" text-anchor="end">0</text>
+<path d="M95 289.4286H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 289.4286h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="294.4286" font-size="16" text-anchor="end">0.1</text>
+<path d="M95 255.8571H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 255.8571h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="260.8571" font-size="16" text-anchor="end">0.2</text>
+<path d="M95 222.2857H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 222.2857h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="227.2857" font-size="16" text-anchor="end">0.3</text>
+<path d="M95 188.7143H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 188.7143h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="193.7143" font-size="16" text-anchor="end">0.4</text>
+<path d="M95 155.1429H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 155.1429h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="160.1429" font-size="16" text-anchor="end">0.5</text>
+<path d="M95 121.5714H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 121.5714h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="126.5714" font-size="16" text-anchor="end">0.6</text>
+<path d="M95 88H340" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 88h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="93" font-size="16" text-anchor="end">0.7</text>
+<path d="M95 88V323H340" fill="none" stroke="#1c2837" stroke-width="1.5"/>
+<text x="217.5" y="377" font-size="20" text-anchor="middle">VGS − VTH (V)</text>
+<text x="39" y="205.5" font-size="20" text-anchor="middle" transform="rotate(-90 39 205.5)">ID (mA)</text>
+<path d="M95 323Q217.5 323 340 98.0714" fill="none" stroke="#155eaa" stroke-width="3.5"/>
+<text x="597.5" y="47" font-size="21" text-anchor="middle">(b) Fixed W/L</text>
+<path d="M475 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="475" y="347" font-size="16" text-anchor="middle">0</text>
+<path d="M536.25 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M536.25 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="536.25" y="347" font-size="16" text-anchor="middle">0.2</text>
+<path d="M597.5 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M597.5 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="597.5" y="347" font-size="16" text-anchor="middle">0.4</text>
+<path d="M658.75 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M658.75 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="658.75" y="347" font-size="16" text-anchor="middle">0.6</text>
+<path d="M720 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M720 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="720" y="347" font-size="16" text-anchor="middle">0.8</text>
+<path d="M475 323h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="328" font-size="16" text-anchor="end">0</text>
+<path d="M475 283.8333H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 283.8333h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="288.8333" font-size="16" text-anchor="end">0.2</text>
+<path d="M475 244.6667H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 244.6667h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="249.6667" font-size="16" text-anchor="end">0.4</text>
+<path d="M475 205.5H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 205.5h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="210.5" font-size="16" text-anchor="end">0.6</text>
+<path d="M475 166.3333H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 166.3333h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="171.3333" font-size="16" text-anchor="end">0.8</text>
+<path d="M475 127.1667H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 127.1667h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="132.1667" font-size="16" text-anchor="end">1.0</text>
+<path d="M475 88H720" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M475 88h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="465" y="93" font-size="16" text-anchor="end">1.2</text>
+<path d="M475 88V323H720" fill="none" stroke="#1c2837" stroke-width="1.5"/>
+<text x="597.5" y="377" font-size="20" text-anchor="middle">ID (mA)</text>
+<text x="418" y="205.5" font-size="20" text-anchor="middle" transform="rotate(-90 418 205.5)">VGS − VTH (V)</text>
+<path d="M475 323Q475 216.0048 720 109.0096" fill="none" stroke="#087b61" stroke-width="3.5"/>
+<text x="977.5" y="47" font-size="21" text-anchor="middle">(c) Fixed ID</text>
+<path d="M855 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="855" y="347" font-size="16" text-anchor="middle">0</text>
+<path d="M904 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M904 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="904" y="347" font-size="16" text-anchor="middle">0.2</text>
+<path d="M953 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M953 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="953" y="347" font-size="16" text-anchor="middle">0.4</text>
+<path d="M1002 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M1002 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="1002" y="347" font-size="16" text-anchor="middle">0.6</text>
+<path d="M1051 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M1051 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="1051" y="347" font-size="16" text-anchor="middle">0.8</text>
+<path d="M1100 88V323" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M1100 323v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="1100" y="347" font-size="16" text-anchor="middle">1.0</text>
+<path d="M855 323h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="845" y="328" font-size="16" text-anchor="end">0</text>
+<path d="M855 264.25H1100" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M855 264.25h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="845" y="269.25" font-size="16" text-anchor="end">50</text>
+<path d="M855 205.5H1100" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M855 205.5h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="845" y="210.5" font-size="16" text-anchor="end">100</text>
+<path d="M855 146.75H1100" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M855 146.75h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="845" y="151.75" font-size="16" text-anchor="end">150</text>
+<path d="M855 88H1100" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M855 88h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="845" y="93" font-size="16" text-anchor="end">200</text>
+<path d="M855 88V323H1100" fill="none" stroke="#1c2837" stroke-width="1.5"/>
+<text x="977.5" y="377" font-size="20" text-anchor="middle">VGS − VTH (V)</text>
+<text x="795" y="205.5" font-size="20" text-anchor="middle" transform="rotate(-90 795 205.5)">W/L</text>
+<path d="M902.3259 88L903.1629 96.0975L904 103.7836L905.4412 116.1313L906.8824 127.4644L908.3235 137.891L909.7647 147.5054L911.2059 156.3898L912.6471 164.6161L914.0882 172.248L915.5294 179.3412L916.9706 185.9453L918.4118 192.1042L919.8529 197.8572L921.2941 203.239L922.7353 208.281L924.1765 213.0112L925.6176 217.4547L927.0588 221.6343L928.5 225.5705L929.9412 229.2817L931.3824 232.7849L932.8235 236.0953L934.2647 239.2267L935.7059 242.1919L937.1471 245.0024L938.5882 247.6688L940.0294 250.2008L941.4706 252.6072L942.9118 254.8962L944.3529 257.0754L945.7941 259.1516L947.2353 261.1313L948.6765 263.0203L950.1176 264.8241L951.5588 266.5477L953 268.1959L954.4412 269.7729L955.8824 271.2828L957.3235 272.7294L958.7647 274.1161L960.2059 275.4462L961.6471 276.7228L963.0882 277.9486L964.5294 279.1264L965.9706 280.2585L967.4118 281.3474L968.8529 282.3953L970.2941 283.404L971.7353 284.3757L973.1765 285.312L974.6176 286.2147L976.0588 287.0853L977.5 287.9254L978.9412 288.7363L980.3824 289.5195L981.8235 290.2761L983.2647 291.0073L984.7059 291.7143L986.1471 292.3981L987.5882 293.0598L989.0294 293.7002L990.4706 294.3203L991.9118 294.9209L993.3529 295.5028L994.7941 296.0668L996.2353 296.6137L997.6765 297.144L999.1176 297.6586L1000.5588 298.1579L1002 298.6426L1003.4412 299.1133L1004.8824 299.5704L1006.3235 300.0146L1007.7647 300.4462L1009.2059 300.8658L1010.6471 301.2738L1012.0882 301.6706L1013.5294 302.0567L1014.9706 302.4323L1016.4118 302.798L1017.8529 303.154L1019.2941 303.5006L1020.7353 303.8382L1022.1765 304.1672L1023.6176 304.4878L1025.0588 304.8002L1026.5 305.1048L1027.9412 305.4018L1029.3824 305.6915L1030.8235 305.9741L1032.2647 306.2498L1033.7059 306.5188L1035.1471 306.7815L1036.5882 307.0379L1038.0294 307.2883L1039.4706 307.5328L1040.9118 307.7717L1042.3529 308.0051L1043.7941 308.2331L1045.2353 308.456L1046.6765 308.6739L1048.1176 308.8869L1049.5588 309.0952L1051 309.299L1052.4412 309.4983L1053.8824 309.6932L1055.3235 309.884L1056.7647 310.0707L1058.2059 310.2534L1059.6471 310.4323L1061.0882 310.6075L1062.5294 310.779L1063.9706 310.947L1065.4118 311.1116L1066.8529 311.2727L1068.2941 311.4307L1069.7353 311.5855L1071.1765 311.7371L1072.6176 311.8858L1074.0588 312.0316L1075.5 312.1745L1076.9412 312.3146L1078.3824 312.4521L1079.8235 312.5869L1081.2647 312.7191L1082.7059 312.8488L1084.1471 312.9761L1085.5882 313.101L1087.0294 313.2236L1088.4706 313.3439L1089.9118 313.462L1091.3529 313.578L1092.7941 313.6919L1094.2353 313.8037L1095.6765 313.9135L1097.1176 314.0213L1098.5588 314.1273L1100 314.2313" fill="none" stroke="#a62c55" stroke-width="3.5"/>
+<polygon points="901.3259,81 898.3259,93 907.3259,92" fill="#a62c55"/>
+<text x="1087" y="118" font-size="16" text-anchor="end" fill="#a62c55">W/L → ∞ as Vov → 0⁺</text>
+<text x="570" y="421" font-size="19" text-anchor="middle">Example parameters  μnCox = 134 µA/V² · (a), (b) W/L = 10 · (c) ID = 0.5 mA</text>
+</g>
+</svg>

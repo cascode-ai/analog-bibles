@@ -1,6 +1,6 @@
 # Detailed solution - R066
 
-**Approach.** The output swing of a CS stage with a current-source load is limited at the bottom by $M_1$ leaving saturation (when $V_{out}$ falls below $M_1$'s overdrive) and at the top by $M_2$ leaving saturation (when $V_{DD} - V_{out}$ falls below $M_2$'s overdrive). Compute both overdrives from the square law at $I_D = 0.5$ mA; the swing is $V_{DD}$ minus the two overdrives.
+Approach. The output swing of a CS stage with a current-source load is limited at the bottom by $M_1$ leaving saturation (when $V_{out}$ falls below $M_1$'s overdrive) and at the top by $M_2$ leaving saturation (when $V_{DD} - V_{out}$ falls below $M_2$'s overdrive). Compute both overdrives from the square law at $I_D = 0.5$ mA; the swing is $V_{DD}$ minus the two overdrives.
 
 ### Step 1 — Saturation conditions
 
@@ -30,19 +30,19 @@ The PMOS needs a large overdrive because its mobility is low and its long channe
 
 ### Step 4 — Limits and swing
 
-**Lower limit** ($M_1$ at the edge of saturation):
+Lower limit ($M_1$ at the edge of saturation):
 
 $$V_{out,min} = V_{ov1} = 0.273\ \mathrm{V}.$$
 
-**Upper limit** ($M_2$ at the edge of saturation):
+Upper limit ($M_2$ at the edge of saturation):
 
 $$V_{out,max} = V_{DD} - |V_{ov2}| = 3 - 1.021 = 1.979\ \mathrm{V}.$$
 
-**Maximum swing:**
+Maximum swing:
 
 $$\Delta V_{out,max} = V_{out,max} - V_{out,min} = V_{DD} - V_{ov1} - |V_{ov2}| = 3 - 0.273 - 1.021 = 1.706\ \mathrm{V} \approx 1.71\ \mathrm{V}.$$
 
-**Bias voltages.** $V_{GS1} = 0.7 + 0.273 = 0.973$ V sets the dc input level. $V_{SG2} = 0.8 + 1.021 = 1.821$ V, so $V_b = 3 - 1.821 = 1.179$ V. For a symmetric swing the quiescent output would sit at the midpoint, $(0.273 + 1.979)/2 \approx 1.13$ V, allowing about ±0.85 V.
+Bias voltages. $V_{GS1} = 0.7 + 0.273 = 0.973$ V sets the dc input level. $V_{SG2} = 0.8 + 1.021 = 1.821$ V, so $V_b = 3 - 1.821 = 1.179$ V. For a symmetric swing the quiescent output would sit at the midpoint, $(0.273 + 1.979)/2 \approx 1.13$ V, allowing about ±0.85 V.
 
 ### Result
 
@@ -52,6 +52,6 @@ so the maximum output swing with both devices saturated is
 
 $$V_{DD} - V_{ov1} - |V_{ov2}| \approx 1.71\ \mathrm{V}.$$
 
-**Common mistake.** Including the threshold voltages in the limits, e.g. $V_{out,min} = V_{GS1} = 0.97$ V or $V_{out,max} = V_{DD} - V_{SG2} = 1.18$ V. Saturation requires $V_{DS} \ge V_{GS} - V_{TH}$, the overdrive, not $V_{DS} \ge V_{GS}$.
+Common mistake. Including the threshold voltages in the limits, e.g. $V_{out,min} = V_{GS1} = 0.97$ V or $V_{out,max} = V_{DD} - V_{SG2} = 1.18$ V. Saturation requires $V_{DS} \ge V_{GS} - V_{TH}$, the overdrive, not $V_{DS} \ge V_{GS}$.
 
-**Common mistake.** Using $(W/L)_2 = 50/0.5$ or $\mu_nC_{ox}$ for the PMOS. With $(W/L)_2 = 25$ and $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$ the PMOS overdrive is about 1.02 V; the wrong values give a much smaller overdrive and an overly optimistic swing.
+Common mistake. Using $(W/L)_2 = 50/0.5$ or $\mu_nC_{ox}$ for the PMOS. With $(W/L)_2 = 25$ and $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$ the PMOS overdrive is about 1.02 V; the wrong values give a much smaller overdrive and an overly optimistic swing.

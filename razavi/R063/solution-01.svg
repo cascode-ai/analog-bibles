@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 663">
+<title>Auxiliary fit of the NMOS output curves</title>
+<desc>Six square-law curves with channel-length modulation. Open markers indicate the transition from triode to saturation.</desc>
+<rect width="1000" height="663" fill="#fff"/>
+<g fill="#1c2837" font-family="Arial, Microsoft YaHei, sans-serif">
+<text x="500" y="44" font-size="24" text-anchor="middle">Auxiliary fit of the NMOS output curves</text>
+<path d="M95 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="95" y="557" font-size="16" text-anchor="middle">0</text>
+<path d="M236.2 85V533" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M236.2 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="236.2" y="557" font-size="16" text-anchor="middle">0.2</text>
+<path d="M377.4 85V533" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M377.4 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="377.4" y="557" font-size="16" text-anchor="middle">0.4</text>
+<path d="M518.6 85V533" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M518.6 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="518.6" y="557" font-size="16" text-anchor="middle">0.6</text>
+<path d="M659.8 85V533" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M659.8 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="659.8" y="557" font-size="16" text-anchor="middle">0.8</text>
+<path d="M801 85V533" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M801 533v5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="801" y="557" font-size="16" text-anchor="middle">1.0</text>
+<path d="M95 533h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="538" font-size="16" text-anchor="end">0</text>
+<path d="M95 469H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 469h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="474" font-size="16" text-anchor="end">0.5</text>
+<path d="M95 405H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 405h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="410" font-size="16" text-anchor="end">1.0</text>
+<path d="M95 341H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 341h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="346" font-size="16" text-anchor="end">1.5</text>
+<path d="M95 277H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 277h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="282" font-size="16" text-anchor="end">2.0</text>
+<path d="M95 213H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 213h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="218" font-size="16" text-anchor="end">2.5</text>
+<path d="M95 149H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 149h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="154" font-size="16" text-anchor="end">3.0</text>
+<path d="M95 85H801" fill="none" stroke="#d8e1e9" stroke-width="1"/>
+<path d="M95 85h-5" fill="none" stroke="#1c2837" stroke-width="1"/>
+<text x="85" y="90" font-size="16" text-anchor="end">3.5</text>
+<path d="M95 85V533H801" fill="none" stroke="#1c2837" stroke-width="1.5"/>
+<text x="448" y="587" font-size="20" text-anchor="middle">VDS (V)</text>
+<text x="37" y="309" font-size="20" text-anchor="middle" transform="rotate(-90 37 309)">ID (mA)</text>
+<path d="M95 533C236.2 319.496 377.4 174.3133 518.6 155.0979L801 116.6672" fill="none" stroke="#155eaa" stroke-width="3.1" stroke-linejoin="round"/>
+<path d="M95 533C212.6667 384.7333 330.3333 288.36 448 277.24L801 243.88" fill="none" stroke="#a62c55" stroke-width="3.1" stroke-linejoin="round"/>
+<path d="M95 533C189.1333 438.1093 283.2667 379.2771 377.4 373.5837L801 347.9632" fill="none" stroke="#087b61" stroke-width="3.1" stroke-linejoin="round"/>
+<path d="M95 533C165.6 479.624 236.2 448.1322 306.8 445.7302L801 428.9168" fill="none" stroke="#7449a4" stroke-width="3.1" stroke-linejoin="round"/>
+<path d="M95 533C142.0667 509.2773 189.1333 495.9926 236.2 495.281L801 486.7408" fill="none" stroke="#a45a13" stroke-width="3.1" stroke-linejoin="round"/>
+<path d="M95 533C118.5333 527.0693 142.0667 523.9261 165.6 523.8371L801 521.4352" fill="none" stroke="#435466" stroke-width="3.1" stroke-linejoin="round"/>
+<circle cx="518.6" cy="155.0979" r="4.6" fill="#fff" stroke="#155eaa" stroke-width="2.2"/>
+<circle cx="448" cy="277.24" r="4.6" fill="#fff" stroke="#a62c55" stroke-width="2.2"/>
+<circle cx="377.4" cy="373.5837" r="4.6" fill="#fff" stroke="#087b61" stroke-width="2.2"/>
+<circle cx="306.8" cy="445.7302" r="4.6" fill="#fff" stroke="#7449a4" stroke-width="2.2"/>
+<circle cx="236.2" cy="495.281" r="4.6" fill="#fff" stroke="#a45a13" stroke-width="2.2"/>
+<circle cx="165.6" cy="523.8371" r="4.6" fill="#fff" stroke="#435466" stroke-width="2.2"/>
+<text x="841" y="104" font-size="19" text-anchor="start">Overdrive Vov</text>
+<path d="M841 140h26" fill="none" stroke="#155eaa" stroke-width="3.1"/>
+<text x="882" y="146" font-size="18" text-anchor="start">0.6 V</text>
+<path d="M841 179h26" fill="none" stroke="#a62c55" stroke-width="3.1"/>
+<text x="882" y="185" font-size="18" text-anchor="start">0.5 V</text>
+<path d="M841 218h26" fill="none" stroke="#087b61" stroke-width="3.1"/>
+<text x="882" y="224" font-size="18" text-anchor="start">0.4 V</text>
+<path d="M841 257h26" fill="none" stroke="#7449a4" stroke-width="3.1"/>
+<text x="882" y="263" font-size="18" text-anchor="start">0.3 V</text>
+<path d="M841 296h26" fill="none" stroke="#a45a13" stroke-width="3.1"/>
+<text x="882" y="302" font-size="18" text-anchor="start">0.2 V</text>
+<path d="M841 335h26" fill="none" stroke="#435466" stroke-width="3.1"/>
+<text x="882" y="341" font-size="18" text-anchor="start">0.1 V</text>
+<circle cx="854" cy="393" r="4.6" fill="#fff" stroke="#1c2837" stroke-width="2.2"/>
+<text x="869" y="398" font-size="14" text-anchor="start">Saturation starts</text>
+<text x="500" y="632" font-size="18" text-anchor="middle">Fit parameters  β = 13.9 mA/V² · λ = 0.30 V⁻¹</text>
+</g>
+</svg>

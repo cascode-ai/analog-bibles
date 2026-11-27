@@ -1,5 +1,17 @@
-$V_{GS}$ 步长 ≈ 0.1 V，六条曲线的过驱动电压（overdrive voltage）≈ 0.1、0.2、…、0.6 V；$\lambda \approx 0.3\ \mathrm{V^{-1}}$；$\mu_n \approx 58\ \mathrm{cm^2/V\cdot s}$，根据对沟道长度调制（CLM）的不同处理，约为 55–70。$V_{TH} = V_{GS,lowest} - 0.1$ V；曲线只确定了过驱动电压，若取最上面的曲线对应 $V_{GS} = 1$ V（由 $V_{DS}$ 轴暗示的 1 V 电源），则得到 $V_{TH} \approx 0.4$ V。
-- λ：饱和部分是直线；例如最上面的曲线在 0.7 V 处为 3.02 mA，在 1.0 V 处为 3.25 mA，给出斜率 0.77 mA/V，在 $V_{DS} = 0$ 处的截距为 2.48 mA，因此 λ = 0.77/2.48 ≈ 0.31 V⁻¹。其他曲线给出 0.29–0.30 V⁻¹。
-- 步长：拐点（$V_{DS,sat} = V_{GS} - V_{TH}$）位于 ≈ 0.1、0.2、0.3、0.4、0.5、0.6 V。与此一致，$\sqrt{I_{D,sat}}$（截距为 0.070、0.278、0.626、1.11、1.74、2.48 mA）以 ≈ 0.263 √mA 的等步长增大。而在线性区（triode region），在 $V_{DS} = 0.25$ V 处相邻曲线之差为常数 ≈ 0.374 mA，等于 $\beta\,\Delta V_{GS}\,V_{DS}(1+\lambda V_{DS})$。综合起来：$\Delta V_{GS} \approx 0.10$ V，$\beta = \mu_nC_{ox}W/L \approx 14\ \mathrm{mA/V^2}$（由 $\tfrac12\beta(0.6)^2 = 2.48$ mA 得 13.8 mA/V²）。
-- $C_{ox} = 3.9 \times 8.85\times10^{-12}/1.8\times10^{-9} = 19.2\ \mathrm{fF/\mu m^2}$；$W/L = 125$；$\mu_nC_{ox} = 14\ \mathrm{mA/V^2}/125 = 112\ \mu\mathrm{A/V^2}$；$\mu_n = 112\times10^{-6}/0.0192 \approx 5.8\times10^{-3}\ \mathrm{m^2/V\cdot s} = 58\ \mathrm{cm^2/V\cdot s}$。（若忽略 CLM，并采用拐点电流 2.95 mA，则得到 ≈ 68 cm²/V·s。）
-- $V_{TH}$：最下面一条曲线的过驱动电压 ≈ 0.1 V。若步长均为 0.1 V，且最上面的曲线对应 $V_{GS} = 1$ V，则各曲线位于 0.5–1.0 V，$V_{TH} \approx 0.4$ V。
+# Golden Solution - R063
+
+## 参考答案
+
+- 栅压步长。各拐点给出 $V_{ov}=V_{GS}-V_{TH}\approx 0.1,0.2,\ldots,0.6\ \mathrm{V}$，所以 $\Delta V_{GS}\approx 0.10\ \mathrm{V}$。
+- 沟道长度调制。最上方曲线在 $V_{DS}=0.6$ V 和 $1.0$ V 处的 $I_D$ 分别约为 2.95 mA 和 3.25 mA。饱和段斜率为 $0.75\ \mathrm{mA/V}$，外推截距为 $I_{D0}\approx2.50$ mA，因此 $\lambda=0.75/2.50\ \mathrm{V^{-1}}\approx0.30\ \mathrm{V^{-1}}$。
+- 迁移率。由 $I_{D0}=\tfrac12\beta V_{ov}^2$ 得 $\beta\approx13.9\ \mathrm{mA/V^2}$。代入 $C_{ox}=3.9\epsilon_0/t_{ox}\approx0.0192\ \mathrm{F/m^2}$ 及 $W/L=125$ 得 $\mu_n=\beta/[C_{ox}(W/L)]\approx5.8\times10^{-3}\ \mathrm{m^2/(V\,s)}=58\ \mathrm{cm^2/(V\,s)}$。
+- 阈值。原题图 1 给出过驱动电压，取最下方曲线可得 $V_{TH}=V_{GS,6}-0.1\ \mathrm{V}$。若最上方曲线对应 $V_{GS}=1.0$ V，则 $V_{TH}\approx0.4$ V。
+
+![平方律模型拟合辅助图](/q/R063/solution-01.zh.svg)
+
+## 评分说明
+
+- +2：步长为 0.09–0.11 V，$\lambda$ 约为 0.25–0.4 V⁻¹，使用 $C_{ox}$ 和 $W/L=125$ 的计算得到 $\mu_n$ 约为 50–75 cm²/(V·s)，并给出 $V_{TH}$ 的关系式及图中只能确定过驱动电压的理由，或在明确绝对 $V_{GS}$ 假设的条件下给出约 0.4 V。
+- +1：四个量中三个正确，或四个都正确但有一处小错误。若迁移率的 SI 值正确，但换算成 cm²/(V·s) 时出错，则迁移率部分最高计 0，其他三项正确时总评为 +1。
+- 0：约一半正确。
+- −2：明确把电流间隔当作栅压步长、把 $\lambda$ 错估一个数量级、因公式或推导中的单位错误使迁移率偏差至少 3 倍，或误读 $V_{DS}$ 轴并断言阈值。

@@ -2,12 +2,25 @@
 
 ## Reference answer
 
-$V_{in} \approx 1.144$ V ($V_{out} \approx 0.394$ V, $I_D \approx 1.30$ mA); $A_v \approx -4.5$.
+### DC bias
 
-- Triode: $V_{out} = V_{DD} - R_D\beta[(V_{in}-V_{TH})V_{out} - V_{out}^2/2]$ with $V_{out} = V_{in} - V_{TH} - 0.05$ V and $\beta = 13.4\ \mathrm{mA/V^2}$ → overdrive 0.444 V, $V_{out} = 0.394$ V.
-- Small-signal in triode: $g_m = \beta V_{DS} = 5.28$ mS, output conductance $g_{ds} = \beta(V_{ov} - V_{DS}) = 13.4\ \mathrm{mA/V^2} \times 0.05\ \mathrm{V} = 0.67$ mS.
-- $A_v = -g_m(R_D \| 1/g_{ds}) = -5.28/(0.67 + 0.5) \approx -4.5$. An input only ≈ 7 mV above the edge value cuts the gain by more than half.
+With $V_{ov}=V_{in}-V_{TH}$ and $\beta=\mu_nC_{ox}(W/L)=13.4\ \mathrm{mA/V^2}$, solve the load line and triode current together:
+
+$$V_{out}=V_{ov}-0.050\ \mathrm{V},\qquad
+\frac{V_{DD}-V_{out}}{R_D}=\beta\left(V_{ov}V_{out}-\frac{V_{out}^2}{2}\right).$$
+
+The physical solution gives $V_{in}=V_{TH}+V_{ov}\approx 1.144\ \mathrm{V}$, with $V_{ov}\approx 0.444\ \mathrm{V}$ and $V_{DS}=V_{out}\approx 0.394\ \mathrm{V}$. This satisfies $0<V_{DS}<V_{ov}$.
+
+### Small-signal gain
+
+$$g_m=\beta V_{DS}\approx 5.28\ \mathrm{mS},\qquad
+g_{ds}=\beta(V_{ov}-V_{DS})=0.67\ \mathrm{mS}.$$
+
+$$A_v=-\frac{g_m}{g_{ds}+1/R_D}\approx -4.5\ \mathrm{V/V}.$$
 
 ## Grading notes
 
-+2: $V_{in}$ ≈ 1.144 V (±0.01 V) and gain ≈ −4.5 (±5%), with the triode output conductance included. +1: correct method with one slip. 0: $V_{in}$ right but the gain computed as $-\beta V_{DS}R_D \approx -10.6$ (triode output conductance ignored). -2 (asserted as fact): the saturation gain (≈ −11.7 or larger) kept in triode, or the input found by simply adding 50 mV to the edge input (1.187 V) contrary to the stated definition.
+- +2 for $V_{in}\approx 1.144\ \mathrm{V}$ (within $\pm 0.01\ \mathrm{V}$) and $A_v\approx -4.5\ \mathrm{V/V}$ (within $\pm 5\%$), with triode output conductance included.
+- +1 for the correct method with one slip.
+- 0 for the correct $V_{in}$ with the gain calculated as $-\beta V_{DS}R_D\approx -10.6$ by omitting triode output conductance.
+- −2 for asserting the saturation gain (about $-11.7$ or larger in magnitude) in triode, or finding the input by adding 50 mV directly to the boundary input to obtain 1.187 V.

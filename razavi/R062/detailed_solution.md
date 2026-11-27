@@ -1,10 +1,12 @@
 # Detailed solution - R062
 
-**Approach.** Write the square-law expression behind each of the three $g_m$ plots, then use it to obtain the requested relation: integrate $g_m$ with respect to the overdrive to get $I_D$, combine $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ with $g_m = 2I_D/(V_{GS} - V_{TH})$ to get the overdrive versus current, and combine $g_m = \mu_nC_{ox}(W/L)(V_{GS} - V_{TH})$ with $g_m = 2I_D/(V_{GS} - V_{TH})$ to get $W/L$ at constant current. Each result is then described as a curve, with a numerical example.
+**Approach:** Write the square-law expression behind each of the three $g_m$ plots, then use it to obtain the requested relation: integrate $g_m$ with respect to the overdrive to get $I_D$, combine $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ with $g_m = 2I_D/(V_{GS} - V_{TH})$ to get the overdrive versus current, and combine $g_m = \mu_nC_{ox}(W/L)(V_{GS} - V_{TH})$ with $g_m = 2I_D/(V_{GS} - V_{TH})$ to get $W/L$ at constant current. Each result is then described as a curve, with a numerical example.
 
 ### Step 1 — The three $g_m$ relations in the figure
 
-With $V_{ov} = V_{GS} - V_{TH}$ and $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$, the three panels are:
+![Requested relationships](/q/R062/solution-01.svg)
+
+Use the ideal saturation square law for $V_{ov} = V_{GS} - V_{TH} > 0$ and $V_{DS} \ge V_{ov}$, neglecting channel-length modulation. Then $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$. The three panels of the given transconductance figure show
 
 $$
 \begin{aligned}
@@ -18,13 +20,13 @@ For the numerical examples take $\mu_nC_{ox} = 134\ \mu\mathrm{A/V^2}$, $W/L = 1
 
 ### Step 2 — Plot 1: $I_D$ versus $V_{GS} - V_{TH}$ with $W/L$ constant
 
-Since $g_m = \partial I_D/\partial V_{GS}$ and $dV_{GS} = dV_{ov}$ with $V_{TH}$ fixed, $I_D$ is the integral of the straight line (a), starting from $I_D = 0$ at $V_{ov} = 0$:
+Since $g_m = \partial I_D/\partial V_{GS}$ and $dV_{GS} = dV_{ov}$ with $V_{TH}$ fixed, integrate the straight line in the given panel (a), using the square-law boundary value $I_D = 0$ at $V_{ov} = 0$.
 
 $$I_D = \int_0^{V_{ov}} \mu_nC_{ox}\frac{W}{L}\,v\,dv = \mu_nC_{ox}\frac{W}{L}\cdot\frac{V_{ov}^2}{2} = \frac12\,\mu_nC_{ox}\frac{W}{L}\,(V_{GS} - V_{TH})^2 .$$
 
-**Shape.** A parabola starting at the origin with zero slope, curving upward. Its slope at any point is $g_m$, which grows linearly with $V_{ov}$; doubling the overdrive quadruples the current.
+Shape: A parabola starting at the origin with zero slope, curving upward. Its slope at any point is $g_m$, which grows linearly with $V_{ov}$; doubling the overdrive quadruples the current.
 
-**Example.** $\tfrac12\mu_nC_{ox}W/L = \tfrac12(134\ \mu\mathrm{A/V^2})(10) = 0.67\ \mathrm{mA/V^2}$, so $I_D = 0.67\ \mathrm{mA/V^2}\times V_{ov}^2$. At $V_{ov} = 0.4$ V: $I_D = 0.67\times0.16 = 0.107$ mA.
+Example: $\tfrac12\mu_nC_{ox}W/L = \tfrac12(134\ \mu\mathrm{A/V^2})(10) = 0.67\ \mathrm{mA/V^2}$, so $I_D = 0.67\ \mathrm{mA/V^2}\times V_{ov}^2$. At $V_{ov} = 0.4$ V: $I_D = 0.67\times0.16 = 0.107$ mA.
 
 | $V_{GS} - V_{TH}$ (V) | 0 | 0.2 | 0.4 | 0.6 | 0.8 | 1.0 |
 |---|---|---|---|---|---|---|
@@ -32,15 +34,15 @@ $$I_D = \int_0^{V_{ov}} \mu_nC_{ox}\frac{W}{L}\,v\,dv = \mu_nC_{ox}\frac{W}{L}\c
 
 ### Step 3 — Plot 2: $V_{GS} - V_{TH}$ versus $I_D$ with $W/L$ constant
 
-Solve relation (c), which holds at any bias, for the overdrive, $V_{ov} = 2I_D/g_m$, and substitute $g_m$ from relation (b), the one plotted against $I_D$ for fixed $W/L$. With $2I_D/\sqrt{2I_D} = \sqrt{2I_D}$:
+For $I_D>0$ in the saturation model, solve relation (c) for the overdrive, $V_{ov} = 2I_D/g_m$, and substitute $g_m$ from relation (b), the one plotted against $I_D$ for fixed $W/L$. With $2I_D/\sqrt{2I_D} = \sqrt{2I_D}$:
 
 $$V_{ov} = \frac{2I_D}{\sqrt{2\mu_nC_{ox}(W/L)I_D}} = \frac{\sqrt{2I_D}}{\sqrt{\mu_nC_{ox}(W/L)}} = \sqrt{\frac{2I_D}{\mu_nC_{ox}(W/L)}} ,$$
 
-which is plot 1 with the axes exchanged (the inverse function).
+which is plot 1 with the axes exchanged (the inverse function). Its continuous extension at $I_D=0$ gives $V_{ov}=0$.
 
-**Shape.** A square-root curve: it starts at the origin with infinite slope and flattens as $I_D$ grows. Quadrupling the current only doubles the overdrive.
+Shape: A square-root curve: it starts at the origin with infinite slope and flattens as $I_D$ grows. Quadrupling the current only doubles the overdrive.
 
-**Example.** $V_{ov} = \sqrt{I_D/(0.67\ \mathrm{mA/V^2})}$. At $I_D = 0.2$ mA: $V_{ov} = \sqrt{0.2/0.67}\ \mathrm{V} = \sqrt{0.2985}\ \mathrm{V} = 0.546$ V.
+Example: $V_{ov} = \sqrt{I_D/(0.67\ \mathrm{mA/V^2})}$. At $I_D = 0.2$ mA: $V_{ov} = \sqrt{0.2/0.67}\ \mathrm{V} = \sqrt{0.2985}\ \mathrm{V} = 0.546$ V.
 
 | $I_D$ (µA) | 0 | 50 | 100 | 200 | 400 | 800 |
 |---|---|---|---|---|---|---|
@@ -52,9 +54,9 @@ Relation (a) gives $W/L = g_m/(\mu_nC_{ox}V_{ov})$, and at constant $I_D$ the tr
 
 $$\frac{W}{L} = \frac{1}{\mu_nC_{ox}V_{ov}}\cdot\frac{2I_D}{V_{ov}} = \frac{2I_D}{\mu_nC_{ox}\,(V_{GS} - V_{TH})^2} .$$
 
-**Shape.** A decreasing curve proportional to $1/V_{ov}^2$, tending to infinity as the overdrive goes to zero and to zero for large overdrive. It falls **faster** than the $g_m$ hyperbola of panel (c) ($\propto 1/V_{ov}$): halving the overdrive doubles $g_m$ but quadruples $W/L$.
+Shape: A decreasing curve proportional to $1/V_{ov}^2$, tending to infinity as $V_{ov}\to0^+$ at fixed $I_D>0$ and to zero for large overdrive in the model. It falls faster than the $g_m$ hyperbola of panel (c) ($\propto 1/V_{ov}$): halving the overdrive doubles $g_m$ but quadruples $W/L$.
 
-**Example.** $2I_D/(\mu_nC_{ox}) = 2(0.5\ \mathrm{mA})/(134\ \mu\mathrm{A/V^2}) = 7.46\ \mathrm{V^2}$, so $W/L = 7.46\ \mathrm{V^2}/V_{ov}^2$. At $V_{ov} = 0.4$ V: $W/L = 7.46/0.16 = 46.6$.
+Example: $2I_D/(\mu_nC_{ox}) = 2(0.5\ \mathrm{mA})/(134\ \mu\mathrm{A/V^2}) = 7.46\ \mathrm{V^2}$, so $W/L = 7.46\ \mathrm{V^2}/V_{ov}^2$. At $V_{ov} = 0.4$ V: $W/L = 7.46/0.16 = 46.6$.
 
 | $V_{GS} - V_{TH}$ (V) | 0.2 | 0.4 | 0.6 | 0.8 | 1.0 |
 |---|---|---|---|---|---|
@@ -67,10 +69,10 @@ $$\frac{W}{L} = \frac{1}{\mu_nC_{ox}V_{ov}}\cdot\frac{2I_D}{V_{ov}} = \frac{2I_D
 
 ### Result
 
-- **$I_D$ vs $V_{GS} - V_{TH}$ ($W/L$ constant):** $I_D = \tfrac12\mu_nC_{ox}(W/L)(V_{GS} - V_{TH})^2$, a parabola from the origin whose slope at each point is $g_m$.
-- **$V_{GS} - V_{TH}$ vs $I_D$ ($W/L$ constant):** $V_{GS} - V_{TH} = \sqrt{2I_D/[\mu_nC_{ox}(W/L)]}$, a square-root curve, steep near the origin and flattening (the inverse of the first plot).
-- **$W/L$ vs $V_{GS} - V_{TH}$ ($I_D$ constant):** $W/L = 2I_D/[\mu_nC_{ox}(V_{GS} - V_{TH})^2]$, falling as $1/(V_{GS} - V_{TH})^2$, faster than the $1/(V_{GS} - V_{TH})$ fall of $g_m$ in the third panel.
+- $I_D$ vs $V_{GS} - V_{TH}$ ($W/L$ constant): $I_D = \tfrac12\mu_nC_{ox}(W/L)(V_{GS} - V_{TH})^2$, a parabola from the origin whose slope at each point is $g_m$.
+- $V_{GS} - V_{TH}$ vs $I_D$ ($W/L$ constant): $V_{GS} - V_{TH} = \sqrt{2I_D/[\mu_nC_{ox}(W/L)]}$, a square-root curve, steep near the origin and flattening (the inverse of the first plot).
+- $W/L$ vs $V_{GS} - V_{TH}$ ($I_D$ constant): $W/L = 2I_D/[\mu_nC_{ox}(V_{GS} - V_{TH})^2]$, falling as $1/(V_{GS} - V_{TH})^2$, faster than the $1/(V_{GS} - V_{TH})$ fall of $g_m$ in the third panel.
 
-**Common mistake.** Drawing $I_D$ as a straight line in the overdrive because the $g_m$ plot is a straight line. The straight line is the *slope* of the $I_D$ curve; integrating a line gives a parabola.
+**Common mistake:** Drawing $I_D$ as a straight line in the overdrive because the $g_m$ plot is a straight line. The straight line is the *slope* of the $I_D$ curve; integrating a line gives a parabola.
 
-**Common mistake.** Taking $W/L \propto 1/(V_{GS} - V_{TH})$ at constant current by copying the shape of the third $g_m$ panel. That panel shows $g_m = 2I_D/V_{ov}$; the aspect ratio needed to carry a fixed current falls as the *square* of the overdrive.
+**Common mistake:** Taking $W/L \propto 1/(V_{GS} - V_{TH})$ at constant current by copying the shape of the third $g_m$ panel. That panel shows $g_m = 2I_D/V_{ov}$; the aspect ratio needed to carry a fixed current falls as the *square* of the overdrive.

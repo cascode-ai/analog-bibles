@@ -2,11 +2,16 @@
 
 ## Reference answer
 
-- $V_G < V_{TH} = 0.7$ V: no inversion layer, so no pinch-off point.
-- $0.7\ \mathrm{V} < V_G < 1.9$ V: saturation. The channel pinches off where the local channel voltage reaches $V_G - V_{TH}$, before the drain (since $V_{DS} = 1.2\ \mathrm{V} > V_G - V_{TH}$). As $V_G$ increases, $V_G - V_{TH}$ approaches $V_{DS}$ and the pinch-off point moves toward the drain. The depleted gap ΔL between pinch-off and drain shrinks and the effective channel length $L - \Delta L$ grows.
-- $V_G = V_{TH} + V_{DS} = 1.9$ V: the pinch-off point reaches the drain edge (edge of saturation).
-- $V_G > 1.9$ V: triode; the inversion layer extends continuously from source to drain and there is no pinch-off point any more.
+In the strong-inversion model, pinch-off occurs where the local channel potential reaches $V_G-V_{TH}$. The triode boundary is $V_G=V_{TH}+V_{DS}=1.9\ \mathrm{V}$.
+
+- For $V_G\le V_{TH}=0.7\ \mathrm{V}$, no strong-inversion channel has formed, so there is no pinch-off point.
+- For $0.7\ \mathrm{V}<V_G<1.9\ \mathrm{V}$, the channel pinches off before the drain. As $V_G$ rises at fixed $V_{DS}$, the voltage $V_{DS}-(V_G-V_{TH})$ across the depleted gap falls. The gap $\Delta L$ shortens and the pinch-off point moves toward the drain.
+- At $V_G=1.9\ \mathrm{V}$, the inversion charge reaches zero at the drain edge and $\Delta L=0$.
+- For $V_G>1.9\ \mathrm{V}$, the device is in triode. Inversion extends to the drain and there is no pinch-off.
 
 ## Grading notes
 
-+2: pinch-off moves toward the drain as $V_G$ rises, reaching the drain at $V_G = V_{TH} + 1.2\ \mathrm{V} = 1.9$ V, after which the device is in triode with no pinch-off; no channel below $V_{TH}$. +1: correct direction and triode statement without the 1.9 V value. 0: correct direction only. -2 (asserted as fact): pinch-off moving toward the source with increasing $V_G$, or pinch-off persisting in triode.
+- +2 for motion toward the drain as $V_G$ rises, reaching it at $V_G=V_{TH}+1.2\ \mathrm{V}=1.9\ \mathrm{V}$, followed by triode operation with no pinch-off, and for stating that no channel exists below $V_{TH}$.
+- +1 for the correct direction and triode conclusion without the 1.9 V boundary value.
+- 0 for the correct direction alone.
+- −2 for asserting that the point moves toward the source as $V_G$ increases or that pinch-off persists in triode.
