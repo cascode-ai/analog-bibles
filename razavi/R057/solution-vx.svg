@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480">
+  <title>R057 positive-step waveform for V_X</title>
+  <desc>Illustrative plot using V_DD=3 V, V_TH=0.7 V, V_0=1 V, and tau as the time unit. V_X jumps from 3 V to 4 V at t=0 and decays hyperbolically to 3.7 V.</desc>
+  <rect x="0" y="0" width="760" height="480" fill="white"/>
+  <line x1="90" y1="375" x2="700" y2="375" stroke="black" stroke-width="2"/>
+  <line x1="90" y1="55" x2="90" y2="375" stroke="black" stroke-width="2"/>
+  <line x1="90" y1="295" x2="700" y2="295" stroke="#d0d0d0" stroke-width="1"/>
+  <line x1="90" y1="215" x2="700" y2="215" stroke="#d0d0d0" stroke-width="1"/>
+  <line x1="90" y1="135" x2="700" y2="135" stroke="#d0d0d0" stroke-width="1"/>
+  <line x1="145" y1="375" x2="145" y2="55" stroke="#808080" stroke-width="1" stroke-dasharray="5 5"/>
+  <polyline points="90,295 145,295 145,135 200,159 255,167 365,173 585,178 700,179" fill="none" stroke="#1769aa" stroke-width="3"/>
+  <circle cx="145" cy="135" r="4" fill="#1769aa"/>
+  <circle cx="200" cy="159" r="4" fill="#1769aa"/>
+  <circle cx="700" cy="179" r="4" fill="#1769aa"/>
+  <text x="78" y="380" text-anchor="end" font-size="16">2.5</text>
+  <text x="78" y="300" text-anchor="end" font-size="16">3.0</text>
+  <text x="78" y="220" text-anchor="end" font-size="16">3.5</text>
+  <text x="78" y="60" text-anchor="end" font-size="16">4.5</text>
+  <text x="78" y="140" text-anchor="end" font-size="16">4.0</text>
+  <text x="90" y="405" text-anchor="middle" font-size="16">−1</text>
+  <text x="145" y="405" text-anchor="middle" font-size="16">0</text>
+  <text x="200" y="405" text-anchor="middle" font-size="16">1</text>
+  <text x="365" y="405" text-anchor="middle" font-size="16">4</text>
+  <text x="585" y="405" text-anchor="middle" font-size="16">8</text>
+  <text x="700" y="405" text-anchor="middle" font-size="16">10</text>
+  <text x="395" y="450" text-anchor="middle" font-size="18">t / τ</text>
+  <text x="25" y="215" text-anchor="middle" font-size="18" transform="rotate(-90 25 215)">V_X (V)</text>
+  <text x="155" y="120" font-size="16" fill="#1769aa">V_X(0⁺)=4.0 V</text>
+  <text x="475" y="170" font-size="16" fill="#1769aa">V_X(∞)=3.7 V</text>
+</svg>

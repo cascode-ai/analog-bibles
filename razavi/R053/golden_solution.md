@@ -3,9 +3,9 @@
 ## Reference answer
 
 No in both cases.
-- In every region the dc current depends on $\mu_nC_{ox}$ and $W/L$ only through their product $K = \mu_nC_{ox}W/L$: saturation $\tfrac12K(V_{GS}-V_{TH})^2$, triode $K[(V_{GS}-V_{TH})V_{DS} - V_{DS}^2/2]$. Any set of dc measurements yields K, but scaling $\mu_nC_{ox}$ up and $W/L$ down by the same factor leaves every reading unchanged.
+- In every region the dc current depends on $\mu_nC_{ox}$ and $W/L$ only through their product $K = \mu_nC_{ox}W/L$: saturation $\tfrac12K(V_{GS}-V_{TH})^2$, triode $K[(V_{GS}-V_{TH})V_{DS} - V_{DS}^2/2]$. Any set of dc measurements can determine $K$ at a conducting bias, but scaling $\mu_nC_{ox}$ up and $W/L$ down by the same factor leaves every reading unchanged.
 - Two devices with $(W/L)_2 = 2(W/L)_1$: measurements give $K_1$ and $K_2 = 2K_1$; the second result follows from the first and the known ratio, so there are still two unknowns ($\mu_nC_{ox}$ and $(W/L)_1$) with only one independent equation. A ratio of aspect ratios contains no absolute scale.
-- Separating them needs independent information, e.g. $C_{ox}$ from a C–V measurement (plus μ), or absolute W and L from the layout.
+- Separating them needs independent information, e.g. $C_{ox}$ from a C–V measurement (plus $\mu_n$), or absolute $W$ and $L$ from the layout.
 
 ## Grading notes
 

@@ -1,6 +1,6 @@
 # Detailed solution - R057
 
-**Approach.** Node X has no dc path anywhere (it touches only the gate of $M_1$ and capacitor $C_1$), so the charge on $C_1$ is frozen and $V_X - V_Y = V_{GS1}$ never changes. The input step is coupled to Y through $C_2$, which pushes $M_1$ out of saturation; the current deficit then discharges $C_2$ until $M_1$ can again carry $I_1$. KCL at node Y gives a differential equation that can be solved exactly.
+Approach. Node X has no dc path anywhere (it touches only the gate of $M_1$ and capacitor $C_1$), so the charge on $C_1$ is frozen and $V_X - V_Y = V_{GS1}$ never changes. The input step is coupled to Y through $C_2$, which pushes $M_1$ out of saturation; the current deficit then discharges $C_2$ until $M_1$ can again carry $I_1$. KCL at node Y gives a differential equation that can be solved exactly.
 
 ### Step 1 — The initial state
 
@@ -32,9 +32,9 @@ Just after the step:
 
 $$V_{GS1} \;\text{(unchanged)}, \qquad V_{DS1} = V_{DD} - V_Y(0^+) = V_{GS1} - V_0 .$$
 
-Saturation would require $V_{DS1} \ge V_{GS1} - V_{TH}$, i.e. $V_0 \le V_{TH}$. Since $V_0 > V_{TH}$, **$M_1$ is in the triode region**: the gate is now more than $V_{TH}$ above the $V_{DD}$ terminal, so the channel is inverted at both ends. (If $V_0 > V_{GS1}$, Y is even above $V_{DD}$, drain and source exchange roles, and the device conducts *from* Y *to* $V_{DD}$.)
+Saturation would require $V_{DS1} \ge V_{GS1} - V_{TH}$, i.e. $V_0 \le V_{TH}$. Since $V_0 > V_{TH}$, $M_1$ is in the triode region: the gate is now more than $V_{TH}$ above the $V_{DD}$ terminal, so the channel is inverted at both ends. (If $V_0 > V_{GS1}$, Y is even above $V_{DD}$, drain and source exchange roles, and the device conducts *from* Y *to* $V_{DD}$.)
 
-With its gate–source voltage fixed at $V_{GS1}$, a device in triode carries **less** than its saturation current $I_1$. In the "two overdrives" form (with $\gamma = 0$):
+With its gate–source voltage fixed at $V_{GS1}$, a device in triode carries less than its saturation current $I_1$. In the "two overdrives" form (with $\gamma = 0$):
 
 $$I_{M1} = \frac{\beta}{2}\left[(V_X - V_Y - V_{TH})^2 - (V_X - V_{DD} - V_{TH})^2\right] = I_1 - \frac{\beta}{2}\,u^2,$$
 
@@ -50,7 +50,7 @@ For $t > 0$, $V_{in}$ is constant, so the current flowing from $C_2$ into Y is $
 
 $$I_{M1} - C_2\frac{dV_Y}{dt} = I_1 \quad\Longrightarrow\quad C_2\frac{dV_Y}{dt} = I_{M1} - I_1 = -\frac{\beta}{2}u^2 < 0 .$$
 
-$I_1$ draws more than $M_1$ supplies, and the difference is taken from $C_2$: **$V_Y$ falls, and $V_X$ falls with it.** Since $V_X = V_Y + V_{GS1}$, $du/dt = dV_X/dt = dV_Y/dt$:
+$I_1$ draws more than $M_1$ supplies, and the difference is taken from $C_2$: $V_Y$ falls, and $V_X$ falls with it. Since $V_X = V_Y + V_{GS1}$, $du/dt = dV_X/dt = dV_Y/dt$:
 
 $$\frac{du}{dt} = -\frac{\beta}{2C_2}\,u^2 .$$
 
@@ -71,11 +71,11 @@ V_Y(t) &= V_{DD} - \sqrt{\frac{2I_1}{\beta}} + \frac{V_0 - V_{TH}}{1 + t/\tau} .
 \end{aligned}
 $$
 
-**Final values** ($t \to \infty$, $u \to 0$):
+Final values ($t \to \infty$, $u \to 0$):
 
 $$V_X(\infty) = V_{DD} + V_{TH}, \qquad V_Y(\infty) = V_{DD} - \sqrt{2I_1/\beta} .$$
 
-The discharge stops when $u = 0$, i.e. when $M_1$ reaches the **edge of saturation**, $V_{DS1} = V_{GS1} - V_{TH} = V_{ov}$, the only state in which it carries $I_1$ with its fixed $V_{GS1}$. Both nodes end exactly $V_{TH}$ above their initial values, not $V_0$ above. The approach is **hyperbolic** ($\propto 1/t$), not exponential: the current deficit $\tfrac{\beta}{2}u^2$ shrinks quadratically near the edge of saturation, so the last part of the settling is slow.
+The discharge stops when $u = 0$, i.e. when $M_1$ reaches the edge of saturation, $V_{DS1} = V_{GS1} - V_{TH} = V_{ov}$, the only state in which it carries $I_1$ with its fixed $V_{GS1}$. Both nodes end exactly $V_{TH}$ above their initial values, not $V_0$ above. The approach is hyperbolic ($\propto 1/t$), not exponential: the current deficit $\tfrac{\beta}{2}u^2$ shrinks quadratically near the edge of saturation, so the last part of the settling is slow.
 
 ### Step 7 — The waveforms
 
@@ -89,7 +89,11 @@ Both waveforms have the same shape, offset by the constant $V_{GS1}$:
 | $t = 9\tau$ (10 % left) | $V_{DD} + V_{TH} + 0.1(V_0 - V_{TH})$ | $V_{DD} - V_{ov} + 0.1(V_0 - V_{TH})$ |
 | $t \to \infty$ | $V_{DD} + V_{TH}$ | $V_{DD} - V_{ov}$ |
 
-**Numerical illustration** (assumed values: $V_{DD} = 3$ V, $V_{TH} = 0.7$ V, $\beta = 1\ \mathrm{mA/V^2}$, $I_1 = 0.1$ mA, $C_2 = 1$ pF, $V_0 = 1$ V):
+![Positive-step waveform of $V_X$](/q/R057/solution-vx.svg)
+
+![Positive-step waveform of $V_Y$](/q/R057/solution-vy.svg)
+
+Numerical illustration (assumed values: $V_{DD} = 3$ V, $V_{TH} = 0.7$ V, $\beta = 1\ \mathrm{mA/V^2}$, $I_1 = 0.1$ mA, $C_2 = 1$ pF, $V_0 = 1$ V):
 
 $$
 \begin{aligned}
@@ -110,8 +114,8 @@ $$V_X(t) = V_{DD} + V_{TH} + \frac{V_0 - V_{TH}}{1 + t/\tau}, \quad V_Y(t) = V_{
 
 They settle asymptotically at $V_X = V_{DD} + V_{TH}$ and $V_Y = V_{DD} - \sqrt{2I_1/\beta}$ ($M_1$ at the edge of saturation), i.e. $V_{TH}$ above their initial values.
 
-**Common mistake.** Assuming $V_X$ stays at $V_{DD}$, or that $C_1$ discharges through the gate. The gate draws no current and nothing else touches X, so the charge on $C_1$ cannot change; X must move with Y.
+Common mistake. Assuming $V_X$ stays at $V_{DD}$, or that $C_1$ discharges through the gate. The gate draws no current and nothing else touches X, so the charge on $C_1$ cannot change; X must move with Y.
 
-**Common mistake.** Letting the circuit return to its initial voltages, or stay at the jumped values. $M_1$ keeps the same $V_{GS1}$, so it carries $I_1$ again only at the edge of saturation, with both nodes $V_{TH}$ above their starting points.
+Common mistake. Letting the circuit return to its initial voltages, or stay at the jumped values. $M_1$ keeps the same $V_{GS1}$, so it carries $I_1$ again only at the edge of saturation, with both nodes $V_{TH}$ above their starting points.
 
-**Common mistake.** Having $V_X$ and $V_Y$ move in opposite directions, e.g. treating $C_1$ and $C_2$ as a voltage divider for the step. With X floating, $C_1$ carries no charge and is just a level shifter; both nodes jump by the full $V_0$ and then fall together.
+Common mistake. Having $V_X$ and $V_Y$ move in opposite directions, e.g. treating $C_1$ and $C_2$ as a voltage divider for the step. With X floating, $C_1$ carries no charge and is just a level shifter; both nodes jump by the full $V_0$ and then fall together.
