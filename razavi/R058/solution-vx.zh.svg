@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480">
+  <title>R058 负阶跃下的 V_X 波形</title>
+  <desc>示例参数 V_DD=3 V、V_TH=0.7 V、β=1 mA/V^2、I_1=0.1 mA。t=0 时 V_X 从 3 V 下降到 2.3 V，随后保持不变。</desc>
+  <rect x="0" y="0" width="760" height="480" fill="white"/>
+  <line x1="90" y1="375" x2="700" y2="375" stroke="black" stroke-width="2"/>
+  <line x1="90" y1="55" x2="90" y2="375" stroke="black" stroke-width="2"/>
+  <line x1="90" y1="275" x2="700" y2="275" stroke="#d0d0d0" stroke-width="1"/>
+  <line x1="90" y1="175" x2="700" y2="175" stroke="#d0d0d0" stroke-width="1"/>
+  <line x1="145" y1="375" x2="145" y2="55" stroke="#808080" stroke-width="1" stroke-dasharray="5 5"/>
+  <polyline points="90,175 145,175 145,315 700,315" fill="none" stroke="#1769aa" stroke-width="3"/>
+  <circle cx="145" cy="175" r="4" fill="#1769aa"/>
+  <circle cx="145" cy="315" r="4" fill="#1769aa"/>
+  <text x="78" y="380" text-anchor="end" font-size="16">2.0</text>
+  <text x="78" y="280" text-anchor="end" font-size="16">2.5</text>
+  <text x="78" y="180" text-anchor="end" font-size="16">3.0</text>
+  <text x="90" y="405" text-anchor="middle" font-size="16">−1</text>
+  <text x="145" y="405" text-anchor="middle" font-size="16">0</text>
+  <text x="365" y="405" text-anchor="middle" font-size="16">4</text>
+  <text x="700" y="405" text-anchor="middle" font-size="16">10</text>
+  <text x="395" y="450" text-anchor="middle" font-size="18">t / τ</text>
+  <text x="25" y="215" text-anchor="middle" font-size="18" transform="rotate(-90 25 215)">V_X（V）</text>
+  <text x="155" y="160" font-size="16" fill="#1769aa">3.0 V → 2.3 V</text>
+</svg>

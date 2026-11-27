@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780">
+  <title>等效跨导随 V_X 变化</title>
+  <desc>四个栅压示例共用同一坐标尺度。空心圆标出转折处的两侧极限，转折点的跨导未定义。</desc>
+  <rect x="0" y="0" width="1000" height="780" fill="#fff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#132239">
+    <text x="44" y="42" font-size="25" text-anchor="start" font-weight="bold">等效跨导随 V_X 变化</text>
+    <text x="44" y="72" font-size="16" text-anchor="start">示例参数 βₙ = βₚ = 1 mA/V²，λ = γ = 0</text>
+    <text x="104" y="113" font-size="20" text-anchor="start" font-weight="bold">V_G = 1.0 V</text>
+    <text x="104" y="138" font-size="14" text-anchor="start">导通边界 1.8 V / 转折 2.1 V</text>
+    <rect x="104" y="155" width="340" height="166" fill="#fafbfd"/>
+    <text x="88" y="326" font-size="14" text-anchor="end">−0.8</text>
+    <path d="M 104 273.5714 H 444" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="88" y="278.5714" font-size="14" text-anchor="end">−0.4</text>
+    <path d="M 104 226.1429 H 444" fill="none" stroke="#a7b4c4" stroke-width="1"/>
+    <text x="88" y="231.1429" font-size="14" text-anchor="end">0</text>
+    <path d="M 104 178.7143 H 444" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="88" y="183.7143" font-size="14" text-anchor="end">0.4</text>
+    <text x="104" y="349" font-size="14" text-anchor="middle">0</text>
+    <path d="M 217.3333 155 V 321" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="217.3333" y="349" font-size="14" text-anchor="middle">1</text>
+    <path d="M 330.6667 155 V 321" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="330.6667" y="349" font-size="14" text-anchor="middle">2</text>
+    <text x="444" y="349" font-size="14" text-anchor="middle">3</text>
+    <line x1="104" y1="155" x2="104" y2="321" stroke="#26364a" stroke-width="1.6"/>
+    <line x1="104" y1="321" x2="444" y2="321" stroke="#26364a" stroke-width="1.6"/>
+    <path d="M 308 155 V 321" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 342 155 V 321" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 104 226.1429 H 308 L 342 261.7143" fill="none" stroke="#1a58a3" stroke-width="2.8" stroke-linejoin="round"/>
+    <circle cx="308" cy="226.1429" r="3.7" fill="#1a58a3" stroke="#1a58a3" stroke-width="1"/>
+    <path d="M 342 190.5714 H 444" fill="none" stroke="#1a58a3" stroke-width="2.8"/>
+    <circle cx="342" cy="261.7143" r="4.6" fill="#fff" stroke="#1a58a3" stroke-width="2"/>
+    <circle cx="342" cy="190.5714" r="4.6" fill="#fff" stroke="#1a58a3" stroke-width="2"/>
+    <text x="274" y="380" font-size="17" text-anchor="middle">V_X（V）</text>
+    <text x="35" y="238" font-size="17" text-anchor="middle" transform="rotate(-90 35 238)">g_m,eq（mS）</text>
+    <text x="604" y="113" font-size="20" text-anchor="start" font-weight="bold">V_G = 1.2 V</text>
+    <text x="604" y="138" font-size="14" text-anchor="start">导通边界 2.0 V / 转折 2.5 V</text>
+    <rect x="604" y="155" width="340" height="166" fill="#fafbfd"/>
+    <text x="588" y="326" font-size="14" text-anchor="end">−0.8</text>
+    <path d="M 604 273.5714 H 944" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="588" y="278.5714" font-size="14" text-anchor="end">−0.4</text>
+    <path d="M 604 226.1429 H 944" fill="none" stroke="#a7b4c4" stroke-width="1"/>
+    <text x="588" y="231.1429" font-size="14" text-anchor="end">0</text>
+    <path d="M 604 178.7143 H 944" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="588" y="183.7143" font-size="14" text-anchor="end">0.4</text>
+    <text x="604" y="349" font-size="14" text-anchor="middle">0</text>
+    <path d="M 717.3333 155 V 321" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="717.3333" y="349" font-size="14" text-anchor="middle">1</text>
+    <path d="M 830.6667 155 V 321" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="830.6667" y="349" font-size="14" text-anchor="middle">2</text>
+    <text x="944" y="349" font-size="14" text-anchor="middle">3</text>
+    <line x1="604" y1="155" x2="604" y2="321" stroke="#26364a" stroke-width="1.6"/>
+    <line x1="604" y1="321" x2="944" y2="321" stroke="#26364a" stroke-width="1.6"/>
+    <path d="M 830.6667 155 V 321" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 887.3333 155 V 321" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 604 226.1429 H 830.6667 L 887.3333 285.4286" fill="none" stroke="#a23c30" stroke-width="2.8" stroke-linejoin="round"/>
+    <circle cx="830.6667" cy="226.1429" r="3.7" fill="#a23c30" stroke="#a23c30" stroke-width="1"/>
+    <path d="M 887.3333 166.8571 H 944" fill="none" stroke="#a23c30" stroke-width="2.8"/>
+    <circle cx="887.3333" cy="285.4286" r="4.6" fill="#fff" stroke="#a23c30" stroke-width="2"/>
+    <circle cx="887.3333" cy="166.8571" r="4.6" fill="#fff" stroke="#a23c30" stroke-width="2"/>
+    <text x="774" y="380" font-size="17" text-anchor="middle">V_X（V）</text>
+    <text x="535" y="238" font-size="17" text-anchor="middle" transform="rotate(-90 535 238)">g_m,eq（mS）</text>
+    <text x="104" y="415" font-size="20" text-anchor="start" font-weight="bold">V_G = 1.5 V</text>
+    <text x="104" y="440" font-size="14" text-anchor="start">导通边界 2.3 V / 转折 3.1 V（超出范围）</text>
+    <rect x="104" y="457" width="340" height="166" fill="#fafbfd"/>
+    <text x="88" y="628" font-size="14" text-anchor="end">−0.8</text>
+    <path d="M 104 575.5714 H 444" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="88" y="580.5714" font-size="14" text-anchor="end">−0.4</text>
+    <path d="M 104 528.1429 H 444" fill="none" stroke="#a7b4c4" stroke-width="1"/>
+    <text x="88" y="533.1429" font-size="14" text-anchor="end">0</text>
+    <path d="M 104 480.7143 H 444" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="88" y="485.7143" font-size="14" text-anchor="end">0.4</text>
+    <text x="104" y="651" font-size="14" text-anchor="middle">0</text>
+    <path d="M 217.3333 457 V 623" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="217.3333" y="651" font-size="14" text-anchor="middle">1</text>
+    <path d="M 330.6667 457 V 623" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="330.6667" y="651" font-size="14" text-anchor="middle">2</text>
+    <text x="444" y="651" font-size="14" text-anchor="middle">3</text>
+    <line x1="104" y1="457" x2="104" y2="623" stroke="#26364a" stroke-width="1.6"/>
+    <line x1="104" y1="623" x2="444" y2="623" stroke="#26364a" stroke-width="1.6"/>
+    <path d="M 364.6667 457 V 623" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 104 528.1429 H 364.6667 L 444 611.1429" fill="none" stroke="#13735e" stroke-width="2.8" stroke-linejoin="round"/>
+    <circle cx="364.6667" cy="528.1429" r="3.7" fill="#13735e" stroke="#13735e" stroke-width="1"/>
+    <text x="274" y="682" font-size="17" text-anchor="middle">V_X（V）</text>
+    <text x="35" y="540" font-size="17" text-anchor="middle" transform="rotate(-90 35 540)">g_m,eq（mS）</text>
+    <text x="604" y="415" font-size="20" text-anchor="start" font-weight="bold">V_G = 2.0 V</text>
+    <text x="604" y="440" font-size="14" text-anchor="start">导通边界 2.8 V / 转折 4.1 V（超出范围）</text>
+    <rect x="604" y="457" width="340" height="166" fill="#fafbfd"/>
+    <text x="588" y="628" font-size="14" text-anchor="end">−0.8</text>
+    <path d="M 604 575.5714 H 944" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="588" y="580.5714" font-size="14" text-anchor="end">−0.4</text>
+    <path d="M 604 528.1429 H 944" fill="none" stroke="#a7b4c4" stroke-width="1"/>
+    <text x="588" y="533.1429" font-size="14" text-anchor="end">0</text>
+    <path d="M 604 480.7143 H 944" fill="none" stroke="#d8e1ec" stroke-width="1"/>
+    <text x="588" y="485.7143" font-size="14" text-anchor="end">0.4</text>
+    <text x="604" y="651" font-size="14" text-anchor="middle">0</text>
+    <path d="M 717.3333 457 V 623" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="717.3333" y="651" font-size="14" text-anchor="middle">1</text>
+    <path d="M 830.6667 457 V 623" fill="none" stroke="#e4eaf1" stroke-width="1"/>
+    <text x="830.6667" y="651" font-size="14" text-anchor="middle">2</text>
+    <text x="944" y="651" font-size="14" text-anchor="middle">3</text>
+    <line x1="604" y1="457" x2="604" y2="623" stroke="#26364a" stroke-width="1.6"/>
+    <line x1="604" y1="623" x2="944" y2="623" stroke="#26364a" stroke-width="1.6"/>
+    <path d="M 921.3333 457 V 623" fill="none" stroke="#bac7d7" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M 604 528.1429 H 921.3333 L 944 551.8571" fill="none" stroke="#704496" stroke-width="2.8" stroke-linejoin="round"/>
+    <circle cx="921.3333" cy="528.1429" r="3.7" fill="#704496" stroke="#704496" stroke-width="1"/>
+    <text x="774" y="682" font-size="17" text-anchor="middle">V_X（V）</text>
+    <text x="535" y="540" font-size="17" text-anchor="middle" transform="rotate(-90 535 540)">g_m,eq（mS）</text>
+    <text x="44" y="725" font-size="15" text-anchor="start">零值 → PMOS 限流（负斜坡）→ NMOS 限流（正平台，若在范围内）</text>
+    <text x="44" y="749" font-size="15" text-anchor="start">空心圆为转折处的两侧极限。该点的偏导数未定义。</text>
+  </g>
+</svg>
