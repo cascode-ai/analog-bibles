@@ -1,6 +1,23 @@
-NMOS 二极管连接负载：$A_v \approx -1.95$，这里计入了 $M_2$ 的体效应（body effect）并忽略 λ；若同时计入 $r_{O1}$ 和 $r_{O2}$，则 ≈ −1.85；若不计体效应，则为 −2.24。PMOS 二极管连接负载：$A_v \approx -4.18$（忽略 λ；若计入 $r_{O1} = 20$ kΩ 和 $r_{O2} = 10$ kΩ，则 ≈ −3.57）。
+## 参考答案
 
-- $g_{m1} = \sqrt{2(134\ \mu\mathrm{A/V^2})(100)(0.5\ \mathrm{mA})} = 3.66$ mS；NMOS 负载的 $g_{m2} = \sqrt{2(134\ \mu\mathrm{A/V^2})(20)(0.5\ \mathrm{mA})} = 1.64$ mS，其过驱动电压（overdrive voltage）为 0.611 V。
-- NMOS 负载：$A_v = -g_{m1}/(g_{m2}+g_{mb2}) = -\sqrt{(W/L)_1/(W/L)_2}\,/(1+\eta)$。$M_2$ 的源极就是输出端：由 $V_{out} = 3 - V_{TH2} - 0.611$ 以及 $V_{TH2} = 0.7 + 0.45(\sqrt{0.9+V_{out}} - \sqrt{0.9})$ 得到 $V_{out} \approx 1.43$ V，$V_{TH2} \approx 0.96$ V，$\eta = \gamma/(2\sqrt{2|\phi_F| + V_{SB}}) \approx 0.147$，因此 $A_v = -2.236/1.147 \approx -1.95$。计入沟道长度调制（channel-length modulation）时：$-g_{m1}[1/(g_{m2}+g_{mb2}) \,\|\, r_{O1} \,\|\, r_{O2}] = -3.66\ \mathrm{mS} \times 505\ \Omega \approx -1.85$。
-- PMOS 负载（源极和衬底都接 $V_{DD}$，没有体效应）：$g_{m2} = \sqrt{2(38.4\ \mu\mathrm{A/V^2})(20)(0.5\ \mathrm{mA})} = 0.876$ mS，$A_v = -g_{m1}/g_{m2} = -\sqrt{\mu_n(W/L)_1/[\mu_p(W/L)_2]} \approx -4.18$；计入沟道长度调制时为 $-g_{m1}(1/g_{m2} \,\|\, 20\ \mathrm{k\Omega} \,\|\, 10\ \mathrm{k\Omega}) \approx -3.57$。
-- 验证：$V_{out} \approx 1.43$ V（NMOS 负载）和 $3 - 0.8 - 1.14 \approx 1.06$ V（PMOS 负载）都大于 $M_1$ 的过驱动电压 0.27 V，因此在两种情况下 $M_1$ 都处于饱和区（saturation region）。
+将题给的沟道长度调制系数用于计算小信号输出电阻，可得下表增益。偏置和跨导采用不含沟道长度调制因子的饱和区平方律。
+
+| 二极管连接负载 | 计入 $r_{O1}$ 和 $r_{O2}$ | 取 $\lambda=0$ |
+|---|---:|---:|
+| NMOS，计入体效应 | −1.85 V/V | −1.95 V/V |
+| PMOS | −3.57 V/V | −4.18 V/V |
+
+两种电路均有 $g_{m1}\approx3.66\ \mathrm{mS}$ 和 $r_{Oi}\approx1/(\lambda_i I_D)$。增益为
+$$A_v=-\frac{g_{m1}}{g_{m2}+g_{mb2}+1/r_{O1}+1/r_{O2}}.$$
+
+- NMOS 负载。$V_{SB2}=V_{out}\approx1.43\ \mathrm{V}$，$g_{m2}\approx1.64\ \mathrm{mS}$，$g_{mb2}\approx0.241\ \mathrm{mS}$。两个输出电阻均为 $20\ \mathrm{k}\Omega$。
+- PMOS 负载。源极与衬底均接 $V_{DD}$，体效应项为零。$V_{out}\approx1.06\ \mathrm{V}$，$g_{m2}\approx0.876\ \mathrm{mS}$，$r_{O2}\approx10\ \mathrm{k}\Omega$。两种输出偏置都高于 $M_1$ 的饱和边界 $V_{ov1}\approx0.273\ \mathrm{V}$。
+
+## 评分说明
+
+两问等权。接受任一明确说明的 $\lambda$ 口径，各增益的容差均为 ±4%。
+
+- +2：NMOS 增益正确并计入体效应（−1.95，或计入 $r_O$ 后为 −1.85），且 PMOS 增益正确（−4.18，或计入 $r_O$ 后为 −3.57）。
+- +1：PMOS 一问正确，但漏计 NMOS 体效应（得到 −2.24，或计入 $r_O$ 后为 −2.11），或只有一处算术错误。
+- 0：一问增益正确，另一问错误。若 NMOS 一问正确，而仅 PMOS 一问出现模型错误，例如误用 $\mu_n C_{ox}$（取 $\lambda=0$ 时得到 −2.24）或给该负载计入体效应，记 0 分。
+- −2（明确作为结论）：得出正增益，或两问均直接使用比值而未开平方（NMOS 得到 −5，PMOS 得到约 −17.4）。

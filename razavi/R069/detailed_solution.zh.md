@@ -1,85 +1,67 @@
 # 详细步骤 - R069
 
-**思路。** “进入线性区 50 mV”是指 $V_{DS} = V_{out} = V_{ov} - 50$ mV，其中 $V_{ov} = V_{in} - V_{TH}$。把这一条件与线性区电流以及负载线 $V_{out} = V_{DD} - R_DI_D$ 结合，得到关于 $V_{ov}$ 的二次方程。计算增益时使用线性区的小信号模型（small-signal model）：跨导（transconductance）$\beta V_{DS}$，**以及**与 $R_D$ 并联的有限沟道电阻 $1/[\beta(V_{ov} - V_{DS})]$。
+### 第 1 步 — 写出目标偏置下的漏极电流
 
-### 第 1 步 — 条件与线性区电流
+源极和衬底接地，所以 $V_{GS}=V_{in}$，$V_{DS}=V_{out}$。定义过驱动电压 $V_{ov}=V_{GS}-V_{TH}$，并令电压差 $\delta=V_{ov}-V_{DS}=0.050\ \mathrm{V}$。题目给定了这一电压差，所以 $V_{out}=V_{ov}-\delta$。
 
-取
+当 $\lambda=0$ 且 $0<V_{DS}<V_{ov}$ 时，漏极电流满足线性区平方律模型：
 
-$$\beta = \mu_nC_{ox}\frac{W}{L} = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}$$
+$$I_D=\beta\left(V_{ov}V_{DS}-\frac{V_{DS}^2}{2}\right)
+=\frac{\beta}{2}\left[V_{ov}^2-(V_{ov}-V_{DS})^2\right]
+=\frac{\beta}{2}(V_{ov}^2-\delta^2),$$
 
-以及过驱动电压 $V_{ov} = V_{in} - V_{TH}$，题目要求
+其中 $\beta=\mu_nC_{ox}(W/L)_1=(134\ \mu\mathrm{A/V^2})(50/0.5)=13.4\ \mathrm{mA/V^2}$。配方后，可以直接把题给电压差代入电流式。
 
-$$V_{DS} = V_{out} = V_{ov} - 0.05\ \mathrm{V},$$
+### 第 2 步 — 用负载线求输入电压
 
-即漏极电压比饱和边界 $V_{DS} = V_{ov}$ 低 50 mV。在线性区，展开 $(V_{ov} - V_{DS})^2 = V_{ov}^2 - 2V_{ov}V_{DS} + V_{DS}^2$，得
+输出端没有其他负载，电阻电流等于 $I_D$，所以 $V_{out}=V_{DD}-R_DI_D$。代入目标输出电压和漏极电流，得到
 
-$$I_D = \beta\left[V_{ov}V_{DS} - \frac{V_{DS}^2}{2}\right] = \frac{\beta}{2}\left[V_{ov}^2 - (V_{ov} - V_{DS})^2\right],$$
+$$V_{ov}-\delta=V_{DD}-\frac{\beta R_D}{2}(V_{ov}^2-\delta^2).$$
 
-由 $V_{ov} - V_{DS} = 0.05$ V：
+令 $a=\beta R_D/2=13.4\ \mathrm{V^{-1}}$，$b=V_{DD}+\delta+a\delta^2=3.0835\ \mathrm{V}$，方程化为 $aV_{ov}^2+V_{ov}-b=0$。线性区条件要求 $V_{ov}>\delta$，因此舍去负根。正根为
 
-$$I_D = \frac{\beta}{2}\left[V_{ov}^2 - (0.05\ \mathrm{V})^2\right] = \frac{\beta}{2}\left[V_{ov}^2 - 0.0025\ \mathrm{V^2}\right],$$
+$$V_{ov}=\frac{-1+\sqrt{1+4ab}}{2a}
+=\frac{-1+\sqrt{1+4(13.4\ \mathrm{V^{-1}})(3.0835\ \mathrm{V})}}{26.8\ \mathrm{V^{-1}}}
+\approx 0.4438\ \mathrm{V}.$$
 
-只比饱和值 $\tfrac12\beta V_{ov}^2$ 略低。
+由此得到输入和输出电压
 
-### 第 2 步 — 与负载线联立求解
+$$V_{in}=V_{TH}+V_{ov}\approx 1.144\ \mathrm{V},\qquad
+V_{out}=V_{ov}-\delta\approx 0.394\ \mathrm{V}.$$
 
-把 $V_{out} = V_{ov} - 0.05$ 和这一电流代入 $V_{out} = V_{DD} - R_DI_D$，并利用 $\tfrac12\beta R_D = \tfrac12(13.4\times10^{-3})(2\times10^3) = 13.4\ \mathrm{V^{-1}}$：
+该解满足 $0<V_{DS}<V_{ov}$，且 $V_{ov}-V_{DS}=50$ mV。由负载线得 $I_D=(3\ \mathrm{V}-0.3938\ \mathrm{V})/(2\ \mathrm{k}\Omega)\approx 1.303\ \mathrm{mA}$，与第 1 步的线性区电流式一致。
 
-$$V_{ov} - 0.05 = 3 - \frac{\beta R_D}{2}\left(V_{ov}^2 - 0.0025\right) = 3 - 13.4V_{ov}^2 + 13.4\times0.0025 = 3.0335 - 13.4V_{ov}^2 ,$$
+### 第 3 步 — 在该偏置点将电流线性化
 
-$$13.4V_{ov}^2 + V_{ov} - 3.0835 = 0 .$$
+固定 $V_{DS}$ 时，$I_D$ 对 $V_{GS}$ 的变化率为跨导 $g_m$。固定 $V_{GS}$ 时，$I_D$ 对 $V_{DS}$ 的变化率为输出电导 $g_{ds}$。对第 1 步中保留两个电压变量的线性区电流式求偏导，得到
 
-正根：
+$$g_m=\left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS}}
+=\beta V_{DS}\approx (13.4\ \mathrm{mA/V^2})(0.3938\ \mathrm{V})
+\approx 5.28\ \mathrm{mS},$$
 
-$$V_{ov} = \frac{-1 + \sqrt{1 + 4(13.4)(3.0835)}}{2(13.4)} = \frac{-1 + \sqrt{166.28}}{26.8} = \frac{-1 + 12.895}{26.8} = \frac{11.895}{26.8} = 0.4438\ \mathrm{V}.$$
+$$g_{ds}=\left.\frac{\partial I_D}{\partial V_{DS}}\right|_{V_{GS}}
+=\beta(V_{ov}-V_{DS})=(13.4\ \mathrm{mA/V^2})(0.050\ \mathrm{V})
+=0.67\ \mathrm{mS}.$$
 
-因此
+50 mV 的关系用于确定直流偏置。求偏导时，栅端和漏端的小信号电压变化分别独立考虑。输出电导对应的电阻为 $r_{ds}=1/g_{ds}\approx 1.49\ \mathrm{k}\Omega$。
 
-$$V_{in} = V_{TH} + V_{ov} = 0.7 + 0.4438 = 1.144\ \mathrm{V}, \qquad V_{out} = V_{ov} - 0.05 = 0.394\ \mathrm{V}.$$
+### 第 4 步 — 列出输出节点的小信号方程
 
-**验证。** $I_D = \tfrac12(13.4\ \mathrm{mA/V^2})(0.4438^2 - 0.0025)\ \mathrm{V^2} = 6.7\times0.1945\ \mathrm{mA} = 1.303$ mA，且 $V_{DD} - R_DI_D = 3 - 2.606 = 0.394$ V。✓
-
-线性区边缘（$V_{DS} = V_{ov}$）出现在 $V_{in} = 1.137$ V 处，因此进入线性区 50 mV 只需再增加约 7 mV 的输入：在边缘附近，输出下降的速度约为输入上升速度的 11.7 倍。
-
-### 第 3 步 — 线性区的小信号参数
-
-对 $I_D = \beta[V_{ov}V_{DS} - V_{DS}^2/2]$ 求导（$V_{ov} = V_{GS} - V_{TH}$）：
-
-$$g_m = \frac{\partial I_D}{\partial V_{GS}} = \beta V_{DS} = (13.4\ \mathrm{mA/V^2})(0.394\ \mathrm{V}) = 5.28\ \mathrm{mS},$$
-
-$$g_{ds} = \frac{\partial I_D}{\partial V_{DS}} = \beta(V_{ov} - V_{DS}) = (13.4\ \mathrm{mA/V^2})(0.05\ \mathrm{V}) = 0.67\ \mathrm{mS}, \qquad r_{ds} = \frac{1}{g_{ds}} = 1.49\ \mathrm{k}\Omega.$$
-
-在饱和区（$\lambda = 0$）器件没有输出电导；在线性区，沟道部分地起电阻作用，这里其电阻与 $R_D$ 相当。
-
-### 第 4 步 — 小信号模型与增益
-
-输出节点连接受控源 $g_mv_{in}$ 和沟道电阻 $r_{ds}$（两者都接地），并通过 $R_D$ 接到交流地（$V_{DD}$）。
+电源端为交流地，所以 $R_D$ 和 $r_{ds}$ 均从输出端接到交流地。漏极受控电流为 $g_mv_{in}$，小写电压表示相对于偏置点的小信号变化量。
 
 <!-- diagram: diagram-01.cir -->
 
-在输出节点列 KCL（流出的电流之和 = 0）：
+令流出输出节点的小信号电流之和为零，得到
 
-$$g_mv_{in} + g_{ds}v_{out} + \frac{v_{out}}{R_D} = 0 \quad\Longrightarrow\quad A_v = \frac{v_{out}}{v_{in}} = -\frac{g_m}{g_{ds} + 1/R_D} = -g_m\,(r_{ds}\parallel R_D) .$$
+$$g_mv_{in}+g_{ds}v_{out}+\frac{v_{out}}{R_D}=0.$$
 
-由于 $1/R_D = 0.5$ mS：
+解得电压增益
 
-$$A_v = -\frac{5.28\ \mathrm{mS}}{0.67\ \mathrm{mS} + 0.5\ \mathrm{mS}} = -\frac{5.28}{1.17} = -4.5 .$$
+$$A_v=\frac{v_{out}}{v_{in}}
+=-\frac{g_m}{g_{ds}+1/R_D}
+\approx-\frac{5.28\ \mathrm{mS}}{0.67\ \mathrm{mS}+0.50\ \mathrm{mS}}
+\approx -4.51\ \mathrm{V/V}.$$
 
-在线性区边缘，增益为 $-11.7$，因此输入只多约 7 mV，增益就减小了约 2.6 倍。主要原因是沟道电阻 $r_{ds}$ 对 $R_D$ 的分流（1.49 kΩ 与 2 kΩ 并联为 0.85 kΩ）；跨导也略有下降，从 5.86 降到 5.28 mS。这就是放大管要避免进入线性区的原因。
+### 与饱和区边界比较
 
-### 结果
-
-使 $M_1$ 进入线性区 50 mV（$V_{out} = V_{in} - V_{TH} - 0.05$ V）需要
-
-$$13.4V_{ov}^2 + V_{ov} - 3.0835 = 0 \;\Longrightarrow\; V_{ov} = 0.444\ \mathrm{V}, \qquad V_{in} \approx 1.144\ \mathrm{V},$$
-
-此时 $V_{out} \approx 0.394$ V，$I_D \approx 1.30$ mA。此处的小信号增益为
-
-$$A_v = -\frac{\beta V_{DS}}{\beta(V_{ov} - V_{DS}) + 1/R_D} = -\frac{5.28\ \mathrm{mS}}{0.67\ \mathrm{mS} + 0.5\ \mathrm{mS}} \approx -4.5 .$$
-
-**常见错误。** 忽略线性区的输出电导，写成 $A_v = -\beta V_{DS}R_D \approx -10.6$。在线性区，沟道电阻 $1/[\beta(V_{ov} - V_{DS})] \approx 1.5\ \mathrm{k}\Omega$ 与 $R_D$ 并联，使增益减小一半以上。
-
-**常见错误。** 在线性区仍沿用饱和区的增益（$\approx -11.7$）。饱和区公式假设输出电导为零，一旦 $V_{DS} < V_{GS} - V_{TH}$，这一假设就不再成立。
-
-**常见错误。** 把线性区边缘的输入加上 50 mV 来求输入（得到 1.187 V）。条件针对的是 $V_{DS}$ 相对于 $V_{GS} - V_{TH}$ 的值，而不是 $V_{in}$；在边缘附近该级增益很高，因此这一裕量改变 50 mV 只需几毫伏的输入变化。
+在 $V_{DS}=V_{ov}$ 的边界，令第 2 步的 $\delta=0$，得 $V_{ov}\approx 0.4373\ \mathrm{V}$、$V_{in}\approx 1.1373\ \mathrm{V}$。此时由第 3 步得 $g_{ds}=0$、$g_m\approx 5.86\ \mathrm{mS}$，由第 4 步得 $A_v\approx -11.7\ \mathrm{V/V}$。从该边界将输入升高约 6.5 mV，即达到题设偏置点。此时 $r_{ds}$ 与 $R_D$ 并联，将有效输出电阻降至 $1/(g_{ds}+1/R_D)\approx 0.855\ \mathrm{k}\Omega$，是增益幅值下降的主要原因。

@@ -1,65 +1,33 @@
 # Detailed solution - R070
 
-**Approach.** For each target output voltage, the load line $I_D = (V_{DD} - V_{out})/R_D$ gives the drain current. Check that $M_1$ is saturated at that output, invert the square law to get the overdrive, and add the threshold voltage to obtain the input.
+### Step 1 — Set up the load line and choose a model
 
-### Step 1 — The inverted square law
+The source and bulk are grounded, so $V_{GS}=V_{in}$ and $V_{DS}=V_{out}$. With no other load at the output, the current through $R_D$ equals the drain current. The resistor voltage is $V_{DD}-V_{out}$, so
 
-With $\lambda = 0$ and
+$$I_D=\frac{V_{DD}-V_{out}}{R_D}.$$
 
-$$\beta = \mu_nC_{ox}\frac{W}{L} = (134\ \mu\mathrm{A/V^2})\frac{50}{0.5} = 13.4\ \mathrm{mA/V^2},$$
+Use the saturation model as a trial and check its condition $V_{DS}\ge V_{ov}>0$ after solving. With $\lambda=0$ and overdrive $V_{ov}=V_{GS}-V_{TH}$, the saturation current is $I_D=\tfrac12\beta V_{ov}^2$, where
 
-the saturated device obeys $I_D = \tfrac12\beta(V_{in} - V_{TH})^2$, so
+$$\beta=\mu_nC_{ox}\frac{W}{L}=(134\ \mu\mathrm{A/V^2})\frac{50}{0.5}
+=13.4\ \mathrm{mA/V^2}.$$
 
-$$V_{in} = V_{TH} + V_{ov}, \qquad V_{ov} = \sqrt{\frac{2I_D}{\beta}} .$$
+A conducting device has positive overdrive, so take the positive square root:
 
-### Step 2 — $V_{out} = 1$ V
+$$V_{ov}=\sqrt{\frac{2I_D}{\beta}},\qquad V_{in}=V_{TH}+V_{ov}.$$
 
-The load line (no current flows into the output terminal) gives
+### Step 2 — Find the input for each output
 
-$$I_D = \frac{V_{DD} - V_{out}}{R_D} = \frac{3\ \mathrm{V} - 1\ \mathrm{V}}{2\ \mathrm{k}\Omega} = 1\ \mathrm{mA},$$
+For $V_{out}=1\ \mathrm{V}$, the load line gives $I_D=(3\ \mathrm{V}-1\ \mathrm{V})/(2\ \mathrm{k}\Omega)=1\ \mathrm{mA}$. Then
 
-$$V_{ov} = \sqrt{\frac{2(1\times10^{-3}\ \mathrm{A})}{13.4\times10^{-3}\ \mathrm{A/V^2}}} = \sqrt{0.1493\ \mathrm{V^2}} = 0.386\ \mathrm{V}.$$
+$$V_{ov}=\sqrt{\frac{2(1\ \mathrm{mA})}{13.4\ \mathrm{mA/V^2}}}
+\approx 0.386\ \mathrm{V}.$$
 
-$V_{DS} = V_{out} = 1\ \mathrm{V} \ge 0.386$ V ✓, so the square law is valid, and
+Since $V_{DS}=1\ \mathrm{V}>V_{ov}$, the saturation assumption holds. Adding $V_{TH}=0.7\ \mathrm{V}$ gives $V_{in}\approx 1.086\ \mathrm{V}$.
 
-$$V_{in} = 0.7 + 0.386 = 1.086\ \mathrm{V}.$$
+For $V_{out}=2.5\ \mathrm{V}$, the same load line gives $I_D=(3\ \mathrm{V}-2.5\ \mathrm{V})/(2\ \mathrm{k}\Omega)=0.25\ \mathrm{mA}$. This is one quarter of the first current, so the square-root relation in Step 1 gives half the overdrive, $V_{ov}\approx 0.193\ \mathrm{V}$. Again $V_{DS}=2.5\ \mathrm{V}>V_{ov}$, and adding $V_{TH}$ gives $V_{in}\approx 0.893\ \mathrm{V}$.
 
-### Step 3 — $V_{out} = 2.5$ V
+### Step 3 — Interpret the swing
 
-$$I_D = \frac{3\ \mathrm{V} - 2.5\ \mathrm{V}}{2\ \mathrm{k}\Omega} = 0.25\ \mathrm{mA},$$
+As $V_{out}$ rises from 1 V to 2.5 V, the load-line current decreases, so the required $V_{ov}$ decreases as well. Throughout the range $V_{DS}\ge 1\ \mathrm{V}$ while $V_{ov}\le 0.3864\ \mathrm{V}$, so the device remains saturated. The output drops by 1.5 V for an input rise of about 0.193 V. The magnitude of the ratio $|\Delta V_{out}/\Delta V_{in}|$ is about 7.8.
 
-$$V_{ov} = \sqrt{\frac{2(0.25\times10^{-3}\ \mathrm{A})}{13.4\times10^{-3}\ \mathrm{A/V^2}}} = \sqrt{0.03731\ \mathrm{V^2}} = 0.193\ \mathrm{V}.$$
-
-$V_{DS} = 2.5\ \mathrm{V} \ge 0.193$ V ✓, and
-
-$$V_{in} = 0.7 + 0.193 = 0.893\ \mathrm{V}.$$
-
-### Step 4 — Interpretation: the input range and the nonlinearity
-
-An input change of only
-
-$$1.086 - 0.893 = 0.193\ \mathrm{V}$$
-
-moves the output over the full 1.5-V range, an average gain magnitude of $1.5/0.193 = 7.8$; the higher input gives the lower output (the stage inverts).
-
-The small-signal gain $-g_mR_D$, with $g_m = \sqrt{2\beta I_D}$, is not constant over this range:
-
-$$
-\begin{aligned}
-V_{out} = 1\ \mathrm{V}\ (I_D = 1\ \mathrm{mA}):&\quad g_m = \sqrt{2(13.4\ \mathrm{mA/V^2})(1\ \mathrm{mA})} = 5.18\ \mathrm{mS},\quad A_v = -10.4,\\
-V_{out} = 2.5\ \mathrm{V}\ (I_D = 0.25\ \mathrm{mA}):&\quad g_m = \sqrt{2(13.4\ \mathrm{mA/V^2})(0.25\ \mathrm{mA})} = 2.59\ \mathrm{mS},\quad A_v = -5.2 .
-\end{aligned}
-$$
-
-The gain changes by a factor of 2 across the swing: this is the nonlinearity of the CS stage with a resistive load, which distorts a large output swing. Every point in between is also saturated, since the output never falls below 1 V while the overdrive never exceeds 0.386 V.
-
-### Result
-
-- $V_{out} = 1$ V: $I_D = 1$ mA, $V_{ov} = 0.386$ V, so $V_{in} \approx 1.086$ V.
-- $V_{out} = 2.5$ V: $I_D = 0.25$ mA, $V_{ov} = 0.193$ V, so $V_{in} \approx 0.893$ V.
-
-$M_1$ is saturated at both ends ($V_{DS} = 1$ V and 2.5 V, both above the overdrive).
-
-**Common mistake.** Forgetting to add $V_{TH}$, i.e. reporting the overdrive (0.386 V or 0.193 V) as the input voltage. The square law involves $V_{GS} - V_{TH}$, so $V_{in} = V_{TH} + \sqrt{2I_D/\beta}$.
-
-**Common mistake.** Using the triode equation, or not deriving the current from the load line. Both outputs are well above the overdrive, so the device is saturated, and $R_D$ fixes the current: $I_D = (V_{DD} - V_{out})/R_D$.
+The incremental gain varies with bias. Differentiating the saturation current gives $g_m=\beta V_{ov}=\sqrt{2\beta I_D}$. From the load line with a fixed supply, $A_v=-R_Dg_m$. It is about $-10.4\ \mathrm{V/V}$ at $V_{out}=1\ \mathrm{V}$ and $-5.2\ \mathrm{V/V}$ at $V_{out}=2.5\ \mathrm{V}$. This change in slope explains the nonlinearity over the swing.

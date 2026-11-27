@@ -1,6 +1,6 @@
 # Detailed solution - R065
 
-**Approach.** The circuit is a common-source (CS) stage with a PMOS current-source load: $M_1$ converts $v_{in}$ into a signal current $g_{m1}v_{in}$, and $M_2$, whose gate and source are at fixed potentials, contributes only its output resistance $r_{O2}$. The gain is $-g_{m1}(r_{O1}\parallel r_{O2})$. The key detail is that $\lambda$ scales as $1/L$, so the 2-µm-long PMOS has a much smaller $\lambda$ than the tabulated value.
+Approach: The circuit is a common-source (CS) stage with a PMOS current-source load: $M_1$ converts $v_{in}$ into a signal current $g_{m1}v_{in}$, and $M_2$, whose gate and source are at fixed potentials, contributes only its output resistance $r_{O2}$. The gain is $-g_{m1}(r_{O1}\parallel r_{O2})$. The key detail is that $\lambda$ scales as $1/L$, so the 2-µm-long PMOS has a much smaller $\lambda$ than the tabulated value.
 
 ### Step 1 — Transconductance of $M_1$
 
@@ -14,9 +14,9 @@ Since $\lambda \propto 1/L$ and the given values apply to $L = 0.5\ \mu$m,
 
 $$\lambda(L) = \lambda(0.5\ \mu\mathrm{m})\times\frac{0.5\ \mu\mathrm{m}}{L} .$$
 
-**$M_1$** ($L = 0.5\ \mu$m): $\lambda_1 = 0.1\ \mathrm{V^{-1}}$.
+$M_1$ ($L = 0.5\ \mu$m): $\lambda_1 = 0.1\ \mathrm{V^{-1}}$.
 
-**$M_2$** ($L = 2\ \mu$m, four times longer):
+$M_2$ ($L = 2\ \mu$m, four times longer):
 
 $$\lambda_2 = 0.2\ \mathrm{V^{-1}}\times\frac{0.5\ \mu\mathrm{m}}{2\ \mu\mathrm{m}} = 0.2\times0.25\ \mathrm{V^{-1}} = 0.05\ \mathrm{V^{-1}}.$$
 
@@ -31,7 +31,7 @@ r_{O2} &= \frac{1}{\lambda_2I_D} = \frac{1}{(0.05\ \mathrm{V^{-1}})(0.5\times10^
 \end{aligned}
 $$
 
-$$r_{O1}\parallel r_{O2} = \frac{r_{O1}r_{O2}}{r_{O1} + r_{O2}} = \frac{(20)(40)}{20 + 40}\ \mathrm{k}\Omega = \frac{800}{60}\ \mathrm{k}\Omega = 13.33\ \mathrm{k}\Omega.$$
+$$r_{O1}\parallel r_{O2} = \frac{r_{O1}r_{O2}}{r_{O1} + r_{O2}} = \frac{(20)(40)}{20 + 40}\ \mathrm{k}\Omega = \frac{800}{60}\ \mathrm{k}\Omega \approx 13.33\ \mathrm{k}\Omega.$$
 
 ### Step 4 — Small-signal model and gain
 
@@ -43,20 +43,20 @@ KCL at the output node (sum of currents leaving = 0):
 
 $$g_{m1}v_{in} + \frac{v_{out}}{r_{O1}} + \frac{v_{out}}{r_{O2}} = 0 \quad\Longrightarrow\quad A_v = \frac{v_{out}}{v_{in}} = -\frac{g_{m1}}{1/r_{O1} + 1/r_{O2}} = -g_{m1}\,(r_{O1}\parallel r_{O2}) .$$
 
-**Numbers:**
+Numbers:
 
-$$A_v = -(3.66\times10^{-3}\ \mathrm{S})(13.33\times10^{3}\ \Omega) = -48.8 .$$
+$$A_v = -(3.66\times10^{-3}\ \mathrm{S})(13.33\times10^{3}\ \Omega) \approx -48.8 .$$
 
 The gain is inverting: a rise in $V_{in}$ makes $M_1$ draw more current than $M_2$ supplies, pulling $V_{out}$ down.
 
-**Why the long PMOS helps.** With an unscaled $\lambda_2 = 0.2\ \mathrm{V^{-1}}$, $r_{O2}$ would be only 10 kΩ, $r_{O1}\parallel r_{O2} = 6.67\ \mathrm{k}\Omega$, and $|A_v| = 24.4$. Making the load device four times longer quadruples $r_{O2}$ and doubles the gain. Lengthening $M_1$ as well would raise the gain further; then $r_{O1}$ becomes the limit.
+Effect of a longer PMOS load: With an unscaled $\lambda_2 = 0.2\ \mathrm{V^{-1}}$, $r_{O2}$ would be only 10 kΩ, $r_{O1}\parallel r_{O2} = 6.67\ \mathrm{k}\Omega$, and $|A_v| = 24.4$. Making the load device four times longer quadruples $r_{O2}$ and doubles the gain. With $M_1$ held fixed, increasing $r_{O2}$ further makes the parallel resistance approach $r_{O1}$.
 
 ### Result
 
-$$A_v = -g_{m1}\,(r_{O1}\parallel r_{O2}) = -(3.66\ \mathrm{mS})(20\ \mathrm{k}\Omega\parallel40\ \mathrm{k}\Omega) = -(3.66\ \mathrm{mS})(13.3\ \mathrm{k}\Omega) \approx -48.8,$$
+$$A_v = -g_{m1}\,(r_{O1}\parallel r_{O2}) = -(3.66\ \mathrm{mS})(20\ \mathrm{k}\Omega\parallel40\ \mathrm{k}\Omega) = -(3.66\ \mathrm{mS})(13.33\ \mathrm{k}\Omega) \approx -48.8,$$
 
 with $g_{m1} = 3.66$ mS, $\lambda_1 = 0.1\ \mathrm{V^{-1}}$ ($r_{O1} = 20\ \mathrm{k}\Omega$) and $\lambda_2 = 0.2\times(0.5/2) = 0.05\ \mathrm{V^{-1}}$ ($r_{O2} = 40\ \mathrm{k}\Omega$).
 
-**Common mistake.** Using $\lambda_2 = 0.2\ \mathrm{V^{-1}}$ without scaling it for the 2-µm length, which gives $r_{O2} = 10\ \mathrm{k}\Omega$ and $A_v \approx -24.4$. Since $\lambda \propto 1/L$, the four-times-longer PMOS has a four-times-smaller $\lambda$.
+Common mistake: Using $\lambda_2 = 0.2\ \mathrm{V^{-1}}$ without scaling it for the 2-µm length, which gives $r_{O2} = 10\ \mathrm{k}\Omega$ and $A_v \approx -24.4$. Since $\lambda \propto 1/L$, the four-times-longer PMOS has a four-times-smaller $\lambda$.
 
-**Common mistake.** Using $g_{m2}$, or including only one output resistance. $M_2$'s gate and source are both at ac ground, so it acts only through $r_{O2}$, which appears in parallel with $r_{O1}$ at the output.
+Common mistake: Using $g_{m2}$, or including only one output resistance. $M_2$'s gate and source are both at ac ground, so it acts only through $r_{O2}$, which appears in parallel with $r_{O1}$ at the output.
