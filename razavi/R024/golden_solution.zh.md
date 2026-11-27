@@ -11,3 +11,11 @@ $$V_X=0.7\,\mathrm V+\frac{2.3\,\mathrm V}{1+t/T},\qquad I_X=\frac{(2.645\,\math
 ![答案曲线：voltage](/q/R024/solution-voltage.zh.svg)
 
 ![答案曲线：current](/q/R024/solution-current.zh.svg)
+
+## 评分说明
+
++2：识别二极管连接的器件处于饱和区，正确画出 $V_X$ 和 $I_X$ 随时间双曲线式衰减的两张带单位曲线，并给出初始电流和理想模型下的终值。
+
++1：曲线形状正确，但遗漏衰减慢于指数的特征，或少画一个所求量。
+
+−2：断言器件进入线性区，或断言理想平方律模型下 $V_X\to0$。
