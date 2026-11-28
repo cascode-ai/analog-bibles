@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 555">
+<title>带 RS 的共源级传输特性</title>
+<desc>0 至 3 V 输入扫描的示例输出曲线。圆圈标出工作区边界、峰值或终点。</desc>
+<rect width="900" height="555" fill="white"/>
+<g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17212b">
+<text x="94" y="33" font-size="23" text-anchor="start">带 RS 的共源级传输特性</text>
+<text x="94" y="61" font-size="16" text-anchor="start">示例 · β = 10 mA/V² · RD = 2 kΩ · RS = 1 kΩ</text>
+<path d="M94 440H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 440H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="445" font-size="16" text-anchor="end">0</text>
+<path d="M94 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="94" y="465" font-size="16" text-anchor="middle">0</text>
+<path d="M94 386.0938H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 386.0938H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="391.0938" font-size="16" text-anchor="end">0.5</text>
+<path d="M217.3333 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="217.3333" y="465" font-size="16" text-anchor="middle">0.5</text>
+<path d="M94 332.1875H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 332.1875H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="337.1875" font-size="16" text-anchor="end">1.0</text>
+<path d="M340.6667 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="340.6667" y="465" font-size="16" text-anchor="middle">1.0</text>
+<path d="M94 278.2813H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 278.2813H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="283.2813" font-size="16" text-anchor="end">1.5</text>
+<path d="M464 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="464" y="465" font-size="16" text-anchor="middle">1.5</text>
+<path d="M94 224.375H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 224.375H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="229.375" font-size="16" text-anchor="end">2.0</text>
+<path d="M587.3333 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="587.3333" y="465" font-size="16" text-anchor="middle">2.0</text>
+<path d="M94 170.4688H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 170.4688H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="175.4688" font-size="16" text-anchor="end">2.5</text>
+<path d="M710.6667 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="710.6667" y="465" font-size="16" text-anchor="middle">2.5</text>
+<path d="M94 116.5625H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 116.5625H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="121.5625" font-size="16" text-anchor="end">3.0</text>
+<path d="M834 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="834" y="465" font-size="16" text-anchor="middle">3.0</text>
+<path d="M94 95V440H834" fill="none" stroke="#17212b" stroke-width="1.6"/>
+<text x="464" y="493" font-size="20" text-anchor="middle">Vin (V)</text>
+<text x="37" y="267" font-size="20" text-anchor="middle" transform="rotate(-90 37 267)">Vout (V)</text>
+<path d="M614.4667 332.1875H834" fill="none" stroke="#8c99a8" stroke-width="1.4"/>
+<text x="831" y="356.1875" font-size="16" text-anchor="end">下限 1 V</text>
+<path d="M94 116.5625L266.6667 116.5625" fill="none" stroke="#435466" stroke-width="3.5"/>
+<path d="M266.6667 116.5625L269.6167 116.6974L272.5667 117.0449L275.5167 117.5476L278.4668 118.1703L281.4168 118.8892L284.3668 119.6877L287.3169 120.5534L290.2669 121.4768L293.2169 122.4506L296.1669 123.4688L299.117 124.5267L302.067 125.6202L305.017 126.746L307.967 127.9013L310.9171 129.0836L313.8671 130.2909L316.8171 131.5212L319.7672 132.773L322.7172 134.0448L325.6672 135.3354L328.6172 136.6436L331.5673 137.9685L334.5173 139.3091L337.4673 140.6645L340.4173 142.0341L343.3674 143.4171L346.3174 144.8129L349.2674 146.2209L352.2175 147.6406L355.1675 149.0715L358.1175 150.5132L361.0675 151.9651L364.0176 153.427L366.9676 154.8984L369.9176 156.3791L372.8676 157.8686L375.8177 159.3667L378.7677 160.8731L381.7177 162.3876L384.6678 163.9098L387.6178 165.4396L390.5678 166.9767L393.5178 168.521L396.4679 170.0721L399.4179 171.63L402.3679 173.1945L405.3179 174.7653L408.268 176.3423L411.218 177.9254L414.168 179.5144L417.1181 181.1092L420.0681 182.7096L423.0181 184.3155L425.9681 185.9268L428.9182 187.5434L431.8682 189.1651L434.8182 190.7919L437.7682 192.4235L440.7183 194.0601L443.6683 195.7013L446.6183 197.3472L449.5684 198.9977L452.5184 200.6526L455.4684 202.3119L458.4184 203.9756L461.3685 205.6434L464.3185 207.3154L467.2685 208.9915L470.2185 210.6716L473.1686 212.3556L476.1186 214.0435L479.0686 215.7352L482.0187 217.4307L484.9687 219.1299L487.9187 220.8327L490.8687 222.5391L493.8188 224.249L496.7688 225.9623L499.7188 227.6791L502.6688 229.3993L505.6189 231.1228L508.5689 232.8495L511.5189 234.5795L514.469 236.3126L517.419 238.0489L520.369 239.7883L523.319 241.5308L526.2691 243.2762L529.2191 245.0246L532.1691 246.776L535.1191 248.5303L538.0692 250.2874L541.0192 252.0473L543.9692 253.8101L546.9193 255.5756L549.8693 257.3438L552.8193 259.1147L555.7693 260.8883L558.7194 262.6645L561.6694 264.4433L564.6194 266.2247L567.5694 268.0086L570.5195 269.795L573.4695 271.5839L576.4195 273.3753L579.3696 275.1691L582.3196 276.9652L585.2696 278.7638L588.2196 280.5647L591.1697 282.368L594.1197 284.1735L597.0697 285.9814L600.0197 287.7914L602.9698 289.6038L605.9198 291.4183L608.8698 293.235L611.8199 295.0539L614.7699 296.8749L617.7199 298.6981L620.6699 300.5233L623.62 302.3507" fill="none" stroke="#155eaa" stroke-width="3.5"/>
+<path d="M623.62 302.3507L626.5419 304.0372L629.4639 305.5112L632.3858 306.8154L635.3077 307.9808L638.2297 309.0306L641.1516 309.983L644.0736 310.852L646.9955 311.6491L649.9175 312.3836L652.8394 313.0631L655.7614 313.6939L658.6833 314.2814L661.6052 314.8303L664.5272 315.3445L667.4491 315.8272L670.3711 316.2816L673.293 316.71L676.215 317.1148L679.1369 317.498L682.0589 317.8613L684.9808 318.2063L687.9028 318.5344L690.8247 318.8468L693.7466 319.1448L696.6686 319.4292L699.5905 319.7011L702.5125 319.9613L705.4344 320.2105L708.3564 320.4494L711.2783 320.6788L714.2003 320.8991L717.1222 321.1108L720.0441 321.3146L722.9661 321.5109L725.888 321.7L728.81 321.8824L731.7319 322.0584L734.6539 322.2283L737.5758 322.3926L740.4978 322.5513L743.4197 322.705L746.3417 322.8537L749.2636 322.9977L752.1855 323.1373L755.1075 323.2726L758.0294 323.4039L760.9514 323.5313L763.8733 323.655L766.7953 323.7752L769.7172 323.892L772.6392 324.0055L775.5611 324.1159L778.483 324.2233L781.405 324.3279L784.3269 324.4298L787.2489 324.5289L790.1708 324.6256L793.0928 324.7198L796.0147 324.8117L798.9367 324.9013L801.8586 324.9887L804.7806 325.0741L807.7025 325.1574L810.6244 325.2388L813.5464 325.3183L816.4683 325.3959L819.3903 325.4719L822.3122 325.5461L825.2342 325.6187L828.1561 325.6897L831.0781 325.7591L834 325.8271" fill="none" stroke="#087b61" stroke-width="3.5"/>
+<circle cx="266.6667" cy="116.5625" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="266.6667" y="98.5625" font-size="16" text-anchor="middle">(0.7, 3)</text>
+<circle cx="623.62" cy="302.3507" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="675" y="279" font-size="16" text-anchor="middle">(2.147, 1.277)</text>
+<circle cx="834" cy="325.8271" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="825" y="306.8271" font-size="16" text-anchor="end">(3, 1.059)</text>
+<path d="M130 522h24" fill="none" stroke="#435466" stroke-width="3.5"/>
+<text x="165" y="528" font-size="18" text-anchor="start">截止</text>
+<path d="M375 522h24" fill="none" stroke="#155eaa" stroke-width="3.5"/>
+<text x="410" y="528" font-size="18" text-anchor="start">饱和区</text>
+<path d="M620 522h24" fill="none" stroke="#087b61" stroke-width="3.5"/>
+<text x="655" y="528" font-size="18" text-anchor="start">线性区</text>
+</g>
+</svg>

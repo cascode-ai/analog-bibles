@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 555">
+<title>Common-gate transfer characteristic</title>
+<desc>Example output curve over the 0 to 3 V input sweep. Circles mark region boundaries, the peak where present, and the endpoint.</desc>
+<rect width="900" height="555" fill="white"/>
+<g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17212b">
+<text x="94" y="33" font-size="23" text-anchor="start">Common-gate transfer characteristic</text>
+<text x="94" y="61" font-size="16" text-anchor="start">Example · Vb = 1.5 V · β = 2 mA/V² · RD = RF = 10 kΩ</text>
+<path d="M94 440H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 440H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="445" font-size="16" text-anchor="end">0</text>
+<path d="M94 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="94" y="465" font-size="16" text-anchor="middle">0</text>
+<path d="M94 386.0938H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 386.0938H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="391.0938" font-size="16" text-anchor="end">0.5</text>
+<path d="M217.3333 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="217.3333" y="465" font-size="16" text-anchor="middle">0.5</text>
+<path d="M94 332.1875H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 332.1875H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="337.1875" font-size="16" text-anchor="end">1.0</text>
+<path d="M340.6667 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="340.6667" y="465" font-size="16" text-anchor="middle">1.0</text>
+<path d="M94 278.2813H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 278.2813H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="283.2813" font-size="16" text-anchor="end">1.5</text>
+<path d="M464 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="464" y="465" font-size="16" text-anchor="middle">1.5</text>
+<path d="M94 224.375H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 224.375H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="229.375" font-size="16" text-anchor="end">2.0</text>
+<path d="M587.3333 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="587.3333" y="465" font-size="16" text-anchor="middle">2.0</text>
+<path d="M94 170.4688H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 170.4688H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="175.4688" font-size="16" text-anchor="end">2.5</text>
+<path d="M710.6667 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="710.6667" y="465" font-size="16" text-anchor="middle">2.5</text>
+<path d="M94 116.5625H834" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<path d="M89 116.5625H94" fill="none" stroke="#17212b" stroke-width="1"/>
+<text x="82" y="121.5625" font-size="16" text-anchor="end">3.0</text>
+<path d="M834 95V445" fill="none" stroke="#d8e2ec" stroke-width="1"/>
+<text x="834" y="465" font-size="16" text-anchor="middle">3.0</text>
+<path d="M94 95V440H834" fill="none" stroke="#17212b" stroke-width="1.6"/>
+<text x="464" y="493" font-size="20" text-anchor="middle">Vin (V)</text>
+<text x="37" y="267" font-size="20" text-anchor="middle" transform="rotate(-90 37 267)">Vout (V)</text>
+<path d="M94 419.9623L96.8872 418.3754L99.7744 416.7737L102.6616 415.1561L105.5489 413.5213L108.4361 411.8678L111.3233 410.1941L114.2105 408.4981L117.0977 406.7778L119.9849 405.0309L122.8721 403.2544L125.7593 401.445L128.6466 399.5991L131.5338 397.712L134.421 395.7783L137.3082 393.7914L140.1954 391.7432L143.0826 389.6236L145.9698 387.4196L148.8571 385.1143L151.7443 382.6849L154.6315 380.0993L157.5187 377.3103L160.4059 374.2433L163.2931 370.7674L166.1803 366.6103L169.0675 360.966" fill="none" stroke="#087b61" stroke-width="3.5"/>
+<path d="M169.0675 360.966L172.0258 353.7546L174.9841 346.7735L177.9423 340.0218L180.9006 333.4991L183.8589 327.2048L186.8171 321.1381L189.7754 315.2985L192.7336 309.6855L195.6919 304.2985L198.6502 299.137L201.6084 294.2003L204.5667 289.488L207.525 284.9995L210.4832 280.7344L213.4415 276.6921L216.3997 272.8721L219.358 269.274L222.3163 265.8973L225.2745 262.7414L228.2328 259.806L231.1911 257.0906L234.1493 254.5948L237.1076 252.3181L240.0658 250.26L243.0241 248.4203L245.9824 246.7984L248.9406 245.3939L251.8989 244.2065L254.8572 243.2357L257.8154 242.4812" fill="none" stroke="#155eaa" stroke-width="3.5"/>
+<path d="M257.8154 242.4812L834 116.5625" fill="none" stroke="#435466" stroke-width="3.5"/>
+<circle cx="169.0675" cy="360.966" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="229" y="382" font-size="16" text-anchor="middle">(0.304, 0.733)</text>
+<circle cx="257.8154" cy="242.4812" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="215" y="205" font-size="16" text-anchor="middle">(0.664, 1.832)</text>
+<circle cx="834" cy="116.5625" r="4.7" fill="white" stroke="#17212b" stroke-width="1.8"/>
+<text x="824" y="100.5625" font-size="16" text-anchor="end">(3, 3)</text>
+<path d="M130 522h24" fill="none" stroke="#087b61" stroke-width="3.5"/>
+<text x="165" y="528" font-size="18" text-anchor="start">Triode</text>
+<path d="M375 522h24" fill="none" stroke="#155eaa" stroke-width="3.5"/>
+<text x="410" y="528" font-size="18" text-anchor="start">Saturation</text>
+<path d="M620 522h24" fill="none" stroke="#435466" stroke-width="3.5"/>
+<text x="655" y="528" font-size="18" text-anchor="start">Cutoff divider</text>
+</g>
+</svg>

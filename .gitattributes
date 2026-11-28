@@ -80,3 +80,25 @@ razavi/R067/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at
 razavi/R068/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 razavi/R069/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 razavi/R070/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Workbench release: preserve exact approved bytes.
+razavi/R071/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R072/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R073/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R074/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R075/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R076/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R077/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R078/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R079/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R080/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R081/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R082/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R083/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R084/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R085/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R086/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R087/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R088/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R089/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R090/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

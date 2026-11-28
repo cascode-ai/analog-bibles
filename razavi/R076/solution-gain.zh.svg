@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 365">
+  <title>R076 本征增益 · 栅源电压恒定</title>
+  <desc>平方律饱和区示例。V_GS − V_TH = 0.20 V，λ = 0.1 V⁻¹。横轴为正的宽长比。</desc>
+  <rect width="680" height="365" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17243a">
+    <text x="94" y="47" font-size="23" font-weight="600">本征增益 · 栅源电压恒定</text>
+    <text x="106" y="66" font-size="14">平方律饱和区</text>
+    <path d="M94 256H646" stroke="#dce3eb"/>
+    <text x="82" y="261" font-size="15" text-anchor="end">0</text>
+    <path d="M94 220.4H646" stroke="#dce3eb"/>
+    <text x="82" y="225.4" font-size="15" text-anchor="end">25</text>
+    <path d="M94 184.8H646" stroke="#dce3eb"/>
+    <text x="82" y="189.8" font-size="15" text-anchor="end">50</text>
+    <path d="M94 149.2H646" stroke="#dce3eb"/>
+    <text x="82" y="154.2" font-size="15" text-anchor="end">75</text>
+    <path d="M94 113.6H646" stroke="#dce3eb"/>
+    <text x="82" y="118.6" font-size="15" text-anchor="end">100</text>
+    <path d="M94 78H646" stroke="#dce3eb"/>
+    <text x="82" y="83" font-size="15" text-anchor="end">125</text>
+    <path d="M94 256v6" stroke="#334155"/>
+    <text x="94" y="281" font-size="15" text-anchor="middle">10</text>
+    <path d="M155.333 256v6" stroke="#334155"/>
+    <text x="155.333" y="281" font-size="15" text-anchor="middle">20</text>
+    <path d="M278 256v6" stroke="#334155"/>
+    <text x="278" y="281" font-size="15" text-anchor="middle">40</text>
+    <path d="M400.667 256v6" stroke="#334155"/>
+    <text x="400.667" y="281" font-size="15" text-anchor="middle">60</text>
+    <path d="M523.333 256v6" stroke="#334155"/>
+    <text x="523.333" y="281" font-size="15" text-anchor="middle">80</text>
+    <path d="M646 256v6" stroke="#334155"/>
+    <text x="646" y="281" font-size="15" text-anchor="middle">100</text>
+    <path d="M94 78V256H646" stroke="#334155" stroke-width="1.5" fill="none"/>
+    <path d="M94 113.6 L646 113.6" stroke="#1466a2" stroke-width="3" fill="none" stroke-linejoin="round"/>
+    <circle cx="339.333" cy="113.6" r="4" fill="#1466a2" stroke="white" stroke-width="1"/>
+    <text x="31" y="167" transform="rotate(-90 31 167)" text-anchor="middle" font-size="18">g_m r_O</text>
+    <text x="370" y="313" text-anchor="middle" font-size="18">W/L</text>
+    <text x="94" y="342" font-size="15">示例参数 · V_GS − V_TH = 0.20 V，λ = 0.1 V⁻¹</text>
+  </g>
+</svg>

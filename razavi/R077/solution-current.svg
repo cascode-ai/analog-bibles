@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 365">
+  <title>R077 Drain current · Fixed drain current</title>
+  <desc>Illustrative saturated square-law curve. μC_ox = 100 μA/V², λ = 0.1 V⁻¹, I_D = 0.10 mA. The horizontal axis shows positive width-to-length ratios. Drain current I_D (mA) versus W/L.</desc>
+  <rect width="680" height="365" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17243a">
+    <text x="94" y="47" font-size="23" font-weight="600">Drain current · Fixed drain current</text>
+    <text x="106" y="66" font-size="14">Saturated square-law model</text>
+    <path d="M94 256H646" stroke="#dce3eb"/>
+    <text x="82" y="261" font-size="15" text-anchor="end">0</text>
+    <path d="M94 220.4H646" stroke="#dce3eb"/>
+    <text x="82" y="225.4" font-size="15" text-anchor="end">0.025</text>
+    <path d="M94 184.8H646" stroke="#dce3eb"/>
+    <text x="82" y="189.8" font-size="15" text-anchor="end">0.05</text>
+    <path d="M94 149.2H646" stroke="#dce3eb"/>
+    <text x="82" y="154.2" font-size="15" text-anchor="end">0.075</text>
+    <path d="M94 113.6H646" stroke="#dce3eb"/>
+    <text x="82" y="118.6" font-size="15" text-anchor="end">0.1</text>
+    <path d="M94 78H646" stroke="#dce3eb"/>
+    <text x="82" y="83" font-size="15" text-anchor="end">0.125</text>
+    <path d="M94 256v6" stroke="#334155"/>
+    <text x="94" y="281" font-size="15" text-anchor="middle">5</text>
+    <path d="M204.4 256v6" stroke="#334155"/>
+    <text x="204.4" y="281" font-size="15" text-anchor="middle">20</text>
+    <path d="M351.6 256v6" stroke="#334155"/>
+    <text x="351.6" y="281" font-size="15" text-anchor="middle">40</text>
+    <path d="M498.8 256v6" stroke="#334155"/>
+    <text x="498.8" y="281" font-size="15" text-anchor="middle">60</text>
+    <path d="M646 256v6" stroke="#334155"/>
+    <text x="646" y="281" font-size="15" text-anchor="middle">80</text>
+    <path d="M94 78V256H646" stroke="#334155" stroke-width="1.5" fill="none"/>
+    <path d="M94 113.6 L646 113.6" stroke="#266449" stroke-width="3" fill="none" stroke-linejoin="round"/>
+    <circle cx="204.4" cy="113.6" r="4" fill="#266449" stroke="white" stroke-width="1"/>
+    <text x="24" y="167" transform="rotate(-90 24 167)" text-anchor="middle" font-size="18">I_D (mA)</text>
+    <text x="370" y="313" text-anchor="middle" font-size="18">W/L</text>
+    <text x="94" y="342" font-size="15">Example parameters · μC_ox = 100 μA/V², λ = 0.1 V⁻¹, I_D = 0.10 mA</text>
+  </g>
+</svg>

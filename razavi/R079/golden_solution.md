@@ -2,12 +2,28 @@
 
 ## Reference answer
 
-Same shape as with zero bulk voltage, but the body effect raises $V_{TH}$ to ≈ 0.893 V, so the overdrive is only ≈ 0.307 V: the triode region ends at $V_{DS} \approx 0.31$ V and the saturation plateau is higher, $g_mr_O \approx 2/(\lambda V_{ov}) \approx 65$ (≈ 67 at the edge rising to ≈ 85 at 3 V with the $(1+\lambda V_{DS})$ factor in $g_m$).
+The reverse body bias is $V_{SB}=V_S-V_B=1\ \mathrm V$. The body-effect equation gives
 
-- $V_{SB} = 1$ V: $V_{TH} = 0.7 + 0.45(\sqrt{1.9} - \sqrt{0.9}) = 0.893$ V; $V_{ov} = 0.307$ V; $I_D \approx 0.63$ mA in saturation (vs 1.68 mA with zero bulk voltage).
-- Triode ($V_{DS} < 0.307$ V): $g_mr_{ds} = V_{DS}/(0.307 - V_{DS})$: 0.19 at 0.05 V, 0.48 at 0.1 V, 1.9 at 0.2 V, rising steeply toward the edge (continuous if λ is kept in the triode equation).
-- Saturation: plateau ≈ 65 versus ≈ 40 for zero bulk voltage — a lower overdrive gives a higher intrinsic gain (at a lower current).
+$$V_{TH}=V_{TH0}+\gamma\left(\sqrt{2|\phi_F|+V_{SB}}-\sqrt{2|\phi_F|}\right)
+\approx 0.893375\ \mathrm V.$$
+
+Thus $V_{ov}=V_{GS}-V_{TH}\approx 0.306625\ \mathrm V$, and the boundary occurs at $V_{DS}=V_{ov}$.
+
+The leading-order gain is
+
+$$A_0(V_{DS})=
+\begin{cases}
+V_{DS}/(V_{ov}-V_{DS}), & 0\le V_{DS}<V_{ov},\\
+2/(\lambda V_{ov})=65.2, & V_{ov}\le V_{DS}\le 3\ \mathrm V.
+\end{cases}$$
+
+The dashed curve omits channel-length modulation in triode and uses the leading-order saturation approximation. Its triode branch diverges as $V_{DS}$ approaches $V_{ov}$ from below. The solid curve applies the same factor $(1+\lambda V_{DS})$ to both current branches. It starts at zero, joins continuously at 67.2 V/V, and reaches 84.8 V/V at 3 V. The leading-order saturation gain increases from 40 V/V at zero bulk bias to 65.2 V/V.
+
+![Intrinsic gain g_m r_ds versus V_DS](/q/R079/solution-intrinsic-gain.svg)
 
 ## Grading notes
 
-+2: $V_{TH}$ ≈ 0.89 V (±0.02), break point at ≈ 0.31 V, small rising triode values, and a saturation plateau ≈ 65 (65–85 depending on convention), higher than for zero bulk bias. +1: body effect included but one of the regions described only qualitatively. 0: body effect ignored (the same curve as for zero bulk voltage) with otherwise sound analysis. -2 (asserted as fact): threshold lowered by the negative bulk voltage, saturation plateau lower than for zero bulk bias as a result of a formula error, or $g_{mb}$ added to the intrinsic gain so as to change the conclusion.
+- +2 for $V_{TH}\approx 0.89\ \mathrm V$ (±0.02 V), a boundary near 0.31 V, small and rising triode values, and a saturation gain above the zero-bulk-bias case (about 65–85 depending on the model convention).
+- +1 for including the body effect with only a qualitative description of one region.
+- 0 for otherwise sound analysis using the zero-bulk-bias curve.
+- −2 for asserting that negative bulk bias lowers $V_{TH}$, deriving a lower saturation gain than for zero bulk bias by a formula error, or adding $g_{mb}$ to $g_m$ in a way that changes the result.

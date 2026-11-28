@@ -1,6 +1,6 @@
 # 详细步骤 - R071
 
-**思路。** 输出电压通过负载线 $I_D = (V_{DD} - V_{out})/R_D$ 决定漏极电流。在检查 $M_1$ 处于饱和之后，由该电流求出平方律（square law）跨导 $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$。
+思路： 输出电压通过负载线 $I_D = (V_{DD} - V_{out})/R_D$ 决定漏极电流。在检查 $M_1$ 处于饱和之后，由该电流求出平方律（square law）跨导 $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$。
 
 ### 第 1 步 — 负载线与跨导公式
 
@@ -51,6 +51,6 @@ $$\frac{g_m(1\ \mathrm{V})}{g_m(2.5\ \mathrm{V})} = \sqrt{\frac{1\ \mathrm{mA}}{
 
 在两种情况下 $M_1$ 都处于饱和区。
 
-**常见错误。** 使用与电流成线性关系的 $g_m$ 公式，例如 $g_m = \beta I_D$ 或 $g_m = I_D/V_T$，后者是双极晶体管（bipolar transistor）或亚阈值（subthreshold）区的公式。对于平方律 MOSFET，电流变化 4 倍只使 $g_m$ 变化 2 倍。
+常见错误： 使用与电流成线性关系的 $g_m$ 公式，例如 $g_m = \beta I_D$ 或 $g_m = I_D/V_T$，后者是双极晶体管（bipolar transistor）或亚阈值（subthreshold）区的公式。对于平方律 MOSFET，电流变化 4 倍只使 $g_m$ 变化 2 倍。
 
-**常见错误。** 把电流取为 $V_{out}/R_D$ 而不是 $(V_{DD} - V_{out})/R_D$。电阻位于 $V_{DD}$ 与输出端之间，因此其两端电压为 $V_{DD} - V_{out}$。
+常见错误： 把电流取为 $V_{out}/R_D$ 而不是 $(V_{DD} - V_{out})/R_D$。电阻位于 $V_{DD}$ 与输出端之间，因此其两端电压为 $V_{DD} - V_{out}$。

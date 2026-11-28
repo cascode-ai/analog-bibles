@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 395" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R078  本征增益</title>
+<desc id="plotDesc">横轴 V_DS (V)，纵轴 g_m r_ds (V/V)。分界 0.500 V。线性区虚线趋近分界时超出量程。</desc>
+<rect x="0" y="0" width="680" height="395" fill="#fff"/>
+<text x="99" y="33" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" text-anchor="start" fill="#23364b">R078  本征增益</text>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="268" x2="99" y2="268" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="273" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">0</text>
+<line x1="99" y1="208" x2="632" y2="208" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="208" x2="99" y2="208" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="213" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">20</text>
+<line x1="99" y1="148" x2="632" y2="148" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="148" x2="99" y2="148" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="153" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">40</text>
+<line x1="99" y1="88" x2="632" y2="88" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="88" x2="99" y2="88" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="93" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">60</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="99" y1="268" x2="99" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="99" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">0</text>
+<line x1="187.833" y1="88" x2="187.833" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="187.833" y1="268" x2="187.833" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="187.833" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">0.5</text>
+<line x1="276.667" y1="88" x2="276.667" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="276.667" y1="268" x2="276.667" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="276.667" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">1</text>
+<line x1="365.5" y1="88" x2="365.5" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="365.5" y1="268" x2="365.5" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="365.5" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">1.5</text>
+<line x1="454.333" y1="88" x2="454.333" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="454.333" y1="268" x2="454.333" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="454.333" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">2</text>
+<line x1="543.167" y1="88" x2="543.167" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="543.167" y1="268" x2="543.167" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="543.167" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">2.5</text>
+<line x1="632" y1="88" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="632" y1="268" x2="632" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="632" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">3</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="187.833" y1="88" x2="187.833" y2="268" stroke="#718498" stroke-width="1.4" stroke-dasharray="6 4"/>
+<polyline fill="none" stroke="#ad4c22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4" points="99,268 104.461,267.803 109.922,267.579 115.383,267.322 120.844,267.022 126.305,266.669 131.766,266.247 137.227,265.734 142.689,265.097 148.15,264.284 153.611,263.213 159.072,261.734 164.533,259.563 167.263,258.044 169.994,256.061 172.724,253.361 175.455,249.471 176.82,246.802 178.185,243.377 179.551,238.824 180.233,235.934 180.916,232.474 181.599,228.255 182.281,223 182.623,219.856 182.964,216.271 183.305,212.146 183.647,207.348 183.988,201.698 184.329,194.948 184.67,186.741 184.841,181.935 185.012,176.548 185.182,170.468 185.353,163.55 185.524,155.611 185.694,146.404 185.78,141.227 185.865,135.601 185.95,129.465 186.036,122.747 186.121,115.359 186.206,107.196 186.292,98.129 186.377,88"/>
+<polyline fill="none" stroke="#ad4c22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4" points="187.833,148 632,148"/>
+<polyline fill="none" stroke="#145c9e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="99,268 104.552,267.801 110.104,267.574 115.656,267.315 121.208,267.014 126.76,266.662 132.313,266.242 137.865,265.734 143.417,265.106 148.969,264.309 154.521,263.263 160.073,261.831 165.625,259.746 171.177,256.43 173.953,253.91 176.729,250.332 178.117,247.914 179.505,244.853 180.893,240.853 181.587,238.356 182.281,235.405 182.975,231.868 183.669,227.548 184.363,222.154 184.71,218.92 185.057,215.228 185.404,210.971 185.751,206.01 186.098,200.154 186.445,193.136 186.619,189.078 186.792,184.573 186.966,179.544 187.139,173.893 187.313,167.496 187.486,160.197 187.66,151.789 187.833,142"/>
+<polyline fill="none" stroke="#145c9e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="187.833,142 632,112"/>
+<circle cx="187.833" cy="142" r="3.3" fill="#145c9e" stroke="#fff" stroke-width="1"/>
+<line x1="99" y1="55" x2="124" y2="55" stroke="#145c9e" stroke-width="2.5"/>
+<text x="132" y="60" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#23364b">两区均保留调制因子</text>
+<line x1="346" y1="55" x2="371" y2="55" stroke="#ad4c22" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="379" y="60" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#23364b">一阶近似</text>
+<text x="143.417" y="112" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">线性区</text>
+<text x="409.917" y="112" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">饱和区</text>
+<text x="29" y="178" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b" transform="rotate(-90 29 178)">g_m r_ds (V/V)</text>
+<text x="365.5" y="318" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b">V_DS (V)</text>
+<text x="99" y="350" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">分界 0.500 V。线性区虚线趋近分界时超出量程。</text>
+</svg>

@@ -2,12 +2,31 @@
 
 ## Reference answer
 
-$(W/L)_2 \approx 5.16$ (e.g., 2.6/0.5); $A_v \approx -10.4$.
+### Device sizing
 
-- $M_1$ carries 1 mA: $V_{ov1} = \sqrt{2(1\ \mathrm{mA})/(134\ \mu\mathrm{A/V^2} \times 40)} = 0.611$ V; edge of triode: $V_{out} = V_{ov1} = 0.611$ V ($V_{in}$ = 1.311 V).
-- $M_2$ carries $I_1 - I_S = 0.25$ mA with $|V_{GS2}| = 3 - 0.611 = 2.389$ V, $|V_{ov2}| = 1.589$ V: $(W/L)_2 = 2(0.25\ \mathrm{mA})/(38.4\ \mu\mathrm{A/V^2} \times 1.589^2) \approx 5.16$.
-- $g_{m1} = 2I_1/V_{ov1} = 3.27$ mS, $g_{m2} = 2(0.25\ \mathrm{mA})/1.589 = 0.315$ mS; with λ = 0 the ideal source $I_S$ adds no conductance: $A_v = -g_{m1}/g_{m2} \approx -10.4$. No body effect (PMOS source at its bulk).
+At the triode boundary of $M_1$,
+
+$$\beta_1=\mu_nC_{ox}(W/L)_1=5.36\ \mathrm{mA/V^2},\qquad
+V_{out}=V_{ov1}=\sqrt{2I_1/\beta_1}\approx0.611\ \mathrm V.$$
+
+Output-node KCL and the diode-connected PMOS give
+
+$$|I_{D2}|=I_1-I_S=0.25\ \mathrm{mA},\qquad
+|V_{ov2}|=V_{DD}-V_{out}-|V_{TH2}|\approx1.589\ \mathrm V.$$
+
+$$\left(\frac WL\right)_2=\frac{2|I_{D2}|}{\mu_pC_{ox}|V_{ov2}|^2}\approx5.16.$$
+
+### Small-signal gain
+
+The ideal source $I_S$ is open for small signals. The diode-connected $M_2$ loads the output with $1/g_{m2}$.
+
+$$g_{m1}=\frac{2I_1}{V_{ov1}}\approx3.27\ \mathrm{mS},\qquad
+g_{m2}=\frac{2|I_{D2}|}{|V_{ov2}|}\approx0.315\ \mathrm{mS},\qquad
+A_v=-\frac{g_{m1}}{g_{m2}}\approx-10.4$$
 
 ## Grading notes
 
-+2: $(W/L)_2$ ≈ 5.2 (±4%) and gain ≈ −10.4 (±4%). +1: one slip in an otherwise correct solution. 0: one of the two results right with the other wrong by a slip. -2 (asserted as fact): $M_2$ assumed to carry 1 mA or 0.75 mA, the edge condition taken as $V_{out} = V_{TH}$ or $V_{out} = V_{in}$, $\mu_nC_{ox}$ used for $M_2$, or a gain from $g_{m2}$ evaluated at the wrong current.
+- +2 for $(W/L)_2\approx5.2$ and $A_v\approx-10.4$ (each within ±4%).
+- +1 for one slip in an otherwise correct solution.
+- 0 for one correct result, with the other wrong by a slip.
+- −2 for assuming that $M_2$ carries 1 mA or 0.75 mA, setting the boundary at $V_{out}=V_{TH}$ or $V_{out}=V_{in}$, using $\mu_nC_{ox}$ for $M_2$, or evaluating $g_{m2}$ at the wrong current.

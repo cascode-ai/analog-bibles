@@ -1,6 +1,6 @@
 # Detailed solution - R085
 
-**Approach.** KCL at the output gives the current in the diode-connected PMOS $M_2$ (the source $I_S$ supplies part of $M_1$'s current). The edge-of-triode condition for $M_1$ fixes $V_{out}$, hence $|V_{GS2}|$, and the square law then gives $(W/L)_2$. In the small-signal model the ideal current source is an open circuit, so $A_v = -g_{m1}/g_{m2}$.
+**Approach:** KCL at the output gives the current in the diode-connected PMOS $M_2$ (the source $I_S$ supplies part of $M_1$'s current). The edge-of-triode condition for $M_1$ fixes $V_{out}$, hence $|V_{GS2}|$, and the square law then gives $(W/L)_2$. In the small-signal model the ideal current source is an open circuit, so $A_v = -g_{m1}/g_{m2}$.
 
 ### Step 1 — Current in $M_2$ (KCL at the output)
 
@@ -17,7 +17,7 @@ $M_2$ carries only a quarter of $M_1$'s current. Both bulks are tied to their so
 
 ### Step 2 — $M_1$: overdrive and the edge of triode
 
-From $I_1 = \frac12\beta_1V_{ov1}^2$:
+Define $V_{ov1}=V_{GS1}-V_{TH1}$ and $\beta_1=\mu_n C_{ox}(W/L)_1$. At $V_{DS1}=V_{ov1}$, the triode and saturation current laws both give $I_1=\frac12\beta_1 V_{ov1}^2$. Taking the positive overdrive gives
 
 $$
 \begin{aligned}
@@ -37,7 +37,7 @@ with $V_{in} = V_{TH1} + V_{ov1} = 0.7 + 0.611 = 1.311$ V. $M_1$'s current is se
 
 $$V_{SG2} = V_{DD} - V_{out} = 3\ \mathrm{V} - 0.611\ \mathrm{V} = 2.389\ \mathrm{V}, \qquad |V_{ov2}| = V_{SG2} - |V_{TH2}| = 2.389\ \mathrm{V} - 0.8\ \mathrm{V} = 1.589\ \mathrm{V} .$$
 
-$M_2$ is diode-connected, so it is saturated, and $|I_{D2}| = \frac12\mu_pC_{ox}(W/L)_2|V_{ov2}|^2$ gives
+The gate–drain connection gives $V_{SD2}=V_{SG2}$. Since $|V_{ov2}|>0$ and $V_{SD2}\ge |V_{ov2}|$, $M_2$ conducts in saturation. $|I_{D2}| = \frac12\mu_pC_{ox}(W/L)_2|V_{ov2}|^2$ gives
 
 $$
 \begin{aligned}
@@ -52,9 +52,12 @@ With $L = 0.5$ μm, for example, $W_2 \approx 2.6$ μm.
 
 With $\lambda = 0$ and no body effect, $V_{DD}$ is ac ground and the model has one node, $out$:
 
-- **$M_1$:** current source $g_{m1}v_{in}$ from $out$ to ground.
-- **$M_2$:** source at ac ground, gate and drain at $out$, so $v_{sg2} = -v_{out}$; it delivers $g_{m2}v_{sg2} = -g_{m2}v_{out}$ into $out$, i.e. a resistance $1/g_{m2}$ to ground.
-- **$I_S$:** an ideal current source, so an **open circuit**.
+- $M_1$: current source $g_{m1}v_{in}$ from $out$ to ground.
+- $M_2$: source at ac ground, gate and drain at $out$, so $v_{sg2} = -v_{out}$; it delivers $g_{m2}v_{sg2} = -g_{m2}v_{out}$ into $out$, i.e. a resistance $1/g_{m2}$ to ground.
+- $I_S$: an ideal current source, so an open circuit.
+
+At the boundary, the triode-side output conductance of $M_1$, $\beta_1(V_{ov1}-V_{DS1})$, is zero, matching the saturation-side result for $\lambda=0$.
+The transconductance is continuous as well: both the triode-side and saturation-side expressions give $g_{m1}=\beta_1V_{ov1}$ at $V_{DS1}=V_{ov1}$.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -81,11 +84,11 @@ $$
 
 Check: $g_{m2} = \sqrt{2(38.4\ \mu\mathrm{A/V^2})(5.16)(0.25\ \mathrm{mA})} = \sqrt{9.9\times10^{-8}}\ \mathrm{A/V} = 0.315$ mS.
 
-**Why the bleeding source helps.**
+Why the bleeding source helps:
 
 $$|A_v| = \frac{2I_1/V_{ov1}}{2|I_{D2}|/|V_{ov2}|} = \frac{I_1}{|I_{D2}|}\cdot\frac{|V_{ov2}|}{V_{ov1}} = 4\times\frac{1.589}{0.611} = 10.4 .$$
 
-The voltage ratio $|V_{ov2}|/V_{ov1} = 2.6$ is fixed by the bias voltages; the current ratio $I_1/|I_{D2}| = 4$ comes from $I_S$. Without $I_S$, $M_2$ would carry the full 1 mA at the same overdrive and the gain would be only about $-2.6$: taking current away from the diode-connected load lowers $g_{m2}$ without using more headroom.
+The voltage ratio $|V_{ov2}|/V_{ov1} = 2.6$ is fixed by the bias voltages; the current ratio $I_1/|I_{D2}| = 4$ comes from $I_S$. If $I_S$ were removed and $M_2$ resized to preserve the same DC voltages, $M_2$ would carry the full 1 mA at the same overdrive and the gain would be only about $-2.6$: taking current away from the diode-connected load lowers $g_{m2}$ without using more headroom.
 
 ### Result
 
@@ -95,8 +98,8 @@ with $V_{ov1} = V_{out} = 0.611$ V and $V_{in} \approx 1.311$ V. The small-signa
 
 $$A_v = -\frac{g_{m1}}{g_{m2}} = -\frac{3.27\ \mathrm{mS}}{0.315\ \mathrm{mS}} \approx -10.4 .$$
 
-**Common mistake.** Giving $M_2$ the full 1 mA (or 0.75 mA). KCL at the output says $M_2$ carries only $I_1 - I_S = 0.25$ mA, and both its size and its $g_m$ follow from this current.
+**Common mistake:** Giving $M_2$ the full 1 mA (or 0.75 mA). KCL at the output says $M_2$ carries only $I_1 - I_S = 0.25$ mA, and both its size and its $g_m$ follow from this current.
 
-**Common mistake.** Sizing the PMOS with $\mu_nC_{ox}$ or with $V_{TH} = 0.7$ V. Use $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$ and $|V_{TH2}| = 0.8$ V.
+**Common mistake:** Sizing the PMOS with $\mu_nC_{ox}$ or with $V_{TH} = 0.7$ V. Use $\mu_pC_{ox} = 38.4\ \mu\mathrm{A/V^2}$ and $|V_{TH2}| = 0.8$ V.
 
-**Common mistake.** Treating the ideal $I_S$ as a resistor in the small-signal model. It is an open circuit.
+**Common mistake:** Treating the ideal $I_S$ as a resistor in the small-signal model. It is an open circuit.
