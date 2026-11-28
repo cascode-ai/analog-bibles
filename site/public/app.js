@@ -150,6 +150,20 @@ const STRINGS = {
     exercise: (e) => `Problem ${e}`,
     chapterNeedsBook: "Pick one book (Razavi, Gray or Allen) to step by chapter",
     detailed: "Detailed solution",
+    export: "Export",
+    exportPrint: "Print / save PDF",
+    exportMarkdown: "Copy Markdown",
+    exportZip: "Download Markdown with images (.zip)",
+    exportZipPending: "Preparing Markdown and images…",
+    exportZipReady: "Select Extract All, then open the Markdown file alongside its images.",
+    exportZipFailed: "Could not package Markdown and images. Try again.",
+    exportTitle: "Export this question",
+    copiedFormula: "Formula LaTeX copied.",
+    copiedMarkdown: "Question Markdown copied.",
+    copyFormula: "Copy formula LaTeX",
+    copyFailed: "Could not copy the formula.",
+    downloadImage: "Download original",
+    downloadFailed: "Could not download this image.",
     unreviewed: "Unreviewed",
     feedback: "Report a problem",
     feedbackPrompt: "Which part needs attention?",
@@ -304,6 +318,20 @@ const STRINGS = {
     exercise: (e) => `习题 ${e}`,
     chapterNeedsBook: "先选一本书（Razavi、Gray 或 Allen）才能按章跳转",
     detailed: "详细步骤",
+    export: "导出",
+    exportPrint: "打印 / 保存 PDF",
+    exportMarkdown: "复制 Markdown",
+    exportZip: "下载 Markdown（含图片，ZIP）",
+    exportZipPending: "正在打包 Markdown 和图片…",
+    exportZipReady: "请先全部解压，再打开与图片同目录的 Markdown 文件。",
+    exportZipFailed: "Markdown 和图片打包失败，请重试。",
+    exportTitle: "导出这道题",
+    copiedFormula: "公式 LaTeX 已复制。",
+    copiedMarkdown: "题目 Markdown 已复制。",
+    copyFormula: "复制公式 LaTeX",
+    copyFailed: "公式复制失败。",
+    downloadImage: "下载原图",
+    downloadFailed: "图片下载失败。",
     unreviewed: "未审核",
     feedback: "反馈这道题",
     feedbackPrompt: "哪一步有疑问？",
@@ -801,13 +829,19 @@ function renderMarkdown(text) {
     .replace(/\\\(([\s\S]+?)\\\)/g, (_, m) => keep(m, false))
     .replace(/\$(?!\s)((?:\\\$|[^$\n])+?)\$/g, (_, m) => keep(m, false));
   const html = window.marked ? window.marked.parse(src) : `<p>${esc(src)}</p>`;
-  return html.replace(/@@MATH(\d+)@@/g, (_, i) => {
+  return html.replace(/<!--[\s\S]*?-->|<(?:[^"'<>]|"[^"]*"|'[^']*')+>|@@MATH(\d+)@@/g, (part, i) => {
+    // Keep math in image descriptions and other HTML attributes as text.
+    if (i === undefined) return part.replace(/@@MATH(\d+)@@/g, (_, j) => esc(maths[Number(j)].tex));
     const { tex, display } = maths[Number(i)];
+    let rendered;
     try {
-      return window.katex.renderToString(tex, { displayMode: display, throwOnError: false });
+      rendered = window.katex.renderToString(tex, { displayMode: display, throwOnError: false });
     } catch {
-      return esc(display ? `$$${tex}$$` : `$${tex}$`);
+      rendered = esc(display ? `$$${tex}$$` : `$${tex}$`);
     }
+    const className = display ? "formula-display" : "formula-inline";
+    const label = esc(t("copyFormula"));
+    return `<span class="${className}">${rendered}<button type="button" class="formula-copy-button" data-formula-tex="${esc(tex)}" aria-label="${label}" title="${label}"></button></span>`;
   });
 }
 
@@ -1011,8 +1045,19 @@ function cardHead(q, extra = "") {
       <span class="id">${esc(q.id)}</span>
       ${q.reviewStatus !== "APPROVED" ? `<span class="review-status">${t("unreviewed")}</span>` : ""}
       <span class="tag lv-${q.level}">${t(q.level)}</span>
-      ${extra}
+      ${extra}${exportMenu()}
     </div>`;
+}
+
+function exportMenu() {
+  return `<details class="export-menu">
+    <summary title="${esc(t("exportTitle"))}">${t("export")}</summary>
+    <div class="export-menu-items">
+      <button type="button" data-export="print">${t("exportPrint")}</button>
+      <button type="button" data-export="markdown" disabled>${t("exportMarkdown")}</button>
+      <button type="button" data-export="zip" disabled>${t("exportZip")}</button>
+    </div>
+  </details>`;
 }
 
 function cardBody(q, reviewing = false) {
@@ -1061,6 +1106,8 @@ function cardBody(q, reviewing = false) {
 // reader asked for the English original on this card. Use localized grading
 // notes when present, with the original rubric as a fallback.
 async function fillCard(el, q) {
+  const exportButtons = el.querySelectorAll('[data-export="markdown"], [data-export="zip"]');
+  for (const button of exportButtons) button.disabled = true;
   const zh = lang === "zh" && q.zh && el.dataset.orig !== "en";
   const files = await bundle(q);
   const get = (name) => (files
@@ -1086,14 +1133,22 @@ async function fillCard(el, q) {
   el.querySelector(".q-question").innerHTML = renderMarkdown(question);
   const original = splitSolution(solution);
   const translated = answerZh ? splitSolution(answerZh) : null;
+  const answer = (translated || original).body;
+  const detailed = steps.replace(/^# .*\n/, "");
+  const hasChineseGrading = Boolean(translated?.grading.trim());
+  const gradingText = hasChineseGrading ? translated.grading : original.grading;
+  el.exportContent = { q, question, answer, detailed, grading: gradingText };
+  if (contentLang.instruction) {
+    for (const button of exportButtons) button.disabled = false;
+  }
   el.querySelector(".q-answer").lang = translated ? "zh" : "en";
-  el.querySelector(".q-answer").innerHTML = renderMarkdown((translated || original).body);
+  el.querySelector(".q-answer").innerHTML = renderMarkdown(answer);
   const toggle = el.querySelector(".orig-toggle");
   if (toggle) toggle.textContent = zh ? t("showOriginal") : t("showTranslation");
   if (q.sol) {
     const box = el.querySelector(".q-steps");
     box.lang = contentLang.detailed_solution || lang;
-    box.innerHTML = renderMarkdown(withDiagrams(q, steps.replace(/^# .*\n/, "")));
+    box.innerHTML = renderMarkdown(withDiagrams(q, detailed));
     foldSteps(box);
     const tab = el.querySelector('[data-solution-tab="detailed"]');
     tab.hidden = !steps.trim();
@@ -1102,8 +1157,6 @@ async function fillCard(el, q) {
   }
   // Keep the existing availability rule: only notes supplied in the answer
   // and actually nonempty are exposed. Review API authorization is unchanged.
-  const hasChineseGrading = Boolean(translated?.grading.trim());
-  const gradingText = hasChineseGrading ? translated.grading : original.grading;
   const gradingTab = el.querySelector('[data-solution-tab="grading"]');
   gradingTab.hidden = !gradingText.trim();
   gradingTab.querySelector(".tab-label").textContent =
@@ -1139,12 +1192,17 @@ function selectSolutionTab(tab) {
 
 // "<!-- diagram: diagram-01.cir -->" marks where a drawing of the solution
 // belongs: it becomes the drawn figure and its caption, once one exists.
+const diagramMarker = /^<!--[ \t]*diagram:[ \t]*(diagram-\d+)\.cir[ \t]*-->[ \t]*\r?$/gm;
+
 function withDiagrams(q, text) {
-  return text.replace(/^<!--\s*diagram:\s*(diagram-\d+)\.cir\s*-->\s*$/gm, (_, name) => {
+  return text.replace(diagramMarker, (_, name) => {
     if (!q.diags || !(name in q.diags)) return "";
     const src = asset(q, `${name}.svg`);
     const caption = q.diags[name];
-    return `<figure class="diagram"><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(caption || name)}" loading="lazy"></a>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+    return `<figure class="diagram">
+      <a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(caption || name)}" loading="lazy"></a>
+      <figcaption class="pic-label-row">${caption ? `<span class="pic-label">${esc(caption)}</span>` : ""}${imageDownloadButton(src)}</figcaption>
+    </figure>`;
   });
 }
 
@@ -1528,7 +1586,11 @@ function askForKey(wrong) {
 
 function picture(q, file, label) {
   const src = asset(q, file);
-  return `<div><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(label)}" loading="lazy"></a><div class="pic-label">${esc(label)}</div></div>`;
+  return `<div><a class="pic" href="${src}" data-zoom="${src}"><img src="${src}" alt="${esc(label)}" loading="lazy"></a><div class="pic-label-row"><span class="pic-label">${esc(label)}</span>${imageDownloadButton(src)}</div></div>`;
+}
+
+function imageDownloadButton(src) {
+  return `<button type="button" class="image-download" data-download-image="${src}"><span aria-hidden="true">↓</span>${t("downloadImage")}</button>`;
 }
 
 // ---------- inline image reading ----------
@@ -1959,6 +2021,136 @@ const mineIds = new Set(JSON.parse(store.get("ab.mineIds") || "[]"));
 
 // ---------- actions ----------
 
+let toastTimer = null;
+
+function notify(text, error = false, duration = 2400) {
+  const toast = $("toast");
+  if (!toast) return;
+  clearTimeout(toastTimer);
+  toast.textContent = text;
+  toast.classList.toggle("err", error);
+  toast.hidden = false;
+  toastTimer = setTimeout(() => { toast.hidden = true; }, duration);
+}
+
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.opacity = "0";
+  document.body.append(area);
+  area.select();
+  const copied = document.execCommand("copy");
+  area.remove();
+  if (!copied) throw new Error("copy unavailable");
+}
+
+async function copyFormula(button) {
+  try {
+    await copyText(button.dataset.formulaTex);
+    notify(t("copiedFormula"));
+  } catch {
+    notify(t("copyFailed"), true);
+  }
+}
+
+function exportMarkdown(q, content) {
+  const clean = (text) => text.replace(/^#[ \t]+[^\r\n]*(?:\r?\n|$)/, "").trim();
+  const sections = [
+    `# ${q.id} · ${bookName(q.book)} · ${t("exercise", q.ex)}`,
+    `## ${t("question")}\n${clean(content.question)}`,
+    `## ${t("answer")}\n${clean(content.answer)}`,
+  ];
+  if (content.detailed.trim()) sections.push(`## ${t("detailed")}\n${clean(content.detailed)}`);
+  if (content.grading.trim()) sections.push(`## ${t("grading")}\n${clean(content.grading)}`);
+  return `${sections.join("\n\n")}\n`;
+}
+
+async function copyQuestionMarkdown(content) {
+  try {
+    await copyText(exportMarkdown(content.q, content));
+    notify(t("copiedMarkdown"));
+  } catch {
+    notify(t("downloadFailed"), true);
+  }
+}
+
+async function downloadQuestionZip(content) {
+  const { q } = content;
+  const images = new Map();
+  const addImage = (id, file) => {
+    const name = `${id}-${file}`;
+    images.set(name, asset(id === q.id ? q : { id }, file));
+    return `./${name}`;
+  };
+  const rewriteSection = (text, figures = [], label) => {
+    const linked = new Set();
+    const rewritten = text.replace(/(!\[(?:\\.|[^\\\]\r\n])*\]\()\/q\/([\w-]+)\/([\w.-]+)(\))/g,
+      (_, start, id, file, end) => {
+        const name = addImage(id, file);
+        linked.add(name);
+        return start + name + end;
+      });
+    const captions = figures.map((file, i) => {
+      const name = addImage(q.id, file);
+      return linked.has(name) ? "" : `![${label(i)}](${name})`;
+    }).filter(Boolean);
+    return [rewritten, ...captions].join("\n\n");
+  };
+  const detail = content.detailed.replace(diagramMarker, (marker, name) => {
+    if (!Object.hasOwn(q.diags ?? {}, name)) return marker;
+    const caption = (q.diags[name] || name).replace(/[\\[\]]/g, "\\$&");
+    return `![${caption}](/q/${q.id}/${name}.svg)`;
+  });
+  const markdown = exportMarkdown(q, {
+    question: rewriteSection(content.question, q.figs, (i) => t("fig", i + 1)),
+    answer: rewriteSection(content.answer, q.refs, () => t("refFig")),
+    detailed: rewriteSection(detail),
+    grading: rewriteSection(content.grading),
+  });
+  const [{ createZip }, imageEntries] = await Promise.all([
+    import("/zip.js"),
+    Promise.all([...images].map(async ([name, url]) => {
+      const response = await fetch(url);
+      if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
+        throw new Error(`Could not load an image from ${url}`);
+      }
+      return { name, bytes: new Uint8Array(await response.arrayBuffer()) };
+    })),
+  ]);
+  const zip = createZip([{ name: `${q.id}.md`, bytes: new TextEncoder().encode(markdown) }, ...imageEntries]);
+  const url = URL.createObjectURL(zip);
+  try {
+    downloadFile(url, `${q.id}.zip`);
+  } finally {
+    setTimeout(() => URL.revokeObjectURL(url), 30_000);
+  }
+}
+
+function downloadFile(url, filename) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+}
+
+function downloadImage(url) {
+  try {
+    const absolute = new URL(url, location.href);
+    const name = decodeURIComponent(absolute.pathname.split("/").pop() || "image");
+    downloadFile(absolute.href, name);
+  } catch {
+    notify(t("downloadFailed"), true);
+  }
+}
+
 function message(text, err = false) {
   const m = $("message");
   if (!m) return;
@@ -2125,9 +2317,18 @@ document.addEventListener("pointerdown", (event) => {
 });
 
 document.addEventListener("click", async (event) => {
+  if (!state.ready) return;
   const target = event.target.closest("button, a");
-  if (!target || !state.ready) return;
-  if (target.hasAttribute("data-current-step-toggle")) {
+  if (!target) {
+    if (event.pointerType === "touch") {
+      event.target.closest(".formula-inline")?.querySelector(".formula-copy-button")?.focus({ preventScroll: true });
+    }
+    return;
+  }
+  if (target.matches("button[data-formula-tex]")) {
+    event.preventDefault();
+    await copyFormula(target);
+  } else if (target.hasAttribute("data-current-step-toggle")) {
     toggleCurrentStep(target);
   } else if (target.dataset.stepsOpen !== undefined) {
     const content = target.closest('[data-solution-content="detailed"]');
@@ -2140,6 +2341,29 @@ document.addEventListener("click", async (event) => {
     scheduleSolutionNavigation();
   } else if (target.dataset.solutionTab) {
     selectSolutionTab(target);
+  } else if (target.dataset.export === "print") {
+    target.closest(".export-menu")?.removeAttribute("open");
+    window.print();
+  } else if (target.dataset.export === "markdown") {
+    target.closest(".export-menu")?.removeAttribute("open");
+    await copyQuestionMarkdown(target.closest("[data-qid]").exportContent);
+  } else if (target.dataset.export === "zip") {
+    const menu = target.closest(".export-menu");
+    menu.open = false;
+    menu.querySelector("summary").focus({ preventScroll: true });
+    target.disabled = true;
+    notify(t("exportZipPending"));
+    try {
+      await downloadQuestionZip(target.closest("[data-qid]").exportContent);
+      notify(t("exportZipReady"), false, 6500);
+    } catch {
+      notify(t("exportZipFailed"), true);
+    } finally {
+      target.disabled = false;
+    }
+  } else if (target.dataset.downloadImage) {
+    event.preventDefault();
+    downloadImage(target.dataset.downloadImage);
   } else if (target.classList.contains("row")) {
     const keep = state.cards[state.index]?.id;
     state[target.dataset.kind] = target.dataset.key;
@@ -2245,8 +2469,8 @@ document.addEventListener("keydown", (event) => {
     stepMenu.querySelector("summary").focus({ preventScroll: true });
     return;
   }
-  if (event.target.closest(".solution-tools") && ["Enter", " "].includes(event.key)) return;
-  if (event.target.closest(".image-view") && ["Enter", " "].includes(event.key)) return;
+  if (event.target.closest(".solution-tools, .export-menu, .formula-copy-button") && ["Enter", " "].includes(event.key)) return;
+  if (event.target.closest(".image-view, .image-download") && ["Enter", " "].includes(event.key)) return;
   if (event.target.closest("#search-results") && ["Enter", " "].includes(event.key)) return;
   const inNote = event.target.id === "note";
   if (inNote && event.key === "Enter" && !event.shiftKey) {

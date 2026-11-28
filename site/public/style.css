@@ -284,6 +284,98 @@ body[data-mode="browse"] .steps { margin-left: auto; }
 }
 .pic img { display: block; max-width: 100%; max-height: 520px; margin: 0 auto; }
 .pic-label { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+/* Keep figure actions beside their captions and equation actions beside the math. */
+.pic-label-row { display: flex; align-items: center; gap: 8px; margin-block-start: 4px; text-align: start; }
+.image-download, .export-menu > summary, .formula-copy-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 28px; padding: 2px 8px; border: 1px solid var(--border);
+  border-radius: 5px; background: var(--surface-raised); color: var(--accent);
+  font: 500 12px/1.35 var(--font-body); white-space: nowrap;
+}
+.image-download, .export-menu > summary, .formula-copy-button { cursor: pointer; }
+.image-download { margin-inline-start: auto; }
+.image-download:hover, .export-menu > summary:hover, .export-menu[open] > summary,
+.formula-copy-button:hover, .formula-copy-button:focus-visible {
+  border-color: var(--border-strong); background: var(--accent-soft);
+}
+.image-download:focus-visible, .export-menu > summary:focus-visible, .formula-copy-button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.formula-copy-button {
+  position: absolute; z-index: 1; inline-size: 22px; min-block-size: 22px; padding: 0;
+}
+.formula-copy-button::before { content: "⧉"; font-size: 13px; }
+.formula-inline { position: relative; border-radius: 3px; }
+.formula-inline > .formula-copy-button {
+  inset-block-start: 0; inset-inline-end: 0; transform: translateY(-40%);
+  opacity: 0; pointer-events: none;
+}
+@media screen {
+  .formula-inline:focus-within { background: var(--accent-soft); }
+  .formula-inline:focus-within > .formula-copy-button { opacity: 1; pointer-events: auto; }
+}
+@media screen and (hover: hover) {
+  .formula-inline:hover { background: var(--accent-soft); }
+  .formula-inline:hover > .formula-copy-button { opacity: 1; pointer-events: auto; }
+}
+.formula-display { position: relative; display: block; margin-block: 1.6em; }
+.formula-display > .formula-copy-button { inset-block-start: 4px; inset-inline-end: 4px; }
+:is(.solution-content, .question-panel) .md .formula-display > .katex-display {
+  margin-block: 0; padding-inline-end: 2rem;
+}
+.export-menu { position: relative; margin-inline-start: auto; }
+.export-menu > summary { list-style: none; }
+.export-menu > summary::-webkit-details-marker { display: none; }
+.export-menu > summary::after {
+  content: ""; width: 5px; height: 5px; border-inline-end: 1px solid currentColor;
+  border-block-end: 1px solid currentColor; transform: translateY(-1px) rotate(45deg);
+}
+.export-menu-items {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 5px); z-index: 5;
+  display: grid; gap: 3px; width: max-content; max-width: min(17rem, calc(100vw - 32px)); padding: 6px;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-md);
+}
+.export-menu-items button {
+  padding: 6px 8px; border: 0; border-radius: 4px; background: transparent; color: var(--text); text-align: start; cursor: pointer;
+}
+.export-menu-items button:disabled { color: var(--muted); cursor: default; }
+.export-menu-items button:enabled:hover, .export-menu-items button:focus-visible { background: var(--surface-muted); color: var(--accent); outline: none; }
+.toast {
+  position: fixed; left: 50%; bottom: 22px; z-index: 20; transform: translateX(-50%);
+  padding: 8px 12px; border: 1px solid var(--border-strong); border-radius: 7px;
+  background: var(--surface-raised); color: var(--text); box-shadow: var(--shadow-md); font-size: 13px;
+}
+.toast.err { color: var(--issue); }
+
+@media (max-width: 600px) {
+  .image-download, .export-menu > summary { min-height: 34px; }
+  .formula-copy-button { inline-size: 24px; min-block-size: 24px; }
+  .export-menu-items { inset-inline-end: -4px; }
+}
+
+@media print {
+  @page { margin: 16mm; }
+  :root, :root[data-theme="dark"] { color-scheme: light; --bg: #fff; --surface: #fff; --surface-raised: #fff; --text: #111; --muted: #555; --border: #bbb; --accent: #234f68; }
+  body { background: #fff; color: #111; font-size: 11pt; }
+  .top, .sidebar-shell, .toolbar, .site-foot, .review-controls, .others, .export-menu,
+  .solution-tabs, .solution-tools, .feedback-open, .image-download, .toast, .pane-resizer { display: none !important; }
+  .layout { display: block; max-width: none; margin: 0; padding: 0; }
+  .main, .item, .reader, .reader .cols, .reader .panel, .solution-panel { display: block !important; height: auto !important; max-height: none !important; overflow: visible !important; }
+  .item { padding: 0; border: 0; background: #fff; }
+  .head { margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid #bbb; }
+  .cols { margin-top: 0; }
+  .panel + .panel { margin-top: 24px; padding-top: 18px; border-top: 1px solid #bbb; }
+  .panel > h4 { color: #333; }
+  .solution-content[hidden] { display: none !important; }
+  .solution-content .md, .question-panel .md { max-width: none; color: #111; }
+  .pic { break-inside: avoid; }
+  .md img { max-height: none; }
+  .formula-copy-button { display: none; }
+  :is(.solution-content, .question-panel) .md .formula-display > .katex-display {
+    padding-inline-end: 1em;
+  }
+}
 .image-view { position: relative; min-width: 0; max-width: 100%; padding-top: 22px; }
 .image-viewport { position: relative; overflow: hidden; touch-action: none; }
 .image-viewport img { transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
