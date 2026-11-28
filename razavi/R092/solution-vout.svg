@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 425" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R092  Output transfer characteristic</title>
+<desc id="plotDesc">V_in (V), V_out (V). Divider with M_1 off, then saturation after turn-on at 1.744 V. The slope is 0.50 on both sides of turn-on.</desc>
+<rect x="0" y="0" width="680" height="425" fill="#ffffff"/>
+<text x="98" y="30" font-size="19" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">R092  Output transfer characteristic</text>
+<text x="98" y="55" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">Example: R_F = R_S = 10 kΩ, β = 10 mA/V²</text>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="290" x2="98" y2="290" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="295" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="98" y1="290" x2="98" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="98" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0</text>
+<line x1="98" y1="256.984" x2="624" y2="256.984" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="256.984" x2="98" y2="256.984" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="261.984" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0.5</text>
+<line x1="185.667" y1="82" x2="185.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="185.667" y1="290" x2="185.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="185.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0.5</text>
+<line x1="98" y1="223.968" x2="624" y2="223.968" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="223.968" x2="98" y2="223.968" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="228.968" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1</text>
+<line x1="273.333" y1="82" x2="273.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="273.333" y1="290" x2="273.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="273.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1</text>
+<line x1="98" y1="190.952" x2="624" y2="190.952" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="190.952" x2="98" y2="190.952" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="195.952" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1.5</text>
+<line x1="361" y1="82" x2="361" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="361" y1="290" x2="361" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="361" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1.5</text>
+<line x1="98" y1="157.937" x2="624" y2="157.937" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="157.937" x2="98" y2="157.937" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="162.937" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2</text>
+<line x1="448.667" y1="82" x2="448.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="448.667" y1="290" x2="448.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="448.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2</text>
+<line x1="98" y1="124.921" x2="624" y2="124.921" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="124.921" x2="98" y2="124.921" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="129.921" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2.5</text>
+<line x1="536.333" y1="82" x2="536.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="536.333" y1="290" x2="536.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="536.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2.5</text>
+<line x1="98" y1="91.905" x2="624" y2="91.905" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="91.905" x2="98" y2="91.905" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="96.905" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">3</text>
+<line x1="624" y1="82" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="624" y1="290" x2="624" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="624" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">3</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="403.831" y1="232.411" x2="403.831" y2="290" stroke="#8496a7" stroke-width="1" stroke-dasharray="4 4"/>
+<polyline points="98,290 107.557,288.2 117.114,286.401 126.672,284.601 136.229,282.801 145.786,281.002 155.343,279.202 164.9,277.402 174.458,275.603 184.015,273.803 193.572,272.003 203.129,270.204 212.686,268.404 222.244,266.604 231.801,264.805 241.358,263.005 250.915,261.206 260.473,259.406 270.03,257.606 279.587,255.807 289.144,254.007 298.701,252.207 308.259,250.408 317.816,248.608 327.373,246.808 336.93,245.009 346.487,243.209 356.045,241.409 365.602,239.61 375.159,237.81 384.716,236.01 394.273,234.211 403.831,232.411" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="403.831,232.411 407.271,231.687 410.711,230.875 417.591,229.13 424.471,227.295 431.352,225.407 438.232,223.481 445.112,221.528 451.993,219.553 458.873,217.559 465.753,215.551 472.634,213.528 479.514,211.494 486.394,209.45 493.274,207.396 500.155,205.333 507.035,203.262 513.915,201.184 520.796,199.099 527.676,197.008 534.556,194.911 541.436,192.808 548.317,190.7 555.197,188.586 562.077,186.468 568.958,184.345 575.838,182.218 582.718,180.086 589.599,177.951 596.479,175.811 603.359,173.668 610.239,171.521 617.12,169.37 624,167.216" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="403.831" cy="232.411" r="3.8" fill="#145c9e" stroke="#ffffff" stroke-width="1"/>
+<text x="361" y="337" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">V_in (V)</text>
+<text x="34" y="186" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a" transform="rotate(-90 34 186)">V_out (V)</text>
+<text x="98" y="383" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">Divider with M_1 off, then saturation after turn-on at 1.744 V.</text>
+<text x="98" y="404" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">The slope is 0.50 on both sides of turn-on.</text>
+</svg>

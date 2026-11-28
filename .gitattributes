@@ -102,3 +102,15 @@ razavi/R087/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at
 razavi/R088/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 razavi/R089/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 razavi/R090/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Workbench release: preserve exact approved bytes.
+razavi/R091/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R092/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R093/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R094/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R095/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R096/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R097/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R098/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R099/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+razavi/R100/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

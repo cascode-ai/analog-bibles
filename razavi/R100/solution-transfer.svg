@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 502">
+<title>R100 Source-follower transfer</title>
+<desc>A horizontal plateau joins a vertical drop at the current match, then the triode branch declines continuously to zero.</desc>
+<rect width="1010" height="502" fill="white"/>
+<g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17243a">
+<text x="94" y="37" font-size="24" text-anchor="start" font-weight="600">R100  Source-follower transfer</text>
+<text x="94" y="66" font-size="16" text-anchor="start">Example · Vb1 / Vb2 = 2.0 / 1.0 V · β1 = β2 = 2, β3 = 1 mA/V² · λ = 0</text>
+<path d="M94 416H648" fill="none" stroke="#dde5eb" stroke-width="1"/>
+<text x="82" y="421" font-size="15" text-anchor="end">0</text>
+<path d="M94 338.5H648" fill="none" stroke="#dde5eb" stroke-width="1"/>
+<text x="82" y="343.5" font-size="15" text-anchor="end">0.25</text>
+<path d="M94 261H648" fill="none" stroke="#dde5eb" stroke-width="1"/>
+<text x="82" y="266" font-size="15" text-anchor="end">0.5</text>
+<path d="M94 183.5H648" fill="none" stroke="#dde5eb" stroke-width="1"/>
+<text x="82" y="188.5" font-size="15" text-anchor="end">0.75</text>
+<path d="M94 106H648" fill="none" stroke="#dde5eb" stroke-width="1"/>
+<text x="82" y="111" font-size="15" text-anchor="end">1</text>
+<path d="M94 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M94 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="94" y="443" font-size="15" text-anchor="middle">0</text>
+<path d="M186.33333333333331 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M186.33333333333331 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="186.33333333333331" y="443" font-size="15" text-anchor="middle">0.5</text>
+<path d="M278.66666666666663 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M278.66666666666663 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="278.66666666666663" y="443" font-size="15" text-anchor="middle">1</text>
+<path d="M371 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M371 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="371" y="443" font-size="15" text-anchor="middle">1.5</text>
+<path d="M463.3333333333333 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M463.3333333333333 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="463.3333333333333" y="443" font-size="15" text-anchor="middle">2</text>
+<path d="M555.6666666666666 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M555.6666666666666 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="555.6666666666666" y="443" font-size="15" text-anchor="middle">2.5</text>
+<path d="M648 106V416" fill="none" stroke="#edf1f4" stroke-width="1"/>
+<path d="M648 416v6" fill="none" stroke="#26364a" stroke-width="1"/>
+<text x="648" y="443" font-size="15" text-anchor="middle">3</text>
+<path d="M94 106V416H648" fill="none" stroke="#26364a" stroke-width="1.6"/>
+<text x="371" y="476" font-size="19" text-anchor="middle">Vin (V)</text>
+<text x="36" y="261" font-size="19" text-anchor="middle" transform="rotate(-90 36 261)">Vout (V)</text>
+<path d="M94.0000 157.3697L421.9192 157.3697" fill="none" stroke="#52647a" stroke-width="3.3"/>
+<path d="M421.9192 157.3697L421.9192 323.0000" fill="none" stroke="#973f55" stroke-width="3.3"/>
+<path d="M421.9192 323.0000L421.9247 324.0960L421.9410 325.1919L421.9682 326.2875L422.0063 327.3828L422.0553 328.4777L422.1151 329.5720L422.1858 330.6656L422.2674 331.7584L422.3599 332.8503L422.4633 333.9411L422.5776 335.0308L422.7027 336.1193L422.8387 337.2063L422.9856 338.2919L423.1434 339.3759L423.3121 340.4581L423.4916 341.5385L423.6821 342.6170L423.8834 343.6934L424.0956 344.7676L424.3186 345.8394L424.5526 346.9089L424.7974 347.9758L425.0531 349.0400L425.3197 350.1014L425.5972 351.1600L425.8856 352.2155L426.1848 353.2678L426.4949 354.3169L426.8159 355.3626L427.1478 356.4048L427.4906 357.4433L427.8443 358.4781L428.2088 359.5090L428.5842 360.5359L428.9705 361.5586L429.3677 362.5770L429.7757 363.5911L430.1947 364.6006L430.6245 365.6054L431.0652 366.6055L431.5168 367.6006L431.9793 368.5907L432.4526 369.5756L432.9368 370.5552L433.4320 371.5293L433.9379 372.4978L434.4548 373.4605L434.9826 374.4174L435.5212 375.3683L436.0707 376.3130L436.6311 377.2514L437.2024 378.1833L437.7846 379.1087L438.3776 380.0273L438.9816 380.9390L439.5964 381.8436L440.2221 382.7411L440.8586 383.6311L441.5061 384.5137L442.1644 385.3886L442.8336 386.2557L443.5137 387.1148L444.2047 387.9657L444.9066 388.8083L445.6193 389.6424L446.3430 390.4678L447.0775 391.2844L447.8229 392.0920L448.5791 392.8904L449.3463 393.6794L450.1243 394.4589L450.9132 395.2286L451.7130 395.9884L452.5237 396.7380L453.3453 397.4774L454.1777 398.2062L455.0210 398.9243L455.8752 399.6315L456.7403 400.3276L457.6163 401.0123L458.5031 401.6855L459.4009 402.3468L460.3095 402.9962L461.2290 403.6334L462.1593 404.2580L463.1006 404.8700L464.0527 405.4691L465.0158 406.0549L465.9897 406.6273L466.9744 407.1860L467.9701 407.7307L468.9767 408.2613L469.9941 408.7772L471.0224 409.2784L472.0616 409.7646L473.1117 410.2353L474.1726 410.6904L475.2445 411.1294L476.3272 411.5522L477.4208 411.9583L478.5253 412.3475L479.6406 412.7193L480.7669 413.0735L481.9040 413.4096L483.0520 413.7273L484.2109 414.0262L485.3807 414.3059L486.5613 414.5660L487.7528 414.8061L488.9553 415.0256L490.1686 415.2243L491.3927 415.4015L492.6278 415.5569L493.8737 415.6899L495.1306 415.7999L496.3983 415.8866L497.6768 415.9492L498.9663 415.9872L500.2667 416.0000" fill="none" stroke="#146295" stroke-width="3.3"/>
+<path d="M500.2667 416.0000L648.0000 416.0000" fill="none" stroke="#087563" stroke-width="3.3"/>
+<text x="678" y="111" font-size="19" text-anchor="start" font-weight="600">Key points</text>
+<path d="M421.919 157.370L443.919 140.370" fill="none" stroke="#17243a" stroke-width="1"/>
+<circle cx="421.919" cy="157.370" r="3.8" fill="white" stroke="#17243a" stroke-width="1.6"/>
+<circle cx="443.919" cy="140.370" r="9" fill="white" stroke="#17243a" stroke-width="1.2"/>
+<text x="443.919" y="144.370" font-size="11" text-anchor="middle">1</text>
+<text x="678" y="143" font-size="16" text-anchor="start" font-weight="600">1  Plateau ends at current match</text>
+<text x="696" y="163" font-size="14" text-anchor="start">Vin* = 1.776 V, Vout = 0.834 V</text>
+<path d="M421.919 323.000L399.919 323.000" fill="none" stroke="#17243a" stroke-width="1"/>
+<circle cx="421.919" cy="323.000" r="3.8" fill="white" stroke="#17243a" stroke-width="1.6"/>
+<circle cx="399.919" cy="323.000" r="9" fill="white" stroke="#17243a" stroke-width="1.2"/>
+<text x="399.919" y="327.000" font-size="11" text-anchor="middle">2</text>
+<text x="678" y="203" font-size="16" text-anchor="start" font-weight="600">2  M1 reaches the triode boundary</text>
+<text x="696" y="223" font-size="14" text-anchor="start">Vout = Vb2 − 0.7 V = 0.300 V</text>
+<path d="M500.267 416.000L500.267 394.000" fill="none" stroke="#17243a" stroke-width="1"/>
+<circle cx="500.267" cy="416.000" r="3.8" fill="white" stroke="#17243a" stroke-width="1.6"/>
+<circle cx="500.267" cy="394.000" r="9" fill="white" stroke="#17243a" stroke-width="1.2"/>
+<text x="500.267" y="398.000" font-size="11" text-anchor="middle">3</text>
+<text x="678" y="263" font-size="16" text-anchor="start" font-weight="600">3  M3 cuts off</text>
+<text x="696" y="283" font-size="14" text-anchor="start">Vin = 2.200 V, Vout = 0</text>
+<text x="678" y="348" font-size="13" text-anchor="start">Case (a) · M1 and M2 operate in triode after the drop</text>
+</g>
+</svg>

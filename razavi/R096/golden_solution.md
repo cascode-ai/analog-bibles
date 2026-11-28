@@ -11,6 +11,8 @@ A non-inverting common-gate characteristic with a current-source load: $V_{out}$
 - If $V_{in}^* < 0$ (large $I_2$) $V_{out}$ is high over the whole range; if $V_{in}^*$ exceeds 3 V it stays in the low region.
 - The jump assumes $V_{b1} - V_{TH1} < V_{b2} + 0.8$ V at $V_{in}^*$, so that both devices can be saturated together. If instead $V_{b1} - V_{TH1} > V_{b2} + 0.8$ V, the output passes continuously through a region where both transistors are in triode, with finite slope; either case is acceptable when the condition is stated.
 
+![R096 output curve](/q/R096/solution-plot.svg)
+
 ## Grading notes
 
 +2: non-inverting; low output with $M_1$ in triode and $M_2$ saturated for small $V_{in}$; a sharp high-gain transition where $M_1$'s saturation current equals $I_2$ (at $V_{in}^* \approx V_{b1} - V_{TH} - \sqrt{2I_2/\beta_1} - I_2R_S$); output near $V_{DD}$ ($M_2$ triode) above it and exactly $V_{DD}$ after $M_1$ cuts off. +1: shape and transition right without the expression for $V_{in}^*$ or without the region labels. 0: non-inverting trend right but the transition described as gradual (gain ≈ 1 or $R_D/R_S$-like) with no current-source reasoning. -2 (asserted as fact): inverting characteristic, $V_{in}$ treated as a gate input, or $R_S$ read as connected to ground. The question does not say to neglect channel-length modulation: a vertical jump (λ = 0) or a very steep finite-gain segment (λ > 0) are both acceptable.

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 425" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R094  输出传输特性</title>
+<desc id="plotDesc">V_in (V), V_out (V). M_1 保持饱和，M_2 在 1.823 V 从线性区进入饱和区。 M_2 在 2.200 V 截止，输出保持在 1.200 V。</desc>
+<rect x="0" y="0" width="680" height="425" fill="#ffffff"/>
+<text x="98" y="30" font-size="19" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">R094  输出传输特性</text>
+<text x="98" y="55" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">示例 V_b = 1.0 V，R_D = 20 kΩ，(β₁, β₂) = (2, 1) mA/V²</text>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="290" x2="98" y2="290" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="295" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="98" y1="290" x2="98" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="98" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0</text>
+<line x1="98" y1="256.984" x2="624" y2="256.984" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="256.984" x2="98" y2="256.984" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="261.984" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0.5</text>
+<line x1="185.667" y1="82" x2="185.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="185.667" y1="290" x2="185.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="185.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0.5</text>
+<line x1="98" y1="223.968" x2="624" y2="223.968" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="223.968" x2="98" y2="223.968" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="228.968" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1</text>
+<line x1="273.333" y1="82" x2="273.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="273.333" y1="290" x2="273.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="273.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1</text>
+<line x1="98" y1="190.952" x2="624" y2="190.952" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="190.952" x2="98" y2="190.952" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="195.952" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1.5</text>
+<line x1="361" y1="82" x2="361" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="361" y1="290" x2="361" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="361" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1.5</text>
+<line x1="98" y1="157.937" x2="624" y2="157.937" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="157.937" x2="98" y2="157.937" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="162.937" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2</text>
+<line x1="448.667" y1="82" x2="448.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="448.667" y1="290" x2="448.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="448.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2</text>
+<line x1="98" y1="124.921" x2="624" y2="124.921" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="124.921" x2="98" y2="124.921" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="129.921" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2.5</text>
+<line x1="536.333" y1="82" x2="536.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="536.333" y1="290" x2="536.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="536.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2.5</text>
+<line x1="98" y1="91.905" x2="624" y2="91.905" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="91.905" x2="98" y2="91.905" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="96.905" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">3</text>
+<line x1="624" y1="82" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="624" y1="290" x2="624" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="624" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">3</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="417.598" y1="116.812" x2="417.598" y2="290" stroke="#8496a7" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="483.733" y1="210.762" x2="483.733" y2="290" stroke="#8496a7" stroke-width="1" stroke-dasharray="4 4"/>
+<polyline points="98,94.57 107.987,94.64 117.975,94.715 127.962,94.794 137.95,94.877 147.937,94.965 157.925,95.059 167.912,95.158 177.899,95.264 187.887,95.378 197.874,95.5 207.862,95.63 217.849,95.771 227.837,95.923 237.824,96.087 247.811,96.266 257.799,96.462 267.786,96.676 277.774,96.912 287.761,97.174 297.748,97.466 307.736,97.793 317.723,98.164 327.711,98.588 337.698,99.077 347.686,99.65 357.673,100.332 367.66,101.163 377.648,102.203 382.642,102.833 387.635,103.562 392.629,104.42 397.623,105.457 402.616,106.754 405.113,107.545 407.61,108.472 410.107,109.592 411.355,110.256 412.604,111.015 413.852,111.908 415.101,113.002 415.725,113.664 416.349,114.448 416.973,115.427 417.285,116.042 417.598,116.812" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="417.598,116.812 419.664,122.592 421.731,128.189 423.798,133.602 425.865,138.831 427.931,143.878 429.998,148.74 432.065,153.419 434.132,157.915 436.198,162.227 438.265,166.356 440.332,170.301 442.398,174.063 444.465,177.641 446.532,181.036 448.599,184.247 450.665,187.274 452.732,190.119 454.799,192.779 456.866,195.256 458.932,197.55 460.999,199.66 463.066,201.587 465.133,203.33 467.199,204.89 469.266,206.266 471.333,207.459 473.4,208.468 475.466,209.294 477.533,209.936 479.6,210.395 481.667,210.67 483.733,210.762" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="483.733,210.762 492.5,210.762 501.267,210.762 510.033,210.762 518.8,210.762 527.567,210.762 536.333,210.762 545.1,210.762 553.867,210.762 562.633,210.762 571.4,210.762 580.167,210.762 588.933,210.762 597.7,210.762 606.467,210.762 615.233,210.762 624,210.762" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="417.598" cy="116.812" r="3.8" fill="#145c9e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="483.733" cy="210.762" r="3.8" fill="#145c9e" stroke="#ffffff" stroke-width="1"/>
+<text x="361" y="337" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">V_in (V)</text>
+<text x="34" y="186" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a" transform="rotate(-90 34 186)">V_out (V)</text>
+<text x="98" y="383" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">M_1 保持饱和，M_2 在 1.823 V 从线性区进入饱和区。</text>
+<text x="98" y="404" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">M_2 在 2.200 V 截止，输出保持在 1.200 V。</text>
+</svg>

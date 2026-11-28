@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 425" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R091  Output transfer characteristic</title>
+<desc id="plotDesc">V_in (V), V_out (V). Turn-on: 0.700 V. The curves coincide up to 2.147 V. At 2.147 V, the R_D = 2 kΩ curve enters triode.</desc>
+<rect x="0" y="0" width="680" height="425" fill="#ffffff"/>
+<text x="98" y="30" font-size="19" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">R091  Output transfer characteristic</text>
+<text x="98" y="55" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">Example: β = 10 mA/V², R_S = 1 kΩ</text>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="290" x2="98" y2="290" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="295" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="98" y1="290" x2="98" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="98" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0</text>
+<line x1="98" y1="256.984" x2="624" y2="256.984" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="256.984" x2="98" y2="256.984" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="261.984" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">0.5</text>
+<line x1="185.667" y1="82" x2="185.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="185.667" y1="290" x2="185.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="185.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">0.5</text>
+<line x1="98" y1="223.968" x2="624" y2="223.968" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="223.968" x2="98" y2="223.968" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="228.968" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1</text>
+<line x1="273.333" y1="82" x2="273.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="273.333" y1="290" x2="273.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="273.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1</text>
+<line x1="98" y1="190.952" x2="624" y2="190.952" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="190.952" x2="98" y2="190.952" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="195.952" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">1.5</text>
+<line x1="361" y1="82" x2="361" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="361" y1="290" x2="361" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="361" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">1.5</text>
+<line x1="98" y1="157.937" x2="624" y2="157.937" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="157.937" x2="98" y2="157.937" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="162.937" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2</text>
+<line x1="448.667" y1="82" x2="448.667" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="448.667" y1="290" x2="448.667" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="448.667" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2</text>
+<line x1="98" y1="124.921" x2="624" y2="124.921" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="124.921" x2="98" y2="124.921" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="129.921" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">2.5</text>
+<line x1="536.333" y1="82" x2="536.333" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="536.333" y1="290" x2="536.333" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="536.333" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">2.5</text>
+<line x1="98" y1="91.905" x2="624" y2="91.905" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="94" y1="91.905" x2="98" y2="91.905" stroke="#21364a" stroke-width="1"/>
+<text x="87" y="96.905" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="end" fill="#21364a">3</text>
+<line x1="624" y1="82" x2="624" y2="290" stroke="#dfe7ef" stroke-width="1"/>
+<line x1="624" y1="290" x2="624" y2="294" stroke="#21364a" stroke-width="1"/>
+<text x="624" y="312" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">3</text>
+<line x1="98" y1="82" x2="98" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="98" y1="290" x2="624" y2="290" stroke="#21364a" stroke-width="1.5"/>
+<line x1="474.46" y1="233.105" x2="474.46" y2="290" stroke="#8496a7" stroke-width="1" stroke-dasharray="4 4"/>
+<polyline points="98,290 105.671,290 113.342,290 121.013,290 128.683,290 136.354,290 144.025,290 151.696,290 159.367,290 167.037,290 174.708,290 182.379,290 190.05,290 197.721,290 205.392,290 213.063,290 220.733,290" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="220.733,290 223.884,289.912 227.034,289.697 233.335,289.04 239.636,288.192 245.938,287.22 252.239,286.157 258.54,285.024 264.841,283.837 271.142,282.603 277.443,281.33 283.744,280.023 290.045,278.687 296.346,277.324 302.647,275.937 308.948,274.529 315.249,273.101 321.55,271.655 327.851,270.193 334.152,268.715 340.453,267.222 346.754,265.715 353.055,264.196 359.356,262.665 365.657,261.122 371.958,259.569 378.259,258.005 384.56,256.431 390.861,254.848 397.163,253.255 403.464,251.654 409.765,250.045 416.066,248.428 422.367,246.803 428.668,245.17 434.969,243.531 441.27,241.884 447.571,240.231 453.872,238.571 460.173,236.905 466.474,235.233 472.775,233.555 479.076,231.871 485.377,230.182 491.678,228.487 497.979,226.787 504.28,225.081 510.581,223.371 516.882,221.656 523.183,219.936 529.484,218.211 535.785,216.482 542.086,214.748 548.388,213.01 554.689,211.268 560.99,209.521 567.291,207.771 573.592,206.016 579.893,204.257 586.194,202.495 592.495,200.729 598.796,198.959 605.097,197.186 611.398,195.409 617.699,193.629 624,191.845" fill="none" stroke="#145c9e" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="474.46,233.105 476.796,232.529 479.133,232.033 483.806,231.216 488.479,230.566 493.152,230.033 502.498,229.204 511.845,228.584 521.191,228.101 530.537,227.712 539.884,227.392 549.23,227.124 558.576,226.895 567.922,226.698 577.269,226.526 586.615,226.375 595.961,226.241 605.307,226.121 614.654,226.013 624,225.916" fill="none" stroke="#af4b27" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7 4"/>
+<circle cx="220.733" cy="290" r="3.8" fill="#145c9e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="474.46" cy="233.105" r="3.8" fill="#145c9e" stroke="#ffffff" stroke-width="1"/>
+<text x="361" y="337" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a">V_in (V)</text>
+<text x="34" y="186" font-size="15" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#21364a" transform="rotate(-90 34 186)">V_out (V)</text>
+<line x1="100" y1="356" x2="123" y2="356" stroke="#145c9e" stroke-width="2.6"/>
+<text x="131" y="361" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">R_D = 0</text>
+<line x1="279" y1="356" x2="302" y2="356" stroke="#af4b27" stroke-width="2.6" stroke-dasharray="7 4"/>
+<text x="310" y="361" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">R_D = 2 kΩ branch</text>
+<text x="98" y="383" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">Turn-on: 0.700 V. The curves coincide up to 2.147 V.</text>
+<text x="98" y="404" font-size="14" font-family="Arial, Microsoft YaHei, sans-serif" text-anchor="start" fill="#21364a">At 2.147 V, the R_D = 2 kΩ curve enters triode.</text>
+</svg>

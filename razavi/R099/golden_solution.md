@@ -2,6 +2,8 @@
 
 ## Reference answer
 
+![V_out versus V_in](/q/R099/solution-transfer.svg)
+
 Inverting, with the PMOS $M_3$ as the input device and the cascoded current source $M_2$–$M_1$ as the load: $V_{out}$ near $V_{DD}$ at low $V_{in}$, a sharp high-gain drop where $M_3$'s current equals $I_1 = \tfrac12\beta_1(V_{b2} - 0.7)^2$, then a decline to 0 V at $V_{in} = V_{DD} - |V_{THP}| = 2.2$ V, and 0 V beyond.
 
 - Small $V_{in}$: $M_3$ (large $V_{SG}$) could supply more than $I_1$, so it is in triode and $V_{out}$ is just below $V_{DD}$; $M_2$, $M_1$ saturated, current $I_1$.
