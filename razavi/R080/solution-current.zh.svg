@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 395" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R080  漏极电流（辅助图）</title>
+<desc id="plotDesc">横轴 V_B (V)，纵轴 I_D (mA)。截止于 −3.343 V。理想截止区继续延伸至更负电压。 截止后曲线保持为零。</desc>
+<rect x="0" y="0" width="680" height="395" fill="#fff"/>
+<text x="99" y="33" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" text-anchor="start" fill="#23364b">R080  漏极电流（辅助图）</text>
+<text x="99" y="60" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">示例参数  V_GS = 1.2 V，V_DS = 1.0 V，β = 13.4 mA/V²</text>
+<rect x="455.337" y="88" width="176.663" height="180" fill="#eef2f6"/>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="268" x2="99" y2="268" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="273" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">0</text>
+<line x1="99" y1="223" x2="632" y2="223" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="223" x2="99" y2="223" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="228" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">0.5</text>
+<line x1="99" y1="178" x2="632" y2="178" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="178" x2="99" y2="178" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="183" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">1</text>
+<line x1="99" y1="133" x2="632" y2="133" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="133" x2="99" y2="133" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="138" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">1.5</text>
+<line x1="99" y1="88" x2="632" y2="88" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="88" x2="99" y2="88" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="93" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">2</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="99" y1="268" x2="99" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="99" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">0</text>
+<line x1="205.6" y1="88" x2="205.6" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="205.6" y1="268" x2="205.6" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="205.6" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−1</text>
+<line x1="312.2" y1="88" x2="312.2" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="312.2" y1="268" x2="312.2" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="312.2" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−2</text>
+<line x1="418.8" y1="88" x2="418.8" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="418.8" y1="268" x2="418.8" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="418.8" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−3</text>
+<line x1="525.4" y1="88" x2="525.4" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="525.4" y1="268" x2="525.4" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="525.4" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−4</text>
+<line x1="632" y1="88" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="632" y1="268" x2="632" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="632" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−5</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="455.337" y1="88" x2="455.337" y2="268" stroke="#718498" stroke-width="1.4" stroke-dasharray="6 4"/>
+<polyline fill="none" stroke="#145c9e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="99,117.25 104.568,124.524 110.136,131.429 115.703,137.993 121.271,144.241 126.839,150.194 132.407,155.874 137.974,161.296 143.542,166.478 149.11,171.432 154.678,176.173 160.246,180.711 165.813,185.058 171.381,189.222 176.949,193.214 182.517,197.041 188.084,200.711 193.652,204.23 199.22,207.606 204.788,210.845 210.355,213.952 215.923,216.932 221.491,219.791 227.059,222.533 232.627,225.162 238.194,227.682 243.762,230.098 249.33,232.413 254.898,234.63 260.465,236.752 266.033,238.783 271.601,240.726 277.169,242.582 282.737,244.356 288.304,246.048 293.872,247.663 299.44,249.201 305.008,250.665 310.575,252.057 316.143,253.379 321.711,254.633 327.279,255.821 332.846,256.944 338.414,258.004 343.982,259.002 349.55,259.94 355.118,260.82 360.685,261.643 366.253,262.409 371.821,263.122 377.389,263.781 382.956,264.387 388.524,264.943 394.092,265.449 399.66,265.906 405.228,266.315 410.795,266.678 416.363,266.994 421.931,267.266 427.499,267.494 433.066,267.678 438.634,267.82 444.202,267.921 449.77,267.98 455.337,268"/>
+<polyline fill="none" stroke="#145c9e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="455.337,268 632,268"/>
+<text x="277.169" y="77" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">饱和区</text>
+<text x="543.669" y="77" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">截止区</text>
+<text x="29" y="178" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b" transform="rotate(-90 29 178)">I_D (mA)</text>
+<text x="365.5" y="318" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b">V_B (V)  →  更负</text>
+<text x="99" y="350" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">截止于 −3.343 V。理想截止区继续延伸至更负电压。</text>
+<text x="99" y="372" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">截止后曲线保持为零。</text>
+</svg>

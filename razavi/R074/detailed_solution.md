@@ -1,8 +1,10 @@
 # Detailed solution - R074
 
-**Approach.** Write the intrinsic gain $g_mr_O$ with the form of $g_m$ that suits a constant current, $g_m = 2I_D/(V_{GS} - V_{TH})$. Since $L$ (hence $\lambda$) and $I_D$ are fixed, $r_O = 1/(\lambda I_D)$ is constant, and the gain is inversely proportional to the overdrive. Then describe the curve versus $V_{GS}$.
+**Approach:** Write the intrinsic gain $g_mr_O$ with the form of $g_m$ that suits a constant current, $g_m = 2I_D/(V_{GS} - V_{TH})$. Since $L$ (hence $\lambda$) and $I_D$ are fixed, $r_O = 1/(\lambda I_D)$ is constant, and the gain is inversely proportional to the overdrive. Then describe the curve versus $V_{GS}$.
 
 ### Step 1 — What is held constant
+
+The example uses an NMOS with $V_{GS}>V_{TH}>0$ and assumes $V_{DS}\geq V_{ov}$.
 
 With $L$ fixed, $\lambda$ (which scales as $1/L$) is fixed. Keeping $I_D$ fixed while $V_{GS}$ changes requires adjusting the width: with $V_{ov} = V_{GS} - V_{TH}$, the square law $I_D = \tfrac12\mu_nC_{ox}(W/L)V_{ov}^2$ gives
 
@@ -12,17 +14,17 @@ so a larger $V_{GS}$ means a narrower device.
 
 ### Step 2 — The two factors
 
-**Transconductance.** In $g_m = \mu_nC_{ox}(W/L)V_{ov}$, the square law gives $\mu_nC_{ox}(W/L) = 2I_D/V_{ov}^2$, so
+Transconductance: In $g_m = \mu_nC_{ox}(W/L)V_{ov}$, the square law gives $\mu_nC_{ox}(W/L) = 2I_D/V_{ov}^2$, so
 
-$$g_m = \frac{2I_D}{V_{ov}^2}\cdot V_{ov} = \frac{2I_D}{V_{GS} - V_{TH}} :$$
+$$g_m = \frac{2I_D}{V_{ov}^2}\cdot V_{ov} = \frac{2I_D}{V_{GS} - V_{TH}}.$$
 
-at constant $I_D$, $g_m$ is inversely proportional to the overdrive.
+At constant $I_D$, $g_m$ is inversely proportional to the overdrive.
 
-**Output resistance.**
+The output resistance
 
 $$r_O = \frac{1}{\lambda I_D}$$
 
-is **constant**, since both $\lambda$ and $I_D$ are fixed.
+is constant, since both $\lambda$ and $I_D$ are fixed.
 
 ### Step 3 — The intrinsic gain
 
@@ -32,12 +34,16 @@ since $I_D$ cancels. At a fixed current a small overdrive is obtained with a wid
 
 ### Step 4 — Shape of the curve versus $V_{GS}$
 
-- **Hyperbola.** $g_mr_O\cdot(V_{GS} - V_{TH}) = 2/\lambda$ is constant: a rectangular hyperbola with asymptotes $V_{GS} = V_{TH}$ (vertical) and $g_mr_O = 0$ (horizontal).
-- **Monotonically decreasing.** The gain falls as $V_{GS}$ increases; each doubling of the overdrive halves it.
-- **Near threshold.** As $V_{GS} \to V_{TH}^+$, the square-law expression diverges.
-- **Slope:** $\dfrac{d(g_mr_O)}{dV_{GS}} = -\dfrac{2}{\lambda V_{ov}^2}$, steep near $V_{TH}$ and flattening for large overdrive.
+The plotted points have $V_{ov}>0$ and assume $V_{DS}\geq V_{ov}$. At each bias, evaluate the small-signal transconductance at fixed geometry. Width changes between plotted bias points.
 
-**Numerical example** with $\lambda = 0.1\ \mathrm{V^{-1}}$ (so $2/\lambda = 20$ V). At $V_{ov} = 0.2$ V:
+![Intrinsic gain g_m r_O](/q/R074/solution-gain.svg)
+
+- Hyperbola: $g_mr_O\cdot(V_{GS} - V_{TH}) = 2/\lambda$ is constant: a rectangular hyperbola with asymptotes $V_{GS} = V_{TH}$ (vertical) and $g_mr_O = 0$ (horizontal).
+- Monotonically decreasing: The gain falls as $V_{GS}$ increases; each doubling of the overdrive halves it.
+- Near threshold: As $V_{GS} \to V_{TH}^+$, the square-law expression diverges.
+- Slope: $\dfrac{d(g_mr_O)}{dV_{GS}} = -\dfrac{2}{\lambda V_{ov}^2}$, steep near $V_{TH}$ and flattening for large overdrive.
+
+For a numerical example, use $\lambda = 0.1\ \mathrm{V^{-1}}$ (so $2/\lambda = 20$ V). At $V_{ov} = 0.2$ V:
 
 $$g_mr_O = \frac{2}{(0.1\ \mathrm{V^{-1}})(0.2\ \mathrm{V})} = \frac{2}{0.02} = 100 .$$
 
@@ -45,7 +51,7 @@ $$g_mr_O = \frac{2}{(0.1\ \mathrm{V^{-1}})(0.2\ \mathrm{V})} = \frac{2}{0.02} = 
 |---|---|---|---|---|---|---|---|
 | $g_mr_O$ | 200 | 100 | 66.7 | 50 | 40 | 26.7 | 20 |
 
-With, say, $V_{TH} = 0.7$ V, the horizontal axis reads $V_{GS} = 0.8, 0.9, \dots, 1.7$ V, and the curve has its vertical asymptote at $V_{GS} = 0.7$ V.
+For the example $V_{TH}=0.7$ V, the solid curve starts at 0.8 V. The dashed square-law extension reaches the top at $V_{GS}=0.78$ V, where the gain is 250. The vertical dashed line marks the threshold asymptote.
 
 ### Step 5 — Behaviour near threshold (beyond the square law)
 
@@ -53,7 +59,7 @@ The divergence at $V_{GS} = V_{TH}$ is an artefact of the square law. At small o
 
 $$g_mr_O \approx \frac{I_D}{\zeta V_T}\cdot\frac{1}{\lambda I_D} = \frac{1}{\lambda\zeta V_T} = \frac{1}{(0.1)(1.5)(0.026)} \approx 256$$
 
-for $\lambda = 0.1\ \mathrm{V^{-1}}$. The square-law curve reaches this value at $V_{ov} = 2\zeta V_T \approx 78$ mV, so the real curve follows the hyperbola above roughly 0.1 V of overdrive and flattens below it. Keeping the current constant at such small overdrives also requires a very wide, highly capacitive device.
+for $\lambda = 0.1\ \mathrm{V^{-1}}$. The square-law curve reaches this value at $V_{ov} = 2\zeta V_T \approx 78$ mV, giving a comparison scale for the two limiting models. The transition requires a separate model. Keeping the current constant at such small overdrives also requires a very wide, highly capacitive device.
 
 ### Result
 
@@ -63,6 +69,6 @@ $$g_mr_O = \frac{2}{\lambda\,(V_{GS} - V_{TH})} .$$
 
 The plot versus $V_{GS}$ is a decreasing hyperbola with a vertical asymptote at $V_{GS} = V_{TH}$: the gain halves each time the overdrive doubles (e.g. 100, 40 and 20 at overdrives of 0.2, 0.5 and 1 V for $\lambda = 0.1\ \mathrm{V^{-1}}$). In practice, weak inversion caps it near $1/(\lambda\zeta V_T)$ close to threshold.
 
-**Common mistake.** Concluding that the gain *increases* with $V_{GS}$ because the device is "turned on harder". At a fixed current a larger overdrive means a narrower device and a *smaller* $g_m = 2I_D/V_{ov}$, while $r_O$ does not change.
+**Common mistake:** Concluding that the gain *increases* with $V_{GS}$ because the device is "turned on harder". At a fixed current a larger overdrive means a narrower device and a *smaller* $g_m = 2I_D/V_{ov}$, while $r_O$ does not change.
 
-**Common mistake.** Using $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ with $W/L$ treated as constant, which suggests a gain independent of $V_{GS}$ or proportional to $\sqrt{V_{GS} - V_{TH}}$. Here $W$ is adjusted to keep $I_D$ constant, so the right form is $g_m = 2I_D/(V_{GS} - V_{TH})$.
+**Common mistake:** Using $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ with $W/L$ treated as constant, which suggests a gain independent of $V_{GS}$ or proportional to $\sqrt{V_{GS} - V_{TH}}$. Here $W$ is adjusted to keep $I_D$ constant, so the right form is $g_m = 2I_D/(V_{GS} - V_{TH})$.

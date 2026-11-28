@@ -1,6 +1,6 @@
 # Detailed solution - R081
 
-**Approach.** $M_1$ is a common-source (CS) stage with the diode-connected load $M_2$. Impose the edge-of-triode condition on $M_1$, equate the square-law currents of the two transistors, solve for $V_{in}$, and find the gain $A_v = -g_{m1}/g_{m2}$ from the small-signal model.
+Approach: $M_1$ is a common-source (CS) stage with the diode-connected load $M_2$. Impose the edge-of-triode condition on $M_1$, equate the square-law currents of the two transistors, solve for $V_{in}$, and find the gain $A_v = -g_{m1}/g_{m2}$ from the small-signal model.
 
 ### Step 1 — Device parameters and the edge condition
 
@@ -58,7 +58,7 @@ V_{out} &= V_{ov1} = 0.711\ \mathrm{V}.
 \end{aligned}
 $$
 
-**Bias current and check.** $V_{ov2} = V_{DD} - V_{out} - V_{TH} = 3 - 0.711 - 0.7 = 1.589\ \mathrm{V}$, and
+Bias current and check: $V_{ov2} = V_{DD} - V_{out} - V_{TH} = 3 - 0.711 - 0.7 = 1.589\ \mathrm{V}$, and
 
 $$
 \begin{aligned}
@@ -73,8 +73,8 @@ The two agree, and $V_{ov2} > 0$, so $M_2$ is on (and saturated).
 
 With $\lambda = \gamma = 0$, each transistor is just a current source $g_mv_{gs}$ from drain to source, and $V_{DD}$ is ac ground:
 
-- **$M_1$:** $g_{m1}v_{gs1} = g_{m1}v_{in}$ flowing from $out$ to ground.
-- **$M_2$:** gate and drain at ac ground, source at $out$, so $v_{gs2} = -v_{out}$, and it delivers $g_{m2}v_{gs2} = -g_{m2}v_{out}$ from ac ground into $out$.
+- $M_1$: $g_{m1}v_{gs1} = g_{m1}v_{in}$ flowing from $out$ to ground.
+- $M_2$: gate and drain at ac ground, source at $out$, so $v_{gs2} = -v_{out}$, and it delivers $g_{m2}v_{gs2} = -g_{m2}v_{out}$ from ac ground into $out$.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -117,8 +117,8 @@ $$V_{in} = V_{TH} + \frac{V_{DD} - V_{TH}}{1 + \sqrt5} \approx 1.41\ \mathrm{V}$
 
 $$A_v = -\frac{g_{m1}}{g_{m2}} = -\sqrt{\frac{(W/L)_1}{(W/L)_2}} = -\sqrt5 \approx -2.24 .$$
 
-**Common mistake.** Writing the gain as $-(W/L)_1/(W/L)_2 = -5$. At a given current $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ scales with the *square root* of $W/L$, and the two devices share the same current, so the gain is $-\sqrt5$.
+Common mistake: Writing the gain as $-(W/L)_1/(W/L)_2 = -5$. At a given current $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ scales with the *square root* of $W/L$, and the two devices share the same current, so the gain is $-\sqrt5$.
 
-**Common mistake.** Using a wrong edge condition, such as $V_{out} = V_{in}$ or $V_{DS1} = V_{TH}$. The boundary is $V_{DS1} = V_{GS1} - V_{TH}$, i.e. $V_{out} = V_{in} - 0.7$ V.
+Common mistake: Using a wrong edge condition, such as $V_{out} = V_{in}$ or $V_{DS1} = V_{TH}$. The boundary is $V_{DS1} = V_{GS1} - V_{TH}$, i.e. $V_{out} = V_{in} - 0.7$ V.
 
-**Common mistake.** Taking $V_{GS2}$ as fixed (e.g. $V_{GS2} = V_{DD}$). Its source is the output, so $V_{GS2} = V_{DD} - V_{out}$, which is why $M_2$ acts as the resistance $1/g_{m2}$.
+Common mistake: Taking $V_{GS2}$ as fixed (e.g. $V_{GS2} = V_{DD}$). Its source is the output, so $V_{GS2} = V_{DD} - V_{out}$, which is why $M_2$ acts as the resistance $1/g_{m2}$.

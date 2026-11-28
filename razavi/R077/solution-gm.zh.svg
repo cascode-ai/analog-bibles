@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 365">
+  <title>R077 跨导 g_m · 漏极电流恒定</title>
+  <desc>平方律饱和区示例。μC_ox = 100 μA/V²，λ = 0.1 V⁻¹，I_D = 0.10 mA。横轴为正的宽长比。</desc>
+  <rect width="680" height="365" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17243a">
+    <text x="94" y="47" font-size="23" font-weight="600">跨导 g_m · 漏极电流恒定</text>
+    <text x="106" y="66" font-size="14">平方律饱和区</text>
+    <path d="M94 256H646" stroke="#dce3eb"/>
+    <text x="82" y="261" font-size="15" text-anchor="end">0</text>
+    <path d="M94 220.4H646" stroke="#dce3eb"/>
+    <text x="82" y="225.4" font-size="15" text-anchor="end">0.3</text>
+    <path d="M94 184.8H646" stroke="#dce3eb"/>
+    <text x="82" y="189.8" font-size="15" text-anchor="end">0.6</text>
+    <path d="M94 149.2H646" stroke="#dce3eb"/>
+    <text x="82" y="154.2" font-size="15" text-anchor="end">0.9</text>
+    <path d="M94 113.6H646" stroke="#dce3eb"/>
+    <text x="82" y="118.6" font-size="15" text-anchor="end">1.2</text>
+    <path d="M94 78H646" stroke="#dce3eb"/>
+    <text x="82" y="83" font-size="15" text-anchor="end">1.5</text>
+    <path d="M94 256v6" stroke="#334155"/>
+    <text x="94" y="281" font-size="15" text-anchor="middle">5</text>
+    <path d="M204.4 256v6" stroke="#334155"/>
+    <text x="204.4" y="281" font-size="15" text-anchor="middle">20</text>
+    <path d="M351.6 256v6" stroke="#334155"/>
+    <text x="351.6" y="281" font-size="15" text-anchor="middle">40</text>
+    <path d="M498.8 256v6" stroke="#334155"/>
+    <text x="498.8" y="281" font-size="15" text-anchor="middle">60</text>
+    <path d="M646 256v6" stroke="#334155"/>
+    <text x="646" y="281" font-size="15" text-anchor="middle">80</text>
+    <path d="M94 78V256H646" stroke="#334155" stroke-width="1.5" fill="none"/>
+    <path d="M94 218.474 L98.6 216.198 L103.2 214.045 L107.8 211.997 L112.4 210.041 L117 208.164 L121.6 206.358 L126.2 204.616 L130.8 202.931 L135.4 201.297 L140 199.711 L144.6 198.169 L149.2 196.667 L153.8 195.201 L158.4 193.771 L163 192.372 L167.6 191.004 L172.2 189.663 L176.8 188.35 L181.4 187.061 L186 185.796 L190.6 184.553 L195.2 183.332 L199.8 182.131 L204.4 180.949 L209 179.785 L213.6 178.639 L218.2 177.509 L222.8 176.396 L227.4 175.298 L232 174.215 L236.6 173.146 L241.2 172.09 L245.8 171.048 L250.4 170.018 L255 169 L259.6 167.994 L264.2 167 L268.8 166.017 L273.4 165.044 L278 164.081 L282.6 163.129 L287.2 162.186 L291.8 161.252 L296.4 160.328 L301 159.412 L305.6 158.505 L310.2 157.607 L314.8 156.716 L319.4 155.834 L324 154.959 L328.6 154.092 L333.2 153.232 L337.8 152.379 L342.4 151.533 L347 150.694 L351.6 149.861 L356.2 149.035 L360.8 148.216 L365.4 147.402 L370 146.595 L374.6 145.793 L379.2 144.997 L383.8 144.207 L388.4 143.423 L393 142.644 L397.6 141.87 L402.2 141.101 L406.8 140.338 L411.4 139.58 L416 138.826 L420.6 138.077 L425.2 137.333 L429.8 136.594 L434.4 135.859 L439 135.129 L443.6 134.403 L448.2 133.681 L452.8 132.964 L457.4 132.251 L462 131.541 L466.6 130.836 L471.2 130.135 L475.8 129.438 L480.4 128.744 L485 128.054 L489.6 127.368 L494.2 126.686 L498.8 126.007 L503.4 125.332 L508 124.66 L512.6 123.992 L517.2 123.327 L521.8 122.665 L526.4 122.006 L531 121.351 L535.6 120.699 L540.2 120.05 L544.8 119.404 L549.4 118.762 L554 118.122 L558.6 117.485 L563.2 116.851 L567.8 116.22 L572.4 115.592 L577 114.966 L581.6 114.344 L586.2 113.724 L590.8 113.106 L595.4 112.492 L600 111.88 L604.6 111.27 L609.2 110.664 L613.8 110.059 L618.4 109.457 L623 108.858 L627.6 108.261 L632.2 107.667 L636.8 107.075 L641.4 106.485 L646 105.897" stroke="#874083" stroke-width="3" fill="none" stroke-linejoin="round"/>
+    <circle cx="204.4" cy="180.949" r="4" fill="#874083" stroke="white" stroke-width="1"/>
+    <text x="31" y="167" transform="rotate(-90 31 167)" text-anchor="middle" font-size="18">g_m (mS)</text>
+    <text x="370" y="313" text-anchor="middle" font-size="18">W/L</text>
+    <text x="94" y="342" font-size="15">示例参数 · μC_ox = 100 μA/V²，λ = 0.1 V⁻¹，I_D = 0.10 mA</text>
+  </g>
+</svg>

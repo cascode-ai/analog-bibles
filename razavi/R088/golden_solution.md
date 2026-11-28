@@ -2,15 +2,17 @@
 
 ## Reference answer
 
-A non-inverting (common-gate) characteristic: $V_{out}$ rises monotonically from a low value at $V_{in} = 0$ to $V_{DD}$ at $V_{in} = V_{DD}$; $M_1$ goes from triode (if strongly driven) to saturation to cutoff, and above cutoff the curve is the straight line of the $R_D$–$R_F$ divider.
+For the illustrated example, the triode-region node equation at $V_{in}=0$ gives $V_{out}(0)\approx 0.186\ \mathrm{V}$. The body-effect cutoff satisfies $V_b-V_{in,off}=V_{TH}(V_{in,off})$, giving $V_{in,off}\approx 0.664\ \mathrm{V}$ for $V_b=1.5\ \mathrm{V}$.
 
-- $M_1$ (gate $V_b$, source = $V_{in}$, drain = $V_{out}$) is off for $V_{in} \ge V_{in,off}$, where $V_b - V_{in,off} = V_{TH}(V_{in,off})$, $V_{TH}(V) = 0.7 + 0.45(\sqrt{0.9+V} - \sqrt{0.9})$ (body effect, $V_{SB} = V_{in}$; cutoff slightly below $V_b - 0.7$).
-- Off: $V_{out} = V_{in} + (V_{DD} - V_{in})\dfrac{R_F}{R_D+R_F} = \dfrac{R_FV_{DD} + R_DV_{in}}{R_D+R_F}$, a straight line of slope $R_D/(R_D+R_F)$ ending at $(V_{DD}, V_{DD})$.
-- On: $M_1$ sinks current from the output node into the input source, so $V_{out}$ lies below that line: $(V_{DD} - V_{out})/R_D = (V_{out} - V_{in})/R_F + I_{D1}$, with $V_{in} \le V_{out}$.
-- Saturation for $V_{out} \ge V_b - V_{TH}(V_{in})$: $I_{D1} = \tfrac12\beta(V_b - V_{in} - V_{TH})^2$; slope $dV_{out}/dV_{in} = (g_m + g_{mb} + 1/R_F)(R_D\|R_F)$, larger than $R_D/(R_D+R_F)$ and falling to it at cutoff (the curve joins the line tangentially).
-- Triode for $V_{out} < V_b - V_{TH}(V_{in})$ — typically near $V_{in} = 0$ if β is large: $V_{out}(0)$ from $(V_{DD} - V_{out})/R_D = V_{out}/R_F + \beta[(V_b - 0.7)V_{out} - V_{out}^2/2]$; the slope there is moderate (about 1) and grows toward the triode/saturation boundary, where the curve is steepest.
-- Transition points: $V_{out} = V_b - V_{TH}$ (triode → saturation), $V_{in} = V_{in,off}$ (cutoff, $V_{out} = (R_FV_{DD} + R_DV_{in,off})/(R_D+R_F)$), end point $(V_{DD}, V_{DD})$.
+The common-gate transfer rises to $(3\ \mathrm{V},3\ \mathrm{V})$. Define $u=V_b-V_{in}-V_{TH}(V_{in})$, with $V_{TH}(V_{in})=V_{TH0}+\gamma(\sqrt{2|\phi_F|+V_{in}}-\sqrt{2|\phi_F|})$.
+
+- While $u>0$, solve $(V_{DD}-V_{out})/R_D=(V_{out}-V_{in})/R_F+I_{D1}$. For $V_{DS}=V_{out}-V_{in}$, use $I_{D1}=\beta(uV_{DS}-V_{DS}^2/2)$ when $0\le V_{DS}<u$, or $I_{D1}=\beta u^2/2$ when $V_{DS}\ge u$.
+- The triode–saturation boundary, if present, satisfies $V_{out}=V_b-V_{TH}(V_{in})$. Substitute this voltage and $I_{D1}=\beta u^2/2$ into the node equation.
+- At $u=0$ the device reaches cutoff if the crossing is within the sweep. With $I_{D1}=0$, $V_{out}=(R_FV_{DD}+R_DV_{in})/(R_D+R_F)$. The saturation curve joins this divider line with the same slope $R_D/(R_D+R_F)$.
+
+![Example transfer characteristic](/q/R088/solution-01.svg)
 
 ## Grading notes
 
 +2: monotonic rise from a low $V_{out}(0)$ to $V_{DD}$, cutoff at $V_{in} \approx V_b - V_{TH}$ (body effect from $V_{SB} = V_{in}$ mentioned or included), the straight divider line of slope $R_D/(R_D+R_F)$ above cutoff, and the triode/saturation boundary at $V_{out} = V_b - V_{TH}$. +1: shape and cutoff right but the divider line or the triode region missing, or body effect ignored. 0: rising curve but above cutoff $V_{out}$ claimed equal to $V_{DD}$ (ignoring $R_F$), or regions mislabelled while the trend is right. -2 (asserted as fact): inverting characteristic, $V_{in}$ treated as a gate input, or $R_F$ read as connected to ground or to the gate.
+

@@ -1,6 +1,35 @@
-设计不唯一；它必须满足两个约束：
-- 摆幅：$V_{DD} - V_{ov1} - |V_{ov2}| = 2.2$ V → $V_{ov1} + |V_{ov2}| = 0.8$ V。
-- 增益：$g_{m1}(r_{O1}\|r_{O2}) = \dfrac{2I_D}{V_{ov1}}\cdot\dfrac{1}{(\lambda_1+\lambda_2)I_D} = \dfrac{2}{V_{ov1}(\lambda_1+\lambda_2)} = 100$，其中 $\lambda_1 = 0.05\ \mu\mathrm{m}/L_1$，$\lambda_2 = 0.1\ \mu\mathrm{m}/L_2$（V⁻¹）。若取 $L_1 = L_2 = L$：$L = 7.5\ \mu\mathrm{m/V} \times V_{ov1}$。
+# 参考答案 - R087
 
-示例：取两管的过驱动电压（overdrive voltage）均为 0.4 V，则 $L = 3$ μm；$(W/L)_1 = 2(1\ \mathrm{mA})/(134\ \mu\mathrm{A/V^2} \times 0.16) = 93.3$ → $W_1 \approx 280$ μm；$(W/L)_2 = 2(1\ \mathrm{mA})/(38.4\ \mu\mathrm{A/V^2} \times 0.16) = 325.5$ → $W_2 \approx 977$ μm。验证：$g_{m1} = 5$ mS，$r_{O1} = 60$ kΩ，$r_{O2} = 30$ kΩ，增益 $= 5\ \mathrm{mS} \times 20\ \mathrm{k\Omega} = 100$。
-另一种可行的选择：$V_{ov1} = 0.2$ V，$|V_{ov2}| = 0.6$ V，$L = 1.5$ μm，$(W/L)_1 = 373$（$W_1 \approx 560$ μm），$(W/L)_2 = 145$（$W_2 \approx 217$ μm）。
+### 摆幅与增益约束
+
+两管均处于饱和区时，按静态过驱动电压计算输出余量，并在 $I_D=1\ \mathrm{mA}$ 处计算小信号增益，得到
+
+$$V_{ov1}+|V_{ov2}|=V_{DD}-2.2\ \mathrm V=0.8\ \mathrm V,\qquad
+|A_v|=g_{m1}(r_{O1}\parallel r_{O2})
+=\frac{2}{V_{ov1}(\lambda_1+\lambda_2)}=100.$$
+
+$$\lambda_1=\frac{0.05\ \mu\mathrm{m/V}}{L_1},\qquad
+\lambda_2=\frac{0.10\ \mu\mathrm{m/V}}{L_2}.$$
+
+### 一组可行尺寸
+
+取 $V_{ov1}=|V_{ov2}|=0.4\ \mathrm V$ 且 $L_1=L_2=L$。直流尺寸由一阶平方律确定，沟道长度调制保留在 $r_{Oi}$ 中。
+
+$$L=\frac{100}{2}(0.15\ \mu\mathrm{m/V})V_{ov1}=3\ \mu\mathrm m,\qquad
+W_i=L_i\frac{2I_D}{\mu_i C_{ox}|V_{ovi}|^2}.$$
+
+| 器件 | $L$（μm） | $W$（μm） | $r_O$（kΩ） |
+|---|---:|---:|---:|
+| $M_1$ | 3 | 280 | 60 |
+| $M_2$ | 3 | 977 | 30 |
+
+标称输出范围为 0.4 至 2.6 V。由 $g_{m1}=2I_D/V_{ov1}=5\ \mathrm{mS}$ 得 $A_v=-100\ \mathrm{V/V}$。
+
+## 评分说明
+
+满足两项约束的设计均可。核对由器件尺寸和 1 mA 电流算出的两管过驱动电压之和约为 0.8 V，按 $1/L$ 缩放 $\lambda$ 后的增益幅值为 100，容差 ±10%。
+
+- +2 分。给出两管的 $W$ 和 $L$，满足两项约束，并说明选择该组尺寸的条件。
+- +1 分。约束正确且有一个目标在 ±20% 以内，或 $W/L$ 正确、长度未定、增益约束正确。
+- 0 分。仅正确使用摆幅约束。
+- −2 分。未按要求缩放 $\lambda$ 却断言增益为 100，把阈值电压计入摆幅预算，用 $\mu_nC_{ox}$ 确定 PMOS 尺寸，或在设计错误的情况下无依据地断言解唯一。

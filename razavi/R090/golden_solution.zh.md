@@ -1,6 +1,14 @@
-反相特性：在 $V_{in} = 0.7$ V 之前平坦地保持在 $V_{DD}$；随后是一段下降区，由于源极负反馈（source degeneration），它逐渐接近斜率 ≈ $-R_D/R_S$ 的直线；然后在线性区（triode region）中趋于平缓，逼近下限 $V_{DD}R_S/(R_S+R_D)$。
+# Golden Solution - R090
 
-- $V_{in} \le 0.7$ V：$M_1$ 截止，$V_{out} = V_{DD}$（恰好在 $V_{TH0}$ 处导通，因为 $I_D = 0$ 时源极电位为 0 V）。
-- 饱和区（saturation region）：$V_{in} = V_{TH}(I_DR_S) + \sqrt{2I_D/\beta} + I_DR_S$，$V_{out} = V_{DD} - R_DI_D$；斜率为 $-g_mR_D/[1 + (g_m+g_{mb})R_S]$，从 0 开始增大，当 $g_mR_S \gg 1$ 时趋于 ≈ $-R_D/[(1+\eta)R_S]$。
-- 一旦 $V_{out} < V_{in} - V_{TH}(V_S)$，即漏极电压低于栅极电压减去阈值电压（threshold voltage），就进入线性区：斜率幅值减小，$V_{out}$ 趋近 $V_{DD}R_S/(R_S + R_D)$（即 $M_1$ 相当于短路时的值），在 $V_{in} = V_{DD}$ 时仍略高于该值。
-- 转折点：$V_{in} = 0.7$ V；$V_{out} = V_{in} - V_{TH}$；下限 $V_{DD}R_S/(R_D+R_S)$。
+## 参考答案
+
+- 截止：在 $V_{in}=V_{TH0}=0.7$ V 之前，$V_{out}=3$ V。导通边界处 $I_D=0$，所以 $V_S=0$，体偏置为零。
+- 饱和区：$V_{in}=V_{TH}(I_DR_S)+\sqrt{2I_D/\beta}+I_DR_S$，$V_{out}=V_{DD}-R_DI_D$。下降段起始斜率为零。当 $g_m R_S\gg1$ 时，斜率趋近 $-R_D/[(1+\eta)R_S]$，其中 $\eta=dV_{TH}/dV_S$。
+- 线性区边界为 $V_{out}=V_{in}-V_{TH}(V_S)$。求解 $V_{DD}-(R_D+R_S)I_D=\sqrt{2I_D/\beta}$，将电流代入饱和区输入表达式定位边界。若扫描进入线性区，曲线趋缓并向下限 $V_{DD}R_S/(R_D+R_S)$ 靠近。
+
+![传输特性示例](/q/R090/solution-01.zh.svg)
+
+## 评分说明
+
++2：输出在 0.7 V 之前保持 $V_{DD}$，下降段斜率趋近 $-R_D/R_S$（可包含 $1+\eta$ 因子），在 $V_{out}=V_{in}-V_{TH}$ 进入线性区，并给出下限约为 $V_{DD}R_S/(R_D+R_S)$。+1：遗漏上述一项。0：画成无源极负反馈的共源级，输出下降趋向 0 V，且遗漏电阻比斜率和输出下限。−2（明确断言错误结论）：画成同相特性，声称 $V_{out}$ 达到 0 V，或声称增益为与 $R_S$ 无关的较大值 $g_mR_D$。
+

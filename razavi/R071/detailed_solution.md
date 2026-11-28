@@ -1,6 +1,6 @@
 # Detailed solution - R071
 
-**Approach.** The output voltage fixes the drain current through the load line, $I_D = (V_{DD} - V_{out})/R_D$. After checking that $M_1$ is saturated, the square-law transconductance $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ follows from that current.
+Approach. The output voltage fixes the drain current through the load line, $I_D = (V_{DD} - V_{out})/R_D$. After checking that $M_1$ is saturated, the square-law transconductance $g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D}$ follows from that current.
 
 ### Step 1 — Load line and transconductance formula
 
@@ -51,6 +51,6 @@ Since the small-signal gain is $-g_mR_D$, the gain also changes by a factor of 2
 
 $M_1$ is saturated in both cases.
 
-**Common mistake.** Using a $g_m$ formula linear in the current, such as $g_m = \beta I_D$ or $g_m = I_D/V_T$ (a bipolar/subthreshold formula). For a square-law MOSFET a 4× change in current gives only a 2× change in $g_m$.
+Common mistake. Using a $g_m$ formula linear in the current, such as $g_m = \beta I_D$ or $g_m = I_D/V_T$ (a bipolar/subthreshold formula). For a square-law MOSFET a 4× change in current gives only a 2× change in $g_m$.
 
-**Common mistake.** Taking the current as $V_{out}/R_D$ instead of $(V_{DD} - V_{out})/R_D$. The resistor sits between $V_{DD}$ and the output, so its voltage is $V_{DD} - V_{out}$.
+Common mistake. Taking the current as $V_{out}/R_D$ instead of $(V_{DD} - V_{out})/R_D$. The resistor sits between $V_{DD}$ and the output, so its voltage is $V_{DD} - V_{out}$.

@@ -1,6 +1,6 @@
 # Detailed solution - R084
 
-**Approach.** Two effects combine: $M_1$ is 50 mV into triode, so it obeys the triode law and has a channel conductance $g_{ds1}$; and the load $M_2$ has its source at $V_{out}$ and bulk at ground, so its threshold depends on $V_{out}$ and it has a body transconductance $g_{mb2}$. Solve the DC current equation by iteration, then apply KCL to the small-signal model to get $A_v = -g_{m1}/(g_{m2} + g_{mb2} + g_{ds1})$.
+Approach: Two effects combine: $M_1$ is 50 mV into triode, so it obeys the triode law and has a channel conductance $g_{ds1}$; and the load $M_2$ has its source at $V_{out}$ and bulk at ground, so its threshold depends on $V_{out}$ and it has a body transconductance $g_{mb2}$. Solve the DC current equation by iteration, then apply KCL to the small-signal model to get $A_v = -g_{m1}/(g_{m2} + g_{mb2} + g_{ds1})$.
 
 ### Step 1 — Parameters, thresholds and regions
 
@@ -70,7 +70,7 @@ V_{ov2} &= 3 - 0.637 - 0.831 = 1.532\ \mathrm{V}.
 \end{aligned}
 $$
 
-**Check the currents:**
+Check the currents:
 
 $$
 \begin{aligned}
@@ -83,7 +83,7 @@ Compared with the case without body effect ($V_{in} = 1.427$ V), the higher $V_{
 
 ### Step 4 — Small-signal parameters
 
-**$M_1$ (triode).** Differentiating $I_{D1} = \beta_1[(V_{GS1} - V_{TH1})V_{DS1} - \frac12V_{DS1}^2]$:
+$M_1$ (triode). Differentiating $I_{D1} = \beta_1[(V_{GS1} - V_{TH1})V_{DS1} - \frac12V_{DS1}^2]$:
 
 $$
 \begin{aligned}
@@ -92,7 +92,7 @@ g_{ds1} &= \frac{\partial I_{D1}}{\partial V_{DS1}} = \beta_1(V_{ov1} - V_{DS1})
 \end{aligned}
 $$
 
-**$M_2$ (saturated)**, with $\eta = \partial V_{TH2}/\partial V_{SB2}$ and $g_{mb2} = \eta g_{m2}$:
+$M_2$ (saturated), with $\eta = \partial V_{TH2}/\partial V_{SB2}$ and $g_{mb2} = \eta g_{m2}$:
 
 $$
 \begin{aligned}
@@ -106,8 +106,8 @@ $$
 
 One node, $out$; $V_{DD}$ and ground are ac grounds, and $\lambda = 0$:
 
-- **$M_1$:** current source $g_{m1}v_{in}$ from $out$ to ground, in parallel with its triode channel resistance $r_{ds1} = 1/g_{ds1} = 1.49\ \mathrm{k}\Omega$; no body term ($v_{bs1} = 0$).
-- **$M_2$:** gate and drain at ac ground, source at $out$, bulk at ground, so $v_{gs2} = v_{bs2} = -v_{out}$; it delivers $g_{m2}v_{gs2} + g_{mb2}v_{bs2} = -(g_{m2} + g_{mb2})v_{out}$ into $out$.
+- $M_1$: current source $g_{m1}v_{in}$ from $out$ to ground, in parallel with its triode channel resistance $r_{ds1} = 1/g_{ds1} = 1.49\ \mathrm{k}\Omega$; no body term ($v_{bs1} = 0$).
+- $M_2$: gate and drain at ac ground, source at $out$, bulk at ground, so $v_{gs2} = v_{bs2} = -v_{out}$; it delivers $g_{m2}v_{gs2} + g_{mb2}v_{bs2} = -(g_{m2} + g_{mb2})v_{out}$ into $out$.
 
 <!-- diagram: diagram-01.cir -->
 
@@ -121,7 +121,7 @@ A_v &= -\frac{g_{m1}}{g_{m2} + g_{mb2} + g_{ds1}} .
 \end{aligned}
 $$
 
-**Numbers:**
+Numbers:
 
 $$A_v = -\frac{8.54\ \mathrm{mS}}{4.11\ \mathrm{mS} + 0.745\ \mathrm{mS} + 0.67\ \mathrm{mS}} = -\frac{8.54}{5.52} = -1.55 .$$
 
@@ -135,8 +135,8 @@ $$A_v = -\frac{g_{m1}}{g_{m2} + g_{mb2} + g_{ds1}} = -\frac{8.54\ \mathrm{mS}}{(
 
 with $g_{m1} = \beta_1V_{DS1}$ and $g_{ds1} = \beta_1(0.05\ \mathrm{V})$ for $M_1$ in triode, and $\eta = 0.181$ for $M_2$.
 
-**Common mistake.** Treating $M_1$ as saturated, which gives $g_{m1} = \beta_1V_{ov1}$, no $g_{ds1}$, and a gain near $-1.9$. In triode $g_{m1} = \beta_1V_{DS1}$ is smaller, and the channel conductance $\beta_1(V_{ov1} - V_{DS1})$ appears even with $\lambda = 0$.
+Common mistake: Treating $M_1$ as saturated, which gives $g_{m1} = \beta_1V_{ov1}$, no $g_{ds1}$, and a gain near $-1.9$. In triode $g_{m1} = \beta_1V_{DS1}$ is smaller, and the channel conductance $\beta_1(V_{ov1} - V_{DS1})$ appears even with $\lambda = 0$.
 
-**Common mistake.** Ignoring the body effect (giving 1.427 V and $-1.81$), or including it in only one place. It raises $V_{TH2}$ in the DC solution *and* adds $g_{mb2}$ to the load conductance.
+Common mistake: Ignoring the body effect (giving 1.427 V and $-1.81$), or including it in only one place. It raises $V_{TH2}$ in the DC solution *and* adds $g_{mb2}$ to the load conductance.
 
-**Common mistake.** Applying the body effect to $M_1$ ($V_{SB1} = 0$) or assuming $M_2$ is in triode (it is diode-connected, so $V_{DS2} = V_{GS2}$ keeps it saturated).
+Common mistake: Applying the body effect to $M_1$ ($V_{SB1} = 0$) or assuming $M_2$ is in triode (it is diode-connected, so $V_{DS2} = V_{GS2}$ keeps it saturated).

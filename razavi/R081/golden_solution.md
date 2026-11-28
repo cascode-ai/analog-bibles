@@ -10,4 +10,4 @@ $V_{in} \approx 1.41$ V ($V_{out} \approx 0.711$ V, $I_D \approx 3.38$ mA); $A_v
 
 ## Grading notes
 
-+2: $V_{in}$ ≈ 1.41 V (±0.01 V) and gain ≈ −2.24. +1: one slip. 0: $V_{in}$ right, gain wrong (or vice versa) by a slip. -2 (asserted as fact): gain −5 (W/L ratio without square root), body effect introduced contrary to γ = 0 so as to change the result substantially, or an edge condition other than $V_{out} = V_{in} - V_{TH}$.
++2: $V_{in}$ ≈ 1.41 V (±0.01 V) and gain ≈ −2.24. +1: both quantities are addressed with one minor numerical error. 0: only one requested quantity is correct, or the other has a substantive numerical error. -2 (asserted as fact): gain −5 (W/L ratio without square root), body effect introduced contrary to γ = 0 so as to change the result substantially, or an edge condition other than $V_{out} = V_{in} - V_{TH}$.

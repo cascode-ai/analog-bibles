@@ -2,12 +2,23 @@
 
 ## Reference answer
 
-Near zero in the triode region, rising steeply toward the triode/saturation boundary at $V_{DS} = V_{GS} - V_{TH} = 0.5$ V, then a plateau of about 40 (gently rising toward ≈ 52 at 3 V if the $(1+\lambda V_{DS})$ factor is kept in $g_m$) in saturation.
+With $V_{SB}=0$, $V_{TH}=V_{TH0}=0.7\ \mathrm V$. The overdrive $V_{ov}=V_{GS}-V_{TH}=0.5\ \mathrm V$ sets the triode/saturation boundary at $V_{DS}=V_{ov}$.
 
-- $\beta = 13.4\ \mathrm{mA/V^2}$, $V_{ov} = 0.5$ V.
-- Triode ($V_{DS} < 0.5$ V): $g_m = \beta V_{DS}$, $1/r_{ds} = \beta(V_{ov} - V_{DS})$, so $g_mr_{ds} = V_{DS}/(0.5 - V_{DS})$: 0 at $V_{DS} = 0$, 0.25 at 0.1 V, 1.0 at 0.25 V, 4 at 0.4 V, 9 at 0.45 V. (With λ = 0 in the triode equation this diverges at the edge; keeping the $(1+\lambda V_{DS})$ factor in the triode equation makes the curve continuous, reaching ≈ 42 at the edge.)
-- Saturation ($V_{DS} \ge 0.5$ V, $I_D \approx 1.68$ mA): $g_mr_O = 2/(\lambda V_{ov}) = 40$, constant in the simple model; with $g_m = \beta V_{ov}(1+\lambda V_{DS})$ and $r_O = 1/(\lambda \cdot \tfrac12\beta V_{ov}^2)$ it is $40(1 + 0.1V_{DS})$: 42 at 0.5 V, 52 at 3 V.
+The leading-order gain is
+
+$$A_0(V_{DS})=
+\begin{cases}
+V_{DS}/(V_{ov}-V_{DS}), & 0\le V_{DS}<V_{ov},\\
+2/(\lambda V_{ov})=40, & V_{ov}\le V_{DS}\le 3\ \mathrm V.
+\end{cases}$$
+
+The dashed curve omits channel-length modulation in triode and uses the leading-order saturation approximation. Its triode branch diverges as $V_{DS}$ approaches $V_{ov}$ from below. The solid curve applies the same factor $(1+\lambda V_{DS})$ to both current branches. It starts at zero, joins continuously at 42 V/V, and reaches 52 V/V at 3 V.
+
+![Intrinsic gain g_m r_ds versus V_DS](/q/R078/solution-intrinsic-gain.svg)
 
 ## Grading notes
 
-+2: break point at $V_{DS} = 0.5$ V, small and rising values in triode (≈ $V_{DS}/(V_{ov} - V_{DS})$ or equivalent), and ≈ 40 (40–52 depending on the λ convention) in saturation. +1: saturation value and break point right but the triode part only vaguely described. 0: only one of the two regions right. -2 (asserted as fact): large gain in triode and small in saturation, break point at 1.2 V or 0.7 V, or a saturation value off by a formula error (e.g., 20 or 80).
+- +2 for a boundary at 0.5 V, small and rising triode values consistent with $V_{DS}/(V_{ov}-V_{DS})$ or an equivalent model, and a saturation gain around 40–52 depending on the model convention.
+- +1 for the correct saturation gain and boundary with only a vague description of triode.
+- 0 for getting only one region right.
+- −2 for asserting a large gain in triode and a small gain in saturation, choosing 1.2 V or 0.7 V as the boundary, or making a saturation formula error that yields a value such as 20 or 80.

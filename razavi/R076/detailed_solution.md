@@ -1,6 +1,6 @@
 # Detailed solution - R076
 
-**Approach.** With $V_{GS}$ and $L$ fixed, find how $I_D$, $g_m$ and $r_O$ scale with $W/L$, and form the product $g_mr_O$ to see how it depends on $W/L$.
+Approach: With $V_{GS}$ and $L$ fixed, find how $I_D$, $g_m$ and $r_O$ scale with $W/L$, and form the product $g_mr_O$ to see how it depends on $W/L$.
 
 ### Step 1 — How $I_D$, $g_m$ and $r_O$ scale with $W/L$
 
@@ -24,7 +24,7 @@ Cancelling $\mu C_{ox}(W/L)$ and then one factor of $V_{ov}$:
 
 $$g_mr_O = \frac{V_{ov}}{\lambda\cdot\frac12 V_{ov}^2} = \frac{1}{\frac12\lambda V_{ov}} = \frac{2}{\lambda V_{ov}} = \frac{2}{\lambda\,(V_{GS} - V_{TH})} .$$
 
-**Check.** With $g_m = 2I_D/V_{ov}$,
+Check: With $g_m = 2I_D/V_{ov}$,
 
 $$g_mr_O = \frac{2I_D}{V_{ov}}\cdot\frac{1}{\lambda I_D} = \frac{2}{\lambda V_{ov}} ,$$
 
@@ -56,7 +56,11 @@ The formula agrees: $2/(\lambda V_{ov}) = 2/[(0.1\ \mathrm{V^{-1}})(0.2\ \mathrm
 
 ### Step 4 — The plot
 
-- With $W/L$ on the horizontal axis, $g_mr_O$ is a **horizontal straight line** at height $2/[\lambda(V_{GS} - V_{TH})]$, with zero slope and no break points.
+The plotted points have $V_{ov}>0$ and assume $V_{DS}\geq V_{ov}$.
+
+![Intrinsic gain g_m r_O](/q/R076/solution-gain.svg)
+
+- With $W/L$ on the horizontal axis, $g_mr_O$ is a horizontal straight line at height $2/[\lambda(V_{GS} - V_{TH})]$, with zero slope and no break points.
 - The height is set by the chosen $V_{GS}$: a smaller overdrive gives a higher line (for example 100 at $V_{ov} = 0.2$ V and 200 at $V_{ov} = 0.1$ V, with $\lambda = 0.1\ \mathrm{V^{-1}}$).
 - If $g_m$ and $r_O$ are drawn as well, on log–log axes $g_m$ is a line of slope $+1$, $r_O$ a line of slope $-1$, and their product is flat.
 
@@ -66,10 +70,10 @@ At fixed $V_{GS}$, a device of width $NW$ is $N$ devices of width $W$ in paralle
 
 $$g_mr_O = \frac{2}{\lambda\,(V_{GS} - V_{TH})} ,$$
 
-which does **not** depend on $W/L$: the plot is a **horizontal line**. As $W/L$ grows, $g_m$ rises in proportion to $W/L$ and $I_D$ rises in the same proportion, so $r_O = 1/(\lambda I_D)$ falls as $(W/L)^{-1}$ and the product stays constant ($\lambda$ is fixed because $L$ is constant).
+which does not depend on $W/L$: the plot is a horizontal line. As $W/L$ grows, $g_m$ rises in proportion to $W/L$ and $I_D$ rises in the same proportion, so $r_O = 1/(\lambda I_D)$ falls as $(W/L)^{-1}$ and the product stays constant ($\lambda$ is fixed because $L$ is constant).
 
-**Common mistake.** Concluding that the gain rises linearly with $W/L$ because $g_m = \mu C_{ox}(W/L)V_{ov}$ does. At constant $V_{GS}$ the drain current also grows with $W/L$, and $r_O = 1/(\lambda I_D)$ falls by exactly the same factor.
+Common mistake: Concluding that the gain rises linearly with $W/L$ because $g_m = \mu C_{ox}(W/L)V_{ov}$ does. At constant $V_{GS}$ the drain current also grows with $W/L$, and $r_O = 1/(\lambda I_D)$ falls by exactly the same factor.
 
-**Common mistake.** Using $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ with $I_D$ held constant, which gives a $\sqrt{W/L}$ curve: that answers the constant-current question. Here $V_{GS}$ is fixed, so use $g_m = \mu C_{ox}(W/L)V_{ov}$ or $g_m = 2I_D/V_{ov}$.
+Common mistake: Using $g_m = \sqrt{2\mu C_{ox}(W/L)I_D}$ with $I_D$ held constant, which gives a $\sqrt{W/L}$ curve: that answers the constant-current question. Here $V_{GS}$ is fixed, so use $g_m = \mu C_{ox}(W/L)V_{ov}$ or $g_m = 2I_D/V_{ov}$.
 
-**Common mistake.** Letting $\lambda$ change with $W/L$. Channel-length modulation depends on $L$, which is held constant.
+Common mistake: Letting $\lambda$ change with $W/L$. Channel-length modulation depends on $L$, which is held constant.

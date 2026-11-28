@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 365">
+  <title>R074 Intrinsic gain · Fixed drain current</title>
+  <desc>Illustrative saturated square-law curve. V_TH = 0.7 V, λ = 0.1 V⁻¹, I_D = 0.20 mA. The shaded interval is near threshold. The dashed curve extrapolates the square law.</desc>
+  <rect width="680" height="365" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#17243a">
+    <text x="94" y="47" font-size="23" font-weight="600">Intrinsic gain · Fixed drain current</text>
+    <rect x="186" y="78" width="46" height="178" fill="#eaf0f6"/>
+    <path d="M186 78V256" stroke="#8190a5" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="94" y="70" font-size="14">Shaded: near threshold. Dashed curve: square-law extrapolation.</text>
+    <path d="M94 256H646" stroke="#dce3eb"/>
+    <text x="82" y="261" font-size="15" text-anchor="end">0</text>
+    <path d="M94 220.4H646" stroke="#dce3eb"/>
+    <text x="82" y="225.4" font-size="15" text-anchor="end">50</text>
+    <path d="M94 184.8H646" stroke="#dce3eb"/>
+    <text x="82" y="189.8" font-size="15" text-anchor="end">100</text>
+    <path d="M94 149.2H646" stroke="#dce3eb"/>
+    <text x="82" y="154.2" font-size="15" text-anchor="end">150</text>
+    <path d="M94 113.6H646" stroke="#dce3eb"/>
+    <text x="82" y="118.6" font-size="15" text-anchor="end">200</text>
+    <path d="M94 78H646" stroke="#dce3eb"/>
+    <text x="82" y="83" font-size="15" text-anchor="end">250</text>
+    <path d="M94 256v6" stroke="#334155"/>
+    <text x="94" y="281" font-size="15" text-anchor="middle">0.5</text>
+    <path d="M186 256v6" stroke="#334155"/>
+    <text x="186" y="281" font-size="15" text-anchor="middle">0.7</text>
+    <path d="M232 256v6" stroke="#334155"/>
+    <text x="232" y="281" font-size="15" text-anchor="middle">0.8</text>
+    <path d="M278 256v6" stroke="#334155"/>
+    <text x="278" y="281" font-size="15" text-anchor="middle">0.9</text>
+    <path d="M370 256v6" stroke="#334155"/>
+    <text x="370" y="281" font-size="15" text-anchor="middle">1.1</text>
+    <path d="M462 256v6" stroke="#334155"/>
+    <text x="462" y="281" font-size="15" text-anchor="middle">1.3</text>
+    <path d="M554 256v6" stroke="#334155"/>
+    <text x="554" y="281" font-size="15" text-anchor="middle">1.5</text>
+    <path d="M646 256v6" stroke="#334155"/>
+    <text x="646" y="281" font-size="15" text-anchor="middle">1.7</text>
+    <path d="M94 78V256H646" stroke="#334155" stroke-width="1.5" fill="none"/>
+    <path d="M222.8 78 L223.375 80.738 L223.95 83.394 L224.525 85.97 L225.1 88.471 L225.675 90.899 L226.25 93.257 L226.825 95.549 L227.4 97.778 L227.975 99.945 L228.55 102.054 L229.125 104.107 L229.7 106.105 L230.275 108.052 L230.85 109.949 L231.425 111.797 L232 113.6" stroke="#1466a2" stroke-width="3" fill="none" stroke-dasharray="5 3"/>
+    <path d="M232 113.6 L235.45 123.535 L238.9 132.174 L242.35 139.755 L245.8 146.462 L249.25 152.436 L252.7 157.793 L256.15 162.623 L259.6 167 L263.05 170.985 L266.5 174.629 L269.95 177.973 L273.4 181.053 L276.85 183.899 L280.3 186.537 L283.75 188.988 L287.2 191.273 L290.65 193.407 L294.1 195.404 L297.55 197.278 L301 199.04 L304.45 200.699 L307.9 202.264 L311.35 203.743 L314.8 205.143 L318.25 206.47 L321.7 207.729 L325.15 208.926 L328.6 210.065 L332.05 211.15 L335.5 212.185 L338.95 213.173 L342.4 214.118 L345.85 215.022 L349.3 215.887 L352.75 216.717 L356.2 217.514 L359.65 218.278 L363.1 219.013 L366.55 219.72 L370 220.4 L373.45 221.055 L376.9 221.687 L380.35 222.296 L383.8 222.884 L387.25 223.451 L390.7 224 L394.15 224.53 L397.6 225.043 L401.05 225.54 L404.5 226.021 L407.95 226.487 L411.4 226.939 L414.85 227.377 L418.3 227.802 L421.75 228.215 L425.2 228.615 L428.65 229.005 L432.1 229.383 L435.55 229.751 L439 230.109 L442.45 230.457 L445.9 230.796 L449.35 231.127 L452.8 231.448 L456.25 231.762 L459.7 232.067 L463.15 232.365 L466.6 232.656 L470.05 232.939 L473.5 233.216 L476.95 233.486 L480.4 233.75 L483.85 234.008 L487.3 234.26 L490.75 234.506 L494.2 234.746 L497.65 234.982 L501.1 235.212 L504.55 235.437 L508 235.657 L511.45 235.873 L514.9 236.084 L518.35 236.291 L521.8 236.493 L525.25 236.692 L528.7 236.886 L532.15 237.076 L535.6 237.263 L539.05 237.446 L542.5 237.626 L545.95 237.802 L549.4 237.975 L552.85 238.144 L556.3 238.311 L559.75 238.474 L563.2 238.634 L566.65 238.792 L570.1 238.946 L573.55 239.098 L577 239.247 L580.45 239.394 L583.9 239.538 L587.35 239.679 L590.8 239.818 L594.25 239.955 L597.7 240.089 L601.15 240.222 L604.6 240.352 L608.05 240.48 L611.5 240.605 L614.95 240.729 L618.4 240.851 L621.85 240.971 L625.3 241.089 L628.75 241.205 L632.2 241.32 L635.65 241.432 L639.1 241.543 L642.55 241.652 L646 241.76" stroke="#1466a2" stroke-width="3" fill="none" stroke-linejoin="round"/>
+    <circle cx="278" cy="184.8" r="4" fill="#1466a2" stroke="white" stroke-width="1"/>
+    <text x="31" y="167" transform="rotate(-90 31 167)" text-anchor="middle" font-size="18">g_m r_O</text>
+    <text x="370" y="313" text-anchor="middle" font-size="18">V_GS (V)</text>
+    <text x="94" y="342" font-size="15">Example parameters · V_TH = 0.7 V, λ = 0.1 V⁻¹, I_D = 0.20 mA</text>
+  </g>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 395" role="img" aria-labelledby="plotTitle plotDesc">
+<title id="plotTitle">R080  Output resistance</title>
+<desc id="plotDesc">Horizontal axis V_B (V), vertical axis r_O (kΩ). Cutoff at −3.343 V. The ideal cutoff region extends to more negative bias. The saturation curve rises off scale. In cutoff r_O is formally infinite.</desc>
+<rect x="0" y="0" width="680" height="395" fill="#fff"/>
+<text x="99" y="33" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" text-anchor="start" fill="#23364b">R080  Output resistance</text>
+<text x="99" y="60" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">Example  V_GS = 1.2 V, V_DS = 1.0 V, β = 13.4 mA/V²</text>
+<rect x="455.337" y="88" width="176.663" height="180" fill="#eef2f6"/>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="268" x2="99" y2="268" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="273" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">0</text>
+<line x1="99" y1="223" x2="632" y2="223" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="223" x2="99" y2="223" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="228" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">40</text>
+<line x1="99" y1="178" x2="632" y2="178" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="178" x2="99" y2="178" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="183" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">80</text>
+<line x1="99" y1="133" x2="632" y2="133" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="133" x2="99" y2="133" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="138" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">120</text>
+<line x1="99" y1="88" x2="632" y2="88" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="94" y1="88" x2="99" y2="88" stroke="#23364b" stroke-width="1"/>
+<text x="88" y="93" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="end" fill="#23364b">160</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="99" y1="268" x2="99" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="99" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">0</text>
+<line x1="205.6" y1="88" x2="205.6" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="205.6" y1="268" x2="205.6" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="205.6" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−1</text>
+<line x1="312.2" y1="88" x2="312.2" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="312.2" y1="268" x2="312.2" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="312.2" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−2</text>
+<line x1="418.8" y1="88" x2="418.8" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="418.8" y1="268" x2="418.8" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="418.8" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−3</text>
+<line x1="525.4" y1="88" x2="525.4" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="525.4" y1="268" x2="525.4" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="525.4" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−4</text>
+<line x1="632" y1="88" x2="632" y2="268" stroke="#e2e8ef" stroke-width="1"/>
+<line x1="632" y1="268" x2="632" y2="273" stroke="#23364b" stroke-width="1"/>
+<text x="632" y="290" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="middle" fill="#23364b">−5</text>
+<line x1="99" y1="88" x2="99" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="99" y1="268" x2="632" y2="268" stroke="#23364b" stroke-width="1.5"/>
+<line x1="455.337" y1="88" x2="455.337" y2="268" stroke="#718498" stroke-width="1.4" stroke-dasharray="6 4"/>
+<polyline fill="none" stroke="#145c9e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="99,261.284 103.172,261.03 107.344,260.767 111.515,260.495 115.687,260.213 119.859,259.92 124.031,259.616 128.202,259.301 132.374,258.973 136.546,258.631 140.718,258.276 144.89,257.906 149.061,257.52 153.233,257.117 157.405,256.697 161.577,256.259 165.748,255.8 169.92,255.321 174.092,254.819 178.264,254.293 182.436,253.742 186.607,253.164 190.779,252.558 194.951,251.921 199.123,251.251 203.294,250.546 207.466,249.804 211.638,249.022 215.81,248.196 219.982,247.325 224.153,246.404 228.325,245.429 232.497,244.398 236.669,243.303 240.84,242.142 245.012,240.908 249.184,239.596 253.356,238.198 257.528,236.708 261.699,235.116 265.871,233.414 270.043,231.591 274.215,229.636 278.386,227.537 282.558,225.278 286.73,222.844 290.902,220.215 295.074,217.372 299.245,214.291 303.417,210.944 307.589,207.301 311.761,203.327 315.932,198.979 320.104,194.212 324.276,188.969 328.448,183.187 332.62,176.79 336.791,169.689 340.963,161.778 345.135,152.929 349.307,142.992 353.478,131.782 357.65,119.075 359.736,112.077 361.822,104.595 363.908,96.587 365.994,88"/>
+<polygon points="365.994,85 361.994,93 369.994,93" fill="#145c9e"/>
+<text x="277.169" y="77" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">Saturation</text>
+<text x="543.669" y="77" font-family="Arial, Microsoft YaHei, sans-serif" font-size="13" text-anchor="middle" fill="#41576b">Cutoff</text>
+<text x="29" y="178" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b" transform="rotate(-90 29 178)">r_O (kΩ)</text>
+<text x="365.5" y="318" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" text-anchor="middle" fill="#23364b">V_B (V)  →  more negative</text>
+<text x="99" y="350" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">Cutoff at −3.343 V. The ideal cutoff region extends to more negative bias.</text>
+<text x="99" y="372" font-family="Arial, Microsoft YaHei, sans-serif" font-size="14" text-anchor="start" fill="#41576b">The saturation curve rises off scale. In cutoff r_O is formally infinite.</text>
+</svg>

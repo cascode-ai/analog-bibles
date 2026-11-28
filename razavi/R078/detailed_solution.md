@@ -1,118 +1,69 @@
 # Detailed solution - R078
 
-**Approach.** With $V_{GS}$ fixed, the device is in triode for small $V_{DS}$ and saturated once $V_{DS}$ exceeds the overdrive. In each region, differentiate the square-law current to get $g_m = \partial I_D/\partial V_{GS}$ and the drain–source conductance $\partial I_D/\partial V_{DS}$; their ratio is the intrinsic gain, evaluated point by point.
+### Step 1 — Establish the bias and operating regions
 
-### Step 1 — Bias quantities and the triode/saturation boundary
+With $V_{SB}=0$, $V_{TH}=V_{TH0}=0.7\ \mathrm V$. The overdrive $V_{ov}=V_{GS}-V_{TH}=0.5\ \mathrm V$ sets the triode/saturation boundary at $V_{DS}=V_{ov}$.
 
-$$
-\begin{aligned}
-\frac{W}{L} &= \frac{50\ \mu\mathrm{m}}{0.5\ \mu\mathrm{m}} = 100,\\
-\beta &= \mu_nC_{ox}\frac{W}{L} = (134\ \mu\mathrm{A/V^2})(100) = 13.4\ \mathrm{mA/V^2}.
-\end{aligned}
-$$
+At fixed gate, source, and bulk voltages, changing $V_{DS}$ leaves $V_{ov}$ fixed. The device operates in triode below $V_{ov}$ and in saturation at and above it. The square-law current with no modulation, denoted $I_{D0}$, uses
 
-Source and bulk are both at 0 V, so $V_{TH} = V_{TH0} = 0.7$ V and
+$$\beta=\mu_nC_{ox}\frac WL=(134\ \mu\mathrm{A/V^2})\frac{50}{0.5}=13.4\ \mathrm{mA/V^2}.$$
 
-$$V_{ov} = V_{GS} - V_{TH} = 1.2\ \mathrm{V} - 0.7\ \mathrm{V} = 0.5\ \mathrm{V} .$$
+$$I_{D0}=
+\begin{cases}
+\beta(V_{ov}V_{DS}-V_{DS}^2/2), & 0\le V_{DS}<V_{ov},\\
+\tfrac12\beta V_{ov}^2, & V_{DS}\ge V_{ov}.
+\end{cases}$$
 
-The device is therefore in **triode** for $0 \le V_{DS} < 0.5$ V and in **saturation** for $0.5\ \mathrm{V} \le V_{DS} \le 3$ V.
+### Step 2 — Compute the leading-order gain
 
-### Step 2 — Small-signal parameters in the triode region
+Take the partial derivatives at the same DC bias. Write $r_{ds}=1/g_{ds}$ in triode and use $r_O$ for the same small-signal resistance in saturation.
 
-With $I_D = \beta\left[(V_{GS} - V_{TH})V_{DS} - \frac12V_{DS}^2\right]$:
+$$g_m=\left.\frac{\partial I_D}{\partial V_{GS}}\right|_{V_{DS},V_{SB}},\qquad
+g_{ds}=\left.\frac{\partial I_D}{\partial V_{DS}}\right|_{V_{GS},V_{SB}},\qquad A=g_mr_{ds}=\frac{g_m}{g_{ds}}.$$
 
-$$
-\begin{aligned}
-g_m &= \frac{\partial I_D}{\partial V_{GS}} = \beta V_{DS},\\
-\frac{1}{r_{ds}} &= \frac{\partial I_D}{\partial V_{DS}} = \beta\left[(V_{GS} - V_{TH}) - V_{DS}\right] = \beta\,(V_{ov} - V_{DS}),\\
-g_mr_{ds} &= \frac{\beta V_{DS}}{\beta\,(V_{ov} - V_{DS})} = \frac{V_{DS}}{V_{ov} - V_{DS}} = \frac{V_{DS}}{0.5\ \mathrm{V} - V_{DS}} .
-\end{aligned}
-$$
+In triode, differentiate $I_{D0}$:
 
-$\beta$ cancels, so the triode curve depends only on $V_{DS}$ and $V_{ov}$.
+$$g_m=\beta V_{DS},\qquad g_{ds}=\beta(V_{ov}-V_{DS}).$$
 
-**Worked point, $V_{DS} = 0.1$ V:**
+For example, the point $V_{DS}=0.10\ \mathrm V$ lies below $V_{ov}$. Substitution gives
 
-$$
-\begin{aligned}
-g_m &= (13.4\ \mathrm{mA/V^2})(0.1\ \mathrm{V}) = 1.34\ \mathrm{mS},\\
-r_{ds} &= \frac{1}{(13.4\ \mathrm{mA/V^2})(0.5 - 0.1)\ \mathrm{V}} = \frac{1}{5.36\ \mathrm{mS}} = 186.6\ \Omega,\\
-g_mr_{ds} &= (1.34\ \mathrm{mS})(186.6\ \Omega) = 0.25 .
-\end{aligned}
-$$
+$$g_m=(13.4\ \mathrm{mA/V^2})(0.10\ \mathrm V)=1.34\ \mathrm{mS},\qquad
+g_{ds}\simeq(13.4\ \mathrm{mA/V^2})(0.500\ \mathrm V-0.10\ \mathrm V)\simeq 5.36\ \mathrm{mS}.$$
 
-**Other points** from $V_{DS}/(0.5 - V_{DS})$:
+Their ratio is 0.250 V/V. As $V_{DS}$ increases, the numerator rises and the denominator falls. This simplified triode formula has an asymptote at $V_{ov}$.
 
-| $V_{DS}$ (V) | 0 | 0.05 | 0.1 | 0.2 | 0.25 | 0.3 | 0.4 | 0.45 | 0.48 |
-|---|---|---|---|---|---|---|---|---|---|
-| $g_mr_{ds}$ | 0 | 0.11 | 0.25 | 0.67 | 1.0 | 1.5 | 4.0 | 9.0 | 24 |
+In saturation, use the leading-order transconductance and retain the output conductance from modulation:
 
-The gain is zero at $V_{DS} = 0$ (where $g_m = \beta V_{DS} = 0$), starts with slope $1/V_{ov} = 2\ \mathrm{V^{-1}}$, and reaches 1 only at $V_{DS} = V_{ov}/2 = 0.25$ V. Near the edge it shoots up, because the channel approaches pinch-off and $r_{ds}$ becomes very large.
+$$g_m\simeq\beta V_{ov},\qquad g_{ds}\simeq\lambda I_{D0}=\tfrac12\lambda\beta V_{ov}^2.$$
 
-### Step 3 — Small-signal parameters in saturation (simple model)
+With $V_{ov}\simeq 0.500\ \mathrm V$, the current scale $\tfrac12\beta V_{ov}^2$ is 1.675 mA, so $r_O=1/g_{ds}\simeq 5.97\ \mathrm{k}\Omega$. Dividing the small-signal parameters cancels $\beta$ and gives the dashed curve:
 
-The saturation current is $I_D = \frac12\beta V_{ov}^2(1 + \lambda V_{DS})$. In the simple model the factor $(1+\lambda V_{DS})$ is dropped from $I_D$ and $g_m$, and channel-length modulation appears only through $r_O = 1/(\lambda I_D)$:
+$$A_0(V_{DS})=
+\begin{cases}
+V_{DS}/(V_{ov}-V_{DS}), & 0\le V_{DS}<V_{ov},\\
+2/(\lambda V_{ov})=40, & V_{ov}\le V_{DS}\le 3\ \mathrm V.
+\end{cases}$$
 
-$$
-\begin{aligned}
-I_D &= \tfrac12(13.4\ \mathrm{mA/V^2})(0.5\ \mathrm{V})^2 = \tfrac12(13.4)(0.25)\ \mathrm{mA} = 1.675\ \mathrm{mA},\\
-g_m &= \beta V_{ov} = (13.4\ \mathrm{mA/V^2})(0.5\ \mathrm{V}) = 6.7\ \mathrm{mS},\\
-r_O &= \frac{1}{\lambda I_D} = \frac{1}{(0.1\ \mathrm{V^{-1}})(1.675\ \mathrm{mA})} = 5.97\ \mathrm{k}\Omega,\\
-g_mr_O &= (6.7\ \mathrm{mS})(5.97\ \mathrm{k}\Omega) = 40 .
-\end{aligned}
-$$
+### Step 3 — Retain the modulation factor in both regions
 
-In symbols, $g_mr_O = \beta V_{ov}\big/\big(\lambda\cdot\tfrac12\beta V_{ov}^2\big) = 2/(\lambda V_{ov})$. Check:
+The solid curve assumes $I_D=I_{D0}(1+\lambda V_{DS})$ in both regions. This extension to triode specifies the model at the boundary. The product rule gives
 
-$$\frac{2}{\lambda V_{ov}} = \frac{2}{(0.1\ \mathrm{V^{-1}})(0.5\ \mathrm{V})} = 40 .$$
+$$g_m=(1+\lambda V_{DS})\frac{\partial I_{D0}}{\partial V_{GS}},\qquad
+g_{ds}=(1+\lambda V_{DS})\frac{\partial I_{D0}}{\partial V_{DS}}+\lambda I_{D0}.$$
 
-Neither $g_m$ nor $r_O$ depends on $V_{DS}$ in this model, so **the curve is flat at 40** for $0.5\ \mathrm{V} \le V_{DS} \le 3$ V.
+Using the two branches of $I_{D0}$ leads to
 
-### Step 4 — Refinement: keeping the $(1+\lambda V_{DS})$ factor
+$$A(V_{DS})=
+\begin{cases}
+\dfrac{V_{DS}(1+\lambda V_{DS})}
+{(V_{ov}-V_{DS})(1+\lambda V_{DS})+\lambda(V_{ov}V_{DS}-V_{DS}^2/2)}, & 0\le V_{DS}<V_{ov},\\[4pt]
+\dfrac{2(1+\lambda V_{DS})}{\lambda V_{ov}}, & V_{ov}\le V_{DS}\le 3\ \mathrm V .
+\end{cases}$$
 
-**Saturation.** Differentiating $I_D = \frac12\beta V_{ov}^2(1 + \lambda V_{DS})$ exactly:
+At $V_{DS}=V_{ov}$ the triode term $(V_{ov}-V_{DS})(1+\lambda V_{DS})$ vanishes, leaving $\lambda V_{ov}^2/2$ in the denominator. Thus the left limit equals the saturation value 42 V/V. The slope changes to $2/V_{ov}$ on the saturation line, which gives 52 V/V at 3 V. At 0.10 V the full triode expression gives 0.247 V/V.
 
-$$
-\begin{aligned}
-g_m &= \frac{\partial I_D}{\partial V_{GS}} = \beta V_{ov}(1 + \lambda V_{DS}),\\
-\frac{1}{r_O} &= \frac{\partial I_D}{\partial V_{DS}} = \frac12\beta V_{ov}^2\lambda,\\
-g_mr_O &= \frac{\beta V_{ov}(1 + \lambda V_{DS})}{\frac12\lambda\beta V_{ov}^2} = \frac{2}{\lambda V_{ov}}(1 + \lambda V_{DS}) = 40\,(1 + 0.1\,V_{DS}) .
-\end{aligned}
-$$
+### Plot
 
-This gives 42 at $V_{DS} = 0.5$ V, 44 at 1 V, 48 at 2 V and **52 at 3 V**: a gently rising straight line instead of a flat one.
+![Intrinsic gain g_m r_ds versus V_DS](/q/R078/solution-intrinsic-gain.svg)
 
-**Triode, with the same factor.** Writing $I_D = \beta(V_{ov}V_{DS} - \frac12V_{DS}^2)(1+\lambda V_{DS})$ and using the product rule,
-
-$$
-\begin{aligned}
-g_m &= \beta V_{DS}(1 + \lambda V_{DS}),\\
-\frac{1}{r_{ds}} &= \beta(V_{ov} - V_{DS})(1 + \lambda V_{DS}) + \beta\lambda\left(V_{ov}V_{DS} - \tfrac12V_{DS}^2\right).
-\end{aligned}
-$$
-
-At the edge ($V_{DS} = V_{ov}$) the first term of $1/r_{ds}$ vanishes and the second becomes $\frac12\beta\lambda V_{ov}^2$, exactly the saturation value. So the gain no longer diverges at the edge; it reaches $2(1+\lambda V_{ov})/(\lambda V_{ov}) = 42$ and joins the saturation line continuously. Away from the edge the values hardly change: 0.25 at 0.1 V, 0.97 at 0.25 V, 3.6 at 0.4 V, 7.3 at 0.45 V, 15 at 0.48 V.
-
-### Step 5 — The plot
-
-Horizontal axis $V_{DS}$ from 0 to 3 V, vertical axis $g_m \times r_{ds}$:
-
-| Region | $V_{DS}$ | Intrinsic gain | Shape |
-|---|---|---|---|
-| Triode | 0 → 0.5 V | $V_{DS}/(0.5 - V_{DS})$: 0, 0.25, 1, 4, 9 at 0, 0.1, 0.25, 0.4, 0.45 V | starts at 0 with slope 2 V⁻¹, then rises ever more steeply |
-| Edge | 0.5 V | jumps up to the plateau (≈ 42 if λ is kept in the triode equation) | break point |
-| Saturation | 0.5 → 3 V | 40 (simple model), or $40(1 + 0.1V_{DS})$: 42 → 52 | flat, or a gentle linear rise |
-
-In triode the drain controls the current almost as strongly as the gate, so $r_{ds}$ is only hundreds of ohms; after pinch-off only channel-length modulation remains, $r_O$ jumps to kilo-ohms, and the gain jumps to $2/(\lambda V_{ov})$.
-
-### Result
-
-- **Triode, $0 \le V_{DS} < 0.5$ V:** $g_mr_{ds} = V_{DS}/(0.5\ \mathrm{V} - V_{DS})$, rising from 0 (0.25 at 0.1 V, 1 at 0.25 V, 4 at 0.4 V, 9 at 0.45 V) and climbing steeply toward the edge.
-- **Break point** at $V_{DS} = V_{GS} - V_{TH} = 0.5$ V ($\beta = 13.4\ \mathrm{mA/V^2}$, $V_{ov} = 0.5$ V).
-- **Saturation, $0.5\ \mathrm{V} \le V_{DS} \le 3$ V** ($I_D \approx 1.68$ mA, $g_m = 6.7$ mS, $r_O \approx 6$ kΩ): a plateau $g_mr_O = 2/(\lambda V_{ov}) = 40$. If the $(1+\lambda V_{DS})$ factor is kept in $g_m$, it is $40(1 + 0.1V_{DS})$, rising gently from 42 at the edge to 52 at 3 V.
-
-**Common mistake.** Putting the break point at $V_{DS} = V_{GS} = 1.2$ V or at $V_{DS} = V_{TH} = 0.7$ V. The boundary is set by the overdrive: $V_{DS} = V_{GS} - V_{TH} = 0.5$ V.
-
-**Common mistake.** Using the saturation formula $g_m = \beta V_{ov}$ in triode, which gives a large gain there. In triode $g_m = \beta V_{DS}$ is smaller and $r_{ds} = 1/[\beta(V_{ov} - V_{DS})]$ is only a few hundred ohms.
-
-**Common mistake.** Dropping the $\tfrac12$ in $I_D = \tfrac12\beta V_{ov}^2$, which halves $r_O$ and gives a plateau of 20 instead of $2/(\lambda V_{ov}) = 40$.
+The dashed triode branch exits the plotted scale as it approaches its asymptote. The solid curve has a finite value and a change of slope at the boundary.

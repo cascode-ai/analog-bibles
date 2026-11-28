@@ -1,6 +1,6 @@
 # Detailed solution - R083
 
-**Approach.** Same circuit and edge-of-triode condition as without body effect, but the load $M_2$ has its source at $V_{out}$ and its bulk at ground, so its threshold depends on $V_{out}$. Equate the saturation currents with $V_{TH2}(V_{out})$, solve by iteration, and include $g_{mb2}$ in the small-signal model, which gives $A_v = -g_{m1}/(g_{m2} + g_{mb2})$.
+Approach: Same circuit and edge-of-triode condition as without body effect, but the load $M_2$ has its source at $V_{out}$ and its bulk at ground, so its threshold depends on $V_{out}$. Equate the saturation currents with $V_{TH2}(V_{out})$, solve by iteration, and include $g_{mb2}$ in the small-signal model, which gives $A_v = -g_{m1}/(g_{m2} + g_{mb2})$.
 
 ### Step 1 — Body effect, device parameters and the edge condition
 
@@ -60,7 +60,7 @@ V_{TH2} &= 0.7 + 0.1367 = 0.837\ \mathrm{V}.
 \end{aligned}
 $$
 
-**Check.** $V_{ov2} = 3 - 0.6685 - 0.8367 = 1.4948$ V $= \sqrt5\times0.6685$, as required, and
+Check: $V_{ov2} = 3 - 0.6685 - 0.8367 = 1.4948$ V $= \sqrt5\times0.6685$, as required, and
 
 $$
 \begin{aligned}
@@ -75,8 +75,8 @@ The edge comes earlier than without body effect (1.411 V): the body effect raise
 
 With $\lambda = 0$ there is no $r_O$; $V_{DD}$ and ground are ac grounds, and the model has one node, $out$:
 
-- **$M_1$:** a current source $g_{m1}v_{in}$ from $out$ to ground; $v_{bs1} = 0$, so no $g_{mb1}$ term.
-- **$M_2$:** gate and drain at ac ground, source at $out$, bulk at ground, so $v_{gs2} = v_{bs2} = -v_{out}$ and
+- $M_1$: a current source $g_{m1}v_{in}$ from $out$ to ground; $v_{bs1} = 0$, so no $g_{mb1}$ term.
+- $M_2$: gate and drain at ac ground, source at $out$, bulk at ground, so $v_{gs2} = v_{bs2} = -v_{out}$ and
 $$i_{d2} = g_{m2}v_{gs2} + g_{mb2}v_{bs2} = -(g_{m2} + g_{mb2})\,v_{out} .$$
 
 <!-- diagram: diagram-01.cir -->
@@ -108,7 +108,7 @@ $$
 
 $$A_v = -\frac{8.96\ \mathrm{mS}}{4.01\ \mathrm{mS} + 0.72\ \mathrm{mS}} = -\frac{8.96}{4.73} = -1.90 .$$
 
-**Compact form.** With equal currents $g_{m1}/g_{m2} = \sqrt{\beta_1/\beta_2} = \sqrt5$, so
+Compact form: With equal currents $g_{m1}/g_{m2} = \sqrt{\beta_1/\beta_2} = \sqrt5$, so
 
 $$A_v = -\frac{g_{m1}}{g_{m2}(1 + \eta)} = -\frac{\sqrt5}{1 + \eta} = -\frac{2.236}{1.180} = -1.90 .$$
 
@@ -120,8 +120,8 @@ $$V_{in} \approx 1.37\ \mathrm{V} \qquad (V_{out} \approx 0.669\ \mathrm{V},\ V_
 
 $$A_v = -\frac{g_{m1}}{g_{m2} + g_{mb2}} = -\frac{\sqrt5}{1 + \eta} \approx -1.90, \qquad \eta = \frac{\gamma}{2\sqrt{2|\phi_F| + V_{out}}} = 0.180 .$$
 
-**Common mistake.** Including the body effect in only one part: using $V_{TH2}(V_{out})$ for the bias point but keeping the gain at $-\sqrt5$, or the reverse. It changes both the operating point (through $V_{TH2}$) and the load (through $g_{mb2}$).
+Common mistake: Including the body effect in only one part: using $V_{TH2}(V_{out})$ for the bias point but keeping the gain at $-\sqrt5$, or the reverse. It changes both the operating point (through $V_{TH2}$) and the load (through $g_{mb2}$).
 
-**Common mistake.** Applying the body effect to $M_1$. Its source and bulk are both grounded, so $V_{SB1} = 0$ and $v_{bs1} = 0$.
+Common mistake: Applying the body effect to $M_1$. Its source and bulk are both grounded, so $V_{SB1} = 0$ and $v_{bs1} = 0$.
 
-**Common mistake.** Multiplying the gain by $(1 + \eta)$ instead of dividing by it. $g_{mb2}$ adds to $g_{m2}$ in the *denominator*.
+Common mistake: Multiplying the gain by $(1 + \eta)$ instead of dividing by it. $g_{mb2}$ adds to $g_{m2}$ in the *denominator*.
