@@ -1,6 +1,6 @@
 # Detailed solution - R094
 
-**Approach.** Here the *PMOS* $M_2$ is the input device, while the NMOS $M_1$, with its gate at the fixed $V_b$, is a current-source load; $R_D$ is in parallel with $M_2$. Write KCL at the output and follow $M_2$ from triode (small $V_{in}$, strongly on) through saturation to cutoff at $V_{in} = V_{DD} - |V_{THP}|$, checking whether $M_1$ stays saturated.
+**Approach:** Here the *PMOS* $M_2$ is the input device, while the NMOS $M_1$, with its gate at the fixed $V_b$, is a current-source load; $R_D$ is in parallel with $M_2$. Write KCL at the output and follow $M_2$ from triode (small $V_{in}$, strongly on) through saturation to cutoff at $V_{in} = V_{DD} - |V_{THP}|$, checking whether $M_1$ stays saturated.
 
 ### Step 1 — The fixed current of $M_1$, the regions of $M_2$, and KCL
 
@@ -8,7 +8,7 @@ While saturated ($V_{out} \ge V_b - 0.7$ V), $M_1$ sinks the constant current
 
 $$I_1 = \frac12\beta_1(V_b - 0.7)^2 .$$
 
-$M_2$ has $V_{SG2} = V_{DD} - V_{in} = 3 - V_{in}$, so it is **on** for $V_{in} < 2.2$ V and **off** for $V_{in} \ge V_{DD} - |V_{THP}| = 2.2$ V, with overdrive $|V_{ov2}| = 2.2 - V_{in}$. It is **saturated** when $V_{SD2} \ge |V_{ov2}|$, i.e. $3 - V_{out} \ge 2.2 - V_{in}$, or $V_{out} \le V_{in} + 0.8$ V, and in **triode** otherwise.
+$M_2$ has $V_{SG2} = V_{DD} - V_{in} = 3 - V_{in}$, so it is on for $V_{in} < 2.2$ V and off for $V_{in} \ge V_{DD} - |V_{THP}| = 2.2$ V, with overdrive $|V_{ov2}| = 2.2 - V_{in}$. It is saturated when $V_{SD2} \ge |V_{ov2}|$, i.e. $3 - V_{out} \ge 2.2 - V_{in}$, or $V_{out} \le V_{in} + 0.8$ V, and in triode otherwise.
 
 KCL at the output ($R_D$ and $M_2$ supply, $M_1$ removes):
 
@@ -18,17 +18,17 @@ with $I_{D1} = I_1$ while $M_1$ is saturated.
 
 ### Step 2 — Small $V_{in}$: $M_2$ in triode, $V_{out}$ just below $V_{DD}$
 
-For small $V_{in}$, $M_2$ could supply far more than $I_1$ in saturation, so it settles in **triode** with a small $V_{SD2}$, acting as a resistor $R_{on2} \approx 1/[\beta_2(2.2 - V_{in})]$ from $V_{DD}$ to the output:
+In the example, for small $V_{in}$, $M_2$ could supply far more than $I_1$ in saturation, so it settles in triode with a small $V_{SD2}$, acting as a resistor $R_{on2} \approx 1/[\beta_2(2.2 - V_{in})]$ from $V_{DD}$ to the output:
 
 $$V_{out} \approx V_{DD} - I_1\,(R_{on2}\|R_D),$$
 
 just below $V_{DD}$, with $M_1$ clearly saturated.
 
-**Slope.** With $M_1$ an open circuit for small signals,
+Slope. With $M_1$ an open circuit for small signals,
 
 $$\frac{dV_{out}}{dV_{in}} = -g_{m2}\,(R_D\|r_{ds2}),$$
 
-where in triode both $g_{m2} = \beta_2V_{SD2}$ and $r_{ds2} = 1/[\beta_2(2.2 - V_{in} - V_{SD2})]$ are small. So $V_{out}$ **decreases only slowly**, speeding up as $R_{on2}$ and $V_{SD2}$ grow with $V_{in}$.
+where in triode both $g_{m2} = \beta_2V_{SD2}$ and $r_{ds2} = 1/[\beta_2(2.2 - V_{in} - V_{SD2})]$ are small. So $V_{out}$ decreases only slowly, speeding up as $R_{on2}$ and $V_{SD2}$ grow with $V_{in}$.
 
 ### Step 3 — $M_2$ saturated: the steep falling region
 
@@ -41,15 +41,15 @@ V_{out} &= V_{DD} - R_D\left[I_1 - \tfrac12\beta_2(2.2 - V_{in})^2\right].
 \end{aligned}
 $$
 
-**Transition point.** Setting this equal to $V_{in} + 0.8$ and writing $y = 2.2 - V_{in} = |V_{ov2}|$ gives $y = R_D[I_1 - \frac12\beta_2y^2]$, i.e.
+Transition point. Setting this equal to $V_{in} + 0.8$ and writing $y = 2.2 - V_{in} = |V_{ov2}|$ gives $y = R_D[I_1 - \frac12\beta_2y^2]$, i.e.
 
 $$\tfrac12\beta_2R_Dy^2 + y - R_DI_1 = 0 \quad\Longrightarrow\quad y = \frac{-1 + \sqrt{1 + 2\beta_2R_D^2I_1}}{\beta_2R_D}, \qquad V_{in} = 2.2 - y .$$
 
-**Slope.**
+Slope.
 
 $$\frac{dV_{out}}{dV_{in}} = R_D\cdot\frac{d}{dV_{in}}\left[\tfrac12\beta_2(2.2 - V_{in})^2\right] = -R_D\,\beta_2(2.2 - V_{in}) = -g_{m2}R_D ,$$
 
-with $g_{m2} = \beta_2(2.2 - V_{in})$. The slope is **steepest where this region begins** (largest overdrive) and **flattens to zero as $V_{in} \to 2.2$ V**, where $g_{m2}$ vanishes.
+with $g_{m2} = \beta_2(2.2 - V_{in})$. The slope is steepest where this region begins (largest overdrive) and flattens to zero as $V_{in} \to 2.2$ V, where $g_{m2}$ vanishes.
 
 ### Step 4 — $V_{in} \ge 2.2$ V: $M_2$ off, a flat floor
 
@@ -57,7 +57,7 @@ $R_D$ alone supplies $M_1$'s current:
 
 $$V_{out} = V_{DD} - I_1R_D\qquad (V_{in} \ge 2.2\ \mathrm{V}),$$
 
-**constant** up to $V_{in} = 3$ V, and not 0 V, since $R_D$ still connects the output to $V_{DD}$.
+constant up to $V_{in} = 3$ V, and not 0 V, since $R_D$ still connects the output to $V_{DD}$.
 
 This assumes $M_1$ stays saturated, $V_{DD} - I_1R_D \ge V_b - 0.7$. If $I_1R_D$ is larger, $M_1$ enters triode on the way down, the drop is softened, and the floor is the solution of
 
@@ -78,7 +78,7 @@ $$
 
 above $V_b - 0.7 = 0.3$ V, so $M_1$ stays saturated throughout.
 
-**$M_2$ saturates** where $\beta_2R_D = 20\ \mathrm{V^{-1}}$ and $2\beta_2R_D^2I_1 = 2(1\ \mathrm{mA/V^2})(20\ \mathrm{k}\Omega)^2(90\ \mu\mathrm{A}) = 72$:
+$M_2$ saturates where $\beta_2R_D = 20\ \mathrm{V^{-1}}$ and $2\beta_2R_D^2I_1 = 2(1\ \mathrm{mA/V^2})(20\ \mathrm{k}\Omega)^2(90\ \mu\mathrm{A}) = 72$:
 
 $$y = \frac{-1 + \sqrt{73}}{20} = \frac{-1 + 8.544}{20} = 0.377\ \mathrm{V}, \qquad V_{in} = 2.2 - 0.377 = 1.823\ \mathrm{V}, \qquad V_{out} = 2.623\ \mathrm{V},$$
 
@@ -97,18 +97,26 @@ with slope $-g_{m2}R_D = -(1\ \mathrm{mA/V^2})(0.377\ \mathrm{V})(20\ \mathrm{k}
 | 2.2 | 1.200 | cutoff | 0 |
 | 3.0 | 1.200 | off | 0 |
 
+### Check the assumed regions
+
+For $a=V_b-0.7\ \mathrm V$, the piecewise NMOS current $I_{D1}(v)$ uses the triode law $\beta_1(av-v^2/2)$ below $a$ and the constant current $I_1$ at and above $a$. If the trial PMOS transition of Step 3 has $V_{out}<a$, recompute it from $I_{D1}(V_{DD}-y)=y/R_D+\beta_2y^2/2$, with $0<y\le 2.2\ \mathrm V$. If the equation has no root in this range, the PMOS may already start in saturation. To test where $M_1$ crosses into triode, put $v=a$ in KCL, giving $|I_{D2}(y,V_{DD}-a)|=I_1-(V_{DD}-a)/R_D$. Use the PMOS current branch that satisfies its own region condition.
+
+When the triode plateau applies, it is below $a$ and above the value obtained by extrapolating the saturated current $I_1$. The current sink is weaker in triode. The 2.2 V cutoff and the flat portion then follow from the same KCL.
+
+![R094 output characteristic](/q/R094/solution-vout.svg)
+
 ### Result
 
-An **inverting** characteristic driven by the PMOS $M_2$, with $I_1 = \tfrac12\beta_1(V_b - 0.7)^2$:
+An inverting characteristic driven by the PMOS $M_2$, with $I_1 = \tfrac12\beta_1(V_b - 0.7)^2$:
 
-- **Small $V_{in}$:** $M_2$ has a large $V_{SG} = 3 - V_{in}$ and could supply more than $I_1$, so it sits in triode with a small $V_{SD}$. $V_{out}$ is just below $V_{DD}$ and decreases slowly as $V_{in}$ rises. $M_1$ (current source) is saturated.
-- **$M_2$ saturated** once $V_{out} < V_{in} + 0.8$ V: $V_{out} = V_{DD} - R_D[I_1 - \tfrac12\beta_2(2.2 - V_{in})^2]$, slope $-g_{m2}R_D$ with $g_{m2} = \beta_2(2.2 - V_{in})$, steepest where the region begins and flattening as $V_{in} \to 2.2$ V.
+- Small $V_{in}$: $M_2$ has a large $V_{SG} = 3 - V_{in}$ and could supply more than $I_1$, so it sits in triode with a small $V_{SD}$. $V_{out}$ is just below $V_{DD}$ and decreases slowly as $V_{in}$ rises. $M_1$ (current source) is saturated.
+- $M_2$ saturated once $V_{out} < V_{in} + 0.8$ V: $V_{out} = V_{DD} - R_D[I_1 - \tfrac12\beta_2(2.2 - V_{in})^2]$, slope $-g_{m2}R_D$ with $g_{m2} = \beta_2(2.2 - V_{in})$, steepest where the region begins and flattening as $V_{in} \to 2.2$ V.
 - If $V_{out}$ falls below $V_b - 0.7$ V, $M_1$ enters triode and the drop is softened.
-- **$V_{in} \ge 2.2$ V:** $M_2$ off, $V_{out} = V_{DD} - I_1R_D$ (if this is above $V_b - 0.7$ V; otherwise the lower value set by $R_D$ and $M_1$ in triode), constant up to $V_{in} = 3$ V.
-- **Transition points:** $M_2$ triode/saturation at $V_{out} = V_{in} + 0.8$ V; possible $M_1$ triode entry at $V_{out} = V_b - 0.7$ V; $M_2$ cutoff at $V_{in} = V_{DD} - |V_{THP}| = 2.2$ V.
+- $V_{in} \ge 2.2$ V: $M_2$ off, $V_{out} = V_{DD} - I_1R_D$ (if this is above $V_b - 0.7$ V; otherwise the triode value set by $R_D$ and $M_1$ in triode), constant up to $V_{in} = 3$ V.
+- Transition points: $M_2$ triode/saturation at $V_{out} = V_{in} + 0.8$ V; possible $M_1$ triode entry at $V_{out} = V_b - 0.7$ V; $M_2$ cutoff at $V_{in} = V_{DD} - |V_{THP}| = 2.2$ V.
 
-**Common mistake.** Treating $M_1$ as the input device, or drawing a non-inverting curve. The input drives the PMOS $M_2$; raising $V_{in}$ reduces $V_{SG2}$, so $M_2$ supplies less current and $V_{out}$ falls.
+**Common mistake:** Treating $M_1$ as the input device, or drawing a non-inverting curve. The input drives the PMOS $M_2$; raising $V_{in}$ reduces $V_{SG2}$, so $M_2$ supplies less current and $V_{out}$ falls.
 
-**Common mistake.** Letting $V_{out}$ fall to 0 V once $M_2$ is off. $R_D$ still connects the output to $V_{DD}$, so it settles at $V_{DD} - I_1R_D$ (or the triode-limited value if that would be below $V_b - 0.7$ V).
+**Common mistake:** Letting $V_{out}$ fall to 0 V once $M_2$ is off. $R_D$ still connects the output to $V_{DD}$, so it settles at $V_{DD} - I_1R_D$ (or the triode-limited value if that would be below $V_b - 0.7$ V).
 
-**Common mistake.** Placing the cutoff of $M_2$ at $V_{in} = 0.8$ V or at 3 V. A PMOS with its source at $V_{DD}$ turns off at $V_{in} = 3 - 0.8 = 2.2$ V.
+**Common mistake:** Placing the cutoff of $M_2$ at $V_{in} = 0.8$ V or at 3 V. A PMOS with its source at $V_{DD}$ turns off at $V_{in} = 3 - 0.8 = 2.2$ V.

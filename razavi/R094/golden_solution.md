@@ -2,14 +2,23 @@
 
 ## Reference answer
 
-An inverting characteristic driven by the PMOS $M_2$: $V_{out}$ near $V_{DD}$ for small $V_{in}$, a falling region while $M_2$ is saturated (slope $-g_{m2}R_D$), and a flat floor for $V_{in} \ge V_{DD} - |V_{THP}| = 2.2$ V where $M_2$ is off. Let $I_1 = \tfrac12\beta_1(V_b - 0.7)^2$ ($M_1$'s saturation current).
+Let $a=V_b-0.7\ \mathrm V>0$, $y=2.2\ \mathrm V-V_{in}$, and $v=V_{out}$. The output solves
 
-- Small $V_{in}$: $M_2$ has a large $V_{SG} = 3 - V_{in}$ and can supply more than $I_1$, so it sits in triode with a small $V_{SD}$; $V_{out}$ is just below $V_{DD}$ and decreases slowly as $V_{in}$ rises. $M_1$ (current source) is saturated.
-- $M_2$ saturates when $V_{out} < V_{in} + 0.8$ V. Then $\tfrac12\beta_2(2.2 - V_{in})^2 + (V_{DD} - V_{out})/R_D = I_1$, i.e. $V_{out} = V_{DD} - R_D[I_1 - \tfrac12\beta_2(2.2 - V_{in})^2]$, slope $-g_{m2}R_D$ with $g_{m2} = \beta_2(2.2 - V_{in})$: steepest where the region begins and flattening as $V_{in} \to 2.2$ V.
-- If $V_{out}$ falls below $V_b - 0.7$ V, $M_1$ enters triode and the drop is softened.
-- $V_{in} \ge 2.2$ V: $M_2$ off; $V_{out} = V_{DD} - I_1R_D$ (if this is above $V_b - 0.7$ V; otherwise the lower value set by $R_D$ and $M_1$ in triode), constant up to $V_{in} = 3$ V.
-- Transition points: $M_2$ triode/saturation at $V_{out} = V_{in} + 0.8$ V; possible $M_1$ triode entry at $V_{out} = V_b - 0.7$ V; $M_2$ cutoff at $V_{in} = 2.2$ V.
+$$I_{D1}(v)=\frac{V_{DD}-v}{R_D}+|I_{D2}(y,V_{DD}-v)|.$$
+
+The NMOS uses $\beta_1(av-v^2/2)$ for $v<a$ and $I_1=\beta_1a^2/2$ for $v\ge a$. The PMOS uses its triode law for $0\le V_{DD}-v<y$, the saturation law $\beta_2y^2/2$ for $V_{DD}-v\ge y>0$, and zero for $y\le0$.
+
+### Transitions
+
+- PMOS triode to saturation: solve $I_{D1}(V_{DD}-y_*)=y_*/R_D+\beta_2y_*^2/2$ for $0<y_*\le2.2\ \mathrm V$. The input is $2.2\ \mathrm V-y_*$. When both devices saturate the slope is $-g_{m2}R_D$.
+- If the output crosses $v=a$, the NMOS enters triode. Substitute $v=a$ into KCL to locate that input. Use the actual PMOS region.
+- At $V_{in}=2.2\ \mathrm V$ the PMOS cuts off. The plateau solves $I_{D1}(v)=(V_{DD}-v)/R_D$ and equals $V_{DD}-R_DI_1$ if that value is at least $a$. When the NMOS is in triode, use the physical root in $0<v<a$.
+
+![R094 output transfer characteristic](/q/R094/solution-vout.svg)
 
 ## Grading notes
 
-+2: inverting curve with $M_2$ as the input device: high $V_{out}$ (M2 triode) at small $V_{in}$, a falling region with gain ≈ $g_{m2}R_D$ when $M_2$ is saturated, cutoff of $M_2$ at $V_{in} = V_{DD} - |V_{THP}| = 2.2$ V with a flat floor ≈ $V_{DD} - I_1R_D$ beyond. +1: one of these features missing (e.g., the floor level or the $M_1$ triode caveat). 0: correct trend but the cutoff at 2.2 V missing or misplaced. -2 (asserted as fact): non-inverting, $V_{out}$ falling to 0 V when $M_2$ is off (ignoring $R_D$), or $M_1$ treated as the input device.
+- +2 for inverting curve with $M_2$ as the input device: high $V_{out}$ (M2 triode) at small $V_{in}$, a falling region with gain ≈ $g_{m2}R_D$ when $M_2$ is saturated, cutoff of $M_2$ at $V_{in} = V_{DD} - |V_{THP}| = 2.2$ V with a flat floor ≈ $V_{DD} - I_1R_D$ beyond.
+- +1 for one of these features missing (e.g., the floor level or the $M_1$ triode caveat).
+- 0 for correct trend but the cutoff at 2.2 V missing or misplaced.
+- −2 for asserting non-inverting, $V_{out}$ falling to 0 V when $M_2$ is off (ignoring $R_D$), or $M_1$ treated as the input device.

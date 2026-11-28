@@ -11,6 +11,8 @@ Inverting: $V_{DD}$ until $M_1$ turns on, a steep fall while only $R_1 + R_2$ lo
 - $M_1$ enters triode if $V_{out} < V_{in} - 0.7$ V (near the top of the input range), reducing the slope further.
 - Transition points: $V_{in} = 0.7$ V; $V_{out} = V_{DD} - 0.8(1 + R_2/R_1)$ ($M_2$ turn-on, when the $R_1 + R_2$ current reaches $0.8/R_1$), i.e. $V_{in} = 0.7 + \sqrt{1.6/(\beta_1R_1)}$ if $M_1$ is still saturated there; $V_{out} = V_{in} - 0.7$ V. The clamp appears in the sweep only if this turn-on is reached by $V_{in} = 3$ V and $0.8(1 + R_2/R_1) < 3$ V. If $M_1$ reaches $V_{out} = V_{in} - 0.7$ V before $M_2$ turns on, the two kinks occur in the opposite order; either order is acceptable when justified.
 
+![R095 output curve](/q/R095/solution-plot.svg)
+
 ## Grading notes
 
 +2: $V_{DD}$ up to 0.7 V, steep resistive fall with load $R_1+R_2$, $M_2$ turning on at $V_{DD} - V_{out} = |V_{THP}|(R_1+R_2)/R_1$ and then clamping the output (slow decrease), with $M_2$ saturated whenever on. +1: clamp described but the turn-on point or the saturation argument missing. 0: inverting shape with the load treated only as a diode or only as resistors. -2 (asserted as fact): $V_{SG2}$ taken as the full $V_{DD} - V_{out}$ or with the divider ratio inverted so as to change the turn-on point, non-inverting characteristic, or $M_2$ claimed to be in triode when on. Correctly stating a necessary condition for $M_2$ to turn on within the output range (e.g. $0.8(1 + R_2/R_1) < 3$ V) is not a false claim.

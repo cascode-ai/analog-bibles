@@ -1,10 +1,12 @@
 # Detailed solution - R098
 
-**Approach.** This is a cascode common-source stage: $M_1$ is the input device, $M_2$ (gate at $V_{b1}$) the cascode, and the PMOS $M_3$ (gate at $V_{b2}$) a current-source load. All three carry the same current, set by whichever side can carry less: $M_3$ (its saturation current $I_3$) or the $M_1$–$M_2$ stack (set by $V_{in}$). The two cross at one input $V_{in}^*$, where all devices are saturated and the gain is very high; before and after it, devices leave saturation one by one.
+**Approach:** This is a cascode common-source stage: $M_1$ is the input device, $M_2$ (gate at $V_{b1}$) the cascode, and the PMOS $M_3$ (gate at $V_{b2}$) a current-source load. All three carry the same current, set by whichever side can carry less: $M_3$ (its saturation current $I_3$) or the $M_1$–$M_2$ stack (set by $V_{in}$). The two cross at one input $V_{in}^*$, where all devices are saturated and the gain is very high; before and after it, devices leave saturation one by one.
 
 ### Step 1 — Load current and region boundaries
 
-Call the drain of $M_1$ (source of $M_2$) node $X$; $M_2$ has a body effect, $V_{SB2} = V_X$. $M_3$ has the fixed gate drive $V_{SG3} = V_{DD} - V_{b2}$, so its saturation current (ignoring the small $1 + \lambda V_{SD}$ factor) is
+![V_out versus V_in](/q/R098/solution-transfer.svg)
+
+Assume $V_{b2} < V_{DD} - |V_{THP}| = 2.2\ \mathrm{V}$ so that the PMOS load $M_3$ conducts. Call the drain of $M_1$ (source of $M_2$) node $X$; $M_2$ has a body effect, $V_{SB2} = V_X$. $M_3$ has the fixed gate drive $V_{SG3} = V_{DD} - V_{b2}$, so its saturation current (ignoring the small $1 + \lambda V_{SD}$ factor) is
 
 $$I_3 = \frac12\beta_3(V_{DD} - V_{b2} - 0.8)^2 .$$
 
@@ -20,7 +22,7 @@ For $V_{in} \le 0.7$ V no current flows down the stack, so $M_3$ (whose channel 
 
 $$V_{out} = V_{DD}.$$
 
-For $0.7\ \mathrm{V} < V_{in} < V_{in}^*$, $M_1$'s saturation current $\frac12\beta_1(V_{in} - 0.7)^2$ is still less than $I_3$. It sets the current, and $M_3$ must be in triode, acting as a small resistor to $V_{DD}$: $V_{out}$ stays **just below $V_{DD}$, falling slowly** (gain $g_{m1}$ times $M_3$'s small triode resistance). $M_2$ sits as a follower above $M_1$, $V_X \approx V_{b1} - V_{TH2} - V_{ov2}$, and both NMOS devices are saturated.
+For $0.7\ \mathrm{V} < V_{in} < V_{in}^*$, $M_1$'s saturation current $\frac12\beta_1(V_{in} - 0.7)^2$ is still less than $I_3$. It sets the current, and $M_3$ must be in triode, acting as a small resistor to $V_{DD}$: $V_{out}$ stays just below $V_{DD}$, falling slowly (gain $g_{m1}$ times $M_3$'s small triode resistance). $M_2$ sits as a follower above $M_1$, $V_X \approx V_{b1} - V_{TH2} - V_{ov2}$, and both NMOS devices are saturated.
 
 ### Step 3 — $V_{in} \approx V_{in}^*$: all saturated, a nearly vertical drop
 
@@ -58,7 +60,7 @@ $$V_X < V_{in} - 0.7\ \mathrm{V}.$$
 
 From then on, $M_1$ and $M_2$ are both in triode and carry $I_3$ like two resistors in series; the gain is small and $V_{out}$ declines slowly toward a low value at $V_{in} = 3$ V.
 
-**Order of the transitions.** This sequence assumes $V_{b1}$ lets all three devices be saturated at $V_{in}^*$:
+Order of the transitions: This sequence assumes $V_{b1}$ lets all three devices be saturated at $V_{in}^*$:
 
 - $V_{b1} \ge V_{TH2} + V_{ov2} + V_{ov1}$ (room for $M_1$ under $M_2$);
 - $V_{b1} - V_{TH2} < V_{b2} + 0.8$ V (the $M_2$ edge lies below the $M_3$ edge).
@@ -97,16 +99,16 @@ The output falls by more than 1.1 V over only about 50 mV of input (gain about 2
 
 ### Result
 
-An **inverting** characteristic with a very sharp transition (cascode gain). $V_{out} \approx V_{DD}$ until $M_1$'s current reaches the load current $I_3 = \tfrac12\beta_3(V_{DD} - V_{b2} - 0.8)^2$; then a nearly vertical drop; then a slow decline with $M_2$ and $M_1$ in triode.
+An inverting characteristic with a very sharp transition (cascode gain). $V_{out} \approx V_{DD}$ until $M_1$'s current reaches the load current $I_3 = \tfrac12\beta_3(V_{DD} - V_{b2} - 0.8)^2$; then a nearly vertical drop; then a slow decline with $M_2$ and $M_1$ in triode.
 
-- **$V_{in} \le 0.7$ V:** no current, $V_{out} = V_{DD}$.
-- **$0.7\ \mathrm{V} < V_{in} < V_{in}^*$:** $M_1$ (saturated) sinks less than $I_3$, so $M_3$ is in triode and $V_{out}$ stays just below $V_{DD}$, falling slowly.
-- **$V_{in} \approx V_{in}^* = 0.7 + \sqrt{2I_3/\beta_1}$:** all three devices saturated; gain $\approx g_{m1}[(g_{m2}r_{O2}r_{O1})\|r_{O3}]$, very high, so $V_{out}$ drops almost vertically from $\approx V_{DD} - |V_{ov3}| = V_{b2} + 0.8$ V ($M_3$ edge) to $\approx V_{b1} - V_{TH2}$ ($M_2$ edge). With $\lambda = 0$ the drop would be exactly vertical.
-- **Below $V_{out} \approx V_{b1} - V_{TH2}$:** $M_2$ in triode and the gain falls toward roughly $g_{m1}(r_{O1}\|r_{O3})$. Node $X$ falls with $V_{out}$, and $M_1$ enters triode when $V_X < V_{in} - 0.7$ V. Thereafter the gain is small and $V_{out}$ declines slowly toward a low value at $V_{in} = 3$ V.
-- **Transition points:** $V_{in} = 0.7$ V; $V_{in}^*$; $V_{out} = V_{b2} + 0.8$ V; $V_{out} = V_{b1} - V_{TH2}$ (with $V_{SB2} = V_X$); $V_X = V_{in} - 0.7$ V. This order assumes $V_{b1}$ lets all three devices be saturated at $V_{in}^*$.
+- $V_{in} \le 0.7$ V: no current, $V_{out} = V_{DD}$.
+- $0.7\ \mathrm{V} < V_{in} < V_{in}^*$: $M_1$ (saturated) sinks less than $I_3$, so $M_3$ is in triode and $V_{out}$ stays just below $V_{DD}$, falling slowly.
+- $V_{in} \approx V_{in}^* = 0.7 + \sqrt{2I_3/\beta_1}$: all three devices saturated; gain $\approx g_{m1}[(g_{m2}r_{O2}r_{O1})\|r_{O3}]$, very high, so $V_{out}$ drops almost vertically from $\approx V_{DD} - |V_{ov3}| = V_{b2} + 0.8$ V ($M_3$ edge) to $\approx V_{b1} - V_{TH2}$ ($M_2$ edge). With $\lambda = 0$ the drop would be exactly vertical.
+- Below $V_{out} \approx V_{b1} - V_{TH2}$: $M_2$ in triode and the gain falls toward roughly $g_{m1}(r_{O1}\|r_{O3})$. Node $X$ falls with $V_{out}$, and $M_1$ enters triode when $V_X < V_{in} - 0.7$ V. Thereafter the gain is small and $V_{out}$ declines slowly toward a low value at $V_{in} = 3$ V.
+- Transition points: $V_{in} = 0.7$ V; $V_{in}^*$; $V_{out} = V_{b2} + 0.8$ V; $V_{out} = V_{b1} - V_{TH2}$ (with $V_{SB2} = V_X$); $V_X = V_{in} - 0.7$ V. This order assumes $V_{b1}$ lets all three devices be saturated at $V_{in}^*$.
 
-**Common mistake.** Drawing a gradual fall with a moderate, constant slope from 0.7 V. While $M_1$ cannot sink $I_3$, the output stays pinned near $V_{DD}$; once it can, the output collapses over a few tens of millivolts because the output node sees $R_{down}\|r_{O3}$.
+**Common mistake:** Drawing a gradual fall with a moderate, constant slope from 0.7 V. While $M_1$ cannot sink $I_3$, the output stays pinned near $V_{DD}$; once it can, the output collapses over a few tens of millivolts because the output node sees $R_{down}\|r_{O3}$.
 
-**Common mistake.** Treating $M_3$ as the input device, or drawing a non-inverting curve. $M_3$'s gate is at the fixed $V_{b2}$; only $M_1$ is driven by $V_{in}$, and more input pulls more current down, so $V_{out}$ falls.
+**Common mistake:** Treating $M_3$ as the input device, or drawing a non-inverting curve. $M_3$'s gate is at the fixed $V_{b2}$; only $M_1$ is driven by $V_{in}$, and more input pulls more current down, so $V_{out}$ falls.
 
-**Common mistake.** Getting the order of the transitions wrong for the normal bias. Going down from the top, the output first passes the $M_3$ edge ($V_{b2} + 0.8$ V, where $M_3$ *enters* saturation), then the $M_2$ edge ($V_{b1} - V_{TH2}$), and only then does $M_1$ enter triode, when $V_X$ drops below $V_{in} - 0.7$ V.
+**Common mistake:** Getting the order of the transitions wrong for the normal bias. Going down from the top, the output first passes the $M_3$ edge ($V_{b2} + 0.8$ V, where $M_3$ *enters* saturation), then the $M_2$ edge ($V_{b1} - V_{TH2}$), and only then does $M_1$ enter triode, when $V_X$ drops below $V_{in} - 0.7$ V.

@@ -2,15 +2,70 @@
 
 ## Reference answer
 
-An inverting characteristic: $V_{DD}$ until $M_1$ turns on, a gentle fall while $M_2$ is in triode (load $R_D\|R_{on2}$), a steeper fall once $M_2$ saturates (it then acts as a constant current source and the load is $R_D$), and a flattening when $M_1$ enters triode. Let $I_2 = \tfrac12\beta_2(V_{DD} - V_b - 0.8)^2$ ($M_2$'s saturation current; $M_2$ is on only if $V_b < 2.2$ V).
+Let
+\[
+x=V_{in}-0.7\ \mathrm V,\qquad v=V_{out},\qquad b=2.2\ \mathrm V-V_b .
+\]
+Here \(x\) is the NMOS overdrive when \(M_1\) is on, and \(b=V_{SG2}-|V_{THP}|\) is the PMOS overdrive. Define the total current supplied into the output node by the load as
+\[
+J(v)=\frac{V_{DD}-v}{R_D}+I_{D2}(v).
+\]
+KCL is \(I_{D1}=J(v)\).
 
-- $V_{in} \le 0.7$ V: $M_1$ off, no current anywhere, $V_{out} = V_{DD}$ ($M_2$ in triode with $V_{SD} = 0$).
-- $M_1$ on, $V_{out} > V_b + 0.8$ V: $M_2$ in triode (resistance ≈ $1/[\beta_2(V_{DD} - V_b - 0.8)]$ for small $V_{SD}$) in parallel with $R_D$; $I_{D1} = \tfrac12\beta_1(V_{in} - 0.7)^2$ flows through this low-resistance combination; slope ≈ $-g_{m1}(R_D\|R_{on2})$, small.
-- $V_{out} < V_b + 0.8$ V: $M_2$ saturated, supplying the constant $I_2$; $V_{out} = V_{DD} - R_D(I_{D1} - I_2)$, slope $-g_{m1}R_D$: the steep, high-gain part.
-- $V_{out} < V_{in} - 0.7$ V: $M_1$ enters triode; the slope decreases and $V_{out}$ approaches a low value at $V_{in} = 3$ V.
-- Transition points: $V_{in} = 0.7$ V; $V_{out} = V_b + |V_{THP}| = V_b + 0.8$ V; $V_{out} = V_{in} - 0.7$ V.
-- In terms of the parameters (KCL at the output: $I_{D1} = (V_{DD} - V_{out})/R_D + I_{D2}$, both $R_D$ and $M_2$ pulling up): $M_2$ saturates at $V_{in} = 0.7 + \sqrt{(2/\beta_1)[(2.2 - V_b)/R_D + I_2]}$ (if $M_1$ is still saturated there); $M_1$ enters triode where $\tfrac12\beta_1(V_{in} - 0.7)^2 = (3.7 - V_{in})/R_D + I_2$. If $V_b$ is low enough that $M_1$ reaches $V_{out} = V_{in} - 0.7$ V before $V_{out}$ falls to $V_b + 0.8$ V, the two kinks occur in the opposite order; either order is acceptable when justified. (If $V_b \ge 2.2$ V, $M_2$ is off and the circuit is an ordinary resistively loaded CS stage.)
+For \(x\le 0\), \(M_1\) is off. Since both load currents are nonnegative, KCL gives \(v=V_{DD}=3\ \mathrm V\).
+
+For \(b\le0\), \(M_2\) is off over the sweep, so \(I_{D2}=0\). For \(b>0\), \(V_{SD2}=V_{DD}-v\). The PMOS boundary is \(V_{SD2}=b\), hence
+\[
+v_P=V_{DD}-b=V_b+0.8\ \mathrm V.
+\]
+The PMOS current is therefore
+\[
+I_{D2}(v)=
+\begin{cases}
+\beta_2\!\left[b(V_{DD}-v)-\dfrac{(V_{DD}-v)^2}{2}\right],
+& v>v_P\quad\text{(triode)},\\[6pt]
+\dfrac12\beta_2b^2,
+& v\le v_P\quad\text{(saturation)}.
+\end{cases}
+\]
+The two expressions agree at \(v=v_P\). In the triode part \(M_2\) behaves as a small resistor, so the initial output fall is gentle. In the saturated part it contributes the constant current \(I_2=\beta_2b^2/2\).
+
+When \(M_1\) is saturated, \(v\ge x>0\), and
+\[
+I_{D1}=\frac12\beta_1x^2,\qquad
+\frac12\beta_1x^2=J(v).
+\]
+Thus the output is obtained by solving this equation with the appropriate PMOS branch. When \(M_1\) enters triode, \(0<v<x\), and the equation becomes
+\[
+\beta_1\!\left(xv-\frac{v^2}{2}\right)=J(v).
+\]
+These equations show why the curve is initially gentle, becomes steep after \(M_2\) saturates, and flattens when \(M_1\) enters triode. With \(\lambda=0\), the saturated-\(M_2\), saturated-\(M_1\) slope is approximately \(-g_{m1}R_D\).
+
+The transition points are found by substituting the boundary condition into the same KCL.
+
+- \(M_1\) turns on at \(V_{in}=0.7\ \mathrm V\).
+- \(M_2\) saturation is reached at \(v=v_P\). If \(M_1\) is still saturated there,
+  \[
+  x_P=\sqrt{\frac{2J(v_P)}{\beta_1}},\qquad V_{in,P}=0.7+x_P.
+  \]
+  If this trial gives \(x_P>v_P\), \(M_1\) is already in triode and instead
+  \[
+  x_P=\frac{v_P}{2}+\frac{J(v_P)}{\beta_1v_P}.
+  \]
+- \(M_1\) triode entry is found from \(v=x\). If \(M_2\) is saturated at that point,
+  \[
+  \frac12\beta_1x_T^2=\frac{3-x_T}{R_D}+I_2,\qquad
+  V_{in,T}=0.7+x_T.
+  \]
+
+Only boundaries inside \(0\le V_{in}\le3\ \mathrm V\) are retained. Their order depends on \(V_b\), \(R_D\), \(\beta_1\), and \(\beta_2\). If \(V_b\ge2.2\ \mathrm V\), \(M_2\) is off and the circuit reduces to a resistively loaded common-source stage.
+
+![R093 output transfer characteristic](/q/R093/solution-vout.svg)
 
 ## Grading notes
 
-+2: $V_{out} = V_{DD}$ up to 0.7 V, a gentle initial fall while $M_2$ is in triode, a steeper fall (gain ≈ $g_{m1}R_D$) once $V_{out} < V_b + |V_{THP}|$, triode entry of $M_1$ at $V_{out} = V_{in} - V_{TH}$ and a low final value. +1: the $M_2$ triode-to-saturation transition missing (load treated as $R_D$ in parallel with a current source throughout) but otherwise right. 0: correct inverting shape but transition points wrong or missing. -2 (asserted as fact): non-inverting characteristic, $V_{out}$ below $V_{DD}$ while $M_1$ is off, or $M_2$ treated as an NMOS / as the input device.
+- +2 for a correct KCL-based derivation, \(V_{out}=V_{DD}\) up to \(V_{in}=0.7\ \mathrm V\), the PMOS triode-to-saturation boundary \(V_{out}=V_b+0.8\ \mathrm V\), NMOS triode entry at \(V_{out}=V_{in}-0.7\ \mathrm V\), and the corresponding inverting curve. Equivalent symbolic rearrangements and numerical values within rounding are accepted.
+- +1 for the correct overall curve with one transition condition missing or one region mislabeled.
+- 0 for a correct inverting shape with transition points unsupported or omitted.
+- −2 for asserting a non-inverting characteristic, \(V_{out}<V_{DD}\) while \(M_1\) is off, or treating \(M_2\) as an NMOS or as the input device.
+
